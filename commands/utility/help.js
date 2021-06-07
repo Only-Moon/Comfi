@@ -30,16 +30,17 @@ run: async (bot, message, args) => {
     
     try {
 
-    let Categories = ["admin", "fun", "images", "info", "mod", "utility"],
+    let Categories = ["admin", "fun", "images", "info", "mod", "ticket", "utility"],
     AllCommands = [];
 
 const Emotes = {
-    admin: "⚙️ Admin",
-    fun: "🙂 Fun",
-    images: "🔍 Images",
-    info: "📚 Info",
-    mod: "🔧 Mod",
-    utility: "🤖 Utility"
+    admin: "<a:1_AR_Tool_13:850376219555790969> Admin",
+    fun: "<a:bunny_dance:849980036698472489> Fun",
+    images: "<:gg:849980031514050560> Images",
+    info: "<:watching:849968175516745748> Info",
+    mod: "<a:hammercross:850374361474007062> Mod",
+    ticket: "<:modmail:850374127667773451> Ticket",
+    utility: "<a:bot:849980124924346369> Utility"
 };
 
 for (let i = 0; i < Categories.length; i++) {
@@ -54,7 +55,7 @@ const Embed = new Discord.MessageEmbed()
     .setAuthor("Commands", message.author.avatarURL({
         dynamic: true
     }))
-    .setDescription(Description + AllCommands.join("") + "" + "\n\n" + "**Links -**" + ` [Join Support](${support}) • [Invite Me](https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot)`)
+    .setDescription(Description + AllCommands.join("") + "" + "\n\n" + "**Links -**" + ` [Join Support](${support})`)
     .setFooter(`Requested by ${message.author.username}`, bot.user.displayAvatarURL())
     .setTimestamp();
 

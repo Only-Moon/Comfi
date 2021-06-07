@@ -21,8 +21,8 @@ module.exports = {
             .setDescription(args.join(' '))
         var msg = await message.channel.send(embed);
 
-        await msg.react('✅');
-        await msg.react('❌');
+        await msg.react('<a:1_AR_Accepted:849965002831691777>');
+        await msg.react('<a:1_AR_Accepted:849965002831691777>');
 
         message.delete({ timeout: 1000 });
     }

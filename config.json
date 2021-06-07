@@ -1,13 +1,13 @@
 {
-    "AME_API": "",
+    "AME_API": "4bb9fd1353ce3ad01fc9cc45f33b9faa5fcfce811a14df2305d9f9e5f254f8a17760c0abb04290104258b249bfa5c5bd33df5951fc0f1966ddd2777507ba0faa",
     "embedcolor": "RANDOM",
     "support": "https://discord.gg/fWT7yGMSAB",
     "JoinImage": "https://cdn.discordapp.com/attachments/836804667282423831/845207015567392778/images_-_2021-05-21T131826.974.jpeg",
     "LeftImage": "https://cdn.discordapp.com/attachments/836804667282423831/845207015567392778/images_-_2021-05-21T131826.974.jpeg",
     "status": "online",
-    "activity": "{server} Servers",
-    "type": "LISTENING",
-    "url": "",
-    "bid": "",
-    "key": ""
+    "activity": "Members of LoonツRangers",
+    "type": "WATCHING",
+    "url": "http://api.brainshop.ai/get?",
+    "bid": "156699&key=SlAvNK9fvVXeTFYz&uid=[uid]&msg=[msg]",
+    "key": "SlAvNK9fvVXeTFYz"
 }
