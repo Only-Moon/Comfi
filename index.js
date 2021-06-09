@@ -1,5 +1,5 @@
 require("dotenv").config();
-console.log("Bot coded by Felix_Playz#1000\nLoaded Moderation Bot v2.0");
+console.log("Bot coded by Felix_Playz#1000\nLoaded LRツGUARD v2.0");
 //Defining dependencies
 const { Client, Collection } = require('discord.js');
 const { PREFIX } = require('./config.js');
@@ -28,10 +28,8 @@ bot.aliases = new Collection();
 bot.emotes = emojis;
 bot.config = config;
 
-["aliases", "commands"].forEach(cmd => bot[cmd] = new Discord.Collection());
-bot.categories = fs.readdirSync("./commands/");
-["command"].forEach(handler => {
-    require(`./handlers/${handler}`)(bot);
+["command", "event"].forEach(handler => {
+	require(`./handlers/${handler}`)(bot);
 });
 
 bot.queue2 = new Map();
@@ -159,20 +157,12 @@ const mentionRegex = RegExp(`^<@!?${bot.user.id}>$`);
             games: bot.games
         }
 
-  let command =
-    bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd));
-  
-  if (!message.guild.me.hasPermission("SEND_MESSAGES")) return;
+  let command = bot.commands.get(cmd);
+  // If none is found, try to find it by alias
+  if (!command) command = bot.commands.get(bot.aliases.get(cmd));
 
-  if (!command)
-    return;
-
-   if (command) {
-     command.run(bot, message, args, ops);
-   } else {
-     command.run(bot, message, args)
-   }
-   
+  // If a command is finally found, run the command
+  if (command) command.run(bot, message, args);
 });
 
 bot.on("message", async message => {

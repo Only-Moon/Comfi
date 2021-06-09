@@ -6,7 +6,7 @@ const ascii = require("ascii-table");
 let table = new ascii("Commands");
 table.setHeading("Command", "Load status");
 
-module.exports = (client) => {
+module.exports = (bot) => {
     // Read every commands subfolder
     readdirSync("./commands/").forEach(dir => {
         // Filter so we only have .js command files
@@ -19,7 +19,7 @@ module.exports = (client) => {
             let pull = require(`../commands/${dir}/${file}`);
     
             if (pull.config.name) {
-                client.commands.set(pull.config.name, pull);
+                bot.commands.set(pull.config.name, pull);
                 table.addRow(file, '✅');
             } else {
                 table.addRow(file, `❌  -> missing a help.name, or help.name is not a string.`);
@@ -27,7 +27,7 @@ module.exports = (client) => {
             }
     
             // If there's an aliases key, read the aliases.
-            if (pull.config.aliases && Array.isArray(pull.aliases)) pull.config.aliases.forEach(alias => client.aliases.set(alias, pull.config.name));
+            if (pull.config.aliases && Array.isArray(pull.config.aliases)) pull.config.aliases.forEach(alias => bot.aliases.set(alias, pull.config.name));
         }
     });
     // Log the table
