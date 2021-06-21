@@ -24,7 +24,7 @@ module.exports = async (bot, message) => {
 		const channel = db.get(`levelup_${message.guild.id}`) || message.channel;
 		const embed = new Discord.MessageEmbed()
 			.setColor('BLURPLE')
-			.setDescription(`<@${message.author.id}>, You are now **level ${level}** with **base experience of ${GuildXP}**.`);
+			.setDescription(`<@${message.author.id}>, You have reached **level ${level}** <:gg:849980031514050560>.`);
 		bot.channels.cache.get(channel).send(embed);
 	}
 };

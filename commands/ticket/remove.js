@@ -3,7 +3,7 @@ module.exports = {
         name: 'remove',
         description: 'Removes a member from specific ticket',
         aliases: [],
-        usage: '<city name>',
+        usage: 'remove <@user>',
         category: 'ticket',
         userperms: ['ADMINISTRATOR']
     },

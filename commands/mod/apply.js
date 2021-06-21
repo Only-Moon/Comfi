@@ -37,7 +37,7 @@ module.exports = {
             }
         });
 
-        const appsChannel = client.channels.cache.get("YOUR CHANNEL ID");
+        const appsChannel = client.channels.cache.get("852086473700016148");
         collector.on('end', (collected, reason) => {
             if (reason === 'fulfilled') {
                 let index = 1;
