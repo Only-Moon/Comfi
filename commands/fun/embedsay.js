@@ -45,7 +45,7 @@ module.exports = {
     }
 
     let embed = new Discord.MessageEmbed()
-      .setColor("42ABFB")
+      .setColor("F8B6D4")
       .setDescription(`${Content}`);
 
     return message.channel.send(embed);

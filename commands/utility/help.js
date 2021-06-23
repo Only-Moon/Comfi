@@ -34,15 +34,15 @@ run: async (bot, message, args) => {
     AllCommands = [];
 
 const Emotes = {
-    admin: "<a:1_AR_Tool_13:850376219555790969> Admin",
-    fun: "<a:bunny_dance:849980036698472489> Fun",
-    images: "<:gg:849980031514050560> Images",
-    info: "<:watching:849968175516745748> Info",
-    leveling: "<a:levelup:851704486934216754> Leveling",
-    mod: "<a:warning:849980143383609354> Mod",
-    music: "<a:musicz:856445602417344542> Music",
-    ticket: "<:modmail:850374127667773451> Ticket",
-    utility: "<a:bot:849980124924346369> Utility"
+    admin: "<a:bun_bounce_HE:798617643775033394> Admin",
+    fun: "<a:730643342169210890:798458300219785216> Fun",
+    images: "<a:pinktea_HE:796373339651571744> Images",
+    info: "<a:pink_bow:855792252403712020> Info",
+    leveling: "<a:heart_blow:855456784436953088> Leveling",
+    mod: "<a:heartcharm_HE:783028559580495923> Mod",
+    music: "<a:cat_tada_HE:779274421574959127> Music",
+    ticket: "<a:love_letter:855791964975530004> Ticket",
+    utility: "<a:paw_HE:797027740007661578> Utility"
 };
 
 for (let i = 0; i < Categories.length; i++) {
@@ -50,10 +50,10 @@ for (let i = 0; i < Categories.length; i++) {
     AllCommands.push(`\n\n**${Emotes[Categories[i]]}**\n\`\`\`${Cmds}\`\`\``);
 };
 
-const Description = `My Prefix For **${message.guild.name}** Is **${prefix}**\n\nFor More Command Information, Type The Following Command:\n**${prefix}help <command Name> or** <@${bot.user.id}> **help <command name>**`;
+const Description = `My Prefix For **${message.guild.name}** Is **${prefix}**\n\nFor More Command Information, Type The Following Command:\n**${prefix}help <command Name> or** <@${bot.user.id}> **help <command name>** <:dontsteal_HE:798615827825426462> `;
 
 const Embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+    .setColor("F8B6D4")
     .setAuthor("Commands", message.author.avatarURL({
         dynamic: true
     }))
@@ -65,7 +65,7 @@ if (!args[0]) return message.channel.send(Embed);
 
 else {
     const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+    .setColor("F8B6D4")
     .setAuthor(`${message.guild.me.displayName} Help`, message.guild.iconURL())
     .setThumbnail(bot.user.displayAvatarURL())
 
