@@ -9,5 +9,5 @@ module.exports = (bot) => {
 			bot.on(eName, evt.bind(null, bot));
 		}
 	};
-	["guild"].forEach((x) => load(x));
+	["client"].forEach((x) => load(x));
 };

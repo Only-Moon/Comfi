@@ -220,36 +220,20 @@ bot.on('message', async message => {
 		if (!chatbot.enabled)
 			return message.author.send(disabled).catch(e => console.log(e));
 
-		if (message.attachments.size > 0)
-			return message.channel.send(
-				'Hey buddy! I cannot read files :(\nPlease try to keep it in chat..'
-			);
-
-		fetch(
-			`http://api.brainshop.ai/get?bid=${bot.config.bid}&key=${
-				bot.config.key
-			}&uid=1&msg=${encodeURIComponent(message)}`
-		)
-			.then(res => res.json())
-			.then(data => {
-				message.channel
-					.send(
-						new MessageEmbed()
-							.setTitle(bot.user.username, bot.user.displayAvatarURL())
-							.setDescription(
-								`Your Message : **${message}**\nMy Message : **${data.cnt}**`
-							)
-							.setColor('RANDOM')
-							.setFooter(
-								`Talking with ${message.author.username}`,
-								message.author.displayAvatarURL({
-									dynamic: true
-								})
-							)
-					)
-					.catch(e => console.log(e));
-			});
-	}
+    if (message.author.bot) return;
+message.content = message.content.replace(/@(everyone)/gi, "everyone").replace(/@(here)/gi, "here");
+    if (message.content.includes(`@`)) {
+    return message.channel.send(`**:x: Please dont mention anyone**`);
+ }
+  message.channel.startTyping();
+    if (!message.content) return message.channel.send("Please say something.");
+fetch(`https://api.affiliateplus.xyz/api/chatbot?message=${encodeURIComponent(message.content)}&botname=${bot.user.username}&ownername=KP18 Gamer`)
+    .then(res => res.json())
+    .then(data => {
+        message.channel.send(` ${data.message}`);
+    });
+      message.channel.stopTyping();
+}
 });
 
 bot.on('guildMemberAdd', async member => {
