@@ -21,6 +21,9 @@ const bot = new Client({
 	disableMentions: 'everyone',
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
+
+const smartestchatbot = require('smartestchatbot');
+
 const fs = require('fs');
 const db = require('old-wio.db');
 const emojis = require('./emojis.json');
@@ -214,6 +217,8 @@ bot.on('message', async message => {
 		'aichatsystem'
 	);
 
+const scb = new smartestchatbot.Client()
+
 	let chatbot = bot.setups.get(message.guild.id, 'aichatsystem');
 
 	if (message.channel.id == chatbot.channel) {
@@ -221,20 +226,27 @@ bot.on('message', async message => {
 			return message.author.send(disabled).catch(e => console.log(e));
 
     if (message.author.bot) return;
-message.content = message.content.replace(/@(everyone)/gi, "everyone").replace(/@(here)/gi, "here");
+    message.content = message.content.replace(/@(everyone)/gi, "everyone").replace(/@(here)/gi, "here");
     if (message.content.includes(`@`)) {
-    return message.channel.send(`**:x: Please dont mention anyone**`);
- }
-  message.channel.startTyping();
+      return message.channel.send(`**:x: Please dont mention anyone**`);
+    }
+    message.channel.startTyping();
     if (!message.content) return message.channel.send("Please say something.");
-fetch(`https://api.affiliateplus.xyz/api/chatbot?message=${encodeURIComponent(message.content)}&botname=${bot.user.username}&ownername=KP18 Gamer`)
-    .then(res => res.json())
-    .then(data => {
-        message.channel.send(` ${data.message}`);
-    });
-      message.channel.stopTyping();
-}
+    scb.chat({message: message.content, name: bot.user.username, owner:"Moonbow", user: message.author.id, language:"en"}).then(reply => {
+    message.inlineReply(`${reply}`);
+    })
+    message.channel.stopTyping();
+  }
 });
+
+
+require("./ExtendedMessage");
+
+
+    allowedMentions: {
+        // set repliedUser value to `false` to turn off the mention by default
+        repliedUser: true
+    }
 
 bot.on('guildMemberAdd', async member => {
 	if (!member.guild) return;
@@ -499,9 +511,7 @@ bot.on('guildMemberAdd', async member => {
 	if (!member.guild) return;
 	let age = await wb.get(`age.${member.guild.id}`);
 	let logs = await wb.get(`logs.${member.guild.id}`);
-	let punishment = wb.get(`punishment.${member.guild.id}`);
-	let bypassed = await wb.get(`bypass.${member.guild.id}`);
-	if (!bypassed.includes(member.id)) {
+	let punishment = wb.get(`punishment.${member.guild.id}`); {
 		let day = Number(age);
 		let x = Date.now() - member.user.createdAt;
 		let created = Math.floor(x / 86400000);
@@ -563,6 +573,12 @@ bot.distube
       `${bot.emotes.success} | Added \`${playlist.title}\` playlist (${playlist.total_items
       } songs) to queue\n${status(queue)}`
     )
+  )
+  .on("empty", (message, queue, song) =>
+  message.channel.send("Channel is empty. Leaving the channel")
+  )
+  .on("finish", (message, queue, song) =>
+  message.channel.send("No more song in queue")
   )
   .on("error", (message, err) =>
     message.channel.send(

@@ -30,15 +30,15 @@ run: async (bot, message, args) => {
     
     try {
 
-    let Categories = ["admin", "fun", "images", "info", "leveling",  "mod", "music", "ticket", "utility"],
+    let Categories = ["admin", "emoji", "fun", "images", "info",  "mod", "music", "ticket", "utility"],
     AllCommands = [];
 
 const Emotes = {
     admin: "<a:bun_bounce_HE:798617643775033394> Admin",
+    emoji: "<a:llama_roll_HE:855602231986487326> Emoji",
     fun: "<a:730643342169210890:798458300219785216> Fun",
     images: "<a:pinktea_HE:796373339651571744> Images",
     info: "<a:pink_bow:855792252403712020> Info",
-    leveling: "<a:heart_blow:855456784436953088> Leveling",
     mod: "<a:heartcharm_HE:783028559580495923> Mod",
     music: "<a:cat_tada_HE:779274421574959127> Music",
     ticket: "<a:love_letter:855791964975530004> Ticket",

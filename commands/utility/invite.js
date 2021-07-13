@@ -13,7 +13,7 @@ module.exports = {
   },
   run: async (bot, message, args) => {
     
-    const Invite = `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot`, Owne = `${Owner_Name}`, Dev = `Felix_PlaYz#0001`;
+    const Invite = `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot`, Owne = `${Owner_Name}`, Dev = `. ˚◞♡ Darkmoon  ⃗  Mohit🎐*ೃ༄#0511`;
     
     const Embed = new Discord.MessageEmbed()
     .setColor("RANDOM")
