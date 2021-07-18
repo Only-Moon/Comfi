@@ -14,6 +14,7 @@ module.exports = {
 
         try {
             voiceChannel.leave()
+            await message.react(`✅`)
         } catch(error) {
             console.log(`There Was An Error Disconnecting To The Voice Channel: ${error}`)
             return message.channel.send(`There Was An Error Disconnecting To The Voice Channel: ${error}`)

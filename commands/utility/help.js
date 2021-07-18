@@ -30,7 +30,7 @@ run: async (bot, message, args) => {
     
     try {
 
-    let Categories = ["admin", "emoji", "fun", "images", "info",  "mod", "music", "ticket", "utility"],
+    let Categories = ["admin", "emoji", "fun", "images", "info",  "mod", "music", "utility"],
     AllCommands = [];
 
 const Emotes = {
@@ -41,7 +41,6 @@ const Emotes = {
     info: "<a:pink_bow:855792252403712020> Info",
     mod: "<a:heartcharm_HE:783028559580495923> Mod",
     music: "<a:cat_tada_HE:779274421574959127> Music",
-    ticket: "<a:love_letter:855791964975530004> Ticket",
     utility: "<a:paw_HE:797027740007661578> Utility"
 };
 

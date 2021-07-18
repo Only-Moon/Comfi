@@ -3,7 +3,7 @@ module.exports = {
         name: "join",
         category: 'music',
         aliases: ["summon"],
-        description: "Staff Application Command",
+        description: "Joins the voice chann",
         usage: "join",
     },
     run: async(bot, message, args) => {
@@ -15,7 +15,7 @@ module.exports = {
         try {
             await voiceChannel.join().then(connection => {
                 connection.voice.setSelfDeaf(true)
-            })
+                message.react(`✅`)            })
         } catch(error) {
             console.log(`There Was An Error Connecting To The Voice Channel: ${error}`)
             return message.channel.send(`There Was An Error Connecting To The Voice Channel: ${error}`)

@@ -1,5 +1,5 @@
 require('dotenv').config();
-console.log('Bot coded by Felix_Playz#1000\nLoaded LRツGUARD v2.0');
+console.log('Bot coded by Felix_Playz#1000\nLoaded Comfi v2.0');
 //Defining dependencies
 const { Client, Collection } = require('discord.js');
 const { PREFIX } = require('./config.js');
@@ -283,7 +283,8 @@ bot.on('guildMemberAdd', async member => {
 				if (!sChannel) return;
 				let sMessage = await db.fetch(`Welcome_${member.guild.id}_Msg`);
 				if (!sMessage) sMessage = `Welcome To The Server!`;
-				let sWelcomeImage = await db.fetch(`WelIm_${member.guild.id}`);
+				let clr = await db.fetch(`Welcome_${member.guild.id}_Clr`);
+				let wMessage = await db.fetch(`Welcome_${member.guild.id}_Ftr`);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';
@@ -308,29 +309,26 @@ bot.on('guildMemberAdd', async member => {
 						`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
 					);
 
-				let sWelcomed = new canvas.Welcome();
-				let sImage = await sWelcomed
-					.setUsername(member.user.username)
-					.setDiscriminator(member.user.discriminator)
-					.setGuildName(member.guild.name)
-					.setAvatar(
-						member.user.displayAvatarURL({ dynamic: false, format: 'jpg' })
-					)
-					.setMemberCount(member.guild.memberCount)
-					.setBackground(sWelcomeImage || JoinImage)
-					.toAttachment();
 
-				let attachment = new Discord.MessageAttachment(
-					sImage.toBuffer(),
-					'welcome.png'
-				);
+         let wMsg = wMessage
+					.replace(/{membercount}/g, `${member.guild.memberCount}`)
+					.replace(/{guild}/g, `${member.guild.name}`)
+					.replace(
+						/{user_createdAgo}/g,
+						`${moment(member.user.createdTimestamp).fromNow()}`
+					)
+					.replace(
+						/{user_createdAt}/g,
+						`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
+					);
+
 
 				const Embed = new MessageEmbed()
 					.setDescription(sMsg)
-					.attachFiles([attachment])
-					.setImage('attachment://welcome.png')
-					.setColor('RANDOM');
-				return bot.channels.cache.get(sChannel).send(Embed);
+					.setFooter(wMsg)
+					.setThumbnail(`${member.user.displayAvatarURL()}`)
+					.setColor(clr);
+				return bot.channels.cache.get(sChannel).send(`${member.user} has joined <@&808639795491373087>`, { embed: Embed })
 			} catch (e) {
 				console.log(e);
 			}
@@ -384,6 +382,7 @@ bot.on('guildMemberAdd', async member => {
 				console.log(e);
 			}
 		}
+  console.log("error found")
 	} else {
 		return;
 	}
@@ -401,7 +400,8 @@ bot.on('guildMemberRemove', async member => {
 				let sMessage = await db.fetch(`Leave_${member.guild.id}_Msg`);
 				if (!sMessage)
 					sMessage = `${member.user.username} Has Left The Server!`;
-				let sLeaveImage = await db.fetch(`Leaveim_${member.guild.id}`);
+					let clr = await db.fetch(`Welcome_${member.guild.id}_Clr`);
+					let wMessage = await db.fetch(`Welcome_${member.guild.id}_Ftr`);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';
@@ -426,29 +426,26 @@ bot.on('guildMemberRemove', async member => {
 						`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
 					);
 
-				let sLeaved = new canvas.Goodbye();
-				let sImage = await sLeaved
-					.setUsername(member.user.username)
-					.setDiscriminator(member.user.discriminator)
-					.setGuildName(member.guild.name)
-					.setAvatar(
-						member.user.displayAvatarURL({ dynamic: false, format: 'jpg' })
-					)
-					.setMemberCount(member.guild.memberCount)
-					.setBackground(sLeaveImage || JoinImage)
-					.toAttachment();
 
-				let attachment = new Discord.MessageAttachment(
-					sImage.toBuffer(),
-					'leave.png'
-				);
+         let wMsg = wMessage
+					.replace(/{membercount}/g, `${member.guild.memberCount}`)
+					.replace(/{guild}/g, `${member.guild.name}`)
+					.replace(
+						/{user_createdAgo}/g,
+						`${moment(member.user.createdTimestamp).fromNow()}`
+					)
+					.replace(
+						/{user_createdAt}/g,
+						`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
+					);
+
 
 				const Embed = new MessageEmbed()
 					.setDescription(sMsg)
-					.attachFiles([attachment])
-					.setImage('attachment://leave.png')
-					.setColor('RANDOM');
-				return bot.channels.cache.get(sChannel).send(Embed);
+					.setFooter(wMsg)
+					.setThumbnail(`${member.user.displayAvatarURL()}`)
+					.setColor(clr);
+				return bot.channels.cache.get(sChannel).send(`{ embed: Embed }`);
 			} catch (e) {
 				console.log(e);
 			}
@@ -502,6 +499,7 @@ bot.on('guildMemberRemove', async member => {
 				console.log(e);
 			}
 		}
+	console.log("member left")
 	} else {
 		return;
 	}
