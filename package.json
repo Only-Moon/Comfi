@@ -34,6 +34,7 @@
     "fs": "^0.0.1-security",
     "google-play-scraper": "^8.0.2",
     "got": "^11.8.2",
+    "hastebin-gen": "^2.0.5",
     "he": "^1.2.0",
     "humanize-duration": "^3.26.0",
     "imdb-api": "^4.4.1",

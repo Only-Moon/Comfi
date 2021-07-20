@@ -29,7 +29,7 @@ const db = require('old-wio.db');
 const emojis = require('./emojis.json');
 
 bot.distube = new Distube(bot, {
-  searchSongs: false,
+  searchSongs: true,
   leaveOnFinish: false,
   leaveOnStop: false,
 });

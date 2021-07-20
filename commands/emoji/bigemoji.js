@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   config: {
-  name: "emoji",
+  name: "emojiii",
   aliases: ["big"],
   description: "Turns an emoji into gif",
   usage: "emoji <:emoji:>",
