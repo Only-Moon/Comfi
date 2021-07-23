@@ -583,6 +583,38 @@ bot.distube
       `${bot.emotes.error} | An error encountered: ${err}`
     )
   );
+  
+  
+  bot.on("guildCreate", (guild) => {
+  const channelId = "867650282933583882";
+  const channel = bot.channels.cache.get(channelId);
+  if (!channel) return;
+  const embed = new discord.MessageEmbed()
+    .setTitle("Someone invited me!")
+    .setDescription(
+      `**Guild Name:** ${guild.name} (${guild.id})\n**Members:** ${guild.memberCount}`
+    )
+    .setTimestamp()
+    .setColor("#F8B6D4")
+    .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
+  channel.send(embed);
+});
+
+bot.on("guildDelete", (guild) => {
+  const channelId = "867650282933583882";
+  const channel = bot.channels.cache.get(channelId);
+  if (!channel) return;
+  const embed = new discord.MessageEmbed()
+    .setTitle("I got kicked!")
+    .setDescription(
+      `**Guild Name:** ${guild.name} (${guild.id})\n**Members:** ${guild.memberCount}`
+    )
+    .setTimestamp()
+    .setColor("#F8B6D4")
+    .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
+  channel.send(embed);
+});
+  
 
 function parseMs(str) {
 	const parts = str.split(' ');
