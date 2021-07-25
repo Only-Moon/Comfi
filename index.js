@@ -1,6 +1,7 @@
 require('dotenv').config();
 console.log('Bot coded by Felix_Playz#1000\nLoaded Comfi v2.0');
 //Defining dependencies
+require('discord-reply');
 const { Client, Collection } = require('discord.js');
 const { PREFIX } = require('./config.js');
 const discord = require('discord.js');
@@ -21,9 +22,11 @@ const bot = new Client({
 	disableMentions: 'everyone',
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
-
+const clientID = config.clientID; 
+const clientSecret = config.clientSecret;
+const { MessageButton } = require('discord-buttons');
+require('discord-buttons')(bot);
 const smartestchatbot = require('smartestchatbot');
-
 const fs = require('fs');
 const db = require('old-wio.db');
 const emojis = require('./emojis.json');
@@ -228,25 +231,18 @@ const scb = new smartestchatbot.Client()
     if (message.author.bot) return;
     message.content = message.content.replace(/@(everyone)/gi, "everyone").replace(/@(here)/gi, "here");
     if (message.content.includes(`@`)) {
-      return message.channel.send(`**:x: Please dont mention anyone**`);
+      return message.lineReply(`**:x: Please dont mention anyone**`);
     }
     message.channel.startTyping();
-    if (!message.content) return message.channel.send("Please say something.");
-    scb.chat({message: message.content, name: bot.user.username, owner:"Moonbow", user: message.author.id, language:"en"}).then(reply => {
-    message.inlineReply(`${reply}`);
-    })
-    message.channel.stopTyping();
-  }
-});
+    if (!message.content) return message.lineReply("Please say something.");
+    scb.chat({message: message.content, name: bot.user.username, owner:"Moonbow", user: message.author.id, language:"en"}).then(reply => { 
+      message.lineReply(`${reply}`); 
+      
+    }) 
+    message.channel.stopTyping(); 
+	  
+	}});
 
-
-require("./ExtendedMessage");
-
-
-    allowedMentions: {
-        // set repliedUser value to `false` to turn off the mention by default
-        repliedUser: true
-    }
 
 bot.on('guildMemberAdd', async member => {
 	if (!member.guild) return;
@@ -614,7 +610,37 @@ bot.on("guildDelete", (guild) => {
     .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
   channel.send(embed);
 });
+
+ 
+bot.on('clickButton', async (button) => {
+  if (button.id === 'inviteyes') { button.reply.defer() 
   
+  const inviteyb = new discord.MessageEmbed() 
+  .setTitle("Thanks for using the bot!") 
+  .setDescription(`Here Is My Invite Links: \nServer Moderator: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot&permissions=2147483647)** \nServer Helper: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot&permissions=4294967287)** \n\nRecommended: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot&permissions=8589934591)**`)
+  .setColor("GREEN"); 
+  
+  const joindsc = new MessageButton() .setStyle('url') 
+  .setLabel(
+    'Join Our Support Server!') 
+    .setURL('https://discord.gg/remYPHCVgW'); 
+  button.message.edit({button: joindsc, embed: inviteyb})
+  
+    
+  }
+  
+  if(button.id === 'inviteno'){ button.reply.defer() 
+  const noooyb = new discord.MessageEmbed() 
+  .setTitle('Okay Then') 
+  .setDescription('But Please Join Our Support Server!') 
+  .setColor("RED"); 
+  
+  const joindsc = new MessageButton() 
+  .setStyle('url') 
+  .setLabel('Join Our Support Server!')
+  .setURL('https://discord.gg/remYPHCVgW'); 
+  button.message.edit({button: joindsc, embed: noooyb})
+  }}); 
 
 function parseMs(str) {
 	const parts = str.split(' ');

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5000;
    
 module.exports = async (bot, message) => {
    app.get('/', (req, res) => res.send('Your bot is alive!'))

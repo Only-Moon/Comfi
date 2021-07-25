@@ -21,7 +21,7 @@ module.exports = {
     .addField("API Latency", Math.round(bot.ws.ping) + "ms", true)
     .addField("Message Latency", end - start + "ms")
     .setColor("RANDOM");
-    m.edit(embed).catch(e => message.channel.send(e));
+    m.edit({embed: embed}).catch(e => message.channel.send(e));
     
   });
     }

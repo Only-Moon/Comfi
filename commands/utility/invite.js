@@ -1,30 +1,37 @@
-const Discord = require("discord.js");
-const db = require("old-wio.db");
-const { Owner_Name } = require("../../config");
-const { support } = require("../../config.json");
+const { Client, Message, MessageEmbed, Discord } = require('discord.js');
+  const { MessageButton } = require('discord-buttons');
 
 module.exports = {
   config: {
   name: "invite",
-  aliases: ["invitelink"],
+  aliases: ["invitlink"],
   category: "utility",
   description: "Give You My Invite Link",
   usage: "invite",
   },
   run: async (bot, message, args) => {
+  const embed = new MessageEmbed() 
+    .setTitle('Hello!') 
+    .setDescription('⚠ | Do You Wan\'t To Invite Me?') 
+    .setColor("YELLOW"); 
     
-    const Invite = `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot`, Owne = `${Owner_Name}`, Dev = `. ˚◞♡ Darkmoon  ⃗  Mohit🎐*ೃ༄#0511`;
     
-    const Embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setTitle("Thanks for using the bot")
-    .addField("Invite Me", `[Click Me](${Invite})`, true)
-    .addField("Support Server", `[Click Me](${support})`, true)
-    .addField("Owner", Owne, true)
-    .addField("Dev", Dev, true)
-    .setFooter(`Requested by ${message.author.username}`)
-    .setTimestamp();
+    const yes = new MessageButton() 
+    .setStyle("green") 
+    .setLabel("Sure!") 
+    .setID("inviteyes"); 
     
-    return message.channel.send(Embed).catch(() => message.channel.send("Invite Link - " + Invite));
+    
+    const no = new MessageButton() 
+    .setStyle("red") 
+    .setLabel('Nope!') 
+    .setID('inviteno') 
+    
+    
+    message.channel.send(`<@${message.author.id}>`, { 
+      buttons: 
+      [yes, no], 
+      embed: embed })
+    }
+    
   }
-};
