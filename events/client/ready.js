@@ -11,7 +11,7 @@ console.log(`Your app is listening a http://localhost:${port}`)
 );
 	console.log(`[INFO]: Ready on client (${bot.user.tag})`);
 	console.log(
-		`[INFO]: watching ${bot.guilds.cache.size} Servers, ${
+		`[INFO]: watching ${bot.commands.size} Commands, ${bot.guilds.cache.size} Servers, ${
 			bot.channels.cache.size
 		} channels & ${bot.users.cache.size} users`
 	);

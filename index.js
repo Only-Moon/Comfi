@@ -1,7 +1,9 @@
 require('dotenv').config();
-console.log('Bot coded by Felix_Playz#1000\nLoaded Comfi v2.0');
+console.log('Loaded Comfi v2.0');
 //Defining dependencies
+
 require('discord-reply');
+const Nuggies = require('nuggies');
 const { Client, Collection } = require('discord.js');
 const { PREFIX } = require('./config.js');
 const discord = require('discord.js');
@@ -42,7 +44,7 @@ bot.aliases = new Collection();
 bot.emotes = emojis;
 bot.config = config;
 
-['command', 'event'].forEach(handler => {
+['command'].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);
 });
 
@@ -203,6 +205,8 @@ bot.on('message', async message => {
 	// If a command is finally found, run the command
 	if (command) command.run(bot, message, args);
 });
+
+bot.on('clickButton', button => { Nuggies.handleInteractions(bot, button);});
 
 bot.on('message', async message => {
 	let disabled = new MessageEmbed()
@@ -653,6 +657,8 @@ function parseMs(str) {
 function decodeMs(num) {
 	return pms(num);
 }
+
+console.log(`I have ${bot.commands.size} commands`)
 
 bot.login(process.env.TOKEN);
 
