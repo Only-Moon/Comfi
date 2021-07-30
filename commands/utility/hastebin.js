@@ -1,24 +1,54 @@
-const discord = require("discord.js")
-const { RichEmbed } = require("discord.js")
-const moment = require("moment")
-const hastebin = require('hastebin-gen');
+const { MessageEmbed } = require("discord.js");
+const { create } = require("sourcebin");
+const { MessageButton } = require('discord-buttons');
 
 module.exports = {
     config: {
-        name: "hastebin",
+        name: "sourcebin",
         category: 'utility',
-        aliases: ["haste"],
+        aliases: ["jsbin", "js", "bin"],
         description: "Get Link of your given Code or Text ad Hastebin",
         usage: "hastebin <code/text>",
     },
     run: async (bot, message, args) => {
+     message.delete();
       
-      if(!args.join(" ")) return message.channel.send(`Please write a Valid Code or Text.`);
-      
-      hastebin(args.join(" "), { extension: 'rage' }).then(haste => {
-    message.channel.send(haste);
-}).catch(error => {
-    message.channel.send(`\`\`\`\n-ERROR-\n\`\`\`${error}`);
-      });
+      const content = args.join(" ");
+    if (!content)
+      return message.lineReply(
+        new MessageEmbed()
+          .setDescription(
+            "<:no_HE:778611410539905044> plese provide content to make a bin out of it!"
+          )
+          .setColor("#303136")
+      );
+
+    create(
+      [
+        {
+          name: `Code by ${message.author.tag}`,
+          content,
+          language: "javascript",
+        },
+      ],
+      {
+        title: "Javascript code",
       }
-}
+    ).then((value) => {
+  
+   const embed = new MessageEmbed() . setDescription(`Click on the link below to Access Your Bin`
+      )
+      .setColor('RANDOM');
+      
+      let button = new MessageButton()
+        .setStyle('url')
+        .setURL(`${value.url}`) 
+        .setLabel('Bin Url!'); 
+
+
+message.channel.send(embed, {
+    buttons: [button]
+});
+})
+    }
+  }

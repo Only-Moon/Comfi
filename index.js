@@ -28,9 +28,12 @@ const clientID = config.clientID;
 const clientSecret = config.clientSecret;
 const { MessageButton } = require('discord-buttons');
 require('discord-buttons')(bot);
+const {buttube} = require('buttube')
+bot.buttube = new buttube(bot, "mongodb url")
 const smartestchatbot = require('smartestchatbot');
 const fs = require('fs');
 const db = require('old-wio.db');
+db.backup('./backup.json');
 const emojis = require('./emojis.json');
 
 bot.distube = new Distube(bot, {
@@ -85,9 +88,9 @@ bot.setups = new Enmap({ name: 'setups', dataDir: './databases/setups' });
 
 bot.on('message', async message => {
 	if (message.author.bot || !message.guild || message.webhookID) return;
-
-	let Prefix = await db.fetch(`prefix_${message.guild.id}`);
+let Prefix = await db.fetch(`prefix_${message.guild.id}`);
 	if (!Prefix) Prefix = PREFIX;
+	
 
 	const mentionRegex = RegExp(`^<@!?${bot.user.id}>$`);
 
@@ -208,6 +211,8 @@ bot.on('message', async message => {
 
 bot.on('clickButton', button => { Nuggies.handleInteractions(bot, button);});
 
+bot.on('clickButton', async(button) => { bot.buttube.button(button)})
+
 bot.on('message', async message => {
 	let disabled = new MessageEmbed()
 		.setColor('#FF0000')
@@ -247,6 +252,20 @@ const scb = new smartestchatbot.Client()
 	  
 	}});
 
+bot.on("guildCreate", async (guild) => { 
+  let ch = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) 
+  if (!ch) return false; 
+  let mybutton = new MessageButton()
+  .setStyle("url")
+  .setLabel("Support")
+  .setURL(`https://discord.gg/remYPHCVgW`) 
+ 
+  let msg = new Discord.MessageEmbed() .setTitle("<:pinkheartsu_HE:796373357280362517> Thanks for adding me! <:pinkheartsu_HE:796373357280362517>") 
+  .setColor(config.embedcolor) 
+  .setDescription(`Hey, thanks for adding me to ${guild.name} <:pink_heartsies_HE:796373408010600468>  \n My Prefix Is **Cr!** \n\n To get started type **Cr!help**`) 
+  
+  ch.send(msg, { buttons: [mybutton] }) })
+
 
 bot.on('guildMemberAdd', async member => {
 	if (!member.guild) return;
@@ -285,6 +304,7 @@ bot.on('guildMemberAdd', async member => {
 				if (!sMessage) sMessage = `Welcome To The Server!`;
 				let clr = await db.fetch(`Welcome_${member.guild.id}_Clr`);
 				let wMessage = await db.fetch(`Welcome_${member.guild.id}_Ftr`);
+				let sEmd = await db.fetch(`${Current === "Welcome" ? "Welcome" : "Leave"}_${message.guild.id}_Embed`, Msg);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';
@@ -322,13 +342,23 @@ bot.on('guildMemberAdd', async member => {
 						`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
 					);
 
+          let emd = sEmd
+					.replace(/{user}/g, `${member}`)
+					.replace(/{user_tag}/g, `${member.user.tag}`)
+					.replace(/{user_name}/g, `${member.user.username}`)
+					.replace(/{user_id}/g, `${member.id}`)
+					.replace(/{server_name}/g, `${member.guild.name}`)
+					.replace(/{server_id}/g, `${member.guild.id}`)
+					.replace(/{membercount}/g, `${member.guild.memberCount}`)
+					.replace(/{guild}/g, `${member.guild.name}`)
+
 
 				const Embed = new MessageEmbed()
 					.setDescription(sMsg)
 					.setFooter(wMsg)
 					.setThumbnail(`${member.user.displayAvatarURL()}`)
 					.setColor(clr);
-				return bot.channels.cache.get(sChannel).send(`${member.user} has joined <@&808639795491373087>`, { embed: Embed })
+				return bot.channels.cache.get(sChannel).send(emd, `{ embed: Embed }`)
 			} catch (e) {
 				console.log(e);
 			}
