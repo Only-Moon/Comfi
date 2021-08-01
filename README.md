@@ -19,7 +19,7 @@
 
 
 #### Features & Info
-* Author: `Felix_PlaYZ#1000`
+* Author: `ぁぜ⌠🍣⌡﹆𝐦𝐨𝐨𝐧🅲🅰🅺🅴̋¸¸𔔁#0511`
 * Moderation Bot built to manage discord servers.
 * This bot has all the premium commands too. Hackban/forceban [Type of ip ban] is also available
 * Modular Discord bot built entirely on pure JavaScript using Discord.JS.
@@ -50,4 +50,5 @@
 * Say
 
 # Contributors:
- * [Felix_PlaYz](https://github.com/gtagamermods) - Code and Commands
+* [Mohit](https://github.com/Xx-Mohit-xX) - Major Modifications 
+* [Felix_PlaYz](https://github.com/gtagamermods) - Base Code template 
