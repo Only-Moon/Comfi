@@ -19,7 +19,7 @@
 
 
 #### Features & Info
-* Author: `ぁぜ⌠🍣⌡﹆𝐦𝐨𝐨𝐧🅲🅰🅺🅴¸¸𔔁#0511 `
+* Author: `ぁぜ⌠🍣⌡﹆𝐦𝐨𝐨𝐧🅲🅰🅺🅴 ¸¸𔔁#0511`
 * Moderation Bot built to manage discord servers.
 * This bot has all the premium commands too. Hackban/forceban [Type of ip ban] is also available
 * Modular Discord bot built entirely on pure JavaScript using Discord.JS.
