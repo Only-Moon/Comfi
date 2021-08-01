@@ -7,8 +7,8 @@ module.exports = {
 		name: 'prefix',
 		category: 'admin',
 		description: "Change/Know The server's Prefix or the Global Prefix",
-		usage: '!prefix <new prefix/reset>',
-		example: '1) !prefix = \n2) !prefix reset',
+		usage: 'prefix <new prefix/reset>',
+		example: '1) prefix = \n2) prefix reset',
 		aliases: ['prefix']
 	},
 

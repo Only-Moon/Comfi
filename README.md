@@ -1,5 +1,4 @@
 # Discord.js Moderation Bot
-
 ### For Visual Studio Code Users -  
 #### Requirements & Steps :-
 * This Project

@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
+const { MessageButton } = require('discord-buttons');
 
 module.exports = {
   config: {
-  name: "emojiii",
+  name: "emoji",
   aliases: ["big"],
   description: "Turns an emoji into gif",
   usage: "emoji <:emoji:>",
@@ -22,7 +23,17 @@ module.exports = {
       .setImage(`${res}`)
       .setDescription(`${emo.name} ${emo.id}`);
 
-    return message.channel.send(embed);
+   
+   
+   let button = new MessageButton()
+        .setStyle('url')
+        .setURL(`${res}`) 
+        .setLabel('Emote Url!'); 
+
+
+message.channel.send(embed, {
+    buttons: [button]
+});
     
   }
 }

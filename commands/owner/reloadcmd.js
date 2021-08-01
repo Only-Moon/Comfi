@@ -5,7 +5,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     config: {
-        name: "reloadmod",
+        name: "reloadcmd",
         category: "owner",
         description: "Reload command- Dev Only",
         aliases: ['rmod']
@@ -31,8 +31,8 @@ module.exports = {
 
         try {
           
-          delete require.cache[require.resolve(`./${commandName}.js`)]
-          const pull = require(`./${commandName}.js`)
+          delete require.cache[require.resolve(`../${commandName}.js`)]
+          const pull = require(`. ./${commandName}.js`)
           bot.commands.set(pull.config.name, pull)
           message.channel.send(`Successfully reloaded: \`${commandName}\``)
         }

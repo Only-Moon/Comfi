@@ -1,13 +1,39 @@
-const { readdirSync } = require('fs');
+const { readdirSync } = require("fs"); const ascii = require("ascii-table"); 
 
-module.exports = (bot) => {
-	const load = dirs => {
-		const events = readdirSync(`./events/${dirs}/`).filter(d => d.endsWith('js'));
-		for (const file of events) {
-			const evt = require(`../events/${dirs}/${file}`);
-			const eName = file.split('.')[0];
-			bot.on(eName, evt.bind(null, bot));
-		}
-	};
-	["client"].forEach((x) => load(x));
-};
+// Create a new Ascii table 
+let table = new ascii("Events"); 
+table.setHeading("Events", "Load status"); 
+
+module.exports = (bot) => { 
+  
+  
+  const commands = readdirSync(__dirname.replace("\handlers", "\events")).filter(file => file.endsWith(".js")); 
+  
+  for (let file of commands) { 
+    try { 
+      
+      let pull = require(`${__dirname.replace("\handlers", "\events")}/${file}`); 
+      
+      if (pull.event && typeof pull.event !== "string") { table.addRow(file, `❌ -> Property event should be string.`)
+      ; 
+      continue; 
+        
+      } 
+      
+      pull.event = pull.event || file.replace(".js", "") 
+      
+      bot.on(pull.event, pull.run.bind(null, bot)) 
+      
+      table.addRow(file, '✅'); }
+     
+      catch(err) {
+        
+        console.log("Error While loading/executing command, join for help : https://withwin.in/dbd") 
+        console.log(err) 
+        
+        table.addRow(file, `❌ -> Error while loading event, join for help : https://withwin.in/dbd`);
+        } 
+    
+  } 
+        console.log(table.toString()); }
+        
