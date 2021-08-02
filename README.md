@@ -1,4 +1,4 @@
-# Discord.js Moderation Bot
+# Comfi - The Moderation Bot
 ### For Visual Studio Code Users -  
 #### Requirements & Steps :-
 * This Project
@@ -36,20 +36,19 @@
 * Lock channel | Unlock
 * Lockdown [Only for emergency scenarios] | Unlock
 * Mute | Unmute
-* Purge
-* RoleAdd
-* RoleInfo
-* RoleMemberInfo
+* Reaction Roles
 * SetNick
 * Slowmode
 * Svr [Server Region change]
-* VoiceMove [Move a peerson from one vc to another]
+* VoiceMove [Move a person from one vc to another]
+* Calculator
 * Warn
-* Whois
 * Show Warns
-* Say
+* Easily Customizable Ticket System
+* Fully customizable welcome and leave system
+* Easy to use Music System
+* And Much More
 
 # Contributors:
 * [Mohit](https://github.com/Xx-Mohit-xX) - Major Modifications 
 * [Felix_PlaYz](https://github.com/gtagamermods) - Base Code template 
-setup-ticket"
