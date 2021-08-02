@@ -5,12 +5,15 @@ const canvas = require('discord-canvas');
 const Canvas = require('canvas');
 const moment = require('moment');
 const wb = require('quick.db');
+const altprev = require('discord-altprev'); 
+const db = require("old-wio.db");
 
-module.exports.run = async (bot, guild, member) => {
-	
+module.exports.run = async (bot, member) => {
+
+ let guild = member.guild;
+ 
 	bot.setups = new Enmap({ name: 'setups', dataDir: './databases/setups' });
 	
-	if (!member.guild) return;
 	//autorole -->
 	bot.setups.ensure(
 		member.guild.id,
@@ -46,7 +49,7 @@ module.exports.run = async (bot, guild, member) => {
 				if (!sMessage) sMessage = `Welcome To The Server!`;
 				let clr = await db.fetch(`Welcome_${member.guild.id}_Clr`);
 				let wMessage = await db.fetch(`Welcome_${member.guild.id}_Ftr`);
-				let sEmd = await db.fetch(`${Current === "Welcome" ? "Welcome" : "Leave"}_${message.guild.id}_Embed`, Msg);
+				let sEmd = await db.fetch(`Welcome_${member.guild.id}_Embed`);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';
@@ -100,7 +103,7 @@ module.exports.run = async (bot, guild, member) => {
 					.setFooter(wMsg)
 					.setThumbnail(`${member.user.displayAvatarURL()}`)
 					.setColor(clr);
-				return bot.channels.cache.get(sChannel).send(emd, `{ embed: Embed }`)
+				return bot.channels.cache.get(sChannel).send(emd, { embed: Embed })
 			} catch (e) {
 				console.log(e);
 			}
@@ -154,35 +157,22 @@ module.exports.run = async (bot, guild, member) => {
 				console.log(e);
 			}
 		}
-  console.log("error found")
 	} else {
 		return;
-	}
+  console.log(`error`)
+  }
 
-if (!member.guild) return;
-	let age = await wb.get(`age.${member.guild.id}`);
-	let logs = await wb.get(`logs.${member.guild.id}`);
-	let punishment = wb.get(`punishment.${member.guild.id}`); {
-		let day = Number(age);
-		let x = Date.now() - member.user.createdAt;
-		let created = Math.floor(x / 86400000);
+  // If the account is 30 days or under, they will be kicked
+ 
 
-		if (day >= created) {
-			member[punishment](`Alt detected - Account younger than ${day} days`);
-			let channel = await bot.channels.cache.get(logs);
-			let embed = new discord.MessageEmbed()
-				.setTitle(`Suspicious! Account age less than ${day} days`)
-				.addField(`Member Username`, member.toString())
-				.addField(`Member ID`, member.id)
-				.addField(
-					`Account Age`,
-					moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')
-				)
-				.addField(`Punishment`, punishment)
-				.setColor('#FF0000')
-				.setFooter(member.guild.name, member.guild.iconURL({ dynamic: true }));
-			if (channel) channel.send({ embed: embed });
-		}
-	}  
+   let guildMember = member.guild;
+   
+  let days = await wb.get(`age.${member.guild.id}`)
+  
+  let options = await wb.get(`punishment.${member.guild.id}`)
+    
+  const police = new altprev('days', 'options', true)
+    
+	await police.checkAlt(guildMember);
   
 }

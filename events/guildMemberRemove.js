@@ -3,9 +3,14 @@ const Enmap = require('enmap');
 const { LeftImage, JoinImage } = require('../../config.json');
 const canvas = require('discord-canvas');
 const Canvas = require('canvas');
+const db = require("old-wio.db");
+const wb = require("quick.db");
+const moment = require("moment");
   
-module.exports.run = async (bot, guild, member) => {
-	
+module.exports.run = async (bot, member) => {
+
+  let guild = member.guild;
+  
 	bot.setups = new Enmap({ name: 'setups', dataDir: './databases/setups' });
 	
 	let toggle = await db.fetch(`leavtog_${member.guild.id}`);
@@ -19,8 +24,9 @@ module.exports.run = async (bot, guild, member) => {
 				let sMessage = await db.fetch(`Leave_${member.guild.id}_Msg`);
 				if (!sMessage)
 					sMessage = `${member.user.username} Has Left The Server!`;
-					let clr = await db.fetch(`Welcome_${member.guild.id}_Clr`);
-					let wMessage = await db.fetch(`Welcome_${member.guild.id}_Ftr`);
+					let clr = await db.fetch(`Leave_${member.guild.id}_Clr`);
+					let wMessage = await db.fetch(`Leave_${member.guild.id}_Ftr`);
+				 let sEmd = await db.fetch(`Leave_${member.guild.id}_Embed`);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';
@@ -58,13 +64,22 @@ module.exports.run = async (bot, guild, member) => {
 						`${moment(member.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
 					);
 
+       let emd = sEmd
+					.replace(/{user}/g, `${member}`)
+					.replace(/{user_tag}/g, `${member.user.tag}`)
+					.replace(/{user_name}/g, `${member.user.username}`)
+					.replace(/{user_id}/g, `${member.id}`)
+					.replace(/{server_name}/g, `${member.guild.name}`)
+					.replace(/{server_id}/g, `${member.guild.id}`)
+					.replace(/{membercount}/g, `${member.guild.memberCount}`)
+					.replace(/{guild}/g, `${member.guild.name}`)
 
 				const Embed = new MessageEmbed()
 					.setDescription(sMsg)
 					.setFooter(wMsg)
 					.setThumbnail(`${member.user.displayAvatarURL()}`)
 					.setColor(clr);
-				return bot.channels.cache.get(sChannel).send(`{ embed: Embed }`);
+				return bot.channels.cache.get(sChannel).send(emd, { embed: Embed });
 			} catch (e) {
 				console.log(e);
 			}

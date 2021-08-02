@@ -2,8 +2,9 @@ const { MessageButton,MessageActionRow } = require('discord-buttons');
 const config = require('../config.json');
 const clientID = config.clientID; 
 const clientSecret = config.clientSecret;
-const Discord = require('discord.js')
-const Nuggies = require('nuggies')
+const Discord = require('discord.js');
+const Nuggies = require('nuggies');
+const simplydjs = require('simply-djs');
 
 module.exports.run = async (message, button, bot) => {
   
@@ -170,5 +171,18 @@ let row3 = new MessageActionRow()
                 });
             }
   
+
+  simplydjs.clickBtn(button, { embedDesc: '', 
+    embedColor: '', // default: #075FFF 
+    closeColor: '', //default: blurple 
+    closeEmoji: '', // default: 🔒 
+    delColor: '', // default: grey 
+    delEmoji: '', // default: ❌
+    openColor: '' , // default: green 
+    openEmoji: '', // default: 🔓 
+    timeout: true, // default: true | Needs to be boolean (true/false)
+    cooldownMsg: 'you are at cooldown', 
+    
+  })
   
 } 

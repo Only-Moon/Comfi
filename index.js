@@ -29,8 +29,7 @@ bot.aliases = new Collection();
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 
-bot.on('clickButton', button => { Nuggies.handleInteractions(bot, button);});
-
+Nuggies.handleInteractions(bot)
 
 bot.on("clickButton", async (button) => { 
   bot.buttube.button(button)});
