@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 const { readdirSync } = require("fs");
 const { OWNER_ID } = require("../../config");
 const { MessageEmbed } = require("discord.js");
+const glob = require("glob")
 
 module.exports = {
     config: {
@@ -12,36 +13,30 @@ module.exports = {
     },
 
     run: async (bot, message, args) => {
-        if(message.author.id != OWNER_ID) {
-          const rembed = new MessageEmbed()
-          .setTitle("Error")
-          .setDescription(":x: You are not authorized to use this command as it is resticted to the owner only")
-          .setColor("#FF0000")
-          .setFooter(message.author.username, bot.user.displayAvatarURL())
-          .setTimestamp();
-        message.channel.send(rembed).then(m => m.delete({
-          timeout: 7500
-        })
-        );
-        } else {
-       
-        if(!args[0]) return message.channel.send("Please provide a command name!")
+        if (message.author.id != OWNER_ID) return;
+	bot.commands.sweep(() => true)
+		glob(`${__dirname}/../**/*.js` , async(err, filePaths) => {
+			if(err) return console.log(err) 
+			filePaths.forEach((file) => {
+				delete require.cache[require.resolve(file)];
 
-        let commandName = args[0].toLowerCase()
+				const pull = require(file);
 
-        try {
-          
-          delete require.cache[require.resolve(`../${commandName}.js`)]
-          const pull = require(`. ./${commandName}.js`)
-          bot.commands.set(pull.config.name, pull)
-          message.channel.send(`Successfully reloaded: \`${commandName}\``)
-        }
+				if(pull.name) {
+					console.log (`Reloaded ${pull.name}(cmd)`)
+					bot.commands.set(pull.name, pull);
+				}
 
-        catch (e) {
-          console.log(e)
-          return message.channel.send(`Could not Reload Command: ${commandName} From Moderation Module Because: \n${e}`)
-        }
+				if (pull.aliases && Array.isArray(pull.aliases)) {
+					pull.aliases.forEach((alias) => {
+						bot.aliases.set(alias, pull.name)
+					})
+				}
 
+
+ 			}) 
+		
+		})
+	 message.channel.send("Reloaded Commands")
+    }
 }
-      }
-} 

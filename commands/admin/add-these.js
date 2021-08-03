@@ -25,10 +25,15 @@ return message.channel.send(`**You Don't Have Permission To Use This Command**`)
             message.guild.emojis.create(
                 `${Link}`,
                 `${`${emoji.name}`}`
-            ).then(em => message.channel.send(em.toString() + " added!")).catch(error => {
-              message.channel.send(":x: | an Error occured")
-                console.log(error)
-})
+            ).then(em => message.channel.send(em.toString() + " added!")).catch (e => {
+            let embed = new Discord.MessageEmbed()
+            .setColor("#FF0000")
+            .setTitle(`:x: Error!`)
+            .setDescription(e);
+
+            message.channel.send(embed);
+
+        })
           
         }
         })

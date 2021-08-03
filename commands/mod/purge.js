@@ -6,10 +6,11 @@ module.exports = {
         aliases: [],
         category: "mod",
         description: "Deletes messages from a channel",
-        usage: "m/purge [amount of messages]"
+        usage: "purge [amount of messages]"
     },
     run: async (bot, message, args) => {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
+      
+         try { if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
         if (isNaN(args[0]))
             return message.channel.send('**Please Supply A Valid Amount To Delete Messages!**');
 
@@ -21,5 +22,14 @@ module.exports = {
 
         message.channel.bulkDelete(args[0])
             .then(messages => message.channel.send(`**Succesfully deleted \`${messages.size}/${args[0]}\` messages**`).then(msg => msg.delete({ timeout: 5000 }))).catch(() => null)
+         } catch (e) {
+            let embed = new Discord.MessageEmbed()
+            .setColor("#FF0000")
+            .setTitle(`:x: Error!`)
+            .setDescription(e)
+
+            message.channel.send(embed);
+
+        }
     }
 }
