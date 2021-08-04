@@ -51,4 +51,5 @@
 
 # Contributors:
 * [Mohit](https://github.com/Xx-Mohit-xX) - Major Modifications 
+* [Rahuletto](https://github.com/Rahuletto) - For An Amazing Package **[Simply-djs]**(https://www.npmjs.com/package/simply-djs)
 * [Felix_PlaYz](https://github.com/gtagamermods) - Base Code template 

@@ -1,19 +1,30 @@
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
-const Enmap = require('enmap');
-const smartestchatbot = require('smartestchatbot');
-const db = require('old-wio.db');
+const { db } = require('../Database')
+const simplydjs = require('simply-djs')
+const db1 = require('old-wio.db');
 const wb = require('quick.db');
 const moment = require('moment');
 const ms = require('ms');
 const pms = require('pretty-ms');
+const fetch = require('node-fetch');
 const { PREFIX } = require("../config.js");
 
 module.exports.run = async (bot, message) => {
 
  	if (message.author.bot || !message.guild || message.webhookID) return;
 
-	let Prefix = await db.fetch(`prefix_${message.guild.id}`);
+	let ch = await db.get(`chatbot_${message.guild.id}`)
+
+  if (!ch) return console.log('no val in chid');
+
+simplydjs.chatbot(bot, message, {
+chid: `${ch}`,
+name: 'e', // default: Your bot na
+developer: `Moonbow + Rahuletto`,
+})
+
+	let Prefix = await db1.fetch(`prefix_${message.guild.id}`);
 	if (!Prefix) Prefix = PREFIX;
 
 	const mentionRegex = RegExp(`^<@!?${bot.user.id}>$`);
@@ -75,47 +86,7 @@ module.exports.run = async (bot, message) => {
 	// If a command is finally found, run the command
 	if (command) command.run(bot, message, args);
 
-
-
-   bot.setups = new Enmap({ name: 'setups', dataDir: './databases/setups' });
-	let disabled = new MessageEmbed()
-		.setColor('#FF0000')
-		.setDescription('Chat Bot is disabled by the Owner in this Server!')
-		.setFooter(`Requested by ${message.author.username}`);
-
-	if (message.author.bot || !message.guild) return;
-	bot.setups.ensure(
-		message.guild.id,
-		{
-			enabled: false,
-			channel: ''
-		},
-		'aichatsystem'
-	);
-
-	let chatbot = bot.setups.get(message.guild.id, 'aichatsystem');
-
-	if (message.channel.id == chatbot.channel) {
-		if (!chatbot.enabled)
-			return message.author.send(disabled).catch(e => console.log(e));
-
-    if (message.author.bot) return;
-    message.content = message.content.replace(/@(everyone)/gi, "everyone").replace(/@(here)/gi, "here");
-    if (message.content.includes(`@`)) {
-      return message.lineReply(`**:x: Please dont mention anyone**`);
-    }
-    message.channel.startTyping();
-    if (!message.content) return message.lineReply("Please say something.");
-    
-    const scb = new smartestchatbot.Client()
-
-    scb.chat({message: message.content, name: bot.user.username, owner:"Moonbow", user: message.author.id, language:"en"}).then(reply => { 
-      message.lineReply(`${reply}`); 
       
-    }) 
-    message.channel.stopTyping(); 
-	  
-	}
 
 	let cmdx = wb.fetch(`cmd_${message.guild.id}`);
 
@@ -147,10 +118,10 @@ module.exports.run = async (bot, message) => {
 			);
 	}
 
-if (db.has(`afk-${message.author.id}+${message.guild.id}`)) {
-		const info = db.fetch(`afk-${message.author.id}+${message.guild.id}`);
-		await db.delete(`afk-${message.author.id}+${message.guild.id}`);
-		await db.delete(`aftime-${message.author.id}+${message.guild.id}`);
+if (db1.has(`afk-${message.author.id}+${message.guild.id}`)) {
+		const info = db1.fetch(`afk-${message.author.id}+${message.guild.id}`);
+		await db1.delete(`afk-${message.author.id}+${message.guild.id}`);
+		await db1.delete(`aftime-${message.author.id}+${message.guild.id}`);
 		message.channel.send(
 			`Welcome back ${message.author.username}, Great to see you!!`
 		);
@@ -158,12 +129,12 @@ if (db.has(`afk-${message.author.id}+${message.guild.id}`)) {
 	//checking for mentions
 	if (message.mentions.members.first()) {
 		if (
-			db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)
+			db1.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)
 		) {
-			const reason = db.fetch(
+			const reason = db1.fetch(
 				`afk-${message.mentions.members.first().id}+${message.guild.id}`
 			);
-			let time = db.fetch(
+			let time = db1.fetch(
 				`aftime-${message.mentions.members.first().id}+${message.guild.id}`
 			);
 			time = Date.now() - time;
