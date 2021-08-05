@@ -5,50 +5,46 @@ const canvas = require('discord-canvas');
 const Canvas = require('canvas');
 const moment = require('moment');
 const wb = require('quick.db'); 
-const db = require("old-wio.db");
+const db1 = require("old-wio.db");
+const { db } = require('../Database')
+const Discord = require('discord.js')
 
 module.exports.run = async (bot, member) => {
 
  let guild = member.guild;
- 
-	bot.setups = new Enmap({ name: 'setups', dataDir: './databases/setups' });
-	
-	//autorole -->
-	bot.setups.ensure(
-		member.guild.id,
-		{
-			roles: []
-		},
-		'welcome'
-	);
 
-	let roles = bot.setups.get(member.guild.id, 'welcome.roles');
+await db.fetch(		
+member.guild.id,		
+{			roles: []		
+},		
+'welcome'	);
 
-	if (roles.length >= 1) {
-		for (let i = 0; i < roles.length; i++) {
-			try {
-				let roleadd = member.guild.roles.cache.get(roles[i]);
-				member.roles.add(roleadd.id);
-			} catch (e) {
-				console.log(e);
-			}
-		}
-	}
-	let toggle = await db.fetch(`Weltog_${member.guild.id}`);
-	let togEm = await db.fetch(`Welemtog_${member.guild.id}`);
+	let roles = await db.get(member.guild.id, 'welcome.roles');
+
+				if (roles.length >= 1) {		
+          for (let i = 0; i < roles.length; i++) {			
+            try {				
+              let roleadd = member.guild.roles.cache.get(roles[i]);				member.roles.add(roleadd.id);			
+            } catch (e) {				
+              console.log(e);			
+            }		
+          }	
+        }
+	let toggle = await db1.fetch(`Weltog_${member.guild.id}`);
+	let togEm = await db1.fetch(`Welemtog_${member.guild.id}`);
 
 	//code -->
 
 	if (toggle === true) {
 		if (togEm === true) {
 			try {
-				let sChannel = await db.fetch(`Welcome_${member.guild.id}_Channel`);
+				let sChannel = await db1.fetch(`Welcome_${member.guild.id}_Channel`);
 				if (!sChannel) return;
-				let sMessage = await db.fetch(`Welcome_${member.guild.id}_Msg`);
+				let sMessage = await db1.fetch(`Welcome_${member.guild.id}_Msg`);
 				if (!sMessage) sMessage = `Welcome To The Server!`;
-				let clr = await db.fetch(`Welcome_${member.guild.id}_Clr`);
-				let wMessage = await db.fetch(`Welcome_${member.guild.id}_Ftr`);
-				let sEmd = await db.fetch(`Welcome_${member.guild.id}_Embed`);
+				let clr = await db1.fetch(`Welcome_${member.guild.id}_Clr`);
+				let wMessage = await db1.fetch(`Welcome_${member.guild.id}_Ftr`);
+				let sEmd = await db1.fetch(`Welcome_${member.guild.id}_Embed`);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';
@@ -108,11 +104,11 @@ module.exports.run = async (bot, member) => {
 			}
 		} else {
 			try {
-				let Channel = await db.fetch(`Welcome_${member.guild.id}_Channel`);
+				let Channel = await db1.fetch(`Welcome_${member.guild.id}_Channel`);
 				if (!Channel) return;
-				let Message = await db.fetch(`Welcome_${member.guild.id}_Msg`);
+				let Message = await db1.fetch(`Welcome_${member.guild.id}_Msg`);
 				if (!Message) Message = `Welcome To The Server!`;
-				let WelcomeImage = await db.fetch(`WelIm_${member.guild.id}`);
+				let WelcomeImage = await db1.fetch(`WelIm_${member.guild.id}`);
 
 				if (member.user.username.length > 25)
 					member.user.username = member.user.username.slice(0, 25) + '...';

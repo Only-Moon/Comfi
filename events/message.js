@@ -20,8 +20,8 @@ module.exports.run = async (bot, message) => {
 
 simplydjs.chatbot(bot, message, {
 chid: `${ch}`,
-name: 'e', // default: Your bot na
-developer: `Moonbow + Rahuletto`,
+name: '', // default: Your bot na
+developer: `Moonbow, Rahuletto`,
 })
 
 	let Prefix = await db1.fetch(`prefix_${message.guild.id}`);

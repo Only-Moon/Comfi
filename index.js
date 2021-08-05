@@ -8,12 +8,11 @@ const { Client, Collection } = require('discord.js');
 const Discord = require('discord.js');
 const bot = new Client({	disableMentions: 'everyone',	
   partials: ['MESSAGE', 'CHANNEL', 'REACTION']});
+bot.interaction = {};
 const {buttube} = require('buttube');
 require('discord-buttons')(bot);
 bot.buttube = new buttube(bot, "mongodb+srv://mohit841:MohitKoul@cluster0.yhyii.mongodb.net/comfi-music"); 
-
-
-const db = require('old-wio.db');
+const db = require('old-wio.db')
 db.backup('./backup.json');
 const smartestchatbot = require('smartestchatbot')
 const scb = new smartestchatbot.Client()

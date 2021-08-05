@@ -6,12 +6,12 @@ const Canvas = require('canvas');
 const db = require("old-wio.db");
 const wb = require("quick.db");
 const moment = require("moment");
+const Discord = require('discord.js')
   
 module.exports.run = async (bot, member) => {
 
   let guild = member.guild;
-  
-	bot.setups = new Enmap({ name: 'setups', dataDir: './databases/setups' });
+
 	
 	let toggle = await db.fetch(`leavtog_${member.guild.id}`);
 	let togEm = await db.fetch(`leavemtog_${member.guild.id}`);
@@ -133,8 +133,8 @@ module.exports.run = async (bot, member) => {
 				console.log(e);
 			}
 		}
-	console.log("member left")
 	} else {
 		return;
-	}
-}
+  console.log(`error`)
+  }
+}  

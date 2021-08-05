@@ -62,7 +62,7 @@
     "request-promise-native": "^1.0.9",
     "revero-db": "^1.0.0",
     "sharp": "^0.28.3",
-    "simply-djs": "^1.0.8",
+    "simply-djs": "^1.0.85",
     "smartestchatbot": "^2.0.0",
     "sourcebin": "^4.2.5",
     "sourcebin_js": "0.0.3-ignore",
@@ -76,7 +76,7 @@
     "weky": "^3.1.2",
     "wikijs": "^6.2.3",
     "youtube-search": "^1.1.6",
-    "ytdl-core": "^4.9.0"
+    "ytdl-core": "^4.9.1"
   },
   "devDependencies": {},
   "scripts": {

@@ -50,7 +50,7 @@ for (let i = 0; i < Categories.length; i++) {
     AllCommands.push(`\n\n**${Emotes[Categories[i]]}**\n\`\`\`${Cmds}\`\`\``);
 };
 
-const Description = `My Prefix For **${message.guild.name}** Is **${prefix}**\n\nFor More Command Information, Type The Following Command:\n**${prefix}help <command Name> or** <@${bot.user.id}> **help <command name>** <:dontsteal_HE:798615827825426462> `;
+const Description = `My Prefix For **${message.guild.name}** Is **${prefix}** \n \n For More Command Information, Type The Following Command:\n**${prefix}help <command Name> or** <@${bot.user.id}> **help <command name>** <:dontsteal_HE:798615827825426462> `;
 
 const Embed = new Discord.MessageEmbed()
     .setColor("F8B6D4")

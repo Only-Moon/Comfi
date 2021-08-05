@@ -1,4 +1,4 @@
-const db = require('quick.db');
+const { db } = require('../../Database.js')
 const discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 
@@ -52,12 +52,11 @@ module.exports = {
 										errors: ['TIME']
 									})
 									.then(collected => {
-									const fetched = bot.setups.get(message.guild.id, "welcome.roles");
+									const fetched = db.fetch(message.guild.id, "welcome.roles");
 									
 									if(fetched === null) {
-									  bot.setups.set(message.guild.id, {
-									    roles: []
-									  }, "welcome")
+									  db.set(message.guild.id, {
+                      roles: []									 }, "welcome")
 									};
 										let role = collected
 											.first()
@@ -77,7 +76,7 @@ module.exports = {
 												'I can\'t access that role, place "me" / "my highest Role" above other roles that you want me to manage.\n\n Please retry Setup'
 											);
 										}
-										bot.setups.push(message.guild.id, role, 'welcome.roles');
+										db.push(message.guild.id, role, 'welcome.roles');
 										return message.reply(
 											`Successfully added Role to the Autorole Setup!`
 										);
@@ -102,7 +101,7 @@ module.exports = {
 												`COULD NOT FIND THE ROLE! Please retry Setup`
 											);
 										try {
-											bot.setups.remove(
+										 db.delete(
 												message.guild.id,
 												role,
 												'welcome.roles'
