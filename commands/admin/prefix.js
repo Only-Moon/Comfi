@@ -1,4 +1,4 @@
-const db = require('old-wio.db');
+const { db } = require('../../Database.js');
 const { MessageEmbed } = require('discord.js');
 const { PREFIX } = require('../../config.js');
 
@@ -23,7 +23,7 @@ module.exports = {
 		}
 
 		if (!option) {
-			prefix = db.fetch(`prefix_${message.guild.id}`);
+			prefix = await db.fetch(`prefix_${message.guild.id}`);
 			if (!prefix) prefix = PREFIX;
 			let prefEmbed = new MessageEmbed()
 				.setColor('YELLOW')
@@ -34,7 +34,7 @@ module.exports = {
 
 			message.channel.send(prefEmbed);
 		} else if (option.toLowerCase() === 'reset') {
-			db.delete(`prefix_${message.guild.id}`);
+			await db.delete(`prefix_${message.guild.id}`);
 			return await message.channel.send('Reseted Prefix ✅');
 		} else if (args[1]) {
 			return message.channel.send('You can not set prefix a double argument');
@@ -43,11 +43,11 @@ module.exports = {
 				'You can not send prefix more than 4 characters'
 			);
 		} else if (args.join('') === PREFIX) {
-			db.delete(`prefix_${message.guild.id}`);
+			await db.delete(`prefix_${message.guild.id}`);
 			return await message.channel.send('Reseted Prefix ✅');
 		} else {
 
-		db.set(`prefix_${message.guild.id}`, args[0]);
+	await	db.set(`prefix_${message.guild.id}`, args[0]);
 		await message.channel.send(`Done ✅ | Bot Prefix Set to ${args[0]}`);
 		}
 	}

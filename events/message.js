@@ -24,7 +24,7 @@ name: '', // default: Your bot na
 developer: `Moonbow, Rahuletto`,
 })
 
-	let Prefix = await db1.fetch(`prefix_${message.guild.id}`);
+	let Prefix = await db.get(`prefix_${message.guild.id}`);
 	if (!Prefix) Prefix = PREFIX;
 
 	const mentionRegex = RegExp(`^<@!?${bot.user.id}>$`);

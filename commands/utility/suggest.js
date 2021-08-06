@@ -1,7 +1,6 @@
-const Discord = require("discord.js");
-const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");
-const { success, error } = require("../../emojis.json")
+const { db } = require('../../Database.js');
+const { MessageButton } = require('discord-buttons');
+const simplydjs = require('simply-djs')
  
 module.exports = {
 	config: {
@@ -16,28 +15,16 @@ module.exports = {
 	run: async (bot, message, args) => {
    
   let channel = await db.fetch(`suggestion_${message.guild.id}`);
-    if (channel === null) return;
+    if (!channel) return message.channel.send(`Please set the suggestion channel first by using **Cr!set-suggestion**`);
   
-  const suggestionQuery = args.join(" ");
-  if(!suggestionQuery) return message.reply("Please Suggest Something.");
-    
-  const embed = new MessageEmbed()
-         
-       .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-       .setDescription(`${suggestionQuery}`)
-       .setColor("00FFFF")
-       .setFooter("Status: Pending")
-       .setTimestamp();
-       
-    const done = new MessageEmbed()
-       .setDescription(`<:yes_HE:778611379560120320>  | Your suggestion is Submitted here, <#${channel}>\n\nNote: You agreed to get a DM on a reply over your Suggestion!`)
-       .setColor("00FFFF")
-       
-    message.channel.send(done)
-    
-    let msgEmbed = await message.guild.channels.cache.get(channel).send(embed)
-    
-    await msgEmbed.react('<a:tick_HE:857837216265142272>')
-    await msgEmbed.react('<a:cross_HE:857837361190404108>')
+  simplydjs.suggestSystem(bot, message, args, {
+   chid: `${channel}`,
+   embedColor: '#F8B6D4', // defaultL #075FFF
+   credit: false,
+   yesEmoji: '778611379560120320', // default: ☑️
+   yesColor: '', // default: green 
+   noEmoji: '778611410539905044', // default: X
+   noColor: '', // default: red
+})
   }
 }

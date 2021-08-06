@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js")
-const { MessageButton, MessageActionRow } = require("discord-buttons") // using discord-buttons but edited!
+const { MessageButton, MessageActionRow } = require("discord-buttons")
+const { db } = require('../../Database.js');
 const Discord = require("discord.js");
 
 module.exports = {
@@ -196,9 +197,9 @@ let embedEditing = async(button) => {
         let messageToDelete = await button.channel.messages.fetch(button.message.id);
         messageToDelete.delete();
         
-        button.channel.send({content:embedToBuild,components:[]}) 
+        button.channel.send({content:embedToBuild,components:[]})
         await bot.removeListener("clickButton", buttonEvent);
-        
+      
     }
 
     setTimeout(() => {
