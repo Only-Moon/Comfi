@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js")
+const { Permissions } = require('discord.js')
 const db = require('old-wio.db');
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     },
     run: async (bot, message, args) => {
 
-        if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**You Dont Have The Permissions To Unban Someone! - [BAN_MEMBERS]**")
+        if (!message.member.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS")) return message.channel.send("**You Dont Have The Permissions To Unban Someone! - [BAN_MEMBERS]**")
 
         if (!args[0]) return message.channel.send("**Please Enter A Name!**")
       

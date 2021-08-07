@@ -31,6 +31,6 @@ module.exports = {
             .setThumbnail(message.guild.iconURL())
             .setTitle(`Users With The ${role.name} Role!`)
             .setDescription(membersWithRole.join("\n"));
-        message.channel.send(roleEmbed);
+        message.channel.send({embeds: [ roleEmbed ]});
     }
 }

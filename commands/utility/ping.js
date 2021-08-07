@@ -11,8 +11,10 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         let start = Date.now();
-  
-  message.channel.send({embed: {description: "🔍 I think my ping is high...", color: "RANDOM"}}).then(m => {
+   let em1 = new Discord.MessageEmbed()
+      .setDescription("🔍 I think my ping is high...")
+     .setColor("RANDOM");
+  message.channel.send({embeds: [em1] }).then(m => {
     
     let end = Date.now();
     
@@ -21,7 +23,7 @@ module.exports = {
     .addField("API Latency", Math.round(bot.ws.ping) + "ms", true)
     .addField("Message Latency", end - start + "ms")
     .setColor("RANDOM");
-    m.edit({embed: embed}).catch(e => message.channel.send(e));
+    m.edit({embeds: [embed] }).catch(e => message.channel.send(e));
     
   });
     }

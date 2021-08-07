@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { Permissions } = require('discord.js')
 const db = require('old-wio.db');
 const { ownerID } = require("../../owner.json");
 
@@ -12,8 +13,8 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         try {
-            if (!message.member.hasPermission("BAN_MEMBERS") && !ownerID .includes(message.author.id)) return message.channel.send("**You Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
-            if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("**I Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
+            if (!message.member.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS") && !ownerID .includes(message.author.id)) return message.channel.send("**You Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
+            if (!message.guild.me.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS")) return message.channel.send("**I Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**");
             if (!args[0]) return message.channel.send("**Please Provide A User To Ban!**")
 
             let banMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || message.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
@@ -33,12 +34,12 @@ module.exports = {
             var sembed = new MessageEmbed()
                 .setColor("GREEN")
                 .setDescription(`**${banMember.user.username}** has been banned for ${reason}`)
-            message.channel.send(sembed)
+            message.channel.send({embeds: [ sembed ]})
             } else {
                 var sembed2 = new MessageEmbed()
                 .setColor("GREEN")
                 .setDescription(`**${banMember.user.username}** has been banned`)
-            message.channel.send(sembed2)
+            message.channel.send({embeds: [ sembed2 ]})
             }
             let channel = db.fetch(`modlog_${message.guild.id}`)
             if (channel == null) return;
@@ -60,7 +61,7 @@ module.exports = {
 
             var sChannel = message.guild.channels.cache.get(channel)
             if (!sChannel) return;
-            sChannel.send(embed)
+            sChannel.send({embeds: [ embed ]})
         } catch (e) {
             return message.channel.send(`**${e.message}**`)
         }

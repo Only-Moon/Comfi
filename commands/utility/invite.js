@@ -1,5 +1,4 @@
-const { Client, Message, MessageEmbed, Discord } = require('discord.js');
-  const { MessageButton } = require('discord-buttons');
+const { Client, Message, MessageEmbed, Discord, MessageButton } = require('discord.js');
 
 module.exports = {
   config: {
@@ -17,21 +16,21 @@ module.exports = {
     
     
     const yes = new MessageButton() 
-    .setStyle("green") 
+    .setStyle("SUCCESS") 
     .setLabel("Sure!") 
-    .setID("inviteyes"); 
+    .setCustomId("inviteyes"); 
     
     
     const no = new MessageButton() 
-    .setStyle("red") 
+    .setStyle("DANGER") 
     .setLabel('Nope!') 
-    .setID('inviteno') 
+    .setCustomId('inviteno') 
     
     
-    message.channel.send(`<@${message.author.id}>`, { 
+    message.channel.send({content: `<@${message.author.id}>`, 
       buttons: 
       [yes, no], 
-      embed: embed })
+      embeds: embed })
     }
     
   }

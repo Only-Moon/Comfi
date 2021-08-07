@@ -12,8 +12,8 @@ config: {
 },
   run: async (bot, message, args) => {
    message.delete();
-      message.channel.send(new Discord.MessageEmbed()
-            .setColor('RANDOM')
+      let embed = new Discord.MessageEmbed()
+            .setColor('#F4B3CA')
             .setAuthor(`${bot.user.username} v${version}`, bot.user.displayAvatarURL())
             .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
             .addField('❯ Uptime :', `${ms(bot.uptime)}`, true)
@@ -28,7 +28,7 @@ config: {
             .setFooter(`Requested By ${message.author.username}`, message.author.displayAvatarURL({
               dynamic: true
             }))
-            .setTimestamp()
-        );
-    }
+            .setTimestamp();
+   message.channel.send({embeds: [ embed ]})
+  }
 }

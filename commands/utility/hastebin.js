@@ -1,6 +1,5 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageButton } = require("discord.js");
 const { create } = require("sourcebin");
-const { MessageButton } = require('discord-buttons');
 
 module.exports = {
     config: {
@@ -41,12 +40,12 @@ module.exports = {
       .setColor('RANDOM');
       
       let button = new MessageButton()
-        .setStyle('url')
+        .setStyle('LINK')
         .setURL(`${value.url}`) 
         .setLabel('Bin Url!'); 
 
 
-message.channel.send(embed, {
+message.channel.send({embeds: [ embed ],
     buttons: [button]
 });
 })

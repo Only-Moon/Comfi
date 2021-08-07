@@ -34,6 +34,6 @@ const embed = new Discord.MessageEmbed()
 .setColor("RANDOM")
 .setImage(avatar);
 
-return message.channel.send(embed);
+return message.channel.send({embeds: [ embed ]});
 }
 };

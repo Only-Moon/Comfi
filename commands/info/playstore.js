@@ -30,7 +30,7 @@ module.exports = {
         );
       }
 
-      let Embed = new Discord.MessageEmbed()
+      let embed = new Discord.MessageEmbed()
         .setColor(EmbedColor || "RANDOM")
         .setThumbnail(App.icon)
         .setURL(App.url)
@@ -42,7 +42,7 @@ module.exports = {
         .setFooter(`Requested By ${message.author.username}`)
         .setTimestamp();
 
-      return message.channel.send(Embed);
+      return message.channel.send({embeds: [ embed ]});
     });
   }
 };

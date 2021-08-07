@@ -31,6 +31,6 @@ module.exports = {
             .setFooter(message.member.displayName, message.author.displayAvatarURL(), true)
             .setTimestamp()
 
-        message.channel.send(roleembed);
+        message.channel.send({embeds: [ roleembed ]});
     }
 }

@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 const db = require('old-wio.db');
 
 module.exports = {
@@ -10,9 +11,9 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         try {
-            if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**You Dont Have Permmissions To Mute Someone! - [MANAGE_GUILD]**");
+            if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_GUILD")) return message.channel.send("**You Dont Have Permmissions To Mute Someone! - [MANAGE_GUILD]**");
 
-            if (!message.guild.me.hasPermission("MANAGE_GUILD")) return message.channel.send("**I Don't Have Permissions To Mute Someone! - [MANAGE_GUILD]**")
+            if (!message.guild.me.permissions.has("PERMISSIONS.FLAGS_MANAGE_GUILD")) return message.channel.send("**I Don't Have Permissions To Mute Someone! - [MANAGE_GUILD]**")
             if (!args[0]) return message.channel.send("**Please Enter A User To Be Muted!**");
 
             var mutee = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || message.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
@@ -74,12 +75,12 @@ module.exports = {
                     .setColor("GREEN")
                     .setAuthor(message.guild.name, message.guild.iconURL())
                     .setDescription(`${mutee.user.username} was successfully muted for ${reason}`)
-                message.channel.send(sembed);
+                message.channel.send({embeds: [ sembed ]});
                 } else {
                     const sembed2 = new MessageEmbed()
                     .setColor("GREEN")
                     .setDescription(`${mutee.user.username} was successfully muted`)
-                message.channel.send(sembed2);
+                message.channel.send({embeds: [ sembed2 ]});
                 }
             
             let channel = db.fetch(`modlog_${message.guild.id}`)
@@ -99,7 +100,7 @@ module.exports = {
 
             var sChannel = message.guild.channels.cache.get(channel)
             if (!sChannel) return;
-            sChannel.send(embed)
+            sChannel.send({embeds: [ embed ]})
         } catch {
             return;
         }

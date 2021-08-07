@@ -12,7 +12,7 @@ module.exports = {
   },
   run: async (bot, message, args) => {
     if (message.author.id == OWNER_ID) {
-      if (!message.guild.me.hasPermission("ADMINISTRATOR"))
+      if (!message.guild.me.permissions.has("ADMINISTRATOR"))
         return message.channel
           .send("I Dont Have Permissions")
           .then(msg => msg.delete({ timeout: 5000 }));
@@ -40,7 +40,7 @@ module.exports = {
         .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
         .setDescription(description);
 
-      let msg = await message.channel.send(embed);
+      let msg = await message.channel.send({embeds: [ embed ]});
 
       await msg.react("⬅");
       await msg.react("➡");

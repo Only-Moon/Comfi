@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const db = require("old-wio.db");
 const Discord = require("discord.js");
-const simplydjs = require('simply-djs')
+const simplydjs = require('simply-djs-v13')
 
 module.exports = {
   config: {

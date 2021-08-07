@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { Permissions } = require('discord.js')
 const db = require('old-wio.db');
 
 module.exports = {
@@ -12,11 +13,11 @@ module.exports = {
 	},
 	run: async (bot, message, args) => {
 		try {
-			if (!message.member.hasPermission('KICK_MEMBERS'))
+			if (!message.member.permissions.has('PERMISSIONS.FLAGS_KICK_MEMBERS'))
 				return message.channel.send(
 					'**You Do Not Have Permissions To Kick Members! - [KICK_MEMBERS]**'
 				);
-			if (!message.guild.me.hasPermission('KICK_MEMBERS'))
+			if (!message.guild.me.permissions.has('PERMISSIONS.FLAGS_KICK_MEMBERS'))
 				return message.channel.send(
 					'**I Do Not Have Permissions To Kick Members! - [KICK_MEMBERS]**'
 				);
@@ -52,7 +53,7 @@ module.exports = {
 					)
 					.setFooter(message.guild.name, message.guild.iconURL());
 				kickMember
-					.send(sembed2);
+					.send({embeds: [ sembed2 ]});
 				kickMember.kick();
 			} else {
 			  return message.channel.send(":x: | **I can\'t kick this user make sure that the users role is lower than my role.**");
@@ -63,12 +64,12 @@ module.exports = {
 					.setDescription(
 						`**${kickMember.user.username}** has been kicked for ${reason}`
 					);
-				message.channel.send(sembed);
+				message.channel.send({embeds: [ sembed ]});
 			} else {
 				var sembed2 = new MessageEmbed()
 					.setColor('GREEN')
 					.setDescription(`**${kickMember.user.username}** has been kicked`);
-				message.channel.send(sembed2);
+				message.channel.send({embeds: [ sembed2 ]});
 			}
 			let channel = db.fetch(`modlog_${message.guild.id}`);
 			if (!channel) return;
@@ -87,7 +88,7 @@ module.exports = {
 
 			var sChannel = message.guild.channels.cache.get(channel);
 			if (!sChannel) return;
-			sChannel.send(embed);
+			sChannel.send({embeds: [ embed ]});
 		} catch (e) {
 			return message.channel.send(`**${e.message}**`);
 		}

@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const db = require("old-wio.db");
+const { Permissions } = require('discord.js')
 
 module.exports = {
     config: {
@@ -13,7 +14,7 @@ module.exports = {
         let warnPermErr = new MessageEmbed()
         .setTitle("**User Permission Error!**")
         .setDescription("**Sorry, you don't have permissions to use this! ❌**")
-            if(!message.channel.permissionsFor(message.member).has(['MANAGE_MESSAGES'])) return message.channel.send(warnPermErr);
+            if(!message.channel.permissionsFor(message.member).has(['PERMISSIONS.FLAGS_MANAGE_MESSAGES'])) return message.channel.send({embeds: [ warnPermErr ]});
     
             let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
             if(!member) return message.reply("Please mention a valid member of this server");
@@ -40,7 +41,7 @@ module.exports = {
             .addField(`**Action:**`, `\`Warn\``)
             .addField(`**Moderator:**`, `${message.author}`)
 
-            message.channel.send(warnEmbed).then(msg => msg.delete({
+            message.channel.send({embeds: [ warnEmbed ]}).then(msg => msg.delete({
               timeout: 5000
             }));
     } else if (warnings !== null) {
@@ -54,7 +55,7 @@ module.exports = {
             .addField(`**Action:**`, `\`Warn\``)
             .addField(`**Moderator:**`, `${message.author}`)
 
-            message.channel.send(ddEmbed)
+            message.channel.send({embeds: [ ddEmbed ]})
     }
 
     }

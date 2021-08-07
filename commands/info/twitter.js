@@ -37,7 +37,7 @@ module.exports = {
 				)
 				.setThumbnail(body.profile_image_url_https.replace('_normal', ''))
 				.setImage(body.profile_banner_url);
-			message.channel.send(tweet);
+			message.channel.send({embeds: [ tweet ]});
 		} catch (e) {
 			if (e.status === 403)
 				return message.channel.send(

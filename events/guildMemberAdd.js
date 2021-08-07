@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const Enmap = require('enmap');
 const { LeftImage, JoinImage } = require('../../config.json');
 const canvas = require('discord-canvas');
 const Canvas = require('canvas');

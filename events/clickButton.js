@@ -1,10 +1,9 @@
-const { MessageButton,MessageActionRow } = require('discord-buttons');
+const { MessageButton, MessageActionRow } = require('discord.js');
 const config = require('../config.json');
 const clientID = config.clientID; 
 const clientSecret = config.clientSecret;
 const Discord = require('discord.js');
-const Nuggies = require('nuggies');
-const simplydjs = require('simply-djs');
+const simplydjs = require('simply-djs-v13');
 const { db } = require('../Database.js');
 
 module.exports.run = async (message, button, bot) => {

@@ -38,7 +38,7 @@ module.exports = {
             .addField("Evaluated:", `\`\`\`${evaluated}\`\`\``)
             .addField("Type of:", `\`\`\`${typeof(evaluated)}\`\`\``);
 
-            message.channel.send(embed);
+            message.channel.send({embeds: [ embed ]});
 
         } catch (e) {
             let embed = new Discord.MessageEmbed()
@@ -46,7 +46,7 @@ module.exports = {
             .setTitle(`:x: Error!`)
             .setDescription(e)
 
-            message.channel.send(embed);
+            message.channel.send({embeds: [ embed ]});
 
         }
 

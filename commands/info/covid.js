@@ -13,7 +13,7 @@ module.exports = {
         category: 'info',
     },
 
-  run: async (Client, message, args) => {
+  run: async (bot, message, args) => {
 
     let countries = args.join(" ");
     // the country = =covid country
@@ -47,7 +47,7 @@ module.exports = {
             .addField('🏥 Recovered', recovered)
             .addField('☠️ Deaths', deaths)
 
-          message.channel.send(embed)
+          message.channel.send({embeds: [ embed ]})
         })
 
 
@@ -69,7 +69,7 @@ module.exports = {
             .addField('🏥 Recovered', recovered)
             .addField('☠️ Deaths', deaths)
 
-          message.channel.send(embed)
+          message.channel.send({embeds: [ embed ]})
         }).catch(e => {
           // if he can't find the country that u said it will send this message
           return message.channel.send(`${args[0]} is not a country! maybe typo?`)

@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { Permissions } = require('discord.js')
 const db = require('old-wio.db');
 
 module.exports = {
@@ -10,9 +11,9 @@ module.exports = {
         usage: "[mention | name | nickname | ID] <nickname>",
     },
     run: async (bot, message, args) => {
-        if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**You Dont Have Permissions To Change Nickname! - [MANAGE_GUILD]**");
+        if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_GUILD")) return message.channel.send("**You Dont Have Permissions To Change Nickname! - [MANAGE_GUILD]**");
 
-        if (!message.guild.me.hasPermission("CHANGE_NICKNAME")) return message.channel.send("**I Dont Have Permissions To Change Nickname! - [CHANGE_NICKNAME]**");
+        if (!message.guild.me.permissions.has("PERMISSIONS.FLAGS_CHANGE_NICKNAME")) return message.channel.send("**I Dont Have Permissions To Change Nickname! - [CHANGE_NICKNAME]**");
       
         if (!args[0]) return message.channel.send("**Please Enter A User!**")
       
@@ -30,7 +31,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor("GREEN")
             .setDescription(`**Changed Nickname of ${member.displayName} to ${nick}**`)
-        message.channel.send(embed)
+        message.channel.send({embeds: [ embed ]})
         } catch {
             return message.channel.send("**Missing Permissions - [CHANGE_NICKNAME]")
         }
@@ -52,6 +53,6 @@ module.exports = {
 
             var sChannel = message.guild.channels.cache.get(channel)
             if (!sChannel) return;
-            sChannel.send(sembed)
+            sChannel.send({embeds: [ sembed ]})
     }
 }

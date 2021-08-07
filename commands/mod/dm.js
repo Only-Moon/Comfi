@@ -1,4 +1,5 @@
-const { ownerID } = require('../../owner.json') 
+const { ownerID } = require('../../owner.json')
+const { Permissions } = require('discord.js') 
 
 module.exports = {
     config: {
@@ -9,7 +10,7 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         
-        if(!message.channel.permissionsFor(message.member).has("MANAGE_MESSAGES") && !ownerID.includes(message.author.id)) return;
+        if(!message.channel.permissionsFor(message.member).has("PERMISSIONS.FLAGS_MANAGE_MESSAGES") && !ownerID.includes(message.author.id)) return;
 
 
       let user =

@@ -18,7 +18,7 @@ module.exports = {
     .setImage(message.guild.iconURL({ dynamic: true, size: 1024 }))
     .setColor("RANDOM");
     
-      message.channel.send(embed)
+      message.channel.send({embeds: [ embed ]})
     
   }
 }

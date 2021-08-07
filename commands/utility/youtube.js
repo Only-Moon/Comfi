@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const he = require('he');
 const search = require('youtube-search');
-const config= require('../../config.json');
+const config= require('../../config.js');
 const emoji = require('../../emojis.json');
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
         description: "Searches YouTube for you specified text provided",
         aliases: ["yt"],
         category: "utility",
-        example: `${config.default_prefix}youtube mohit60fps`,
+        example: `${config.PREFIX}youtube moonbow`,
         usage: "youtube user!!",
     },
     run: async (bot, message, args) => {
@@ -47,6 +47,6 @@ module.exports = {
     .setTimestamp()
     .setColor(message.guild.me.displayHexColor)
 
-    message.channel.send(embed)
+    message.channel.send({embeds: [ embed ]})
   }
 }

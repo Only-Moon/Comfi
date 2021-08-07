@@ -58,7 +58,7 @@ module.exports = {
                     bot.guilds.cache.get(message.guild.id).channels.cache.get(channel.id).send(`**✅ ChatBot Channel Set!**`);
                     db.set(`chatbot_${message.guild.id}`, channel.id);
 
-                  message.channel.send({embed: {
+                  message.channel.send({embeds: {
                     color: '#F8B6D4',
                     title: `✅ ChatBot Channel has been Set Successfully \`${channel.id}\``
                 }});

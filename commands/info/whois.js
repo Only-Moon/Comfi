@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const { Permissions } = require('discord.js')
 const moment = require('moment');
 
 const status = {
@@ -26,43 +27,43 @@ module.exports = {
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
         
 
-        if(member.hasPermission("KICK_MEMBERS")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_KICK_MEMBERS")){
             permissions.push("Kick Members");
         }
         
-        if(member.hasPermission("BAN_MEMBERS")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS")){
             permissions.push("Ban Members");
         }
         
-        if(member.hasPermission("ADMINISTRATOR")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")){
             permissions.push("Administrator");
         }
     
-        if(member.hasPermission("MANAGE_MESSAGES")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MANAGE_MESSAGES")){
             permissions.push("Manage Messages");
         }
         
-        if(member.hasPermission("MANAGE_CHANNELS")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MANAGE_CHANNELS")){
             permissions.push("Manage Channels");
         }
         
-        if(member.hasPermission("MENTION_EVERYONE")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MENTION_EVERYONE")){
             permissions.push("Mention Everyone");
         }
     
-        if(member.hasPermission("MANAGE_NICKNAMES")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MANAGE_NICKNAMES")){
             permissions.push("Manage Nicknames");
         }
     
-        if(member.hasPermission("MANAGE_ROLES")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MANAGE_ROLES")){
             permissions.push("Manage Roles");
         }
     
-        if(member.hasPermission("MANAGE_WEBHOOKS")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MANAGE_WEBHOOKS")){
             permissions.push("Manage Webhooks");
         }
     
-        if(member.hasPermission("MANAGE_EMOJIS")){
+        if(member.permissions.has("PERMISSIONS.FLAGS_MANAGE_EMOJIS")){
             permissions.push("Manage Emojis");
         }
     
@@ -89,7 +90,7 @@ module.exports = {
             .addField("\n__Acknowledgements:__ ", `${acknowledgements}`, true)
             .addField("\n__Permissions:__ ", `${permissions.join(` | `)}`);
             
-        message.channel.send({embed});
+        message.channel.send({embeds: [ embed ]});
     
     }
     }

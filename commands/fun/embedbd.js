@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const { MessageButton, MessageActionRow } = require("discord-buttons")
+const { MessageButton, MessageActionRow } = require("discord.js")
 const { db } = require('../../Database.js');
 const Discord = require("discord.js");
 

@@ -26,7 +26,7 @@ module.exports = {
   .setColor("RANDOM")   
   
   
-  bot.channels.cache.get('849267296174473226').send(embed)
+  bot.channels.cache.get('849267296174473226').send({embeds: [ embed ]})
   
 }
 

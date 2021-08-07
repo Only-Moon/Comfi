@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const { db } = require('../Database')
-const simplydjs = require('simply-djs')
+const simplydjs = require('simply-djs-v13')
 const db1 = require('old-wio.db');
 const wb = require('quick.db');
 const moment = require('moment');

@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 module.exports = {
   config: {
     name: "roledel",
@@ -9,7 +10,7 @@ module.exports = {
   },
   run: async (bot, message, args) => {
 
-    if(!message.member.hasPermission(["MANAGE_ROLES"])) return message.channel.send("You dont have permission to perform this command!")
+    if(!message.member.permissions.has(["PERMISSIONS.FLAGS_MANAGE_ROLES"])) return message.channel.send("You dont have permission to perform this command!")
 
     let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
@@ -27,7 +28,7 @@ module.exports = {
       .setColor(`#FF0000`)
       .setDescription(`Error ❌ | ${rMember.displayName}, Does not have this role!`);
 
-      return message.channel.send(rolDEL_err)
+      return message.channel.send({embeds: [ rolDEL_err ]})
     
     } else {
 
@@ -37,7 +38,7 @@ module.exports = {
       .setColor(`#00FF00`)
       .setDescription(`Success ✅ | ${rMember} has been removed from **${role.name}**`)
 
-      message.channel.send(rolDEL)
+      message.channel.send({embeds: [ rolDEL ]})
     
     }
 

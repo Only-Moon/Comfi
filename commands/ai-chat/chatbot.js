@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const { db } = require('../../Database.js')
 const config = require('../../config.js')
+const { Permissions } = require('discord.js')
 
 module.exports = {
 	config: {
@@ -58,7 +59,7 @@ bot.user.avatarURL()
           "© Comfi", bot.user.avatarURL()
         )
         .setColor('#F8B6D4');
-      message.channel.send(embed);
+      message.channel.send({embeds: [ embed ]});
 
     }
 }

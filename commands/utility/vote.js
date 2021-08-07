@@ -1,4 +1,3 @@
-
 const Color = "RANDOM";
 const Discord = require("discord.js");
 
@@ -14,13 +13,12 @@ module.exports = {
     
    
 
-    const Embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     .setColor(Color)
     .setTitle("Vote Bot")
     .setDescription("You can vote us in **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
-    .setImage(``)
     .setTimestamp();
 
-    return message.channel.send(Embed);
+    return message.channel.send({embeds: [ embed ]});
   }
 };

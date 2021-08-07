@@ -24,7 +24,7 @@ module.exports = {
     .setDescription(list[page])
     .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
     .setColor("YELLOW");
-    const msg = await message.channel.send({ embed: e });
+    const msg = await message.channel.send({ embeds: e });
     symbols.forEach(symbol => msg.react(symbol));
     let doing = true;
     while (doing) {

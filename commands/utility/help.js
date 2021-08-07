@@ -81,7 +81,7 @@ else {
     ** Aliases -** [ \`${command.aliases ? command.aliases.join(" , ") : "None."}\` ]`)
     embed.setFooter(message.guild.name, message.guild.iconURL())
 
-    return message.channel.send(embed)
+    return message.channel.send({embeds: [ embed ]})
 };
 } catch (e) {
   console.log(e);

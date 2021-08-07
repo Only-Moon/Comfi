@@ -1,16 +1,17 @@
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 const { ownerID } = require("../../owner.json")
 module.exports = {
   config: {
     name: "roleadd",
     category: 'mod',
     description: "Add a role to a member",
-    usage: "m/roleadd <member mention/id> <role mention/role id>",
+    usage: "roleadd <member mention/id> <role mention/role id>",
     aliases: ['role add', 'radd']
   },
   run: async (bot, message, args) => {
 
-    if(!message.member.hasPermission(["MANAGE_ROLES"]) && !ownerID.includes(message.author.id)) return message.channel.send("You dont have permission to perform this command!")
+    if(!message.member.permissions.has(["PERMISSIONS.FLAGS_MANAGE_ROLES"]) && !ownerID.includes(message.author.id)) return message.channel.send("You dont have permission to perform this command!")
 
     let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 

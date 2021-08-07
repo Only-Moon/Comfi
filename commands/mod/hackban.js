@@ -1,5 +1,6 @@
 const db = require("old-wio.db")
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 const { measureMemory } = require("vm");
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
 
     run: async(bot, message, args) => {
         
-        if(!message.channel.permissionsFor(message.member).has("BAN_MEMBERS") && !ownerID.includes(message.author.id)) return;
+        if(!message.channel.permissionsFor(message.member).has("PERMISSIONS.FLAGS_BAN_MEMBERS") && !ownerID.includes(message.author.id)) return;
         
         const target = args[0];
         if (isNaN(target)) return message.reply(`Please specify an ID`);
@@ -24,7 +25,7 @@ module.exports = {
                 const embed2 = new MessageEmbed()
                 .setColor("GREEN")
                 .setDescription("**They were successfully banned. User was not notified!**");
-                await message.channel.send(embed2);                
+                await message.channel.send({embeds: [ embed2 ]});                
                 const channel  = db.fetch(`modlog_${message.guild.id}`);
                 if (!channel) return;
             const embed = new MessageEmbed()
@@ -40,7 +41,7 @@ module.exports = {
   
             var sChannel = message.guild.channels.cache.get(channel)
             if (!sChannel) return;
-            sChannel.send(embed)
+            sChannel.send({embeds: [ embed ]})
             
             } catch (error) { console.log(error)}
     }

@@ -21,13 +21,13 @@ module.exports = {
     const res = `${stati}\n\n${ani}\n\n${tot}`; 
     
     const embed = new Discord.MessageEmbed()
-    .setColor("F8B6D4")
+    .setColor("#F8B6D4")
       .setAuthor("Emoji Stats", bot.user.displayAvatarURL())
       .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
       .setDescription(`${res}`)
       .setTimestamp(true);
     
-    message.channel.send(embed);
+    message.channel.send({embeds: [ embed ]});
     
     
   }}

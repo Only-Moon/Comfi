@@ -5,7 +5,8 @@ module.exports = async (text, channel) => {
   let embed = new Discord.MessageEmbed() 
      .setDescription("<a:WrongCheck:829635972219011093> - " + text) 
      .setFooter(`Something went wrong!`) 
-     .setTimestamp() .setColor("RED");
+     .setTimestamp() 
+     .setColor("RED");
      
      await channel.send(embed)
   

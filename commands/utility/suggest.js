@@ -1,6 +1,6 @@
 const { db } = require('../../Database.js');
-const { MessageButton } = require('discord-buttons');
-const simplydjs = require('simply-djs')
+const { MessageButton } = require('discord.js');
+const simplydjs = require('simply-djs-v13')
  
 module.exports = {
 	config: {

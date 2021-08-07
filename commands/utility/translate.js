@@ -29,7 +29,7 @@ module.exports = {
       .addField('Translated from', `\`\`\`${result.text}\`\`\``)
       .addField('Translated to', `\`\`\`${result.translation}\`\`\``)
       .setTimestamp()
-      message.channel.send(embed)
+      message.channel.send({embeds: [ embed ]})
     }  catch (err) {
       message.channel.send(`${emoji.Error} Failed to translate **${args[1]}** to **${args[0]}**`);
     }

@@ -13,7 +13,7 @@ module.exports = {
     run: async (bot, message, args) => {
         if (!args[0]) return message.channel.send("**Enter A Query!**")
         let m = await message.channel.send({
-            embed: {
+            embeds: {
                 color: "GREEN",
                 title: `Searching Wikipedia just for you ⌛`,
                 description: `Please stand by...`,
@@ -23,7 +23,7 @@ module.exports = {
         const search = await wiki.search(args.join(' '));
         if (!search.results.length) {
             return m.edit({
-                embed: {
+                embeds: {
                     color: "GREEN",
                     title: "What was that again? 📚🤓",
                     description: "Even Wikipedia doesn't seem to know what you're talking about.",
@@ -70,7 +70,7 @@ module.exports = {
                     .setColor("GREEN")
                     .setDescription(description.slice(4096, description.length))
                 await m.edit('', FifthEmbed)
-                message.channel.send(SixthEmbed)
+                message.channel.send({embeds: [ SixthEmbed ]})
                 message.channel.send(SeventhEmbed)
             } if (description.length > 6144 && description.length < 8192) {
                 const EightEmbed = new MessageEmbed()
@@ -86,9 +86,9 @@ module.exports = {
                     .setColor("GREEN")
                     .setDescription(description.slice(6144, description.length))
                 await m.edit('', EightEmbed);
-                message.channel.send(NinthEmbed);
-                message.channel.send(TenthEmbed);
-                message.channel.send(EleventhEmbed);
+                message.channel.send({embeds: [ NinthEmbed ]});
+                message.channel.send({embeds: [ TenthEmbed ]});
+                message.channel.send({embeds: [ EleventhEmbed ]});
             }
         } catch (e){
             return m.edit("Not Available!")

@@ -1,4 +1,5 @@
 const db = require("old-wio.db");
+const { Permissions } = require('discord.js')
 
 module.exports = {
   config: {
@@ -11,7 +12,7 @@ module.exports = {
   run: async (bot, message, args) => {
     
     
-    if(!message.member.hasPermission("ADMINISTRATOR")) {
+    if(!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) {
       return message.channel.send("Yopu should have admin perms to use this command")
     }
     

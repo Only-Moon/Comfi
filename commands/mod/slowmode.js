@@ -9,7 +9,7 @@ module.exports = {
     },
   run: async (bot, message, args) => {
   
-    if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send('You do not have **MANAGE_CHANNELS** permission!').then(m => m.delete({ timeout: 5000 }));
+    if (!message.member.permissions.has('PERMISSIONS.FLAGS_MANAGE_CHANNELS')) return message.channel.send('You do not have **MANAGE_CHANNELS** permission!').then(m => m.delete({ timeout: 5000 }));
 
         if (!args[0]) return message.channel.send('You did not specify a time!').then(m => m.delete({ timeout: 5000}));
 
@@ -43,7 +43,7 @@ module.exports = {
             .addField('Reason: ', reason)
             .setColor('#ff0000');
 
-        message.channel.setRateLimitPerUser(time, reason).then(m => m.send(embed));
+        message.channel.setRateLimitPerUser(time, reason).then(m => m.send({embeds: [ embed ]}));
 
     }
 };

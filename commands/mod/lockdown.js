@@ -1,18 +1,20 @@
 const Discord = require('discord.js')
+const { Permissions } = require('discord.js')
 
 module.exports = {
     config: {
         name: "lockdown",
         category: 'mod',
         description: "lock server",
-        aliases: []
+        aliases: [],
+        usage: 'lockdown on/off'
     },
     run: async (bot, message, args) => {
         let lockPermErr = new Discord.MessageEmbed()
         .setTitle("**User Permission Error!**")
         .setDescription("**Sorry, you don't have permissions to use this! ❌**")
         
-        if(!message.channel.permissionsFor(message.member).has("MANAGE_CHANNELS") ) return message.channel.send(lockPermErr);
+        if(!message.channel.permissionsFor(message.member).has("PERMISSIONS.FLAGS_MANAGE_CHANNELS") ) return message.channel.send({embeds: [ lockPermErr ]});
         
         if(!args[0]) {
         return message.channel.send("Please specify something.`Either on/off`")
@@ -31,7 +33,7 @@ module.exports = {
                 .setThumbnail(`https://media.giphy.com/media/JozO6wdFcC81VPO6RS/giphy.gif`)
                 .setDescription(`**\n\nDone! Server Fully Locked! 🔒**`)
                 .setColor('#2F3136')
-            return message.channel.send(lockEmbed);
+            return message.channel.send({embeds: [ lockEmbed ]});
 
         } else if (args[0] === 'off') {
             channels.forEach(channel => {
@@ -44,7 +46,7 @@ module.exports = {
                 .setColor('#2F3136')    
                 .setThumbnail(`https://media.giphy.com/media/JozO6wdFcC81VPO6RS/giphy.gif`)
                 .setDescription(`**\n\nDone! Server Fully Unlocked! 🔓**`)
-            return message.channel.send(lockEmbed2)
+            return message.channel.send({embeds: [ lockEmbed2 ]})
         }
     }
 }

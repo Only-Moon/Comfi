@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const { Console } = require('console');
+const { Permissions } = require('discord.js')
 
 module.exports = {
     config: {
@@ -13,7 +14,7 @@ module.exports = {
         .setTitle("**User Permission Error!**")
         .setDescription("**Sorry, you don't have permissions to use this! ❌**")
         
-        if(!message.channel.permissionsFor(message.member).has("MANAGE_CHANNELS") ) return message.channel.send(lockPermErr);
+        if(!message.channel.permissionsFor(message.member).has("PERMISSIONS.FLAGS_MANAGE_CHANNELS") ) return message.channel.send({embeds: [ lockPermErr ]});
 
         let channel = message.channel;
 

@@ -19,6 +19,6 @@ module.exports = {
         .setColor("GREEN")
         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic : true }))
         .setTimestamp();
-        message.channel.send(embed)                }
+        message.channel.send({embeds: [ embed ]})                }
     }
 };

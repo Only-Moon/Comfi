@@ -68,7 +68,7 @@ module.exports = {
              ${ch} Channels : ${channels.filter(channel => channel.type === 'voice').size}`,
              )
             .setTimestamp();
-        message.channel.send(embed);
+        message.channel.send({embeds: [ embed ]});
     }
 
 }

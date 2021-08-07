@@ -1,5 +1,6 @@
 const { Message, MessageEmbed } = require("discord.js");
 const { Bot } = require("./index.js");
+const { Permissions } = require('discord.js')
 
 /**
  *
@@ -40,7 +41,7 @@ async function checkPermission(of, message, permissions) {
       //looping each permissions
       permissions.forEach((permission) => {
         //checking permission
-        if (!message.guild.me.hasPermission(permission)) {
+        if (!message.guild.me.permissions.has(permission)) {
           //pushing to array
           array.push(permission);
         }
@@ -52,7 +53,7 @@ async function checkPermission(of, message, permissions) {
           `❌ Missing Permission(s)`,
           `\`ADMINISTRATOR\``
         );
-        message.channel.send(cEmbed).catch(() => {});
+        message.channel.send({embeds: [ cEmbed ]}).catch(() => {});
         return true;
       }
 
@@ -62,7 +63,7 @@ async function checkPermission(of, message, permissions) {
           `❌ Missing Permission(s)`,
           `\`${array.join(" , ")}\``
         );
-        message.channel.send(cEmbed).catch(() => {});
+        message.channel.send({embeds: [ cEmbed ]}).catch(() => {});
         return true;
       }
       break;
@@ -88,7 +89,7 @@ async function checkPermission(of, message, permissions) {
 
       //looping permissions
       permissions.forEach((permission) => {
-        if (!message.member.hasPermission(permission)) {
+        if (!message.member.permissions.has(permission)) {
           //pushing to array
           mArray.push(permission);
         }
@@ -100,7 +101,7 @@ async function checkPermission(of, message, permissions) {
           `❌ Missing Permission(s)`,
           `\`ADMINISTRATOR\``
         );
-        message.channel.send(mEmbed).catch(() => {});
+        message.channel.send({embeds: [ mEmbed ]}).catch(() => {});
         return true;
       }
 
@@ -110,7 +111,7 @@ async function checkPermission(of, message, permissions) {
           `❌ Missing Permission(s)`,
           `\`${mArray.join(" , ")}\``
         );
-        message.channel.send(mEmbed).catch(() => {});
+        message.channel.send({embeds: [ mEmbed ]}).catch(() => {});
         return true;
       }
       break;

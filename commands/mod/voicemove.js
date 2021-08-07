@@ -1,4 +1,5 @@
 const { ownerID } = require("../../owner.json")
+const { Permissions } = require('discord.js')
 
 module.exports = {
     config: {
@@ -11,7 +12,7 @@ module.exports = {
     },
 
     run: async(bot, message, args) => {
-         if (!message.member.hasPermission("MOVE_MEMBERS") && !ownerID .includes(message.author.id)) return message.channel.send("**You Dont Have The Permissions To Ban Users! - [MOVE_MEMBERS]**");
+         if (!message.member.permissions.has("PERMISSIONS.FLAGS_MOVE_MEMBERS") && !ownerID .includes(message.author.id)) return message.channel.send("**You Dont Have The Permissions To Ban Users! - [MOVE_MEMBERS]**");
         
         let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase());
 

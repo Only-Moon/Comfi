@@ -1,5 +1,6 @@
 const db = require("old-wio.db");
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 const moment = require('moment');
 const ms = require('ms');
 const discord = require("discord.js");
@@ -17,10 +18,10 @@ module.exports = {
 		const tbuser = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 		const regex = args.splice(1).join(" ");
 
-		if (!message.member.hasPermission("BAN_MEMBERS")) {
+		if (!message.member.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS")) {
 			return message.channel.send("I dont have exact perms to ban someone");
 		}
-		if(!message.guild.me.hasPermission("BAN_MEMBERS")) {
+		if(!message.guild.me.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS")) {
 			return message.channel.send("I dont have permissions to ban someone");
 		}
 		if(tbuser === message.guild.me) {
@@ -57,7 +58,7 @@ module.exports = {
 			.addField("Time (s)", regex)
 			.addField("Moderator:", message.author.username);
 		message.channel.send(tbembed);
-		tbuser.send(tbuembed);
+		tbuser.send({embeds: [ tbuembed ]});
 		
 		tbuser.ban({reason: reason }).then(() => {
 		  setTimeout( function (){

@@ -1,5 +1,4 @@
-const { MessageButton } = require('discord-buttons');
-const { MessageEmbed } = require('discord.js')
+const { MessageButton, MessageEmbed } = require('discord.js')
 const shorten = require('isgd');
 const emoji = require('../../emojis.json');
 const config = require('../../config.json');
@@ -21,13 +20,13 @@ module.exports = {
                 if(res.startsWith('Error:')) return message.reply(`${emoji.Error} Provide a valid url **${res}**`)
 
         }) 
-        }else {
+        } else {
 
             shorten.custom(args[0], args[1], function(res) {
                 if(res.startsWith('Error:')) return message.reply(`${emoji.Error} **${res}**`)
             
       let button = new MessageButton()
-        .setStyle('url')
+        .setStyle('LINK')
         .setURL(`${res}`) 
         .setLabel('Your Shortened Url!'); 
 
@@ -35,12 +34,12 @@ module.exports = {
   .setDescription(`Here is your shortened url ${res}`)
 .setColor('RANDOM');
 
-message.channel.send(embed, {
+message.channel.send({embeds: [ embed ],
     buttons: [button]
 });
-})
 
-        }
+
+        })
 
     }
-}
+}}

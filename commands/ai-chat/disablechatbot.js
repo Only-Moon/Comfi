@@ -1,5 +1,6 @@
 const { checkPermission } = require('../../Permissions');
 const { db } = require('../../Database.js');
+const { Permissions, MessageEmbed } = require('discord.js')
 
 
 module.exports = {
@@ -30,7 +31,7 @@ module.exports = {
                 let a = db.fetch(`chatbot_${message.guild.id}`);
 
                 if(!a) {
-                    return message.channel.send({embed: {
+                    return message.channel.send({embeds: {
                         color: '#F8B6D4',
                         title: `❌ There is no Chatbot channel to disable!`
                     }});
@@ -38,11 +39,9 @@ module.exports = {
 
                     let channel = message.guild.channels.cache.get(a);
                     db.delete(`chatbot_${message.guild.id}`);
-
-                    message.channel.send({embed: {
-                        color: '#F8B6D4',
-                        title: `✅ Chatbot Channel has been succesfully disabled!`
-                    }});
+let embed1 = new MessageEmbed()
+                  .setColor('#F4B3CA')(`✅ Chatbot Channel has been su        ccesfutleldisabled!`);
+                    message.channel.send({embeds: [ embed1 ]});
                 } return;
                 
             } catch(err) {

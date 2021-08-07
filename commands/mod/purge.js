@@ -1,4 +1,5 @@
 const { ownerID } = require('../../owner.json') 
+const { Permissions } = require('discord.js')
 
 module.exports = {
     config: {
@@ -10,7 +11,7 @@ module.exports = {
     },
     run: async (bot, message, args) => {
       
-         try { if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
+         try { if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
         if (isNaN(args[0]))
             return message.channel.send('**Please Supply A Valid Amount To Delete Messages!**');
 
@@ -28,7 +29,7 @@ module.exports = {
             .setTitle(`:x: Error!`)
             .setDescription(e)
 
-            message.channel.send(embed);
+            message.channel.send({embeds: [ embed ]});
 
         }
     }

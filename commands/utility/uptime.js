@@ -21,6 +21,6 @@ module.exports = {
             .setThumbnail(bot.user.displayAvatarURL())
             .setFooter(message.guild.name, message.guild.iconURL())
             .setAuthor(bot.user.username, bot.user.displayAvatarURL())  
-        message.channel.send(embed);
+        message.channel.send({embeds: [ embed ]});
     }
 }

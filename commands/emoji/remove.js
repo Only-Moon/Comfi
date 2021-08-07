@@ -1,4 +1,5 @@
 const Discord = require('discord.js') 
+const { Permissions } = require('discord.js')
 
  module.exports = {
   config: {
@@ -10,7 +11,7 @@ const Discord = require('discord.js')
   },
   run: async (bot, message, args) => {
   
-  if (!message.member.hasPermission("MANAGE_EMOJIS")) {
+  if (!message.member.hasPermission("Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS")) {
     return message.channel.send(`:x: | **You Don't Have Permission To Use This Command**`)
     
   }

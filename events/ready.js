@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { PREFIX } = require('../config.js');
-const simplydjs = require('simply-djs') 
+const simplydjs = require('simply-djs-v13') 
 const db = require('quick.db') 
 const startAt = Date.now() 
 

@@ -1,5 +1,6 @@
 const db = require("old-wio.db");
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 
 module.exports = {
   config: {
@@ -9,12 +10,12 @@ module.exports = {
   category: "mod",
   },
   run: (bot, message, args) => {
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.reply(
+    if(!message.member.permissions.has("PERMISSIONS.FLAGS_BAN_MEMBERS")) return message.reply({eembeds: 
       new MessageEmbed()
       .setDescription("You dont have Moderation perms to use this command")
       .setFooter("BAN_MEMBERS")
       .setColor(Color)
-      );
+                                                                                              });
     const user = message.mentions.members.first() || message.author
     
   

@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const { MessageButton, MessageActionRow } = require('discord-buttons');
+const { MessageButton, MessageActionRow } = require('discord.js');
 
 module.exports = {
 config: {
@@ -73,7 +73,7 @@ let row3 = new MessageActionRow()
 
 let msg = await message.channel.send({
             components: [row, row2, row3],
-            embed: embeds
+            embeds: embeds
 });
 
 }

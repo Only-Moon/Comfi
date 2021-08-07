@@ -20,7 +20,7 @@ module.exports = {
         const { data } = embed
 
         if (data && !data.error) {
-          message.channel.send({ embed: data })
+          message.channel.send({ embeds: data })
         } else {
           message.reply('Could not find that documentation')
         }

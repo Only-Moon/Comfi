@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { MessageButton } = require('discord-buttons')
+const { MessageButton } = require('discord.js')
 
 module.exports.run = async(bot, guild) => {
 let ch = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) 
