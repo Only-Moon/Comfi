@@ -31,10 +31,12 @@ module.exports = {
                 let a = db.fetch(`chatbot_${message.guild.id}`);
 
                 if(!a) {
-                    return message.channel.send({embeds: {
-                        color: '#F8B6D4',
-                        title: `❌ There is no Chatbot channel to disable!`
-                    }});
+                    return 
+ let embed = new MessageEmbed()
+             .setColor('#F8B6D4')
+             .setTitle(`❌ There is no Chatbot channel to disable!`
+                    );
+                              message.channel.send({embeds: [ embed ]})        
                 } else {
 
                     let channel = message.guild.channels.cache.get(a);

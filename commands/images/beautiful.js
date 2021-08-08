@@ -21,8 +21,8 @@ module.exports = {
 
     let img = await new DIG.Beautiful().getImage(avatar);
 
-    let attach = new Discord.MessageAttachment(img, "delete.png");
+    let attachment = new Discord.MessageAttachment(img, "delete.png");
     m.delete({ timeout: 5000 });
-    message.channel.send(attach);
+    message.channel.send({files: [attachment]});
   },
 };

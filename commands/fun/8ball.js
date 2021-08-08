@@ -41,11 +41,11 @@ module.exports = {
       ];
       let response =
         responses[Math.floor(Math.random() * responses.length - 1)];
-      let Embed = new MessageEmbed()
+      let embed = new MessageEmbed()
         .setTitle(`8Ball!`)
         .setDescription(`Your question: ${question}\nMy reply: ${response}`)
         .setColor(`RANDOM`);
-      message.channel.send(Embed);
+      message.channel.send({embeds: [ embed ]});
     }
   },
 };

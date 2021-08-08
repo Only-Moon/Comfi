@@ -11,6 +11,6 @@ config: {
 },
     run: async(bot, message, args) => {
         let data = await Random.GetMeme();
-        message.channel.send(data);
+        message.channel.send({content: [data]});
     }
 };

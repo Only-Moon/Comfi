@@ -1,5 +1,5 @@
 const db = require("old-wio.db");
-
+const { Permissions } = require('discord.js')
 const { MessageEmbed } = require("discord.js");
 
 const Discord = require("discord.js");
@@ -37,7 +37,7 @@ module.exports = {
     }
 
     if (UrlCheck(Content) === true) {
-      if (!message.member.hasPermission("ADMINISTRATOR")) {
+      if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) {
         return message.channel.send(
           `Links Is Not Allowed | Only Administrators Can Use Links!`
         );
@@ -48,7 +48,7 @@ module.exports = {
       .setColor("F8B6D4")
       .setDescription(`${Content}`);
 
-    return message.channel.send(embed);
+    return message.channel.send({embeds: [ embed ]});
 
     //End
   }

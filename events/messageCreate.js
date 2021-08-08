@@ -9,41 +9,42 @@ const ms = require('ms');
 const pms = require('pretty-ms');
 const fetch = require('node-fetch');
 const { PREFIX } = require("../config.js");
+const { Permissions } = require('discord.js')
 
 module.exports.run = async (bot, message) => {
 
  	if (message.author.bot || !message.guild || message.webhookID) return;
 
-	let ch = await db.get(`chatbot_${message.guild.id}`)
+	//let ch = await db.get(`chatbot_${message.guild.id}`)
 
-  if (!ch) return console.log('no val in chid');
+  //if (!ch || ch === undefined) return;
 
-simplydjs.chatbot(bot, message, {
-chid: `${ch}`,
-name: '', // default: Your bot na
-developer: `Moonbow, Rahuletto`,
-})
+//simplydjs.chatbot(bot, message, {
+//chid: `${ch}`,
+//name: '', // default: Your bot na
+//developer: `Moonbow, Rahuletto`,
+//})
 
 	let Prefix = await db.get(`prefix_${message.guild.id}`);
 	if (!Prefix) Prefix = PREFIX;
 
 	const mentionRegex = RegExp(`^<@!?${bot.user.id}>$`);
 
-	if (message.content.match(mentionRegex)) {
-		message.channel.send(
-			new Discord.MessageEmbed()
+let embed = new Discord.MessageEmbed()
 				.setThumbnail(`${message.author.displayAvatarURL({ dynamic: true })}`)
 				.setDescription(
 					`Hey <@${
 						message.author.id
-					}>, My prefix for this guild is \`\`\`${Prefix}\`\`\`.Use \`\`\`${Prefix}help\`\`\` or <@${
+					}>, My prefix for this guild is **\`\`\`${Prefix}\`\`\`** \n \n Use **\`\`\`${Prefix}help\`\`\`** or <@${
 						bot.user.id
 					}> help to get a list of commands`
 				)
 				.setColor('RANDOM')
 				.setFooter(`Requested by ${message.author.username}`)
 				.setTimestamp()
-		);
+  
+	if (message.content.match(mentionRegex)) {
+		message.channel.send({embeds: [ embed ]});
 	}
 
 
@@ -59,7 +60,7 @@ developer: `Moonbow, Rahuletto`,
 
 	if (!message.content.startsWith(Prefix)) return;
 
-	if (!message.guild.me.permissionsIn(message.channel).has('EMBED_LINKS'))
+	if (!message.guild.me.permissionsIn(message.channel).has('PERMISSIONS.FLAGS_EMBED_LINKS'))
 		return message.reply(
 			'**:x: I am missing the Permission to `EMBED_LINKS`**'
 		);

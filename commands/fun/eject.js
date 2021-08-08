@@ -29,12 +29,12 @@ const user = message.mentions.users.first() || (args.length > 0 ? message.users.
       .setColor(config.embedcolor)
       .setImage(`${data.url}`);
       
-    message.channel.send(embed);
+    message.channel.send({embeds: [ embed ]});
   }catch(err) {
     const embed2 = new Discord.MessageEmbed()
     .setTitle(`${bot.emotes.error} Something went wrong.\n${bot.emotes.error}Note : It won't work if the User contains Unwanted characters in his Username.`)
     .setColor(config.embedcolor);
-    message.channel.send(embed2);
+    message.channel.send({embeds: [ embed2 ]});
     }
 
     }

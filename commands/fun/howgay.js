@@ -27,7 +27,7 @@ module.exports = {
       .setFooter(`Requested by ${message.author.username}`)
       .setTimestamp();
 
-    message.channel.send(embed);
+    message.channel.send({embeds: [ embed ]});
 
     //End
   }

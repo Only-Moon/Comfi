@@ -13,9 +13,12 @@ const bot = new Client({	allowedMentions: { parse: ['users', 'roles'], repliedUs
 //bot.buttube = new buttube(bot, "mongodb+srv://mohit841:MohitKoul@cluster0.yhyii.mongodb.net/comfi-music"); 
 const db = require('old-wio.db')
 db.backup('./backup.json');
+const fs = require('fs');
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
+bot.slashCommands = new Collection();
+bot.categories = fs.readdirSync("./commands/");
 
 
 ['command', 'event'].forEach(handler => {

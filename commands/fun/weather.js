@@ -19,7 +19,7 @@ module.exports = {
             .setDescription("Please enter a location!")
             .setColor(config.embedcolor)
             .setTimestamp();
-                return message.channel.send(errorembed);
+                return message.channel.send({embeds: [ errorembed ]});
         }
         
         weather.find({ search: args.join(" "), degreeType: 'C'}, function(err, result) {
@@ -30,7 +30,7 @@ module.exports = {
             .setDescription("Please enter a vaild location!")
             .setColor(config.embedcolor)
             .setTimestamp();
-                return message.channel.send(errorembed);
+                return message.channel.send({embeds: [ errorembed ]});
         }
         
           var current = result[0].current;
@@ -41,7 +41,7 @@ module.exports = {
             .setDescription("Please enter a vaild location!")
             .setColor(config.embedcolor)
             .setTimestamp();
-                return message.channel.send(errorembed);
+                return message.channel.send({embeds: [ errorembed ]});
             }
         
             
@@ -57,7 +57,7 @@ module.exports = {
             .addField('Winds', current.winddisplay, true)
             .addField('Humidity', `${current.humidity}%`, true)
             .setTimestamp();
-                message.channel.send(embed);
+                message.channel.send({embeds: [ embed ]});
         });
     }
 };

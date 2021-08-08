@@ -16,12 +16,12 @@ module.exports = {
         try {    
         let yt = await canvacord.Canvas.youtube({"avatar":message.author.displayAvatarURL({format: "png"}),"username":message.author.username, "content":args.join(" ")})
         let attachment = new Discord.MessageAttachment(yt, 'comment.png')
-        message.channel.send(attachment);
+        message.channel.send({files: [attachment]});
     }catch(err) {
-        const embed2 = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.emotes.error} Something went wrong.\n${bot.emotes.error}Note : It won't work if the User contains Unwanted characters in his Username.`)
     .setColor(config.embedcolor);
-    message.channel.send(embed2);
+    message.channel.send({embeds: [ embed ]});
     }
 
     }

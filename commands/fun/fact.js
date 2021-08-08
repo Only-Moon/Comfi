@@ -11,6 +11,6 @@ config: {
 },
     run: async(bot, message, args) => {
        let data = await Random.GetFact();
-       message.channel.send(data);
+       message.message.channel.send({component: [data]});
     }
 };

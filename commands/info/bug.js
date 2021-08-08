@@ -17,7 +17,7 @@ module.exports = {
   message.reply("Thanks for submitting a bug!"); 
   
   
-  let embed = new discord.MessageEmbed()
+  let embed = new Discord.MessageEmbed()
   .setTitle(`Bugs Reoprted`)
   .addDescription(`**Reported By:** ${message.author.username}#${message.author.discriminator}
   **UserID:** ${message.author.id} 

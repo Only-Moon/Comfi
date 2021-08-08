@@ -11,11 +11,11 @@ const { Permissions } = require('discord.js')
   },
   run: async (bot, message, args) => {
   
-  if (!message.member.hasPermission("Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS")) {
+  if (!message.member.permissions.has("Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS")) {
     return message.channel.send(`:x: | **You Don't Have Permission To Use This Command**`)
     
   }
-  if (!message.guild.me.hasPermission("MANAGE_EMOJIS")) {
+  if (!message.guild.me.permissions.has("Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS")) {
     return message.channel.send(`:x: | **I Don't Have Permission To manage emojis**`)}
     
     if (!args[0]) return message.channel.send("emote is a required argument that is missing.");

@@ -35,7 +35,7 @@ bot.user.avatarURL()
         .setColor('#F8B6D4');
       
        let channel1 = await db.fetch(`chatbot_${message.guild.id}`);
-      if(!channel1) return message.channel.send(embedd)
+      if(!channel1) return message.channel.send({embeds: [ embedd ]})
       var sChannel = message.guild.channels.cache.get(channel1);
       let embedvch = "<#" + sChannel.id + ">"
       

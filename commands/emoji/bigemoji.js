@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { MessageEmbed, MessageButton } = require('discord.js');
+const { MessageEmbed, MessageActionRow,  MessageButton } = require('discord.js');
 
 module.exports = {
   config: {
@@ -22,16 +22,15 @@ module.exports = {
       .setImage(`${res}`)
       .setDescription(`${emo.name} ${emo.id}`);
 
-   
-   
-   let button = new MessageButton()
-        .setStyle('url')
+   const row = new MessageActionRow()
+			.addComponents( new MessageButton()
+        .setStyle('LINK')
         .setURL(`${res}`) 
-        .setLabel('Emote Url!'); 
-
-
-message.channel.send(embed, {
-    buttons: [button]
+        .setLabel('Emote Url!'), 
+);
+  
+message.channel.send({embeds: [ embed ],
+    components: [row]
 });
     
   }

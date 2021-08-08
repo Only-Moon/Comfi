@@ -50,7 +50,7 @@ module.exports = {
 			return message.channel.send(`${bot.emotes.error} The emojified message exceeds 2000 characters.`);
 		}
 
-		message.channel.send(emojified);
+		message.channel.send({content: [emojified]});
 
     }
 };

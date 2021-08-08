@@ -22,7 +22,7 @@ module.exports = {
                 .setDescription("**Do You Really Want To Roast Yourself?**")
                 .setFooter(message.member.displayName, message.author.displayAvatarURL())
                 .setTimestamp()
-            message.channel.send(sembed);
+            message.channel.send({embeds: [ sembed ]});
         }
         else if (args[0]) {
             const embed = new MessageEmbed()
@@ -32,7 +32,7 @@ module.exports = {
                 .setDescription(`${roast}`)
                 .setFooter(member.displayName, member.user.displayAvatarURL())
                 .setTimestamp()
-            message.channel.send(embed);
+            message.channel.send({embeds: [ embed ]});
         }
     }
 }

@@ -1,5 +1,6 @@
 const { createCanvas, loadImage } = require('canvas');
 const request = require('node-superfetch');
+const { Permissions } = require('discord.js')
 
 module.exports = {
     config: {
@@ -10,7 +11,7 @@ module.exports = {
         description: 'Draws A User\'s Avatar Over Other User\'s Avatar',
     },
     run: async (bot, message, args) => {
-        if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send("**Missing Permissions - [ATTACH_FILES]!**");
+        if (!message.guild.me.permissions.has('PERMISSIONS.FLAGS_ATTACH_FILES')) return message.channel.send("**Missing Permissions - [ATTACH_FILES]!**");
         if (!args[0]) return message.channel.send("**Which User Would You Like To Be The Base?**");
         if (!args[1]) return message.channel.send("**Please Specify The User Whom Would You Like To Put Over The Base**");
         let base = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || message.guild.members.cache.find(r => r.displayName === args[0].toLocaleLowerCase());

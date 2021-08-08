@@ -22,7 +22,7 @@ run: async (bot, message, args) => {
             }
             if(data.length > 2000) return message.channel.send('Please provide text shorter than 2000 characters')
 
-            message.channel.send('```' + data + '```');
+            message.channel.send({content: ['```' + data + '```']});
         });
     }
 };

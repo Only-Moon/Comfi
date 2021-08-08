@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { MessageButton } = require('discord.js')
+const { MessageButton } = require('discord.js');
+const { Permissions } = require('discord.js')
 
 module.exports.run = async(bot, guild) => {
 let ch = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) 
@@ -27,5 +28,5 @@ let ch = guild.channels.cache.find(channel => channel.type === 'text' && channel
     .setTimestamp()
     .setColor("#F8B6D4")
     .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
-  channel.send(embed);
+  channel.send({embeds: [ embed ]});
 }

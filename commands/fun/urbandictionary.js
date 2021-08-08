@@ -29,7 +29,7 @@ module.exports = {
                     .addField("**Author:**", `${author || "unknown"}`)
                     .setTimestamp()
 
-                message.channel.send(embed)
+                message.channel.send({embeds: [ embed ]})
             
         } catch (e) {
             console.log(e)

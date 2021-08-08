@@ -16,6 +16,6 @@ config: {
 
     let data = await Random.ChangeMyMind({ Message: change });
 
-    message.channel.send(data);
+    message.channel.send({content: [data]});
     }
 };

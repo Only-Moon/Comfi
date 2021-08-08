@@ -16,6 +16,6 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor("GREEN")
             .setDescription(`**${message.member.displayName} Flipped ${result}**!`)
-        message.channel.send(embed);
+        message.channel.send({embeds: [ embed ]});
     }
 };

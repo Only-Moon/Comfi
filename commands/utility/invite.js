@@ -27,9 +27,7 @@ module.exports = {
     .setCustomId('inviteno') 
     
     
-    message.channel.send({content: `<@${message.author.id}>`, 
-      buttons: 
-      [yes, no], 
+    message.channel.send({content: `<@${message.author.id}>`,
       embeds: embed })
     }
     

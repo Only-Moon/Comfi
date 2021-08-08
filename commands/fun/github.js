@@ -49,7 +49,7 @@ module.exports = {
 				.setThumbnail(response.avatar_url)
         		.setTimestamp();
 
-			message.channel.send(embed);
+			message.channel.send({embeds: [ embed ]});
 		}
 		catch (err) {
 			return message.channel.send(

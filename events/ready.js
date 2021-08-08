@@ -1,6 +1,9 @@
 const Discord = require('discord.js');
 const { PREFIX } = require('../config.js');
-const simplydjs = require('simply-djs-v13') 
+const simplydjs = require('simply-djs-v13');
+const { glob } = require("glob");
+const { promisify } = require("util");
+const globPromise = promisify(glob);
 const db = require('quick.db') 
 const startAt = Date.now() 
 
@@ -43,7 +46,15 @@ module.exports.run = async (bot, message) => {
     startAt: startAt, // REQUIRED (to check if the vid is uploaded after the bot started) 
     msg: `(„• ֊ •„). <a:pink_pinkstar_HE:796373386330374154:> __**new upload**__ <a:bf_HE:796373377878589490:> \n ━━O━O━━━━━━━━━━━━ \n ₊˚๑ <a:paw_HE:796373419909972028> ꒱《 __**{author}**__ 》 just posted a video! ✦ \n ✎ <a::pinkheartsu_HE:796373357280362517:> ˗ˏˋ go and check it out! \n <a:pinktea_HE:796373339651571744> have a wonderful day ʕ · ﻌ ·ᐢ₎ .˚₊﹆ \n {link} \n ✎ <a:Pink_Bow_HE:783028553897869332> ˗ˏˋ @everyone <:pinkexplanation_HE:796373361936039936>  \n ━━━━━━━━━━━━━━━━━`,
 
- //dea llo! **{author}** just uploaded a new video **{title}**\n\n*{url}* // NOTE: You should use these variables ({author} , {title}, {url}) to build the message
     })
+
+const slashCommands = await globPromise(`${process.cwd()}/scommands/*/*.js`); 
+  const arrayOfSlashCommands = []; slashCommands.map((value) => { 
+    const file = require(value); 
+    if (!file?.name) return; 
+    bot.slashCommands.set(file.name, file); 
+    arrayOfSlashCommands.push(file); 
+  }); 
+  await bot.application.commands.set(arrayOfSlashCommands);
   
 }

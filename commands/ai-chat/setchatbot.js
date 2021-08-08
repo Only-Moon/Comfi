@@ -1,6 +1,6 @@
 const { checkPermission } = require('../../Permissions');
 const { db } = require('../../Database.js');
-
+const { Permissions, MessageEmbed } = require('discord.js')
 
 module.exports = {
 	config: {
@@ -8,7 +8,7 @@ module.exports = {
 		aliases: ['set-chatbot'],
 		category: "admin",
 		description: 'Sets chatbot channel',
-		usage: 'set"chatbot'
+		usage: 'set-chatbot'
 	},
 	run: async (bot, message, args) => {
        
@@ -32,16 +32,17 @@ module.exports = {
                 if(message.guild.channels.cache.has(b)) {
                         return message.channel.send(`**✅ ChatBot Channel Set In This Server Is \`${channelName.name}\`!**`);
                 } else {
-                    return message.channel.send({embed: {
-                        color: config.embedcolor,
-                        title: `${emotes.error} Please Enter a Channel or Channel ID to set`
-                    }});
-                };
+                    return 
+          let embed = new MessageEmbed()
+              .setColor('#F4B3CA')
+              .setTitle(`❌ Please Enter a Channel or Channel ID to set`);
+  message.channel.send({embeds: [ embed ]} )            
+ };
             };
 
             let channel = message.mentions.channels.first() || bot.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) || message.guild.channels.cache.find(c => c.name.toLowerCase() === args.join(' ').toLocaleLowerCase());
 
-            if(!channel || channel.type !== 'text') return message.channel.send({embed: {
+            if(!channel || channel.type !== 'text') return message.channel.send({embeds: {
                 color: '#F8B6D4',
                 title: `❌ Please enter a Valid Channel!`
             }});
@@ -50,7 +51,7 @@ module.exports = {
                 let a = await db.fetch(`chatbot_${message.guild.id}`);
         
                 if (channel.id === a) {
-                    return message.channel.send({embed: {
+                    return message.channel.send({embeds: {
                     color: `#F8B6D4`,
                     title: `❌ This Channel is already set as ChatBot Channel!`
                 }});

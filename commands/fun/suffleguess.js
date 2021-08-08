@@ -19,7 +19,7 @@ module.exports = {
       .setDescription("Now Try To Guess It!")
       .addField("Shuffle Word", `Type this shuffled word \`${res.result}\`\nOptions: \`cancel\`,\`reshuffle\``)
       .setColor("RANDOM");
-    await message.channel.send(firstbd)
+    await message.channel.send({embeds: [ firstbd ]})
     const gameFilter = m => m.author.id
     const gameCollector = message.channel.createMessageCollector(gameFilter);
 
@@ -32,13 +32,13 @@ module.exports = {
       if (msg.author.bot) return
       const selection = msg.content.toLowerCase();
       if (selection === word) {
-        message.channel.send(ggembed)
+        message.channel.send({embeds: [ ggembed ]})
         gameCollector.stop()
       } else if (selection === 'cancel') {
         const cancelbd = new MessageEmbed()
           .setTitle("Game Stopped!")
           .setColor("RED");
-        message.channel.send(cancelbd)
+        message.channel.send({embeds: [ cancelbd ]})
         gameCollector.stop();
       } else if (selection === 'reshuffle') {
         const reshbd = new MessageEmbed()
@@ -47,7 +47,7 @@ module.exports = {
           .addField("Shuffled Word", `Type it correctly - \`${res.result}\`\nOptions: \`cancel\`,\`reshuffle\``)
           .setColor("RANDOM");
         const ress = await (await (fetch(`https://api.monkedev.com/fun/shuffle?content=${word}&key=EjLY54Vys5kJVWgcfaA1RjFIp`))).json();
-        message.channel.send(reshbd)
+        message.channel.send({embeds: [ reshbd ]})
       } else if (selection !== word) {
         message.reply(`Wrong\nOptions: \`cancel\`,\`reshuffle\``)
       }
