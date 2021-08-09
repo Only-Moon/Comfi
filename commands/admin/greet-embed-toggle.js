@@ -1,4 +1,5 @@
 const db = require('old-wio.db');
+const { Permissions } = require('discord.js')
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     usage: "greet-embed-toggle",
   }, 
   run: async(bot, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(new MessageEmbed()
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) return message.channel.send(new MessageEmbed()
     .setTitle("Error")
     .setDescription(":x: Sorry but you dont have permission to use this command!!")
     .setColor("#FF0000")

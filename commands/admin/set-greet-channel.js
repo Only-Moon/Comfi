@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 const db = require("old-wio.db");
 const Discord = require("discord.js");
 
@@ -10,11 +11,11 @@ module.exports = {
     usage: "set-greet-channel <Mention Channel> <Type>",
   }, 
   run: async (bot, message, args) => {
-    if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("You Don't Have Enough Permission To Execute This Command - Manage Channels");
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_CHANNELS")) return message.channel.send("You Don't Have Enough Permission To Execute This Command - Manage Channels");
     
     let Channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
     
-    if (!Channel || Channel.type === "voice") return message.channel.send(`Please Give A Valid Text Channel!`);
+    if (!Channel || Channel.type === "GUILD_VOICE") return message.channel.send(`Please Give A Valid Text Channel!`);
     
     let Type = args[1];
     let Welcome = ["welcome", "wel", "join"];
@@ -37,7 +38,7 @@ module.exports = {
     
     let Current = await GetType(Type);
     
-    const Embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     .setColor("RANDOM")
     .setTitle(`Sucess`)
     .setDescription(`${Current === "Welcome" ? "Welcome" : "Leave"} Channel Has Been Setted - <#${Channel.id}>`)
@@ -47,7 +48,7 @@ module.exports = {
     await db.set(`${Current === "Welcome" ? "Welcome" : "Leave"}_${message.guild.id}_Channel`, Channel.id);
 
     try {
-        return message.channel.send(Embed);
+        return message.channel.send({embeds: [ embed ]});
     } catch (error) {
         return message.channel.send(`${Current === "Welcome" ? "Welcome" : "Leave"} Message Has Been Setted - <#${Channel}>`);
     };

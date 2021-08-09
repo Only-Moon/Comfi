@@ -1,3 +1,4 @@
+const { Permissions } = require('discord.js')
 const db = require("old-wio.db")
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
         usage: "[channel mention | channel ID | channel name]",
     },
     run: async (bot, message, args) => {
-        if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("**You Do Not Have The Required Permissions! - [ADMINISTRATOR]**")
+        if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) return message.channel.send("**You Do Not Have The Required Permissions! - [ADMINISTRATOR]**")
     if (!args[0]) {
       let b = await db.fetch(`modlog_${message.guild.id}`);
       let channelName = message.guild.channels.cache.get(b);
@@ -24,7 +25,7 @@ module.exports = {
     }
         let channel = message.mentions.channels.first() || bot.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) || message.guild.channels.cache.find(c => c.name.toLowerCase() === args.join(' ').toLocaleLowerCase());
 
-        if (!channel || channel.type !== 'text') return message.channel.send("**Please Enter A Valid Text Channel!**");
+        if (!channel || channel.type !== 'GUILD_TEXT') return message.channel.send("**Please Enter A Valid Text Channel!**");
 
         try {
             let a = await db.fetch(`modlog_${message.guild.id}`)

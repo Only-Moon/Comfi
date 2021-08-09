@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 const db = require('old-wio.db')
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     usage: "greet-toggle",
   }, 
   run: async (bot, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(new MessageEmbed()
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) return message.channel.send(new MessageEmbed()
     .setTitle("Error")
     .setDescription(":x: Sorry but you dont have permission to use this command!!")
     .setColor("#FF0000")
@@ -26,7 +27,7 @@ module.exports = {
    }))
    .setThumbnail(bot.user.displayAvatarURL());
    
-   message.reply(embed).then(msg => {
+   message.reply({embeds: [ embed ]}).then(msg => {
   msg.channel.awaitMessages(m=> m.author.id === message.author.id, { max: 1, time: 30000, errors: ['time'] }).then(collected=>{
     switch(collected.first().content.toString()){
       case "1":
@@ -56,21 +57,22 @@ module.exports = {
 `)
     .setFooter("Pick the INDEX NUMBER");
     
-      message.reply(wembed).then(msg => {
+      message.reply({embeds: [ wembed ]}).then(msg => {
       msg.channel.awaitMessages(m=>m.author.id === message.author.id, {max: 1, time: 60000, errors: ["TIME"]}).then(collected=>{
         switch(collected.first().content){
           case "1":
             let check =  db.fetch(`Weltog_${message.guild.id}`);
             if(check === null) {
             db.set(`Weltog_${message.guild.id}`, true)
-            return message.channel.send(new MessageEmbed()
+            return 
+      let embed1 = new MessageEmbed()
             .setTitle("Success!!")
             .setColor("RANDOM")
             .setDescription("I have successfully turned on the welcome system in this server")
             .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({
               dynamic: true
             }))
-            )
+   message.channel.send({embeds: [ embed1]})
             } else {
              message.channel.send("Welcome system is already turned on!!");
             };
@@ -79,12 +81,12 @@ module.exports = {
               let vcheck = db.fetch(`Weltog_${message.guild.id}`);
               if(vcheck === true) {
               db.delete(`Weltog_${message.guild.id}`);
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
               .setTitle("Success")
               .setColor("RANDOM")
               .setDescription("I have successfully turned off the welcome system in the server")
               .setTimestamp()
-              );
+                                          ]});
               } else {
                 message.channel.send("Please turn on the Welcome system first!!")
               };
@@ -109,21 +111,21 @@ function leavesystem(){
 `)
     .setFooter("Pick the INDEX NUMBER");
     
-      message.reply(wembed).then(msg => {
+      message.reply({embeds: [ wembed ]}).then(msg => {
       msg.channel.awaitMessages(m=>m.author.id === message.author.id, {max: 1, time: 60000, errors: ["TIME"]}).then(collected=>{
         switch(collected.first().content){
           case "1":
             let check = db.fetch(`leavtog_${message.guild.id}`);
             if(check === null) {
             db.set(`leavtog_${message.guild.id}`, true)
-            return message.channel.send(new MessageEmbed()
+            return message.channel.send({embeds: [new MessageEmbed()
             .setTitle("Success!!")
             .setColor("RANDOM")
             .setDescription("I have successfully turned on the Leave system in this server")
             .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({
               dynamic: true
             }))
-            )
+            ]})
             } else {
              message.channel.send("Leave system is already turned on!!");
             };
@@ -132,12 +134,12 @@ function leavesystem(){
               let vcheck = db.fetch(`leavtog_${message.guild.id}`);
               if(vcheck === true) {
               db.delete(`leavtog_${message.guild.id}`);
-              return message.channel.send(new MessageEmbed()
+              return message.channel.send({embeds: [new MessageEmbed()
               .setTitle("Success")
               .setColor("RANDOM")
               .setDescription("I have successfully turned off the Leave system in the server")
               .setTimestamp()
-              );
+              ]});
               } else {
                 message.channel.send("Please turn on the Leave system first!!")
               }

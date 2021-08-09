@@ -1,3 +1,4 @@
+const { Permissions } = require('discord.js')
 const { ownerID } = require("../../owner.json")
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
 },
   run: async (bot, message, args) => {
   
-    if (!message.member.hasPermission("MANAGE_GUILD") && !ownerID.includes(message.author.id)) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_GUILD]");
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_GUILD") && !ownerID.includes(message.author.id)) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_GUILD]");
 
     let serverRegion = args.slice(0).join(' ');
     

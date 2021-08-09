@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const { parse } = require("twemoji-parser");
 const { MessageEmbed } = require("discord.js");
+const { Permissions } = require('discord.js')
 
 module.exports = {
   config: {
@@ -11,7 +12,7 @@ module.exports = {
   category: "admin",
   },
   run: async (bot, message, args) => {
-        if (!message.member.hasPermission("MANAGE_EMOJIS")) {
+        if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_EMOJIS")) {
 return message.channel.send(`**You Don't Have Permission To Use This Command**`)
 }
         const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
@@ -31,7 +32,7 @@ return message.channel.send(`**You Don't Have Permission To Use This Command**`)
             .setTitle(`:x: Error!`)
             .setDescription(e);
 
-            message.channel.send(embed);
+            message.channel.send({embeds: [ embed ]});
 
         })
           

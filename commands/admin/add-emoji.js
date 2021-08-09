@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
+const { Permissions } = require('discord.js')
 const { parse } = require("twemoji-parser");
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
   category: "admin",
   },
   run: async (bot, message, args) => {
-  if (!message.member.hasPermission("MANAGE_EMOJIS")) {
+  if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_EMOJIS")) {
 return message.channel.send(`:x: | **You Don't Have Permission To Use This Command**`)
 }
 let isUrl = require("is-url");
@@ -46,7 +47,7 @@ let emoji = { name: "" };
             .setTitle(`:x: Error!`)
             .setDescription(e);
 
-            message.channel.send(embed);
+            message.channel.send({embeds: [ embed ]});
 
         })
           

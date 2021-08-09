@@ -1,4 +1,5 @@
 const db = require("old-wio.db");
+const { Permissions } = require('discord.js')
 const discord = require("discord.js");
 const { MessageEmbed } = require ("discord.js");
 const Discord = require("discord.js");
@@ -12,7 +13,7 @@ module.exports = {
   }, 
   run: async(bot, message, args) => {
   
-    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(new MessageEmbed()
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) return message.channel.send(new MessageEmbed()
     .setTitle("Error")
     .setDescription(":x: Sorry but you dont have permission to use this command!!")
     .setColor("#FF0000")
@@ -29,7 +30,7 @@ module.exports = {
    }))
    .setThumbnail(bot.user.displayAvatarURL());
    
-   message.reply(embed).then(msg => {
+   message.reply({embeds: [ embed ]}).then(msg => {
   msg.channel.awaitMessages(m=> m.author.id === message.author.id, { max: 1, time: 60000, errors: ['time'] }).then(collected=>{
     switch(collected.first().content.toString()){
       case "1":
@@ -70,7 +71,7 @@ module.exports = {
                 .setFooter("Background Setup")
                 .setTimestamp();
                   
-            message.reply(qembed).then(msg => {
+            message.reply({embeds: [ qembed ]}).then(msg => {
                   msg.channel.awaitMessages(m=>m.author.id===message.author.id,{max:1,time: 60000,errors: ['time']}).then(collected=>{
                     switch(collected.first().content.toString()){
                       
@@ -83,14 +84,14 @@ module.exports = {
               if (collected.first().attachments.size > 0) {
                          if (collected.first().attachments.every(attachIsImage)){
             
-            message.channel.send(new MessageEmbed()
+        let embed1 = new MessageEmbed()
             .setTitle("Success!!")
             .setColor("RANDOM")
             .setDescription("I have successfully seted the welcome image in this server.\n\nPlease make sure to **not** delete your Image from the Channel!")
             .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({
               dynamic: true
             }))
-            );
+            message.channel.send({embeds: [ embed1 ]});
             db.set(`WelIm_${message.guild.id}`, url);
             } else {
               message.reply("Could not set your message as a background image")
@@ -152,7 +153,7 @@ module.exports = {
 **2.** \`Delete Leave Background\` - *Delete's the Background image if set*`)
     .setFooter("Pick the INDEX NUMBER");
     
-      message.reply(wembed).then(msg => {
+      message.reply({embeds: [ wembed ]}).then(msg => {
       msg.channel.awaitMessages(m=>m.author.id === message.author.id, {max: 1, time: 60000, errors: ["TIME"]}).then(collected=>{
         switch(collected.first().content){
              
@@ -165,7 +166,7 @@ module.exports = {
          .setColor("RANDOM")
          .setTimestamp();
          
-            message.reply(cembed).then(msg => {
+            message.reply({embeds: [ cembed ]}).then(msg => {
                   msg.channel.awaitMessages(m=>m.author.id===message.author.id,{max:1,time:30000,errors:['time']}).then(collected=>{
                     switch(collected.first().content.toString()){
                       case "1":
@@ -175,14 +176,14 @@ module.exports = {
               if (collected.first().attachments.size > 0) {
                          if (collected.first().attachments.every(attachIsImage)){
             
-            message.channel.send(new MessageEmbed()
+       let embed = new MessageEmbed()
             .setTitle("Success!!")
             .setColo("RANDOM")
             .setDescription("I have successfully seted the welcome image in this server.\n\nPlease make sure to **not** delete your Image from the Channel!")
             .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({
               dynamic: true
             }))
-            );
+            message.channel.send({embeds: [ embed ]});
             db.set(`Leaveim_${message.guild.id}`, url);
             } else {
               message.reply("Could not set your message as a background image")

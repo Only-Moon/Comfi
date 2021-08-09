@@ -1,7 +1,8 @@
 const db = require("quick.db");
-const ReactionMenu = require("../../modules/ReactionMenu");
+//const ReactionMenu = require("../../modules/ReactionMenu");
 const moment = require('moment');
 const discord = require("discord.js");
+const simplydjs = require('simply-djs-v13') 
 
 module.exports = {
   config: {
@@ -63,7 +64,9 @@ module.exports = {
         .setFooter(message.author.tag,  
           message.author.displayAvatarURL({ dynamic: true })
         );
-    new ReactionMenu(message.bot, message.channel, message.member, embed, array, interval);
+      let pages = [embed] 
+   // new ReactionMenu(message.bot, message.channel, message.member, embed, array, interval);
+      simplydjs.embedPages(bot, message, pages)
     }
   }
   

@@ -1,5 +1,6 @@
 const { db } = require('../../Database.js');
 const { MessageEmbed } = require('discord.js');
+const { Permissions } = require('discord.js')
 const { PREFIX } = require('../../config.js');
 
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
 		let option = args[0];
 
 		//PERMISSION
-		if (!message.member.hasPermission('MANAGE_GUILD')) {
+		if (!message.member.permissions.has('PERMISSIONS.FLAGS_MANAGE_GUILD')) {
 			return message.channel.send(
 				'You are not allowed or do not have permission to change prefix'
 			);
@@ -32,7 +33,7 @@ module.exports = {
 						`  \`${prefix}\` \n**Type \`${prefix}help\` for help**`
 				);
 
-			message.channel.send(prefEmbed);
+			message.channel.send({embeds: [ prefEmbed ]});
 		} else if (option.toLowerCase() === 'reset') {
 			await db.delete(`prefix_${message.guild.id}`);
 			return await message.channel.send('Reseted Prefix ✅');

@@ -1,4 +1,5 @@
 const { db } = require('../../Database.js')
+const { Permissions } = require('discord.js')
 const discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 
@@ -11,16 +12,15 @@ module.exports = {
 		usage: 'autorole'
 	},
 	run: async (bot, message, args) => {
-		if (!message.member.hasPermission('ADMINISTRATOR'))
-			return message.channel.send(
-				new MessageEmbed()
+		if (!message.member.permissions.has('PERMISSIONS.FLAGS_ADMINISTRATOR'))
+			return message.channel.send({embeds: [new MessageEmbed()
 					.setTitle('Error')
 					.setDescription(
 						':x: Sorry but you dont have permission to use this command!!'
 					)
 					.setColor('#FF0000')
 					.setTimestamp()
-			);
+			]});
 
 		let rrembed = new MessageEmbed()
 			.setColor('RANDOM')
@@ -34,7 +34,7 @@ module.exports = {
 			.setFooter('Pick the INDEX NUMBER')
 			.setTimestamp();
 
-		message.channel.send(rrembed).then(msg => {
+		message.channel.send({embeds: [ rrembed ]}).then(msg => {
 			msg.channel
 				.awaitMessages(m => m.author.id === message.author.id, {
 					max: 1,

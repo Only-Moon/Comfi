@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");
+const { db } = require('../../Database.js');
 
 module.exports = {
 	config: {
@@ -18,15 +18,15 @@ module.exports = {
 
         if (!Channel) return message.channel.send(`Please Mention A Channel!`);
 
-        if (Channel.type === "voice") return message.channel.send(`Please Mention A Text Channel!`);
+        if (Channel.type === "GUILD_VOICE") return message.channel.send(`Please Mention A Text Channel!`);
 
         await db.set(`confession_${message.guild.id}`, Channel.id);
 
-        let Embed = new MessageEmbed()
+        let embed = new MessageEmbed()
         .setColor("00FFFF")
         .setDescription(`Confession Channel is setted as <#${Channel.id}>`)
 
-        return message.channel.send(Embed);
+        return message.channel.send({embeds: [ embed ]});
 
     }
 }

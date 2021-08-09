@@ -1,5 +1,4 @@
 const { Message, MessageEmbed } = require("discord.js");
-const { Bot } = require("./index.js");
 const { Permissions } = require('discord.js')
 
 /**
@@ -14,7 +13,7 @@ async function checkPermission(of, message, permissions) {
     throw new Error("Unable to access of/message/permissions");
 
   /**
-   * @type { Bot }
+   * @type { bot }
    */
   const bot = message.client;
 

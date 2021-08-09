@@ -42,7 +42,8 @@ module.exports = {
                     let channel = message.guild.channels.cache.get(a);
                     db.delete(`chatbot_${message.guild.id}`);
 let embed1 = new MessageEmbed()
-                  .setColor('#F4B3CA')(`✅ Chatbot Channel has been su        ccesfutleldisabled!`);
+                  .setColor('#F4B3CA')
+    .setDescription(`✅ Chatbot Channel has been succesfully disabled!`);
                     message.channel.send({embeds: [ embed1 ]});
                 } return;
                 

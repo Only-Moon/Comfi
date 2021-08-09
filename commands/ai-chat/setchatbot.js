@@ -36,34 +36,40 @@ module.exports = {
           let embed = new MessageEmbed()
               .setColor('#F4B3CA')
               .setTitle(`❌ Please Enter a Channel or Channel ID to set`);
-  message.channel.send({embeds: [ embed ]} )            
+  
+                  message.channel.send({embeds: [ embed ]} )            
  };
             };
 
             let channel = message.mentions.channels.first() || bot.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) || message.guild.channels.cache.find(c => c.name.toLowerCase() === args.join(' ').toLocaleLowerCase());
 
-            if(!channel || channel.type !== 'text') return message.channel.send({embeds: {
-                color: '#F8B6D4',
-                title: `❌ Please enter a Valid Channel!`
-            }});
+            if(!channel || channel.type !== 'text') return 
+          let embed1 = new MessageEmbed()
+            .setColor('#F8B6D4')
+            .setTitle(`❌ Please enter a Valid Channel!`);
+
+message.channel.send({embeds: [ embed1 ]})
+  
 
             try {
                 let a = await db.fetch(`chatbot_${message.guild.id}`);
         
                 if (channel.id === a) {
-                    return message.channel.send({embeds: {
-                    color: `#F8B6D4`,
-                    title: `❌ This Channel is already set as ChatBot Channel!`
-                }});
+                    return 
+let embed2 = new MessageEmbed()
+              .setColor(`#F8B6D4`)
+            .setTitle(`❌ This Channel is already set as ChatBot Channel!`)
+  message.channel.send({embeds: [ embed2 ]})             
+ 
                 } else {
                     bot.guilds.cache.get(message.guild.id).channels.cache.get(channel.id).send(`**✅ ChatBot Channel Set!**`);
                     db.set(`chatbot_${message.guild.id}`, channel.id);
 
-                  message.channel.send({embeds: {
-                    color: '#F8B6D4',
-                    title: `✅ ChatBot Channel has been Set Successfully \`${channel.id}\``
-                }});
-                };
+       let embed = new MessageEmbed()
+                .setColor('#F8B6D4')
+                 .setTitle(`✅ ChatBot Channel has been Set Successfully \`${channel.id}\``);
+ message.channel.send({embeds: [ embed ]})              
+ };
 
             } catch(error) {
                 console.log(error);

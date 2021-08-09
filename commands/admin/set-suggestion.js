@@ -18,15 +18,15 @@ module.exports = {
 
         if (!Channel) return message.channel.send(`Please Mention A Channel!`);
 
-        if (Channel.type === "voice") return message.channel.send(`Please Mention A Text Channel!`);
+        if (Channel.type === "GUILD_Voice") return message.channel.send(`Please Mention A Text Channel!`);
 
         await db.set(`suggestion_${message.guild.id}`, Channel.id);
 
-        let Embed = new MessageEmbed()
+        let embed = new MessageEmbed()
         .setColor("00FFFF")
         .setDescription(`<:yes_HE:778611379560120320>  | Suggestion Channel is setted as <#${Channel.id}>`)
 
-        return message.channel.send(Embed);
+        return message.channel.send({embeds: [ embed ]});
 
     }
 };

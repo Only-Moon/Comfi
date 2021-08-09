@@ -1,3 +1,4 @@
+const { Permissions } = require('discord.js')
 const { db } = require('../../Database.js');
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     usage: "[role name | role mention | role ID]",
   },
   run: async (bot, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR"))
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR"))
       return message.channel.send(
         "**You Do Not Have The Required Permissions! - [ADMINISTRATOR]**"
       );

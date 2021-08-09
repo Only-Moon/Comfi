@@ -1,4 +1,5 @@
 const db = require("old-wio.db");
+const { Permissions } = require('discord.js')
 
 module.exports = {
   config: {
@@ -9,7 +10,7 @@ module.exports = {
     usage: "[role name | role mention | role ID]",
   },
   run: async (bot, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR"))
+    if (!message.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR"))
       return message.channel.send(
         "**You Do Not Have The Required Permissions! - [ADMINISTRATOR]**"
       );

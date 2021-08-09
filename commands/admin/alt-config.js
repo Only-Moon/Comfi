@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const { Permissions } = require('discord.js')
 const db = require("quick.db");
 const ms = require("ms");
 const pms = require("pretty-ms");
@@ -12,7 +13,7 @@ module.exports = {
 	usage: "alt-config",
   },
 	run: async (bot, message, args) => {
-		if (!message.member.hasPermission('MANAGE_GUILD'))
+		if (!message.member.permissions.has('PERMISSIONS.FLAGS_MANAGE_GUILD'))
 			return message.channel.send(
 				`You must have the \`MANAGE_GUILD\` permission in order to execute the command.`
 			);
@@ -92,7 +93,7 @@ module.exports = {
 						message.guild.name,
 						message.guild.iconURL({ dynamic: true })
 					);
-				return message.channel.send({ embed: embed });
+				return message.channel.send({ embeds: [embed] });
 				break;
 				case 'disable':
 				  check = db.get(`logs.${message.guild.id}`) && db.get(`punishment.${message.guild.id}`) && db.get(`age.${message.guild.id}`)

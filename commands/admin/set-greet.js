@@ -1,3 +1,4 @@
+const { Permissions } = require('discord.js')
 const { MessageEmbed } = require("discord.js");
 const db = require("old-wio.db");
 const Discord = require("discord.js");
@@ -11,7 +12,7 @@ module.exports = {
   }, 
   run: async(bot, message, args) => {
   
-     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Enough Permission To Execute This Command - Manage Messages");
+     if (!message.member.permissions.has("PERMISSIONS.FLAGS_MANAGE_MESSAGES")) return message.channel.send("You Don't Have Enough Permission To Execute This Command - Manage Messages");
     
     let Type = args[0];
     let Welcome = ["welcome", "wel", "join"];
@@ -49,7 +50,7 @@ module.exports = {
     await db.set(`${Current === "Welcome" ? "Welcome" : "Leave"}_${message.guild.id}_Embed`, Msg);
 
     try {
-        return message.channel.send(Embed);
+        return message.channel.send({embeds: [ Embed ]});
     } catch (error) {
         return message.channel.send(`${Current === "Welcome" ? "Welcome" : "Leave"} Embed Has Been Setted -\n${Msg}`);
     };
