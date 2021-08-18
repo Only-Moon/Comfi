@@ -25,6 +25,8 @@
     "discord.js": "^13.1.0",
     "djs-anime": "^2.0.9",
     "djs-helper-v13": "^1.0.20",
+    "djs-misc": "^1.0.1",
+    "djs-utils": "^1.1.2",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.4.0",
     "figlet": "^1.5.2",

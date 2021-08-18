@@ -23,7 +23,7 @@ run: async (bot, interaction, args) => {
 
             .setTitle("CLEVER Rate 💡")
 
-             .setDescription(`**__${member.user.username}#${member.user.discriminator}__** ➡️ ` + rng + "% Clever!!`**")
+             .setDescription(`**__${member.user.username}#${member.user.discriminator}__** ➡️`  + rng + `**% Clever!!**`)
 
             .setColor("RANDOM")
 
