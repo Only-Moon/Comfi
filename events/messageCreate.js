@@ -1,14 +1,15 @@
 const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const { db } = require('../Database')
-const simplydjs = require('simply-djs-v13')
+const simplydjs = require('simply-djs')
 const db1 = require('old-wio.db');
-const wb = require('quick.db');
 const moment = require('moment');
 const ms = require('ms');
 const pms = require('pretty-ms');
+const wb = require("quick.db")
 const fetch = require('node-fetch');
 const { PREFIX } = require("../config.js");
+const owner = require("../owner");
 const { Permissions } = require('discord.js')
 
 module.exports.run = async (bot, message) => {
@@ -80,6 +81,9 @@ let embed = new Discord.MessageEmbed()
 		games: bot.games
 	};
 
+if (command.ownerOnly && message.author.id !== owner.owner) return 
+message.channel.send(" 🧩 ONLY BOT DEVELOPER CAN USE THIS COMMAND!");
+
 	let command = bot.commands.get(cmd);
 	// If none is found, try to find it by alias
 	if (!command) command = bot.commands.get(bot.aliases.get(cmd));
@@ -87,7 +91,7 @@ let embed = new Discord.MessageEmbed()
 	// If a command is finally found, run the command
 	if (command) command.run(bot, message, args);
 
-      
+
 
 	let cmdx = wb.fetch(`cmd_${message.guild.id}`);
 

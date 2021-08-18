@@ -1,5 +1,4 @@
 const { readdirSync } = require("fs");
-
 const ascii = require("ascii-table");
 
 // Create a new Ascii table
@@ -31,7 +30,8 @@ module.exports = (bot) => {
         }
     });
     // Log the table
-    console.log(table.toString());
+    console.log(table.toString()) 
+  
 }
 
 /**

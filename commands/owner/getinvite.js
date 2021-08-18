@@ -7,6 +7,7 @@ module.exports = {
         category: "owner",
         description: "Generates an invitation to the server in question.",
         usage: "[ID | name]",
+        ownerOnly: true,
     },
     run: async(bot, message, args) => {
         if (message.author.id === OWNER_ID) {

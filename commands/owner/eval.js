@@ -9,6 +9,7 @@ module.exports = {
     category: "owner",
     description: "Evaluates the code you put in but it's only available for the my Developer and no one else!!!!!",
     example: `${config.PREFIX} eval [js string]`,
+    ownerOnly: true,
   },
 
     run: async (bot, message, args) => { 

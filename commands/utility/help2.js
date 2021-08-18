@@ -19,39 +19,39 @@ run: async (bot, message, args) => {
           .setThumbnail(bot.user.displayAvatarURL());
 
         let btn1 = new MessageButton()
-            .setStyle('red')
+            .setStyle('DANGER')
             .setLabel('Admin commands')
             .setCustomId('1');
         let btn2 = new MessageButton()
-            .setStyle('red')
+            .setStyle('DANGER')
             .setLabel('Emoji commands')
             .setCustomId('2');
         let btn3 = new MessageButton()
-            .setStyle('blurple')
+            .setStyle('PRIMARY')
             .setLabel('Economy commands')
             .setCustomId('3');
         let btn4 = new MessageButton()
-            .setStyle('blurple')
+            .setStyle('PRIMARY')
             .setLabel('Fun Commands ')
             .setCustomId('4');
         let btn5 = new MessageButton()
-            .setStyle('blurple')
+            .setStyle('PRIMARY')
             .setLabel('Images Commands ')
             .setCustomId('5');
         let btn6 = new MessageButton()
-            .setStyle('blurple')
+            .setStyle('PRIMARY')
             .setLabel('Info Commands ')
             .setCustomId('6');
         let btn7 = new MessageButton()
-            .setStyle('green')
+            .setStyle('SUCCESS')
             .setLabel('Mod Commands ')
             .setCustomId('7');
         let btn8 = new MessageButton()
-            .setStyle('green')
+            .setStyle('SUCCESS')
             .setLabel('Music Commands ')
             .setCustomId('8');
         let btn9= new MessageButton()
-            .setStyle('gray')
+            .setStyle('SECONDARY')
             .setLabel('Utility Commands ')
             .setCustomId('9'); 
         let btn10 = new MessageButton()  .setStyle('LINK') 
@@ -76,8 +76,9 @@ let row3 = new MessageActionRow()
 
 
 let msg = await message.channel.send({
-            components: [row, row2, row3],
-            embeds: [embed]
+         embeds: [embed],   
+         components: [row, row2, row3]
+            
 });
 
 }
