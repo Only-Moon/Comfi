@@ -80,10 +80,7 @@ let embed = new Discord.MessageEmbed()
 		queue3: bot.queue3,
 		games: bot.games
 	};
-
-if (command.ownerOnly && message.author.id !== owner.owner) return 
-message.channel.send(" 🧩 ONLY BOT DEVELOPER CAN USE THIS COMMAND!");
-
+  
 	let command = bot.commands.get(cmd);
 	// If none is found, try to find it by alias
 	if (!command) command = bot.commands.get(bot.aliases.get(cmd));

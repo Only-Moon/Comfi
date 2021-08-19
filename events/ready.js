@@ -25,19 +25,29 @@ module.exports.run = async (bot, message) => {
 	);
 	console.log('-------------------------------------');
 
-	const status = [ 
-	  //`in ${bot.guilds.cache.size} Servers | ${bot.user.username}`, 
-	//  `with ${bot.guilds.cache.reduce(
-	//			(users, value) => users + value.memberCount,
-		//		0
-//			)} Users | ${bot.user.username}`, 
-	  //`in ${bot.channels.cache.size} Channels | ${bot.user.username}`, 
-	  `${PREFIX}help | Stay Safe :)`,
-	  `✦ . House of Emotes ˚ ₊ ⊹`
-	  ] 
-	  setInterval(() => { 
-	    bot.user.setActivity(status[Math.floor(Math.random() * status.length)], { type: "WATCHING" }) //You Can Set The Type To PLAYING/WATCHING/COMPETING/LISTENING. 
-	    }, 5000)
+const arrayOfStatus = [
+    `in ${bot.guilds.cache.size} servers`,
+    `in ${bot.channels.cache.size} channels`,
+    `with ${bot.guilds.cache.reduce(
+				(users, value) => users + value.memberCount,
+				0
+			)} members`,
+    `${PREFIX}help | Stay Safe :)`,
+	  `✦ . House of Emotes ˚ ₊ ⊹`,
+  ];
+
+  let index = 0;
+  setInterval(() => {
+    if (index === arrayOfStatus.length) index = 0;
+    const status = arrayOfStatus[index];
+    bot.user.setActivity(`${status}`, {
+      type: "WATCHING",
+      url: "https://www.twitch.tv/blue666opislive",
+    });
+    index++;
+  }, 5000);
+ //You Can Set The Type To PLAYING/WATCHING/COMPETING/LISTENING. 
+	   
   
   simplydjs.ytNotify(bot, db, { 
     ytID: '',

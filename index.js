@@ -6,12 +6,13 @@ const { Client, Collection, Intents } = require('discord.js');
 const { DiscordTogether } = require('discord-together');
 
 const bot = new Client({	allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]                    
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS,
+Intents.FLAGS.GUILD_VOICE_STATES]                    
      });
 
+const {buttube} = require('buttube');
+bot.buttube = new buttube(bot, "mongodb+srv://mohit841:MohitKoul@cluster0.yhyii.mongodb.net/comfi-music"); 
 
-//const {buttube} = require('buttube');
-//bot.buttube = new buttube(bot, "mongodb+srv://mohit841:MohitKoul@cluster0.yhyii.mongodb.net/comfi-music"); 
 const db = require('old-wio.db')
 db.backup('./backup.json');
 const fs = require('fs');
@@ -26,7 +27,6 @@ bot.discordTogether = new DiscordTogether(bot, {
 
 bot.categories = fs.readdirSync("./commands/");
 
-
 ['command', 'event', 'slash'].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);
 });
@@ -34,8 +34,10 @@ bot.categories = fs.readdirSync("./commands/");
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 
-//bot.on("clickButton", async (button) => { 
- // bot.buttube.button(button)});
-  
+bot.on('interactionCreate', async(interaction) => { 
+  if (!interaction.isButton()) return; 
+ bot.buttube.interaction(interaction) 
+})
+bot.buttube.events()  
 
 bot.login(process.env['TOKEN']);
