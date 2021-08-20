@@ -1,4 +1,4 @@
-const { Client, Message, MessageEmbed, Discord, MessageButton } = require('discord.js');
+const { MessageEmbed, MessageButton,  MessageActionRow } = require('discord.js');
 
 module.exports = {
   config: {
@@ -26,9 +26,16 @@ module.exports = {
     .setLabel('Nope!') 
     .setCustomId('inviteno') 
     
+const row = new MessageActionRow()
+			.addComponents(yes)
+      .addComponents(no);
+
     
-    message.channel.send({content: `<@${message.author.id}>`,
-      embeds: embed })
+    message.channel.send({
+      content: `<@${message.author.id}>`,
+      embeds: [embed],
+      components: [row]
+    })
     }
     
   }

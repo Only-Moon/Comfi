@@ -2,7 +2,7 @@ const db = require("quick.db");
 //const ReactionMenu = require("../../modules/ReactionMenu");
 const moment = require('moment');
 const discord = require("discord.js");
-const simplydjs = require('simply-djs-v13') 
+const simplydjs = require('simply-djs') 
 
 module.exports = {
   config: {

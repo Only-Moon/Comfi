@@ -16,7 +16,7 @@ module.exports = {
 
         if (!args[0]) return message.channel.send("**Please Enter A Name!**")
       
-        let bannedMemberInfo = await message.guild.fetchBans()
+        let bannedMemberInfo = await message.guild.bans.fetch()
 
         let bannedMember;
         bannedMember = bannedMemberInfo.find(b => b.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || bannedMemberInfo.get(args[0]) || bannedMemberInfo.find(bm => bm.user.tag.toLowerCase() === args[0].toLocaleLowerCase());
@@ -24,20 +24,20 @@ module.exports = {
 
         let reason = args.slice(1).join(" ")
 
-        if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("**I Don't Have Permissions To Unban Someone! - [BAN_MEMBERS]**")
+        if (!message.guild.me.permissions.has("BAN_MEMBERS")) return message.channel.send("**I Don't Have Permissions To Unban Someone! - [BAN_MEMBERS]**")
         try {
             if (reason) {
                 message.guild.members.unban(bannedMember.user.id, reason)
                 var sembed = new MessageEmbed()
                     .setColor("GREEN")
                     .setDescription(`**${bannedMember.user.tag} has been unbanned for ${reason}**`)
-                message.channel.send(sembed)
+                message.channel.send({embeds: [ sembed ]})
             } else {
                 message.guild.members.unban(bannedMember.user.id, reason)
                 var sembed2 = new MessageEmbed()
                     .setColor("GREEN")
                     .setDescription(`**${bannedMember.user.tag} has been unbanned**`)
-                message.channel.send(sembed2)
+                message.channel.send({embeds: [ sembed2 ]})
             }
         } catch {
             
@@ -61,6 +61,6 @@ module.exports = {
 
         var sChannel = message.guild.channels.cache.get(channel)
         if (!sChannel) return;
-        sChannel.send(embed)
+        sChannel.send({embeds: [ embed ]})
     }
 }

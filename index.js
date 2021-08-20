@@ -34,10 +34,10 @@ bot.categories = fs.readdirSync("./commands/");
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 
-bot.on('interactionCreate', async(interaction) => { 
-  if (!interaction.isButton()) return; 
- bot.buttube.interaction(interaction) 
-})
-bot.buttube.events()  
+//bot.on('interactionCreate', async(interaction) => { 
+//  if (!interaction.isButton()) return; 
+// bot.buttube.interaction(interaction) 
+//})
+//bot.buttube.events()  
 
 bot.login(process.env['TOKEN']);

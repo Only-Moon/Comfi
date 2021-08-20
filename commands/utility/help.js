@@ -46,7 +46,7 @@ const Emotes = {
 };
 
 for (let i = 0; i < Categories.length; i++) {
-    const Cmds = await [bot.commands.filter(C => C.config.category === Categories[i]).array().map(C => C.config.name).sort((a, b) => a < b ? -1 : 1).join(", ")];
+    const Cmds = await [bot.commands.filter(C => C.config.category === Categories[i]).values().map(C => C.config.name).sort((a, b) => a < b ? -1 : 1).join(", ")];
     AllCommands.push(`\n\n**${Emotes[Categories[i]]}**\n\`\`\`${Cmds}\`\`\``);
 };
 

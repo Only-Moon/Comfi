@@ -1,4 +1,4 @@
-const simplydjs = require('simply-djs-v13');
+const simplydjs = require('simply-djs');
 
 module.exports = {
     config: {
