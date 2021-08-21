@@ -99,7 +99,8 @@ member.guild.id,
 					.setFooter(wMsg)
 					.setThumbnail(`${member.user.displayAvatarURL()}`)
 					.setColor(clr);
-				return bot.channels.cache.get(sChannel).send(emd, { embed: Embed })
+				return bot.channels.cache.get(sChannel).send({ content: [emd],
+embeds: [Embed] })
 			} catch (e) {
 				console.log(e);
 			}
@@ -148,7 +149,7 @@ member.guild.id,
 					Image.toBuffer(),
 					'Welcome.png'
 				);
-				return bot.channels.cache.get(Channel).send(Msg, Attachment);
+				return bot.channels.cache.get(Channel).send({content: [Msg], files: [Attachment]});
 			} catch (e) {
 				console.log(e);
 			}
@@ -182,7 +183,7 @@ member.guild.id,
 				.addField(`Punishment`, punishment)
 				.setColor('#FF0000')
 				.setFooter(member.guild.name, member.guild.iconURL({ dynamic: true }));
-			if (channel) channel.send({ embed: embed });
+			if (channel) channel.send({ embeds: embed });
 		}
 	}
   

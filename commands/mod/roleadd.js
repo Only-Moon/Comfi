@@ -11,7 +11,7 @@ module.exports = {
   },
   run: async (bot, message, args) => {
 
-    if(!message.member.permissions.has(["PERMISSIONS.FLAGS_MANAGE_ROLES"]) && !ownerID.includes(message.author.id)) return message.channel.send("You dont have permission to perform this command!")
+    if(!message.member.permissions.has(["PERMISSIONS.FLAGS_MANAGE_ROLES"]) && !ownerId.includes(message.author.id)) return message.channel.send("You dont have permission to perform this command!")
 
     let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 

@@ -20,7 +20,8 @@ module.exports = {
 
         try {
             message.guild.roles.cache.forEach(role => {
-                channel.createOverwrite(role, {
+  
+              channel.permissionOverwrites.create(role, {
                     SEND_MESSAGES: false,
                     ADD_REACTIONS: false
                 });

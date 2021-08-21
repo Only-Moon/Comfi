@@ -12,5 +12,5 @@ module.exports.run = async (bot, guild) => {
     .setTimestamp()
     .setColor("#F8B6D4")
     .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
-  channel.send(embed);
+  channel.send({embeds: [ embed ]});
 }

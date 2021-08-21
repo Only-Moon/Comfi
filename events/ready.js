@@ -49,13 +49,14 @@ const arrayOfStatus = [
  //You Can Set The Type To PLAYING/WATCHING/COMPETING/LISTENING. 
 	   
   
-  simplydjs.ytNotify(bot, db, { 
+ /**
+   simplydjs.ytNotify(bot, db, { 
     ytID: '',
     ytURL: 'https://www.youtube.com/channel/UCIDdxLRPazURj_Oxe0x7ZUQ', // channel URL || You can also make as Array like ['channel 1', 'channel 2'] 
     chid: '820520288419971102', // Discord channel id to post the message
     startAt: startAt, // REQUIRED (to check if the vid is uploaded after the bot started) 
     msg: `(„• ֊ •„). <a:pink_pinkstar_HE:796373386330374154:> __**new upload**__ <a:bf_HE:796373377878589490:> \n ━━O━O━━━━━━━━━━━━ \n ₊˚๑ <a:paw_HE:796373419909972028> ꒱《 __**{author}**__ 》 just posted a video! ✦ \n ✎ <a::pinkheartsu_HE:796373357280362517:> ˗ˏˋ go and check it out! \n <a:pinktea_HE:796373339651571744> have a wonderful day ʕ · ﻌ ·ᐢ₎ .˚₊﹆ \n {link} \n ✎ <a:Pink_Bow_HE:783028553897869332> ˗ˏˋ @everyone <:pinkexplanation_HE:796373361936039936>  \n ━━━━━━━━━━━━━━━━━`,
 
-   })
+   }) */
   
 }

@@ -7,7 +7,7 @@ module.exports.run = async (bot, interaction) => {
  
 if (interaction.isButton()) {  
   if (interaction.customId == 'inviteyes') { 
-    await interaction.deferReply()
+    await interaction.deferUpdate()
   
   const inviteyb = new MessageEmbed() 
   .setTitle("Thanks for using the bot!") 
@@ -26,7 +26,7 @@ const row = new MessageActionRow()
   }
   
   if(interaction.customId === 'inviteno')   { 
-    await interaction.deferReply() 
+    await interaction.deferUpdate() 
   const noooyb = new MessageEmbed() 
   .setTitle('Okay Then') 
   .setDescription('But Please Join Our Support Server!') 

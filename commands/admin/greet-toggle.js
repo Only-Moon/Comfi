@@ -64,7 +64,7 @@ module.exports = {
             let check =  db.fetch(`Weltog_${message.guild.id}`);
             if(check === null) {
             db.set(`Weltog_${message.guild.id}`, true)
-            return 
+           
       let embed1 = new MessageEmbed()
             .setTitle("Success!!")
             .setColor("RANDOM")
@@ -72,6 +72,7 @@ module.exports = {
             .setFooter(`Requested by ${message.author.username}`, message.author.displayAvatarURL({
               dynamic: true
             }))
+              return
    message.channel.send({embeds: [ embed1]})
             } else {
              message.channel.send("Welcome system is already turned on!!");

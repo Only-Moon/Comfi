@@ -16,15 +16,15 @@ module.exports.run = async (bot, message) => {
 
  	if (message.author.bot || !message.guild || message.webhookID) return;
 
-	//let ch = await db.get(`chatbot_${message.guild.id}`)
+	let ch = await db.get(`chatbot_${message.guild.id}`)
 
-  //if (!ch || ch === undefined) return;
+  if (!ch || ch === undefined) return;
 
-//simplydjs.chatbot(bot, message, {
-//chid: `${ch}`,
-//name: '', // default: Your bot na
-//developer: `Moonbow, Rahuletto`,
-//})
+simplydjs.chatbot(bot, message, {
+chid: `${ch}`,
+name: '', // default: Your bot na
+developer: `Moonbow, Rahuletto`,
+})
 
 	let Prefix = await db.get(`prefix_${message.guild.id}`);
 	if (!Prefix) Prefix = PREFIX;

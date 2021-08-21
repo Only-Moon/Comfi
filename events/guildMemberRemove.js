@@ -78,7 +78,7 @@ module.exports.run = async (bot, member) => {
 					.setFooter(wMsg)
 					.setThumbnail(`${member.user.displayAvatarURL()}`)
 					.setColor(clr);
-				return bot.channels.cache.get(sChannel).send(emd, { embed: Embed });
+				return bot.channels.cache.get(sChannel).send({content: [emd], embeds: [Embed] });
 			} catch (e) {
 				console.log(e);
 			}
@@ -127,7 +127,7 @@ module.exports.run = async (bot, member) => {
 					Image.toBuffer(),
 					'leave.png'
 				);
-				return bot.channels.cache.get(Channel).send(Msg, Attachment);
+				return bot.channels.cache.get(Channel).send({ content:  [Msg], files: [Attachment]});
 			} catch (e) {
 				console.log(e);
 			}
