@@ -29,7 +29,7 @@ let option = args[0];
 		switch (option.toLowerCase()) {
 			case 'toggle':
 				const punishment = args[1];
-				const punishments = ['on', 'off'];
+				const punishments = ['true', 'false'];
 				if (!punishment)
 					return message.channel.send('Please state whether you want to turn it on or turn off');
 				if (!punishments.includes(punishment))
@@ -55,7 +55,7 @@ let option = args[0];
 				);
 				break;
 			case 'show':
-				let chnl = await db.get(`chatbt_${message.guild.id}`) || 'None';
+				let chnnl = await db.get(`chatbt_${message.guild.id}`) || 'None';
 				let toggle = await db.get(`chattgl_${message.guild.id}`) || 'None';
 				const humanizeDuration = require('humanize-duration');
 				let embed = new MessageEmbed()
@@ -66,9 +66,7 @@ let option = args[0];
 					)
 					.addField(`Toggle`, toggle)
 					.addField(
-						`Chatbot Channel`,
-						`${chnl !== 'None' ? `<#${chnl}>` : 'None'}`
-					)
+						`Chatbot Channel`, `${chnnl !== 'None' ? `<#${chnnl}>` : 'None'}`)
 					.setColor('#F4B3CA')
 					.setFooter(
 						message.guild.name,
@@ -83,8 +81,8 @@ let option = args[0];
 				 return message.channel.send("Please set the required fields first or i cant disable it!!");
 				} else {
 			
-      await db.delete(`chatbt _${message.guild.id}`)
-			await db.delete(`chattgl_${message.guild.id}`);
+            await db.delete(`chatbt_${message.guild.id}`)
+await db.delete(`chattgl_${message.guild.id}`);
 			return message.channel.send("Disabled the Chatbot System in the server :)");
 				}
 				

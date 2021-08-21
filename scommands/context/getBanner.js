@@ -1,4 +1,4 @@
-const { Client, ContextMenuInteraction, MessageEmbed } = require("discord.js");
+const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
 const axios = require("axios")
   
 module.exports = {
@@ -7,7 +7,6 @@ module.exports = {
 
     /**
      *
-     * @param {Client} client
      * @param {ContextMenuInteraction} interaction
      * @param {String[]} args
      */
@@ -15,7 +14,7 @@ module.exports = {
         const user = await bot.users.fetch(interaction.targetId);
         axios.get(`https://discord.com/api/users/${user.id}`, {
             headers: {
-                "Authorization": `Process.env.TOKEN`
+                "Authorization": `process.env.TOKEN`
             }
         })
             .then(response => {

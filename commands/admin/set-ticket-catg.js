@@ -33,7 +33,7 @@ module.exports = {
                         return
 message.channel.send(`**✅ Ticket Category Has Been Setted In This Server As \`${channelName.name}\`!**`);
                 } else {
-                    return message.channel.send({embed: {
+                    return message.channel.send({embeds: {
                         color: '#F8B6D4',
                         title: `❌ Please Enter a Category ID to set`
                     }});
@@ -42,7 +42,7 @@ message.channel.send(`**✅ Ticket Category Has Been Setted In This Server As \`
 
             let channel = message.mentions.channels.first() || bot.guilds.cache.get(message.guild.id).channels.cache.get(args[0]) || message.guild.channels.cache.find(c => c.name.toLowerCase() === args.join(' ').toLocaleLowerCase());
 
-            if(!channel || channel.type !== 'category') return message.channel.send({embed: {
+            if(!channel || channel.type !== 'GUILD_CATEGORY') return message.channel.send({embeds: {
                 color: '#F8B6D4',
                 title: `❌ Please enter a Valid Category!`
             }});
@@ -57,9 +57,9 @@ message.channel.send(`**✅ Ticket Category Has Been Setted In This Server As \`
                 }});
                 } else {
                     
-                    db.set(`category_${message.guild.id}`, channel.id).then(console.log);
+                    await db.set(`category_${message.guild.id}`, channel.id).then(console.log);
 
-                  message.channel.send({embed: {
+                  message.channel.send({embeds: {
                     color: '#F8B6D4',
                     title: `✅ Ticket Category has been Set Successfully \`${channel.id}\``
                 }});
