@@ -43,7 +43,7 @@ module.exports = {
      .setDescription(list[page])
      .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
      .setColor("YELLOW");
-     msg.edit(newEmbed);
+     msg.edit('', { embeds: newEmbed });
       }
     } else if (r.emoji.name == symbols[2]) {
       if (!list[page - 1]) msg.reactions.resolve(r.emoji.name).users.remove(u.id).catch(err => {});
@@ -54,7 +54,7 @@ module.exports = {
      .setDescription(list[page])
      .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
      .setColor("YELLOW");
-     msg.edit(newEmbed);
+     msg.edit('', { embeds: newEmbed });
       }
     } else if (r.emoji.name == symbols[1]) {
        msg.reactions.removeAll();
