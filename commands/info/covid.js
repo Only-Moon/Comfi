@@ -25,7 +25,6 @@ module.exports = {
       .setDescription('You Can Try Using **`covid/corona all`** or **`covid/corona <country, for example canada>`**')
     // sends the noArgs embed
     if (!args[0]) return message.channel.send(noArgs);
-    console.log(`${message.author.username} dont knwo how to use dis command in ${message.guild.name}`)
 
 
 
