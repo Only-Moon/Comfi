@@ -9,7 +9,7 @@ module.exports = {
         usage: "m/purge [amount of messages]"
     },
     run: async (bot, message, args) => {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
+        if (!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
         if (isNaN(args[0]))
             return message.channel.send('**Please Supply A Valid Amount To Delete Messages!**');
 
