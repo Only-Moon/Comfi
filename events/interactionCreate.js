@@ -67,11 +67,12 @@ const row1 = new MessageActionRow()
 
 if (!interaction.isSelectMenu()) {
     if (interaction.values?.[0] === 'reload01') {
-      
+     await interaction.deferReply()
         const chanz = bot.channels.cache.get('867650282933583882');
         chanz.send('ingore reload')
     }
     if (interaction.values?.[0] === 'support01') {
+      await interaction.deferReply()
         const chan = await interaction.guild.channels.create(`support-${interaction.user.tag}`, {
             type: 'GUILD_TEXT',
             permissionOverwrites: [
@@ -107,6 +108,7 @@ if (!interaction.isSelectMenu()) {
         })
     }
     if (interaction.values?.[0] === 'staff01') {
+      await interaction.deferReply()
         const chan = await interaction.guild.channels.create(`contact-${interaction.user.tag}`, {
             type: 'GUILD_TEXT',
             permissionOverwrites: [
@@ -142,6 +144,7 @@ if (!interaction.isSelectMenu()) {
         })
     }
     if (interaction.values?.[0] === 'question01') {
+      await interaction.deferReply()
         const chan = await interaction.guild.channels.create(`question-${interaction.user.tag}`, {
             type: 'GUILD_TEXT',
             permissionOverwrites: [

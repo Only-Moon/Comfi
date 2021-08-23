@@ -13,7 +13,7 @@ module.exports = {
 	},
 	run: async (bot, message, args) => {
 		if (!message.member.permissions.has('PERMISSIONS.FLAGS_ADMINISTRATOR'))
-			return message.channel.send({embeds: [new MessageEmbed()
+return message.channel.send({embeds: [new Discord.MessageEmbed()
 					.setTitle('Error')
 					.setDescription(
 						':x: Sorry but you dont have permission to use this command!!'

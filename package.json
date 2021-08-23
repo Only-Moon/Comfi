@@ -50,7 +50,7 @@
     "node-canvas-with-twemoji-and-discord-emoji": "^1.2.1",
     "node-fetch": "^2.6.1",
     "node-superfetch": "^0.1.11",
-    "nuggies": "^1.4.3",
+    "nuggies": "^2.0.0",
     "old-wio.db": "^4.0.10",
     "parse-ms": "^2.1.0",
     "path": "^0.12.7",

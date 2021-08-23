@@ -29,7 +29,9 @@ module.exports = {
         } catch (e) {
             console.log(e);
         }
-
-        message.channel.send(`Done | Channel Locked!`);
+let embed = new Discord.MessageEmbed()
+        .setDescription(`Done | Channel Locked`)
+        .setColor('#FF6868');
+        message.channel.send({embeds: [ embed ]});
     }
 }

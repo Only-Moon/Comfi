@@ -6,8 +6,7 @@ const { Client, Collection, Intents } = require('discord.js');
 const { DiscordTogether } = require('discord-together');
 
 const bot = new Client({	allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS,
-Intents.FLAGS.GUILD_VOICE_STATES]                    
+  intents: 32767
      });
 
 const {buttube} = require('buttube');
@@ -23,7 +22,9 @@ bot.slashCommands = new Collection();
 bot.discordTogether = new DiscordTogether(bot, {
      token: process.env['TOKEN']
  });
+const Nuggies = require("nuggies");
 
+Nuggies.handleInteractions(bot)
 
 bot.categories = fs.readdirSync("./commands/");
 
