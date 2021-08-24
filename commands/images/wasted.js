@@ -16,7 +16,7 @@ module.exports = {
         let m = await message.channel.send("**Please Wait...**");
         let buffer = await AmeAPI.generate("wasted", { url: user.user.displayAvatarURL({ format: "png", size: 512 }) });
         let attachment = new Discord.MessageAttachment(buffer, "wasted.png");
-        setTimeout(() => m.delete());
+        setTimeout(() => m.delete(), 5000);
         message.channel.send({files: [attachment]});
     }
 };

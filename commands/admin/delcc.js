@@ -1,4 +1,4 @@
-const db = require("quick.db");
+const { db } = require('../../Database.js')
 
 module.exports = {
   config: {
@@ -15,10 +15,10 @@ module.exports = {
 
     if(!cmdname) return message.channel.send(":x: Gimm me commmand name, `delcmd <cmd_name>`")
 
-    let database = db.fetch(`cmd_${message.guild.id}`)
+    let database = await db.fetch(`cmd_${message.guild.id}`)
 
     if(database) {
-      let data = database.find(x => x.name === cmdname.toLowerCase())
+      let data = database.has(x => x.name === cmdname.toLowerCase())
 
       if(!data) return message.channel.send(":x: Unable to find this command.")
 
@@ -29,7 +29,7 @@ module.exports = {
         return x != null && x != ''
       })
 
-      db.set(`cmd_${message.guild.id}`, filter)
+     await  db.set(`cmd_${message.guild.id}`, filter)
       return message.channel.send(`Deleted the **${cmdname}** Command!`)
 
 

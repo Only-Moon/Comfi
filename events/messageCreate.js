@@ -100,10 +100,10 @@ let embed = new Discord.MessageEmbed()
       .then(m => m.delete({ timeout: 13000 }).catch(e => {})); 
   }
 
-	let cmdx = wb.fetch(`cmd_${message.guild.id}`);
+	let cmdx = await db.fetch(`cmd_${message.guild.id}`);
 
 	if (cmdx) {
-		let cmdy = cmdx.find(x => x.name === cmd);
+		let cmdy = await cmdx.has(x => x.name === cmd);
 		if (cmdy)
 			message.channel.send(
 				cmdy.responce

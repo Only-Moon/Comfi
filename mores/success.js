@@ -8,6 +8,6 @@ module.exports = async (text, channel, message) => {
        .setTimestamp() 
        .setColor("RANDOM");
        
-       await channel.send(embed)
+       await channel.send({ embed })
   
 }

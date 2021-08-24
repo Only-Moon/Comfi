@@ -1,13 +1,11 @@
-const Discord = require('discord.js')
-const reveroDB = require('revero-db') 
+const { MessageEmbed } = require('discord.js');
 
 module.exports = async (text, channel) => { 
-  let embed = new Discord.MessageEmbed() 
+  let embed = new MessageEmbed() 
      .setDescription("<a:WrongCheck:829635972219011093> - " + text) 
      .setFooter(`Something went wrong!`) 
      .setTimestamp() 
      .setColor("RED");
      
-     await channel.send(embed)
-  
+     await channel.send({ embeds:[embed] });
 }

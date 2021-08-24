@@ -17,14 +17,14 @@ module.exports = {
 
     const apiKey = process.env.YT_KEY
     const videoName = args.join(' ');
-    const banned = ["porn", "sex", "fucking", "moaning", "blowjob", "tits", "dick", "sucking", "nigga", "nigger", "pussy", "cock", "boobs", "xvideos", "xnxx", "clits", "naked", "hentai", "horny", "faping", "masturbating", "masturbation", "fuck", "stript", "naked"]  
+    const banned = ["porn", "sex", "fucking", "moaning", "blowjob", "tits", "dick", "sucking", "nigga", "nigger", "cock", "boobs", "xvideos", "xnxx", "clits", "naked", "hentai", "horny", "faping", "masturbating", "masturbation", "fuck", "stript", "naked"]  
 
     if (!videoName) return this.sendErrorMessage(`${emoji.Error} Please provide a YouTube video name`);
 
     const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
 
     if (banned.some(word => message.content.toLowerCase().includes(word))) {
-    return message.reply(`${emoji.Error} Yo go search these things by yourself`)
+      return message.reply(`${emoji.Error} Yo go search these things by yourself`)
     }
 
     let result = await search(videoName, searchOptions)
@@ -47,6 +47,6 @@ module.exports = {
     .setTimestamp()
     .setColor(message.guild.me.displayHexColor)
 
-    message.channel.send({embeds: [ embed ]})
+    message.channel.send({ embeds: [ embed ] })
   }
 }

@@ -14,7 +14,7 @@ module.exports = {
 
     run: async (bot, message, args) => { 
 
-        if (message.author.id !== config.OWNER_ID) {
+        if (message.author.id !== config.OWNER_ID[1]) {
             return;
         }
         
@@ -24,7 +24,7 @@ module.exports = {
 
         try{
             if (args.join(" ").toLowerCase().includes("token")) {
-                return message.reply("Are you crazy ;-; You are going to give out your token public.I stopped it hopefully...")
+                return message.reply("Are you crazy ;-; You are going to give out your token public. I stopped it hopefully...")
             }
         
             const toEval = args.join(" ");

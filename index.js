@@ -1,35 +1,29 @@
 console.clear()
 console.log('Loading Bot');
 
-//-------Defining dependencies-------\\
+//-------[ DEFINING DEPENDENCIES ]---------\\
 
 const { Client, Collection, Intents } = require('discord.js');
-const db = require('old-wio.db')
+const db = require('old-wio.db');
 const { DiscordTogether } = require('discord-together');
-const {buttube} = require('buttube');
+const { buttube } = require('buttube');
 const Nuggies = require("nuggies");
 
 const bot = new Client({	allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
   intents: 32767
-     });
+});
 
-//-------End Of dependencies-------\\
-
-
-
-//---------Making Collections---------\\
+//---------[ MAKING COLLECTIONS ]---------\\
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.slashCommands = new Collection();
 
-//---------End Of Collections---------\\
-
 ['command', 'event', 'slash'].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);
 });
 
-//--------Started--------\\
+//--------[ START ]--------\\
 
 bot.discordTogether = new DiscordTogether(bot, {
      token: process.env['TOKEN']
@@ -52,8 +46,6 @@ bot.on('interactionCreate', async(interaction) => {
 })
 bot.buttube.events()  
 
-//----end----\\
-
-//Token Is Required.
+//---------[ MAKE THE BOT ONLINE ]---------\\
 
 bot.login(process.env['TOKEN']);

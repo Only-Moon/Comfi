@@ -35,7 +35,7 @@ module.exports = {
     .addField("Type", movie.type, true);
     
     
-    message.channel.send({embeds: [ embed ]})
+    message.channel.send({ embeds: [ embed ] })
     
     
     

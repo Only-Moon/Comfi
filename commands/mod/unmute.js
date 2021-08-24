@@ -30,7 +30,7 @@ module.exports = {
             muterole = message.guild.roles.cache.get(dbmute)
         }
       
-        let rolefetched = db.fetch(`muteeid_${message.guild.id}_${mutee.id}`)
+        let rolefetched = await db.fetch(`muteeid_${message.guild.id}_${mutee.id}`)
         if (!rolefetched) return;
 
         if (!muterole) return message.channel.send("**There Is No Mute Role To Remove!**")

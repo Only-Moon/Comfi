@@ -1,16 +1,24 @@
-const { CommandInteracion, Client, MessageEmbed } = require('discord.js');
+const { CommandInteracion, MessageEmbed } = require('discord.js');
 
 
 module.exports = {
    name: 'roleinfo',
    description: 'See information about a role',
-   options: [{name: "role", type:"ROLE", description:"The role you want information about", require: true}],
+   options: [
+     {
+     name: "role", 
+     description:"The role you want information about", 
+     type: "ROLE",
+     required: true,
+        },
+
+    ],
    /**
    *
-   * @param {Client} client
    * @param {CommandInteracion} interaction
    * @param {String[]} args
    */
+
  run: async (interaction, bot, args) => {
     const role = interaction.guild.roles.cache.get(args[0])
 
@@ -49,7 +57,7 @@ module.exports = {
         },
         
         )
-        return interaction.reply({embeds: [embed]})
+        return interaction.editReply({embeds: [embed]})
 // used editReply() if you defer the slash commands
 
  }

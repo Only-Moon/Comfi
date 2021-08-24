@@ -17,7 +17,7 @@ module.exports = {
 		let option = args[0];
 
 		//PERMISSION
-		if (!message.member.permissions.has('PERMISSIONS.FLAGS_MANAGE_GUILD')) {
+		if (!message.member.permissions.has('MANAGE_GUILD')) {
 			return message.channel.send(
 				'You are not allowed or do not have permission to change prefix'
 			);
@@ -28,10 +28,10 @@ module.exports = {
 			if (!prefix) prefix = PREFIX;
 			let prefEmbed = new MessageEmbed()
 				.setColor('YELLOW')
-				.setDescription(
-					`**My prefix for \`${message.guild.name}\`  is  **` +
-						`  \`${prefix}\` \n**Type \`${prefix}help\` for help**`
-				);
+				setDescription(					
+          `**My prefix for \`${message.guild.name}\` is **` +						
+          ` \`${prefix}\` \n**Type \`${prefix}help\` for help**`		
+        );
 
 			message.channel.send({embeds: [ prefEmbed ]});
 		} else if (option.toLowerCase() === 'reset') {

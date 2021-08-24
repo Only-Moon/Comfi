@@ -11,22 +11,20 @@ module.exports = {
         aliases: ['']
     },
     run: async (bot, message, args) => {
-      const ping = await db.ping();
       let start = Date.now();
-   let em1 = new Discord.MessageEmbed()
-      .setDescription("🔍 I think my ping is high...")
-     .setColor("RANDOM");
-  message.channel.send({embeds: [em1] }).then(m => {
+      
+      message.channel.send('🏓').then(m => {
     
-    let end = Date.now();
+      let end = Date.now();
     
-    let embed = new Discord.MessageEmbed()
-    .setAuthor("Pong!", message.author.avatarURL({ dynamic: true }))
-    .addField("API Latency", Math.round(bot.ws.ping) + "ms", true) 
-    .addField("Message Latency", end - start + "ms")   
+      let embed = new Discord.MessageEmbed()
+      .setAuthor("Pong!", message.author.avatarURL({ dynamic: true }))
+      .addField("API Latency", Math.round(bot.ws.ping) + "ms", true) 
+      .addField("Message Latency", end - start + "ms")   
       .setColor("RANDOM");
-    m.edit({embeds: [embed] }).catch(e => message.channel.send(e));
-    
-  });
-    }
+
+        m.delete();
+        message.channel.send({ embeds: [embed] });
+     });
+   }
 };

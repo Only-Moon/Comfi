@@ -1,5 +1,5 @@
 const { Permissions } = require('discord.js')
-const db = require("quick.db");
+const { db } = require('../../Database.js')
 
 module.exports = {
   config: {
@@ -23,16 +23,16 @@ module.exports = {
 
     if(!cmdresponce) return message.channel.send(`:x: You have to give command cmd responce, \`addcmd <cmd_name> <cmd_responce>\`\n\n**You can add the following variables - \n\`{user}\` - Author\n\`{user_tag}\` - Author Tag\n\`{user_name}\` - Author Username\n\`{user_ID}\` - Author ID\n\`{guild_name}\` - Guild Name\n\`{guild_ID}\` - Guild Id\n\`{memberCount}\` - Member Count\n\`{member_createdAtAgo}\` - Member Creation Time\n\`{member_createdAt}\` - Member Creation Date`);
 
-    let database = db.fetch(`cmd_${message.guild.id}`)
+    let database = await db.fetch(`cmd_${message.guild.id}`)
 
-    if(database && database.find(x => x.name === cmdname.toLowerCase())) return message.channel.send(":x: This command name is already added in guild custom commands.")
+    if(database && database.exists(x => x.name === cmdname.toLowerCase())) return message.channel.send(":x: This command name is already added in guild custom commands.")
 
     let data = {
       name: cmdname.toLowerCase(),
       responce: cmdresponce
     }
 
-    db.push(`cmd_${message.guild.id}`, data)
+    await db.push(`cmd_${message.guild.id}`, data)
 
     return message.channel.send("Added **" + cmdname.toLowerCase() + "** as a custom command in guild.")
 

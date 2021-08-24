@@ -48,7 +48,7 @@ module.exports = {
                         }
                     })
                     message.guild.channels.cache.forEach(async (channel) => {
-                        await channel.createOverwrite(muterole, {
+                        await channel.permissionOverwrites.create(muterole, {
                             SEND_MESSAGES: false,
                             ADD_REACTIONS: false,
                             SPEAK: false,
@@ -62,7 +62,7 @@ module.exports = {
 
             if (mutee.roles.cache.has(muterole.id)) return message.channel.send("**User Is Already Muted!**")
 
-            db.set(`muteeid_${message.guild.id}_${mutee.id}`, userRoles)
+            await db.set(`muteeid_${message.guild.id}_${mutee.id}`, userRoles)
           try {
             mutee.roles.set([muterole.id]).then(() => {
                 mutee.send(`**Hello, You Have Been Muted In ${message.guild.name} for - ${reason || "No Reason"}`).catch(() => null)
@@ -83,7 +83,7 @@ module.exports = {
                 message.channel.send({embeds: [ sembed2 ]});
                 }
             
-            let channel = db.fetch(`modlog_${message.guild.id}`)
+            let channel = await db.fetch(`modlog_${message.guild.id}`)
             if (!channel) return;
 
             let embed = new MessageEmbed()
