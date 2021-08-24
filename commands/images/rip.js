@@ -22,7 +22,7 @@ module.exports = {
     let img = await new DIG.Rip().getImage(avatar);
 
     let attachment = new Discord.MessageAttachment(img, "rip.png");
-    m.delete({ timeout: 5000 });
+    setTimeout(() => m.delete(), 5000);
     message.channel.send({files: [attachment]});
   },
 };
