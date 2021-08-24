@@ -1,4 +1,7 @@
 # Comfi - The Moderation Bot
+[![Run on Repl.it](https://repl.it/badge/github/Xx-Mohit-xX/Djs-Moderation-Bot)](https://repl.it/github/DeltaCoderr/KarmaBot) 
+[![](https://img.shields.io/badge/discord.js-v12.5.3-blue.svg?logo=npm)](https://github.com/discordjs) 
+
 ### For Visual Studio Code Users -  
 #### Requirements & Steps :-
 * This Project
