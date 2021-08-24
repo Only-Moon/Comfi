@@ -87,9 +87,18 @@ let embed = new Discord.MessageEmbed()
 	if (!command) command = bot.commands.get(bot.aliases.get(cmd));
 
 	// If a command is finally found, run the command
-	if (command) command.run(bot, message, args);
-
-
+	try {
+     command.run(bot, message, args);
+ } catch (error) {
+    const errrr = new MessageEmbed() 
+      .setColor("RED") 
+      .setTimestamp()
+      .setDescription( `Something went wrong executing that command\nError Message: \`${ error.message ? error.message : error }\`` ); 
+    
+    return message.channel 
+      .send(errrr) 
+      .then(m => m.delete({ timeout: 13000 }).catch(e => {})); 
+  }
 
 	let cmdx = wb.fetch(`cmd_${message.guild.id}`);
 
@@ -121,23 +130,22 @@ let embed = new Discord.MessageEmbed()
 			);
 	}
 
-if (db1.has(`afk-${message.author.id}+${message.guild.id}`)) {
-		const info = db1.fetch(`afk-${message.author.id}+${message.guild.id}`);
-		await db1.delete(`afk-${message.author.id}+${message.guild.id}`);
-		await db1.delete(`aftime-${message.author.id}+${message.guild.id}`);
-		message.channel.send(
+if (await db.has(`afk-${message.author.id}+${message.guild.id}`)) {
+		const info = await db.fetch(`afk-${message.author.id}+${message.guild.id}`);
+		await db.delete(`afk-${message.author.id}+${message.guild.id}`);
+		await db.delete(`aftime-${message.author.id}+${message.guild.id}`).then(message.channel.send(
 			`Welcome back ${message.author.username}, Great to see you!!`
-		);
+		));
 	}
 	//checking for mentions
 	if (message.mentions.members.first()) {
 		if (
-			db1.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)
+			await db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)
 		) {
-			const reason = db1.fetch(
+			const reason = await db.fetch(
 				`afk-${message.mentions.members.first().id}+${message.guild.id}`
 			);
-			let time = db1.fetch(
+			let time = await db.fetch(
 				`aftime-${message.mentions.members.first().id}+${message.guild.id}`
 			);
 			time = Date.now() - time;

@@ -65,7 +65,8 @@ const row1 = new MessageActionRow()
 
 }
 
-if (!interaction.isSelectMenu()) {
+  // Select Menus
+if (interaction.isSelectMenu()) {
     if (interaction.values?.[0] === 'reload01') {
      await interaction.deferReply()
         const chanz = bot.channels.cache.get('867650282933583882');

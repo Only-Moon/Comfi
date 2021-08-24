@@ -14,7 +14,8 @@ module.exports.run = async (bot, member) => {
 
 let toggle = await db1.fetch(`Weltog_${member.guild.id}`);
   
-await db.fetch(		
+/**
+  await db.fetch(		
 member.guild.id,		
 {			roles: []		
 },		
@@ -31,7 +32,7 @@ member.guild.id,
             }		
           }	
         }
-	
+	*/
 	let togEm = await db1.fetch(`Welemtog_${member.guild.id}`);
 
 	//code -->

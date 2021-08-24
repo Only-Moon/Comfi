@@ -1,8 +1,8 @@
 const { Database } = require('quickmongo');
-const db = new Database("mongodb+srv://mohit841:MohitKoul@cluster0.yhyii.mongodb.net/Comfi-Djs-v13");
+const db = new Database(process.env. Mongoose);
 
 db.on('ready', () => {
-    console.log("[DB]: Database Connected!");
+    console.log("[DB]: Database Connected");
 });
 
 module.exports = { db };

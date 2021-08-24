@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { db } = require('../../Database.js');
 
 module.exports = {
     config: {
@@ -10,7 +11,8 @@ module.exports = {
         aliases: ['']
     },
     run: async (bot, message, args) => {
-        let start = Date.now();
+      const ping = await db.ping();
+      let start = Date.now();
    let em1 = new Discord.MessageEmbed()
       .setDescription("🔍 I think my ping is high...")
      .setColor("RANDOM");
@@ -20,9 +22,9 @@ module.exports = {
     
     let embed = new Discord.MessageEmbed()
     .setAuthor("Pong!", message.author.avatarURL({ dynamic: true }))
-    .addField("API Latency", Math.round(bot.ws.ping) + "ms", true)
-    .addField("Message Latency", end - start + "ms")
-    .setColor("RANDOM");
+    .addField("API Latency", Math.round(bot.ws.ping) + "ms", true) 
+    .addField("Message Latency", end - start + "ms")   
+      .setColor("RANDOM");
     m.edit({embeds: [embed] }).catch(e => message.channel.send(e));
     
   });

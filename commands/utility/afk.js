@@ -1,4 +1,4 @@
-const db = require('old-wio.db');
+const { db } = require('../../Database.js');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -20,6 +20,6 @@ module.exports = {
 				message.author.tag,
 				message.author.displayAvatarURL({ dynamic: true })
 			);
-		message.channel.send(embed);
+		message.channel.send({embeds: [ embed ]});
 	}
 };

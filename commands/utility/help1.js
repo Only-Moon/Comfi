@@ -15,7 +15,7 @@ run: async (bot, message, args) => {
     const avatar = message.author.displayAvatarURL();
         embed = new Discord.MessageEmbed()
           .setTitle('Hello!')
-          .setDescription('⇉ ᧙ <a:pinkheartsu_HE:796373357280362517> ﹒﹒﹒ Overview ﹒﹒﹒<a:pinkheartsu_HE:796373357280362517> ᧙ \n   \n જ <a:euphorialove_HE:778636094136385576> Administration \n જ <a:llama_roll_HE:855602231986487326>  Emoji \n જ <:currency_HE:812034164891189289>  Economy \n જ <a:730643342169210890:798458300219785216> Fun \n જ <a:pinktea_HE:796373339651571744>  Images \n જ <a:Pink_Bow_HE:783028553897869332>  Information \n જ <a:pbouncy_HE:878479836920836157> Moderation \n જ <a:music_HE:878180163848896562> Music \n જ <a:carebear_HE:878481448326270976> Slash Commands \n જ <a:paw_HE:797027740007661578>  Utility \n \n ⇉ ੭ <a:pinkheartsu_HE:796373357280362517>  ─ ─ ─ ─ ─ ─ ─ ─ ─ ').setFooter('Click on the Button Emojis to jump to the Command Category.')
+          .setDescription('⇉ ᧙ <a:pinkheartsu_HE:796373357280362517> ﹒﹒﹒ Overview ﹒﹒﹒<a:pinkheartsu_HE:796373357280362517> ᧙ \n   \n જ <a:euphorialove_HE:778636094136385576> Administration \n જ <a:llama_roll_HE:855602231986487326>  Emoji \n જ <:currency_HE:812034164891189289>  Economy \n જ <a:730643342169210890:798458300219785216> Fun \n જ <a:pinktea_HE:796373339651571744>  Images \n જ <a:Pink_Bow_HE:783028553897869332>  Information \n જ <a:pbouncy_HE:878479836920836157> Moderation \n જ <a:music_HE:878180163848896562> Music \n જ <a:carebear_HE:878481448326270976> Slash Commands \n જ <a:paw_HE:797027740007661578>  Utility \n \n ⇉ ੭ <a:pinkheartsu_HE:796373357280362517>  ─ ─ ─ ─ ─ ─ ─ ─ ─ ').setFooter('Developed by Moombow')
           .setColor('#F4B3CA')
           .setThumbnail(bot.user.displayAvatarURL());
 
@@ -26,7 +26,7 @@ embed1 = new Discord.MessageEmbed().setTitle(`Admin commands`).setDescription('H
         embed6 = new Discord.MessageEmbed().setTitle(`Info Commands`).setDescription('Here area all the Available commands').addField("commands:", "**avatar, botinfo, channelinfo, covid, djsdocs, playstore, roleinfo, rolememberinfo, serverav, serverinfo, ss, twitter, whois, wikipedia**,").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());
         embed7 = new Discord.MessageEmbed().setTitle(`Mod Commands`).setDescription('Here area all the Available commands').addField("commands:", "**ban, deafen, dm, hackban, kick, lock, lockdown, mute, purge, resetwarns, roleadd, roledel, setnick, show-warns, slowmode, tempban, unban, undeafen, unlock, unmute, vcmove, warn**,").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());
         embed8 = new Discord.MessageEmbed().setTitle(`Music Commands`).setDescription('Here area all the Available commands').addField("commands:", "**play, setup, volume**,").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());
-embed10 = new Discord.MessageEmbed().setTitle(`Slash Commands`).setDescription('Here area all the Available commands').addField("commands:", "**8ball, anime-quote, anime-search, anime, bug, clever, covid, qrcode, roast, roleinfo, remind, user-info,  weather ytt, **,").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());        
+embed10 = new Discord.MessageEmbed().setTitle(`Slash Commands`).setDescription('Here area all the Available commands').addField("commands:", "**8ball, anime-quote, anime-search, anime, bug, clever, covid, feedback, qrcode, roast, roleinfo, remind, user-info,  weather, ytt, **,").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());        
 embed9 = new Discord.MessageEmbed().setTitle(`Utility Commands`).setDescription('Here area all the Available commands').addField("commands:", "**calculate, confess, embed, embedsay, github, hastebin, help, invite, linkshorten, movie, ping, poll, removeafk, setafk, suggestion, translate, uptime, urbandictionary, vote, youtube, weather**,").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());
 
   let btn1 = new MessageButton()  .setStyle('LINK') 
@@ -101,7 +101,6 @@ simplydjs.dropdownPages(message, {
       emoji: '797027740007661578',
       embed: embed9, // embed sent when clicked
     },
-  // etc..
   ]
 })
 

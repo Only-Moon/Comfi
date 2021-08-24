@@ -1,4 +1,4 @@
-const db = require("old-wio.db");
+const { db } = require('../../Database.js');
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
