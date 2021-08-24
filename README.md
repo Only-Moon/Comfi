@@ -1,7 +1,4 @@
-# Comfi - The Moderation Bot
-[![Run on Repl.it](https://repl.it/badge/github/Xx-Mohit-xX/Djs-Moderation-Bot)](https://repl.it/github/DeltaCoderr/KarmaBot) 
-[![](https://img.shields.io/badge/discord.js-v12.5.3-blue.svg?logo=npm)](https://github.com/discordjs) 
-
+# Comfi - The Moderation Bot 
 ### For Visual Studio Code Users -  
 #### Requirements & Steps :-
 * This Project
@@ -11,7 +8,7 @@
 * Run `npm i` once in Terminal to install Dependencies
 * Run `node index.js` to ***RUN*** the bot.
 
-### For replit users -
+### For replit users - [![Run on Repl.it](https://repl.it/badge/github/Xx-Mohit-xX/Djs-Moderation-Bot)](https://repl.it/Xx-Mohit-xX/Djs-Moderation-Bot)
 #### Requirements & Steps
 * Discord Bot Token, Prefix
 * Edit the `config.js, owner.json, config.json and emojis.json` file.
