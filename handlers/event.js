@@ -26,12 +26,10 @@ module.exports = (bot) => {
       
       table.addRow(file, '✅'); }
      
-      catch(err) {
-        
-        console.log("Error While loading/executing command, join for help : https://withwin.in/dbd") 
+      catch(err) { 
         console.log(err) 
         
-        table.addRow(file, `❌ -> Error while loading event, join for help : https://withwin.in/dbd`);
+        table.addRow(file, `❌ -> Error while loading event`);
         } 
     
   } 

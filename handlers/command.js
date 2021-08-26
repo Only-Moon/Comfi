@@ -31,5 +31,4 @@ module.exports = (bot) => {
     });
     // Log the table
     console.log(table.toString()) 
-  
 }

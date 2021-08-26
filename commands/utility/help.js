@@ -15,7 +15,7 @@ run: async (bot, message, args) => {
     const avatar = message.author.displayAvatarURL();
         embed = new Discord.MessageEmbed()
           .setTitle('Hello!')
-          .setDescription("****")
+          .setDescription(`⇉ ᧙ <a:pinkheartsu_HE:796373357280362517> ﹒﹒﹒ Overview ﹒﹒﹒<a:pinkheartsu_HE:796373357280362517> ᧙ \n \n જ <a:euphorialove_HE:778636094136385576> Administration \n જ <a:llama_roll_HE:855602231986487326> Emoji \n જ <:currency_HE:812034164891189289> Economy \n જ <a:730643342169210890:798458300219785216> Fun \n જ <a:pinktea_HE:796373339651571744> Images \n જ <a:Pink_Bow_HE:783028553897869332> Information \n જ <a:pbouncy_HE:878479836920836157> Moderation \n જ <a:music_HE:878180163848896562> Music \n જ <a:carebear_HE:878481448326270976> Slash Commands \n જ <a:paw_HE:797027740007661578> Utility`)
           .setThumbnail(bot.user.displayAvatarURL())
   
         embed1 = new Discord.MessageEmbed().setTitle(`Admin commands`).setDescription('Here area all the Available commands').addField("Commands:", "**addcc, alt-config, autorole, bypass-alt, chatbot, delcc, disablemodlogchannel, disablemuterole, fetch-alts, help-greetings, prefix, setconfess, setchatbotchannel, setmodlogchannel, setmuterole, setticketrole, setsuggest, set-ticket-catg, svr**").setColor("#F4B3CA").setFooter('1/1').setThumbnail(bot.user.displayAvatarURL());

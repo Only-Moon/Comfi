@@ -44,7 +44,7 @@ bot.categories = fs.readdirSync("./commands/");
 
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
-//---------[ MAIKE THE ERROR HANDLER ]---------\\
+//---------[ MAKE THE ERROR HANDLER ]---------\\
 /**
 process.on('unhandledRejection', error => { 
   const channel = bot.channels.cache.get("880101469586604032");
@@ -53,7 +53,7 @@ process.on('unhandledRejection', error => {
     .setDescription(`${error}`)
     .setColor('RED')
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
-    .setTimestamp()
+    .setTimestamp();
   
     channel.send({ embeds: [ embed ]});
 });
