@@ -106,10 +106,11 @@ module.exports = {
             ],
         },
     ],
+    userperm: [""],
+    botperm: [""],
 
     /**
      *
-     * @param {Client} client
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */

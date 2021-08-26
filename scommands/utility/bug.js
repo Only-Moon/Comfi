@@ -11,6 +11,8 @@ module.exports = {
             required: true,
         },
     ],
+    userperm: [""],
+    botperm: [""],
     /**
      *
      * @param {Client} client

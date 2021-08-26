@@ -18,6 +18,8 @@ module.exports = {
             required: true,
         },
     ],
+    userperm: [""],
+    botperm: [""],
 
     /**
      *

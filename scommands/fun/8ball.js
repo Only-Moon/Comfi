@@ -37,6 +37,8 @@ module.exports = {
             required: true,
         },
     ],
+    userperm: [""],
+    botperm: [""],
     /** 
      * @param {Message} message 
      * @param {String[]} args 

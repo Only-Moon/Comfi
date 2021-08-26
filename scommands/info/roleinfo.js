@@ -13,6 +13,8 @@ module.exports = {
         },
 
     ],
+    userperm: [""],
+    botperm: [""],
    /**
    *
    * @param {CommandInteracion} interaction

@@ -13,6 +13,8 @@ module.exports = {
                     required: false
                 }
             ],
+    userperm: [""],
+    botperm: [""],
 
 run: async (bot, interaction, args) => {
         let user = interaction.options.getUser('user', false);

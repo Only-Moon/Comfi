@@ -3,6 +3,8 @@ const { ContextMenuInteraction } = require("discord.js");
 module.exports = {
     name: "getcontent",
     type: "MESSAGE",
+    userperm: [""],
+    botperm: [""],
 
     /**
      *

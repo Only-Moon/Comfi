@@ -19,6 +19,8 @@ module.exports = {
             required: false,
         },
     ],
+    userperm: [""],
+    botperm: [""],
     /** 
      * @param {Message} message 
      * @param {String[]} args 

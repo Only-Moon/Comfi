@@ -41,6 +41,8 @@ module.exports = {
             ]
         },
     ],
+    userperm: [""],
+    botperm: [""],
 
 run: async (bot, interaction, args) => {
         const [channel, message] = args;

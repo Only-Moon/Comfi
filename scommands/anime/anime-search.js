@@ -13,6 +13,8 @@ module.exports = {
         },
           
     ],
+    userperm: [""],
+    botperm: [""],
 
 run: async (bot, interaction, args) => {
         const [name] = args

@@ -4,6 +4,8 @@ const axios = require("axios")
 module.exports = {
     name: "getbanner",
     type: "USER",
+    userperm: [""],
+    botperm: [""],
 
     /**
      *

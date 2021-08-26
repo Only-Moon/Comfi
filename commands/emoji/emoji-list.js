@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   config: {
@@ -11,7 +12,7 @@ module.exports = {
   run: async (bot, message, args) => {
     
     let list = [];
-    let emojis = message.guild.emojis.cache.array();
+    let emojis = message.guild.emojis.cache.values();
     if (emojis.size === 0) return message.channel.send("There are no emojis in this server");
      emojis = emojis.map((e, i) => `${i + 1}. ${e} \\${e}`);
     for (var i = 0; i < emojis.length; i += 10) {

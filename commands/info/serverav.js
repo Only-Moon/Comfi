@@ -14,11 +14,11 @@ module.exports = {
     .setAuthor(`Avatar for ${message.guild.name}`, message.guild.iconURL({
       dynamic: true
     }))
-    .setDescription(`**Download This Server's Avatar**\n[Click Here](${message.guild.iconURL({ dynamic: true, size: 1024 })})`)
+    .setDescription(message.guild.iconURL != null ? `**Download This Server's Avatar**\n[Click Here](${message.guild.iconURL({ dynamic: true, size: 1024 })})` : 'Server does not have an icon!')
     .setImage(message.guild.iconURL({ dynamic: true, size: 1024 }))
     .setColor("RANDOM");
     
-      message.channel.send({embeds: [ embed ]})
+      message.channel.send({ embeds: [ embed ]});
     
   }
 }

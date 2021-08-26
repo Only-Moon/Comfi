@@ -4,6 +4,8 @@ const translate = require("@iamtraction/google-translate")
 module.exports = {
     name: "Translate",
     type: 'MESSAGE',
+    userperm: [""],
+    botperm: [""],
     /**
      *
      * @param {ContextMenuInteraction} interaction

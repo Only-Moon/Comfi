@@ -10,7 +10,9 @@ module.exports = {
 		category: 'utility'
 	},
 	run: async (bot, message, args) => {
-		const content = args.join(' ');
+    if (await db.has(`afk-${message.author.id}+${message.guild.id}`)) return
+    
+		const content = args.join(' ') || 'No Reason';
 		await db.set(`afk-${message.author.id}+${message.guild.id}`, content);
 		await db.set(`aftime-${message.author.id}+${message.guild.id}`, Date.now());
 		const embed = new MessageEmbed()
@@ -19,7 +21,10 @@ module.exports = {
 			.setAuthor(
 				message.author.tag,
 				message.author.displayAvatarURL({ dynamic: true })
-			);
-		message.channel.send({embeds: [ embed ]});
+			)
+    .setFooter("Use rafk command or type a message to remove your AFK");
+
+    if(message.member.manageable) message.member.setNickname("[AFK] " + message.member.displayName)
+		message.channel.send({ embeds: [ embed ]});
 	}
 };

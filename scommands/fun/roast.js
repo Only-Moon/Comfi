@@ -12,8 +12,10 @@ module.exports = {
             type: "USER"
         }
     ],
+    userperm: [""],
+    botperm: [""],
 
-run: async (client, interaction, args) => {
+run: async (bot, interaction, args) => {
 
         const { Slash } = require('djs-misc')
         const slash = new Slash({

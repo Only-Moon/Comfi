@@ -12,6 +12,8 @@ module.exports = {
       required: true,
     },
   ],
+    userperm: [""],
+    botperm: [""],
   /**
    * @param {CommandInteraction} interaction
    * @param {String[]} args

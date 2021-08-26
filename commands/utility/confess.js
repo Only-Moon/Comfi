@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
 const db = require("quick.db");
  
@@ -30,6 +29,6 @@ module.exports = {
        .setTimestamp();
        
     
-    let msgEmbed = await message.guild.channels.cache.get(channel).send(embed)
+    let msgEmbed = await message.guild.channels.cache.get(channel).send({ embed })
   }
 }

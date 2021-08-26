@@ -25,6 +25,6 @@ module.exports = {
    yesColor: '', // default: green 
    noEmoji: '778611410539905044', // default: X
    noColor: '', // default: red
-})
+   });
   }
 }

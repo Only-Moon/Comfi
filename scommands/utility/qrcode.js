@@ -12,6 +12,8 @@ module.exports = {
 
         }
     ],
+    userperm: [""],
+    botperm: [""],
 
     /**
      * @param {CommandInteraction} interaction 
