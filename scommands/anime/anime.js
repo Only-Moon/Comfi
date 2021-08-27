@@ -121,7 +121,7 @@ module.exports = {
         interaction: interaction,
         embedFooter: `Requested by ${interaction.member.displayName}`, //The Footer of the embed
         embedTitle: `Here's a ${args} GIF`, //The title of the embed
-        embedColor: "RANDOM", //The color of the embed! (Use Hex codes or use the color name)
+        embedColor: "#F4B3CA", //The color of the embed! (Use Hex codes or use the color name)
         })
         slash.anime()
         

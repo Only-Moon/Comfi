@@ -3,6 +3,7 @@ const ms = require('ms')
 module.exports = {
     name: "remindme",
     description: "Set a reminder",
+    ownerOnly: false,
     options: [
         {
             name: "time",

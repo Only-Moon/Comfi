@@ -1,5 +1,6 @@
 const { Permissions, MessageEmbed, MessageButton, MessageActionRow } = require('discord.js')
 const config = require('../config.json');
+const { owners } = require('../config.json')
 const simplydjs = require('simply-djs');
 const { db } = require('../Database.js');
 const clientID = config.clientID; 
@@ -78,150 +79,13 @@ const row1 = new MessageActionRow()
     
  		await interaction.editReply({ embeds: [noooyb], components: [row1] });
 }
-  
-    const transEmbed = new MessageEmbed()
-        .setColor(config.color).setTitle(`Hey` + ` ` + interaction.user.username)
-        .setDescription(`Are you sure you want to delete **this** ticket ?`)
-    
-
-    if (interaction.customId === 'del') {
-        const ok = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setCustomId('sure')
-                    .setLabel(`Delete`)
-                    .setStyle('DANGER'),
-            )
-
-        await interaction.followUp({ embeds: [transEmbed], components: [ok] })
-    }
-    if (interaction.customId === 'sure') {
-        interaction.channel.delete()
-    }
 
 }
-
-  // Select Menus
-if (interaction.isSelectMenu()) {
-    if (interaction.values?.[0] === 'reload01') {
-     await interaction.deferReply()
-        const chanz = bot.channels.cache.get('867650282933583882');
-        chanz.send('ingore reload')
-    }
-    if (interaction.values?.[0] === 'support01') {
-      await interaction.deferReply()
-        const chan = await interaction.guild.channels.create(`support-${interaction.user.tag}`, {
-            type: 'GUILD_TEXT',
-            permissionOverwrites: [
-                {
-                    id: interaction.message.guild.roles.everyone,
-                    deny: ['VIEW_CHANNEL']
-                },
-                {
-                    id: interaction.user.id,
-                    allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
-                },
-            ]
-        })
-        const embed = new MessageEmbed()
-            .setTitle('Support Ticket')
-            .setDescription('> Thank you for openning a ticket, One of fo the staff members will be here sortly!')
-            .setColor(config.color).setTimestamp()
-            .setFooter(interaction.guild.name, interaction.guild.iconURL({ dynamic: true }));
-        const del = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setCustomId('del')
-                    .setLabel('Delete Ticket')
-                    .setStyle('PRIMARY'),
-            );
-        chan.send({
-            content: `<@${interaction.user.id}>`,
-            embeds: [embed],
-            components: [del]
-        })
-        interaction.reply({
-            content: `Support ticket created!` + `<#${chan.id}>`, ephemeral: true
-        })
-    }
-    if (interaction.values?.[0] === 'staff01') {
-      await interaction.deferReply()
-        const chan = await interaction.guild.channels.create(`contact-${interaction.user.tag}`, {
-            type: 'GUILD_TEXT',
-            permissionOverwrites: [
-                {
-                    id: interaction.message.guild.roles.everyone,
-                    deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
-                },
-                {
-                    id: interaction.user.id,
-                    allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
-                },
-            ]
-        })
-        const embed = new MessageEmbed()
-            .setTitle('Contact Staff channel')
-            .setDescription('> Thank you for openning a ticket, One of fo the staff members will be here sortly!')
-            .setColor(config.color).setTimestamp()
-            .setFooter(interaction.guild.name, interaction.guild.iconURL({ dynamic: true }));
-        const del = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setCustomId('del')
-                    .setLabel('Delete Ticket')
-                    .setStyle('PRIMARY'),
-            );
-        chan.send({
-            content: `<@${interaction.user.id}>`,
-            embeds: [embed],
-            components: [del]
-        })
-        interaction.reply({
-            content: `Contact staff channel created!` + `<#${chan.id}>`, ephemeral: true
-        })
-    }
-    if (interaction.values?.[0] === 'question01') {
-      await interaction.deferReply()
-        const chan = await interaction.guild.channels.create(`question-${interaction.user.tag}`, {
-            type: 'GUILD_TEXT',
-            permissionOverwrites: [
-                {
-                    id: interaction.message.guild.roles.everyone,
-                    deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
-                },
-                {
-                    id: interaction.user.id,
-                    allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
-                },
-            ]
-        })
-
-        const embed = new MessageEmbed()
-            .setTitle('Question Ticket')
-            .setDescription('> Thank you for openning a ticket, One of fo the staff members will be here sortly!')
-            .setColor(config.color).setTimestamp()
-            .setFooter(interaction.guild.name, interaction.guild.iconURL({ dynamic: true }));
-        const del = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setCustomId('del')
-                    .setLabel('Delete Ticket')
-                    .setStyle('PRIMARY'),
-            );
-        chan.send({
-            content: `<@${interaction.user.id}>`,
-            embeds: [embed],
-            components: [del]
-        })
-        interaction.reply({
-            content: `Question ticket created!` + `<#${chan.id}>`, ephemeral: true
-        })
-    }
-
-}
+ 
   // Slash Command Handling
 
 if (interaction.isCommand()) { 
+  try {
   await interaction.deferReply({ ephemeral: false }).catch(() => {}); 
   
   const cmd = bot.slashCommands.get(interaction.commandName); 
@@ -246,12 +110,28 @@ if (interaction.isCommand()) {
 
         const botperm = interaction.guild.me.permissions.has(cmd.botperm);
         if (!botperm) return interaction.followUp({content: `I need \`${cmd.botperm || []}\` Permissions` });
+  
+// permissions bot have for current channel its in
+      const channelPerms = interaction.channel.permissionsFor(interaction.guild.me).toArray();
 
+      const checkArr = [];
+      const chPerms = cmd.chnlPerms || [];
+
+      channelPerms.forEach((x) => (chPerms.includes(x) ? checkArr.push(true) : checkArr.push(false)))
+
+      // if dont have any permission from that array gave inside command
+      if (checkArr.includes(false) && !checkArr.includes(true) && chPerms.length) {
+        embed.setDescription(`I Need these Permission for ${interaction.channel.toString()} Channel \`\`\`${chPerms.join(", ")}\`\`\``)
+        return await interaction.editReply({embeds:[embed], ephemeral: true})
+      }
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
-  
+    
   cmd.run(bot, interaction, args); 
-} 
+}  catch (err) {
+    console.log("Something Went Wrong => ",err);
+  }
+}
   // Context Menu Handling 
 
   if (interaction.isContextMenu()) { 

@@ -27,8 +27,8 @@ const answers = [
 ];
 module.exports = {
     name: '8ball',
-    description: 'You ask and i awnser',
-    permission: ['SEND_MESSAGES'],
+    description: 'You ask and i answer',
+    ownerOnly: false,
     options: [
         {
             type: 'STRING',

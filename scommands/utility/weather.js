@@ -14,6 +14,7 @@ module.exports = {
     ],
     userperm: [""],
     botperm: [""],
+    ownerOnly: false,
 
     /**
      *

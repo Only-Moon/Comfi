@@ -3,6 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "feedback",
     description: "Sends feedback about Comfi to the developers",
+    ownerOnly: false,
     options: [
         {
             type: 'STRING',

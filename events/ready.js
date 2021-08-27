@@ -1,5 +1,4 @@
 const { PREFIX } = require('../config.js');
-const simplydjs = require('simply-djs');
 const { glob } = require("glob");
 const { promisify } = require("util");
 
@@ -8,12 +7,34 @@ const app = express();
 const port = 8000 || process.env['PORT'];
    
 module.exports.run = async (bot) => {
-  app.get('/', (req, res) => res.send(`Bot is alive, ws ping here: ${bot.ws.ping}ms!
-`))
+   const port = process.env.PORT || 3000;
 
-  app.listen(port, () => {
-    console.log(`[INFO]: App is listening on port ${port}`);
-  });
+    const cmds = `
+    ${bot.slashCommands.map(command => `
+    <table>
+    <tr>
+    <td>/${command.name}</td>
+    <br>
+    </br>
+    <td> [ <th>Description: ${command.description} ]</th> </td>
+    </tr> 
+    </table>
+    `
+   )}
+    `
+
+    const html = `
+    <div align="center">
+    <h1>Discord Bot Commands</h1>
+    ${cmds}
+    </div>
+    `
+
+    app.get('/', async (req, res) => {
+        res.status(200).send(html);
+    })
+
+    app.listen(port, function () { console.log(`Listening on port http://localhost:${port}`) })
   
 	console.log(`[INFO]: Ready on client (${bot.user.tag})`);
 	console.log(

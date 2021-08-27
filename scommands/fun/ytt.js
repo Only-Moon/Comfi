@@ -3,6 +3,7 @@ const { CommandInteraction } = require("discord.js");
 module.exports = {
     name: "activities",
     description: "Discord Activities in a Voice Channel",
+    ownerOnly: false,
     options: [
         {
             name: 'channel',

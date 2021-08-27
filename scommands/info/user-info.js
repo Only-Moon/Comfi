@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
             name: 'user-info',
             description: 'Returns all of your user information, unless another user is specified.',
-            cooldown: 3,
+            ownerOnly: false,
             options: [
                 {
                     type: 'USER',

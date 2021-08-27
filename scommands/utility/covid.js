@@ -4,6 +4,7 @@ const fetch = require("node-fetch")
 module.exports = {
     name: "covid",
     description: "Track a country or worldwide COVID-19 cases",
+    ownerOnly: false,
     options: [
         {
             name: "country",

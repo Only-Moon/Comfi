@@ -4,6 +4,7 @@ const { CommandInteracion, MessageEmbed } = require('discord.js');
 module.exports = {
    name: 'roleinfo',
    description: 'See information about a role',
+    ownerOnly: false,
    options: [
      {
      name: "role", 

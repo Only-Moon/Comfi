@@ -3,7 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "cleverate",
     description: "clever rate user",
-
+    ownerOnly: false,
     options: [
         {
             type: 'USER',

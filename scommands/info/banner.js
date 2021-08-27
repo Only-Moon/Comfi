@@ -4,6 +4,7 @@ const axios = require("axios")
 module.exports = {
   name: "banner",
   description: "Get the banner of the specified member",
+    ownerOnly: false,
   options: [
     {
       name: "member",

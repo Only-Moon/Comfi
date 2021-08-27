@@ -4,6 +4,7 @@ const config = require("../../config");
 module.exports = {
     name: "roast",
     description: "roast someone",
+    ownerOnly: false,
     options: [
         {
             name: "user",

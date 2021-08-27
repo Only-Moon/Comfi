@@ -3,6 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "bugreport",
     description: "Report a bug",
+    ownerOnly: false,
     options: [
         {
             type: 'STRING',
@@ -15,7 +16,6 @@ module.exports = {
     botperm: [""],
     /**
      *
-     * @param {Client} client
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
