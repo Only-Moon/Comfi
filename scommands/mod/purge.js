@@ -1,7 +1,7 @@
 const { Collection, MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
 
 module.exports = {
-    name: 'clear',
+    name: 'purge',
     description: 'delete x amount of messages',
     permission: ['MANAGE_MESSAGES'],
     ownerOnly: false,

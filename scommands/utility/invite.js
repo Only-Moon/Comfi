@@ -10,7 +10,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
         const embed = new MessageEmbed()
           .setAuthor("Hello Dear!", interaction.user.avatarURL({ dynamic: true }))
           .setTitle('Comfi Invite Link!')

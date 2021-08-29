@@ -14,9 +14,9 @@ module.exports = {
 
     run: async (bot, message, args) => { 
 
-        if (message.author.id !== config.OWNER_ID[1]) {
-            return;
-        }
+      for(let i = 0; i < config.owners.length; i++) {
+        if(!message.author.id == config.owners)
+      }
         
         if (!args[0]) {
             return;

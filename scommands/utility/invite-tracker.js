@@ -1,7 +1,7 @@
 const { Collection, MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
 
 module.exports = {
-    name: 'invitetracker',
+    name: 'invites',
     description: 'Get the number of people that joined via your invites',
     ownerOnly: false,
     options: [

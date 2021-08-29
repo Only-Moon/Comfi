@@ -18,7 +18,8 @@ const slashCommands = await globPromise( `${process.cwd()}/scommands/*/*.js`
     if (!file?.name) return; 
     bot.slashCommands.set(file.name, file); 
     
-    if (["MESSAGE", "USER"].includes(file.type)) delete file.description; arrayOfSlashCommands.push(file); 
+    if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
+arrayOfSlashCommands.push(file); 
  
 table.addRow(file.name, '✅')
   });
@@ -27,14 +28,8 @@ table.addRow(file.name, '✅')
    // Register for a single guild 
 await bot.guilds.cache 
   .get("879608181058318347") 
-  .commands.set(arrayOfSlashCommands); 
-   
-   // Register for all the guilds the bot is in 
-   // await bot.application.commands.set(arrayOfSlashCommands); 
-
-   // Unregister global commands
- // await bot.application.commands.set([]);
-   })
+  .commands.set(arrayOfSlashCommands)  
+ })
 
 } catch(err) { 
         console.log(err) 

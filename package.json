@@ -48,7 +48,7 @@
     "node-canvas-with-twemoji-and-discord-emoji": "^1.2.1",
     "node-fetch": "^2.6.1",
     "node-superfetch": "^0.1.11",
-    "nuggies": "^2.0.1",
+    "nuggies": "^2.0.5",
     "old-wio.db": "^4.0.10",
     "outdent": "^0.8.0",
     "parse-ms": "^2.1.0",

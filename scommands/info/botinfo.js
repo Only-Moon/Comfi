@@ -1,18 +1,20 @@
-const db = require("old-wio.db");
-const Discord = require ("discord.js")
+const { MessageEmbed,CommandInteraction } = require ("discord.js")
 const { version } = require('../../package.json');
 const ms = require('pretty-ms');
 const { version: discordjsVersion } = require('discord.js');
+
 module.exports = {
-config: {
-  name: "botinfo",
-  category: "info",
-  aliases: ['binfo', 'botstats', 'stats'],
-  description: 'Check\'s bot\'s status',
-},
-  run: async (bot, message, args) => {
-   message.delete();
-      let embed = new Discord.MessageEmbed()
+    name: 'botinfo',
+    description: 'Check\'s bot\'s status',
+    ownerOnly: false,
+    userperm: [""],
+    botperm: [""],
+    /** 
+     * @param {CommandInteraction} interaction 
+     * @param {String[]} args 
+     */
+     run: async(bot, interaction, args) => {
+      let embed = new MessageEmbed()
             .setColor('#F4B3CA')
             .setAuthor(`${bot.user.username} v${version}`, bot.user.displayAvatarURL())
             .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
@@ -25,10 +27,8 @@ config: {
             .addField('❯ Node:', `${process.version} on ${process.platform} ${process.arch}`, true)
             .addField('❯ Cached Data:', `${bot.users.cache.size} users\n${bot.emojis.cache.size} emojis`, true)
             .addField('❯ Discord.js:', `${discordjsVersion}`, true)
-            .setFooter(`Requested By ${message.author.username}`, message.author.displayAvatarURL({
-              dynamic: true
-            }))
+            .setFooter(`Requested By ${interaction.member.username}`)
             .setTimestamp();
-   message.channel.send({embeds: [ embed ]})
+   interaction.followUp({embeds: [ embed ]})
   }
 }

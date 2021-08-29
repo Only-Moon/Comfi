@@ -13,7 +13,7 @@ module.exports = {
     
     let list = [];
     let emojis = message.guild.emojis.cache.values();
-    if (emojis.size === 0) return message.channel.send("There are no emojis in this server");
+    if (emojis.size === 0) return interaction.editReply("There are no emojis in this server");
      emojis = emojis.map((e, i) => `${i + 1}. ${e} \\${e}`);
     for (var i = 0; i < emojis.length; i += 10) {
       const items = emojis.slice(i, i + 10);
@@ -21,7 +21,7 @@ module.exports = {
     }
     const symbols = ["⬅️️", "⏹", "➡"];
     let page = 0;
-    let e  = new Discord.MessageEmbed()
+    let e  = new MessageEmbed()
     .setDescription(list[page])
     .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
     .setColor("YELLOW");
@@ -40,7 +40,7 @@ module.exports = {
       else {
       page++;
       msg.reactions.resolve(r.emoji.name).users.remove(u.id).catch(err => {});
-      let newEmbed = new Discord.MessageEmbed()
+      let newEmbed = new MessageEmbed()
      .setDescription(list[page])
      .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
      .setColor("YELLOW");
@@ -51,7 +51,7 @@ module.exports = {
       else {
       page--;
       msg.reactions.resolve(r.emoji.name).users.remove(u.id).catch(err => {});
-      let newEmbed = new Discord.MessageEmbed()
+      let newEmbed = new MessageEmbed()
      .setDescription(list[page])
      .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
      .setColor("YELLOW");

@@ -1,5 +1,3 @@
-
-
 module.exports = {
     name: "anime",
     description: "Get Anime Actions",

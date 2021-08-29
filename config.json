@@ -2,8 +2,10 @@
     "AME_API": "4bb9fd1353ce3ad01fc9cc45f33b9faa5fcfce811a14df2305d9f9e5f254f8a17760c0abb04290104258b249bfa5c5bd33df5951fc0f1966ddd2777507ba0faa",
     "color": "F8B6D4",
     "embedcolor": "#F4B3CA",
-    "owners": [ "845907174126780427", 
-      "756393473430519849" ],
+    "owners": [
+      "845907174126780427", 
+      "756393473430519849"
+    ],
     "support": "https://discord.gg/remYPHCVgW",
     "wrongemoji": "<a:1_AR_REJECTED:849965016374837289>",
     "checkemoji": "<a:1_AR_Accepted:849965002831691777>",
