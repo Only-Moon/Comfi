@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const config = require('../../config.js');
+const config = require('../../config.json');
 const beautify = require('beautify');
 
 module.exports = {
@@ -15,41 +15,31 @@ module.exports = {
     run: async (bot, message, args) => { 
 
       for(let i = 0; i < config.owners.length; i++) {
-        if(!message.author.id == config.owners)
+        if(!message.author.id == config.owners[i]) return
       }
         
         if (!args[0]) {
             return;
         }
 
-        try{
             if (args.join(" ").toLowerCase().includes("token")) {
                 return message.reply("Are you crazy ;-; You are going to give out your token public. I stopped it hopefully...")
             }
         
             const toEval = args.join(" ");
-            const evaluated = eval(toEval); 
+            await eval(toEval)
+            //const evaluated = eval(toEval); 
 
-            let embed = new Discord.MessageEmbed()
+            /*let embed = new Discord.MessageEmbed()
             .setColor("#00FF00")
             .setTimestamp()
             .setFooter(bot.user.username)
             .setTitle("Eval")
             .addField("To Evaluate", `\`\`\`js\n${beautify(args.join(" "), { format: "js"})}\n\`\`\``)
-            .addField("Evaluated:", `\`\`\`${evaluated}\`\`\``)
-            .addField("Type of:", `\`\`\`${typeof(evaluated)}\`\`\``);
+            .addField("Evaluated:", `\`\`\`${evaluated || "??"}\`\`\``)
+            .addField("Type of:", `\`\`\`${typeof(evaluated) || "?"}\`\`\``);
 
-            message.channel.send({embeds: [ embed ]});
-
-        } catch (e) {
-            let embed = new Discord.MessageEmbed()
-            .setColor("#FF0000")
-            .setTitle(`:x: Error!`)
-            .setDescription(e)
-
-            message.channel.send({embeds: [ embed ]});
-
-        }
+            message.channel.send({embeds: [ embed ]});*/
 
     }
 
