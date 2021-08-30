@@ -38,9 +38,9 @@ module.exports.run = async (bot) => {
   
 	console.log(`[INFO]: Ready on client (${bot.user.tag})`);
 	console.log(
-		`[INFO]: Watching ${bot.commands.size} Commands, ${bot.guilds.cache.size} Servers, ${
+		`[INFO]: Watching ${bot.commands.size} Commands \n[INFO]: Watching ${bot.slashCommands.size} SlashCommands \n[INFO]: Watching ${bot.guilds.cache.size} Servers \n[INFO]: Watching ${
 			bot.channels.cache.size
-		} channels & ${bot.users.cache.size} users`
+		} channels \n[INFO]: Watching ${bot.users.cache.size} users`
 	);
   
 	console.log('-------------------------------------');

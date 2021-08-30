@@ -1,4 +1,4 @@
-const { Permissions, MessageEmbed, MessageButton, MessageActionRow } = require('discord.js')
+const { Permissions, MessageEmbed, MessageButton, MessageActionRow, Discord } = require('discord.js')
 const config = require('../config.json');
 const { owners } = require('../config.json')
 const simplydjs = require('simply-djs');
@@ -7,7 +7,7 @@ const Levels = require("discord-xp");
 const clientID = config.clientID; 
 const clientSecret = config.clientSecret;
 
-module.exports.run = async (bot, interaction) => { 
+module.exports.run = async (bot, interaction, args) => { 
 
 /**
   let cat = await db.get(`tik_cat${interaction.guild.id}`)
@@ -128,7 +128,8 @@ if (interaction.isCommand()) {
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
  
-if (!interaction.guild) return; if (interaction.user.bot) return; 
+if (!interaction.guild) return;
+if (interaction.member.user.bot) return; 
 
 const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
   const hasLeveledUp = await Levels.appendXp(interaction.user.id, interaction.guild.id, randomAmountOfXp);
@@ -136,8 +137,16 @@ const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
     const user = await Levels.fetch(interaction.user.id, interaction.guild.id);
     interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. :tada:`);
   }
-   
+if(TimeoutCollection.has(interaction.user.id)) return interaction.editReply(`You need to wait!`);
+    
   cmd.run(bot, interaction, args); 
+
+TimeoutCollection.set(interaction.user.id, undefined)
+
+setTimeout(() => {
+  TimeoutCollection.delete(interaction.user.id)
+}, cmd.cooldown * 1000)
+    
 }  catch (err) {
     console.log("Something Went Wrong => ",err);
   }

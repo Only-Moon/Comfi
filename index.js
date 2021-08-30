@@ -15,7 +15,7 @@ const bot = new Client({
   allowedMentions: { 
     parse: ['users', 'roles'],
     repliedUser: true },
-  intents: 14023
+  intents: 32767
 });
 
 //---------[ MAKING COLLECTIONS ]---------\\
@@ -23,6 +23,8 @@ const bot = new Client({
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.slashCommands = new Collection();
+TimeoutCollection = new Collection();
+
 
 ['command', 'event', 'slash'].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);

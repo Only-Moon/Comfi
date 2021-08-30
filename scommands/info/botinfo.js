@@ -24,6 +24,7 @@ module.exports = {
             .addField('❯ Guild Count:', `${bot.guilds.cache.size} guilds`, true)
             .addField(`❯ User Count:`, `${bot.guilds.cache.reduce((users , value) => users + value.memberCount, 0)} users`, true)
             .addField('❯ Commands:', `${bot.commands.size} cmds`,true)
+            .addField('❯ Slash Commands:', `${bot.slashCommands.size} slash cmds`,true)
             .addField('❯ Node:', `${process.version} on ${process.platform} ${process.arch}`, true)
             .addField('❯ Cached Data:', `${bot.users.cache.size} users\n${bot.emojis.cache.size} emojis`, true)
             .addField('❯ Discord.js:', `${discordjsVersion}`, true)

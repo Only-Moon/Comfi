@@ -11,7 +11,7 @@ module.exports = {
         {
             type: 'STRING',
             description: 'name of video',
-            name: 'videoname',
+            name: 'video',
             required: true,
         },
     ],
@@ -27,12 +27,12 @@ module.exports = {
     const videoName = args.join(' ');
     const banned = ["porn", "sex", "fucking", "moaning", "blowjob", "tits", "dick", "sucking", "nigga", "nigger", "cock", "boobs", "xvideos", "xnxx", "clits", "naked", "hentai", "horny", "faping", "masturbating", "masturbation", "fuck", "stript", "naked"]  
 
-    if (!videoName) return this.sendErrorMessage(`${emoji.Error} Please provide a YouTube video name`);
+    if (!videoName) return interaction.editReply(`${emoji.Error} Please provide a YouTube video name`);
 
     const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
 
-    if (banned.some(word => message.content.toLowerCase().includes(word))) {
-      return interaction.editReply(`${emoji.Error} Yo go search these things by yourself`)
+    if (banned.some(word => args[0].toLowerCase().includes(word))) {
+      return interaction.editReply(`${emoji.Error} Yo go search these things by yourself,  Search again and see the results 💢`)
     }
 
     let result = await search(videoName, searchOptions)
@@ -50,7 +50,7 @@ module.exports = {
     .setURL(result.link)
     .setThumbnail('https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png')
     .setDescription(result.description)
-    .setFooter(interaction.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
+    .setFooter(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
     .setImage(result.thumbnails.high.url)
     .setTimestamp()
     .setColor(interaction.guild.me.displayHexColor)

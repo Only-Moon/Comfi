@@ -1,24 +1,18 @@
-const Color = "RANDOM";
+const Color = "#F4B3CA";
 const Discord = require("discord.js");
 
 module.exports = {
-    config: {
-        name: "vote",
-        category: 'utility',
-        aliases: ["uptime"],
-        description: "Vote For Comfi",
-        usage: "Vote",
-    },
-    run: async (bot, message, args) => {
+  name: "vote",
+  description: "Vote For Comfi",
     
-   
-
+run: async (bot, interaction, args) => {
+    
     const embed = new Discord.MessageEmbed()
     .setColor(Color)
     .setTitle("Vote Bot")
     .setDescription("You can vote us in **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
     .setTimestamp();
 
-    return message.reply({embeds: [ embed ], allowedMentions: { repliedUser: false }});
+    return interaction.editReply({embeds: [ embed ], allowedMentions: { repliedUser: false }});
   }
 };

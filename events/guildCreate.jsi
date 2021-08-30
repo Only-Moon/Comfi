@@ -5,7 +5,7 @@ const { Permissions } = require('discord.js')
 module.exports.run = async(bot, guild) => {
 let ch = guild.channels.cache.find(channel => channel.type === 'GUILD_TEXT' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) 
   const row = new MessageActionRow()
-			.addComponents( MessageButton()
+			.addComponents( new MessageButton()
   .setStyle("LINK")
   .setLabel("Support") )
   .setURL(`https://discord.gg/remYPHCVgW`) 

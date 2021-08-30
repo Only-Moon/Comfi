@@ -13,7 +13,7 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 
-        const user = await client.users.fetch(interaction.targetId);
+        const user = await bot.users.fetch(interaction.targetId);
 
         const av = new MessageEmbed()
             .setTitle(`${user.username}'s Avatar`)
