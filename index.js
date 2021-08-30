@@ -9,12 +9,13 @@ const { DiscordTogether } = require('discord-together');
 const { buttube } = require('buttube');
 const Nuggies = require('nuggies');
 const Discord = require("discord.js")
+const Levels = require("discord-xp");
 
 const bot = new Client({	
   allowedMentions: { 
     parse: ['users', 'roles'],
     repliedUser: true },
-  intents: 32767
+  intents: 14023
 });
 
 //---------[ MAKING COLLECTIONS ]---------\\
@@ -39,6 +40,8 @@ db.backup('./backup.json');
 const fs = require('fs');
 
 Nuggies.handleInteractions(bot);
+
+Levels.setURL(process.env.Levels)
 
 bot.categories = fs.readdirSync("./commands/");
 

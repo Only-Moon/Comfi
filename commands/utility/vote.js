@@ -19,6 +19,6 @@ module.exports = {
     .setDescription("You can vote us in **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
     .setTimestamp();
 
-    return message.channel.send({embeds: [ embed ]});
+    return message.reply({embeds: [ embed ], allowedMentions: { repliedUser: false }});
   }
 };

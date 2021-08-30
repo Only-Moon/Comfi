@@ -3,6 +3,7 @@ const config = require('../config.json');
 const { owners } = require('../config.json')
 const simplydjs = require('simply-djs');
 const { db } = require('../Database.js');
+const Levels = require("discord-xp");
 const clientID = config.clientID; 
 const clientSecret = config.clientSecret;
 
@@ -47,8 +48,8 @@ if (interaction.isButton()) {
     await interaction.deferUpdate()
   
   const inviteyb = new MessageEmbed() 
-  .setTitle("Thanks for using the bot!") 
-  .setDescription(`Here Is My Invite Links: \nServer Moderator: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot&permissions=2147483647)** \nServer Helper: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot&permissions=4294967287)** \n\nRecommended: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot&permissions=8589934591)**`)
+  .setTitle("Thanks for using Comfi - the Multipurpose bot!") 
+  .setDescription(`Here Is My Invite Links: \nServer Moderator: **[Click Me](https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=261455474551&scope=bot%20applications.commands)** \nServer Helper: **[Click Me](https://discord.com/oauth2/authorize?client_id=${clientID}&scope=bot%20applications.commands&permissions=4294967287)** \n\nRecommended: **[Click Me](https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands)**`)
   .setColor("GREEN"); 
   
   const joindsc = new MessageButton() .setStyle('LINK') 
@@ -82,9 +83,9 @@ const row1 = new MessageActionRow()
 
 }
  
-  // Slash Command Handling
+    // Slash Command Handling
 
-if (interaction.isCommand()) { 
+if (interaction.isCommand()) {
   try {
   await interaction.deferReply({ ephemeral: false }).catch(() => {}); 
   
@@ -101,7 +102,7 @@ if (interaction.isCommand()) {
         
         if (x.value) args.push(x.value); }); 
     } else if (option.value) 
-      
+    
       args.push(option.value); } interaction.member = interaction.guild.members.cache.get(interaction.user.id); 
 
  const userperm = interaction.member.permissions.has(cmd.userperm);
@@ -126,12 +127,22 @@ if (interaction.isCommand()) {
       }
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
-    
+ 
+if (!interaction.guild) return; if (interaction.user.bot) return; 
+
+const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
+  const hasLeveledUp = await Levels.appendXp(interaction.user.id, interaction.guild.id, randomAmountOfXp);
+  if (hasLeveledUp) {
+    const user = await Levels.fetch(interaction.user.id, interaction.guild.id);
+    interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. :tada:`);
+  }
+   
   cmd.run(bot, interaction, args); 
 }  catch (err) {
     console.log("Something Went Wrong => ",err);
   }
 }
+  
   // Context Menu Handling 
 
   if (interaction.isContextMenu()) { 

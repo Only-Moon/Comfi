@@ -36,7 +36,6 @@ await interaction.deleteReply();
        .setTimestamp();
        
     
-    let msg = await interaction.guild.channels.cache.get(channel)
-     await msg.send({ embed: [ embed ] })
+    let msg = await interaction.guild.channels.cache.get(channel).send({ embeds: [ embed ] })
   }
 }

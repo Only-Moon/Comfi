@@ -38,7 +38,7 @@ let toggle = await db.fetch(`chattgl_${message.guild.id}`);
     
 	
 let Prefix = await db.get(`prefix_${message.guild.id}`);	if (!Prefix) Prefix = PREFIX;
-	const mentionRegex = RegExp(`^<@!?${bot.user.id}>$`);
+  const mentionRegex = new RegExp(`^<@!?${bot.user.id}>$`);
 	if (message.content.match(mentionRegex)) {				
     let ping = new MessageEmbed()				
 .setThumbnail(`${message.author.displayAvatarURL({ dynamic: true })}`)				

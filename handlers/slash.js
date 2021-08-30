@@ -10,8 +10,7 @@ table.setHeading("Slash", "Load status");
 
 module.exports = async (bot) => {
 try {
-const slashCommands = await globPromise( `${process.cwd()}/scommands/*/*.js`
-                                       ); 
+const slashCommands = await globPromise(`${process.cwd()}/commands/slash/*.js`); 
   const arrayOfSlashCommands = []; 
   slashCommands.map((value) => {
     const file = require(value);  
@@ -19,17 +18,14 @@ const slashCommands = await globPromise( `${process.cwd()}/scommands/*/*.js`
     bot.slashCommands.set(file.name, file); 
     
     if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
-arrayOfSlashCommands.push(file); 
+      arrayOfSlashCommands.push(file); 
  
-table.addRow(file.name, '✅')
+   table.addRow(file.name, '✅')
   });
   
  bot.on("ready", async () => { 
-   // Register for a single guild 
-await bot.guilds.cache 
-  .get("879608181058318347") 
-  .commands.set(arrayOfSlashCommands)  
- })
+   await bot.commands.set(arrayOfSlashCommands)  
+})
 
 } catch(err) { 
         console.log(err) 
@@ -37,5 +33,5 @@ await bot.guilds.cache
         table.addRow(file.name, `❌ -> Error while loading event`);
   }
   
-console.log(table.toString()); 
+  console.log(table.toString()); 
 }
