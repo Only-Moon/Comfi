@@ -19,9 +19,9 @@ module.exports = (bot) => {
     
             if (pull.config.name) {
                 bot.commands.set(pull.config.name, pull);
-                table.addRow(file, '✅');
+               // table.addRow(file, '✅');
             } else {
-                table.addRow(file, `❌  -> missing a help.name, or help.name is not a string.`);
+              //  table.addRow(file, `❌  -> missing a help.name, or help.name is not a string.`);
                 continue;
             }
     
@@ -30,5 +30,5 @@ module.exports = (bot) => {
         }
     });
     // Log the table
-    console.log(table.toString())
+  //  console.log(table.toString())
 }

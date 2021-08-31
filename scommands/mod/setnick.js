@@ -17,8 +17,8 @@ module.exports = {
       required: true,
     },
   ],
-    userperm: [""],
-    botperm: [""],
+    userperm: ["MANAGE_SERVER"],
+    botperm: ["MANAGE_SERVER"],
   /**
    *
    * @param {Interaction} interaction
@@ -50,6 +50,26 @@ module.exports = {
 
       embed.setDescription(`:white_check_mark: ${user.member.toString()}'s Nickname Changed`).setFooter(`From ${oldNick} to ${nickname.value}`);
       await interaction.editReply({ embeds: [embed] });
+
+   let channel = db.fetch(`modlog_${message.guild.id}`)
+        if (!channel) return;
+
+        const sembed = new MessageEmbed()
+            .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
+            .setColor("#ff0000")
+            .setThumbnail(user.member.displayAvatarURL({ dynamic: true }))
+            .setFooter(interaction.guild.name, interaction.guild.iconURL())
+            .addField("**Moderation**", "setnick")
+            .addField("**Nick Changed Of**", user.member.username)
+            .addField("**Nick Changed By**", interaction.member.username)
+            .addField("**Nick Changed To**", args[1])
+            .addField("**Date**", interaction.createdAt.toLocaleString())
+            .setTimestamp();
+
+            var sChannel = interaction.guild.channels.cache.get(channel)
+            if (!sChannel) return;
+            sChannel.send({embeds: [ sembed ]})
+      
     } catch (err) {
       console.log("Something Went Wrong => ", err);
     }

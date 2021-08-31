@@ -3,7 +3,7 @@ const { MessageEmbed, CommandInteraction } = require('discord.js');
 const { PREFIX } = require('../../config.js');
 
 module.exports = {
-    name: "prefix",
+    name: "set-prefix",
     description: "Sets a prefix",
     ownerOnly: false,
     options: [

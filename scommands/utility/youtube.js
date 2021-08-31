@@ -4,7 +4,7 @@ const search = require('youtube-search');
 const emoji = require('../../emojis.json');
 
 module.exports = {
-    name: "youtube",
+    name: "youtube-search",
     description: "Search youtube for a specific text provided",
     ownerOnly: false,
     options: [

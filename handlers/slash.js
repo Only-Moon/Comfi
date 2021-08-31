@@ -22,8 +22,8 @@ const slashCommands = await globPromise(`${process.cwd()}/scommands/*/*.js`);
  
    table.addRow(file.name, '✅')
   })
-
-const register = await globPromise(`${process.cwd()}/scommands/owner/register.js`)
+/**
+const register = await globPromise(`${process.cwd()}/register.js`)
 
   const regi = [];
 register.map((values) => {
@@ -33,13 +33,14 @@ register.map((values) => {
 
 regi.push(files)
 }) 
+*/
  bot.on("ready", async () => { 
-  /**
+  
    await bot.guilds.cache
      .get("879608181058318347")
-     .commands.set(arrayOfSlashCommands)  
-*/
-await bot.application.commands.set(regi)
+     .commands.set(arrayOfSlashCommands)
+   
+//await bot.application.commands.set(regi)
    
  })
 

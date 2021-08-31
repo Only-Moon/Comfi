@@ -92,6 +92,26 @@ let muted = new MessageEmbed()
         }, time.value * 60 * 1000)
   await user.member.send("You have been Unmuted from the server"); 
  }
+
+let channel = await db.fetch(`modlog_${interaction.guild.id}`)
+            if (!channel) return;
+
+            let embeds1 = new MessageEmbed()
+                .setColor('RED')
+                .setThumbnail(user.member.avatarURL({ dynamic: true }))
+                .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
+                .addField("**Moderation**", "mute")
+                .addField("**Mutee**", user.member.username)
+                .addField("**Moderator**", interaction.member.username)
+                .addField("**Reason**", `${reason || "**No Reason**"}`)
+                .addField("**Date**", interaction.createdAt.toLocaleString())
+                .setFooter(interaction.member.displayName, interaction.member.avatarURL())
+                .setTimestamp()
+
+            var sChannel =  interaction.guild.channels.cache.get(channel)
+            if (!sChannel) return;
+            sChannel.send({embeds: [ embeds1 ]})
+
     } catch (err) {
       console.log("Error => ", err);
     }

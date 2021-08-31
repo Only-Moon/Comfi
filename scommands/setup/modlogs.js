@@ -2,7 +2,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 const { db } = require('../../Database.js');
                                         
 module.exports = {
-    name: "modlogs",
+    name: "set-modlogs",
     description: "Sets a Channel Where Bot Can Send Moderation logs!",
     ownerOnly: false,
     options: [

@@ -41,6 +41,26 @@ module.exports = {
       await user.member.roles.remove(MutedRole);
       embed.setDescription(`:white_check_mark: ${user.member.toString()} ***Unmuted Successfully***`);
       await interaction.editReply({ embeds: [embed] });
+
+let channel = db.fetch(`modlog_${interaction.guild.id}`)
+        if (!channel) return;
+
+        let embeds1 = new MessageEmbed()
+            .setColor("RED")
+            .setThumbnail(user.member.avatarURL({ dynamic: true }))
+            .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
+            .addField("**Moderation**", "unmute")
+            .addField("**Unmuted**", user.member.username)
+            .addField("**Moderator**", interaction.member.username)
+            .addField("**Reason**", `${reason || "**No Reason**"}`)
+            .addField("**Date**", interaction.createdAt.toLocaleString())
+            .setFooter(interaction.member.displayName, interdispla.member.avatarURL())
+            .setTimestamp();
+
+   interaction.guild.channels.cache.get(channel)
+        if (!sChannel) return;
+        sChannel.send({embeds: [ embeds1 ]})      
+    
     } catch (err) {
       console.log(`Error => `, err);
     }

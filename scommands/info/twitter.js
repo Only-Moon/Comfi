@@ -1,22 +1,33 @@
-const Discord = require('discord.js');
 const request = require('node-superfetch');
 const { stripIndents } = require('common-tags');
 const twitter = require('twitter-api.js');
+const { CommandInteraction, MessageEmbed } = require("discord.js");
+
 module.exports = {
-	config: {
-		name: 'twitter',
-		description: 'Shows info about a Twitter user',
-		aliases: ['tweet'],
-		category: 'info',
-		usage: 'twitter <twitter name>'
-	},
-	run: async (bot, message, args) => {
+    name: "twitter",
+    description: "Shows info about a twitter user",
+    ownerOnly: false,
+    options: [
+        {
+            type: 'STRING',
+            description: 'Twitter username to search',
+            name: 'username',
+            required: true,
+        },
+    ],
+    userperm: [""],
+    botperm: [""],
+    /**
+     *
+     * @param {CommandInteraction} interaction
+     * @param {String[]} args
+     */
+    run: async (bot, interaction, args, message) => {
 		let user = args[0];
-		if (!user) return message.channel.send('Provide your twitter name');
 
 		try {
 			const body = await twitter.users(user);
-			const tweet = new Discord.MessageEmbed()
+			const tweet = new MessageEmbed()
 				.setColor('BLUE')
 				.setAuthor(
 					`@${body.screen_name.toLowerCase()}`,
@@ -37,14 +48,14 @@ module.exports = {
 				)
 				.setThumbnail(body.profile_image_url_https.replace('_normal', ''))
 				.setImage(body.profile_banner_url);
-			message.channel.send({embeds: [ tweet ]});
+			interaction.editReply({embeds: [ tweet ]});
 		} catch (e) {
 			if (e.status === 403)
-				return message.channel.send(
+				return interaction.editReply(
 					'This user is either in private mode or deleted account'
 				);
-			else if (e.status === 404) return message.channel.send('Not Found');
-			else return message.channel.send(`Unknown error: \`${e.message}\``);
+			else if (e.status === 404) return interaction.editReply('Not Found');
+			else return interaction.editReply(`Unknown error: \`${e.message}\``);
 		}
 	}
 };
