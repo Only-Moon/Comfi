@@ -54,7 +54,7 @@ bot.categories = fs.readdirSync("./commands/");
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 //---------[ MAKE THE ERROR HANDLER ]---------\\
-/**
+
 process.on('unhandledRejection', error => { 
   const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
@@ -66,7 +66,7 @@ process.on('unhandledRejection', error => {
   
     channel.send({ embeds: [ embed ]});
 });
-*/
+
 //---------[ MAKE THE BOT ONLINE ]---------\\
 
 bot.login(process.env['TOKEN']);
