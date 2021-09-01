@@ -48,7 +48,7 @@ const api = process.env.TOKEN
 
           interaction.followUp({ embeds: [embed] })
         } else {
-          interaction.followUp({ content: `**${user.tag}** does not have a banner nor do they have an accent color.`})
+          interaction.followUp({ content: `**${user.tag}** does not have a banner or do they have an accent color.`})
         }
       }
     });
