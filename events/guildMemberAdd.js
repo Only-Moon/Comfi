@@ -1,3 +1,4 @@
+const bot = require("../index");
 const { MessageEmbed } = require('discord.js');
 const { LeftImage, JoinImage } = require('../../config.json');
 const canvas = require('discord-canvas');
@@ -8,7 +9,7 @@ const db1 = require("old-wio.db");
 const { db } = require('../Database')
 const Discord = require('discord.js')
 
-module.exports.run = async (bot, member) => {
+bot.on("guildMemberAdd", async (member) => {
 
  let guild = member.guild;
 
@@ -188,4 +189,4 @@ embeds: [Embed] })
 		}
 	}
   
-}
+});

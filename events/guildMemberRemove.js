@@ -1,3 +1,4 @@
+const bot = require("../index");
 const { MessageEmbed } = require('discord.js');
 const { LeftImage, JoinImage } = require('../../config.json');
 const canvas = require('discord-canvas');
@@ -7,7 +8,7 @@ const wb = require("quick.db");
 const moment = require("moment");
 const Discord = require('discord.js')
   
-module.exports.run = async (bot, member) => {
+bot.on("guildMemberRemove", async (member) => {
 
   let guild = member.guild;
 
@@ -136,4 +137,4 @@ module.exports.run = async (bot, member) => {
 		return;
   console.log(`error`)
   }
-}  
+});  

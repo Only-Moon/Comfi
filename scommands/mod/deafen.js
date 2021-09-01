@@ -28,7 +28,7 @@ module.exports = {
     run: async (bot, interaction, args) => {
          
         
-        let member = interaction.options.getUser('user') || interaction.guild.members.cache.get(args[0]) || interaction.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase());
+        let member = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]) || interaction.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase());
 
         if(!member) return interaction.editReply("Unable to find the mentioned user in this guild.")
 

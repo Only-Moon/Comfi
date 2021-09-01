@@ -1,13 +1,13 @@
 const { PREFIX } = require('../config.js');
 const { glob } = require("glob");
 const { promisify } = require("util");
+const bot = require("../index");
 
 const express = require('express');
 const app = express();
 const port = 8000 || process.env['PORT'];
    
-module.exports.run = async (bot) => {
-   const port = process.env.PORT || 3000;
+bot.on("ready", async () => {
 
     const cmds = `
     ${bot.slashCommands.map(command => `
@@ -63,4 +63,5 @@ const arrayOfStatus = [
     });
     index++;
   }, 10000);
-}
+
+});

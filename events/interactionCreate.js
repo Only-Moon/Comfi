@@ -1,3 +1,4 @@
+const bot = require("../index");
 const { Permissions, MessageEmbed, MessageButton, MessageActionRow, Discord } = require('discord.js')
 const config = require('../config.json');
 const { owners } = require('../config.json')
@@ -7,7 +8,7 @@ const Levels = require("discord-xp");
 const clientID = config.clientID; 
 const clientSecret = config.clientSecret;
 
-module.exports.run = async (bot, interaction, args) => { 
+bot.on("interactionCreate", async (interaction, args) => { 
 
 /**
   let cat = await db.get(`tik_cat${interaction.guild.id}`)
@@ -94,6 +95,7 @@ if (interaction.isCommand()) {
     return interaction.followUp({ content: "An error has occured " }); 
   
   const args = []; 
+    
   for (let option of interaction.options.data) { 
     
     if (option.type === "SUB_COMMAND") { 
@@ -103,7 +105,9 @@ if (interaction.isCommand()) {
         if (x.value) args.push(x.value); }); 
     } else if (option.value) 
     
-      args.push(option.value); } interaction.member = interaction.guild.members.cache.get(interaction.user.id); 
+      args.push(option.value); } 
+    
+interaction.member = interaction.guild.members.cache.get(interaction.user.id); 
 
  const userperm = interaction.member.permissions.has(cmd.userperm);
 
@@ -137,14 +141,14 @@ const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
     const user = await Levels.fetch(interaction.user.id, interaction.guild.id);
     interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. :tada:`);
   }
-if(TimeoutCollection.has(interaction.user.id)) return interaction.editReply(`You need to wait!`);
+if(bot.timeout.has(interaction.user.id)) return interaction.editReply(`You need to wait!`);
     
   cmd.run(bot, interaction, args); 
 
-TimeoutCollection.set(interaction.user.id, undefined)
+bot.timeout.set(interaction.user.id, undefined)
 
 setTimeout(() => {
-  TimeoutCollection.delete(interaction.user.id)
+  bot.timeout.delete(interaction.user.id)
 }, cmd.cooldown * 1000)
     
 }  catch (err) {
@@ -160,4 +164,4 @@ setTimeout(() => {
   const command = bot.slashCommands.get(interaction.commandName); 
   if (command) command.run(bot, interaction); 
   } 
-}
+});

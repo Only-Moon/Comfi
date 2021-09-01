@@ -22,7 +22,7 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 
-        let Channel = interaction.guild.channels.cache.get(args[0]);
+        let Channel = interaction.options.getChannel('channel') || interaction.guild.channels.cache.get(args[0]);
 
         if (!Channel) return message.channel.send(`Please Mention A Channel!`);
 

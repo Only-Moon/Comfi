@@ -15,15 +15,19 @@ const bot = new Client({
   allowedMentions: { 
     parse: ['users', 'roles'],
     repliedUser: true },
-  intents: 32767
+  intents: 32767,
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'USER']
 });
+
+module.exports = bot;
 
 //---------[ MAKING COLLECTIONS ]---------\\
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
+bot.event = new Collection();
 bot.slashCommands = new Collection();
-TimeoutCollection = new Collection();
+bot.timeout = new Collection();
 
 
 ['command', 'event', 'slash'].forEach(handler => {

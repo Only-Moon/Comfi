@@ -1,3 +1,4 @@
+const bot = require("../index");
 const { MessageEmbed } = require('discord.js');
 const { db } = require('../Database')
 const simplydjs = require('simply-djs')
@@ -7,7 +8,7 @@ const pms = require('pretty-ms');
 const wb = require("quick.db")
 const { PREFIX } = require("../config.js");
 
-module.exports.run = async (bot, message) => {
+bot.on("messageCreate", async (message) => {
 
  	if (message.author.bot || !message.guild || message.webhookID) return;
 
@@ -157,4 +158,4 @@ function decodeMs(num) {
 }
 
 }
-}
+});

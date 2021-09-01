@@ -1,7 +1,8 @@
+const bot = require("../index");
 const discord = require('discord.js');
 
-module.exports.run = async (bot, guild) => {
-  const channelId = "867650282933583882";
+bot.on("guildDelete", async (bot, guild) => {
+  const channelId = "881789380073783302";
   const channel = bot.channels.cache.get(channelId);
   if (!channel) return;
   const embed = new discord.MessageEmbed()
@@ -12,5 +13,6 @@ module.exports.run = async (bot, guild) => {
     .setTimestamp()
     .setColor("#F8B6D4")
     .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
+  
   channel.send({embeds: [ embed ]});
-}
+});

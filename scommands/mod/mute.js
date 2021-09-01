@@ -1,4 +1,5 @@
 const { Interaction, MessageEmbed } = require("discord.js");
+const { db } = require('../../Database.js');
 
 module.exports = {
   name: "mute",
@@ -42,6 +43,16 @@ module.exports = {
 
       let MutedRole = interaction.guild.roles.cache.find((r) => r.name === "Muted");
 
+let dbmute = await db.fetch(`muterole_${interaction.guild.id}`); 
+
+let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted") 
+
+if (!interaction.guild.roles.cache.has(dbmute)) { 
+MutedRole = muteerole
+ } else { 
+muterole = interaction.guild.roles.cache.get(dbmute) 
+}
+
       if (!MutedRole) {
         const role = await interaction.guild.roles.create({ name: "Muted" });
 
@@ -76,6 +87,8 @@ module.exports = {
         return await interaction.editReply({ embeds: [embed] });
       }
       await user.member.roles.add(MutedRole);
+ 
+await db.set(`userid_${interaction.guild.id}_${user.member.id}`, userRoles)     
       embed.setDescription(`:white_check_mark: ${user.member.toString()} ***Muted Successfully***`);
       await interaction.editReply({ embeds: [embed] });
 

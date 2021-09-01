@@ -14,7 +14,8 @@ module.exports = {
         const embed = new MessageEmbed()
           .setAuthor("Hello Dear!", interaction.user.avatarURL({ dynamic: true }))
           .setTitle('Comfi Invite Link!')
-          .setDescription('⚠ | Do You Wan\'t To Invite Me?') 
+        .setDescription("I'm a cool Discord Bot, ain't I? Use the buttons below to invite me to your server or join our support server!\n\nStay Safe")
+         .setThumbnail(bot.user.displayAvatarURL()) 
           .setColor("#F4B3CA");
       
       const yes = new MessageButton() 
