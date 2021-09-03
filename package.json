@@ -1,5 +1,5 @@
 {
-  "name": "discord-moderation-bot",
+  "name": "comfi",
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
@@ -91,6 +91,6 @@
     "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
     "dev": "nodemon index.js"
   },
-  "author": "Manav Garg",
+  "author": "xxDeveloper, Xx-Mohit-xX",
   "license": "ISC"
 }
