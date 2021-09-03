@@ -4,7 +4,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "eval",
     description: "Evaluates the code you put in but it's only available for the my Developer and no one else!!!!!",
-    ownerOnly: false,
+    ownerOnly: true,
     options: [
         {
             type: 'STRING',

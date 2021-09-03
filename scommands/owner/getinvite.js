@@ -3,7 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "getinvite",
     description: "Generates an invitation to the server in question.",
-    ownerOnly: false,
+    ownerOnly: true,
     options: [
         {
             type: 'STRING',

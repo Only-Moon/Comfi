@@ -107,28 +107,19 @@ if (interaction.isCommand()) {
     
       args.push(option.value); } 
     
-interaction.member = interaction.guild.members.cache.get(interaction.user.id); 
+interaction.member = interaction.guild.members.cache.get(interaction.user.id);
+    
+if (cmd.ownerOnly) {
+if (!owners.includes(interaction.user.id)) return interaction.editReply({content: `<a:Attention:883349868062576701> You are not Authorized to use this Command`})
+}
+    
+const userperm = interaction.member.permissions.has(cmd.userperm);
 
- const userperm = interaction.member.permissions.has(cmd.userperm);
+        if (!userperm) return interaction.followUp({content: `<a:Attention:883349868062576701> You need \`${cmd.userperm || []}\` Permissions` });
 
-        if (!userperm) return interaction.followUp({content: `You need \`${cmd.userperm || []}\` Permissions` });
-
-        const botperm = interaction.guild.me.permissions.has(cmd.botperm);
-        if (!botperm) return interaction.followUp({content: `I need \`${cmd.botperm || []}\` Permissions` });
+const botperm = interaction.guild.me.permissions.has(cmd.botperm);
+        if (!botperm) return interaction.followUp({content: `<a:Attention:883349868062576701> I need \`${cmd.botperm || []}\` Permissions` });
   
-// permissions bot have for current channel its in
-      const channelPerms = interaction.channel.permissionsFor(interaction.guild.me).toArray();
-
-      const checkArr = [];
-      const chPerms = cmd.chnlPerms || [];
-
-      channelPerms.forEach((x) => (chPerms.includes(x) ? checkArr.push(true) : checkArr.push(false)))
-
-      // if dont have any permission from that array gave inside command
-      if (checkArr.includes(false) && !checkArr.includes(true) && chPerms.length) {
-        embed.setDescription(`I Need these Permission for ${interaction.channel.toString()} Channel \`\`\`${chPerms.join(", ")}\`\`\``)
-        return await interaction.editReply({embeds:[embed], ephemeral: true})
-      }
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
  
@@ -139,9 +130,9 @@ const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
   const hasLeveledUp = await Levels.appendXp(interaction.user.id, interaction.guild.id, randomAmountOfXp);
   if (hasLeveledUp) {
     const user = await Levels.fetch(interaction.user.id, interaction.guild.id);
-    interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. :tada:`);
+    interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. <a:Tada_Yellow:883017870068568085>`);
   }
-if(bot.timeout.has(interaction.user.id)) return interaction.editReply(`You need to wait!`);
+if(bot.timeout.has(interaction.user.id)) return interaction.editReply(`<a:Attention:883349868062576701> You need to wait!`);
     
   cmd.run(bot, interaction, args); 
 

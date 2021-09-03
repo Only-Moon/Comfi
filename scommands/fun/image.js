@@ -5,6 +5,8 @@ const memer = new Meme(process.env.MEMER);
 module.exports = {
     name: "image",
     description: "Image manipulation commands",
+    userperm: [""],
+    botperm: [""],
     options: [
         {
             name: "abandon",
@@ -157,7 +159,8 @@ module.exports = {
 
                 //send new Message
                 const genMeme = new MessageEmbed()
-                    .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+.setColor("#F4B3CA")
+                  .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://abandon.png")
                     .setFooter("Generated with memer API")
                 interaction.editReply({ embeds: [genMeme], files: [attachment] })
@@ -180,6 +183,7 @@ module.exports = {
                 let attachment = new MessageAttachment(image, "byemom.png");
                 //delete old message
                 const genMeme = new MessageEmbed()
+                  .setColor("#F4B3CA")
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://byemom.png")
                     .setFooter("Generated with memer API")
@@ -202,6 +206,7 @@ module.exports = {
                 //make an attachment
                 let attachment = new MessageAttachment(image, "cancer.png");
                 const genMeme = new MessageEmbed()
+                  .setColor("#F4B3CA")
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://cancer.png")
                     .setFooter("Generated with memer API")
@@ -223,6 +228,7 @@ module.exports = {
                 //make an attachment
                 let attachment = new MessageAttachment(image, "dab.png");
                 const genMeme = new MessageEmbed()
+                  .setColor("#F4B3CA")
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://dab.png")
                     .setFooter("Generated with memer API")
@@ -245,6 +251,7 @@ module.exports = {
                 //make an attachment
                 let attachment = new MessageAttachment(image, "delete.png");
                 const genMeme = new MessageEmbed()
+                  .setColor("#F4B3CA")
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://delete.png")
                     .setFooter("Generated with memer API")
@@ -267,6 +274,7 @@ module.exports = {
                 //make an attachment
                 let attachment = new MessageAttachment(image, "disability.png");
                 const genMeme = new MessageEmbed()
+                  .setColor("#F4B3CA")
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://disability.png")
                     .setFooter("Generated with memer API")
@@ -290,6 +298,7 @@ module.exports = {
                 //make an attachment
                 let attachment = new MessageAttachment(image, "door.png");
                 const genMeme = new MessageEmbed()
+                 .setColor("#F4B3CA") 
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://door.png")
                     .setFooter("Generated with memer API")
@@ -311,6 +320,7 @@ module.exports = {
                 //make an attachment
                 let attachment = new MessageAttachment(image, "egg.png");
                 const genMeme = new MessageEmbed()
+                .setColor("#F4B3CA")  
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://egg.png")
                     .setFooter("Generated with memer API")
@@ -336,6 +346,7 @@ module.exports = {
                 let attachment = new MessageAttachment(image, "emergencymeeting.png");
                 //delete old message
                 const genMeme = new MessageEmbed()
+               .setColor("#F4B3CA")   
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://emergencymeeting.png")
                     .setFooter("Generated with memer API")

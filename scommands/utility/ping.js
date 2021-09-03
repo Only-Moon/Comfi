@@ -5,7 +5,7 @@ module.exports = {
     description: "returns bots ping",
     ownerOnly: false,
     userperm: [""],
-    botperm: [""],
+    botperm: ["SEND_MESSAGES"],
 
     /**
      *

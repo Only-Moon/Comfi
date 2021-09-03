@@ -3,7 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "serverlist",
     description: "Displays the list of servers the bot is in!",
-    ownerOnly: false,
+    ownerOnly: true,
     userperm: ["ADMINISTRATOR"],
     botperm: ["MANAGE_SERVER"],
     /**
