@@ -46,7 +46,7 @@ let Prefix = await db.get(`prefix_${message.guild.id}`);	if (!Prefix) Prefix = P
     .setDescription(				
       `Hey <@${						
 message.author.id					
-}>, My prefix for this guild is \`\`\`${Prefix}\`\`\`.
+}>, My prefix for this guild is \`\`\`${Prefix}\`\`\`
 Use \`\`\`${Prefix}help\`\`\` or <@${						bot.user.id					
 }> help to get a list of commands`				
     )				
