@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js")
-const { MessageButton, MessageActionRow } = require("discord.js")
+const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js")
 const { db } = require('../../Database.js');
 const Discord = require("discord.js");
 
@@ -18,62 +17,62 @@ const embedToBuild = new MessageEmbed()
 let title = new MessageButton()
     .setLabel("Title")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_title`)
+    .setCustomId(`buildEmbed_builder_title`)
 
 let description = new MessageButton()
     .setLabel("Description")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_desc`)
+    .setCustomId(`buildEmbed_builder_desc`)
 
 let footer = new MessageButton()
     .setLabel("Footer")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_footer`)
+    .setCustomId(`buildEmbed_builder_footer`)
 
 let footerImage = new MessageButton()
     .setLabel("Footer Image")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_footerimg`)
+    .setCustomId(`buildEmbed_builder_footerimg`)
 
 let image = new MessageButton()
     .setLabel("Image")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_img`)
+    .setCustomId(`buildEmbed_builder_img`)
 
 let thumbnail = new MessageButton()
     .setLabel("Thumbnail")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_thumb`)
+    .setCustomId(`buildEmbed_builder_thumb`)
 
 let timestamp = new MessageButton()
     .setLabel("Timestamp")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_timestamp`)
+    .setCustomId(`buildEmbed_builder_timestamp`)
 
 let color = new MessageButton()
     .setLabel("Color")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_color`)
+    .setCustomId(`buildEmbed_builder_color`)
 
 let addfield = new MessageButton()
     .setLabel("Add Field")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_addfield`)
+    .setCustomId(`buildEmbed_builder_addfield`)
 
 let removefield = new MessageButton()
     .setLabel("Remove Field")
     .setStyle("blurple")
-    .setID(`buildEmbed_builder_removefield`)
+    .setCustomId(`buildEmbed_builder_removefield`)
 
 let save = new MessageButton()
     .setLabel("Save")
     .setStyle("green")
-    .setID(`buildEmbed_save`)
+    .setCustomId(`buildEmbed_save`)
 
 let cancel = new MessageButton()
     .setLabel("Cancel")
     .setStyle("red")
-    .setID(`buildEmbed_cancel`)
+    .setCustomId(`buildEmbed_cancel`)
 
 let buttonRow = new MessageActionRow()
     .addComponent(title).addComponent(description).addComponent(footer).addComponent(color).addComponent(timestamp)
@@ -104,7 +103,7 @@ bot.on("clickButton", buttonEvent)
 
 let embedEditing = async(button) => {
     if(!button.id.startsWith(`buildEmbed`) && button.message.id == msg.id) return;
-    await button.reply.defer();
+    await button.deferReply();
 
     let id = button.id.split(`buildEmbed_`)[1]
     if(id.startsWith(`builder`)) {

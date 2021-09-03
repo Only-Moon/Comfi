@@ -2,7 +2,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "lock",
-    description: "Locks a server",
+    description: "Locks a channel",
     ownerOnly: false,
     userperm: ["MANAGE_SERVER"],
     botperm: ["MANAGE_SERVER"],

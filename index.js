@@ -25,16 +25,14 @@ module.exports = bot;
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
-bot.event = new Collection();
 bot.slashCommands = new Collection();
 bot.timeout = new Collection();
-
 
 ['command', 'event', 'slash'].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);
 });
 
-//--------[ START ]--------\\
+//--------[ PROCESS STARTED ]--------\\
 
 bot.discordTogether = new DiscordTogether(bot, {
   token: process.env['TOKEN']
@@ -53,7 +51,7 @@ bot.categories = fs.readdirSync("./commands/");
 
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
-//---------[ MAKE THE ERROR HANDLER ]---------\\
+//--------[ HANDLING ERRORS ]--------\\
 
 process.on('unhandledRejection', error => { 
   const channel = bot.channels.cache.get("880101469586604032");
@@ -67,6 +65,8 @@ process.on('unhandledRejection', error => {
     channel.send({ embeds: [ embed ]});
 });
 
-//---------[ MAKE THE BOT ONLINE ]---------\\
+//-------[ MAKING BOT ONLINE ]-------\\
 
 bot.login(process.env['TOKEN']);
+
+//---------[ PROCESS ENDED ]---------\\

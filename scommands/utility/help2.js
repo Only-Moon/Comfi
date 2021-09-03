@@ -1,6 +1,6 @@
 const { readdirSync } = require("fs");
 const prefix = "/";
-let color = "#36393f";
+let color = "#F4B3CA";
 
 const create_mh = require("../../modules/menu_help");
 
@@ -30,7 +30,15 @@ module.exports = {
     let cots = [];
 
     if (!args[0]) {
+
+      //categories to ignore
+      let ignored = [
+          "owner",
+          "context"   
+      ];
+      
       const emo = {
+        
     admin: "🎆",
     anime: "🎉",
     fun: "📻",
@@ -39,21 +47,22 @@ module.exports = {
     mod: "☄️",
     setup: "🧨",
     utility: "🔑",
-  }
+ 
+      }
 
       let ccate = [];
 
       readdirSync("./scommands/").forEach((dir) => {
-        // if (ignored.includes(dir.toLowerCase())) return;
+         if (ignored.includes(dir.toLowerCase())) return;
         const commands = readdirSync(`./scommands/${dir}/`).filter((file) =>
           file.endsWith(".js")
         );
 
-        // if (ignored.includes(dir.toLowerCase())) return;
+         if (ignored.includes(dir.toLowerCase())) return;
 
         const name = `${emo[dir.toLowerCase()]} ${dir.toUpperCase()}`;
-        //let nome = dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase();
-        let nome = dir.toUpperCase();
+        let nome = dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase();
+       // let nome = dir.toUpperCase();
 
         let cats = new Object();
 

@@ -1,19 +1,27 @@
-const Discord = require('discord.js');
-const config = require('../../config.json');
 const beautify = require('beautify');
+const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-  config: {
-    name: "eval", 
-    aliases: ["e", "evaluate"],
-    category: "owner",
+    name: "eval",
     description: "Evaluates the code you put in but it's only available for the my Developer and no one else!!!!!",
-    example: `${config.PREFIX} eval [js string]`,
-    ownerOnly: true,
-  },
-
-    run: async (bot, message, args) => { 
-
+    ownerOnly: false,
+    options: [
+        {
+            type: 'STRING',
+            description: 'Code to evaluate',
+            name: 'code',
+            required: true,
+        },
+    ],
+    userperm: [""],
+    botperm: [""],
+    /**
+     *
+     * @param {CommandInteraction} interaction
+     * @param {String[]} args
+     */
+    run: async (bot, interaction, args, message) => { 
+/**
       for(let i = 0; i < config.owners.length; i++) {
         if(!message.author.id == config.owners[i]) return
       }
@@ -21,17 +29,17 @@ module.exports = {
         if (!args[0]) {
             return;
         }
-
+*/
             if (args.join(" ").toLowerCase().includes("token")) {
-                return message.reply("Are you crazy ;-; You are going to give out your token public. I stopped it hopefully...")
+                return interaction.editReply("Are you crazy ;-; You are going to give out your token public. I stopped it hopefully...")
             }
         
             const toEval = args.join(" ");
-            await eval(toEval)
-            //const evaluated = eval(toEval); 
+            //await eval(toEval)
+            const evaluated = eval(toEval); 
 
-            /*let embed = new Discord.MessageEmbed()
-            .setColor("#00FF00")
+            let embed = new MessageEmbed()
+            .setColor("#F4B3CA")
             .setTimestamp()
             .setFooter(bot.user.username)
             .setTitle("Eval")
@@ -39,7 +47,7 @@ module.exports = {
             .addField("Evaluated:", `\`\`\`${evaluated || "??"}\`\`\``)
             .addField("Type of:", `\`\`\`${typeof(evaluated) || "?"}\`\`\``);
 
-            message.channel.send({embeds: [ embed ]});*/
+            interaction.editReply({embeds: [ embed ]});
 
     }
 

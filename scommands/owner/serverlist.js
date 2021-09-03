@@ -1,22 +1,19 @@
-const Discord = require("discord.js");
-const { OWNER_ID } = require("../../config");
+const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-  config: {
     name: "serverlist",
-    aliases: ["slt"],
-    category: "owner",
     description: "Displays the list of servers the bot is in!",
-    usage: " ",
-    accessableby: "Owner"
-  },
-  run: async (bot, message, args) => {
-    if (message.author.id == OWNER_ID) {
-      if (!message.guild.me.permissions.has("ADMINISTRATOR"))
-        return message.channel
-          .send("I Dont Have Permissions")
-          .then(msg => msg.delete({ timeout: 5000 }));
-
+    ownerOnly: false,
+    userperm: ["ADMINISTRATOR"],
+    botperm: ["MANAGE_SERVER"],
+    /**
+     *
+     * @param {CommandInteraction} interaction
+     * @param {String[]} args
+     */
+    run: async (bot, interaction, args) => {
+    try {
+//interaction.deleteReply();
       let i0 = 0;
       let i1 = 10;
       let page = 1;
@@ -30,17 +27,17 @@ module.exports = {
           .slice(0, 10)
           .join("\n");
 
-      let embed = new Discord.MessageEmbed()
+      let embed = new MessageEmbed()
         .setAuthor(
-          message.author.tag,
-          message.author.displayAvatarURL({ dynamic: true })
+          interaction.user.tag,
+          interaction.user.avatarURL({ dynamic: true })
         )
-        .setColor("GREEN")
+        .setColor("#F4B3CA")
         .setFooter(bot.user.username)
         .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
         .setDescription(description);
 
-      let msg = await message.channel.send({embeds: [ embed ]});
+      let msg = await interaction.channel.send({embeds: [ embed ]});
 
       await msg.react("⬅");
       await msg.react("➡");
@@ -131,8 +128,8 @@ module.exports = {
         // Remove the reaction when the user react to the message
         await reaction.users.remove(message.author.id);
       });
-    } else {
-      return;
+    } catch(err) {
+      return console.log(err);
     }
   }
 };

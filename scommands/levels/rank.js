@@ -26,8 +26,6 @@ module.exports = {
 //const target = interaction.guild.members.cache.get(args[0]) || args[0] || interaction.user;
 
 const target = interaction.options.getUser('user') || interaction.user;
-
-const mem = interaction.options.getMember('user') || interaction.member;
       
 const user = await Levels.fetch(target.id, interaction.guild.id, true);
 
@@ -40,7 +38,6 @@ const rank = new canvacord.Rank()
         .setRank(user.position)
         .setLevel(user.level)
        // .registerFonts(fontArray)
-        .setStatus(mem.presence?.status)
         .setProgressBar("#F6B5DF")
         .setUsername(target.username)
         .renderEmojis(true)

@@ -6,11 +6,23 @@ module.exports = {
     description: "Sets a Channel Where Bot Can Send Moderation logs!",
     ownerOnly: false,
     options: [
+      {
+      type: 'SUB_COMMAND',
+      name: 'channel',
+      description: 'Sets channel for Modlogs',
+      options: [
         {
             type: 'CHANNEL',
             description: 'modlogs channel',
             name: 'channel',
             required: true,
+        },
+    ],
+        },
+        {
+            type: 'SUB_COMMAND',
+            name: 'disable',
+            description: 'Disables the modlogs channel',
         },
     ],
     userperm: ["ADMINISTRATOR"],
@@ -22,7 +34,9 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 
-    if (!args[0]) {
+    let [ subcommand ] = args;
+      
+if (subcommand === 'channel') {
       let b = await db.fetch(`modlog_${interaction.guild.id}`);
       let channelName = interaction.guild.channels.cache.get(b);
       if (interaction.guild.channels.cache.has(b)) {
@@ -31,9 +45,8 @@ module.exports = {
         );
       } else
         return interaction.editReply(
-          "**Please Enter A Channel Name or ID To Set!**"
-        );
-    }
+          "**Please Enter A Channel Name or ID To Set!**"); 
+  
         let channel = bot.guilds.cache.get(interaction.guild.id).channels.cache.get(args[0]) || interaction.guild.channels.cache.find(c => c.name.toLowerCase() === args.join(' ').toLocaleLowerCase());
 
         if (!channel || channel.type !== 'GUILD_TEXT') return interaction.editReply("**Please Enter A Valid Text Channel!**");
@@ -53,4 +66,27 @@ module.exports = {
             return interaction.editReply("**Error - `Missing Permissions Or Channel Is Not A Text Channel!`**");
         }
     }
-};
+
+if (subcommand === 'disable') {
+
+try {
+            let a = await db.get(`modlog_${interaction.guild.id}`)
+
+            if (!a) {
+                return interaction.editReply('**There Is No Modlog Channel Set To Disable!**')
+            } else {
+                let channel = interaction.guild.channels.cache.get(a)
+                bot.guilds.cache.get(interaction.guild.id).channels.cache.get(channel.id).send("**Modlogs Channel Disabled!**")
+                await db.delete(`modlog_${interaction.guild.id}`)
+
+                interaction.editReply(`**Modlog Channel Has Been Successfully Disabled in \`${channel.name}\`**`)
+            }
+            return;
+        } catch (err) {
+            return interaction.editReply(`**Missing Permissions or Channel Doesn't Exist** \n Error: ${err}`)
+        }
+  
+}
+      
+},
+      }
