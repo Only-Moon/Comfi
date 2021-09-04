@@ -1,5 +1,4 @@
 const { translate } = require('bing-translate-api');
-const emoji = require('../../emojis.json');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -42,7 +41,7 @@ module.exports = {
       .setTimestamp()
       interaction.editReply({embeds: [ embed ]})
     }  catch (err) {
-      interaction.editReply(`${emoji.Error} Failed to translate **${args[1]}** to **${args[0]}**`);
+      interaction.editReply(`<a:Attention:883349868062576701> Failed to translate **${args[1]}** to **${args[0]}**`);
     }
   }
 }

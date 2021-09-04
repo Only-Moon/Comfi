@@ -1,5 +1,4 @@
 const shorten = require('isgd');
-const emoji = require('../../emojis.json');
 const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 
 module.exports = {
@@ -31,13 +30,13 @@ module.exports = {
 
         if (!args[0]) {
             shorten.shorten(args[0], function(res) {
-                if(res.startsWith('Error:')) return interaction.editReply(`🚫 Provide a valid url **${res}**`)
+                if(res.startsWith('Error:')) return interaction.editReply(`<a:Attention:883349868062576701> Provide a valid url **${res}**`)
 
         }) 
         } else {
 
             shorten.custom(args[0], args[1], function(res) {
-                if(res.startsWith('Error:')) return interaction.editReply(`🚫 **${res}**`)
+                if(res.startsWith('Error:')) return interaction.editReply(`<a:Attention:883349868062576701> **${res}**`)
             
       const row = new MessageActionRow()			.addComponents( new MessageButton()
         .setStyle('LINK')

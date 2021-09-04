@@ -1,7 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const he = require('he');
 const search = require('youtube-search');
-const emoji = require('../../emojis.json');
 
 module.exports = {
     name: "youtube-search",
@@ -32,17 +31,17 @@ module.exports = {
     const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
 
     if (banned.some(word => args[0].toLowerCase().includes(word))) {
-      return interaction.editReply(`${emoji.Error} Yo go search these things by yourself,  Search again and see the results 💢`)
+      return interaction.editReply(`<a:Attention:883349868062576701> Yo go search these things by yourself,  Search again and see the results 💢`)
     }
 
     let result = await search(videoName, searchOptions)
       .catch(err => {
-        return interaction.editReply(`${emoji.Error} Please try again in a few seconds`);
+        return interaction.editReply(`<a:Attention:883349868062576701> Please try again in a few seconds`);
       });
 
     result = result.results[0];
     if (!result) 
-    return interaction.editReply(`${emoji.Error} Unable to find **${videoName}**, please try a different YT Title`);
+    return interaction.editReply(`<a:Attention:883349868062576701> Unable to find **${videoName}**, please try a different YT Title`);
 
     const decodedTitle = he.decode(result.title);
     const embed = new MessageEmbed()
