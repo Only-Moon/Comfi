@@ -22,11 +22,12 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-   
+  const suggestion = interaction.options.getString('suggestion'); 
   let channel = await db.fetch(`suggestion_${interaction.guild.id}`);
     if (!channel) return interaction.editReply(`Please set the suggestion channel first by using **/set-suggestion**`);
   
-  simplydjs.suggestSystem(bot, interaction, args, {
+  simplydjs.suggestSystem(bot, interaction, suggestion, {
+   slash: true,
    chid: `${channel}`,
    embedColor: '#F8B6D4', // defaultL #075FFF
    credit: false,

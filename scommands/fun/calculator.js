@@ -2,8 +2,8 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 const simplydjs = require("simply-djs")
 
 module.exports = {
-    name: "calculate",
-    description: "Simple Calculator",
+    name: "calculator",
+    description: "Advance Calculator",
     ownerOnly: false,
     userperm: [""],
     botperm: [""],
@@ -12,10 +12,10 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-run: async (bot, interaction, args) => {
-      simplydjs.calculator(interaction, { 
-embedColor: '#F4B3CA',
-credit: false                                     
-})
-},
-}    
+    run: async (bot, interaction, args) => {
+
+  simplydjs.calculator(interaction, {
+    embedColor: '#F4B3CA',
+    slash: true,
+  })      
+}}

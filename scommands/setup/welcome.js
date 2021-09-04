@@ -70,18 +70,8 @@ module.exports = {
         },
         {
             type: 'SUB_COMMAND',
-            description: 'Sets the greet embed description',
-            name: 'description',
-        },
-        {
-            type: 'SUB_COMMAND',
-            description: 'Sets the greet embed footer',
-            name: 'footer',
-        },
-      {
-            type: 'SUB_COMMAND',
-            description: 'Sets the greet embed color, eg: #fffff',
-            name: 'color',
+            description: 'Sets the greet embed',
+            name: 'embed',
         },
         {
             type: 'SUB_COMMAND',
@@ -135,22 +125,12 @@ const channel = interaction.options.getChannel('name');
   
 }
 
-if (option === 'description') {
+if (option === 'embed') {
 
+simplydjs.embedCreate(interaction, {   
+slash: true,   
+})
 
-
-}
-
-if (option === 'footer') {
-
-
-  
-}
-
-if (option === 'color') {
-
-
-  
 }
 
 if (option === 'image') {

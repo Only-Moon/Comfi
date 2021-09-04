@@ -39,14 +39,14 @@ module.exports = {
       
       const emo = {
         
-    admin: "🎆",
-    anime: "🎉",
-    fun: "📻",
-    info: "🔨",
-    levels: "🎌",
-    mod: "☄️",
-    setup: "🧨",
-    utility: "🔑",
+    admin: "🔑",
+    anime: "⚔",
+    fun: "🌈",
+    info: "❓",
+    levels: "📊",
+    mod: "🔱",
+    setup: "⚙",
+    utility: "🔧",
  
       }
 
@@ -83,7 +83,7 @@ module.exports = {
         )
         .addFields(categories)
         .setFooter(
-          `Requested by ${interaction.user.tag}`,
+          `Requested by ${interaction.member.displayName}`,
           interaction.user.avatarURL({
             dynamic: true,
           })
@@ -298,6 +298,5 @@ module.exports = {
         .setTimestamp()
         .setColor(color);
       return await interaction.editReply({ embeds: [embed] });
-    }
-  },
-};
+  }
+}
