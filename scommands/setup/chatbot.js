@@ -5,7 +5,7 @@ const simplydjs = require("simply-djs")
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "set-chatbot",
+    name: "chatbot",
     description: "Sets the chatbot system",
     ownerOnly: false,
     options: [

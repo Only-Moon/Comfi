@@ -24,6 +24,6 @@ module.exports = {
           .addField("Ping :",
                 `${bot.ws.ping <= 200 ? circles.green : bot.ws.ping <= 400 ? circles.yellow : circles.red} ${bot.ws.ping}ms`
             )
-        interaction.followUp({ embeds: [pingEmbed] });
+        interaction.editReply({ embeds: [pingEmbed] });
     },
 };

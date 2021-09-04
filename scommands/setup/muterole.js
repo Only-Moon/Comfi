@@ -2,15 +2,27 @@ const { db } = require('../../Database.js');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "set-muterole",
+    name: "muterole",
     description: "Sets a Mute Role For Muted User",
     ownerOnly: false,
     options: [
+      {
+      type: 'SUB_COMMAND',
+      name: 'enable',
+      description: 'Sets channel for Modlogs',
+      options: [
         {
             type: 'ROLE',
-            description: 'Muted Role',
+            description: 'modlogs channel',
             name: 'role',
             required: true,
+        },
+    ],
+        },
+        {
+            type: 'SUB_COMMAND',
+            name: 'disable',
+            description: 'Disables the modlogs channel',
         },
     ],
     userperm: ["MANAGE_SERVER"],
@@ -21,6 +33,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args, message) => {
+let [ subcommand ] = args;
+      
+if (subcommand === 'enable') {
+      
     if (!args[0]) {
       let b = await db.get(`muterole_${interaction.guild.id}`);
       let roleName = interaction.guild.roles.cache.get(b);
@@ -64,5 +80,18 @@ module.exports = {
         `\n${e.message}`
       );
     }
+}
+
+if (subcommand === 'disable') {
+
+let rol = await db.get(`muterole_${interaction.guild.id}`)
+
+if (!rol) return interaction.followUp(`<a:Attention:883349868062576701> Set Muterole First`)
+
+await db.delete(`muterole_${interaction.guild.id}`) 
+return interaction.editReply(`Successfully Removed Muterole`)
+  
+}
+
   }
 };
