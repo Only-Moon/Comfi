@@ -1,5 +1,5 @@
 console.clear();
-console.log('Loading Bot');
+console.log('Loading Bot...');
 
 //-------[ DEFINING DEPENDENCIES ]---------\\
 

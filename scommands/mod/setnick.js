@@ -35,11 +35,10 @@ module.exports = {
       // red for error
       const embed = new MessageEmbed().setColor("RED")
 
+      if(!message.member.permissions.has("MANAGAE_NICKNAMES")) return interaction.followUp("❌ You don't have enough permssions")
+
       // if dont have permission to manage user
       if (!user.member.manageable && user.member.id !== bot.user.id) {
-        // lets create a embed
-        // https://discordjs.guide/popular-topics/embeds.html#embed-preview
-        // checkout this website for best details about embeds
         embed.setDescription(`:x: I Cant Change ${user.member.toString()}'s Nickname`)
         return interaction.editReply({embeds: [embed]})
       }
