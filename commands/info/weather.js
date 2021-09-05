@@ -44,7 +44,7 @@ module.exports = {
          .addField("Longitude", `${location.long}`, true)
          .addField("Feels Like", `${current.feelslike}° Degrees`, true)
          .addField("Degree Type", `${location.degreetype}`, true)
-         .addField("Winds", `${current.windsdisplay}`, true)
+         .addField("Winds", `${current.windsdisplay || "None"}`, true)
          .addField("Humidity", `${current.humidity}%`, true)
          .addField("Timezone", `GMT ${location.timezone}`, true)
          .addField("Temperature", `${current.temperature}° Degrees`, true)

@@ -30,13 +30,15 @@ const target = interaction.options.getUser('user') || interaction.user;
 const user = await Levels.fetch(target.id, interaction.guild.id, true);
 
 if (!user) return interaction.editReply("Seems like this user has not earned any xp so far.");
-   
+      
 const rank = new canvacord.Rank()
         .setAvatar(target.avatarURL({format: 'png', size: 512}))
         .setCurrentXP(user.xp)
         .setRequiredXP(Levels.xpFor(user.level + 1))
         .setRank(user.position)
         .setLevel(user.level)
+        .setBackground("IMAGE", "https://media.discordapp.net/attachments/882842239800311828/883994629475819520/rank_card_banner_with_wm.png")
+        .setOverlay("#F4B3CA", false)
        // .registerFonts(fontArray)
         .setProgressBar("#F6B5DF")
         .setUsername(target.username)

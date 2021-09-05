@@ -49,10 +49,10 @@ run: async (bot, interaction, args) => {
         const [channel, message] = args;
         
        const channelObject = interaction.guild.channels.cache.get(channel);
-       if (channelObject.type !== 'GUILD_VOICE') return interaction.followUp({ content: 'You Must select a voice Channel'})
+       if (channelObject.type !== 'GUILD_VOICE') return interaction.followUp({ content: 'Please select a voice channel also if you are on mobile it won\'t work!'})
    
 		bot.discordTogether.createTogetherCode(channel, message).then(async invite => {
-    			return interaction.followUp({ content: `[Click Here To Join The Activity In](${invite.code}) <#${channel}>\n**ACTIVITY:${message.toLocaleUpperCase()}** `});
+    			return interaction.followUp({ content: `[Click Here To Join The Activity In](${invite.code}) <#${channel}>\n**ACTIVITY: ${message.toLocaleUpperCase()}** `});
 		});
     
     },

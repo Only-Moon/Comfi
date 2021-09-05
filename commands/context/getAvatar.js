@@ -1,7 +1,7 @@
 const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "getavatar",
+    name: "Avatar",
     type: "USER",
     userperm: [""],
     botperm: [""],

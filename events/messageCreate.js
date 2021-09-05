@@ -46,9 +46,8 @@ let Prefix = await db.get(`prefix_${message.guild.id}`);	if (!Prefix) Prefix = P
     .setDescription(				
       `Hey <@${						
 message.author.id					
-}>, My prefix for this guild is \`\`\`${Prefix}\`\`\`
-Use \`\`\`${Prefix}help\`\`\` or <@${						bot.user.id					
-}> help to get a list of commands`				
+}>, My prefix for this this guild is **/** \n
+Use \`\`\`/help\`\`\` \n for get a list of commands.`				
     )				
     .setColor('#F4B3CA')				
     .setFooter(`Requested by ${message.author.username}`)				

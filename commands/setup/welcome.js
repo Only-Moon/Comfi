@@ -77,6 +77,14 @@ module.exports = {
             type: 'SUB_COMMAND',
             description: 'Sets the greet embed image/banner',
             name: 'image',
+            options: [
+        {
+            type: 'STRING',
+            name: 'link',
+            description: 'Image Url',
+            required:  true,
+        }
+    ]
         },
     ],
     userperm: ["MANAGE_CHANNELS"],
@@ -92,23 +100,23 @@ let [ option ] = args
       
 if (option === 'toggle') {
 
-const punishment = interaction.options.getString('option')
-				await db.set(`Weltog_${interaction.guild.id}`, punishment);
+const toggle = interaction.options.getString('option')
+				await db.set(`Weltog_${interaction.guild.id}`, toggle);
 				return interaction.editReply(
 					`The Welcome Toggle for **${
 						interaction.guild.name
-					}** has been set to: **${punishment}**`
+					}** has been set to: **${toggle}**`
 				);
   
 }			
 if (option === 'embed-toggle') {
 
-const punishment = interaction.options.getString('option')
-				await db.set(`Welemtog_${interaction.guild.id}`, punishment);
+const emtoggle = interaction.options.getString('option')
+				await db.set(`Welemtog_${interaction.guild.id}`, emtoggle);
 				return interaction.editReply(
 					`The Welcome Embed Toggle for **${
 						interaction.guild.name
-					}** has been set to: **${punishment}**`
+					}** has been set to: **${emtoggle}**`
 				);
   
 }
@@ -129,13 +137,25 @@ if (option === 'embed') {
 
 simplydjs.embedCreate(interaction, {   
 slash: true,   
+}).then((emb) => {
+console.log(emb)
 })
-
 }
 
 if (option === 'image') {
 
+let url = interaction.options.getString('link')
+  
+let embed1 = new MessageEmbed()
+            .setTitle("Success!!")
+            .setColor("#F4B3CA")
+            .setDescription(`I have successfully seted the welcome image in this server.\n\nPlease make sure to **not** delete your Image from the Channel! \n\nThis is Only Applicable when __**Embedtoggle**__ is **false**`)
+            .setFooter(`Requested by ${interaction.user.username}`, interaction.user.avatarURL({
+              dynamic: true
+            }))
+            interaction.editReply({embeds: [ embed1 ]})
+            await db.set(`WelIm_${interaction.guild.id}`, url);
 
-
-}
-  }}
+      }
+    }}
+  

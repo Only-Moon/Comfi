@@ -3,39 +3,7 @@ const { glob } = require("glob");
 const { promisify } = require("util");
 const bot = require("../index");
 
-const express = require('express');
-const app = express();
-const port = 8000 || process.env['PORT'];
-   
-bot.on("ready", async () => {
-
-    const cmds = `
-    ${bot.slashCommands.map(command => `
-    <table>
-    <tr>
-    <td>/${command.name}</td>
-    <br>
-    </br>
-    <td> [ <th>Description: ${command.description} ]</th> </td>
-    </tr> 
-    </table>
-    `
-   )}
-    `
-
-    const html = `
-    <div align="center">
-    <h1>Discord Bot Commands</h1>
-    ${cmds}
-    </div>
-    `
-
-    app.get('/', async (req, res) => {
-        res.status(200).send(html);
-    })
-
-    app.listen(port, function () { console.log(`Listening on port http://localhost:${port}`) })
-  
+bot.on("ready", () => {
 	console.log(`[INFO]: Ready on client (${bot.user.tag})`);
 	console.log(
 		`[INFO]: Watching ${bot.commands.size} Commands \n[INFO]: Watching ${bot.slashCommands.size} SlashCommands \n[INFO]: Watching ${bot.guilds.cache.size} Servers \n[INFO]: Watching ${
@@ -48,7 +16,7 @@ bot.on("ready", async () => {
 const arrayOfStatus = [
     `${bot.guilds.cache.size} servers`,
     `${bot.guilds.cache.reduce((users, value) => users + value.memberCount, 0)} members`,
-    `${PREFIX}help | Stay Safe :)`,
+    `/help | Stay Safe :)`,
   ];
 
   let index = 0;
@@ -63,5 +31,4 @@ const arrayOfStatus = [
     });
     index++;
   }, 10000);
-
 });

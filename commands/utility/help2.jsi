@@ -38,37 +38,29 @@ module.exports = {
       ];
       
       const emo = {
-        
-    admin: "🔑",
-    anime: "⚔",
-    fun: "🌈",
-    info: "❓",
-    levels: "📊",
-    mod: "🔱",
-    setup: "⚙",
-    utility: "🔧",
- 
+        admin: "🔑",
+        anime: "⚔",
+        fun: "🌈",
+        info: "❓",
+        levels: "📊",
+        mod: "🔱",
+        setup: "⚙",
+        utility: "🔧"
       }
 
       let ccate = [];
 
       readdirSync("./scommands/").forEach((dir) => {
          if (ignored.includes(dir.toLowerCase())) return;
-        const commands = readdirSync(`./scommands/${dir}/`).filter((file) =>
-          file.endsWith(".js")
-        );
 
-         if (ignored.includes(dir.toLowerCase())) return;
-
-        const name = `${emo[dir.toLowerCase()]} ${dir.toUpperCase()}`;
-        let nome = dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase();
-       // let nome = dir.toUpperCase();
+          const name = `${emo[dir.toLowerCase()]} ${dir.toUpperCase()}`;
+          let nome = dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase();
 
         let cats = new Object();
 
         cats = {
           name: name,
-          value: `\`${prefix}help ${dir.toLowerCase()}\``,
+          value: `\`/help ${dir.toLowerCase()}\``,
           inline: true,
         };
 
@@ -78,27 +70,16 @@ module.exports = {
 
       const embed = new MessageEmbed()
         .setTitle("Help Menu:")
-        .setDescription(
-          `>>> My prefix is ${prefix}\nUse the menu, or use \`${prefix}help [category]\` to view commands base on their category!`
-        )
+        .setDescription(`>>> My prefix is ${prefix}\nUse \`${prefix}help (category)\` to view commands base on their category!`)
         .addFields(categories)
-        .setFooter(
-          `Requested by ${interaction.member.displayName}`,
-          interaction.user.avatarURL({
-            dynamic: true,
-          })
-        )
+        .setFooter(`Requested by ${interaction.member.displayName}`, interaction.user.avatarURL({ dynamic: true }))
         .setTimestamp()
-        .setThumbnail(
-          bot.user.displayAvatarURL({
-            dynamic: true,
-          })
-        )
+        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
         .setColor(color);
 
-      let menus = create_mh(ccate);
-      return interaction.editReply({ embeds: [embed], components: menus.smenu })
-        .then((msgg) => {
+      //let menus = create_mh(ccate);
+      return interaction.editReply({ embeds: [embed]/*, components: menus.smenu*/ })
+        /*.then((msgg) => {
           const menuID = menus.sid;
 
           const select = async (interaction) => {
@@ -187,7 +168,7 @@ module.exports = {
           });
           collector.on("collect", select);
           collector.on("end", () => null);
-        });
+        });*/
     } else {
       let catts = [];
 

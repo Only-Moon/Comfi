@@ -5,7 +5,6 @@ const { owners } = require('../config.json')
 const Levels = require("discord-xp");
 
 bot.on("interactionCreate", async (interaction, args) => {
- 
     // Slash Command Handling
 
 if (interaction.isCommand()) {

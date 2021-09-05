@@ -1,14 +1,14 @@
+//----------[ LOADING BOT ]----------\\
+
 console.clear();
 console.log('Loading Bot...');
 
-//-------[ DEFINING DEPENDENCIES ]---------\\
+//-----[ DEFINING DEPENDENCIES ]-----\\
 
 const { Client, Collection } = require('discord.js');
 const db = require('old-wio.db');
 const { DiscordTogether } = require('discord-together');
-const { buttube } = require('buttube');
 const Nuggies = require('nuggies');
-const Discord = require("discord.js")
 const Levels = require("discord-xp");
 
 const bot = new Client({	
@@ -21,7 +21,7 @@ const bot = new Client({
 
 module.exports = bot;
 
-//---------[ MAKING COLLECTIONS ]---------\\
+//-------[ MAKING COLLECTIONS ]-------\\
 
 bot.commands = new Collection();
 bot.aliases = new Collection();
@@ -36,9 +36,7 @@ bot.timeout = new Collection();
 
 bot.discordTogether = new DiscordTogether(bot, {
   token: process.env['TOKEN']
-});
-
-bot.buttube = new buttube(bot, process.env.Buttube); 
+}); 
 
 db.backup('./backup.json');
 const fs = require('fs');
@@ -70,5 +68,3 @@ process.on('unhandledRejection', error => {
 bot.login(process.env['TOKEN']);
 
 //---------[ PROCESS ENDED ]---------\\
-
-module.exports = bot;

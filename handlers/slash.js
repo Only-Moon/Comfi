@@ -10,7 +10,7 @@ table.setHeading("Slash", "Load status");
 
 module.exports = async (bot) => {
 try {
-const slashCommands = await globPromise(`${process.cwd()}/scommands/*/*.js`); 
+const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`); 
   const arrayOfSlashCommands = []; 
   slashCommands.map((value) => {
     const file = require(value);  
@@ -22,27 +22,11 @@ const slashCommands = await globPromise(`${process.cwd()}/scommands/*/*.js`);
  
    table.addRow(file.name, '✅')
   })
-/**
-const register = await globPromise(`${process.cwd()}/register.js`)
-
-  const regi = [];
-register.map((values) => {
-    const files = require(values);  
-  
-    if (["MESSAGE", "USER"].includes(files.type)) delete files.description;
-
-regi.push(files)
-}) 
-*/
- bot.on("ready", async () => { 
-  
-   await bot.guilds.cache
-     .get("879608181058318347")
-     .commands.set(arrayOfSlashCommands)
-   
-//await bot.application.commands.set(regi)
-   
- })
+ bot.on("ready", async () => {
+   bot.guilds.cache.forEach((g) => {
+     g.commands.set(arrayOfSlashCommands);
+   })
+ });
 
 } catch(err) { 
         console.log(err) 

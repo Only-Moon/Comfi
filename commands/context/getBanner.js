@@ -2,7 +2,7 @@ const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
 const axios = require("axios")
   
 module.exports = {
-    name: "getbanner",
+    name: "Banner",
     type: "USER",
     userperm: [""],
     botperm: [""],
