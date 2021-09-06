@@ -1,18 +1,19 @@
-const Discord = require("discord.js");
-const { MessageEmbed } = require('discord.js');
+const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-  config: {
-  name: "emoji-list",
-  aliases: [],
-  description: "Shows a list of emojis present in server",
-  usage: "emoji-list",
-  category: "emoji",
-  },
-  run: async (bot, message, args) => {
-    
+    name: "emoji-list",
+    description: "Shows a list of Emojis present in the server",
+    ownerOnly: false,
+    userperm: [""],
+    botperm: [""],
+    /**
+     *
+     * @param {CommandInteraction} interaction
+     * @param {String[]} args
+     */
+    run: async (bot, interaction, args) => {
     let list = [];
-    let emojis = message.guild.emojis.cache.values();
+    let emojis = interaction.guild.emojis.cache.values();
     if (emojis.size === 0) return interaction.editReply("There are no emojis in this server");
      emojis = emojis.map((e, i) => `${i + 1}. ${e} \\${e}`);
     for (var i = 0; i < emojis.length; i += 10) {
@@ -24,15 +25,15 @@ module.exports = {
     let e  = new MessageEmbed()
     .setDescription(list[page])
     .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
-    .setColor("YELLOW");
-    const msg = await message.channel.send({ embeds: e });
+    .setColor("#F4B3CA");
+    const msg = await interaction.editReply({ embeds: e });
     symbols.forEach(symbol => msg.react(symbol));
     let doing = true;
     while (doing) {
     let r;
-    const filter = (r, u) => symbols.includes(r.emoji.name) && u.id == message.author.id;
+    const filter = (r, u) => symbols.includes(r.emoji.name) && u.id == interaction.user.id;
     try { r = await msg.awaitReactions(filter, { max: 1, time: 20000, errors: ["time"] }) }
-    catch { return message.channel.send("Command timed out.") }
+    catch { return interaction.channel.send("Command timed out.") }
     const u = message.author;
     r = r.first();
     if (r.emoji.name == symbols[0]) {
@@ -43,7 +44,7 @@ module.exports = {
       let newEmbed = new MessageEmbed()
      .setDescription(list[page])
      .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
-     .setColor("YELLOW");
+     .setColor("#F4B3CA");
      msg.edit('', { embeds: newEmbed });
       }
     } else if (r.emoji.name == symbols[2]) {
@@ -54,7 +55,7 @@ module.exports = {
       let newEmbed = new MessageEmbed()
      .setDescription(list[page])
      .setFooter(`Page ${page + 1} of ${list.length} (${emojis.length} entries)`)
-     .setColor("YELLOW");
+     .setColor("#F4B3CA");
      msg.edit('', { embeds: newEmbed });
       }
     } else if (r.emoji.name == symbols[1]) {

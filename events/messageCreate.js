@@ -1,7 +1,6 @@
 const bot = require("../index");
 const { MessageEmbed } = require('discord.js');
 const { db } = require('../Database')
-const simplydjs = require('simply-djs')
 const moment = require('moment');
 const ms = require('ms');
 const pms = require('pretty-ms');
@@ -10,33 +9,7 @@ const { PREFIX } = require("../config.js");
 
 bot.on("messageCreate", async (message) => {
 
- 	if (message.author.bot || !message.guild || message.webhookID) return;
-
-let disabled = new MessageEmbed()		
-  .setTitle('Chatbot Error')
-  .setColor('#F4B3CA')		
-  .setDescription('Chat Bot is disabled by the Owner in this Server!')		
-  .setFooter(`Requested by ${message.author.username}`);
-
-  
-let ch = await db.get(`chatbt_${message.guild.id}`)
-  
-  if (!ch || ch === undefined) return;
-  
-  if(message.channel.id === ch){
-let toggle = await db.fetch(`chattgl_${message.guild.id}`);
-
-	if(toggle.toString() === `true`){ 
-
-  simplydjs.chatbot(bot, message, {
-    chid: `${ch}`,
-    name: 'Comfi', // default: Your bot na
-    developer: `Moonbow and ImRopoxPro`,
-  })
-} else if(!toggle || toggle.toString() === 'false') return message.delete(), message.author.send({embeds: [ disabled ]})
-}
-
-    
+ 	if (message.author.bot || !message.guild || message.webhookID) return;  
 	
 let Prefix = await db.get(`prefix_${message.guild.id}`);	if (!Prefix) Prefix = PREFIX;
   const mentionRegex = new RegExp(`^<@!?${bot.user.id}>$`);

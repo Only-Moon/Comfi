@@ -1,7 +1,7 @@
 const bot = require("../index");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js")
 const config = require('../config.json');
 const clientID = config.clientID; 
-const simplydjs = require('simply-djs');
 const { db } = require('../Database.js');
 
 bot.on("interactionCreate", async (interaction, args) => {

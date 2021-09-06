@@ -12,7 +12,7 @@ module.exports = {
           {
            type: 'SUB_COMMAND',
            description: 'Sets the greet toggle true/false',
-           name: 'welztoggle',
+           name: 'wel-toggle',
            options: [
             {
             type: 'STRING',

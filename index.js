@@ -16,7 +16,7 @@ const bot = new Client({
     parse: ['users', 'roles'],
     repliedUser: true },
   intents: 32767,
-  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'USER']
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'GUILD', 'USER']
 });
 
 module.exports = bot;
@@ -28,7 +28,7 @@ bot.aliases = new Collection();
 bot.slashCommands = new Collection();
 bot.timeout = new Collection();
 
-['command', 'event', 'slash'].forEach(handler => {
+['command', 'event', 'slash', 'mongo'].forEach(handler => {
 	require(`./handlers/${handler}`)(bot);
 });
 

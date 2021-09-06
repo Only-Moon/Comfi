@@ -2,7 +2,8 @@ const bot = require("../index");
 const { MessageEmbed, MessageButton, MessageActionRow, Permissions } = require('discord.js')
 
 bot.on("guildCreate", async(guild) => {
- { let ch = guild.channels.cache.find(channel => channel.type === 'GUILD_TEXT' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) 
+ {
+   let ch = guild.channels.cache.find(channel => channel.type === 'GUILD_TEXT' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')) 
   
 			let button = new MessageButton()
   .setStyle("LINK")
@@ -10,11 +11,11 @@ bot.on("guildCreate", async(guild) => {
   .setURL(`https://discord.gg/remYPHCVgW`) 
 
 const row = new MessageActionRow()
-   .addComponent(button);
+   .addComponents(button);
 
   let msg = new MessageEmbed() .setTitle("<:pinkheartsu_HE:796373357280362517> Thanks for adding me! <:pinkheartsu_HE:796373357280362517>") 
-  .setColor(config.embedcolor) 
-  .setDescription(`Hey, thanks for adding me to ${guild.name} <:pink_heartsies_HE:796373408010600468>  \n My Prefix Is **Cr!** \n Or You Can Use Me with **/** \n\n To get started type **Cr!help** Or **/help**`) 
+  .setColor("#F4B3CA") 
+  .setDescription(`Hey, thanks for adding me to ${guild.name} <:pink_heartsies_HE:796373408010600468>  \n My Prefix Is **Cr!**(useless) \n You Can Use Me with **/** \n\n To get started type **/help** Or **/help ping**`) 
   
   ch.send({
     embeds: [ msg ],
