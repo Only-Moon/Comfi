@@ -5,6 +5,8 @@ const simplydjs = require('simply-djs')
 
 bot.on("messageCreate", async (message) => {
 
+ 	if (message.author.bot || !message.guild || message.webhookID) return; 
+
   let disabled = new MessageEmbed()		
   .setTitle('Chatbot Error')
   .setColor('#F4B3CA')		

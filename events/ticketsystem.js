@@ -4,7 +4,8 @@ const { db } = require('../Database.js');
 
 bot.on('interactionCreate', async (interaction) => {
 
-let support = await db.get(`supportrole_${interaction.guild.id}`); if (!support) return;
+let support = await db.get(`supportrole_${interaction.guild.id}`);
+  if (!support) return;
 
 let cat = await db.get(`tik_cat${interaction.guild.id}`)
 

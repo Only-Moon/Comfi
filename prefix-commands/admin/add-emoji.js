@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const { Permissions } = require('discord.js')
 const { parse } = require("twemoji-parser");

@@ -1,7 +1,7 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const ms = require('ms')
 module.exports = {
-    name: "remindme",
+    name: "remind",
     description: "Set a reminder",
     ownerOnly: false,
     options: [
@@ -37,7 +37,7 @@ module.exports = {
         let reminder = r
 
         const wrongtime = new MessageEmbed()
-            .setColor('#F30B04')
+            .setColor('#F4B3CA')
             .setDescription(`**Sorry I only do d, m, h, or s.**`)
 
             if (
@@ -50,12 +50,12 @@ module.exports = {
                 return interaction.followUp({embeds: [wrongtime]})
                 
                 const remindertime = new MessageEmbed()
-                .setColor('#33F304')
+                .setColor('#F4B3CA')
                 .setDescription(`\**Your reminder will go off in ${time}**`)
                 interaction.followUp({embeds: [remindertime]})
 
                 const reminderdm = new MessageEmbed()
-                .setColor('#7289DA')
+                .setColor('#F4B3CA')
                 .setTitle('**REMINDER**')
                 .setDescription(`**It has been ${time} here is your reminder:** ${reminder}`)  
         
