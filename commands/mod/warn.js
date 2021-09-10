@@ -33,7 +33,7 @@ module.exports = {
             let reason = args.slice(1).join(' ');
             if(!reason) reason = "(No Reason Provided)";
             
-            let warnings = await db.fetch(`warnings_${interaction.guild.id}_${user.id}`)
+            let warnings = await db.get(`warnings_${interaction.guild.id}_${user.id}`)
             
             if(warnings === 5) {
       return interaction.editReply(`${user} already reached his/her limit with 5 warnings`)

@@ -73,7 +73,7 @@ if (!kickMember)
 					.setDescription(`**${kickMember.user.username}** has been kicked`);
 				interaction.editReply({embeds: [ sembed2 ]});
 			}
-			let channel = await db.fetch(`modlog_${interaction.guild.id}`);
+			let channel = await db.get(`modlog_${interaction.guild.id}`);
 			if (!channel) return;
 
 			const embed = new MessageEmbed()

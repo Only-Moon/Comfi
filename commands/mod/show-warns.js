@@ -25,7 +25,7 @@ module.exports = {
     const user = interaction.options.getUser('user') || interaction.member 
     
   
-    let warnings = await db.fetch(`warnings_${interaction.guild.id}_${user.id}`)
+    let warnings = await db.get(`warnings_${interaction.guild.id}_${user.id}`)
     
     
     if(warnings === null) warnings = 0;

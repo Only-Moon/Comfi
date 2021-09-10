@@ -74,6 +74,11 @@ module.exports = {
             name: 'embed',
         },
         {
+          type: 'SUB_COMMAND',
+          description: 'Helps you with welcome settings',
+          name: 'help',
+        },
+        {
             type: 'SUB_COMMAND',
             description: 'Sets the greet embed image/banner',
             name: 'image',
@@ -108,7 +113,33 @@ const toggle = interaction.options.getString('option')
 					}** has been set to: **${toggle}**`
 				);
   
-}			
+}
+
+if (option === 'help') {
+  const hembed = new MessageEmbed()
+    .setTitle("Error")
+    .setDescription(":x: You are not authorized to use this command :(")
+    .setColor("#FF0000")
+    .setTimestamp();
+    
+    if(!interaction.member.permissions.has("PERMISSIONS.FLAGS_ADMINISTRATOR")) {
+      return message.channel.send({ embeds: [ hembed ]});
+    }
+
+  const prefix = '/';
+
+  const embed = new MessageEmbed()
+    .setTitle("Greetings Setup")
+    .setAuthor(interaction.member.displayName)
+    .setColor("RANDOM")
+    .setTimestamp()
+    .setDescription(`**Welcome to the setup.**\nHere are the parameters available which you can set for the greeting message, background image and will it be a embed or not.\n\n`)
+    .addField("Parameters you can use in message of Welcome/leave -", "```{user}``` - Mentions the joining or leaving member\n```{user_name}``` - Just gives the username of the join/leave member\n```{user_tag}``` - Shows the user tag. Ex - User#1234\n```{user_id}``` - Shows the user id\n```{server_name}``` - Shows the server name\n```{server_id}``` - Shows the server id\n```{membercount}``` - Shows the member count of the server\n```{user_createdAt}``` - Shows member account creation date\n```{user_createdAgo}``` - Shows the member creation time ago")
+    .setFooter(`Requested by ${interaction.member.displayName}`);
+
+  interaction.followUp({ embeds: [embed] });
+}
+
 if (option === 'embed-toggle') {
 
 const emtoggle = interaction.options.getString('option')

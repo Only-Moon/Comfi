@@ -35,12 +35,12 @@ module.exports = {
         const reason   = args.splice(1, args.length).join(' ');
 
             try {
-                interaction.guild.members.ban(target, {reason: reason.length < 1 ? 'No reason supplied.': reason});
+                interaction.guild.members.ban(target, { reason: reason.length < 1 ? 'No reason supplied.': reason});
                 const embed2 = new MessageEmbed()
-                .setColor("GREEN")
+                .setColor("#F4B3CA")
                 .setDescription("**They were successfully banned. User was not notified!**");
                 await interaction.editReply({embeds: [ embed2 ]});                
-                const channel  = db.fetch(`modlog_${interaction.guild.id}`);
+                const channel  = db.get(`modlog_${interaction.guild.id}`);
                 if (!channel) return;
             const embed = new MessageEmbed()
                 .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
@@ -48,9 +48,9 @@ module.exports = {
                 .setFooter(interaction.guild.name, interaction.guild.iconURL())
                 .addField("**Moderation**", "ban")
                 .addField("**ID**", `${target}`)
-                .addField("**Banned By**", interaction.member.username)
+                .addField("**Banned By**", interaction.user.username.toString())
                 .addField("**Reason**", `${reason || "**No Reason**"}`)
-                .addField("**Date**", interaction.createdAt.toLocaleString())
+                .addField("**Date**", interaction.createdAt.toString())
                 .setTimestamp();
   
             var sChannel = interaction.guild.channels.cache.get(channel)

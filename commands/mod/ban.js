@@ -44,7 +44,7 @@ module.exports = {
 
             if (!banMember.bannable) return interaction.editReply("**Cant Ban That User**")
             try {
-            interaction.guild.members.ban(banMember)
+            interaction.guild.members.ban(banMember, { reason: `${reason}`})
             banMember.send(`**Hello, You Have Been Banned From ${interaction.guild.name} for - ${reason || "No Reason"}**`).catch(() => null)
             } catch {         interaction.guild.members.ban(banMember )
             }

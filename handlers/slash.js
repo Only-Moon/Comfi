@@ -9,7 +9,6 @@ let table = new ascii("Slash");
 table.setHeading("Slash", "Load status");
 
 module.exports = async (bot) => {
-try {
 const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`); 
   const arrayOfSlashCommands = []; 
   slashCommands.map((value) => {
@@ -19,8 +18,15 @@ const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
     
     if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
            arrayOfSlashCommands.push(file);
- 
+ try {
    table.addRow(file.name, '✅')
+   } catch(err) { 
+        console.log(err) 
+        
+        table.addRow(file.name, `❌ -> Error while loading event`);
+  }
+  
+  console.log(table.toString()); 
   })
  bot.on("ready", async () => {
    bot.guilds.cache.forEach((g) => {
@@ -28,11 +34,5 @@ const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
    })
  });
 
-} catch(err) { 
-        console.log(err) 
-        
-        table.addRow(`❌ -> Error while loading event`);
-  }
-  
-  console.log(table.toString()); 
+
 }

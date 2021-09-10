@@ -15,7 +15,7 @@ module.exports = {
     {
       name: "time",
       description: "Time Till Mute in Minutes",
-      type: 4,
+      type: 'STRING',
       required: false,
     },
     {
@@ -31,30 +31,27 @@ module.exports = {
    *
    * @param {Interaction} interaction
    */
-  run: async (bot, interaction) => {
+  run: async (bot, interaction, args) => {
     try {
-      const options = interaction.options._hoistedOptions;
-
-      const user = options.find((e) => e.name === "user");
-      const time = options.find((e) => e.name === "time");
-      const reason = options.find((e) => e.name === "reason")?.value || `Muted by ${interaction.member.displayName}`;
-
-      const embed = new MessageEmbed().setColor("GREEN");
-
-      let MutedRole = interaction.guild.roles.cache.find((r) => r.name === "Muted");
-
-let dbmute = await db.fetch(`muterole_${interaction.guild.id}`); 
-
-let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted") 
-
-if (!interaction.guild.roles.cache.has(dbmute)) { 
-MutedRole = muteerole
- } else { 
-muterole = interaction.guild.roles.cache.get(dbmute) 
-}
-
-      if (!MutedRole) {
-        const role = await interaction.guild.roles.create({ name: "Muted" });
+       var mutee = interaction.options.getMember('user');
+      var time = interaction.options.getString('time');
+      if (mutee === interaction.member) return interaction.editReply("<a:Attention:883349868062576701> **You Cannot Mute Yourself!**")
+        if (mutee.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0) return interaction.editReply('<a:Attention:883349868062576701> **Cannot Mute This User!**')
+          let reason = args.slice(1).join(" ") || interaction.options.getString('reason'); 
+      if (mutee.user.bot) return interaction.editReply("<a:Attention:883349868062576701> **Cannot Mute Bots!**"); 
+      
+  const userRoles = mutee.roles.cache .filter(r => r.id !== interaction.guild.id) .map(r => r.id) 
+  let muterole; 
+      let dbmute = await db.get(`muterole_${interaction.guild.id}`); 
+      let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted")
+        if (!interaction.guild.roles.cache.has(dbmute)) { 
+          muterole = muteerole
+        } else { 
+          muterole = interaction.guild.roles.cache.get(dbmute) 
+        } 
+      if (!muterole) { 
+        try { 
+          muterole = await interaction.guild.roles.create({ name: "Muted" });
 
         interaction.guild.channels.cache.map((x) => {
           if (!x.isThread()) {
@@ -80,25 +77,35 @@ muterole = interaction.guild.roles.cache.get(dbmute)
 
           MutedRole = role;
         });
-      }
+        } catch (e) {
+          console.log(e);
+        } 
+      };
+      if (mutee.roles.cache.has(muterole.id)) return interaction.editReply("<a:Attention:883349868062576701> **User Is Already Muted!**") 
+        await db.set(`muteeid_${interaction.guild.id}_${mutee.id}`, userRoles) 
+          try { mutee.roles.set([muterole.id]).then(() => { 
+            mutee.send(`**Hello, You Have Been Muted In ${interaction.guild.name} for - ${reason || "No Reason"}`).catch(() => null)
+          })
+          } catch { 
+            mutee.roles.set([muterole.id]) 
+          } 
+      if (reason) { 
+        
+        const sembed = new MessageEmbed() 
+          .setColor("#F4B3CA") 
+          .setAuthor(interaction.guild.name, interaction.guild.iconURL()) 
+          .setDescription(`${mutee.user.username} was successfully muted for ${reason}`) 
+          
+        interaction.editReply({embeds: [ sembed ]});
+      } else { 
+        
+  const sembed2 = new MessageEmbed() 
+    .setColor("#F4B3CA") 
+    .setDescription(`${mutee.user.username} was successfully muted`) ;
+interaction.editReply({embeds: [ sembed2 ]}); 
+    } 
 
-      if (user.member.roles.cache.find((e) => e.name === "Muted")) {
-        embed.setColor("RED").setDescription(`:x: User Already Muted`);
-        return await interaction.editReply({ embeds: [embed] });
-      }
-      await user.member.roles.add(MutedRole);
- 
-await db.set(`userid_${interaction.guild.id}_${user.member.id}`, userRoles)     
-      embed.setDescription(`:white_check_mark: ${user.member.toString()} ***Muted Successfully***`);
-      await interaction.editReply({ embeds: [embed] });
-
-let muted = new MessageEmbed()
-  .setDescription(`You have Been Muted by ${interaction.member.displayName} \n **Reason:** ${reason}`)
-  .setColor("#F4B3CA");
-      
- await user.member.send({embeds: [ muted ]})
-      
-      // for timed mute
+   // for timed mute
       if (time) {
         setTimeout(async () => {
           await user.member.roles.remove(MutedRole);
@@ -106,20 +113,20 @@ let muted = new MessageEmbed()
   await user.member.send("You have been Unmuted from the server"); 
  }
 
-let channel = await db.fetch(`modlog_${interaction.guild.id}`)
+let channel = await db.get(`modlog_${interaction.guild.id}`)
             if (!channel) return;
 
             let embeds1 = new MessageEmbed()
-                .setColor('RED')
-                .setThumbnail(user.member.avatarURL({ dynamic: true }))
+                .setColor('#F4B3CA')
+                .setThumbnail(interaction.user.avatarURL({ dynamic: true }))
                 .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
                 .addField("**Moderation**", "mute")
-                .addField("**Mutee**", user.member.username)
-                .addField("**Moderator**", interaction.member.username)
+                .addField("**Mutee**", mutee.user.username.toString())
+                .addField("**Moderator**", interaction.user.username)
                 .addField("**Reason**", `${reason || "**No Reason**"}`)
                 .addField("**Date**", interaction.createdAt.toLocaleString())
-                .setFooter(interaction.member.displayName, interaction.member.avatarURL())
-                .setTimestamp()
+                .setFooter(interaction.guild.name, interaction.guild.iconURL())
+                .setTimestamp();
 
             var sChannel =  interaction.guild.channels.cache.get(channel)
             if (!sChannel) return;

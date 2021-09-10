@@ -1,7 +1,8 @@
 const { PREFIX } = require('../config.js');
-const { glob } = require("glob");
-const { promisify } = require("util");
 const bot = require("../index");
+const express = require('express');
+const app = express();
+const port = 5000;
 
 bot.on("ready", () => {
 	console.log(`[INFO]: Ready on client (${bot.user.tag})`);
@@ -30,5 +31,11 @@ const arrayOfStatus = [
       url: "https://www.twitch.tv/blue666opislive",
     });
     index++;
-  }, 10000);
+  }, 5000); 
+  
+app.get('/', (req, res) => res.send('Your bot is alive!')) 
+
+app.listen(port, () =>
+console.log(`Your app is listening a http://localhost:${port}`));
+
 });
