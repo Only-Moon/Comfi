@@ -43,9 +43,10 @@ module.exports = {
         mutee.roles.remove(muterole.id).then(() => { 
           mutee.send(`**Hello, You Have Been Unmuted In ${interaction.guild.name}**`).catch(() => null) 
             let roleadds = rolefetched
-          console.log(roleadds)
-              if (!roleadds) return; 
-          mutee.roles.add([ roleadds ])
+        
+              if (!roleadds) return;
+          
+          roleadds.forEach(role => mutee.roles.add(role))
         }) 
       } catch { 
   let roleadds2 = rolefetched 
@@ -59,7 +60,7 @@ const sembed = new MessageEmbed()
         
 interaction.editReply({embeds: [ sembed ]}); 
 
-let channel = db.get(`modlog_${interaction.guild.id}`)
+let channel = await db.get(`modlog_${interaction.guild.id}`)
         if (!channel) return;
 
         let embeds1 = new MessageEmbed()

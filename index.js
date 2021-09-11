@@ -12,11 +12,12 @@ const Nuggies = require('nuggies');
 const Levels = require("discord-xp");
 
 const bot = new Client({	
-  allowedMentions: { 
+ allowedMentions: { 
     parse: ['users', 'roles'],
     repliedUser: true },
   intents: 32767,
-  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'GUILD', 'USER']
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'GUILD', 'USER'],
+  restRequestTimeout: 30000
 });
 
 module.exports = bot;
