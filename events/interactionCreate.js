@@ -33,13 +33,17 @@ interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 if (cmd.ownerOnly) {
 if (!owners.includes(interaction.user.id)) return interaction.editReply({content: `<a:Attention:883349868062576701> You are not Authorized to use this Command`})
 }
-    
+
+const userp = new MessageEmbed().setDescription(`<a:Attention:883349868062576701> You need \`${cmd.userperm || []}\` Permissions`).setColor("#FC7C7C");
+  
 const userperm = interaction.member.permissions.has(cmd.userperm);
 
-        if (!userperm) return interaction.followUp({content: `<a:Attention:883349868062576701> You need \`${cmd.userperm || []}\` Permissions` });
+        if (!userperm) return interaction.followUp({embeds: [ userp ]});
+    
+const botp = new MessageEmbed().setDescription(`<a:Attention:883349868062576701> I need \`${cmd.botperm || []}\` Permissions`).setColor("#FC7C7C")
 
-const botperm = interaction.guild.me.permissions.has(cmd.botperm);
-        if (!botperm) return interaction.followUp({content: `<a:Attention:883349868062576701> I need \`${cmd.botperm || []}\` Permissions` });
+    const botperm = interaction.guild.me.permissions.has(cmd.botperm);
+        if (!botperm) return interaction.followUp({embeds: [ botp ]});
   
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
@@ -53,7 +57,11 @@ const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
     const user = await Levels.fetch(interaction.user.id, interaction.guild.id);
     interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. <a:Tada_Yellow:883017870068568085>`);
   }
-if(bot.timeout.has(interaction.user.id)) return interaction.editReply(`<a:Attention:883349868062576701> You need to wait!`);
+
+
+let time = new MessageEmbed().setDescription(`<a:Attention:883349868062576701> You need to wait for **${cmd.cooldown}** Second(s) before reusing this __**${cmd.name}**__ command!`).setColor("FC7C7C")
+  
+    if(bot.timeout.has(interaction.user.id)) return interaction.editReply({embeds: [ time ]});
     
   cmd.run(bot, interaction, args); 
 

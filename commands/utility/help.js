@@ -1,7 +1,6 @@
 const { readdirSync } = require("fs"); 
 const prefix = "/";
-let color = "#F4B3CA"; 
-const create_mh = require("../../modules/menu_help"); 
+const create_mh = require("../../Functions/menu_help"); 
 const { CommandInteraction, MessageEmbed } = require("discord.js"); 
 
 module.exports = { 
@@ -36,14 +35,16 @@ run: async (bot, interaction, args) => {
     ];
     
     const emo = {
-      admin: "🔑", 
-      anime: "⚔", 
-      fun: "🌈",
-      info: "❓", 
-      levels: "📊", 
-      mod: "🔱",
-      setup: "⚙",
-      utility: "🔧" 
+      admin: "<a:731210872210325515:883017860488765460>", 
+      anime: "<a:778519065672417300:883017896245211166>", 
+      emoji: "<a:apple:883033005172605020>",
+      fun: "<a:amt_shootingstaws:883017879065354290>",
+      info: "<a:stars_aesthetic:883033007836000308>", 
+      levels: "<a:839921866738106390:883017898984103986>", 
+      mod: "<a:zz_pinkheart:883033001599074364>",
+      music: "<a:music:883032989901156422>",
+      setup: "<a:zzzzg3starburst:883017855187157003>",
+      utility: "<a:zzzghostheart:883017884014637066>" 
     } 
       
     let ccate = []; readdirSync("./commands/").forEach((dir) => { 
@@ -63,13 +64,13 @@ run: async (bot, interaction, args) => {
     }); 
     
   const embed = new MessageEmbed() 
-    .setTitle("Help Menu:") 
-    .setDescription(`>>> My prefix is ${prefix}\nUse \`${prefix}help (category)\` to view commands base on their category!`) 
-    .addFields(categories) 
+    .setTitle("Comfi™ Help")
+    .setDescription(`My Prefix For __**${interaction.guild.name}**__ Is  __**${prefix}**__\n\nFor More Command Information, Type The Following Command:\n**${prefix}help anime or** **${prefix}help ban**`)
+    .addFields(categories)
     .setFooter(`Requested by ${interaction.member.displayName}`, interaction.user.avatarURL({ dynamic: true })) 
     .setTimestamp() 
     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-    .setColor(color); 
+    .setColor(bot.color); 
     
     let menus = create_mh(ccate);
     return interaction.editReply({ 
@@ -123,7 +124,7 @@ run: async (bot, interaction, args) => {
             .setTitle( `__${ value.charAt(0).toUpperCase() + value.slice(1) } Commands!__` )
             .setDescription( `Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n` ) 
             .addFields(catts) 
-            .setColor(color); 
+            .setColor(bot.color); 
           
 await interaction.deferUpdate(); 
 
@@ -199,7 +200,7 @@ const filter = (interaction) => {
         .setTitle( `__${ args[0].charAt(0).toUpperCase() + args[0].slice(1) } Commands!__` ) 
         .setDescription( `Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n` ) 
         .addFields(catts) 
-        .setColor(color); 
+        .setColor(bot.color); 
       
 return interaction.editReply({ 
   embeds: [combed]
@@ -218,13 +219,28 @@ return await interaction.editReply({
     
     const embed = new MessageEmbed() 
       .setTitle("Command Details:")
-      .addField( "Command:", command.name ? `\`${command.name}\`` : "No name for this command." ) 
-      .addField( "Aliases:", command.aliases ? `\`${command.aliases.join("` `")}\`` : "No aliases for this command." )
-      .addField( "Usage:", command.usage ? `\`${prefix}${command.name} ${command.usage}\`` : `\`${prefix}${command.name}\`` ) 
-      .addField( "Command Description:", command.description ? command.description : "No description for this command." ) 
-      .setFooter( `Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true, }) )
+      .addField( 
+        "Command:", 
+        command.name ? `\`${command.name}\`` : "No name for this command."
+      )
+      .addField( 
+        "Usage:", 
+        command.usage ? `\`${prefix}${command.name} ${command.usage}\`` : 
+        `\`${prefix}${command.name}\``
+      ) 
+      .addField( 
+        "Command Description:", 
+        command.description ? 
+        command.description : 
+        "No description for this command."
+      ) 
+      .setFooter( 
+        `Requested by ${interaction.user.tag}`, 
+        interaction.user.displayAvatarURL({ 
+          dynamic: true, }) 
+      )
       .setTimestamp() 
-      .setColor(color); 
+      .setColor(bot.color); 
     
 return await interaction.editReply({ 
   embeds: [embed]

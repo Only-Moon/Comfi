@@ -4,6 +4,7 @@ module.exports = {
     name: "ping",
     description: "returns bots ping",
     ownerOnly: false,
+    cooldown: 5,
     userperm: [""],
     botperm: ["SEND_MESSAGES"],
 
@@ -19,7 +20,7 @@ module.exports = {
             red: "<a:warning:865919101300768779> "
         }
         const pingEmbed = new MessageEmbed()
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
             .setAuthor("Pong! 🏓", interaction.user.avatarURL({ dynamic: true }))
           .addField("Ping :",
                 `${bot.ws.ping <= 200 ? circles.green : bot.ws.ping <= 400 ? circles.yellow : circles.red} ${bot.ws.ping}ms`

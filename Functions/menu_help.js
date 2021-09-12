@@ -22,28 +22,32 @@ const create_mh = (array) => {
   let menus = []; 
   
   const emo = {
-    admin: "🎆", 
-    anime: "🎉", 
-    fun: "📻",
-    info: "🔨", 
-    levels: "🎌", 
-    mod: "☄️", 
-    setup: "🧨", 
-    utility: "🔑", 
-  }; 
+      anime: "883017896245211166", 
+      emoji: "883033005172605020",
+      fun: "883017879065354290",
+      info: "883033007836000308", 
+      levels: "883017898984103986", 
+      mod: "883033001599074364",
+      music: "883032989901156422",
+      setup: "883017855187157003",
+      utility: "883017884014637066" 
+    }; 
   
   array.forEach((cca) => { 
     let name = cca; 
-    let sName = `${emo[name.toLowerCase()]} ${name.toUpperCase()}`; 
+    let sName = `${name.toUpperCase()}`;
+    let emoji = `${emo[name.toLowerCase()]}`;
     let tName = name.charAt(0).toUpperCase() + name.slice(1);
     let fName = name.toUpperCase(); 
     
-    return menus.push({ 
+  return menus.push({ 
       label: sName, 
       description: `${tName} commands!`, 
       value: fName,
+      emoji: emoji
     }); 
-  }); 
+  });
+ 
   
   let chicken = new MessageSelectMenu() 
     .setCustomId(id) 
