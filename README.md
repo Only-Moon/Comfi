@@ -1,3 +1,3 @@
 # Comfi
 
-Switching to discord.js v13 & testing for public use, but currently not ready for public use. 
+Yay, Confi is 95% ready for release, still have some minor bugs but we will fix them and publish ; D
