@@ -9,7 +9,7 @@ module.exports = {
     {
       name: "user",
       description: "User To Unban",
-      type: 3,
+      type: "USER",
       required: true,
     },
   ],

@@ -22,7 +22,11 @@ module.exports = {
       { 
         name: 'false/off', 
         value: 'false'
-      } ], }, ], }, 
+      }
+               ], 
+    }, 
+             ],
+  }, 
       { 
         type: 'SUB_COMMAND', 
         description: 'Sets the channel for chatbot', 

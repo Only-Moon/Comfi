@@ -4,8 +4,8 @@ module.exports = {
     name: "lock",
     description: "Locks a channel",
     ownerOnly: false,
-    userperm: ["MANAGE_SERVER"],
-    botperm: ["MANAGE_SERVER"],
+    userperm: ["MANAGE_CHANNELS"],
+    botperm: ["MANAGE_CHANNELS"],
     options: [
         {
             type: 'CHANNEL',

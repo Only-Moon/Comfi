@@ -7,9 +7,18 @@ module.exports = {
     options: [
         {
             type: 'STRING',
-            description: 'options are: **on/off**',
+            description: 'enable or disable server lockdown',
             name: 'option',
             required: true,
+            choices: [ { 
+        name: 'true/on', 
+        value: 'true' 
+      }, 
+      { 
+        name: 'false/off', 
+        value: 'false'
+      }
+               ],
         },
       
     ],

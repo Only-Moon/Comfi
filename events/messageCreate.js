@@ -27,19 +27,14 @@ Use \`\`\`/help\`\`\` \n for get a list of commands.`
 	
  message.reply({embeds: [ ping ]})                                         }
 
-	const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');	
-  const prefixRegex = new RegExp(		`^(<@!?${bot.user.id}>|${escapeRegex(Prefix)})\\s*`	);
-	if (!prefixRegex.test(message.content)) return;
-	const [matchedPrefix] = message.content.match(prefixRegex);	Prefix = matchedPrefix;
-
 	if (!message.content.startsWith(Prefix)) return;
 
 	
 if (!message.guild.me.permissionsIn(message.channel).has('EMBED_LINKS'))	
   return message.reply('**:x: I am missing the Permission to `EMBED_LINKS`**');
-	let args = message.content		.slice(matchedPrefix.length)		
-    .trim()		
-    .split(/ +/g);	
+	//let args = message.content		.slice(Prefix)		
+ //   .trim()		
+  //  .split(/ +/g);	
   
   let cmd = args.shift().toLowerCase();
 	

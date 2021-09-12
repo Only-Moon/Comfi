@@ -25,8 +25,8 @@ module.exports = {
             description: 'Disables the confess channel',
         },
     ],
-    userperm: ["MANAGE_SERVER"],
-    botperm: ["MANAGE_SERVER"],
+    userperm: ["MANAGE_GUILD"],
+    botperm: ["MANAGE_GUILD"],
     /**
      *
      * @param {CommandInteraction} interaction

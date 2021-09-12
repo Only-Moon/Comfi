@@ -5,7 +5,7 @@ const simplydjs = require("simply-djs")
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "set-ticket",
+    name: "ticket-system",
     description: "Setup the ticket system",
     ownerOnly: false,
     options: [
@@ -41,8 +41,8 @@ module.exports = {
             name: 'display',
         },
     ],
-    userperm: ["MANAGE_CHANNELS"],
-    botperm: ["MANAGE_CHANNELS"],
+    userperm: ["MANAGE_GUILD"],
+    botperm: ["MANAGE_GUILD"],
     /**
      *
      * @param {CommandInteraction} interaction

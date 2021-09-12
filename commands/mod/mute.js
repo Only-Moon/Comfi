@@ -25,7 +25,7 @@ module.exports = {
       required: false,
     },
   ],
-  userperm: ["MANAGE_ROLES"],
+  userperm: ["MUTED_MEMBERS"],
   botperm: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   /**
    *

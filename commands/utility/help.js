@@ -15,7 +15,7 @@ module.exports = {
       required: false,
     },
   ], 
-     userperm: [""], 
+  userperm: [""], 
   botperm: [""],
   
   /**
@@ -123,7 +123,10 @@ run: async (bot, interaction, args) => {
           const combed = new MessageEmbed() 
             .setTitle( `__${ value.charAt(0).toUpperCase() + value.slice(1) } Commands!__` )
             .setDescription( `Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n` ) 
-            .addFields(catts) 
+            .addFields(catts)
+            .setFooter(`Comfi™ Help`, interaction.user.avatarURL({ dynamic: true }))
+            .setTimestamp()
+            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
             .setColor(bot.color); 
           
 await interaction.deferUpdate(); 
@@ -199,7 +202,10 @@ const filter = (interaction) => {
       const combed = new MessageEmbed() 
         .setTitle( `__${ args[0].charAt(0).toUpperCase() + args[0].slice(1) } Commands!__` ) 
         .setDescription( `Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n` ) 
-        .addFields(catts) 
+        .addFields(catts)
+        .setFooter(`Comfi™ Help`, interaction.user.avatarURL({ dynamic: true }))
+        .setTimestamp()
+        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
         .setColor(bot.color); 
       
 return interaction.editReply({ 
@@ -210,7 +216,7 @@ return interaction.editReply({
     if (!command) {
       const embed = new MessageEmbed()
         .setTitle( `Invalid command! Use \`${prefix}help\` for all of my commands!` ) 
-        .setColor("RED"); 
+        .setColor("#FF7878"); 
       
 return await interaction.editReply({
   embeds: [embed] 
@@ -234,12 +240,9 @@ return await interaction.editReply({
         command.description : 
         "No description for this command."
       ) 
-      .setFooter( 
-        `Requested by ${interaction.user.tag}`, 
-        interaction.user.displayAvatarURL({ 
-          dynamic: true, }) 
-      )
-      .setTimestamp() 
+      .setFooter(`Comfi™ Help`, interaction.user.avatarURL({ dynamic: true }))
+      .setTimestamp()
+      .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
       .setColor(bot.color); 
     
 return await interaction.editReply({ 

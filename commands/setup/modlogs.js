@@ -25,8 +25,8 @@ module.exports = {
             description: 'Disables the modlogs channel',
         },
     ],
-    userperm: ["ADMINISTRATOR"],
-    botperm: ["MANAGE_SERVER"],
+    userperm: ["MANAGE_GUILD"],
+    botperm: ["MANAGE_GUILD"],
     /**
      *
      * @param {CommandInteraction} interaction
