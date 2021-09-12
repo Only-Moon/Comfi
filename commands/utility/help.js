@@ -1,6 +1,6 @@
 const { readdirSync } = require("fs"); 
 const prefix = "/";
-const create_mh = require("../../Functions/menu_help"); 
+const create_mh = require("../../functions/menu_help"); 
 const { CommandInteraction, MessageEmbed } = require("discord.js"); 
 
 module.exports = { 

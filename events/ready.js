@@ -1,4 +1,3 @@
-const { PREFIX } = require('../config.js');
 const bot = require("../index");
 const express = require('express');
 const app = express();

@@ -4,7 +4,7 @@ const { db } = require('../Database')
 const moment = require('moment');
 const ms = require('ms');
 const pms = require('pretty-ms');
-const { PREFIX } = require("../config.js");
+const { PREFIX } = "/";
 
 bot.on("messageCreate", async (message) => {
 

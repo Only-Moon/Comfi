@@ -1,3 +1,5 @@
 node_modules
 .env
 .replit
+package-lock.json
+config.json

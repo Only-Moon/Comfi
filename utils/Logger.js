@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const moment = require('moment'); 
 const log = require('simple-node-logger').createRollingFileLogger({ 		
-  logDirectory: './Utils/logs', 		
+  logDirectory: './utils/logs', 		
   fileNamePattern: 'roll-<DATE>.log', 		
   dateFormat: 'YYYY.MM.DD', 	
 }); 

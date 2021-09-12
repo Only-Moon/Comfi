@@ -8,7 +8,7 @@ console.log('Loading Bot...');
 const Nuggies = require('nuggies');
 const Levels = require("discord-xp");
 
-const Comfi = require("./Utils/Comfi"),	
+const Comfi = require("./utils/Comfi"),	
 bot = new Comfi();
 
 module.exports = bot;
