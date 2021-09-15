@@ -1,8 +1,9 @@
 const ms = require("ms");
 const pms = require("pretty-ms");
+const moment = require('moment')
 const { db } = require('../../Database.js');
-const simplydjs = require("simply-djs")
 const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { Color, isColor } = require("coloras");
 
 module.exports = {
     name: "welcome",
@@ -12,7 +13,7 @@ module.exports = {
           {
            type: 'SUB_COMMAND',
            description: 'Sets the greet toggle true/false',
-           name: 'wel-toggle',
+           name: 'toggle',
            options: [
             {
             type: 'STRING',
@@ -30,30 +31,7 @@ module.exports = {
             }
             ],
             },
-           ],
-          },
-           {
-           type: 'SUB_COMMAND',
-           description: 'Sets the greet embed toggle true/false',
-           name: 'embed-toggle',
-           options: [
-            {
-            type: 'STRING',
-            description: 'Toggle greet embed',
-            name: 'option',
-            required: true,
-            choices: [
-            {
-            name: 'true/on',
-            value: 'true'  
-            },
-            {
-            name: 'false/off',
-            value: 'false'
-            }
-            ],
-            },
-           ],
+             ],
           },
           {
             type: 'SUB_COMMAND',
@@ -72,6 +50,56 @@ module.exports = {
             type: 'SUB_COMMAND',
             description: 'Sets the greet embed',
             name: 'embed',
+            options: [ 
+        {
+            name: 'title',
+            type: 'STRING',
+            description: "Choose a title.",
+            required: true,
+        },
+        {
+            name: 'description',
+            type: 'STRING',
+            description: "Choose a description.",
+            required: true,
+        },      
+        {
+            name: 'url',
+            type: 'STRING',
+            description: "Choose a url for title.",
+            required: false,
+        },
+        {
+            name: 'image',
+            type: 'STRING',
+            description: "Choose a image.",
+            required: false,
+        },
+        {
+            name: 'thumbnail',
+            type: 'STRING',
+            description: "Choose a thumbnail.",
+            required: false,
+        },
+        {
+            name: 'color',
+            type: 'STRING',
+            description: "Choose a color in (RGB, HEX, HSL, HSV, CMYK).",
+            required: false,
+        },
+        {
+            name: 'footer',
+            type: 'STRING',
+            description: "Choose a footer.",
+            required: false,
+        },
+        {
+            name: "author",
+            type: "USER",
+            required: false,
+            description: 'Choose a author.'
+        },
+            ],
         },
         {
           type: 'SUB_COMMAND',
@@ -80,20 +108,12 @@ module.exports = {
         },
         {
             type: 'SUB_COMMAND',
-            description: 'Sets the greet embed image/banner',
-            name: 'image',
-            options: [
-        {
-            type: 'STRING',
-            name: 'link',
-            description: 'Image Url',
-            required:  true,
-        }
-    ]
+            description: 'Test the Welcome System',
+            name: 'test',
         },
     ],
-    userperm: ["MANAGE_CHANNELS"],
-    botperm: ["MANAGE_CHANNELS"],
+    userperm: ["MANAGE_GUILD"],
+    botperm: ["MANAGE_GUILD"],
     /**
      *
      * @param {CommandInteraction} interaction
@@ -131,7 +151,7 @@ if (option === 'help') {
   const embed = new MessageEmbed()
     .setTitle("Greetings Setup")
     .setAuthor(interaction.member.displayName)
-    .setColor("RANDOM")
+    .setColor(bot.color)
     .setTimestamp()
     .setDescription(`**Welcome to the setup.**\nHere are the parameters available which you can set for the greeting message, background image and will it be a embed or not.\n\n`)
     .addField("Parameters you can use in message of Welcome/leave -", "```{user}``` - Mentions the joining or leaving member\n```{user_name}``` - Just gives the username of the join/leave member\n```{user_tag}``` - Shows the user tag. Ex - User#1234\n```{user_id}``` - Shows the user id\n```{server_name}``` - Shows the server name\n```{server_id}``` - Shows the server id\n```{membercount}``` - Shows the member count of the server\n```{user_createdAt}``` - Shows member account creation date\n```{user_createdAgo}``` - Shows the member creation time ago")
@@ -157,36 +177,111 @@ if (option === 'channel') {
 const channel = interaction.options.getChannel('name');
 				if (!channel)
 					return interaction.editReply(':x: | **Specify the channel**');
-				await db.set(`chatbt_${interaction.guild.id}`, channel.id);
+				await db.set(`welcome_channel_${interaction.guild.id}`, channel.id);
 				return interaction.editReply(
-					'**The chatbot channel has been set to** ' + channel.toString()
+					'**The Welcome channel has been set to** ' + channel.toString()
 				);
   
 }
 
 if (option === 'embed') {
 
-simplydjs.embedCreate(interaction, {   
-slash: true,   
-}).then((emb) => {
-console.log(emb)
-})
+const author = interaction.options.getUser('author');
+
+        const title = interaction.options.getString('title');
+        const description = interaction.options.getString('description');
+        const couleurr = interaction.options.getString('color');
+        const url = interaction.options.getString('url');
+        const image = interaction.options.getString('image');
+        const thumbnail = interaction.options.getString('thumbnail');
+        const footer = interaction.options.getString('footer');
+
+        const resultat = new MessageEmbed()
+        .setTitle(title)
+
+        if(description) {
+
+let sMsg = description
+					.replace(/{user}/g, `${interaction.member}`)
+					.replace(/{user_tag}/g, `${interaction.user.tag}`)
+					.replace(/{user_name}/g, `${interaction.user.username}`)
+					.replace(/{user_id}/g, `${interaction.member.id}`)
+					.replace(/{server_name}/g, `${interaction.guild.name}`)
+					.replace(/{server_id}/g, `${interaction.guild.id}`)
+					.replace(/{membercount}/g, `${interaction.guild.memberCount}`)
+					.replace(/{guild}/g, `${interaction.guild.name}`)
+					.replace(
+						/{user_createdAgo}/g,
+						`${moment(interaction.user.createdTimestamp).fromNow()}`
+					)
+					.replace(
+						/{user_createdAt}/g,
+						`${moment(interaction.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}`
+					);
+          
+          resultat.setDescription(sMsg)
+        }
+        if(couleurr) {
+            if (!isColor(couleurr).color) return interaction.editReply({ content: `<a:Attention:883349868062576701> You must enter a valid colour. The colour can be in RGB, HEX, HSL, HSV, CMYK.` });
+            const color = new Color(couleurr);
+            resultat.setColor(color.toHex())
+        }
+
+        if(url){
+            if(url.includes('https://') || url.includes('http://')){ 
+                resultat.setURL(url)
+            }
+            else{
+                return interaction.editReply({ content: `<a:Attention:883349868062576701> The link is not valid.`})
+            }
+        }
+
+        if(image){
+            if(image.includes('https://') || image.includes('http://')){ 
+                resultat.setImage(image)
+            }
+            else{
+                return interaction.editReply({ content: `<a:Attention:883349868062576701> The link for the image is not valid.`})
+            }
+        }
+
+        if(thumbnail){
+            if(thumbnail.includes('https://') || thumbnail.includes('http://')){ 
+                resultat.setThumbnail(thumbnail)
+            }
+            else {
+                return interaction.editReply({ content: `<a:Attention:883349868062576701> The link for the thumbnail is not valid.`})
+            }
+        }
+
+        if(author){
+            resultat.setAuthor(author.tag, author.displayAvatarURL({ dynamic: true }))
+        }
+        
+        if(footer){
+            resultat.setFooter(footer)
+        }
+let welcome = await db.set(`wel_${interaction.guild.id}`, resultat)
+
+  let welcc = await db.get(`wel_${interaction.guild.id}`) 
+    return interaction.editReply({content: "Setted Embed For Welcome System", 
+embeds: [ welcc ]})  
 }
 
-if (option === 'image') {
+if (option === 'test') {
 
-let url = interaction.options.getString('link')
+const add = await bot.emit("guildMemberAdd", interaction.member);
   
-let embed1 = new MessageEmbed()
-            .setTitle("Success!!")
-            .setColor("#F4B3CA")
-            .setDescription(`I have successfully seted the welcome image in this server.\n\nPlease make sure to **not** delete your Image from the Channel! \n\nThis is Only Applicable when __**Embedtoggle**__ is **false**`)
-            .setFooter(`Requested by ${interaction.user.username}`, interaction.user.avatarURL({
-              dynamic: true
-            }))
-            interaction.editReply({embeds: [ embed1 ]})
-            await db.set(`WelIm_${interaction.guild.id}`, url);
+     if (!add) { 
+       return interaction.editReply('Please setup Welcome Channel and Message Using `/welcome channel` and `/welcome embed` first!', interaction.channel) 
+       
+     }
+       if(add) { 
+         return interaction.editReply("Tested Welcome. If the message didn't send to the channel, something might be wrong with the permissions.") 
+         
+       }
 
-      }
+}
+      
     }}
   

@@ -51,12 +51,9 @@ module.exports = {
         } 
       if (!muterole) { 
         try { 
-          muterole = await interaction.guild.roles.create({ name: "Muted" });
-
-        interaction.guild.channels.cache.map((x) => {
-          if (!x.isThread()) {
-            x.permissionOverwrites.edit(
-              role,
+          muterole = await interaction.guild.roles.create({ name: "muted" }) 
+            interaction.guild.channels.cache.forEach(async (channel) => { await channel.permissionOverwrites.edit(
+              muterole,
               {
                 MANAGE_WEBHOOKS: false,
                 SEND_MESSAGES: false,
@@ -70,13 +67,8 @@ module.exports = {
                 MENTION_EVERYONE: false,
                 CONNECT: false,
                 SPEAK: false,
-              },
-              reason,
-            );
-          }
-
-          MutedRole = role;
-        });
+              })
+        })
         } catch (e) {
           console.log(e);
         } 
@@ -84,7 +76,7 @@ module.exports = {
       if (mutee.roles.cache.has(muterole.id)) return interaction.editReply("<a:Attention:883349868062576701> **User Is Already Muted!**") 
         await db.set(`muteeid_${interaction.guild.id}_${mutee.id}`, userRoles) 
           try { mutee.roles.set([muterole.id]).then(() => { 
-            mutee.send(`**Hello, You Have Been Muted In ${interaction.guild.name} for - ${reason || "No Reason"}`).catch(() => null)
+            mutee.send(`**Hello, You Have Been Muted In ${interaction.guild.name} for - ${reason || "No Reason"}**`).catch(() => null)
           })
           } catch { 
             mutee.roles.set([muterole.id]) 
@@ -110,7 +102,7 @@ interaction.editReply({embeds: [ sembed2 ]});
         setTimeout(async () => {
           await user.member.roles.remove(MutedRole);
         }, time.value * 60 * 1000)
-  await user.member.send("You have been Unmuted from the server"); 
+  await mutee.send("You have been Unmuted from the server"); 
  }
 
 let channel = await db.get(`modlog_${interaction.guild.id}`)

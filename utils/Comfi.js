@@ -16,6 +16,7 @@ class Comfi extends Discord.Client {
         })
         this.logger = (require('./Logger.js'))
         this.color = '#F4B3CA'
+        this.error = '<a:Attention:883349868062576701>'
         this.on('ready', () => {
             this.logger.ready(`Logged in as ${this.user.tag}`, 'ready')
         })

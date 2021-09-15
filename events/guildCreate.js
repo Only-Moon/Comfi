@@ -13,9 +13,10 @@ bot.on("guildCreate", async(guild) => {
 const row = new MessageActionRow()
    .addComponents(button);
 
-  let msg = new MessageEmbed() .setTitle("<:pinkheartsu_HE:796373357280362517> Thanks for adding me! <:pinkheartsu_HE:796373357280362517>") 
+  let msg = new MessageEmbed() .setTitle("<a:zz_pinkheart:883033001599074364> Thanks for adding me! <a:zz_pinkheart:883033001599074364>") 
   .setColor("#F4B3CA") 
-  .setDescription(`Hey, thanks for adding me to ${guild.name} <:pink_heartsies_HE:796373408010600468>  \n My Prefix Is **Cr!**(useless) \n You Can Use Me with **/** \n\n To get started type **/help** Or **/help ping**`) 
+  .setDescription(`Hey, thanks for adding me to ${guild.name} <a:woah:883032994544255056> \n My Prefix Is **/** \n\n To get started type **/help** Or **/help ping**`)
+   .setFooter("Comfi™ v1.0.0")
   
   ch.send({
     embeds: [ msg ],
