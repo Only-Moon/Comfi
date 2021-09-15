@@ -75,8 +75,8 @@ interaction.guild.name
     return interaction.editReply( 					'**The chatbot channel has been set to** ' + channel.toString() 		
                                 ); 
   }
-  if (option === 'setting') { 			
-    let chnnl = await db.get(`chatbt_${interaction.guild.id}`) || 'None'; 				
+  if (option === 'settings') { 			
+    let chnnl = await db.fetch(`chatbt_${interaction.guild.id}`) || 'None'; 				
     let toggle = await db.get(`chattgl_${interaction.guild.id}`) || 'None'; 				
     let embed = new MessageEmbed() 					
       .setTitle('Chatbot configuration') 					
