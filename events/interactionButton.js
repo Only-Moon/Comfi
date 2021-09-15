@@ -18,7 +18,7 @@ if (interaction.isButton()) {
   const joindsc = new MessageButton() .setStyle('LINK') 
   .setLabel(
     'Join Our Support Server!') 
-    .setURL('https://discord.gg/remYPHCVgW'); 
+    .setURL('https://discord.gg/HNfhvCeR6d'); 
 
 const row = new MessageActionRow()
 			.addComponents(joindsc);
@@ -36,7 +36,7 @@ const row = new MessageActionRow()
   const joindscc = new MessageButton() 
   .setStyle('LINK') 
   .setLabel('Join Our Support Server!')
-  .setURL('https://discord.gg/remYPHCVgW'); 
+  .setURL('https://discord.gg/HNfhvCeR6d'); 
 
 const row1 = new MessageActionRow()
 			.addComponents(joindscc)

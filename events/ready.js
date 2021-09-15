@@ -1,7 +1,7 @@
 const bot = require("../index");
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 3000;
 
 bot.on("ready", () => {
 	bot.logger.ready(

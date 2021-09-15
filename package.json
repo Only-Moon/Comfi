@@ -22,7 +22,7 @@
     "covidapi": "^0.5.0",
     "discord-canvas": "^1.4.1",
     "discord-image-generation": "^1.4.9",
-    "discord-together": "^1.1.62",
+    "discord-together": "^1.2.0",
     "discord-xp": "^1.1.16",
     "discord.js": "^13.1.0",
     "djs-anime": "^2.0.9",
@@ -79,7 +79,7 @@
     "ytsearcher": "^1.2.4"
   },
   "devDependencies": {
-    "node": "^16.6.1"
+    "node": "^16.9.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

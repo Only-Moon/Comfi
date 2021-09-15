@@ -1,0 +1,4355 @@
+05:27:19.495 INFO  .---------------------.
+|        Slash        |
+|---------------------|
+| Slash | Load status |
+|-------|-------------|
+| quote | ✅           |
+'---------------------' 
+05:27:20.301 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+'---------------------------' 
+05:27:20.303 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+'---------------------------' 
+05:27:20.304 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+'---------------------------' 
+05:27:20.305 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+'---------------------------' 
+05:27:20.306 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+'---------------------------' 
+05:27:20.408 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+'---------------------------' 
+05:27:20.409 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+'---------------------------' 
+05:27:20.411 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+'---------------------------' 
+05:27:20.412 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+'---------------------------' 
+05:27:20.413 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+'---------------------------' 
+05:27:20.415 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+'---------------------------' 
+05:27:20.417 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+'---------------------------' 
+05:27:20.422 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+'---------------------------' 
+05:27:20.424 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+'---------------------------' 
+05:27:20.425 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+'---------------------------' 
+05:27:20.426 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+'---------------------------' 
+05:27:20.427 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+'---------------------------' 
+05:27:20.428 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+'---------------------------' 
+05:27:20.430 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+'---------------------------' 
+05:27:20.482 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+'---------------------------' 
+05:27:20.484 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+'---------------------------' 
+05:27:20.486 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+'---------------------------' 
+05:27:20.487 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+'---------------------------' 
+05:27:20.489 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+| github      | ✅           |
+'---------------------------' 
+05:27:20.493 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+| github      | ✅           |
+| info        | ✅           |
+'---------------------------' 
+05:27:20.520 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+| github      | ✅           |
+| info        | ✅           |
+| movie       | ✅           |
+'---------------------------' 
+05:27:20.824 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+| github      | ✅           |
+| info        | ✅           |
+| movie       | ✅           |
+| playstore   | ✅           |
+'---------------------------' 
+05:27:20.826 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+| github      | ✅           |
+| info        | ✅           |
+| movie       | ✅           |
+| playstore   | ✅           |
+| screenshot  | ✅           |
+'---------------------------' 
+05:27:20.917 INFO  .---------------------------.
+|           Slash           |
+|---------------------------|
+|    Slash    | Load status |
+|-------------|-------------|
+| quote       | ✅           |
+| animesearch | ✅           |
+| anime       | ✅           |
+| Avatar      | ✅           |
+| Banner      | ✅           |
+| getcontent  | ✅           |
+| Translate   | ✅           |
+| emoji-list  | ✅           |
+| emoji-stats | ✅           |
+| 8ball       | ✅           |
+| calculator  | ✅           |
+| cleverate   | ✅           |
+| drake       | ✅           |
+| image       | ✅           |
+| meme        | ✅           |
+| roast       | ✅           |
+| rps         | ✅           |
+| say         | ✅           |
+| ttt         | ✅           |
+| activities  | ✅           |
+| avatar      | ✅           |
+| banner      | ✅           |
+| covid       | ✅           |
+| djsdocs     | ✅           |
+| github      | ✅           |
+| info        | ✅           |
+| movie       | ✅           |
+| playstore   | ✅           |
+| screenshot  | ✅           |
+| twitter     | ✅           |
+'---------------------------' 
+05:27:20.931 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+'-------------------------------' 
+05:27:20.932 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+'-------------------------------' 
+05:27:20.934 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+'-------------------------------' 
+05:27:21.087 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+'-------------------------------' 
+05:27:21.089 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+'-------------------------------' 
+05:27:21.091 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+'-------------------------------' 
+05:27:21.094 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+'-------------------------------' 
+05:27:21.095 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+'-------------------------------' 
+05:27:21.097 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+'-------------------------------' 
+05:27:21.098 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+'-------------------------------' 
+05:27:21.099 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+'-------------------------------' 
+05:27:21.102 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+'-------------------------------' 
+05:27:21.104 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+'-------------------------------' 
+05:27:21.105 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+'-------------------------------' 
+05:27:21.107 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+'-------------------------------' 
+05:27:21.111 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+'-------------------------------' 
+05:27:21.113 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+'-------------------------------' 
+05:27:21.114 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+'-------------------------------' 
+05:27:21.116 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+'-------------------------------' 
+05:27:21.117 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+'-------------------------------' 
+05:27:21.119 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+'-------------------------------' 
+05:27:21.120 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+'-------------------------------' 
+05:27:21.123 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+'-------------------------------' 
+05:27:21.125 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+'-------------------------------' 
+05:27:21.127 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+'-------------------------------' 
+05:27:21.229 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+'-------------------------------' 
+05:27:21.231 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+'-------------------------------' 
+05:27:21.233 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+'-------------------------------' 
+05:27:21.238 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+'-------------------------------' 
+05:27:21.242 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+'-------------------------------' 
+05:27:21.284 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+'-------------------------------' 
+05:27:21.286 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+'-------------------------------' 
+05:27:21.287 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+'-------------------------------' 
+05:27:21.289 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+'-------------------------------' 
+05:27:21.292 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+'-------------------------------' 
+05:27:21.294 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+'-------------------------------' 
+05:27:21.298 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+'-------------------------------' 
+05:27:21.301 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+'-------------------------------' 
+05:27:21.307 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+'-------------------------------' 
+05:27:21.308 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+'-------------------------------' 
+05:27:21.389 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+'-------------------------------' 
+05:27:21.391 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+'-------------------------------' 
+05:27:21.394 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+'-------------------------------' 
+05:27:21.396 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+'-------------------------------' 
+05:27:21.397 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+'-------------------------------' 
+05:27:21.399 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+'-------------------------------' 
+05:27:21.401 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+'-------------------------------' 
+05:27:21.403 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+'-------------------------------' 
+05:27:21.404 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+'-------------------------------' 
+05:27:21.451 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+'-------------------------------' 
+05:27:21.501 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+'-------------------------------' 
+05:27:21.515 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+| sourcebin       | ✅           |
+'-------------------------------' 
+05:27:21.552 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+| sourcebin       | ✅           |
+| suggest         | ✅           |
+'-------------------------------' 
+05:27:21.725 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+| sourcebin       | ✅           |
+| suggest         | ✅           |
+| translate       | ✅           |
+'-------------------------------' 
+05:27:21.726 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+| sourcebin       | ✅           |
+| suggest         | ✅           |
+| translate       | ✅           |
+| uptime          | ✅           |
+'-------------------------------' 
+05:27:21.727 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+| sourcebin       | ✅           |
+| suggest         | ✅           |
+| translate       | ✅           |
+| uptime          | ✅           |
+| vote            | ✅           |
+'-------------------------------' 
+05:27:21.740 INFO  .-------------------------------.
+|             Slash             |
+|-------------------------------|
+|      Slash      | Load status |
+|-----------------|-------------|
+| quote           | ✅           |
+| animesearch     | ✅           |
+| anime           | ✅           |
+| Avatar          | ✅           |
+| Banner          | ✅           |
+| getcontent      | ✅           |
+| Translate       | ✅           |
+| emoji-list      | ✅           |
+| emoji-stats     | ✅           |
+| 8ball           | ✅           |
+| calculator      | ✅           |
+| cleverate       | ✅           |
+| drake           | ✅           |
+| image           | ✅           |
+| meme            | ✅           |
+| roast           | ✅           |
+| rps             | ✅           |
+| say             | ✅           |
+| ttt             | ✅           |
+| activities      | ✅           |
+| avatar          | ✅           |
+| banner          | ✅           |
+| covid           | ✅           |
+| djsdocs         | ✅           |
+| github          | ✅           |
+| info            | ✅           |
+| movie           | ✅           |
+| playstore       | ✅           |
+| screenshot      | ✅           |
+| twitter         | ✅           |
+| urbandictionary | ✅           |
+| weather         | ✅           |
+| leaderboard     | ✅           |
+| rank            | ✅           |
+| afk             | ✅           |
+| ban             | ✅           |
+| create          | ✅           |
+| deafan          | ✅           |
+| hackban         | ✅           |
+| kick            | ✅           |
+| lock            | ✅           |
+| lockdown        | ✅           |
+| mute            | ✅           |
+| purge           | ✅           |
+| rafk            | ✅           |
+| warn-remove     | ✅           |
+| setnick         | ✅           |
+| warns-show      | ✅           |
+| tempban         | ✅           |
+| unban           | ✅           |
+| undeafen        | ✅           |
+| unlock          | ✅           |
+| unmute          | ✅           |
+| vc-move         | ✅           |
+| warn-add        | ✅           |
+| eval            | ✅           |
+| getinvite       | ✅           |
+| serverlist      | ✅           |
+| terminal        | ✅           |
+| boost           | ✅           |
+| chatbot         | ✅           |
+| confession      | ✅           |
+| modlogs         | ✅           |
+| modmail         | ✅           |
+| muterole        | ✅           |
+| suggestion      | ✅           |
+| ticket-system   | ✅           |
+| welcome         | ✅           |
+| bugreport       | ✅           |
+| confess         | ✅           |
+| embed           | ✅           |
+| emoji           | ✅           |
+| help            | ✅           |
+| invites         | ✅           |
+| invite          | ✅           |
+| linkshorten     | ✅           |
+| ping            | ✅           |
+| poll            | ✅           |
+| privacy         | ✅           |
+| qrcode          | ✅           |
+| remind          | ✅           |
+| sourcebin       | ✅           |
+| suggest         | ✅           |
+| translate       | ✅           |
+| uptime          | ✅           |
+| vote            | ✅           |
+| youtube-search  | ✅           |
+'-------------------------------' 
+05:27:23.186 INFO  Logged in as Comfi#6893 
+05:27:23.187 INFO  Watching 87 Slashs, 164 Channels and 4762 Users in  3 Servers 
+05:27:23.187 INFO  ------------------------------------- 
+05:27:23.198 INFO  Your app is listening a http://localhost:3000 
+05:27:23.294 INFO  Mongodb connected! 
