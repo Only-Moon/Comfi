@@ -35,12 +35,12 @@ module.exports = {
                 guild = found
             }
         } else {
-            return interaction.editReply("Invalid Name!");
+   return interaction.editReply(`${bot.error} Invalid Name!`);
         }
         if(guild){
             let tChannel = guild.channels.cache.find(ch => ch.type == "GUILD_TEXT" && ch.permissionsFor(ch.guild.me).has("CREATE_INSTANT_INVITE"));
             if(!tChannel) {
-                return interaction.editReply("An Error Has Occured Try Again!"); 
+                return interaction.editReply(`${bot.error} An Error Has Occured Try Again!`); 
             }
             let invite = await tChannel.createInvite({ temporary: false, maxAge: 0 }).catch(err => {
                 return interaction.editReply(`${err} has occured!`);

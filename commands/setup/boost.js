@@ -168,12 +168,12 @@ const helpEmbed1 = new MessageEmbed()
                             const helpEmbed3 = new MessageEmbed() 
                             .setAuthor( `Help - Boost Detectors`, bot.user.displayAvatarURL({ dynamic: true }) ) 
                             .setDescription("Here you can see how to set up settings")
-                            .setImage( "https://media.discordapp.net/attachments/869823340947316737/869826598147342388/unknown.png?width=747&height=269" ) 
+                           // .setImage( "https://media.discordapp.net/attachments/869823340947316737/869826598147342388/unknown.png?width=747&height=269" ) 
                             .setColor("#F4B3CA"); 
                             
                             const helpEmbed4 = new MessageEmbed() .setAuthor( `Help - Boost Detectors`, bot.user.displayAvatarURL({ dynamic: true }) ) 
                             .setDescription("Here is how it will look in Boost Channel.") 
-                            .setImage( "https://media.discordapp.net/attachments/869823340947316737/869827463105101844/unknown.png" )
+                          //  .setImage( "https://media.discordapp.net/attachments/869823340947316737/869827463105101844/unknown.png" )
                             .setColor("#F4B3CA");
                             
 const pages = [helpEmbed1, helpEmbed2, helpEmbed3, helpEmbed4]; 
@@ -195,11 +195,11 @@ skipBtn: true,
 if (option === 'test') {
 
 const add = await bot.emit("guildMemberUpdate", interaction.member); 
-     if (!add) { 
-       return interaction.editReply('Please setup Boost Channel and Message Using `/boost channel` and `/boost message` first!', interaction.channel) 
+     if (!boostData) { 
+       return interaction.editReply('Please setup Boost Channel and Message Using `/boost channel` and `/boost message` first!', interaction.member) 
        
      }
-       if(add) { 
+       if(boostData) { 
          return interaction.editReply("Tested boost. If the message didn't send to the channel, something might be wrong with the permissions.") 
          
        }

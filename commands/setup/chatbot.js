@@ -70,7 +70,7 @@ interaction.guild.name
   if (option === 'channel') { 				
     const channel = interaction.options.getChannel('name'); 				
     if (!channel) 				
-      return interaction.editReply(':x: | **Specify the channel**'); 				
+      return interaction.editReply(`${bot.error} **Specify the channel**`); 				
     await db.set(`chatbt_${interaction.guild.id}`, channel.id); 				
     return interaction.editReply( 					'**The chatbot channel has been set to** ' + channel.toString() 		
                                 ); 
@@ -94,7 +94,7 @@ interaction.guild.name
     check = await db.get(`chatbt_${interaction.guild.id}`) && await db.get(`chattgl_${interaction.guild.id}`) 				 				
       
     if(!check) { 	
-      return interaction.editReply("Please set the required fields first or i cant disable it!!"); 	
+      return interaction.editReply(`${bot.error} Please set the required fields first or i cant disable it!!`); 	
     } else { 		
       await db.delete(`chatbt_${interaction.guild.id}`) 
         await db.delete(`chattgl_${interaction.guild.id}`); 		

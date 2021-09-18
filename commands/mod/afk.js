@@ -14,21 +14,21 @@ module.exports = {
         },
     ],
     userperm: [""],
-    botperm: [""],
+    botperm: ["MANAGAE_NICKNAMES"],
     /**
      *
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-    if (await db.has(`afk-${interaction.user.id}+${interaction.guild.id}`)) return
+  await db.has(`afk-${interaction.user.id}+${interaction.guild.id}`)
     
 		const content = args.join(' ') || 'No Reason';
 		await db.set(`afk-${interaction.user.id}+${interaction.guild.id}`, content);
 		await db.set(`aftime-${interaction.user.id}+${interaction.guild.id}`, Date.now());
 		const embed = new MessageEmbed()
 			.setDescription(`You have been set to afk\n**Reason :** ${content}`)
-			.setColor('GREEN')
+			.setColor(bot.color)
 			.setAuthor(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
     .setFooter("Use /rafk or type a message to remove your AFK");
 

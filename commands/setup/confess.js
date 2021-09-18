@@ -38,7 +38,7 @@ let [ subcommand ] = args
 if (subcommand === 'enable') {
         let Channel = interaction.options.getChannel('channel') || interaction.guild.channels.cache.get(args[0]);
 
-        if (Channel.type === "GUILD_VOICE") return message.channel.send(`<a:Attention:883349868062576701>P lease Mention A Text Channel!`);
+        if (Channel.type === "GUILD_VOICE") return message.channel.send(`${bot.error} Please Mention A Text Channel!`);
 
         await db.set(`confession_${interaction.guild.id}`, Channel.id);
 
@@ -52,7 +52,7 @@ if (subcommand === 'enable') {
 if (subcommand === 'disable') {
 
 let ch = await db.get(`confession_${interaction.guild.id}`)
-  if (!ch) return interaction.editReply(`<a:Attention:883349868062576701> Sets Confession Channel First`)
+  if (!ch) return interaction.editReply(`${bot.error} Sets Confession Channel First`)
 
   await db.delete(`confession_${interaction.guild.id}`)
  interaction.editReply(`Removed Chatbot Channel`)

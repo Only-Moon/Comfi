@@ -37,7 +37,7 @@ module.exports = {
         .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
         .setDescription(description);
 
-      let msg = await interaction.channel.send({embeds: [ embed ]});
+      let msg = await interaction.editReply({embeds: [ embed ]});
 
       await msg.react("⬅");
       await msg.react("➡");

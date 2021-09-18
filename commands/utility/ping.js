@@ -4,7 +4,7 @@ module.exports = {
     name: "ping",
     description: "returns bots ping",
     ownerOnly: false,
-    cooldown: 5,
+    cooldown: 15,
     userperm: [""],
     botperm: ["SEND_MESSAGES"],
 

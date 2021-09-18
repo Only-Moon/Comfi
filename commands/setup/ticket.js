@@ -69,12 +69,12 @@ if (option === 'role') {
       );
 
     if (!role)
-      return interaction.editReply("**Please Enter A Valid Role Name or ID!**");
+      return interaction.editReply(`${bot.error} **Please Enter A Valid Role Name or ID!**`);
       let a = await db.fetch(`supportrole_${interaction.guild.id}`);
 
       if (role.id === a) {
         return interaction.editReply(
-          "**This Role is Already Set As Supportrole!**"
+          `${bot.error} **This Role is Already Set As Supportrole!**`
         );
       } else {
       await db.set(`supportrole_${interaction.guild.id}`, role.id).then

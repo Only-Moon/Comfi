@@ -50,7 +50,7 @@ const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
         table.addRow(file.name, `❌ -> Error while loading event`);
   }
   
-  bot.logger.log(table.toString()); 
+  // console.log(table.toString()); 
   })
  bot.on("ready", async () => {
    bot.guilds.cache.forEach((g) => {

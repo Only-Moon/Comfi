@@ -15,8 +15,8 @@ module.exports = {
             type: 'STRING',
             description: 'new name for emoji',
             name: 'name',
-            required: 
-        }
+            required: true,
+        },
     ],
     userperm: ["MANAGE_EMOJIS_AND_STICKERS"],
     botperm: ["MANAGE_EMOJIS_AND_STICKERS"],

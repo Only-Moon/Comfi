@@ -23,7 +23,7 @@ Levels.setURL(process.env.Levels)
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 //--------[ HANDLING ERRORS ]--------\\
-
+/**
 process.on('unhandledRejection', error => { 
   const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
@@ -35,5 +35,5 @@ process.on('unhandledRejection', error => {
   
     channel.send({ embeds: [ embed ]});
 });
-
+*/
 //---------[ PROCESS ENDED ]---------\\

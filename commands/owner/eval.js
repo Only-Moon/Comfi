@@ -20,16 +20,8 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => { 
-/**
-      for(let i = 0; i < config.owners.length; i++) {
-        if(!message.author.id == config.owners[i]) return
-      }
-        
-        if (!args[0]) {
-            return;
-        }
-*/
+    run: async (bot, interaction, args) => {
+      try {
             if (args.join(" ").toLowerCase().includes("token")) {
                 return interaction.editReply("Are you crazy ;-; You are going to give out your token public. I stopped it hopefully...")
             }
@@ -49,6 +41,8 @@ module.exports = {
 
             interaction.editReply({embeds: [ embed ]});
 
+    } catch (e) {
+return interaction.editReply({content: `${bot.error} Something went wrong \n Error: ${e}`})
+      }
     }
-
 }

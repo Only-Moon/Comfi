@@ -1,69 +1,112 @@
-const { create } = require("sourcebin");
-const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+const sourcebin = require("sourcebin_js"),
+     { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 
 module.exports = {
-    name: "sourcebin",
-    description: "Uploads your js code to sourcebin",
-    ownerOnly: false,
-    options: [
+  name: "sourcebin",
+  description: "Instantly share your code with the world using sourcebin",
+  options: [
+    {
+      type: "STRING",
+      name: "title",
+      description: "What is the title of your code?",
+      required: true
+    },
+    {
+      type: "STRING",
+      name: "language",
+      description: "What is the language of your code?",
+      required: true,
+      choices: [
         {
-            type: 'STRING',
-            description: 'Text/code to upload',
-            name: 'code',
-            required: true,
+          name: "None",
+          value: "NONE"
         },
-    ],
-    userperm: [""],
-    botperm: [""],
+        {
+          name: "JavaScript",
+          value: "JavaScript"
+        },
+        {
+          name: "Html",
+          value: "HTML"
+        },
+        {
+          name: "Python",
+          value: "Python"
+        },
+        {
+          name: "Java",
+          value: "Java"
+        },
+        {
+          name: "Css",
+          value: "CSS"
+        },
+        {
+          name: "SVG",
+          value: "SVG"
+        },
+        {
+          name: "C#",
+          value: "C#"
+        },
+        {
+          name: "XML",
+          value: "XML"
+        }
+      ]
+    },
+    {
+      type: "STRING",
+      name: "code",
+      description: "What's the code?",
+      required: true
+    }
+  ],
+  ownerOnly: false,
+  userperm: [""],
+  botperm: [""],
     /**
      *
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
-      const options = interaction.options._hoistedOptions;
-      
-      const content = args[0]
-      const Title = "Javascript Code"; 
-    if (!content)
-      return interaction.editReply(
-        new MessageEmbed()
-          .setDescription(
-            "<:no_HE:778611410539905044> plese provide content to make a bin out of it!"
-          )
-          .setColor("#303136")
-      );
-
-    create(
-      [
-        {
-          name: `Code by ${interaction.user.tag}`,
-          content,
-          language: "Javascript",
-        },
-      ],
-      {
-        title: Title.toString(),
-      }
-    ).then((value) => {
-  
-   const embed = new MessageEmbed() 
-      .setAuthor(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
-     .setDescription(`[Bin Link](${value.url}) \n **Code Sent to Sourcebin**`
+    run: async (bot, interaction, args) => {
+    const Content = interaction.options.getString("code");
+    const Title = interaction.options.getString("title");
+    const language = interaction.options.getString('language')
+      sourcebin
+      .create(
+        [
+          {
+            name: "Made By " + interaction.user.username,
+            content: Content,
+            languageId: language,
+          }
+        ],
+        { title: Title }
       )
-      .setTimestamp()
-      .setColor('#F4B3CA');
-      
-      const row = new MessageActionRow()			.addComponents( new MessageButton()
+      .then(src => {
+        let embed = new MessageEmbed()
+          .setTitle(`Sourcebin`)
+          .setColor(bot.color)
+          .setDescription(`Code:\n\`\`\`js\n${Content}\n\`\`\``);
+
+const row = new MessageActionRow()			.addComponents( new MessageButton()
         .setStyle('LINK')
-        .setURL(`${value.url}`) 
+        .setURL(`${src.url}`) 
         .setLabel('Bin Url!')
-           )                                                  
-
-
-interaction.editReply({embeds: [ embed ],
-    components: [ row ]
-});
-})
-    }
+           )
+        
+        interaction.followUp({
+          components: [ row ],
+          embeds:  [embed ],
+        });
+      })
+      .catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e}`,
+          ephemeral: true
+        });
+      });
   }
+};

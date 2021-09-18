@@ -1,14 +1,14 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "bugreport",
-    description: "Report a bug",
+    name: "feedback",
+    description: "Gives Feedback To Devs About Comfi",
     ownerOnly: false,
     options: [
         {
             type: 'STRING',
-            description: 'The bug',
-            name: 'bug',
+            description: 'The feedback',
+            name: 'msg',
             required: true,
         },
     ],
@@ -21,17 +21,17 @@ module.exports = {
      */
     run: async (bot, interaction, args, message) => {
         const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
-        const reportCh = bot.channels.cache.get('888322186417426482');
+        const feedCh = bot.channels.cache.get('881789379809513500');
         const query = args.join(" ");
-        if (!query) return interaction.followUp({ content: "Specify a **bug**" });
-        const reportEmbed = new MessageEmbed()
-            .setTitle('Bug Report')
-            .setDescription(`**Author :**\n> ${member.user.username} \n**Report :**\n > ${query}`)
+        if (!query) return interaction.followUp({ content: `${bot.error} Specify a **message**` });
+        const feedEmbed = new MessageEmbed()
+            .setTitle('Comfi™ Feedback')
+            .setDescription(`**Author :**\n> ${member.user.username} \n**Message:**\n > ${query}`)
             .setFooter(`Author ID: ${member.user.id}`)
             .setThumbnail(member.user.avatarURL({ dynamic: true }))
             .setTimestamp()
-            .setColor('#5539cc')
+            .setColor(bot.color)
         interaction.followUp({ content: "Report has been sent to the report channel!" })
-        reportCh.send({ embeds: [reportEmbed] });
+        feedCh.send({ embeds: [ feedEmbed ] });
     },
 };

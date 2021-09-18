@@ -23,7 +23,7 @@ module.exports = {
         {
             type: 'CHANNEL',
             description: 'Channel to get info about',
-            name: 'channel',
+            name: 'name',
             required: false,
         },
     ],
@@ -72,7 +72,7 @@ const [ subcommand ] = args
 if (subcommand === 'bot') {
 
 let embed = new MessageEmbed()
-            .setColor('#F4B3CA')
+            .setColor(bot.color)
             .setAuthor(`${bot.user.username}™ v${version}`, bot.user.displayAvatarURL())
             .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
             .addField('❯ Uptime :', `${ms(bot.uptime)}`, true)
@@ -84,7 +84,7 @@ let embed = new MessageEmbed()
             .addField('❯ Text Commands:', `${bot.commands.size} Commands`,true)
             .addField('❯ Node:', `${process.version} on ${process.platform} ${process.arch}`, true)
             .addField('❯ Discord.js:', `v${discordjsVersion}`, true)
-            .addField('❯ Credits:', '[Xx-Mohit-xX](https://github.com/Xx-Mohit-xX), [xxDeveloper](https://github.com/Murtatrxx) (Bot)\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
+            .addField('❯ Credits:', '[Xx-Mohit-xX](https://github.com/Xx-Mohit-xX), [xxDeveloper](https://github.com/Murtatrxx) (Bot)', true) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
             .setFooter(`Requested By ${interaction.member.displayName}`)
             .setTimestamp();
    
@@ -94,18 +94,21 @@ let embed = new MessageEmbed()
       
 if (subcommand === 'channel') {
 
-let channel = bot.guilds.cache.get(interaction.guild.id).channels.cache.get(args[0]) || interaction.guild.channels.cache.find(r => r.name.toLowerCase() === args.join(' ').toLocaleLowerCase()) || interaction.channel;
+let ch = interaction.options.getChannel('name')
+
+let channel = bot.guilds.cache.get(interaction.guild.id).channels.cache.get(ch) || interaction.guild.channels.cache.find(r => r.name.toLowerCase() === args.join(' ').toLocaleLowerCase()) || interaction.channel;
         if (!channel) return message.channel.send("**Channel Not Found!**");
 
         let embed = new MessageEmbed()
             .setTitle(`Channel Information for ${channel.name}`)
-            .setThumbnail(interaction.guild.iconURL())
+            .setThumbnail(interaction.guild.iconURL({ dynamic:  true}))
             .addField("**NSFW**", ` \`\`\`\ ${channel.nsfw} \`\`\`\ `)
             .addField("**Channel ID**", ` \`\`\`\ ${channel.id} \`\`\`\ `)
             .addField("**Channel Type**", ` \`\`\`\ ${channel.type} \`\`\`\ `)
-            .addField("**Channel Description**", ` \`\`\`\ ${channel.topic || "No Description"} \`\`\`\ `)
+           .addField("**Channel threads**", ` \`\`\`\ ${interaction.guild.channels.cache.filter(channel => channel.type === 'THREAD').size.toString() || "No Threads"} \`\`\`\ `) 
+           .addField("**Channel Description**", ` \`\`\`\ ${channel.topic || "No Description"} \`\`\`\ `)
             .addField("**Channel Created At**", ` \`\`\`\ ${channel.createdAt} \`\`\`\ `)
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
         interaction.editReply({embeds: [ embed ]});
 
 }
@@ -163,24 +166,25 @@ const vanityCode = interaction.guild.vanityURLCode;
          const embed = new MessageEmbed()
         .setTimestamp()
         .setTitle("**Server Information**")
-        .setColor('RANDOM')
+        .setColor(bot.color)
         .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-        .addField(`🎫 Name of server:`, interaction.guild.name, true)
-        .addField(`🆔 ID of server`, interaction.guild.id, true)
-       // .addField('#️⃣ Owner ID:', `${(await interaction.guild.ownerId)}`, true)
-        .addField('👑 Owner Name:', `${(await interaction.guild.fetchOwner()).user}`, true)
-        .addField(`👥 No. of Members`, interaction.guild.memberCount.toString(), true)
-        .addField(`🤖 No. of Bots:`, interaction.guild.members.cache.filter(member => member.user.bot).size.toString(), true)
-        .addField(`😗 Emojis:`, interaction.guild.emojis.cache.size.toString(), true)
-        .addField(`👻 Animated Emoji\'s:`,interaction.guild.emojis.cache.filter(emoji => emoji.animated).size.toString(),true )
-        .addField(`💬 # of Text Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_TEXT').size.toString(),true )
-        .addField(`🎤 # of Voice Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_VOICE').size.toString(),true )
-        .addField(`👔 Total Amount of Roles:`, interaction.guild.roles.cache.size.toString(), true)
-        .addField(`📅 Created at`, `${moment(interaction.guild.createdTimestamp).format('LLL')} | \`${moment(interaction.guild.createdTimestamp).fromNow()}\``, true)
-        .addField(`🔗 Vanity Link`, `${vanityInvite}`, true)
-        .addField(`📶 Boost Level`, interaction.guild.premiumTier.toString(), true)
-        .addField(`🐱‍🏍 Total Boosts`, interaction.guild.premiumSubscriptionCount.toString(), true)
-        .addField(`🔐 Verification Level`, interaction.guild.verificationLevel.toString(), true)
+        .addField(`<a:wing:883032991293653062> Name of server:`, interaction.guild.name, true)
+        .addField(`<a:emoji_87:883033003574579260> ID of server`, interaction.guild.id, true)
+.addField('<a:fire:883233232362033213> Owner ID:', `${(await interaction.guild.fetchOwner()).id}`, true)
+        .addField(`<a:king:883032972025028618> Owner Name:`, `${(await interaction.guild.fetchOwner()).user}`, true)
+        .addField(`<:768584793691783179:883017859444379648> No. of Members`, interaction.guild.memberCount.toString(), true)
+        .addField(`<a:776973591891017749:883017868944502804> No. of Bots:`, interaction.guild.members.cache.filter(member => member.user.bot).size.toString(), true)
+        .addField(`<:zz_heart_retsu_f2u:883032970468933633> Emojis:`, interaction.guild.emojis.cache.size.toString(), true)
+        .addField(`<a:zzzghostheart:883017884014637066> Animated Emoji\'s:`,interaction.guild.emojis.cache.filter(emoji => emoji.animated).size.toString(),true )
+        .addField(`<:text:883017890096361482> # of Text Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_TEXT').size.toString(),true )
+        .addField(`<:threadnew:883017877626712084> # of Thread\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'THREAD').size.toString(),true )
+        .addField(`<:voice:888751078332571729> # of Voice Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_VOICE').size.toString(),true )
+        .addField(`<:CommunityRole:888751406020956231> Total Amount of Roles:`, interaction.guild.roles.cache.size.toString(), true)
+        .addField(`<a:839921866738106390:883017898984103986> Created at`, `${moment(interaction.guild.createdTimestamp).format('LLL')} | \`${moment(interaction.guild.createdTimestamp).fromNow()}\``, true)
+        .addField(`<a:link:888754659639042068> Vanity Link`, `${vanityInvite}`, true)
+        .addField(`<:lockedpadlock:883017834232442920> Boost Level`, interaction.guild.premiumTier.toString(), true)
+        .addField(`<:booster_bun_HE:815802504829730827> Total Boosts`, interaction.guild.premiumSubscriptionCount.toString(), true)
+        .addField(`<a:boost:888752346501382144> Verification Level`, interaction.guild.verificationLevel.toString(), true)
         .addField(`Roles [${roles.length}]`, roles.length < 15 ? roles.join(' | ') : roles.length > 15 ? `${roles.slice(0, 15).join(' | ')} | \`+ ${roles.length-15} roles...\`` : 'None')
         .setAuthor(`${interaction.guild.name}`)
         interaction.editReply({ embeds: [ embed ] });
@@ -223,16 +227,17 @@ let user = interaction.options.getUser('user', false);
 
         let embed = new MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL({ dynamic: true }))
-            .setDescription(`**[${user.username}](https://discord.com/users/${user.id})** created their account on ${moment(user.createdTimestamp).format('Do MMM YYYY')}.`)
+            .setThumbnail(user.avatarURL({ dynamic: true}) )
+          .setDescription(`**[${user.username}](https://discord.com/users/${user.id})** created their account on ${moment(user.createdTimestamp).format('Do MMM YYYY')}.`)
             .addField('User information', `**ID:** ${user.id}\n**Username:** ${user.username}\n**Discriminator:** #${user.discriminator}\n**Bot:** ${user.bot ? 'Yes': 'No'}\n**Avatar:** ${format === 'gif' ? `[gif](${gif})` : `[png](${png}) | [webp](${webp}) | [jpg](${jpg})`}`, false)
             .setTimestamp()
-            .setColor('RANDOM');
+            .setColor(bot.color);
 
         if (member) {
             embed
                 .addField('Member information', `**Joined server:** ${moment(member.joinedTimestamp).format('Do MMM YYYY')}\n**Nickname:** ${member.nickname ? member.nickname : 'None'}${member.premiumSinceTimestamp ? `\n**Boosting since:** ${moment(member.premiumSinceTimestamp).format('Do MMM YYY')}` : '\n'}**Member colour:** ${member.displayHexColor === '#000000' ? 'None' : member.displayHexColor.toUpperCase()}\n**Highest role:** ${roles.length > 0 ? member.roles.highest.toString() : 'None'}\n**No. of roles:** ${roles.length || 'None'}\n\n**Roles:** ${!roles.length ? 'None' : roles.length > 10 ? trimArray(roles).join(', ') : roles.join(', ')}`, false)
                 .setFooter(`Join position: ${getOrdinal(await position)}`)
-                .setColor(member.displayHexColor === '#000000' ? '#2F3136' : member.displayHexColor);
+                .setColor(bot.color);
         };
 
         interaction.followUp({ embeds: [embed] });

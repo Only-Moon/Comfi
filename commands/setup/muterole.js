@@ -46,7 +46,7 @@ if (subcommand === 'enable') {
         );
       } else
         return interaction.editReply(
-          "**Please Enter A Role Name or ID To Set!**"
+          `${bot.error} **Please Enter A Role Name or ID To Set!**`
         );
     }
 
@@ -58,14 +58,14 @@ if (subcommand === 'enable') {
       );
 
     if (!role)
-      return interaction.editReply("**Please Enter A Valid Role Name or ID!**");
+      return interaction.editReply(`${bot.error} **Please Enter A Valid Role Name or ID!**`);
 
     try {
       let a = await db.fetch(`muterole_${interaction.guild.id}`);
 
       if (role.id === a) {
         return interaction.editReply(
-          "**This Role is Already Set As Muterole!**"
+          `${bot.error} **This Role is Already Set As Muterole!**`
         );
       } else {
         await db.set(`muterole_${interaction.guild.id}`, role.id);
@@ -86,7 +86,7 @@ if (subcommand === 'disable') {
 
 let rol = await db.get(`muterole_${interaction.guild.id}`)
 
-if (!rol) return interaction.followUp(`<a:Attention:883349868062576701> Set Muterole First`)
+if (!rol) return interaction.followUp(`${bot.error} Set Muterole First`)
 
 await db.delete(`muterole_${interaction.guild.id}`) 
 return interaction.editReply(`Successfully Removed Muterole`)

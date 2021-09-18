@@ -41,7 +41,7 @@ if (subcommand === 'enable') {
  
 let channel = interaction.options.getChannel('name') 
 
- if (channel === 'GUILD_VOICE') return interaction.editReply("**Please Mention a Text Channel To Set!**"); 
+ if (channel === 'GUILD_VOICE') return interaction.editReply(`${bot.error} **Please Mention a Text Channel To Set!**`); 
                 bot.guilds.cache.get(interaction.guild.id).channels.cache.get(channel.id).send("**Modlog Channel Set!**")
                 await db.set(`modlog_${interaction.guild.id}`, channel.id)
             interaction.editReply(`**Modlog Channel Has Been Set Successfully in \`${channel.name}\`!**`)
@@ -56,7 +56,7 @@ try {
             let a = await db.get(`modlog_${interaction.guild.id}`)
 
             if (!a) {
-                return interaction.editReply('**There Is No Modlog Channel Set To Disable!**')
+                return interaction.editReply(`${bot.error} **There Is No Modlog Channel Set To Disable!**`)
             } else {
                 let channel = interaction.guild.channels.cache.get(a)
                 bot.guilds.cache.get(interaction.guild.id).channels.cache.get(channel.id).send("**Modlogs Channel Disabled!**")

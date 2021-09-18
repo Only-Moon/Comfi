@@ -29,6 +29,7 @@ class Comfi extends Discord.Client {
         this.categories = fs.readdirSync("./commands/");
         this.db(process.env.Mongoose)
         this.commands = new Discord.Collection()
+        this.aliases = new Discord.Collection()
         this.slashCommands = new Discord.Collection()
         this.timeout = new Discord.Collection()
         this.init()

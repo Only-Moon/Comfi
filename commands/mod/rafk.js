@@ -6,7 +6,7 @@ module.exports = {
     description: "Removes your afk if you have set one",
     ownerOnly: false,
     userperm: [""],
-    botperm: [""],
+    botperm: ["MANAGAE_NICKNAMES"],
     /**
      *
      * @param {CommandInteraction} interaction
@@ -14,7 +14,7 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
         const check = await db.get(`afk-${interaction.user.id}+${interaction.guild.id}`)
-        if(check === true) {
+        if(!check) {
       interaction.editReply("You have not been on afk till now");
         } else {
         const embed = new MessageEmbed()
@@ -25,6 +25,7 @@ module.exports = {
 
 
         if(interaction.member.manageable) interaction.member.setNickname('')
-    interaction.editReply({ embeds: [ embed ]})                }
+    interaction.editReply({ embeds: [ embed ]})                
+        }
     }
 };
