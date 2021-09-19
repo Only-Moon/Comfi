@@ -28,7 +28,7 @@ process.on('unhandledRejection', error => {
   const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.error} unhandledRejection`)
-    .setDescription(`${error}`)
+    .setDescription(`${error.stack}`)
     .setColor("#FF5757")
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
     .setTimestamp();
@@ -46,7 +46,7 @@ process.on("uncaughtException", (error) => {
  const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.error} uncaughtException`)
-    .setDescription(`${error}`)
+    .setDescription(`${error.stack}`)
     .setColor("#FF5757")
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
     .setTimestamp();

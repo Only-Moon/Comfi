@@ -181,3 +181,13 @@ TypeError: Cannot read properties of null (reading 'toString')
 12:57:54.280 INFO  Watching 91 Slashs, 430 Channels and 26339 Users in  8 Servers 
 12:57:54.281 INFO  ------------------------------------- 
 12:57:54.293 INFO  Your app is listening a http://localhost:3000 
+17:33:58.291 INFO  Mongodb connected! 
+17:34:00.395 INFO  Logged in as Comfi#6893 
+17:34:00.396 INFO  Watching 91 Slashs, 432 Channels and 27804 Users in  8 Servers 
+17:34:00.396 INFO  ------------------------------------- 
+17:34:00.412 INFO  Your app is listening a http://localhost:3000 
+17:41:53.112 INFO  Mongodb connected! 
+17:41:55.217 INFO  Logged in as Comfi#6893 
+17:41:55.218 INFO  Watching 91 Slashs, 432 Channels and 27799 Users in  8 Servers 
+17:41:55.218 INFO  ------------------------------------- 
+17:41:55.290 INFO  Your app is listening a http://localhost:3000 
