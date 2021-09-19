@@ -13,9 +13,11 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 
-        const msg = await interaction.channel.messages.fetch(interaction.targetId);
+      const user = await bot.users.fetch(interaction.targetId);
+      
+      const msg = await interaction.channel.messages.fetch(interaction.targetId);
 
-        interaction.followUp({content: `${interaction.user.DisplayName}: ${msg}`})
+        interaction.followUp({content: `${user.DisplayName}: ${msg}`})
         
     },
 };

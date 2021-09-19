@@ -17,7 +17,8 @@ module.exports = {
 
         const av = new MessageEmbed()
             .setTitle(`${user.username}'s Avatar`)
-            .setImage(user.displayAvatarURL({dynamic: true}));
+.setColor(bot.color)           
+          .setImage(user.displayAvatarURL({dynamic: true}));
 
         interaction.followUp({embeds: [av]})
         

@@ -37,7 +37,7 @@ const api = process.env.TOKEN
         const embed = new MessageEmbed()
         .setTitle(`${user.tag}'s Banner`)
         .setImage(url)
-        .setColor(accent_color || "BLUE");
+        .setColor(accent_color || bot.color);
         
         interaction.followUp({ embeds: [embed] })
       } else {

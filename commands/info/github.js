@@ -35,13 +35,13 @@ module.exports = {
 		}
 		catch (e) {
 			return interaction.editReply(
-				`🚫 An error occured, please try again!`,
-			);
+        {content: `${bot.error} An error occured, please try again! \nError: ${e}`
+        });
 		}
 
 		try {
 			const embed = new MessageEmbed()
-				.setColor(config.embedcolor)
+				.setColor(bot.color)
 				.setTitle(`${response.login} (${response.id})`)
 				.setDescription(response.bio ? response.bio : 'None')
 				.addFields(
@@ -59,8 +59,7 @@ module.exports = {
 			interaction.editReply({embeds: [ embed ]});
 		} catch (err) {
 			return interaction.editReply(
-				`🚫 Please provide a valid user`,
-			);
+    {content:`${bot.error} Please provide a valid user \nError: ${err}`        });
 		}
     }
 };

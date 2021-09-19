@@ -11,10 +11,17 @@ module.exports = {
    * @param {String[]} args
    */
   run: async (bot, message, args) => {
-    const msg = new MessageEmbed()
-      .setDescription(`Bot Latency: ${bot.ws.ping}ms`)
-      .setColor(bot.color)
-      .setTitle("Pinged Successfully 🏓");
-    message.reply({ embeds: [msg] });
+    let circles = {
+            green: "<a:greenfire:865919100991045653>",
+            yellow: "<a:yellowflame:865994340442832906> ",
+            red: "<a:warning:865919101300768779> "
+        }
+        const pingEmbed = new MessageEmbed()
+            .setColor(bot.color)
+            .setAuthor("Pong! 🏓", message.author.avatarURL({ dynamic: true }))
+          .addField("Ping :",
+                `${bot.ws.ping <= 200 ? circles.green : bot.ws.ping <= 400 ? circles.yellow : circles.red} ${bot.ws.ping}ms`
+            )
+    message.reply({ embeds: [pingEmbed] });
   },
 };

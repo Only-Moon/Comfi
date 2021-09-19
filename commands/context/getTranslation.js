@@ -22,7 +22,7 @@ module.exports = {
       .setTimestamp()
       .addField("Text To Translate:", `\`\`\`${msg.content}\`\`\``)
       .addField("Translateted Text:", `\`\`\`${translated.text}\`\`\``)
-      .setColor('BLUE')
+      .setColor(bot.color)
 
       interaction.followUp({ embeds: [embed] })
     },
