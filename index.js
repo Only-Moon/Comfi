@@ -23,17 +23,35 @@ Levels.setURL(process.env.Levels)
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 //--------[ HANDLING ERRORS ]--------\\
-/**
+
 process.on('unhandledRejection', error => { 
   const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
-    .setTitle(':x: Error')
+    .setTitle(`${bot.error} unhandledRejection`)
     .setDescription(`${error}`)
-    .setColor('RED')
+    .setColor("#FF5757")
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
     .setTimestamp();
   
     channel.send({ embeds: [ embed ]});
 });
-*/
+
+bot.on("disconnect", () => bot.logger.log("bot is disconnecting "))
+   .on("reconnecting", () => bot.logger.log("Bot is reconnecting"))
+   .on("error", (e) => bot.logger.error(e))
+   .on("warn", (info) => bot.logger.log(info));
+
+process.on("uncaughtException", (error) => {
+ //console.error(error);
+ const channel = bot.channels.cache.get("880101469586604032");
+  const embed = new Discord.MessageEmbed()
+    .setTitle(`${bot.error} uncaughtException`)
+    .setDescription(`${error}`)
+    .setColor("#FF5757")
+    .setImage('https://giffiles.alphacoders.com/354/35481.gif')
+    .setTimestamp();
+  
+    channel.send({ embeds: [ embed ]}); 
+})
+  
 //---------[ PROCESS ENDED ]---------\\

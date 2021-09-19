@@ -8,7 +8,7 @@ bot.on("guildMemberRemove", async (member) => {
   
   const toggle = await db.get(`leave_toggle_${member.guild.id}`);		
 
-	if(toggle.toString() === `true`){ 
+	if(toggle === true){ 
   
 const tit = await db.get(`leave_title_${member.guild.id}`)
 const desc = await db.get(`leave_desc_${member.guild.id}`)
