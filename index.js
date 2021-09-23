@@ -34,7 +34,7 @@ process.on('unhandledRejection', error => {
     .setTimestamp();
   
     channel.send({ embeds: [ embed ]});
-console.error(error.stack)
+//console.error(error.stack)
 });
 
 process.on("uncaughtException", (error) => {
