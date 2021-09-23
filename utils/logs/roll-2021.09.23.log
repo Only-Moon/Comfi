@@ -175,3 +175,15 @@ MongoNetworkTimeoutError: connection timed out
 13:19:36.416 INFO  Your app is listening a http://localhost:3000 
 13:19:36.588 INFO  Mongodb connected! 
 13:19:36.642 INFO  [DB]: Database Connected 
+13:59:19.251 INFO  Logged in as Comfi#6893 
+13:59:19.285 INFO  Watching 81 Slashs, 435 Channels and 26217 Users in  8 Servers 
+13:59:19.286 INFO  ------------------------------------- 
+13:59:19.385 INFO  Your app is listening a http://localhost:3000 
+13:59:20.198 INFO  [DB]: Database Connected 
+13:59:20.293 INFO  Mongodb connected! 
+14:02:24.613 INFO  Mongodb connected! 
+14:02:26.524 INFO  Logged in as Comfi#6893 
+14:02:26.525 INFO  Watching 81 Slashs, 435 Channels and 26245 Users in  8 Servers 
+14:02:26.525 INFO  ------------------------------------- 
+14:02:26.611 INFO  Your app is listening a http://localhost:3000 
+14:02:26.733 INFO  [DB]: Database Connected 

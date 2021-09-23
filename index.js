@@ -38,7 +38,7 @@ console.error(error.stack)
 });
 
 process.on("uncaughtException", (error) => {
- console.error(error);
+// console.error(error.stack);
  const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.error} uncaughtException`)
