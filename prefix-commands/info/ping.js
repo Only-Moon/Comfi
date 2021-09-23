@@ -14,7 +14,7 @@ module.exports = {
     let circles = {
             green: "<a:greenfire:865919100991045653>",
             yellow: "<a:yellowflame:865994340442832906> ",
-            red: "<a:warning:865919101300768779> "
+            red: `${bot.error}`
         }
         const pingEmbed = new MessageEmbed()
             .setColor(bot.color)
@@ -22,6 +22,6 @@ module.exports = {
           .addField("Ping :",
                 `${bot.ws.ping <= 200 ? circles.green : bot.ws.ping <= 400 ? circles.yellow : circles.red} ${bot.ws.ping}ms`
             )
-    message.reply({ embeds: [pingEmbed] });
+    message.reply({ embeds: [pingEmbed], allowedMentions: { repliedUser:  false}});
   },
 };

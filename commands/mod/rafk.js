@@ -15,7 +15,7 @@ module.exports = {
     run: async (bot, interaction, args) => {
         const check = await db.get(`afk-${interaction.user.id}+${interaction.guild.id}`)
         if(!check) {
-      interaction.editReply("You have not been on afk till now");
+      interaction.editReply(`${bot.error} You have not been on afk till now`);
         } else {
         const embed = new MessageEmbed()
         .setDescription(`Your afk has been removed`)
@@ -23,8 +23,7 @@ module.exports = {
         .setAuthor(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
         .setTimestamp();
 
-
-        if(interaction.member.manageable) interaction.member.setNickname('')
+if(interaction.member.manageable) interaction.member.setNickname('')
     interaction.editReply({ embeds: [ embed ]})                
         }
     }

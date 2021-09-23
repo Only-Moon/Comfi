@@ -7,6 +7,7 @@ module.exports = {
     description: "Image manipulation commands",
     userperm: [""],
     botperm: [""],
+    cooldown: 15,
     options: [
         {
             name: "abandon",

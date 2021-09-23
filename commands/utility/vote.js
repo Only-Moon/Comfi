@@ -12,7 +12,21 @@ run: async (bot, interaction, args) => {
     .setTitle("Vote Bot")
     .setDescription("You can vote us in **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
     .setTimestamp();
+let top = new Discord.MessageButton()
+           .setStyle("LINK")
+           .setURL("https://tog.gg")
+           .setLabel("Top.gg");
+let bots = new Discord.MessageButton()
+           .setStyle("LINK")
+           .setURL("http://botlist.com")
+           .setLabel("discord.bot")
 
-    return interaction.editReply({embeds: [ embed ], allowedMentions: { repliedUser: false }});
+const row = new Discord.MessageActionRow() 			
+      .addComponents(top, bots)
+  
+return interaction.followUp({ 
+        embeds: [embed], 
+        components: [row]
+});
   }
 };

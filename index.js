@@ -34,15 +34,11 @@ process.on('unhandledRejection', error => {
     .setTimestamp();
   
     channel.send({ embeds: [ embed ]});
+console.error(error.stack)
 });
 
-bot.on("disconnect", () => bot.logger.log("bot is disconnecting "))
-   .on("reconnecting", () => bot.logger.log("Bot is reconnecting"))
-   .on("error", (e) => bot.logger.error(e))
-   .on("warn", (info) => bot.logger.log(info));
-
 process.on("uncaughtException", (error) => {
- //console.error(error);
+ console.error(error);
  const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.error} uncaughtException`)
@@ -53,5 +49,5 @@ process.on("uncaughtException", (error) => {
   
     channel.send({ embeds: [ embed ]}); 
 })
-  
+
 //---------[ PROCESS ENDED ]---------\\

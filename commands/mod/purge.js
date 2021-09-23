@@ -1,4 +1,5 @@
-const { CommandInteraction } = require('discord.js');
+const { CommandInteraction } = require('discord.js'),
+      ms = require("ms");
 
 module.exports = {
     name: 'purge',
@@ -9,7 +10,7 @@ module.exports = {
     options: [
         {
             name: 'amount',
-            type: 'STRING',
+            type: 'INTEGER',
             description: 'Number of messages to delete (2-99)',
             required: true
         }
@@ -20,12 +21,24 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
      
-let amount = args[0]        
- if (amount < 2) return interaction.followUp({content: 'You cannot delete less than 2 messages'});
-if (amount <= 100) {            
-    interaction.channel.bulkDelete(amount, true)       
-         }
+let amount = interaction.options.getInteger('amount')    
+
+if (amount > 99) return interaction.followUp({content: `${bot.error} You cannot delete more than 100 messages`});
+
+const messages = await interaction.channel.messages.fetch({ 
+   limit: amount + 1,
+})
+
+const filtered = messages.filter(
+  (msg) => Date.now() - msg.createdTimestamp < ms("14 days")
+  );
+
+await interaction.channel.bulkDelete(filtered);
       
-        interaction.channel.send({            content: `I've cleared \`${amount}\` messages :broom:`       
-})   
-    }}
+interaction.channel.send({            content: `I've cleared \`${filtered.size 
+- 1}\` messages :broom:`       
+}).then((msg) => {
+  setTimeout(() => msg.delete(), ms('5 seconds'))
+  });
+}
+    }

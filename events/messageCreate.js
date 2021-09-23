@@ -7,30 +7,8 @@ const config = require("../config.json");
 
 bot.on("messageCreate", async (message) => {
   if (message.author.bot) return;
-  let p;
-  let mentionRegex = message.content.match(
-    new RegExp(`^<@!?(${bot.user.id})>`, "gi")
-  );
-  if (mentionRegex) {
+  let p = "Cr!";
 
-let ping = new MessageEmbed()				
-.setThumbnail(`${message.author.displayAvatarURL({ dynamic: true })}`)				
-    .setDescription(				
-      `Hey <@${						
-message.author.id					
-}>, My prefix for this this guild is **/** \n
-Use \`\`\`/help\`\`\` \n for get a list of commands.`				
-    )				
-    .setColor(bot.color)				
-    .setFooter(`Requested by ${message.author.username}`)				
-    .setTimestamp();	
-	
- message.reply({embeds: [ ping ]})
-
-    p = `${mentionRegex}`;
-  } else {
-    p = "Cr!";
-  }
   if (!message.content.startsWith(p)) return;
   if (!message.guild) return;
   if (!message.member)
@@ -93,30 +71,6 @@ Use \`\`\`/help\`\`\` \n for get a list of commands.`
         Timeout.delete(`${command.name}${message.author.id}`);
       }, command.timeout);
     }
-  }
-
-
-if (await db.has(`afk-${message.author.id}+${message.guild.id}`)) { 		
-  const info = await db.get(`afk-${message.author.id}+${message.guild.id}`); 		
-  await db.delete(`afk-${message.author.id}+${message.guild.id}`); 	
-  await db.delete(`aftime-${message.author.id}+${message.guild.id}`); 		message.channel.send( 			
-    `Welcome back ${message.author.username}, Great to see you!!` 		
-  ); 
-} 	//checking for mentions 	
-  if (message.mentions.members.first()) { 		
-    if ( 	await db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`) 
-       ) { 			
-      const reason = await db.get( 				`afk-${message.mentions.members.first().id}+${message.guild.id}` 		
-                                 ); 			
-      let time = await db.get( 
-        `aftime-${message.mentions.members.first().id}+${message.guild.id}` 		
-      ); 			
-      time = Date.now() - time; 			
-      return message.channel.send(
-        `**${ 					message.mentions.members.first().user.username 				
-} is now afk - ${reason} - ${format(time)} ago**` 		
-      ); 	
-    } 
   }
   
 });

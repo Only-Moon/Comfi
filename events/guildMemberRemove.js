@@ -8,14 +8,14 @@ bot.on("guildMemberRemove", async (member) => {
   
   const toggle = await db.get(`leave_toggle_${member.guild.id}`);		
 
-	if(toggle === true){ 
+	if(toggle?.toString() === `true`){ 
   
 const tit = await db.get(`leave_title_${member.guild.id}`)
 const desc = await db.get(`leave_desc_${member.guild.id}`)
 const color = await db.get(`leave_color_${member.guild.id}`)
-const img = await db.get(`leave_img_${member.guild.id}`) || "";
-const thumb = await db.get(`leave_thumb_${member.guild.id}`) || "";
-const foot = await db.get(`leave_foot_${member.guild.id}`) || "";
+const img = await db.get(`leave_img_${member.guild.id}`);
+const thumb = await db.get(`leave_thumb_${member.guild.id}`);
+const foot = await db.get(`leave_foot_${member.guild.id}`) || "\u200b";
 const ch = await db.get(`leave_channel_${member.guild.id}`)
 
 if (member.user.username.length > 25)

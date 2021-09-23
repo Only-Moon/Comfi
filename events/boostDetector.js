@@ -1,4 +1,5 @@
-const bot = require("../index"); 
+const bot = require("../index");
+const { MessageEmbed } = require("discord.js")
 const schema = require("../models/boostMessage"); 
 
 bot.on("guildMemberUpdate", async (oldMember, newMember) => { 
@@ -23,8 +24,14 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
       .replace(/{user}/g, newMember.user.tag) 
       .replace(/{user.mention}/g, `<@${newMember.user.id}>`) 
       .replace(/{boost.count}/g, guild.premiumSubscriptionCount); 
+
+let boost = new MessageEmbed()
+  .setTitle(`${guild.name} Got Boosted`)  
+  .setDescription(finalMessage)
+  .setColor(bot.color)
+  .setThumbnail(guild.iconURL({ dynamic: true }));
     
-    boostChannel.send({content: finalMessage}); 
+    boostChannel.send({embeds: [ boost ]}); 
   } 
   
   if (oldStatus && !newStatus) return; });

@@ -1,4 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
+const axios = require("axios")
 const { version } = require('../../package.json');
 const ms = require('pretty-ms');
 const { version: discordjsVersion } = require('discord.js');
@@ -6,10 +7,36 @@ const moment = require('moment');
 const { user } = require('../..');
 
 module.exports = {
-    name: "info",
+    name: "infoo",
     description: "Information",
     ownerOnly: false,
     options: [
+        {
+            name: "avatar",
+            description: "Get Avatar!",
+            type: 'SUB_COMMAND',
+            options: [
+        {
+            name: "user",
+            description: "User To Get Avatar",
+             type: 6,
+             required: false
+        },
+  ], 
+        },
+        {
+            name: "banner",
+            description: "Get the banner of the specified member",
+            type: 'SUB_COMMAND',
+            options: [
+        {
+            name: "member",
+            description: "Input member to get banner",
+            type: "USER",
+            required: true,
+        },
+   ],
+        },
         {
             type: 'SUB_COMMAND',
             description: `Check\'s bot\'s status`,
@@ -27,6 +54,21 @@ module.exports = {
             required: false,
         },
     ],
+        },
+        {
+          type: 'SUB_COMMAND',
+          description: 'Information about server membercount',
+          name: 'membercount',
+        },
+        {
+          type: 'SUB_COMMAND',
+          description: 'Information About Latency Of The Bot',
+          name: 'ping',
+        },
+        {
+            type: 'SUB_COMMAND',
+            description: 'Information about the bot privacy policy',
+            name: 'privacy',
         },
         {
             type: 'SUB_COMMAND',
@@ -59,6 +101,11 @@ module.exports = {
                 }
             ],
         },
+        {
+            type: 'SUB_COMMAND',
+            description: 'Information about the bot uptime',
+            name: 'uptime',
+        },     
     ],
     userperm: [""],
     botperm: [""],
@@ -69,6 +116,66 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 const [ subcommand ] = args
+
+if (subcommand === 'avatar') {
+
+try {
+      const options = interaction.options._hoistedOptions;
+
+
+      const user = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").member.user) || interaction.user;
+      const member = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").member) || interaction.member;
+
+      const embed = new MessageEmbed().setColor(member.displayHexColor);
+
+      const image = user.displayAvatarURL({dynamic: true, size: 4096});
+
+
+      embed.setAuthor(member.displayName, user.displayAvatarURL()).setImage(image).setTimestamp();
+      await interaction.editReply({embeds: [embed]})
+    } catch (err) {
+      console.log("Something Went Wrong => err");
+}
+
+}
+
+if (subcommand === 'banner') {
+
+const { user } = interaction.options.get("member");
+const api = process.env.TOKEN
+    axios.get(`https://discord.com/api/users/${user.id}`, {
+      headers: {
+        Authorization: `Bot ${api}`
+      },
+    })
+    .then((res) => {
+      const { banner, accent_color } = res.data;
+
+      if (banner) {
+        const extension = banner.startsWith("a_") ? ".gif" : ".png";
+        const url = `https://cdn.discordapp.com/banners/${user.id}/${banner}${extension}?size=2048`;
+
+        const embed = new MessageEmbed()
+        .setTitle(`${user.tag}'s Banner`)
+        .setImage(url)
+        .setColor(accent_color || bot.color);
+        
+        interaction.followUp({ embeds: [embed] })
+      } else {
+        if (accent_color) {
+          const embed = new MessageEmbed()
+          .setDescription(`**${user.tag}** does not have a banner but they have an accent color`)
+          .setColor(accent_color)
+
+          interaction.followUp({ embeds: [embed] })
+        } else {
+          interaction.followUp({ content: `**${user.tag}** does not have a banner, they have an accent color.`})
+        }
+      }
+    })
+
+}
+
 if (subcommand === 'bot') {
 
 let embed = new MessageEmbed()
@@ -113,6 +220,20 @@ let channel = bot.guilds.cache.get(interaction.guild.id).channels.cache.get(ch) 
 
 }
 
+if (subcommand === 'membercount') {
+
+const embed = new MessageEmbed()
+        .setTitle(`${interaction.guild.name}`)
+
+.setColor(bot.color)
+
+.setThumbnail(interaction.guild.iconURL({ dynamic:  true}))
+        .setDescription(`<a:stars_aesthetic:883033007836000308> Member Count: ${interaction.guild.memberCount}`);
+
+        interaction.followUp({ embeds: [embed] })
+  
+}
+  
 if (subcommand === 'role') {
 
 const role = interaction.options.getRole('role') || interaction.guild.roles.cache.get(args[0])
@@ -128,7 +249,7 @@ const role = interaction.options.getRole('role') || interaction.guild.roles.cach
     .addFields(
         {
             name: "Mention & ID",
-            value: `${role}\n⚡\`${role.id}\``
+            value: `${role}\n》 \`${role.id}\``
         },
         {
             name: "Name",
@@ -170,27 +291,55 @@ const vanityCode = interaction.guild.vanityURLCode;
         .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
         .addField(`<a:wing:883032991293653062> Name of server:`, interaction.guild.name, true)
         .addField(`<a:emoji_87:883033003574579260> ID of server`, interaction.guild.id, true)
-.addField('<a:fire:883233232362033213> Owner ID:', `${(await interaction.guild.fetchOwner()).id}`, true)
-        .addField(`<a:king:883032972025028618> Owner Name:`, `${(await interaction.guild.fetchOwner()).user}`, true)
+.addField('<a:778519044226809868:883017858446135307> Owner ID:', `${(await interaction.guild.fetchOwner()).id}`, true)
+        .addField(`<a:owner:890114196308631602> Owner Name:`, `${(await interaction.guild.fetchOwner()).user}`, true)
         .addField(`<:768584793691783179:883017859444379648> No. of Members`, interaction.guild.memberCount.toString(), true)
         .addField(`<a:776973591891017749:883017868944502804> No. of Bots:`, interaction.guild.members.cache.filter(member => member.user.bot).size.toString(), true)
         .addField(`<:zz_heart_retsu_f2u:883032970468933633> Emojis:`, interaction.guild.emojis.cache.size.toString(), true)
         .addField(`<a:zzzghostheart:883017884014637066> Animated Emoji\'s:`,interaction.guild.emojis.cache.filter(emoji => emoji.animated).size.toString(),true )
-        .addField(`<:text:883017890096361482> # of Text Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_TEXT').size.toString(),true )
-        .addField(`<:threadnew:883017877626712084> # of Thread\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'THREAD').size.toString(),true )
-        .addField(`<:voice:888751078332571729> # of Voice Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_VOICE').size.toString(),true )
-        .addField(`<:CommunityRole:888751406020956231> Total Amount of Roles:`, interaction.guild.roles.cache.size.toString(), true)
+        .addField(`<:textchannel:890106455284392026> # of Text Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_TEXT').size.toString(),true )
+        .addField(`<:thread:890106257350983730> # of Thread\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'THREAD').size.toString(),true )
+        .addField(`<:voice:890106643449274398> # of Voice Channel\'s:`,interaction.guild.channels.cache.filter(channel => channel.type === 'GUILD_VOICE').size.toString(),true )
+        .addField(`<:Role:890114731149508618> Total Amount of Roles:`, interaction.guild.roles.cache.size.toString(), true)
         .addField(`<a:839921866738106390:883017898984103986> Created at`, `${moment(interaction.guild.createdTimestamp).format('LLL')} | \`${moment(interaction.guild.createdTimestamp).fromNow()}\``, true)
         .addField(`<a:link:888754659639042068> Vanity Link`, `${vanityInvite}`, true)
-        .addField(`<:lockedpadlock:883017834232442920> Boost Level`, interaction.guild.premiumTier.toString(), true)
+        .addField(`<a:boost:888752346501382144> Boost Level`, interaction.guild.premiumTier.toString(), true)
         .addField(`<:booster_bun_HE:815802504829730827> Total Boosts`, interaction.guild.premiumSubscriptionCount.toString(), true)
-        .addField(`<a:boost:888752346501382144> Verification Level`, interaction.guild.verificationLevel.toString(), true)
-        .addField(`Roles [${roles.length}]`, roles.length < 15 ? roles.join(' | ') : roles.length > 15 ? `${roles.slice(0, 15).join(' | ')} | \`+ ${roles.length-15} roles...\`` : 'None')
+        .addField(`<a:754784872265941032:883033006145691678> Verification Level`, interaction.guild.verificationLevel.toString(), true)
+        .addField(`<a:amt_shootingstaws:883017879065354290> Roles [${roles.length}]`, roles.length < 15 ? roles.join(' | ') : roles.length > 15 ? `${roles.slice(0, 15).join(' | ')} | \`+ ${roles.length-15} roles...\`` : 'None')
         .setAuthor(`${interaction.guild.name}`)
         interaction.editReply({ embeds: [ embed ] });
 
 }
 
+if (subcommand === 'ping') {
+
+let circles = {
+            green: "<a:green_fire:890138128499736636>",
+            yellow: "<a:enoobies_fire:883032979746725928>",
+            red: "<a:p_fire2:890138689072672788>"
+        }
+        const pingEmbed = new MessageEmbed()
+            .setColor(bot.color)
+            .setAuthor("Pong! 🏓", interaction.user.avatarURL({ dynamic: true }))
+          .addField("Ping :",
+                `${bot.ws.ping <= 200 ? circles.green : bot.ws.ping <= 400 ? circles.yellow : circles.red} ${bot.ws.ping}ms`
+            )
+        interaction.editReply({ embeds: [pingEmbed] });
+
+}
+
+if (subcommand === 'privacy') {
+
+const embed = new MessageEmbed()
+      .setTitle("Comfi Bot's Privacy Policy")
+      .setDescription(" We do not store any data apart from the Commands Database and if the User Contact us from anywhere his data will be cleared, we do not store any type of personal data. We Follow all [Discord's Terms of Service](https://discord.com/terms) and [Community Guidelines](https://discord.com/guidelines).")
+      .setColor(bot.color)
+
+    await interaction.editReply({ embeds: [ embed ]})
+
+}
+      
 if (subcommand === 'user') {
 
 let user = interaction.options.getUser('user', false);
@@ -242,6 +391,25 @@ let user = interaction.options.getUser('user', false);
 
         interaction.followUp({ embeds: [embed] });
 }
+
+if (subcommand === 'uptime') {
+
+let days = Math.floor(bot.uptime / 86400000);
+        let hours = Math.floor(bot.uptime / 3600000) % 24;
+        let minutes = Math.floor(bot.uptime / 60000) % 60;
+        let seconds = Math.floor(bot.uptime / 1000) % 60;
+
+        const embed = new MessageEmbed()
+            .setTitle("Uptime")
+            .setColor("#F4B3CA")
+            .setDescription(`I am Online from **${days}** days, **${hours}** hours, **${minutes}** minutes, **${seconds}** seconds`)
+            .setThumbnail(bot.user.displayAvatarURL())
+            .setFooter(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true}))
+            .setAuthor(bot.user.username, bot.user.displayAvatarURL())  
+        interaction.editReply({embeds: [ embed ]});
+  
+}
+      
 }} 
 
 /**

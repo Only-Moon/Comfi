@@ -154,7 +154,7 @@ const helpEmbed1 = new MessageEmbed()
                             const helpEmbed3 = new MessageEmbed() 
                             .setAuthor( `Help - Welcome System`, bot.user.displayAvatarURL({ dynamic: true }) ) 
                             .setDescription("Here you can see how to set up settings")
-                       //     .setImage( "https://media.discordapp.net/attachments/869823340947316737/869826598147342388/unknown.png?width=747&height=269" ) 
+.setImage("https://i.imgur.com/kQ8khNE.jpg") 
                             .setColor(bot.color); 
                             
                             const helpEmbed4 = new MessageEmbed() .setAuthor( `Help - Welcome System`, bot.user.displayAvatarURL({ dynamic: true }) ) 

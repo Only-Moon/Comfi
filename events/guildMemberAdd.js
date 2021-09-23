@@ -8,7 +8,7 @@ bot.on("guildMemberAdd", async (member) => {
   
   const toggle = await db.get(`welcome_toggle_${member.guild.id}`);		
 
-	if(toggle === true){ 
+	if(toggle?.toString() === `true`){ 
   
 const tit = await db.get(`welcome_title_${member.guild.id}`)
 const desc = await db.get(`welcome_desc_${member.guild.id}`)

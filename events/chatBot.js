@@ -28,6 +28,6 @@ let toggle = await db.get(`chattgl_${message.guild.id}`);
     name: 'Comfi', // default: Your bot na
     developer: `Moonbow and ImRopoxPro`,
   })
-} else if(!toggle || toggle.toString() === 'false') return message.delete(), message.author.send({embeds: [ disabled ]})
+} else if(!toggle.toString() === 'false') return message.delete(), message.author.send({embeds: [ disabled ]})
   }
 })

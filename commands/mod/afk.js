@@ -8,7 +8,7 @@ module.exports = {
     options: [
         {
             type: 'STRING',
-            description: 'Reason for going afk',
+            description: 'Reason for going AFK',
             name: 'reason',
             required: true,
         },
@@ -21,8 +21,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-  await db.has(`afk-${interaction.user.id}+${interaction.guild.id}`)
-    
+ 
+      let check = await db.has(`afk-${interaction.user.id}+${interaction.guild.id}`)
+   
+      if (!check) {
 		const content = args.join(' ') || 'No Reason';
 		await db.set(`afk-${interaction.user.id}+${interaction.guild.id}`, content);
 		await db.set(`aftime-${interaction.user.id}+${interaction.guild.id}`, Date.now());
@@ -34,5 +36,10 @@ module.exports = {
 
     if(interaction.member.manageable) interaction.member.setNickname("[AFK] " + interaction.member.displayName)
 		interaction.editReply({ embeds: [ embed ]});
+   } else if (check) {
+
+return interaction.editReply(`${bot.error} You are Already Afk`)
+
+}
 	}
 };

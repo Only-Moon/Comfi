@@ -55,11 +55,14 @@ let [ option ] = args
 if (option === 'category') {
 				let Channel = interaction.options.getChannel('id') || interaction.guild.channels.cache.get(args[0]);
     
-    if (Channel.type === "GUILD_CATEGORY") await db.set(`tik_cat${interaction.guild.id}`, Channel.id) 
+if (Channel.type === "GUILD_CATEGORY"){ 
+      await db.set(`tik_cat${interaction.guild.id}`, Channel.id) 
          interaction.editReply(
 					'**The Ticket Category has been set to**' + Channel.toString()
 				);
-}			
+    } else return interaction.editReply({content: `${bot.error} Provide a Valid Category Id`})
+}		
+      
 if (option === 'role') {
 				let role =
       interaction.options.getRole('role') ||
@@ -77,7 +80,7 @@ if (option === 'role') {
           `${bot.error} **This Role is Already Set As Supportrole!**`
         );
       } else {
-      await db.set(`supportrole_${interaction.guild.id}`, role.id).then
+      await db.set(`supportrole_${interaction.guild.id}`, role.id)
 				return interaction.editReply(
           `**\`${role.name}\` Has Been Set Successfully As Supportrole!**`
         );

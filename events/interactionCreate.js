@@ -54,7 +54,12 @@ const randomAmountOfXp = Math.floor(Math.random() * 29) + 1; // Min 1, Max 30
   const hasLeveledUp = await Levels.appendXp(interaction.user.id, interaction.guild.id, randomAmountOfXp);
   if (hasLeveledUp) {
     const user = await Levels.fetch(interaction.user.id, interaction.guild.id);
-    interaction.channel.send(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. <a:Tada_Yellow:883017870068568085>`);
+    let up = new MessageEmbed()
+.setTitle(`**Level Up**`)
+      .setDescription(`${interaction.member}, congratulations! You have leveled up to **${user.level}**. <a:Tada_Yellow:883017870068568085>`)
+      .setColor(bot.color)
+    .setTimestamp();
+interaction.channel.send({embeds: [ up ]})
   }
   
     async function commandExecute(){

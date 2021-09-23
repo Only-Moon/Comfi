@@ -196,7 +196,7 @@ if (option === 'test') {
 
 const add = await bot.emit("guildMemberUpdate", interaction.member); 
      if (!boostData) { 
-       return interaction.editReply('Please setup Boost Channel and Message Using `/boost channel` and `/boost message` first!', interaction.member) 
+       return interaction.editReply('Please setup Boost Channel and Message Using `/boost channel` and `/boost message` first!', interaction.newMember) 
        
      }
        if(boostData) { 
