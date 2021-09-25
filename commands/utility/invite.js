@@ -26,8 +26,8 @@ module.exports = {
       const no = new MessageButton() 
         .setStyle("DANGER") 
         .setLabel('Nope!') 
-        .setCustomId('inviteno') 
-        
+        .setCustomId('inviteno');
+
       const row = new MessageActionRow() 			
         .addComponents(yes) 
         .addComponents(no); 

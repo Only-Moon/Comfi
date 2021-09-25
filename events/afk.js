@@ -41,7 +41,7 @@ let afk = new MessageEmbed()
      .setDescription(`${ 					message.mentions.members.first().user.tag} **is now afk** \nReason: **${reason}** \nDuration: **${ms(time)} ago**`)
       .setColor(bot.color);
       
-message.channel.send({embeds: [ afk ], allowedMentions: { repliedUser: false } }).then((msg) => {
+message.channel.sen({embeds: [ afk ], allowedMentions: { repliedUser: false } }).then((msg) => {
   setTimeout(() => msg.delete(), ms('15 seconds'))
   });  
     }

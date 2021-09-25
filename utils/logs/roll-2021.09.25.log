@@ -22,3 +22,21 @@
 14:51:28.501 INFO  Watching 81 Slashs, 435 Channels and 27087 Users in  8 Servers 
 14:51:28.502 INFO  ------------------------------------- 
 14:51:28.511 INFO  Your app is listening a http://localhost:3000 
+15:42:49.532 INFO  Mongodb connected! 
+15:42:49.801 INFO  Logged in as Comfi Dev#5575 
+15:42:49.802 INFO  Watching 81 Slashs, 147 Channels and 4822 Users in  3 Servers 
+15:42:49.802 INFO  ------------------------------------- 
+15:42:49.817 INFO  Your app is listening a http://localhost:3000 
+15:42:49.843 INFO  [DB]: Database Connected 
+16:20:51.346 INFO  Mongodb connected! 
+16:20:51.674 INFO  Logged in as Comfi Dev#5575 
+16:20:51.675 INFO  Watching 81 Slashs, 147 Channels and 4819 Users in  3 Servers 
+16:20:51.675 INFO  ------------------------------------- 
+16:20:51.721 INFO  Your app is listening a http://localhost:3000 
+16:20:51.812 INFO  [DB]: Database Connected 
+16:22:49.776 INFO  Mongodb connected! 
+16:22:50.275 INFO  Logged in as Comfi Dev#5575 
+16:22:50.280 INFO  Watching 81 Slashs, 147 Channels and 4822 Users in  3 Servers 
+16:22:50.280 INFO  ------------------------------------- 
+16:22:50.308 INFO  Your app is listening a http://localhost:3000 
+16:22:50.402 INFO  [DB]: Database Connected 

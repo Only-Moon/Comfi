@@ -22,7 +22,7 @@ let bots = new Discord.MessageButton()
            .setLabel("discord.bot")
 
 const row = new Discord.MessageActionRow() 			
-      .addComponents(top, bots)
+      .addComponents(top, bot)
   
 return interaction.followUp({ 
         embeds: [embed], 
