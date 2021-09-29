@@ -83,7 +83,7 @@ if (option === 'settings') {
 if (option === 'message'){
 
 const message = interaction.options.getString('msg'); 
-       await schema.findOneAndUpdate( { 
+       await guilds.findOneAndUpdate( { 
                                     guildId: guildID,
                                     }, 
                                     { 
@@ -101,7 +101,7 @@ if (option === 'channel') {
 const channel = interaction.options.getChannel('name');
 				if (!channel)
 					return interaction.editReply(`${bot.error} | **Specify the channel**`);
-				await schema.findOneAndUpdate( { 
+				await guilds.findOneAndUpdate( { 
                                     guildId: interaction.guild.id,
                                     },
                                     { 

@@ -45,11 +45,13 @@ bot.on("ready", async () => {
 try { 
   
 //bot.guilds.cache.forEach((g) => {
-    // g.commands.set([]);
+    // g.commands.set(arrayOfSlashCommands);
  //  });
 
+setTimeout(() => {
+  
 await bot.application.commands.set(arrayOfSlashCommands)
-                            
+ , 1000)               }                          
 } catch {
   return;
 }
