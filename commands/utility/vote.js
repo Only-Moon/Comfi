@@ -25,7 +25,7 @@ let bots = new Discord.MessageButton()
            .setLabel("discord.bot")
            .setDisabled();
 
-let row = new MessageActionRow()
+let row = new Discord.MessageActionRow()
    .addComponents(bot, top);
   
 return interaction.followUp({ 

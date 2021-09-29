@@ -56,6 +56,10 @@ if (interaction.user.bot) return;
     async function commandExecute(){
     if(cmd) cmd.run(bot, interaction, args)
 }
+
+const user = await users.findOne({userId: interaction.user.id})
+    if(!user) { await guilds.create({userId: interaction.user.id})}
+  
 if(cmd.cooldown) {
     const current_time = Date.now();
     const cooldown_amount = (cmd.cooldown) * 1000

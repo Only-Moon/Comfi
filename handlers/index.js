@@ -44,11 +44,11 @@ const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
 bot.on("ready", async () => { 
 try { 
   
-bot.guilds.cache.forEach((g) => {
-     g.commands.set([]);
-   });
+//bot.guilds.cache.forEach((g) => {
+    // g.commands.set([]);
+ //  });
 
-//await bot.application.commands.set(arrayOfSlashCommands)
+await bot.application.commands.set(arrayOfSlashCommands)
                             
 } catch {
   return;

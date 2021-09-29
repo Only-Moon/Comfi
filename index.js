@@ -16,7 +16,7 @@ module.exports = bot;
 require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 //--------[ HANDLING ERRORS ]--------\\
-/**
+
 process.on('unhandledRejection', error => { 
   const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
@@ -42,5 +42,5 @@ process.on("uncaughtException", (error) => {
   
     channel.send({ embeds: [ embed ]}); 
 })
-*/
+
 //---------[ PROCESS ENDED ]---------\\

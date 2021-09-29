@@ -50,9 +50,12 @@ const embed = new MessageEmbed()
     name: "Invite", 
     value: `${invite}`
   } ) 
-  .setColor(bo.color) 
+  .setColor(bot.color) 
   .setFooter(`${bot.guilds.cache.size} Guilds`, bot.user.displayAvatarURL())
 
 bot.channels.cache.find(c => c.id === "881789380073783302").send({embeds: [embed]})
   guild.leave() 
+
+interaction.editReply(`${bot.tick} left ${guild.id}`)
+  
 } }

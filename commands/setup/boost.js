@@ -57,7 +57,7 @@ let [ option ] = args
  
 const guildID = interaction.guild.id; 
         const messageChannel = interaction.channel; 
-        const guild = await schema.findOne({ 
+        const guild = await guilds.findOne({ 
             guildId: interaction.guild.id,
             }); 
      			

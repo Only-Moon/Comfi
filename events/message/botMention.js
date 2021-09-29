@@ -19,18 +19,18 @@ bot.on("messageCreate", async (message) => {
 	
 let sup = new MessageButton()
     .setStyle("LINK")
-    .setLabel("Invite Me!")
+    .setLabel("Join Support!")
     .setURL("https://discord.gg/dvAUCFPaCJ");
 
 let inv = new MessageButton()
    .setStyle("LINK")
-   .setLabel("Join Support!")
+   .setLabel("Invite Me!")
    .setURL("https://discord.com/api/oauth2/authorize?client_id=873473703470563378&permissions=8&scope=bot%20applications.commands")
 
 let dash = new MessageButton()
     .setStyle("LINK")
     .setLabel("Check Website!")
-    .setURL(bot.dash);
+    .setURL("https://comfi.xx-mohit-xx.repl.co/");
     
 let row = new MessageActionRow()
    .addComponents(sup, inv, dash);

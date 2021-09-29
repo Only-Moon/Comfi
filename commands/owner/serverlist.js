@@ -140,7 +140,7 @@ const guilds = bot.guilds.cache;
         setFooter(interaction.user.tag); 
       let description = ""; 
       guilds.forEach((guild) => { 
-        description += `**${guild.name}:** | ${guild.memberCount} | Id: ${guild.id}`; 
+        description += `**${guild.name}:** | ${guild.memberCount} | Id: ${guild.id}\n`; 
       }); 
       embed.setDescription(description); 
       

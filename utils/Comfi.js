@@ -26,9 +26,9 @@ class Comfi extends Discord.Client {
         this.owners = (require('../config.json').owners)
         this.on("disconnect", () => this.logger.log("bot is disconnecting "))
             .on("reconnecting", () => this.logger.log("Bot is reconnecting"))
-            .on("error", (e) => this.logger.error(e.stack))
-            .on("rateLimit", (e) => this.logger.error(e.stack))
-            .on("warn", (info) => this.logger.warn(info.stack));
+            .on("error", (e) => this.logger.error(`${e.stack}`))
+            .on("rateLimit", (e) => this.logger.error(`${e.stack}`))
+            .on("warn", (info) => this.logger.warn(`${info.stack}`));
         this.login(process.env.TOKEN)
         this.config = require('../config.json')
         this.discordTogether = new DiscordTogether(this, {

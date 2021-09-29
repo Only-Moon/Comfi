@@ -62,11 +62,6 @@ module.exports = {
           name: 'membercount',
         },
         {
-          type: 'SUB_COMMAND',
-          description: 'Information About Latency Of The Bot',
-          name: 'ping',
-        },
-        {
             type: 'SUB_COMMAND',
             description: 'Information about the bot privacy policy',
             name: 'privacy',
@@ -310,23 +305,6 @@ const vanityCode = interaction.guild.vanityURLCode;
         .addField(`<a:amt_shootingstaws:883017879065354290> Roles [${roles.length}]`, roles.length < 15 ? roles.join(' | ') : roles.length > 15 ? `${roles.slice(0, 15).join(' | ')} | \`+ ${roles.length-15} roles...\`` : 'None')
         .setAuthor(`${interaction.guild.name}`)
         interaction.editReply({ embeds: [ embed ] });
-
-}
-
-if (subcommand === 'ping') {
-
-let circles = {
-            green: "<a:green_fire:890138128499736636>",
-            yellow: "<a:enoobies_fire:883032979746725928>",
-            red: "<a:p_fire2:890138689072672788>"
-        }
-        const pingEmbed = new MessageEmbed()
-            .setColor(bot.color)
-            .setAuthor("Pong! 🏓", interaction.user.avatarURL({ dynamic: true }))
-          .addField("Ping :",
-                `${bot.ws.ping <= 200 ? circles.green : bot.ws.ping <= 400 ? circles.yellow : circles.red} ${bot.ws.ping}ms`
-            )
-        interaction.editReply({ embeds: [pingEmbed] });
 
 }
 

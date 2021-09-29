@@ -37,7 +37,7 @@
     "nodemon": "^2.0.13",
     "pm2": "^5.1.2",
     "pretty-ms": "^7.0.1",
-    "quickmongo": "^3.0.0",
+    "quickmongo": "^3.0.2",
     "relevant-urban": "^2.0.0",
     "simple-node-logger": "^21.8.12",
     "simply-djs": "^2.0.95",
