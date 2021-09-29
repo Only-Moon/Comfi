@@ -1,4 +1,4 @@
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -37,19 +37,6 @@ let [ subcommand ] = args;
       
 if (subcommand === 'enable') {
       
-    if (!args[0]) {
-      let b = await db.get(`muterole_${interaction.guild.id}`);
-      let roleName = interaction.guild.roles.cache.get(b);
-      if (interaction.guild.roles.cache.has(b)) {
-        return interaction.editReply(
-          `**Muterole Setted In This Server As \`${roleName.name}\`!**`
-        );
-      } else
-        return interaction.editReply(
-          `${bot.error} **Please Enter A Role Name or ID To Set!**`
-        );
-    }
-
     let role =
       interaction.options.getRole('role') ||
       bot.guilds.cache.get(interaction.guild.id).roles.cache.get(args[0]) ||
@@ -61,19 +48,15 @@ if (subcommand === 'enable') {
       return interaction.editReply(`${bot.error} **Please Enter A Valid Role Name or ID!**`);
 
     try {
-      let a = await db.fetch(`muterole_${interaction.guild.id}`);
 
-      if (role.id === a) {
-        return interaction.editReply(
-          `${bot.error} **This Role is Already Set As Muterole!**`
-        );
-      } else {
-        await db.set(`muterole_${interaction.guild.id}`, role.id);
+      await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+                  mute: true, 
+                  mute_role: role,
+                  })
 
         interaction.editReply(
           `**\`${role.name}\` Has Been Set Successfully As Muterole!**`
         );
-      }
     } catch (e) {
       return interaction.editReply(
         "**Error - `Missing Permissions or Role Doesn't Exist!`**",
@@ -84,11 +67,9 @@ if (subcommand === 'enable') {
 
 if (subcommand === 'disable') {
 
-let rol = await db.get(`muterole_${interaction.guild.id}`)
-
-if (!rol) return interaction.followUp(`${bot.error} Set Muterole First`)
-
-await db.delete(`muterole_${interaction.guild.id}`) 
+await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+                  mute: true,
+                  }) 
 return interaction.editReply(`Successfully Removed Muterole`)
   
 }

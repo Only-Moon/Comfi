@@ -1,4 +1,4 @@
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 const simplydjs = require('simply-djs')
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
@@ -22,19 +22,28 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
+
+    const guild = await guilds.findOne({guildId: interaction.guild.id})
+    if(guild.suggestions) {
+
   const suggestion = interaction.options.getString('suggestion'); 
-  let channel = await db.fetch(`suggestion_${interaction.guild.id}`);
-    if (!channel) return interaction.editReply(`Please set the suggestion channel first by using **/set-suggestion**`);
+  let channel = guild.suggestions_channel
+
+  if(!channel) return;
   
   simplydjs.suggestSystem(bot, interaction, suggestion, {
    slash: true,
    chid: `${channel}`,
-   embedColor: '#F8B6D4', // defaultL #075FFF
+   embedColor: bot.color, // defaultL #075FFF
    credit: false,
-   yesEmoji: '778611379560120320', // default: ☑️
+   yesEmoji: `${bot.tick}`, // default: ☑️
    yesColor: '', // default: green 
-   noEmoji: '778611410539905044', // default: X
+   noEmoji: `${bot.crosss}`, // default: X
    noColor: '', // default: red
    });
-  }
+  } else if (!guild.suggestions) {
+
+interaction.editReply(`${bot.error} Please Ask an Admin to set the suggestion channel first by using **/suggestion**`);
+      
 }
+}}

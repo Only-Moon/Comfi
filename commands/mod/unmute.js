@@ -1,5 +1,5 @@
 const { Interaction, MessageEmbed } = require("discord.js");
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 
 module.exports = {
   name: "unmute",
@@ -22,9 +22,12 @@ module.exports = {
   run: async (bot, interaction) => {
     try {
       const mutee = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]) || interaction.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || interaction.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
-      if (!mutee) return interaction.editReply("<a:Attention:883349868062576701> **Please Enter A Valid User!**");
+      if (!mutee) return interaction.editReply(`${bot.error} **Please Enter A Valid User!**`);
+
+                const guild = await guilds.findOne({guildId: interaction.guild.id})
+      
       let muterole; 
-      let dbmute = await db.get(`muterole_${interaction.guild.id}`); 
+      let dbmute = guild.muterole;
       let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted") 
         if (!interaction.guild.roles.cache.has(dbmute)) { 
           muterole = muteerole
@@ -32,12 +35,12 @@ module.exports = {
           muterole = interaction.guild.roles.cache.get(dbmute) 
         } 
       
-      let rolefetched = await db.get(`muteeid_${interaction.guild.id}_${mutee.id}`) 
+      let rolefetched = guild.mutedrole
         
       if (!rolefetched) return; 
       
-      if (!muterole) return interaction.editReply("<a:Attention:883349868062576701> **There Is No Mute Role To Remove!**") 
-      if (!mutee.roles.cache.has(muterole.id)) return interaction.editReply("<a:Attention:883349868062576701> **User is not Muted!**") 
+      if (!muterole) return interaction.editReply(`${bot.error} **There Is No Mute Role To Remove!**`) 
+      if (!mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} **User is not Muted!**`) 
         
       try { 
         mutee.roles.remove(muterole.id).then(() => { 
@@ -55,16 +58,19 @@ module.exports = {
       
       } 
 const sembed = new MessageEmbed() 
-  .setColor("#F4B3CA")
+  .setColor(bot.color)
   .setDescription(`${mutee.user.username} was successfully unmuted.`) 
         
 interaction.editReply({embeds: [ sembed ]}); 
 
-let channel = await db.get(`modlog_${interaction.guild.id}`)
-        if (!channel) return;
+    if(!guild.modlog) return;
+
+    if(guild.modlog) {
+            let channel = interaction.guild.channels.cache.find(c => c.id === guild.mod_channel)
+                if (!channel) return;
 
         let embeds1 = new MessageEmbed()
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
             .setThumbnail(mutee.user.avatarURL({ dynamic: true }))
             .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
             .addField("**Moderation**", "unmute")
@@ -77,7 +83,7 @@ let channel = await db.get(`modlog_${interaction.guild.id}`)
    sChannel = interaction.guild.channels.cache.get(channel)
         if (!sChannel) return;
         sChannel.send({embeds: [ embeds1 ]})      
-    
+    }   
     } catch (err) {
       console.log(`Error => `, err);
     }

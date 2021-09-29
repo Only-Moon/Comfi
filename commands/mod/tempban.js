@@ -1,4 +1,4 @@
-const { db } = require('../../Database.js'); 
+const guilds = require('../../models/guild'); 
 const moment = require('moment'); 
 const ms = require('ms'); 
 const { CommandInteraction, MessageEmbed } = require("discord.js"); 
@@ -40,7 +40,7 @@ run: async (bot, interaction, args) => {
   const tbuser = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]); 		
   const regex = args.splice(1).join(" ");	 		
   if (tbuser === interaction.user.id) { 			
-    return interaction.editReply("<a:Attention:883349868062576701> Really!! Are you going to ban yourself.."); 	
+    return interaction.editReply(`${bot.error} Really!! Are you going to ban yourself..`); 	
   } 	
   
 if(!reason) reason = "No Reason Provided"; 		 		

@@ -1,6 +1,7 @@
 const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord.js");
-const Levels = require("discord-xp");
 const canvacord = require("canvacord")
+const guilds = require("../../models/guild")
+const users = require("../../models/users")
 
 module.exports = {
     name: "rank",
@@ -24,20 +25,27 @@ module.exports = {
     run: async (bot, interaction, args) => {
 
 const target = interaction.options.getUser('user') || interaction.user;
-      
-const user = await Levels.fetch(target.id, interaction.guild.id, true);
 
-if (!user) return interaction.editReply("Seems like this user has not earned any xp so far.");
+const guild = await guilds.findOne({guildId: interaction.guild.id}) 
+  
+const user = await users.findOne({guildId: interaction.guild.id, userId: target.id})
+     
+if (!user) {
+
+interaction.editReply(`${bot.error} User haven't Leveled Up yet or User is a Bot`)
+
+} else {
       
+if(guild.leveling) {
+
 const rank = new canvacord.Rank()
         .setAvatar(target.avatarURL({format: 'png', size: 512}))
         .setCurrentXP(user.xp)
-        .setRequiredXP(Levels.xpFor(user.level + 1))
-        .setRank(user.position)
+        .setRequiredXP(user.requiredXp)
+        .setRank(0, "level", false)
         .setLevel(user.level)
         .setBackground("IMAGE", "https://media.discordapp.net/attachments/882842239800311828/885464221666652160/rank_card_banner.png")
-        .setOverlay("#F4B3CA", false)
-       // .registerFonts(fontArray)
+        .setOverlay("#F54D94", true)
         .setProgressBar("#F6B5DF")
         .setUsername(target.username)
         .renderEmojis(true)
@@ -50,6 +58,7 @@ const rank = new canvacord.Rank()
 interaction.editReply({files: [ attachment ]})
     });
 
-  
-} 
 }
+} 
+      
+}}

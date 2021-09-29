@@ -10,7 +10,7 @@ module.exports = {
    * @param {Message} message
    * @param {String[]} args
    */
-  run: async (bot, message, args) => {
+  run: async (bot, message, args, props) => {
     let circles = {
             green: "<a:greenfire:865919100991045653>",
             yellow: "<a:yellowflame:865994340442832906> ",

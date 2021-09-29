@@ -1,5 +1,5 @@
 const { Interaction, MessageEmbed } = require("discord.js");
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 
 module.exports = {
   name: "ban",
@@ -59,11 +59,16 @@ module.exports = {
                 .setDescription(`**${banMember.user.username}** has been banned`)
             await interaction.editReply({embeds: [ sembed2 ]})
             }
-            let channel = await db.fetch(`modlog_${interaction.guild.id}`)
+
+const guild = await guilds.findOne({guildId: interaction.guild.id})
+    if(!guild.modlog) return;
+      
+            let channel = interaction.guild.channels.cache.find(c => c.id === guild.mod_channel)
             if (channel == null) return;
 
             if (!channel) return;
 
+if (guild.modlog) {
             const embed = new MessageEmbed()
                 .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
                 .setColor("#F4B3CA")
@@ -80,6 +85,7 @@ module.exports = {
             var sChannel = interaction.guild.channels.cache.get(channel)
             if (!sChannel) return;
             sChannel.send({embeds: [ embed ]})
+}
         } catch (e) {
             return interaction.channel.send(`**${e.message}**`)
         }

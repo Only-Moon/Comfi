@@ -1,4 +1,4 @@
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -42,23 +42,24 @@ if (subcommand === 'enable') {
 
         if (Channel.type === "GUILD_Voice") return interaction.editReply(`${bot.error} Please Mention A Text Channel!`);
 
-        await db.set(`suggestion_${interaction.guild.id}`, Channel.id);
+await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+                  suggestions: true, 
+                  suggestions_channel: Channel,
+                  })
 
         let embed = new MessageEmbed()
         .setColor(bot.color)
-        .setDescription(`<:yes_HE:778611379560120320>  | Suggestion Channel is setted as <#${Channel.id}>`)
+        .setDescription(`${bot.tick} • Suggestion Channel is setted as <#${Channel.id}>`)
 
         return interaction.editReply({embeds: [ embed ]});
 }
 
 if (subcommand === 'disable') {
 
-let ch = await db.get(`suggestion_${interaction.guild.id}`)
-
-if (!ch) return interaction.editReply(`${bot.error} You need to set channel first`)
-
-await db.delete(`suggestion_${interaction.guild.id}`) 
-return interaction.editReply(`Successfully Removed Suggestion Channel`)
+await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+                  suggestions: false, 
+                  })
+return interaction.editReply(`${bot.tick} • Successfully Removed Suggestion Channel`)
   
 }
     }

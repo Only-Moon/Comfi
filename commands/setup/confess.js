@@ -1,5 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 
 module.exports = {
     name: "confession",
@@ -40,10 +40,14 @@ if (subcommand === 'enable') {
 
         if (Channel.type === "GUILD_VOICE") return message.channel.send(`${bot.error} Please Mention A Text Channel!`);
 
-        await db.set(`confession_${interaction.guild.id}`, Channel.id);
+finalData = Channel.id
+                await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+                  confession: true, 
+                  confess_channel: finalData,
+                  })
 
         let embed = new MessageEmbed()
-        .setColor("00FFFF")
+        .setColor(bot.color)
         .setDescription(`Confession Channel is setted as <#${Channel.id}>`)
 
         return interaction.editReply({embeds: [ embed ]});
@@ -51,11 +55,15 @@ if (subcommand === 'enable') {
 
 if (subcommand === 'disable') {
 
-let ch = await db.get(`confession_${interaction.guild.id}`)
-  if (!ch) return interaction.editReply(`${bot.error} Sets Confession Channel First`)
+const guild = await guilds.findOne({guildId: interaction.guild.id}) 
 
-  await db.delete(`confession_${interaction.guild.id}`)
- interaction.editReply(`Removed Chatbot Channel`)
+  if (!guild.confession) return interaction.editReply(`${bot.error} Sets Confession Channel First`)
+
+await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+                  confession: false,
+                  })
+
+ interaction.editReply(`${bot.tick} • Removed Confession Channel`)
   
 }
     }

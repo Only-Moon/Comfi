@@ -1,5 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 
 module.exports = {
     name: "confess",
@@ -21,9 +21,13 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
+
+    const guild = await guilds.findOne({guildId: interaction.guild.id})
+    if(guild.confession) {
+
 await interaction.deleteReply();
-    let channel = await db.fetch(`confession_${interaction.guild.id}`);
-    if (channel === null) return;
+    let channel = guild.confess_channel
+    if (!channel) return;
   
   const confessionQuery = args[0]
   if(!confessionQuery) return interaction.editReply("Please Confess Something.");
@@ -32,10 +36,15 @@ await interaction.deleteReply();
          
        .setTitle('Anonymous Confession')
        .setDescription(`${confessionQuery}`)
-       .setColor("FFA0B3")
+       .setColor(bot.color)
        .setTimestamp();
        
     
     let msg = await interaction.guild.channels.cache.get(channel).send({ embeds: [ embed ] })
-  }
+  } else if (!guild.confession) {
+
+interaction.editReply(`${bot.error} Confession Channel Not Found, Ask an Admin to set it.`)
+
 }
+
+}}

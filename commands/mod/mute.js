@@ -1,5 +1,5 @@
 const { Interaction, MessageEmbed } = require("discord.js");
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 
 module.exports = {
   name: "mute",
@@ -32,17 +32,21 @@ module.exports = {
    * @param {Interaction} interaction
    */
   run: async (bot, interaction, args) => {
-    try {
        var mutee = interaction.options.getMember('user');
       var time = interaction.options.getString('time');
       if (mutee === interaction.member) return interaction.editReply("<a:Attention:883349868062576701> **You Cannot Mute Yourself!**")
         if (mutee.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0) return interaction.editReply('<a:Attention:883349868062576701> **Cannot Mute This User!**')
           let reason = args.slice(1).join(" ") || interaction.options.getString('reason'); 
       if (mutee.user.bot) return interaction.editReply("<a:Attention:883349868062576701> **Cannot Mute Bots!**"); 
+
+const guild = await guilds.findOne({guildId: interaction.guild.id})
+    if(!guild.muterole) return;
+
+    if(guild.muterole) {
       
   const userRoles = mutee.roles.cache .filter(r => r.id !== interaction.guild.id) .map(r => r.id) 
   let muterole; 
-      let dbmute = await db.get(`muterole_${interaction.guild.id}`); 
+      let dbmute = guild.muterole
       let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted")
         if (!interaction.guild.roles.cache.has(dbmute)) { 
           muterole = muteerole
@@ -74,7 +78,9 @@ module.exports = {
         } 
       };
       if (mutee.roles.cache.has(muterole.id)) return interaction.editReply("<a:Attention:883349868062576701> **User Is Already Muted!**") 
-        await db.set(`muteeid_${interaction.guild.id}_${mutee.id}`, userRoles) 
+      await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
+                  muted_role: userRoles,
+                  })
           try { mutee.roles.set([muterole.id]).then(() => { 
             mutee.send(`**Hello, You Have Been Muted In ${interaction.guild.name} for - ${reason || "No Reason"}**`).catch(() => null)
           })
@@ -84,7 +90,7 @@ module.exports = {
       if (reason) { 
         
         const sembed = new MessageEmbed() 
-          .setColor("#F4B3CA") 
+          .setColor(bot.color) 
           .setAuthor(interaction.guild.name, interaction.guild.iconURL()) 
           .setDescription(`${mutee.user.username} was successfully muted for ${reason}`) 
           
@@ -105,8 +111,11 @@ interaction.editReply({embeds: [ sembed2 ]});
   await mutee.send("You have been Unmuted from the server"); 
  }
 
-let channel = await db.get(`modlog_${interaction.guild.id}`)
-            if (!channel) return;
+    if(!guild.modlog) return;
+
+    if(guild.modlog) {
+            let channel = interaction.guild.channels.cache.find(c => c.id === guild.mod_channel)
+                if (!channel) return;
 
             let embeds1 = new MessageEmbed()
                 .setColor('#F4B3CA')
@@ -123,9 +132,6 @@ let channel = await db.get(`modlog_${interaction.guild.id}`)
             var sChannel =  interaction.guild.channels.cache.get(channel)
             if (!sChannel) return;
             sChannel.send({embeds: [ embeds1 ]})
-
-    } catch (err) {
-      console.log("Error => ", err);
     }
-  },
-};
+  }
+}}

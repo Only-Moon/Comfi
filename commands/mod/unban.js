@@ -38,7 +38,7 @@ module.exports = {
 
       let userTag;
       if (!userToUnban) {
-        embed.setDescription(`:x: Invalid User or User is Not Banned`)
+        embed.setDescription(`${bot.crosss} • Invalid User or User is Not Banned`)
         return await interaction.editReply({embeds: [embed]})
       }
 
@@ -46,7 +46,7 @@ module.exports = {
 
       await interaction.guild.bans.remove(userToUnban.user.id);
 
-      embed.setColor('GREEN').setDescription(`:white_check_mark: Unbanned ${userTag} Successfully`)
+      embed.setColor(bot.color).setDescription(`${bot.tick} • Unbanned ${userTag} Successfully`)
       await interaction.editReply({embeds: [embed]})
     } catch (err) {
       console.log("Something Went Wrong => ", err);

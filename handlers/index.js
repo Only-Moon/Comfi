@@ -1,12 +1,7 @@
 const { glob } = require("glob");
 const { promisify } = require("util");
-const ascii = require("ascii-table");
 
 const globPromise = promisify(glob); 
-
-// Create a new Ascii table
-let table = new ascii("Slash");
-table.setHeading("Slash", "Load status");
 
 module.exports = async (bot) => {
   
@@ -29,7 +24,7 @@ const commandFiles = await globPromise(`${process.cwd()}/prefix-commands/**/*.js
 });
 
   // Events 
-  const eventFiles = await globPromise(`${process.cwd()}/events/*.js`); 
+  const eventFiles = await globPromise(`${process.cwd()}/events/*/*.js`); 
   eventFiles.map((value) => require(value))
 
   //Slash
@@ -42,19 +37,23 @@ const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
     
     if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
            arrayOfSlashCommands.push(file);
- try {
-   table.addRow(file.name, '✅')
-   } catch(err) { 
-        bot.logger.error(err) 
-        
-        table.addRow(file.name, `❌ -> Error while loading event`);
-  }
-  
-  // console.log(table.toString()); 
+ 
   })
- bot.on("ready", async () => {
-   bot.guilds.cache.forEach((g) => {
-     g.commands.set(arrayOfSlashCommands);
+
+  
+bot.on("ready", async () => { 
+try { 
+  
+bot.guilds.cache.forEach((g) => {
+     g.commands.set([]);
    });
+
+//await bot.application.commands.set(arrayOfSlashCommands)
+                            
+} catch {
+  return;
+}
+ 
  })
+
  }

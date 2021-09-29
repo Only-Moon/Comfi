@@ -12,8 +12,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-    try {
-//interaction.deleteReply();
+  /**
+      try {
+interaction.deleteReply();
       let i0 = 0;
       let i1 = 10;
       let page = 1;
@@ -32,19 +33,19 @@ module.exports = {
           interaction.user.tag,
           interaction.user.avatarURL({ dynamic: true })
         )
-        .setColor("#F4B3CA")
+        .setColor(bot.color)
         .setFooter(bot.user.username)
         .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
         .setDescription(description);
 
-      let msg = await interaction.editReply({embeds: [ embed ]});
+      let msg = await interaction.channel.send({embeds: [ embed ]});
 
       await msg.react("⬅");
       await msg.react("➡");
       await msg.react("❌");
 
       let collector = msg.createReactionCollector(
-        (reaction, user) => user.id === message.author.id
+        (reaction, user) => user.id === interaction.user.id
       );
 
       collector.on("collect", async (reaction, user) => {
@@ -56,7 +57,6 @@ module.exports = {
 
           // if there is no guild to display, delete the message
           if (i0 + 1 < 0) {
-            console.log(i0)
             return msg.delete();
           }
           if (!i0 || !i1) {
@@ -131,5 +131,20 @@ module.exports = {
     } catch(err) {
       return console.log(err);
     }
+      */
+
+const guilds = bot.guilds.cache; 
+      const embed = new MessageEmbed() 
+        .setTitle(`Guilds for ${bot.user.username}`) 
+        .setColor(bot.color) .
+        setFooter(interaction.user.tag); 
+      let description = ""; 
+      guilds.forEach((guild) => { 
+        description += `**${guild.name}:** | ${guild.memberCount} | Id: ${guild.id}`; 
+      }); 
+      embed.setDescription(description); 
+      
+     interaction.editReply({ embeds: [embed] });
+      
   }
 };

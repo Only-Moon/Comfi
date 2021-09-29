@@ -1,5 +1,5 @@
 const { Interaction, MessageEmbed } = require("discord.js");
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 
 module.exports = {
   name: "setnick",
@@ -42,12 +42,16 @@ module.exports = {
 
       await user.member.setNickname(nickname.value);
 
-      embed.setDescription(`:white_check_mark: ${user.member.toString()}'s Nickname Changed`).setFooter(`From ${oldNick} to ${nickname.value}`);
+      embed.setDescription(`${bot.tick} • ${user.member.toString()}'s Nickname Changed`).setFooter(`From ${oldNick} to ${nickname.value}`);
       
 await interaction.editReply({ embeds: [embed] });
 
-   let channel = await db.get(`modlog_${interaction.guild.id}`)
-        if (!channel) return;
+                const guild = await guilds.findOne({guildId: interaction.guild.id})
+    if(!guild.modlog) return;
+
+    if(guild.modlog) {
+            let channel = interaction.guild.channels.cache.find(c => c.id === guild.mod_channel)
+                if (!channel) return;
 
         const sembed = new MessageEmbed()
             .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL({ dynamic: true }))
@@ -64,7 +68,7 @@ await interaction.editReply({ embeds: [embed] });
             var sChannel = interaction.guild.channels.cache.get(channel)
             if (!sChannel) return;
             sChannel.send({embeds: [ sembed ]})
-   
+    }
     } catch (err) {
       return interaction.channel.send({content: `${bot.error} **Something Went Wrong =>** \n${err}`});
     } 

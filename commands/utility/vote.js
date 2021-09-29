@@ -1,28 +1,32 @@
-const Color = "#F4B3CA";
 const Discord = require("discord.js");
 
 module.exports = {
   name: "vote",
   description: "Vote For Comfi",
-    
+  userperm: [""],
+  botperm: [""],
+  ownerOnly: false,
+  
 run: async (bot, interaction, args) => {
     
     const embed = new Discord.MessageEmbed()
-    .setColor(Color)
-    .setTitle("Vote Bot")
-    .setDescription("You can vote us in **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
+    .setColor(bot.color)
+    .setTitle("Vote For Comfi")
+    .setDescription("You can vote for her from **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
     .setTimestamp();
 let top = new Discord.MessageButton()
            .setStyle("LINK")
            .setURL("https://tog.gg")
-           .setLabel("Top.gg");
+           .setLabel("Top.gg")
+           .setDisabled();
 let bots = new Discord.MessageButton()
            .setStyle("LINK")
            .setURL("http://botlist.com")
            .setLabel("discord.bot")
+           .setDisabled();
 
-const row = new Discord.MessageActionRow() 			
-      .addComponents(top, bot)
+let row = new MessageActionRow()
+   .addComponents(bot, top);
   
 return interaction.followUp({ 
         embeds: [embed], 

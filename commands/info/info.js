@@ -10,6 +10,7 @@ module.exports = {
     name: "infoo",
     description: "Information",
     ownerOnly: false,
+    cooldown: 10,
     options: [
         {
             name: "avatar",

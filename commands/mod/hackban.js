@@ -1,4 +1,4 @@
-const { db } = require('../../Database.js');
+const guilds = require('../../models/guild');
 const { measureMemory } = require("vm");
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
@@ -40,11 +40,15 @@ module.exports = {
                 .setColor("#F4B3CA")
                 .setDescription("**They were successfully banned. User was not notified!**");
                 await interaction.editReply({embeds: [ embed2 ]});                
-                const channel  = db.get(`modlog_${interaction.guild.id}`);
+                const guild = await guilds.findOne({guildId: interaction.guild.id})
+    if(!guild.modlog) return;
+
+    if(guild.modlog) {
+            let channel = interaction.guild.channels.cache.find(c => c.id === guild.mod_channel)
                 if (!channel) return;
             const embed = new MessageEmbed()
                 .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
                 .setFooter(interaction.guild.name, interaction.guild.iconURL())
                 .addField("**Moderation**", "ban")
                 .addField("**ID**", `${target}`)
@@ -56,7 +60,7 @@ module.exports = {
             var sChannel = interaction.guild.channels.cache.get(channel)
             if (!sChannel) return;
             sChannel.send({embeds: [ embed ]})
-            
-            } catch (error) { console.log(error)}
+    }     
+            } catch (error) { console.log(`${error}`)
     }
-}
+}}

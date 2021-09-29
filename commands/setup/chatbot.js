@@ -1,5 +1,4 @@
-const { db } = require('../../Database.js'); 
-const simplydjs = require("simply-djs") 
+const guilds = require('../../models/guild');  
 const { CommandInteraction, MessageEmbed } = require("discord.js"); 
 
 module.exports = { 
@@ -58,9 +57,13 @@ module.exports = {
   
 run: async (bot, interaction, args, message) => { 
   let [ option ] = args
-    
+
+    const guild = await guilds.findOne({guildId: interaction.guild.id})
+  
   if (option === 'toggle') { 				const punishment = interaction.options.getString('option') 				
-    await db.set(`chattgl_${interaction.guild.id}`, punishment); 				
+    await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
+                    chatbot: punishment
+                }) 				
                             return interaction.editReply( 					
                               `The Chatbot for **${ 	
 interaction.guild.name 	
@@ -71,19 +74,21 @@ interaction.guild.name
     const channel = interaction.options.getChannel('name'); 				
     if (!channel) 				
       return interaction.editReply(`${bot.error} **Specify the channel**`); 				
-    await db.set(`chatbt_${interaction.guild.id}`, channel.id); 				
+   await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
+                    chat_channel: channel,
+                }) 				
     return interaction.editReply( 					'**The chatbot channel has been set to** ' + channel.toString() 		
                                 ); 
   }
   if (option === 'settings') { 			
-    let chnnl = await db.fetch(`chatbt_${interaction.guild.id}`) || 'None'; 				
-    let toggle = await db.get(`chattgl_${interaction.guild.id}`) || 'None'; 				
+    let chnnl = guild.chat_channel || 'None'; 				
+    let toggle = guild.chatbot || false; 				
     let embed = new MessageEmbed() 					
       .setTitle('Chatbot configuration') 					
       .setAuthor( 						interaction.user.tag, 						interaction.user.avatarURL({ dynamic: true }) 					) 					
       .addField(`Toggle`, toggle) 					
       .addField( 						`Chatbot Channel`, `${chnnl !== 'None' ? `<#${chnnl}>` : 'None'}`) 					
-      .setColor('#F4B3CA') 					
+      .setColor(bot.color) 					
       .setFooter( interaction.guild.name, 						interaction.guild.iconURL({ dynamic: true }) 			
                 ); 		
     return interaction.editReply({ 
@@ -91,13 +96,13 @@ interaction.guild.name
   }
   
   if (option === 'disable') { 
-    check = await db.get(`chatbt_${interaction.guild.id}`) && await db.get(`chattgl_${interaction.guild.id}`) 				 				
-      
-    if(!check) { 	
+    if(!guild.chatbot) { 	
       return interaction.editReply(`${bot.error} Please set the required fields first or i cant disable it!!`); 	
     } else { 		
-      await db.delete(`chatbt_${interaction.guild.id}`) 
-        await db.delete(`chattgl_${interaction.guild.id}`); 		
+      await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
+                    chatbot: false,
+                    chat_channel: "NONE",
+                }) 		
       return interaction.editReply("Disabled the Chatbot System in the server :)"); 				}
   }
 }}

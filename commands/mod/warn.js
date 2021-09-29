@@ -1,4 +1,4 @@
-const warnSchema = require('../../models/warnings');
+const warnSchema = require('../../models/users');
 const uuid = require('uuid');
 const { MessageEmbed } = require('discord.js');
 
@@ -89,14 +89,14 @@ run: async (bot, interaction, args) => {
 						guildId: interaction.guild.id,
 						userId: user.id,
 						$push: {
-							warnings: warnObj,
+							warns: warnObj,
 						},
 					},
 					{
 						upsert: true,
 					},
 				);
-				const warnCount = warnAddData ? warnAddData.warnings.length + 1 : 1;
+				const warnCount = warnAddData ? warnAddData.warns.length + 1 : 1;
 				const warnGrammar = warnCount === 1 ? '' : 's';
 
 let warn = new MessageEmbed()
@@ -118,7 +118,7 @@ let warn = new MessageEmbed()
 					userId: user.id,
 				});
 
-				if (!warnedResult || warnedResult.warnings.length === 0)
+				if (!warnedResult || warnedResult.warns.length === 0)
 					return interaction.editReply({
 						content: `${bot.error} That user has no warning record!`,
 						ephemeral: true,
@@ -132,14 +132,14 @@ let warn = new MessageEmbed()
 				const getWarnedUser = interaction.guild.members.cache.find(
 					(user) => user.id === warnedResult.userId,
 				);
-				for (const warning of warnedResult.warnings) {
+				for (const warning of warnedResult.warns) {
 					const { authorId, timestamp, warnId, reason } = warning;
 					const getModeratorUser = interaction.guild.members.cache.find(
 						(user) => user.id === authorId,
 					);
 					string += embed
 						.addField(
-							`Warn ID: ${warnId} | Moderator: ${getModeratorUser.user.tag}`,
+							`Warn ID: ${warnId} | Moderator: ${getModeratorUser?.user.tag}`,
 							`${reason} - <t:${timestamp}>`,
 						)
 						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
@@ -158,7 +158,7 @@ let warn = new MessageEmbed()
 							userId: user.id,
 						},
 						{
-							$pull: { warnings: { warnId: `${getWarnId}` } },
+							$pull: { warns: { warnId: `${getWarnId}` } },
 						},
 					);
 
@@ -167,7 +167,7 @@ let warn = new MessageEmbed()
 					);
 
 					const warnedRemoveCount = warnedRemoveData
-						? warnedRemoveData.warnings.length - 1
+						? warnedRemoveData.warns.length - 1
 						: 0;
 					const warnedRemoveGrammar = warnedRemoveCount === 1 ? '' : 's';
 

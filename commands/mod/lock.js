@@ -35,8 +35,8 @@ module.exports = {
             console.log(e);
         }
 let embed = new MessageEmbed()
-        .setDescription(`Done | ${channel} Locked`)
-        .setColor('#FF6868');
+        .setDescription(`${bot.tick} Done | ${channel} Locked`)
+        .setColor(bot.color);
         interaction.editReply({embeds: [ embed ]});
     }
 }
