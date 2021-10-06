@@ -68,6 +68,25 @@ module.exports = {
             ],
         },
         {
+            name: 'drake',
+            description: 'the drake meme',
+            type: "SUB_COMMAND",
+            options: [
+        {
+                   name: 'line_1',
+                   type: 'STRING',
+                   description: 'WHAT am i putting in fist line',
+                  required: true
+        },
+        {
+                   name: 'line_2',
+                   type: 'STRING',
+                   description: 'WHAT am i putting in the second line',
+                   required: true
+        },
+    ],
+        },
+        {
             name: "delete",
             description: "delete image",
             type: "SUB_COMMAND",
@@ -308,6 +327,22 @@ module.exports = {
             })
 
         }
+
+
+        //Disability Image------------------------------------------------------------------------------------------------------------
+        if (subcommand === `drake`) {
+
+const text1 = args[0];
+        const text2 = args.slice(1).join(" ")
+
+        const finalLink = 'https://luminabot.xyz/api/image/drake?yes=' + encodeURIComponent(text2) + '&no=' + encodeURIComponent(text1)
+
+        const attach = new MessageAttachment(finalLink, 'drake.png')
+
+        interaction.followUp({ files: [attach] });
+
+        }
+      
         //egg Image------------------------------------------------------------------------------------------------------------
         if (subcommand === `egg`) {
             const user1 = interaction.options.getUser('user1');

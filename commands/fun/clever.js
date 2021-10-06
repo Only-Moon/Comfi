@@ -27,7 +27,7 @@ run: async (bot, interaction, args) => {
 
              .setDescription(`**__${member.user.username}#${member.user.discriminator}__** ➡️`  + rng + `**% Clever!!**`)
 
-            .setColor("RANDOM")
+            .setColor(bot.color)
 
             .setThumbnail('https://www.poetry4kids.com/wp-content/uploads/2008/05/im-clever-whenever.png')
 

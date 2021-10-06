@@ -27,35 +27,30 @@ const commandFiles = await globPromise(`${process.cwd()}/prefix-commands/**/*.js
   const eventFiles = await globPromise(`${process.cwd()}/events/*/*.js`); 
   eventFiles.map((value) => require(value))
 
-  //Slash
+  // Slash
+
 const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`); 
-  const arrayOfSlashCommands = []; 
+  let arrayOfSlashCommands = [];
+  
   slashCommands.map((value) => {
     const file = require(value);  
     if (!file?.name) return; 
     bot.slashCommands.set(file.name, file); 
     
     if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
-           arrayOfSlashCommands.push(file);
+    arrayOfSlashCommands.push(file);
  
   })
 
-  
-bot.on("ready", async () => { 
-try { 
-  
-//bot.guilds.cache.forEach((g) => {
-    // g.commands.set(arrayOfSlashCommands);
- //  });
+bot.on("ready", async () => {
 
-setTimeout(() => {
+//bot.guilds.cache.forEach((g) => {
+
+//g.commands.set(arrayOfSlashCommands)
   
-await bot.application.commands.set(arrayOfSlashCommands)
- , 1000)               }                          
-} catch {
-  return;
-}
- 
- })
+//})
+  
+await bot.application.commands.set([])
+})
 
  }

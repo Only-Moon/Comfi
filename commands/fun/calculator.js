@@ -15,7 +15,7 @@ module.exports = {
     run: async (bot, interaction, args) => {
 
   simplydjs.calculator(interaction, {
-    embedColor: '#F4B3CA',
+    embedColor: bot.color,
     slash: true,
   })      
 }}

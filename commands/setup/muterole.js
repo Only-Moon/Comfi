@@ -9,11 +9,11 @@ module.exports = {
       {
       type: 'SUB_COMMAND',
       name: 'enable',
-      description: 'Sets channel for Modlogs',
+      description: 'Sets role for muted member',
       options: [
         {
             type: 'ROLE',
-            description: 'modlogs channel',
+            description: 'role for muted user',
             name: 'role',
             required: true,
         },
@@ -22,7 +22,7 @@ module.exports = {
         {
             type: 'SUB_COMMAND',
             name: 'disable',
-            description: 'Disables the modlogs channel',
+            description: 'Disables the muterole',
         },
     ],
     botperm:  ["MANAGE_GUILD"],

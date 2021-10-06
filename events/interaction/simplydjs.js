@@ -1,10 +1,30 @@
-const bot = require("../../index");
 const simplydjs = require('simply-djs');
-const guilds = require('../../models/guild');
+const bot = require('../../index');
+let { Database } = require('quickmongo')
+let db = new Database(process.env.Mongoose)
+const guilds = require("../../models/guild")
 
-bot.on('interactionCreate', async (interaction) => {
+bot.on('interactionCreate', async (interaction, args) => {
 
-    const guild = await guilds.findOne({guildId: interaction.guild.id})
+if (interaction.isButton()) {
+  
+// Suggestions
+simplydjs.suggestBtn(interaction, db, {   
+  yesEmoji: `${bot.tick}`,
+  yesColor: 'SECONDARY',
+  noEmoji: `${bot.crosss}`, 
+  noColor: 'SECONDARY',
+  denyEmbColor: '#ED7A7A',
+  agreeEmbColor: '#6EE57F',
+  })
+
+ // Giveaway
+simplydjs.clickBtn(interaction, {
+  db: db
+})
+
+// Ticket
+const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(guild.ticket) {
 
 let support = guild.ticket_role
@@ -29,4 +49,7 @@ let cat = guild.ticket_category
     role: `${support}`                               
   }) 
     }
-})
+
+}
+  
+});

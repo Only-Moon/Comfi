@@ -100,7 +100,7 @@ module.exports = class ReactionMenu {
       .setTitle(this.embed.title + ' ' + getRange(this.arr, this.current, this.interval))
       .setDescription(description);
 
-    this.channel.send(first).then(message => {
+    this.channel.send({embeds: [first]}).then(message => {
 
       /**
        * The menu message

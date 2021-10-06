@@ -31,7 +31,7 @@ module.exports = {
                 interaction.editReply({embeds: [embed]})
                 
         } else {
-            return interaction.editReply({content: `${bot.crosss} • Please setup verification before using this command!`})
+            return interaction.editReply({content: `${bot.crosss} • Please setup verification by doing /verification before using this command!`})
         }
     }
 }

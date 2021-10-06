@@ -11,7 +11,7 @@ module.exports = {
             name: 'emoji',
             required: true,
         },
-    ],
+    ], 
     userperm: ["MANAGE_EMOJIS_AND_STICKERS"],
     botperm: ["MANAGE_EMOJIS_AND_STICKERS"],
     /**

@@ -26,7 +26,7 @@ let bots = new Discord.MessageButton()
            .setDisabled();
 
 let row = new Discord.MessageActionRow()
-   .addComponents(bot, top);
+   .addComponents(bots, top); 
   
 return interaction.followUp({ 
         embeds: [embed], 

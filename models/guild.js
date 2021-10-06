@@ -81,7 +81,10 @@ const schema = new Schema({
     mute: {type: Boolean, default: false},
     mute_role: {type: String, default: "NONE"},
     muted_role: {type: Array,  default: []},
-      
+
+// Dropdown roles 
+  dropdownRoles: {type: Array, default: []},
+  
 })
 
 module.exports = model("Guilds", schema)

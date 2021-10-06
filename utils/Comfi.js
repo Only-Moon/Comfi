@@ -40,6 +40,7 @@ class Comfi extends Discord.Client {
         this.aliases = new Discord.Collection()
         this.slashCommands = new Discord.Collection()
         this.timeout = new Discord.Collection()
+        this.register = new Discord.Collection()
         this.init()
     }
     dbs(s) {
@@ -49,11 +50,16 @@ class Comfi extends Discord.Client {
                 useUnifiedTopology: true
             }) 
             .then(() => this.logger.log('Mongodb connected!'))
-            .catch((err) => this.logger.error(err)) 
+            .catch((err) => this.logger.error(`${err}`)) 
     }
-    init() {
-        require('../handlers/index.js')(this)
-    }
+
+ init() {
+
+require("../handler/index")(this)
+
+}
+
+  
 }
 
 module.exports = Comfi

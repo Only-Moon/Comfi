@@ -1,7 +1,7 @@
 const simplydjs = require("simply-djs")
 
 module.exports = {
-       name: "btnrole",
+       name: "buttonrole",
        description: "Reaction Roles With Buttons",
        ownerOnly: false,
        options: [
@@ -105,12 +105,12 @@ simplydjs.betterBtnRole(bot, interaction, {
   
 }
 
-if (options === "remove") {
+if (options === "remove") { 
 
 simplydjs.betterBtnRole(bot, interaction, {
     type: "remove"
-})
-  
+})  
+
 }
   
 }

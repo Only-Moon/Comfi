@@ -13,7 +13,7 @@ if (interaction.isCommand()) {
 const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(!guild) { await guilds.create({guildId: interaction.guild.id})}
 
-  const cmd = bot.slashCommands.get(interaction.commandName); 
+  const cmd = bot.slashCommands.get(interaction.commandName) || bot.register.get(interaction.commandName);
   if (!cmd) 
     return interaction.followUp({ content: "An error has occured ",}); 
   

@@ -1,17 +1,36 @@
 const guilds = require("../../models/guild");
 const simplydjs = require("simply-djs");
 const { CommandInteraction, MessageEmbed } = require("discord.js");
+const pagination = require("../../functions/dropMenu")
 
 module.exports = {
     name: "boost",
     description: "Sets Boost Detector",
     ownerOnly: false,
     options: [
-          {
-           type: 'SUB_COMMAND',
-           description: 'Boost Settings Menu',
-            name: 'settings',
-          },
+        { 
+    type: 'SUB_COMMAND', 
+    description: 'Sets the Boost Detector toggle true/false', 
+    name: 'toggle', 
+    options: [
+          { 
+      type: 'STRING', 
+      description: 'Toggle boost', 
+      name: 'option', 
+      required: true, 
+      choices: [
+         { 
+        name: 'true/on', 
+        value: 'true' 
+         },
+         { 
+        name: 'false/off', 
+        value: 'false'
+         }  
+              ],
+         },
+              ],
+         },
           {
             type: 'SUB_COMMAND',
             description: 'Sets the channel for Boost Detector',
@@ -60,25 +79,21 @@ const guildID = interaction.guild.id;
         const guild = await guilds.findOne({ 
             guildId: interaction.guild.id,
             }); 
-     			
-if (option === 'settings') {
 
-   const settingEmbed = new MessageEmbed() 
-                        .setAuthor( `${interaction.guild.name} - Settings - Boost Messages`, interaction.guild.iconURL({ dynamic: true }) ) 
-                        .setDescription( "You can change the settings by `/boost message or /boost channel`" ) 
-                        .addFields( { 
-                            name: "» Boost Message", 
-                            value: `\`\`\`\n${guild.boost_message}\n\`\`\``,
-                            }, 
-                            { 
-                                name: "» Boost Channel", 
-                                value: `<#${guild.boost_channel}>`, 
-                                
-                            } ) 
-                            .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
-                            .setColor(bot.color); 
-                     interaction.editReply({embeds: [settingEmbed]});
-                            }
+if (option === 'toggle') {
+
+let toggle = interaction.options.getString("option")
+
+    await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
+                    boost: toggle
+                }) 				
+                            return interaction.editReply( 					
+                              `The Boost Detector for **${ 	
+interaction.guild.name 	
+}** has been set to: **${toggle}**` 				
+                            );
+  
+}
 
 if (option === 'message'){
 
@@ -140,13 +155,16 @@ const helpEmbed1 = new MessageEmbed()
                           //  .setImage( "https://media.discordapp.net/attachments/869823340947316737/869827463105101844/unknown.png" )
                             .setColor(bot.color);
                             
-const pages = [helpEmbed1, helpEmbed2, helpEmbed3, helpEmbed4]; 
-                            
+const pages = [helpEmbed1, helpEmbed2, helpEmbed3, helpEmbed4];
+
+pagination(interaction, pages)
+  
+ /**                           
 simplydjs.embedPages(bot, interaction, pages, {
 slash: true,
 firstEmoji: '884420649580363796', 
 backEmoji: '884421503205134356',
-delEmoji: '884422849505415228', 
+delEmoji: '891534962917007410', 
 forwardEmoji: '884421235965059113', 
 lastEmoji: '884420650549272586', 
 btncolor: 'SECONDARY',
@@ -154,6 +172,7 @@ delcolor: 'SECONDARY',
 skipcolor: 'SECONDARY', 
 skipBtn: true,
 }) 
+  */
 }
 
 }}

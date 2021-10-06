@@ -24,7 +24,7 @@ run: async (bot, interaction, args) => {
         const malEmbed = new MessageEmbed()
           .setAuthor(`My Anime List search result for ${args}`.split(',').join(' '))
           .setThumbnail(data.picture)
-          .setColor('RANDOM') //What ever u want color!
+          .setColor(bot.color) //What ever u want color!
           .addField('Premiered', `\`${data.premiered}\``, true)
           .addField('Broadcast', `\`${data.broadcast}\``, true)
           .addField('Genres', `\`${data.genres}\``, true)

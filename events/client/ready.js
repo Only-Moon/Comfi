@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-bot.on("ready", () => {
+bot.on("ready", async () => {
 	bot.logger.ready(
 		`Watching ${bot.slashCommands.size} Slashs, ${
 			bot.channels.cache.size
@@ -38,5 +38,5 @@ bot.logger.log(`Your app is listening a http://localhost:${port}`));
 setInterval(() => {
         require(`../../functions/member_counter`)(bot)
     }, 60000 * 10);
-  
+      
 });

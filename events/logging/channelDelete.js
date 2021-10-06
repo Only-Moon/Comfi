@@ -46,7 +46,7 @@ bot.on("channelDelete", async (channel) => {
             await guilds.findOneAndUpdate({guildId: channel.guild.id}, {
                 boost: false,
                 boost_channel: "NONE",
-                boost_message: "{user} just {server}",
+                boost_message: "{user} just boosted {server}",
             })
         }
     }

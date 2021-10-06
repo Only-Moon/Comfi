@@ -32,7 +32,7 @@ module.exports = {
 
         const step4 = new MessageEmbed()
         .setTitle(`Leave Message / Embed [4]`, bot.user.displayAvatarURL())
-        .setDescription(`Should the interaction be in an embed? Types: \`true\`,\`false\``)
+        .setDescription(`Should the message be in an embed? Types: \`true\`,\`false\``)
         .setColor(bot.color)
         .setFooter(`You can say "cancel" at any time to cancel the process`)
 

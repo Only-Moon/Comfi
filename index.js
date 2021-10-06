@@ -7,17 +7,16 @@ console.log('Loading Bot...');
 
 const Discord = require("discord.js");
 const Comfi = require("./utils/Comfi"),	
-bot = new Comfi();
+bot = new Comfi(); 
 
 module.exports = bot;
-
-//--------[ PROCESS STARTED ]--------\\ 
-
-require( `events` ).EventEmitter.defaultMaxListeners = 200;
 
 //--------[ HANDLING ERRORS ]--------\\
 
 process.on('unhandledRejection', error => { 
+//bot.logger.error(`${error.stack}`)
+//})
+  
   const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.error} unhandledRejection`)
@@ -27,12 +26,13 @@ process.on('unhandledRejection', error => {
     .setTimestamp();
   
     channel.send({ embeds: [ embed ]});
-//console.error(error.stack)
 });
 
 process.on("uncaughtException", (error) => {
 //console.error(error.stack);
- const channel = bot.channels.cache.get("880101469586604032");
+//  })
+  
+  const channel = bot.channels.cache.get("880101469586604032");
   const embed = new Discord.MessageEmbed()
     .setTitle(`${bot.error} uncaughtException`)
     .setDescription(`${error.stack}`)

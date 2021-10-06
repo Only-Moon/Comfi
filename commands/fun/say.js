@@ -1,4 +1,5 @@
-const { Interaction } = require("discord.js");
+const { Interaction, MessageAttachment } = require("discord.js");
+const isUrl = require("is-url");
 
 module.exports = {
   name: "say",
@@ -7,9 +8,9 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      name: "text",
-      description: "What To Say",
-      type: 3,
+      name: "msg",
+      description: "What To Say - text or image",
+      type: "STRING",
       required: true,
     },
   ],
@@ -19,15 +20,22 @@ module.exports = {
    * @param {Interaction} interaction
    */
   run: async (bot, interaction) => {
-    try {
-      const whatToSay = interaction.options._hoistedOptions.find((f) => f.name === "text").value;
+      const say = interaction.options.getString("msg")
 
       await interaction.editReply({ content: "Sending..." });
       await interaction.deleteReply();
 
-      await interaction.channel.send({ content: whatToSay });
-    } catch (err) {
-      console.log("Something Went Wrong => ", err);
-    }
-  },
-};
+if(isUrl(say)){
+
+const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
+
+interaction.channel.send({ files: [attach] })
+  
+} else {
+await interaction.channel.send({ content: say }).catch((err) => {
+console.log("Something Went Wrong => "`${err}`)
+})
+  }
+  
+  }
+}

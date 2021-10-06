@@ -1,6 +1,3 @@
-// url: https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=6_charater_word
-
-
 const guilds = require("../models/guild")
 const { Message, MessageEmbed, GuildMember, MessageCollector } = require('discord.js')
 const ms = require("ms")
@@ -61,7 +58,7 @@ module.exports = async (member, bot) => {
                 .then((meeeeees) => {
                     setTimeout(() => {
                         meeeeees.delete().catch(() => {})
-                    }, ms('30 seconds'));
+                    }, ms('60 seconds'));
                 })  
                 await reRun(member, bot)
                 return;
@@ -71,7 +68,7 @@ module.exports = async (member, bot) => {
                 .then((meeeeees) => {
                     setTimeout(() => {
                         meeeeees.delete().catch(() => {})
-                    }, ms('30 seconds'));
+                    }, ms('60 seconds'));
                 })  
                 await reRun(member, bot)
                 hoisterMsg.delete().catch(() => {})
@@ -80,11 +77,11 @@ module.exports = async (member, bot) => {
             if(reason === "1") {
                 member.roles.add(guild.verification_role).catch(() => {
                     return channel.send({content: `${bot.error} • There was an error giving you this role! Please report it to a server admin!`}).then((msg) => {
-  setTimeout(() => msg.delete(), ms('30 seconds'))
+  setTimeout(() => msg.delete(), ms('60 seconds'))
   });
                 }) 
                 return channel.send({content: `<a:tick:890113862706266112> • Thank you for verifying in ${channel.guild.name}!`}).then((msg) => {
-  setTimeout(() => msg.delete(), ms('30 seconds'))
+  setTimeout(() => msg.delete(), ms('60 seconds'))
   });
             }
 

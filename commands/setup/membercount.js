@@ -131,7 +131,8 @@ finalData['channel_name'] = msg.content
                     member_counter_channel_type: finalData.channel_type,
                     member_counter_channel_name: finalData.channel_name,
                 })
-                return interaction.channel.send({content: `${bot.tick} • Counting data has now been setup! *The channel updates every 10 minutes*`})
+                return interaction.channel.send({content: `${bot.tick} • Counting data has now been setup! **The channel updates every 10 minutes** (Don't worry Channel Name will Update with the name you specified 
+very soon)`})
             }
         })
     }

@@ -43,4 +43,5 @@ const row1 = new MessageActionRow()
  		await interaction.editReply({ embeds: [noooyb], components: [row1] });
     }
   }
+  
 });

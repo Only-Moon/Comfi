@@ -36,11 +36,6 @@ module.exports = {
           name: 'name', 
           required: true,
         }, ], },
-        { 
-          type: 'SUB_COMMAND', 
-          description: 'Shows the chatbot setup', 
-          name: 'settings',
-        },
       { 
         type: 'SUB_COMMAND', 
         description: 'Disables the chatbot system',
@@ -79,20 +74,6 @@ interaction.guild.name
                 }) 				
     return interaction.editReply( 					'**The chatbot channel has been set to** ' + channel.toString() 		
                                 ); 
-  }
-  if (option === 'settings') { 			
-    let chnnl = guild.chat_channel || 'None'; 				
-    let toggle = guild.chatbot || false; 				
-    let embed = new MessageEmbed() 					
-      .setTitle('Chatbot configuration') 					
-      .setAuthor( 						interaction.user.tag, 						interaction.user.avatarURL({ dynamic: true }) 					) 					
-      .addField(`Toggle`, toggle) 					
-      .addField( 						`Chatbot Channel`, `${chnnl !== 'None' ? `<#${chnnl}>` : 'None'}`) 					
-      .setColor(bot.color) 					
-      .setFooter( interaction.guild.name, 						interaction.guild.iconURL({ dynamic: true }) 			
-                ); 		
-    return interaction.editReply({ 
-      embeds: [embed] });
   }
   
   if (option === 'disable') { 

@@ -24,7 +24,7 @@ run: async (bot, interaction, args) => {
         interaction: interaction,
         embedFooter: `Requested by ${interaction.member.displayName}`, //The Footer of the embed
         embedTitle: `Here's a Random Anime Qoute`, //The title of the embed
-        embedColor: "RANDOM", //The color of the embed! (Use Hex codes or use the color name)
+        embedColor: bot.color, //The color of the embed! (Use Hex codes or use the color name)
         })
         slash.quote()
         
@@ -35,7 +35,7 @@ run: async (bot, interaction, args) => {
         interaction: interaction,
         embedFooter: `Requested by ${interaction.member.displayName}`, //The Footer of the embed
         embedTitle: `Here's a ${args} Qoute`, //The title of the embed
-        embedColor: "RANDOM", //The color of the embed! (Use Hex codes or use the color name)
+        embedColor: bot.color, //The color of the embed! (Use Hex codes or use the color name)
         })
         slash.quote()
 

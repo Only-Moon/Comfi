@@ -31,7 +31,9 @@ let embed = new MessageEmbed()
 )
 .setColor(bot.color);
 
-return message.reply({embeds:  [ embed ], allowedMentions: { repliedUser: false } }) 
+return message.reply({embeds:  [ embed ], allowedMentions: { repliedUser: false } }).then((msg) => {
+  setTimeout(() => msg.delete(), ms('30 seconds'))
+  }); 
                 } else {
         message.delete();
 
@@ -41,7 +43,7 @@ let afk = new MessageEmbed()
       .setColor(bot.color);
       
 return message.channel.send({embeds: [ afk ], allowedMentions: { repliedUser: false } }).then((msg) => {
-  setTimeout(() => msg.delete(), ms('15 seconds'))
+  setTimeout(() => msg.delete(), ms('30 seconds'))
   });
                 }
             }

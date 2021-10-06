@@ -8,23 +8,10 @@ const { user } = require('../..');
 
 module.exports = {
     name: "infoo",
-    description: "Information",
+    description: "Information Commands",
     ownerOnly: false,
     cooldown: 10,
     options: [
-        {
-            name: "avatar",
-            description: "Get Avatar!",
-            type: 'SUB_COMMAND',
-            options: [
-        {
-            name: "user",
-            description: "User To Get Avatar",
-             type: 6,
-             required: false
-        },
-  ], 
-        },
         {
             name: "banner",
             description: "Get the banner of the specified member",
@@ -55,6 +42,19 @@ module.exports = {
             required: false,
         },
     ],
+        },
+        {
+            name: "sticker",
+            type: "SUB_COMMAND",
+            description: "Information about the sticker",
+            options: [
+        {
+            name: "url",
+            type: "STRING",
+            description: "url of the sticker",
+            required: true,
+        } 
+            ],
         },
         {
           type: 'SUB_COMMAND',
@@ -112,28 +112,6 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 const [ subcommand ] = args
-
-if (subcommand === 'avatar') {
-
-try {
-      const options = interaction.options._hoistedOptions;
-
-
-      const user = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").member.user) || interaction.user;
-      const member = (options.find((e) => e.name === "user") && options.find((e) => e.name === "user").member) || interaction.member;
-
-      const embed = new MessageEmbed().setColor(member.displayHexColor);
-
-      const image = user.displayAvatarURL({dynamic: true, size: 4096});
-
-
-      embed.setAuthor(member.displayName, user.displayAvatarURL()).setImage(image).setTimestamp();
-      await interaction.editReply({embeds: [embed]})
-    } catch (err) {
-      console.log("Something Went Wrong => err");
-}
-
-}
 
 if (subcommand === 'banner') {
 
@@ -229,7 +207,55 @@ const embed = new MessageEmbed()
         interaction.followUp({ embeds: [embed] })
   
 }
+
+if (subcommand === 'sticker') {
+
+const sticker = interaction.options.getString("url");
+        if (!sticker) return interactico.editReply({ content: `${bot.error} • **Please specify a sticker!**` });
+        
+        let stickerID = sticker.id;
+        let stickeName = stickername;
+        // let uploader = sticker.fetchUser();
+
+        let embed = new MessageEmbed()
+            .setAuthor(`Sticker Info`, interaction.user.displayAvatarURL({ dynamic: true }))
+            .setThumbnail(`${sticker.url}`, { dynamic: true })
+            .setColor(bot.color)
+            .setFooter(`Checker: ${interaction.user.tag}`)
+            .setTimestamp()
+            .addFields(
+                {
+                    name: "__Name:__",
+                    value: `\`\`\`\n${stickeName}\n\`\`\``,
+                    inline: true
+                },
+                {
+                    name: "__ID:__",
+                    value: `\`\`\`\n${stickerID}\n\`\`\``,
+                    inline: true
+                },
+                {
+                    name: "__Created At:__",
+                    value: `\`\`\`\n${sticker.createdAt}\n\`\`\``,
+                    inline: false
+                },
+                {
+                    name: "__URL:__",
+                    value: `[Click Here](${sticker.url})`,
+                    inline: true
+                },
+                {
+                    name: "__Format:__",
+                    value: `\`\`\`\n${sticker.format}\n\`\`\``,
+                    inline: true
+                },
+                
+            )
+        interaction.editReply({ embeds: [embed] });
+
   
+}
+          
 if (subcommand === 'role') {
 
 const role = interaction.options.getRole('role') || interaction.guild.roles.cache.get(args[0])
