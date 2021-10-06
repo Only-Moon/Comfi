@@ -50,7 +50,7 @@ bot.on("ready", async () => {
   
 //})
   
-await bot.application.commands.set([])
+await bot.application.commands.set(arrayOfSlashCommands)
 })
 
  }
