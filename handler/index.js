@@ -48,8 +48,6 @@ bot.on("ready", async () => {
 
 //g.commands.set(arrayOfSlashCommands)
   
-//})
-  
 await bot.application.commands.set(arrayOfSlashCommands)
 })
 

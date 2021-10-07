@@ -70,7 +70,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
 
 let [ option ] = args
  
@@ -141,7 +141,7 @@ const helpEmbed1 = new MessageEmbed()
                             
                             const helpEmbed2 = new MessageEmbed() 
                             .setAuthor( `Help - Boost Detectors`, bot.user.displayAvatarURL({ dynamic: true }) )
-                            .setDescription( "Here are some variables that you can use for `Boost Message` Make sure to use curly brackets!\n\n**{user}** - The person who boosted in a proper format, Example: `Moonbow#2003`\n**{user.mention}** - Mentions the user that boosted the server\n**{server}** - The name of the server\n**{boost.count}** - amount of boosts the server has" ) 
+                            .setDescription( "Here are some variables that you can use for `Boost Message` Make sure to use curly brackets!\n\n**{user}** - The person who boosted in a proper format, Example: `Moonbow#2003`\n**{user#mention}** - Mentions the user that boosted the server\n**{server}** - The name of the server\n**{boost#count}** - amount of boosts the server has" ) 
                             .setColor(bot.color); 
                             
                             const helpEmbed3 = new MessageEmbed() 
@@ -155,24 +155,10 @@ const helpEmbed1 = new MessageEmbed()
                           //  .setImage( "https://media.discordapp.net/attachments/869823340947316737/869827463105101844/unknown.png" )
                             .setColor(bot.color);
                             
-const pages = [helpEmbed1, helpEmbed2, helpEmbed3, helpEmbed4];
+const pages = [helpEmbed1, helpEmbed2];
 
 pagination(interaction, pages)
   
- /**                           
-simplydjs.embedPages(bot, interaction, pages, {
-slash: true,
-firstEmoji: '884420649580363796', 
-backEmoji: '884421503205134356',
-delEmoji: '891534962917007410', 
-forwardEmoji: '884421235965059113', 
-lastEmoji: '884420650549272586', 
-btncolor: 'SECONDARY',
-delcolor: 'SECONDARY', 
-skipcolor: 'SECONDARY', 
-skipBtn: true,
-}) 
-  */
 }
 
 }}

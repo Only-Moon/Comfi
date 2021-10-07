@@ -164,7 +164,7 @@ if (sub === "add") {
                             collector.stop(stopreasons.ERR)
                             hoisterMessage.delete().catch(() => {})
                     }
-                    finalData['channel'] = channel.id
+                    finalData['channel'] = channel?.id
                     counter++
                     hoisterMessage.edit({embeds: [steps[counter]]})
                     msg.delete().catch(() => {})
@@ -264,7 +264,7 @@ if (sub === "add") {
                 })
                 const embed = new MessageEmbed()
                 .setColor(bot.color)
-                .setDescription(` > ${bot.tick} • **Created Dropdown roles!**\n\n > ${bot.error} • Id: \`${msgId}\`\n > ${bot.error} • [\`Jump\`](https://discordapp.com/channels/${interaction.guild.id}/${channel.id}/${finalMessage.id})`)
+                .setDescription(` > ${bot.tick} • **Created Dropdown roles!**\n\n > ${bot.tick} • Id: \`${msgId}\`\n > ${bot.tick} • [\`Jump\`](https://discordapp.com/channels/${interaction.guild.id}/${channel.id}/${finalMessage.id})`)
            
                 interaction.channel.send({embeds: [embed]})
             }
@@ -330,7 +330,7 @@ if (sub === "remove") {
             guild.save()
 
             const embed = new MessageEmbed()
-            .setDescription(` > ${bot.tick} • Removed dropdown \`${id}\``)
+            .setDescription(` > ${bot.tick} • Removed dropdown (If the message isn't deleted, then delete it manually) \`${id}\``)
             .setColor(bot.color)
 
             return interaction.editReply({embeds: [embed]})

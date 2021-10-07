@@ -3,7 +3,7 @@ const guilds = require('../../models/guild');
 const ms = require('ms');
 
 module.exports = {
-    name: "ban",
+    name: "bann",
     description: "Different ways to ban a user",
     ownerOnly: false,
     options: [

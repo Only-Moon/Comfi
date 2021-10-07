@@ -18,6 +18,7 @@ module.exports = async (interaction, pages) => {
             value: `${newPos}`
         })
     })
+    
     const row = new MessageActionRow()
     .addComponents([
         new MessageSelectMenu()
@@ -51,8 +52,9 @@ const collector = m.createMessageComponentCollector({
 
  collector.on("end", async (collected) => { 
   if (collected.size === 0) { 
+    
   m.edit({ 
-    embeds: [pages[newPage]], 
+    embeds: pages[newPage], 
     components: [] 
         }); 
       } 

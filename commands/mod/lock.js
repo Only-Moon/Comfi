@@ -1,7 +1,7 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "lock",
+    name: "lockk",
     description: "Locks and Unlocks a channel",
     ownerOnly: false,
     userperm: ["MANAGE_CHANNELS"],

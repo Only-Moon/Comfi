@@ -39,7 +39,22 @@ module.exports = {
                             } ) 
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
-   
+
+        const bump = new MessageEmbed() 
+                        .setAuthor( `${interaction.guild.name} - Settings - Bump Reminder`, interaction.guild.iconURL({ dynamic: true }) ) 
+                        .setDescription( "You can change the settings by `/bump toggle or /bump channel`" ) 
+                        .addFields( { 
+                            name: "» Bump Toogle", 
+                            value: `\`\`\`\n${guild.bump}\n\`\`\``,
+                            },
+                            { 
+                                name: "» Bump Channel", 
+                                value: `<#${guild.bump_channel}>`, 
+                                
+                            } ) 
+                            .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
+                            .setColor(bot.color);
+      
         const chatbot = new MessageEmbed() 
                         .setAuthor( `${interaction.guild.name} - Settings - Chatbot`, interaction.guild.iconURL({ dynamic: true }) ) 
                         .setDescription( "You can change the settings by `/chatbot toggle or /chatbot channel`" ) 
@@ -137,20 +152,20 @@ module.exports = {
                         .setDescription( "You can change the settings by `/membercount`" ) 
                         .addFields( { 
                             name: "» Counter Toogle", 
-                            value: `\`\`\`\n${guild.member_counter}\n\`\`\``,
+                            value: `\`\`\`\n${guild.member_counter || "NONE"}\n\`\`\``,
                             },
                             { 
                             name: "» Counter Channel Type", 
-                            value: `\`\`\`\n${guild.member_counter_channel_type}\n\`\`\``,
+                            value: `\`\`\`\n${guild.member_counter_channel_type || "NONE"}\n\`\`\``,
                             }, 
                             { 
                                 name: "» Counter Channel Name", 
-                                value: `${guild.member_counter_channel_name}`, 
+                                value: `${guild.member_counter_channel_name || "NONE"}`, 
                                 
                             },
                             { 
                             name: "» Counter Channel", 
-                            value: `<#${guild.member_counter_channel}>`,
+                            value: `<#${guild.member_counter_channel || "NONE"}>`,
                             },) 
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
@@ -271,7 +286,7 @@ module.exports = {
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
                             
-const pages = [boost, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, ticket, verification, welcome]; 
+const pages = [boost, bump, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, ticket, verification, welcome]; 
                             
 simplydjs.embedPages(bot, interaction, pages, {
 slash: true,

@@ -138,10 +138,11 @@ let warn = new MessageEmbed()
 						(user) => user.id === authorId,
 					);
 					string += embed
-						.addField(
-							`Warn ID: ${warnId} | Moderator: ${getModeratorUser?.user.tag}`,
-							`${reason} - <t:${timestamp}>`,
-						)
+						.addFields(
+           {
+                        name: `ID: ${warnId} • Moderator: ${getModeratorUser?.user.tag}`,
+                        value: ` > ${bot.error} • **Reason:** ${reason}\n > ${bot.error} • **Date:** <t:${timestamp}>`
+           } 
 						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
 				}
 

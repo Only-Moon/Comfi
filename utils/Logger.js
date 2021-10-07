@@ -1,10 +1,12 @@
 const chalk = require('chalk');
+const Discord = require('discord.js')
 const moment = require('moment'); 
 const log = require('simple-node-logger').createRollingFileLogger({ 		
   logDirectory: './utils/logs', 		
   fileNamePattern: 'roll-<DATE>.log', 		
   dateFormat: 'YYYY.MM.DD', 	
 }); 
+const bot = require(`../index`)
 // LOGGERS 
 exports.log = (content, type = 'log') => { 	
   if (content == 'error') return; 	
@@ -32,7 +34,7 @@ exports.log = (content, type = 'log') => {
       break; 	
     case 'ready': 		
       log.info(content); 		
-      console.log(`${chalk.black.bgBlue(type.toUpperCase())} ${content}`); 		
+      console.log(`${chalk.black.bgBlue(type.toUpperCase())} ${content}`);
       break; 	
     default: 		
       break; 	

@@ -20,7 +20,7 @@ module.exports = {
 
         const step2 = new MessageEmbed()
         .setTitle(`Leveling [2]`, bot.user.displayAvatarURL())
-        .setDescription(`What should the welcome interaction channel be? (Use **bind** to set it to respond the the current channel!)`)
+        .setDescription(`What should the leveling channel be? (Use **bind** to set it to respond the the current channel!)`)
         .setColor(bot.color)
         .setFooter(`You can say "cancel" at any time to cancel the process`)
 

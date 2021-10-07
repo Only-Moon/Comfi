@@ -11,6 +11,12 @@ const schema = new Schema({
     suggestions: {type: Boolean, default: false},
     suggestions_channel: {type: String, default: "NONE"},
 
+    // Bump
+    bump: {type: Boolean, default: false},
+    bump_channel: {type: String, default: "NONE"}, 
+    bump_time: {type: String, default: "NONE"},
+    bump_hi: {type: String, default: "NONE"},
+
     // Chatbot
     chatbot: {type: Boolean, default: false},
     chat_channel: {type: String, default: "NONE"}, 

@@ -2,16 +2,16 @@ const guilds = require('../../models/guild');
 const { CommandInteraction, MessageEmbed } = require("discord.js"); 
 
 module.exports = { 
-  name: "chatbot", 
-  description: "Sets the chatbot system", 
+  name: "bumpsystem", 
+  description: "Sets the disboard bump reminder", 
   ownerOnly: false, 
   options: [ { 
     type: 'SUB_COMMAND', 
-    description: 'Sets the chatbot toggle true/false', 
+    description: 'Sets the bump toggle true/false', 
     name: 'toggle', 
     options: [ { 
       type: 'STRING', 
-      description: 'Toggle chatbot', 
+      description: 'Toggle bump reminder', 
       name: 'option', 
       required: true, 
       choices: [ { 
@@ -28,17 +28,17 @@ module.exports = {
   }, 
       { 
         type: 'SUB_COMMAND', 
-        description: 'Sets the channel for chatbot', 
+        description: 'Sets the channel for bump reminders', 
         name: 'channel', 
         options : [ { 
           type: 'CHANNEL',
-          description: 'Channel for Chatbot',
+          description: 'Channel for bump reminder',
           name: 'name', 
           required: true,
         }, ], },
       { 
         type: 'SUB_COMMAND', 
-        description: 'Disables the chatbot system',
+        description: 'Disables the bump reminder system',
         name: 'disable',
       }, 
            ], 
@@ -50,17 +50,18 @@ module.exports = {
 * @param {String[]} args 
 */
   
-run: async (bot, interaction, args, message) => { 
+run: async (bot, interaction, args) => { 
   let [ option ] = args
 
     const guild = await guilds.findOne({guildId: interaction.guild.id})
   
-  if (option === 'toggle') { 				const toggle = interaction.options.getString('option') 				
+  if (option === 'toggle') { 				
+    const toggle = interaction.options.getString('option') 				
     await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
-                    chatbot: toggle
+                    bump: toggle
                 }) 				
                             return interaction.editReply( 					
-                              `The Chatbot for **${ 	
+                              `The Bump Reminder for **${ 	
 interaction.guild.name 	
 }** has been set to: **${toggle}**` 				
                             );
@@ -70,20 +71,21 @@ interaction.guild.name
     if (!channel) 				
       return interaction.editReply(`${bot.error} **Specify the channel**`); 				
    await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
-                    chat_channel: channel,
+                    bump_channel: channel,
                 }) 				
-    return interaction.editReply( 					'**The chatbot channel has been set to** ' + channel.toString() 		
+    return interaction.editReply( 					'**The bump reminder channel has been set to** ' + channel.toString() 		
                                 ); 
   }
   
   if (option === 'disable') { 
-    if(!guild.chatbot) { 	
+    if(!guild.bump) { 	
       return interaction.editReply(`${bot.error} Please set the required fields first or i cant disable it!!`); 	
     } else { 		
       await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
-                    chatbot: false,
-                    chat_channel: "NONE",
+                    bump: false,
+                    bump_channel: "NONE",
                 }) 		
-      return interaction.editReply("Disabled the Chatbot System in the server :)"); 				}
+      return interaction.editReply(`${bot.tick} • Disabled the Bump Reminder System in the server :)`); 			
+      }
   }
 }}

@@ -14,8 +14,8 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
   if (guilD.boost) {
   
   if (!oldStatus && newStatus) { 
-    if (boostData.BoostChannel == "None") return;
-    if (boostData.BoostMessage == "None") return;
+    if (guilD.boost_channel == "None") return;
+    if (guilD.boost_message == "None") return;
     const boostChannel = guild.channels.cache.get(guilD.boost_channel
 ); 
     const boostMessage = guilD.boost_message;
@@ -23,8 +23,8 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
     const finalMessage = boostMessage 
       .replace(/{server}/g, guild.name) 
       .replace(/{user}/g, newMember.user.tag) 
-      .replace(/{user.mention}/g, `<@${newMember.user.id}>`) 
-      .replace(/{boost.count}/g, guild.premiumSubscriptionCount); 
+      .replace(/{user#mention}/g, `<@${newMember.user.id}>`) 
+      .replace(/{boost#count}/g, guild.premiumSubscriptionCount); 
 
 let boost = new MessageEmbed()
   .setTitle(`${guild.name} Got Boosted`)  

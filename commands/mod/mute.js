@@ -2,7 +2,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 const guilds = require('../../models/guild');
 
 module.exports = {
-      name: "mute",
+      name: "mutee",
       description: "Mute or Unmute a User",
       ownerOnly: false,
       options: [
