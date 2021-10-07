@@ -35,16 +35,17 @@ run: async (bot, interaction, args) => {
     ];
     
     const emo = {
-      admin: "<a:731210872210325515:883017860488765460>", 
-      anime: "<a:778519065672417300:883017896245211166>", 
-      emoji: "<a:apple:883033005172605020>",
-      fun: "<a:amt_shootingstaws:883017879065354290>",
-      info: "<a:stars_aesthetic:883033007836000308>", 
-      levels: "<a:839921866738106390:883017898984103986>", 
-      mod: "<a:zz_pinkheart:883033001599074364>",
-      music: "<a:music:883032989901156422>",
-      setup: "<a:zzzzg3starburst:883017855187157003>",
-      utility: "<a:zzzghostheart:883017884014637066>" 
+      admin: "<a:loli_2_cs:883017896245211166>", 
+      anime: "<a:snowman_cs:883017868944502804>", 
+      emoji: "<a:apple_cs:883033005172605020>",
+      fun: "<a:shootingstaw_cs:883017879065354290>",
+      info: "<a:stars_cs:883033007836000308>", 
+      levels: "<a:bunny_cs:883033003574579260>", 
+      mod: "<a:pinkheart_cs:883033001599074364>",
+      //music: "<a:music_cs:883032989901156422>",
+      roles: "<a:cake2_cs:883017860488765460>",
+      setup: "<a:starburst_cs:883017855187157003>",
+      utility: "<a:ghost_cs:883017884014637066>" 
     } 
       
     let ccate = []; readdirSync("./commands/").forEach((dir) => { 

@@ -1,0 +1,48 @@
+17:59:00.419 ERROR /home/runner/Comfi-beta/commands/utility/help.js:253
+}const { readdirSync } = require("fs"); 
+ ^^^^^
+
+SyntaxError: Unexpected token 'const'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+17:59:00.954 INFO  Logged in as Comfi Dev#5575 
+17:59:00.955 INFO  Watching 79 Slashs, 31 Channels and 7 Users in  1 Servers 
+17:59:00.955 INFO  ------------------------------------- 
+17:59:00.969 INFO  Your app is listening a http://localhost:3000 
+17:59:01.076 INFO  Mongodb connected! 
+17:59:53.905 INFO  Logged in as Comfi Dev#5575 
+17:59:53.906 INFO  Watching 93 Slashs, 31 Channels and 7 Users in  1 Servers 
+17:59:53.906 INFO  ------------------------------------- 
+17:59:53.927 INFO  Your app is listening a http://localhost:3000 
+17:59:54.028 INFO  Mongodb connected! 
+18:01:02.145 ERROR DiscordAPIError: Invalid Form Body
+components[0].components[0].options[6].emoji.name: Invalid emoji
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async InteractionWebhook.editMessage (/home/runner/Comfi-beta/node_modules/discord.js/src/structures/Webhook.js:311:15)
+    at async CommandInteraction.editReply (/home/runner/Comfi-beta/node_modules/discord.js/src/structures/interfaces/InteractionResponses.js:137:21) 
+18:02:06.055 INFO  Logged in as Comfi Dev#5575 
+18:02:06.056 INFO  Watching 93 Slashs, 31 Channels and 7 Users in  1 Servers 
+18:02:06.056 INFO  ------------------------------------- 
+18:02:06.068 INFO  Your app is listening a http://localhost:3000 
+18:02:06.298 INFO  Mongodb connected! 
+18:11:11.618 INFO  Logged in as Comfi Dev#5575 
+18:11:11.619 INFO  Watching 93 Slashs, 31 Channels and 7 Users in  1 Servers 
+18:11:11.619 INFO  ------------------------------------- 
+18:11:11.631 INFO  Your app is listening a http://localhost:3000 
+18:11:11.833 INFO  Mongodb connected! 
+18:41:59.560 INFO  Mongodb connected! 
+18:41:59.577 INFO  Logged in as Comfi Dev#5575 
+18:41:59.578 INFO  Watching 93 Slashs, 31 Channels and 7 Users in  1 Servers 
+18:41:59.578 INFO  ------------------------------------- 
+18:41:59.584 INFO  Your app is listening a http://localhost:3000 

@@ -143,6 +143,7 @@ let warn = new MessageEmbed()
                         name: `ID: ${warnId} • Moderator: ${getModeratorUser?.user.tag}`,
                         value: ` > ${bot.error} • **Reason:** ${reason}\n > ${bot.error} • **Date:** <t:${timestamp}>`
            } 
+              )
 						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
 				}
 

@@ -22,15 +22,17 @@ const create_mh = (array) => {
   let menus = []; 
   
   const emo = {
-      anime: "883017896245211166", 
-      emoji: "883033005172605020",
-      fun: "883017879065354290",
-      info: "883033007836000308", 
-      levels: "883017898984103986", 
-      mod: "883033001599074364",
-      music: "883032989901156422",
-      setup: "883017855187157003",
-      utility: "883017884014637066" 
+      admin: "<a:loli_2_cs:883017896245211166>", 
+      anime: "<a:snowman_cs:883017868944502804>", 
+      emoji: "<a:apple_cs:883033005172605020>",
+      fun: "<a:shootingstaw_cs:883017879065354290>",
+      info: "<a:stars_cs:883033007836000308>", 
+      levels: "<a:bunny_cs:883033003574579260>", 
+      mod: "<a:pinkheart_cs:883033001599074364>",
+      //music: "<a:music_cs:883032989901156422>",
+      roles: "<a:cake2_cs:883017860488765460>",
+      setup: "<a:starburst_cs:883017855187157003>",
+      utility: "<a:ghost_cs:883017884014637066>" 
     }; 
   
   array.forEach((cca) => { 
