@@ -17,10 +17,10 @@ let totalCommands = 0
         totalCommands++
     })
     const activites = [
-        {name: `/help | ${bot.guilds.cache.size} servers!`, type: "WATCHING"},
+        {name: `/invite | ${bot.guilds.cache.size} servers!`, type: "WATCHING"},
         {name: `/infoo | ${bot.users.cache.size} users!`, type: "LISTENING"},
-        {name: `/invite | ${bot.ws.ping}ms`, type: "LISTENING"},
-        {name: `/vote | ${totalCommands} commands!`, type: "PLAYING"},
+        {name: `/vote | ${bot.ws.ping}ms`, type: "LISTENING"},
+        {name: `/help | ${totalCommands} commands!`, type: "PLAYING"},
     ]
     let activity = 0
     bot.user.setPresence({status: "online", activity: activites[0]})
@@ -28,7 +28,7 @@ let totalCommands = 0
         if(activity === activity.length) return activity = 0;
         activity++
         bot.user.setActivity(activites[Math.floor(Math.random() * activites.length)])
-    }, 1000 * 35); 
+    }, 1000 * 20); 
   
 app.get('/', (req, res) => res.send('Your bot is alive!')) 
 

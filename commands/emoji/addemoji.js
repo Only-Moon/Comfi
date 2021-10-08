@@ -49,7 +49,7 @@ let emoji = { name: "" };
 }`
 } else { 
   if (!name) return interaction.editReply("Please provide a name!");
-  Link = interaction.attachments.first() ? interaction.attachments.first().url : emote;  }
+  Link = interaction.options.getString("emoji") }
             interaction.guild.emojis.create(
                 `${Link}`,
                 `${`${name || emoji.name}`}`

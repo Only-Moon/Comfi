@@ -6,6 +6,7 @@ const { Collection, MessageEmbed } = require("discord.js");
 const Timeout = new Collection();
 bot.on("messageCreate", async (message) => {
   if (message.author.bot) return;
+  if(!message.guild) return;
   
   const guild = await guilds.findOne({guildId: message.guild.id})
     if(!guild) { await guilds.create({guildId: message.guild.id})}
