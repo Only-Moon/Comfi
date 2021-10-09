@@ -4,7 +4,10 @@ const fetch = require('node-fetch')
 module.exports = {
     name: 'meme',
     description: 'Get a random meme from reddit',
-    /** 
+    ownerOnly: false,
+    userperm: [""],
+    botperm: [""],
+  /** 
      * @param {Client} client 
      * @param {CommandInteraction} interaction 
      * @param {String[]} args 

@@ -31,17 +31,17 @@ module.exports = {
     const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
 
     if (banned.some(word => args[0].toLowerCase().includes(word))) {
-      return interaction.editReply(`<a:Attention:883349868062576701> Yo go search these things by yourself,  Search again and see the results 💢`)
+      return interaction.editReply(`${bot.error} Go search these nsfw things by yourself`)
     }
 
     let result = await search(videoName, searchOptions)
       .catch(err => {
-        return interaction.editReply(`<a:Attention:883349868062576701> Please try again in a few seconds`);
+        return interaction.editReply(`${bot.error} Please try again in a few seconds`);
       });
 
     result = result.results[0];
     if (!result) 
-    return interaction.editReply(`<a:Attention:883349868062576701> Unable to find **${videoName}**, please try a different YT Title`);
+    return interaction.editReply(`${bot.error} Unable to find **${videoName}**, please try a different YT Title`);
 
     const decodedTitle = he.decode(result.title);
     const embed = new MessageEmbed()
@@ -52,7 +52,7 @@ module.exports = {
     .setFooter(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
     .setImage(result.thumbnails.high.url)
     .setTimestamp()
-    .setColor(interaction.guild.me.displayHexColor)
+    .setColor(bot.color)
 
     interaction.editReply({ embeds: [ embed ] })
   }

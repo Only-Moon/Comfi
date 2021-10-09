@@ -52,8 +52,8 @@ const collector = m.createMessageComponentCollector({
 
  collector.on("end", async (collected) => { 
   if (collected.size === 0) { 
-    
-  m.edit({ 
+  const newPage = drop.values[0]
+    m.edit({ 
     embeds: pages[newPage], 
     components: [] 
         }); 

@@ -4,7 +4,7 @@ const create_mh = require("../../functions/menu_help");
 const { CommandInteraction, MessageEmbed } = require("discord.js"); 
 
 module.exports = { 
-  name: "help", 
+  name: "helpp", 
   description: "Show all the Available bot Commands in Menu Form",
   ownerOnly: false, 
   options: [ 

@@ -25,8 +25,9 @@ module.exports = {
             .setImage("https://tenor.com/view/nuke-gif-8044239")
                   
     
-            ch.send({embeds: NukeEmbed}).then((msg) => {
-  setTimeout(() => msg.delete(), ms('40 seconds'))
+            ch.send({
+              embeds: [ NukeEmbed ]}).then((msg) => {
+  setTimeout(() => msg.delete(), ms('1m'))
   });
 
         

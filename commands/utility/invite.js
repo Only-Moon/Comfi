@@ -1,7 +1,7 @@
 const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 
 module.exports = {
-    name: "invite",
+    name: "invitee",
     description: "Sends an invite for the bot",
     ownerOnly: false,
 

@@ -1,7 +1,7 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "ping",
+    name: "pingg",
     description: "Shows Bot Ping",
     ownerOnly: false,
     userperm: [""],
