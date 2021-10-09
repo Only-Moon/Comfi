@@ -28,9 +28,8 @@ process.on('unhandledRejection', error => {
   } else if (!channel) {
     bot.logger.error(`${error.stack}`)
   }
-})
   
-
+})
 
 process.on("uncaughtException", (error) => {
 
