@@ -29,8 +29,6 @@ process.on('unhandledRejection', error => {
     bot.logger.error(`${error.stack}`)
   }
 })
-  
-
 
 process.on("uncaughtException", (error) => {
 
