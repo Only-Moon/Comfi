@@ -70,7 +70,7 @@ await interaction.editReply({ embeds: [embed] });
             sChannel.send({embeds: [ sembed ]})
     }
     } catch (err) {
-      return interaction.channel.send({content: `${bot.error} **Something Went Wrong =>** \n${err}`});
+      return interaction.channel.send({content: `${bot.error} **Something Went Wrong =>** \n${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`});
     } 
   },
 };

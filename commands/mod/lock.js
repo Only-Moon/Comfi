@@ -55,9 +55,10 @@ if (sub === "enable") {
                     ADD_REACTIONS: false
                 });
             });
-        } catch (e) {
-            console.log(e);
-        }
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
 let embed = new MessageEmbed()
         .setDescription(`${bot.tick} • **Successfully Locked ${channel}**`)
         .setColor(bot.color);
@@ -73,9 +74,10 @@ if (sub === "disable") {
                     ADD_REACTIONS: true
                 });
             });
-        } catch (e) {
-            console.log(e);
-        }
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
 
         let embed = new MessageEmbed()
         .setDescription(`${bot.tick} • **Successfully Unlocked ${channel}**`)

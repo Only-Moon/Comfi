@@ -19,6 +19,9 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async (bot, interaction, args, message) => {
+
+try {
+      
         const user = interaction.guild.members.cache.get(args[0]) || interaction.member
 
         let invites = await interaction.guild.invites.fetch();
@@ -39,5 +42,11 @@ module.exports = {
             .setColor("#F4B3CA")
 
         interaction.followUp({ embeds: [tackerEmbed] });
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+  
     }
 }

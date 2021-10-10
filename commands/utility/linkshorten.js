@@ -28,6 +28,8 @@ module.exports = {
      */
     run: async (bot, interaction, args, message) => {
 
+try {
+      
         if (!args[0]) {
             shorten.shorten(args[0], function(res) {
                 if(res.startsWith('Error:')) return interaction.editReply(`<a:Attention:883349868062576701> Provide a valid url **${res}**`)
@@ -57,4 +59,10 @@ interaction.editReply({embeds: [ embed ],
         })
 
     }
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+  
 }}

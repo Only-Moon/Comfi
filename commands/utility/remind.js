@@ -63,9 +63,10 @@ module.exports = {
                    try{
         
                     await interaction.user.send({embeds: [reminderdm]})
-                   }catch(err){
-        
-                   } 
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    } 
                    
                 }, ms(time));
             

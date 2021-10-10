@@ -154,9 +154,10 @@ if (guild.modlog) {
             if (!sChannel) return;
             sChannel.send({embeds: [ embed ]})
 }
-        } catch (e) {
-            return interaction.channel.send(`**${e.message}**`)
-        }
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
  
   }
   
@@ -169,6 +170,8 @@ if (sub === "temporary") {
   if (tbuser === interaction.user.id) { 			
     return interaction.editReply(`${bot.error} Really!! Are you going to ban yourself..`); 	
   } 	
+
+try {
   
 if(!reason) reason = "No Reason Provided"; 		 		
   const tbuembed = new MessageEmbed() 			
@@ -198,6 +201,11 @@ if(!reason) reason = "No Reason Provided";
     }, ms(regex)); 		
     return undefined; 	
   })
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
   
 }
 
@@ -234,7 +242,9 @@ if (sub === "hack") {
             if (!sChannel) return;
             sChannel.send({embeds: [ embed ]})
     }     
-            } catch (error) { console.log(`${error}`)
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
     }
   
 }
@@ -266,10 +276,12 @@ if (sub === "remove") {
 
       embed.setColor(bot.color).setDescription(`${bot.tick} • Unbanned ${userTag} Successfully`)
       await interaction.editReply({embeds: [embed]})
-    } catch (err) {
-      console.log("Something Went Wrong => ", err);
+    
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
     }
-  
+    
 }
       
     }}

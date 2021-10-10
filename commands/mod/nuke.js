@@ -14,7 +14,8 @@ module.exports = {
        */
     run: async(bot, interaction, args) => {
        
-        interaction.channel.clone().then((ch) => {
+    try {
+      interaction.channel.clone().then((ch) => {
             ch.setParent(interaction.channel.parent.id)
             ch.setPosition(interaction.channel.position)
             interaction.channel.delete();
@@ -29,7 +30,12 @@ module.exports = {
               embeds: [ NukeEmbed ]}).then((msg) => {
   setTimeout(() => msg.delete(), ms('1m'))
   });
-
-        
+       
     })
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+      
 }}

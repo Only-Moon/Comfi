@@ -20,7 +20,7 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async (bot, interaction, args) => {
-     
+     try {
 let amount = interaction.options.getInteger('amount')    
 
 if (amount > 99) return interaction.followUp({content: `${bot.error} You cannot delete more than 100 messages`});
@@ -40,5 +40,10 @@ interaction.channel.send({            content: `I've cleared \`${filtered.size
 }).then((msg) => {
   setTimeout(() => msg.delete(), ms('5 seconds'))
   });
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+       
+     }
 }
     }

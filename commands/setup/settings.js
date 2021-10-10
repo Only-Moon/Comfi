@@ -286,7 +286,7 @@ module.exports = {
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
                             
-const pages = [boost, bump, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, ticket, verification, welcome]; 
+const pages = [boost, bump, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, verification, welcome]; 
                             
 simplydjs.embedPages(bot, interaction, pages, {
 slash: true,

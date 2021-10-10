@@ -32,5 +32,5 @@ module.exports = {
         emo.delete() 
         interaction.editReply(`**The Emoji has been removed**`)
         } catch (err) {
-          interaction.editReply(`${boterror} | **An Error occured** \n Error: ${err}`) }
+          interaction.editReply(`${boterror} | **An Error occured** \n Error: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`) }
           }}

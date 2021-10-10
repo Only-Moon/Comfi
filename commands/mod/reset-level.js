@@ -18,68 +18,6 @@ module.exports = {
         
   let [ sub ] = args
   
-  if (sub === "add") {
-    
-    const level = interaction.options.getInteger("level")
-    
-        if(guild.leveling) {
-            const member = interaction.options.getMember("user") ||
-            interaction.guild.members.cache.find(m => m.id === level[0] || m.user.username.toLowerCase() === level[0].toLowerCase())
-            if(!member) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply a valid member!`})
-            }
-            
-            const user = await users.findOne({userId: member.id, guildId: interaction.guild.id})
-            if(!user) {
-                return interaction.editReply({content: `${bot.crosss} • This user has no levels saved!`})
-            }
-            if(!level) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply an amount of levels!`})
-            }
-            if(isNaN(level)) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply a valid level amount!`})
-            }
-            await users.findOneAndUpdate({userId: member.id, guildId: interaction.guild.id}, {
-                level: Number(user.level) + (level)
-            })
-            return interaction.editReply({content: `${bot.tick} • ${member} has been given ${level} levels!`})
-
-        } else {
-            return interaction.editReply({content: `${bot.crosss} • Please setup leveling before using this command!`})
-        }
-    }
-    
-  if (sub === "remove") {
-    
-    const level = interaction.options.getInteger("level")
-    
-        if(guild.leveling) {
-            const member = interaction.options.getMember("user") ||
-            interaction.guild.members.cache.find(m => m.id === level[0] || m.user.username.toLowerCase() === level[0].toLowerCase())
-            if(!member) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply a valid member!`})
-            }
-            const user = await users.findOne({userId: member.id, guildId: interaction.guild.id})
-            if(!user) {
-                return interaction.editReply({content: `${bot.crosss} • This user has no levels saved!`})
-            }
-            if(!level) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply an amount of levels!`})
-            }
-            if(isNaN(level)) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply a valid level amount!`})
-            }
-            await users.findOneAndUpdate({userId: member.id, guildId: interaction.guild.id}, {
-                level: Number(user.level) - (level)
-            })
-            return interaction.editReply({content: `${bot.tick} • ${member} has been stripped of ${level} levels!`})
-console.log(level[1])
-        } else {
-            return interaction.editReply({content: `${bot.crosss} • Please setup leveling before using this command!`})
-        }
-    
-  }
-  
   if (sub === 'reset') {
     
     if(guild.leveling) {

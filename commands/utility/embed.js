@@ -62,6 +62,9 @@ module.exports = {
         }
     ],
     run: async (bot, interaction, args) => {
+
+try {
+      
         const ch = interaction.options.getChannel('channel') || interaction.channel;
         const channelstype = interaction.guild.channels.cache.get(ch.id)
         if(!channelstype) return interaction.editReply({ content: `<a:Attention:883349868062576701> You must enter a valid channel.`})
@@ -126,5 +129,10 @@ module.exports = {
         channelstype.send({ embeds: [resultat] })
         interaction.editReply({ content: `The embed has been sent to the channel ${channelstype}`})
 
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+  
     },
 };

@@ -38,7 +38,7 @@ const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
             let embed = new MessageEmbed()
             .setColor(bot.color)
             .setTitle(`${bot.Error} Error!`)
-            .setDescription(e);
+            .setDescription(`${bot.error} An error has occured \nError: ${e} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)``);
 
             interaction.editReply({embeds: [ embed ]});
 

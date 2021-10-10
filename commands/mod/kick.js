@@ -96,8 +96,9 @@ if (!kickMember)
 			if (!sChannel) return;
 			sChannel.send({embeds: [ embed ]});
     }
-		} catch (e) {
-			return interaction.channel.send(`**${e.message}**`);
-		}
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
 	}
 };

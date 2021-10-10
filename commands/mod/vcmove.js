@@ -40,8 +40,7 @@ module.exports = {
         } 
         
         catch(error) {
-            console.log(error);
-            interaction.editReply(`Oops! An unknown error occured. Error: ${error}`)
+            interaction.editReply(`Oops! An unknown error occured. Error: ${error} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
         }
 
     }

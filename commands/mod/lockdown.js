@@ -30,7 +30,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-        
+
+try {
+      
         if(!args[0]) {
         return interaction.editReply("Please specify something.`Either on/off`")
         };
@@ -63,5 +65,11 @@ module.exports = {
 .setAuthor(`${interaction.guild.name}`, interaction.guild.iconURL())               .setDescription(`**\n\nDone! Server Fully Unlocked! 🔓**`)
             return interaction.editReply({embeds: [ lockEmbed2 ]})
         }
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+  
     }
 }

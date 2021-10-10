@@ -9,6 +9,8 @@ bot.on("interactionCreate", async (interaction, args) => {
 
 if (interaction.isCommand()) {
   await interaction.deferReply({ ephemeral: false }).catch(() => {}); 
+
+if (!interaction.guild) return;
   
 const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(!guild) { await guilds.create({guildId: interaction.guild.id})}
@@ -50,7 +52,6 @@ const botp = new MessageEmbed().setDescription(`${bot.error} I need \`${cmd.botp
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
  
-if (!interaction.guild) return;
 if (interaction.user.bot) return;
   
     async function commandExecute(){

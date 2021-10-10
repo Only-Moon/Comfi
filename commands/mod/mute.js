@@ -100,8 +100,9 @@ const guild = await guilds.findOne({guildId: interaction.guild.id})
                 SPEAK: false,
               })
         })
-        } catch (e) {
-          console.log(e);
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
         } 
       };
       if (mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} • **User Is Already Muted!**`) 
@@ -230,8 +231,9 @@ interaction.editReply({embeds: [ sembed ]});
         if (!sChannel) return;
         sChannel.send({embeds: [ embeds1 ]})      
     }   
-    } catch (err) {
-      console.log(`Error => `, err);
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
     }
   
 }

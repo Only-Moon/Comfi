@@ -26,7 +26,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
- 
+
+try {
+      
+  
 let isUrl = require("is-url");
 let type = "";
 let name = "";
@@ -62,5 +65,10 @@ let emoji = { name: "" };
             interaction.editReply({embeds: [ embed ]});
 
         })
-        
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+  
           }}
