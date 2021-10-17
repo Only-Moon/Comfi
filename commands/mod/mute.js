@@ -59,7 +59,7 @@ module.exports = {
        
 if (sub === "add") {   
        
-       var mutee = interaction.options.getMember('user');
+       var mutee = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]);
       var time = interaction.options.getString('time');
       if (mutee === interaction.member) return interaction.editReply(`${bot.error} • **You Cannot Mute Yourself!**`)
         if (mutee.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0) return interaction.editReply(` ${bot.error} • **Cannot Mute This User!**`)

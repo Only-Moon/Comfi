@@ -26,12 +26,12 @@ module.exports = {
         if (!query) return interaction.followUp({ content: `${bot.error} Specify a **message**` });
         const feedEmbed = new MessageEmbed()
             .setTitle('Comfi™ Feedback')
-            .setDescription(`**Author :**\n> ${member.user.username} \n**Message:**\n > ${query}`)
+            .setDescription(`**Author :**\n> ${member.user.username} \n**Message:**\n> ${query}`)
             .setFooter(`Author ID: ${member.user.id}`)
             .setThumbnail(member.user.avatarURL({ dynamic: true }))
             .setTimestamp()
             .setColor(bot.color)
-        interaction.followUp({ content: "Report has been sent to the report channel!" })
+        interaction.followUp({ content: "Feedback has been sent to the support server!" })
         feedCh.send({ embeds: [ feedEmbed ] });
     },
 };

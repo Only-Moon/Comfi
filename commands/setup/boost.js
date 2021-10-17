@@ -56,6 +56,19 @@ module.exports = {
             required: true,
         },
               ],
+        },
+        {
+            type: 'SUB_COMMAND',
+            description: 'Sets the image for Boost Detector embed',
+            name: 'image',            
+            options : [
+          {
+            type: 'STRING',
+            description: 'Image url for Boosts embed',
+            name: 'img',
+            required: true,
+        },
+              ],
         },      
         {
             type: 'SUB_COMMAND',
@@ -95,6 +108,22 @@ interaction.guild.name
   
 }
 
+if (option === 'image'){
+
+const image = interaction.options.getString('img'); 
+       await guilds.findOneAndUpdate( { 
+                                    guildId: guildID,
+                                    }, 
+                                    { 
+                                    boost_image: image, 
+                                        
+                                    } ); 
+             interaction.editReply({ content: `${bot.tick} • Successfully added the boost image  as\n\`\`\`md\n${message}\`\`\`` }); 
+                                
+                            
+
+}
+      
 if (option === 'message'){
 
 const message = interaction.options.getString('msg'); 

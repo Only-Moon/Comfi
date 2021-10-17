@@ -36,7 +36,12 @@ module.exports = {
                                 name: "» Boost Channel", 
                                 value: `<#${guild.boost_channel}>`, 
                                 
-                            } ) 
+                            },
+                            { 
+                            name: "» Boost Image", 
+                            value: `\`\`\`\n${`Preview Below`}\n\`\`\``,
+                            }, ) 
+           .setImage(guild.boost_image)
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
 
@@ -108,8 +113,13 @@ module.exports = {
                             { 
                             name: "» Leave Message", 
                             value: `\`\`\`\n${guild.leave_message}\n\`\`\``,
+                            },       
+                            { 
+                            name: "» Leave Image", 
+                            value: `\`\`\`\n${`Preview Below`}\n\`\`\``,
                             },
                             ) 
+.setImage(guild.leave_image)
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
    
@@ -282,12 +292,17 @@ module.exports = {
                             name: "» Welcome Message", 
                             value: `\`\`\`\n${guild.welcome_message}\n\`\`\``,
                             },
-                            ) 
+                            { 
+                            name: "» Welcome Image", 
+                            value: `\`\`\`\n${`Preview Below`}\n\`\`\``,
+                            },
+                            )
+.setImage(guild.welcome_image) 
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
                             
-const pages = [boost, bump, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, verification, welcome]; 
-                            
+const pages = [boost, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, verification, welcome]; 
+                          
 simplydjs.embedPages(bot, interaction, pages, {
 slash: true,
 firstEmoji: '884420649580363796', 
@@ -300,4 +315,5 @@ delcolor: 'SECONDARY',
 skipcolor: 'SECONDARY', 
 skipBtn: true,
 })
+
     }}

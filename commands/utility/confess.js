@@ -35,7 +35,7 @@ await interaction.deleteReply();
   const embed = new MessageEmbed()
          
        .setTitle('Anonymous Confession')
-       .setDescription(`${confessionQuery}`)
+       .setDescription(`> ${confessionQuery}`)
        .setColor(bot.color)
        .setTimestamp();
        

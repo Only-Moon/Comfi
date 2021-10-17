@@ -26,11 +26,11 @@ module.exports = {
         if (!query) return interaction.followUp({ content: "Specify a **bug**" });
         const reportEmbed = new MessageEmbed()
             .setTitle('Bug Report')
-            .setDescription(`**Author :**\n> ${member.user.username} \n**Report :**\n > ${query}`)
+            .setDescription(`**Author :**\n> ${member.user.username} \n**Report :**\n> ${query}`)
             .setFooter(`Author ID: ${member.user.id}`)
             .setThumbnail(member.user.avatarURL({ dynamic: true }))
             .setTimestamp()
-            .setColor('#5539cc')
+            .setColor(bot.color)
         interaction.followUp({ content: "Report has been sent to the report channel!" })
         reportCh.send({ embeds: [reportEmbed] });
     },

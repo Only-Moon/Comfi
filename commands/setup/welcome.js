@@ -44,7 +44,13 @@ module.exports = {
         .setColor(bot.color)
         .setFooter(`You can say "cancel" at any time to cancel the process`)
 
-        let steps = [step1, step2, step3, step4, step5]
+        const step6 = new MessageEmbed()
+        .setTitle(`Welcome Message / Embed [4]`, bot.user.displayAvatarURL())
+        .setDescription(`What should the welcome image be ( **Only Url** )`)
+        .setColor(bot.color)
+        .setFooter(`You can say "cancel" at any time to cancel the process`)
+
+        let steps = [step1, step2, step3, step4, step5, step6]
         let counter = 0
         interaction.deleteReply()
         let hoisterMessage = await interaction.channel.send({embeds: [steps[counter]]})
@@ -53,7 +59,8 @@ module.exports = {
             channel: undefined,
             dm: undefined,
             embed: undefined,
-            message: undefined
+            message: undefined,
+            image: undefined
         }
         const collector = new MessageCollector(interaction.channel)
 
@@ -140,6 +147,11 @@ module.exports = {
                 case 4: 
   finalData['message'] = msg.content
                     msg.delete().catch(() => {})
+                    counter++
+                    hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
+                break;
+                case 5: 
+  finalData['image'] = msg.content
                     hoisterMessage.delete().catch(() => {})
                     collector.stop("2")
                 break;
@@ -167,7 +179,8 @@ module.exports = {
                     welcome_dmuser: finalData.dm,
                     welcome_channel: finalData.channel,
                     welcome_message: finalData.message,
-                    welcome_embed: finalData.embed
+                    welcome_embed: finalData.embed,
+                    welcome_image: finalData.image
                 })
                 return interaction.channel.send({content: `${bot.tick} • Welcome data has now been setup!`})
             }

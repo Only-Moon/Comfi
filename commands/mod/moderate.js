@@ -27,7 +27,7 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
       
-        const member = interaction.options.getMember('user')
+        const member = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]);
         if (!member) return interaction.editReply(`${bot.error} Please mention a valid user to moderate`)
 
         if (member.roles.highest.position >= interaction.member.roles.highest.position) return interaction.editReply(`${bot.error} You cannot moderate this user because they are higher than you.`)

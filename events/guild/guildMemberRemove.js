@@ -30,6 +30,7 @@ bot.on("guildMemberRemove", async (member) => {
                 .setAuthor(`Member Left!`, member.user.displayAvatarURL({dynamic: true}))
                 .setDescription(format(guild.leave_message))
                 .setColor(bot.color)
+              .setImage(guild.leave_image)
 
                 if(guild.leave_dmuser) {
                     member.send({embeds: [embed]}).catch(() => {})
@@ -38,9 +39,13 @@ bot.on("guildMemberRemove", async (member) => {
                 }
             } else {
                 if(guild.leave_dmuser) {
-                    member.send({content: `${format(guild.leave_message)}`}).catch(() => {})
+let leave_image = new MessageAttachment(`${guild.welcome_image}`) 
+                    member.send({content: `${format(guild.leave_message)}`, files: [ leave_image]}).catch(() => {})
                 } else {
-                    channel.send({content: `${format(guild.leave_message)}`}).catch(() => {})
+
+let leave_image = new MessageAttachment(`${guild.welcome_image}`) 
+
+                    channel.send({content: `${format(guild.leave_message)}`, files: [ leave_image ]}).catch(() => {})
                 }
             }
         }

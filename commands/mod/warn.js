@@ -66,7 +66,7 @@ module.exports = {
 run: async (bot, interaction, args) => {
 		const subCommandName = interaction.options._subcommand;
 
-		const user = interaction.options.getUser('user');
+		const user = interaction.options.getUser('user') || interaction.guild.members.cache.get(args[0]);
 		const getWarnId = interaction.options.getString('warnid');
 
 		switch (subCommandName) {

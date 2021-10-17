@@ -11,6 +11,7 @@
     "beautify": "0.0.8",
     "bing-translate-api": "^2.2.1",
     "canvacord": "^5.2.3",
+    "canvas": "^2.8.0",
     "chalk": "^4.1.2",
     "coloras": "^2.0.0",
     "common-tags": "^1.8.0",

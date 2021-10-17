@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, MessageAttachment } = require("discord.js")
 
 bot.on("guildMemberAdd", async (member) => {
     const guild = await guilds.findOne({guildId: member.guild.id})
@@ -33,17 +33,27 @@ bot.on("guildMemberAdd", async (member) => {
                 .setAuthor(`New Member!`, member.user.displayAvatarURL({dynamic: true}))
                 .setDescription(format(guild.welcome_message))
                 .setColor(bot.color)
+              .setImage(`${guild.welcome_image}`);
 
                 if(guild.welcome_dmuser) {
                     member.send({embeds: [embed]}).catch(() => {})
                 } else {
-                    channel.send({embeds: [embed]}).catch(() => {})
+            
+            channel.send({
+              embeds: [embed]}).catch(() => {})
                 }
             } else {
                 if(guild.welcome_dmuser) {
-                    member.send({content: `${format(guild.welcome_message)}`}).catch(() => {})
+                    
+ let welcome_image = new MessageAttachment(`${guild.welcome_image}`) 
+
+member.send({content: `${format(guild.welcome_message)}`,
+files: [ welcome_image ]}).catch(() => {})
                 } else {
-                    channel.send({content: `${format(guild.welcome_message)}`}).catch(() => {})
+                    
+ let welcome_image = new MessageAttachment(`${guild.welcome_image}`) 
+
+channel.send({content: `${format(guild.welcome_message)}`, files: [ welcome_image ]}).catch(() => {})
                 }
             }
         }

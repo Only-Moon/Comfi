@@ -14,8 +14,7 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
   if (guilD.boost) {
   
   if (!oldStatus && newStatus) { 
-    if (guilD.boost_channel == "None") return;
-    if (guilD.boost_message == "None") return;
+    
     const boostChannel = guild.channels.cache.get(guilD.boost_channel
 ); 
     const boostMessage = guilD.boost_message;
@@ -29,10 +28,16 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
 let boost = new MessageEmbed()
   .setTitle(`${guild.name} Got Boosted`)  
   .setDescription(finalMessage)
+  .setImage(guilD.boost_image)
   .setColor(bot.color)
   .setThumbnail(guild.iconURL({ dynamic: true }));
-    
+  
+if (boostChannel) {
+ 
     boostChannel.send({embeds: [ boost ]}); 
+
+} else if (!boostChannel) { return; }
+  
   } 
   } else { 
     return;

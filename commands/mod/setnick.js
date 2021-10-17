@@ -24,13 +24,12 @@ module.exports = {
    *
    * @param {Interaction} interaction
    */
-  run: async (bot, interaction) => {
+  run: async (bot, interaction, args) => {
     try {
-      const args = interaction.options._hoistedOptions;
 
       // now extract values
-      const user = args.find(x => x.name === "user");
-      const nickname = args.find(x => x.name === "nickname");
+      const user = interaction.options.getUser("user") || interaction.guild.members.cache.get(args[0]);
+      const nickname = interaction.options.getString("nickname");
       const embed = new MessageEmbed().setColor(bot.color)
 
       if (!user.member.manageable && user.member.id !== bot.user.id) {

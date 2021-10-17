@@ -30,7 +30,7 @@ module.exports = {
             auto_nick: args.join(" ")
         })
 
-        return interaction.editReply({content: `${bot.tick} • Auto nick has been set! Current value: ${args.join(" ")}`})
+        return interaction.editReply({content: `${bot.tick} • Auto nick has been set! Current value: ${args.join(" ")} /n Do **/autonick nick: none** to disable it.`})
 
      } catch (err) {
 

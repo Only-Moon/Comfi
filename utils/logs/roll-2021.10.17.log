@@ -1,0 +1,22 @@
+04:39:43.190 ERROR Error: ENOENT: no such file or directory, lstat '/home/runner/Comfi-beta/functions/Fonts'
+    at Object.realpathSync (node:fs:2486:7)
+    at registerFont (/home/runner/Comfi-beta/node_modules/canvas/index.js:48:34)
+    at Object.<anonymous> (/home/runner/Comfi-beta/functions/RankCard.js:7:1)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/home/runner/Comfi-beta/commands/levels/rank.js:5:18)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18) 
+04:39:43.603 INFO  Mongodb connected! 
+04:39:43.605 INFO  Logged in as Comfi Dev#5575 
+04:39:43.606 INFO  Watching 35 Slashs, 63 Channels and 10 Users in  3 Servers 
+04:39:43.606 INFO  ------------------------------------- 
+04:39:43.612 INFO  Your app is listening a http://localhost:3000 

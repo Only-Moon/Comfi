@@ -164,7 +164,7 @@ let embed = new MessageEmbed()
             .addField('❯ Slash Commands:', `${bot.slashCommands.size} Commands`,true)
             .addField('❯ Node:', `${process.version} on ${process.platform} ${process.arch}`, true)
             .addField('❯ Discord.js:', `v${discordjsVersion}`, true)
-            .addField('❯ Credits:', '[Xx-Mohit-xX](https://github.com/Xx-Mohit-xX), [xxDeveloper](https://github.com/Murtatrxx) (Bot)', true) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
+            .addField('❯ Credits:', '[Xx-Mohit-xX](https://github.com/Xx-Mohit-xX), [xxDeveloper](https://github.com/Murtatrxx)', true) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
             .setFooter(`Requested By ${interaction.member.displayName}`)
             .setTimestamp();
    

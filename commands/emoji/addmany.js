@@ -20,11 +20,12 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-   
-interaction.deleteReply()
  
 const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
         if (!emojis) return interaction.editReply(`${bot.error} | **Provde The emojis to add**`);
+
+interaction.deleteReply();
+      
         emojis.forEach(emote => {
         let emoji = Util.parseEmoji(emote);
         if (emoji.id) {
@@ -38,7 +39,7 @@ const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
             let embed = new MessageEmbed()
             .setColor(bot.color)
             .setTitle(`${bot.Error} Error!`)
-            .setDescription(`${bot.error} An error has occured \nError: ${e} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)``);
+            .setDescription(`${bot.error} An error has occured \nError: ${e} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`);
 
             interaction.editReply({embeds: [ embed ]});
 

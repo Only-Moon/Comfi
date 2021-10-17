@@ -11,12 +11,6 @@ const schema = new Schema({
     suggestions: {type: Boolean, default: false},
     suggestions_channel: {type: String, default: "NONE"},
 
-    // Bump
-    bump: {type: Boolean, default: false},
-    bump_channel: {type: String, default: "NONE"}, 
-    bump_time: {type: String, default: "NONE"},
-    bump_hi: {type: String, default: "NONE"},
-
     // Chatbot
     chatbot: {type: Boolean, default: false},
     chat_channel: {type: String, default: "NONE"}, 
@@ -63,6 +57,7 @@ const schema = new Schema({
     welcome_channel: {type: String, default: "NONE"},
     welcome_dmuser: {type: Boolean, default: false},
     welcome_message: {type: String, default: "Welcome {{user.mention}}"},
+    welcome_image: {type: String, default: "http://imgur.com/rmJzOKE.gif"},
     welcome_embed: {type: Boolean, default: false},
     
     // Leave
@@ -70,12 +65,14 @@ const schema = new Schema({
     leave_channel: {type: String, default: "NONE"},
     leave_dmuser: {type: Boolean, default: false},
     leave_message: {type: String, default: "Goodbye {{user.mention}}"},
+    leave_image: {type: String},
     leave_embed: {type: Boolean, default: false},
 
     // Boost
     boost: {type: Boolean, default: false},
     boost_channel: {type: String, default: "NONE"},
     boost_message: {type: String, default: "{user.mention} just boosted {server}. Now We Have {boost.count} boosts"},
+    boots_image: {type: String},
 
     // Logs
     logging: {type: Boolean, default: false},

@@ -2,6 +2,7 @@ const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord
 const canvacord = require("canvacord")
 const guilds = require("../../models/guild")
 const users = require("../../models/users")
+const rankCard = require("../../functions/RankCard")
 
 module.exports = {
     name: "rank",
@@ -38,6 +39,16 @@ interaction.editReply(`${bot.error} User haven't Leveled Up yet or User is a Bot
       
 if(guild.leveling) {
 
+rankCard(bot, interaction, {
+    member: user, 
+    level: user.level,
+    currentXP: user.xp, 
+    neededXP: user.requiredXp,
+    rank: '', 
+    background: ''
+  })
+  
+/*
 const rank = new canvacord.Rank()
         .setAvatar(target.avatarURL({format: 'png', size: 512}))
         .setCurrentXP(user.xp)
@@ -57,7 +68,7 @@ const rank = new canvacord.Rank()
         
 interaction.editReply({files: [ attachment ]})
     });
-
+*/
 }
 } 
       
