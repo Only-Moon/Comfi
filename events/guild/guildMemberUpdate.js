@@ -10,6 +10,21 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
   const guilD = await guilds.findOne({ 
     guildId: guild.id,
   }); 
+
+    function format(msg) {
+        let text = msg;
+    
+       const terms = [
+         { name: '{{user#mention}}', value: `<@${newMember.id}>` },
+         { name: '{{user}}', value: `${newMember.user.tag}` },
+         { name: '{{server}}', value: `${guild.name}` },
+         { name: '{{boostcount}}', value: `${guild.premiumSubscriptionCount}` },
+       ];
+       
+       for (let { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);
+       
+       return text
+       }
   
   if (guilD.boost) {
   
@@ -17,26 +32,26 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
     
     const boostChannel = guild.channels.cache.get(guilD.boost_channel
 ); 
-    const boostMessage = guilD.boost_message;
+if (!boostChannel) return;
     
-    const finalMessage = boostMessage 
-      .replace(/{server}/g, guild.name) 
-      .replace(/{user}/g, newMember.user.tag) 
-      .replace(/{user#mention}/g, `<@${newMember.user.id}>`) 
-      .replace(/{boost#count}/g, guild.premiumSubscriptionCount); 
+    const boostMessage = guilD.boost_message;
 
 let boost = new MessageEmbed()
   .setTitle(`${guild.name} Got Boosted`)  
-  .setDescription(finalMessage)
+  .setDescription(format(guilD.boost_message))
   .setImage(guilD.boost_image)
   .setColor(bot.color)
   .setThumbnail(guild.iconURL({ dynamic: true }));
   
-if (boostChannel) {
+if (guilD.boost_embed) {
  
     boostChannel.send({embeds: [ boost ]}); 
 
-} else if (!boostChannel) { return; }
+} else { 
+
+boostChannel.send({content: format(guilD.boost_message )})
+  
+}
   
   } 
   } else { 

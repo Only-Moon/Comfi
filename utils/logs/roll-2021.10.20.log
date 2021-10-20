@@ -1,0 +1,122 @@
+10:15:43.434 INFO  Mongodb connected! 
+10:28:44.449 INFO  Logged in as Comfi Dev#5575 
+10:28:44.450 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:28:44.450 INFO  ------------------------------------- 
+10:28:44.456 INFO  Your app is listening a http://localhost:3000 
+10:28:44.508 INFO  Mongodb connected! 
+10:32:32.079 INFO  Mongodb connected! 
+10:33:53.719 INFO  Logged in as Comfi Dev#5575 
+10:33:53.727 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:33:53.728 INFO  ------------------------------------- 
+10:33:53.789 INFO  Your app is listening a http://localhost:3000 
+10:33:54.056 INFO  Mongodb connected! 
+10:38:34.487 INFO  Logged in as Comfi Dev#5575 
+10:38:34.489 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:38:34.489 INFO  ------------------------------------- 
+10:38:34.506 INFO  Your app is listening a http://localhost:3000 
+10:38:34.596 INFO  Mongodb connected! 
+10:41:09.506 INFO  Logged in as Comfi Dev#5575 
+10:41:09.507 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:41:09.507 INFO  ------------------------------------- 
+10:41:09.534 INFO  Your app is listening a http://localhost:3000 
+10:41:09.720 INFO  Mongodb connected! 
+10:45:40.146 INFO  Logged in as Comfi Dev#5575 
+10:45:40.147 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:45:40.147 INFO  ------------------------------------- 
+10:45:40.160 INFO  Your app is listening a http://localhost:3000 
+10:45:40.294 INFO  Mongodb connected! 
+10:50:31.426 INFO  Logged in as Comfi Dev#5575 
+10:50:31.438 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:50:31.439 INFO  ------------------------------------- 
+10:50:31.463 INFO  Your app is listening a http://localhost:3000 
+10:50:31.746 INFO  Mongodb connected! 
+10:51:20.016 ERROR Error: Server responded with 415
+    at /home/runner/Comfi-beta/node_modules/canvas/lib/image.js:56:28
+    at /home/runner/Comfi-beta/node_modules/simple-get/index.js:89:7
+    at IncomingMessage.<anonymous> (/home/runner/Comfi-beta/node_modules/simple-concat/index.js:8:13)
+    at Object.onceWrapper (node:events:509:28)
+    at IncomingMessage.emit (node:events:402:35)
+    at endReadableNT (node:internal/streams/readable:1343:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) 
+10:55:15.484 ERROR /home/runner/Comfi-beta/functions/RankCard.js:259
+}
+^
+
+SyntaxError: Missing catch or finally after try
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/home/runner/Comfi-beta/commands/levels/rank.js:5:18)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18 
+10:55:15.926 INFO  Logged in as Comfi Dev#5575 
+10:55:15.927 INFO  Watching 29 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:55:15.927 INFO  ------------------------------------- 
+10:55:15.933 INFO  Your app is listening a http://localhost:3000 
+10:55:15.944 INFO  Mongodb connected! 
+10:55:50.101 ERROR /home/runner/Comfi-beta/functions/RankCard.js:259
+}
+^
+
+SyntaxError: Missing catch or finally after try
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/home/runner/Comfi-beta/commands/levels/rank.js:5:18)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18 
+10:55:50.640 INFO  Mongodb connected! 
+10:55:50.662 INFO  Logged in as Comfi Dev#5575 
+10:55:50.664 INFO  Watching 29 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:55:50.664 INFO  ------------------------------------- 
+10:55:50.691 INFO  Your app is listening a http://localhost:3000 
+10:56:22.273 INFO  Logged in as Comfi Dev#5575 
+10:56:22.274 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:56:22.274 INFO  ------------------------------------- 
+10:56:22.293 INFO  Your app is listening a http://localhost:3000 
+10:56:22.342 INFO  Mongodb connected! 
+11:05:32.495 INFO  Mongodb connected! 
+11:05:32.564 INFO  Logged in as Comfi Dev#5575 
+11:05:32.565 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:05:32.566 INFO  ------------------------------------- 
+11:05:32.583 INFO  Your app is listening a http://localhost:3000 
+11:07:29.399 INFO  Logged in as Comfi Dev#5575 
+11:07:29.428 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:07:29.428 INFO  ------------------------------------- 
+11:07:29.522 INFO  Your app is listening a http://localhost:3000 
+11:07:30.037 INFO  Mongodb connected! 
+11:15:42.923 INFO  Logged in as Comfi Dev#5575 
+11:15:42.925 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:15:42.925 INFO  ------------------------------------- 
+11:15:42.952 INFO  Your app is listening a http://localhost:3000 
+11:15:42.999 INFO  Mongodb connected! 
+11:18:03.547 INFO  Logged in as Comfi Dev#5575 
+11:18:03.548 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:18:03.548 INFO  ------------------------------------- 
+11:18:03.560 INFO  Your app is listening a http://localhost:3000 
+11:18:03.779 INFO  Mongodb connected! 
+11:52:20.042 INFO  Mongodb connected! 
+11:52:20.068 INFO  Logged in as Comfi Dev#5575 
+11:52:20.069 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:52:20.069 INFO  ------------------------------------- 
+11:52:20.077 INFO  Your app is listening a http://localhost:3000 

@@ -1,0 +1,779 @@
+05:18:29.183 INFO  Logged in as Comfi Dev#5575 
+05:18:29.184 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+05:18:29.184 INFO  ------------------------------------- 
+05:18:29.190 INFO  Your app is listening a http://localhost:3000 
+05:18:29.279 INFO  Mongodb connected! 
+05:23:10.915 INFO  Logged in as Comfi Dev#5575 
+05:23:10.915 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+05:23:10.916 INFO  ------------------------------------- 
+05:23:10.921 INFO  Your app is listening a http://localhost:3000 
+05:23:10.971 INFO  Mongodb connected! 
+05:25:29.426 INFO  Mongodb connected! 
+05:25:29.448 INFO  Logged in as Comfi Dev#5575 
+05:25:29.449 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+05:25:29.449 INFO  ------------------------------------- 
+05:25:29.454 INFO  Your app is listening a http://localhost:3000 
+05:59:42.613 ERROR ReferenceError: MessageAttachment is not defined
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/guild/guildMemberRemove.js:46:19)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+06:01:08.744 INFO  Logged in as Comfi Dev#5575 
+06:01:08.744 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:01:08.745 INFO  ------------------------------------- 
+06:01:08.750 INFO  Your app is listening a http://localhost:3000 
+06:01:08.802 INFO  Mongodb connected! 
+06:13:34.161 ERROR ReferenceError: MessageAttachment is not defined
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/guild/guildMemberRemove.js:46:19)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+06:32:43.090 INFO  Logged in as Comfi Dev#5575 
+06:32:43.091 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:32:43.091 INFO  ------------------------------------- 
+06:32:43.097 INFO  Your app is listening a http://localhost:3000 
+06:32:43.175 INFO  Mongodb connected! 
+06:34:54.258 INFO  Logged in as Comfi Dev#5575 
+06:34:54.259 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:34:54.259 INFO  ------------------------------------- 
+06:34:54.264 INFO  Your app is listening a http://localhost:3000 
+06:34:54.312 INFO  Mongodb connected! 
+06:37:10.239 INFO  Logged in as Comfi Dev#5575 
+06:37:10.239 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:37:10.240 INFO  ------------------------------------- 
+06:37:10.246 INFO  Your app is listening a http://localhost:3000 
+06:37:10.291 INFO  Mongodb connected! 
+06:38:04.882 INFO  Mongodb connected! 
+06:38:05.023 INFO  Logged in as Comfi Dev#5575 
+06:38:05.023 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:38:05.023 INFO  ------------------------------------- 
+06:38:05.029 INFO  Your app is listening a http://localhost:3000 
+06:39:03.447 INFO  Logged in as Comfi Dev#5575 
+06:39:03.447 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:39:03.448 INFO  ------------------------------------- 
+06:39:03.454 INFO  Your app is listening a http://localhost:3000 
+06:39:03.472 INFO  Mongodb connected! 
+06:52:44.744 INFO  Mongodb connected! 
+06:52:44.833 INFO  Logged in as Comfi Dev#5575 
+06:52:44.833 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+06:52:44.834 INFO  ------------------------------------- 
+06:52:44.838 INFO  Your app is listening a http://localhost:3000 
+07:01:52.849 INFO  Logged in as Comfi Dev#5575 
+07:01:52.850 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+07:01:52.850 INFO  ------------------------------------- 
+07:01:52.855 INFO  Your app is listening a http://localhost:3000 
+07:01:52.976 INFO  Mongodb connected! 
+07:05:11.445 INFO  Logged in as Comfi Dev#5575 
+07:05:11.446 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+07:05:11.446 INFO  ------------------------------------- 
+07:05:11.453 INFO  Your app is listening a http://localhost:3000 
+07:05:11.499 INFO  Mongodb connected! 
+07:19:29.705 INFO  Logged in as Comfi Dev#5575 
+07:19:29.705 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+07:19:29.706 INFO  ------------------------------------- 
+07:19:29.712 INFO  Your app is listening a http://localhost:3000 
+07:19:29.739 INFO  Mongodb connected! 
+09:26:19.404 INFO  Mongodb connected! 
+09:26:19.452 INFO  Logged in as Comfi Dev#5575 
+09:26:19.452 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:26:19.452 INFO  ------------------------------------- 
+09:26:19.457 INFO  Your app is listening a http://localhost:3000 
+09:27:18.698 INFO  Mongodb connected! 
+09:27:18.714 INFO  Logged in as Comfi Dev#5575 
+09:27:18.715 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:27:18.715 INFO  ------------------------------------- 
+09:27:18.720 INFO  Your app is listening a http://localhost:3000 
+09:28:59.100 INFO  Logged in as Comfi Dev#5575 
+09:28:59.101 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:28:59.101 INFO  ------------------------------------- 
+09:28:59.108 INFO  Your app is listening a http://localhost:3000 
+09:28:59.154 INFO  Mongodb connected! 
+09:29:19.434 INFO  Logged in as Comfi Dev#5575 
+09:29:19.435 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:29:19.435 INFO  ------------------------------------- 
+09:29:19.442 INFO  Your app is listening a http://localhost:3000 
+09:29:19.459 INFO  Mongodb connected! 
+09:29:33.009 INFO  Mongodb connected! 
+09:29:33.031 INFO  Logged in as Comfi Dev#5575 
+09:29:33.032 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:29:33.032 INFO  ------------------------------------- 
+09:29:33.037 INFO  Your app is listening a http://localhost:3000 
+09:29:33.146 ERROR undefined 
+09:29:33.148 ERROR undefined 
+09:29:33.152 ERROR undefined 
+09:31:14.259 INFO  Logged in as Comfi Dev#5575 
+09:31:14.260 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:31:14.261 INFO  ------------------------------------- 
+09:31:14.266 INFO  Your app is listening a http://localhost:3000 
+09:31:14.317 INFO  Mongodb connected! 
+09:34:40.357 INFO  Logged in as Comfi Dev#5575 
+09:34:40.358 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:34:40.358 INFO  ------------------------------------- 
+09:34:40.364 INFO  Your app is listening a http://localhost:3000 
+09:34:40.410 INFO  Mongodb connected! 
+09:35:17.145 INFO  Mongodb connected! 
+09:35:17.164 INFO  Logged in as Comfi Dev#5575 
+09:35:17.164 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:35:17.164 INFO  ------------------------------------- 
+09:35:17.169 INFO  Your app is listening a http://localhost:3000 
+09:36:34.196 INFO  Logged in as Comfi Dev#5575 
+09:36:34.197 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:36:34.197 INFO  ------------------------------------- 
+09:36:34.204 INFO  Your app is listening a http://localhost:3000 
+09:36:34.224 INFO  Mongodb connected! 
+09:38:41.345 INFO  Logged in as Comfi Dev#5575 
+09:38:41.346 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:38:41.346 INFO  ------------------------------------- 
+09:38:41.352 INFO  Your app is listening a http://localhost:3000 
+09:38:41.373 INFO  Mongodb connected! 
+09:39:52.895 INFO  Logged in as Comfi Dev#5575 
+09:39:52.896 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:39:52.896 INFO  ------------------------------------- 
+09:39:52.901 INFO  Your app is listening a http://localhost:3000 
+09:39:52.986 INFO  Mongodb connected! 
+09:41:18.433 INFO  Mongodb connected! 
+09:41:18.458 INFO  Logged in as Comfi Dev#5575 
+09:41:18.458 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:41:18.458 INFO  ------------------------------------- 
+09:41:18.464 INFO  Your app is listening a http://localhost:3000 
+09:41:31.813 ERROR /home/runner/Comfi-beta/commands/mod/ban.js:263
+      const userToUnban = totalbans.find(b => b.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || totalbans.get(user)); 
+                                                                                                                                   ^
+
+SyntaxError: Unexpected token ')'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+09:41:32.136 INFO  Mongodb connected! 
+09:41:32.187 INFO  Logged in as Comfi Dev#5575 
+09:41:32.187 INFO  Watching 38 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:41:32.187 INFO  ------------------------------------- 
+09:41:32.192 INFO  Your app is listening a http://localhost:3000 
+09:41:58.862 INFO  Logged in as Comfi Dev#5575 
+09:41:58.863 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:41:58.863 INFO  ------------------------------------- 
+09:41:58.869 INFO  Your app is listening a http://localhost:3000 
+09:41:58.924 INFO  Mongodb connected! 
+09:43:01.330 INFO  Logged in as Comfi Dev#5575 
+09:43:01.330 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:43:01.331 INFO  ------------------------------------- 
+09:43:01.337 INFO  Your app is listening a http://localhost:3000 
+09:43:01.351 INFO  Mongodb connected! 
+09:46:16.199 INFO  Mongodb connected! 
+09:46:16.235 INFO  Logged in as Comfi Dev#5575 
+09:46:16.236 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:46:16.236 INFO  ------------------------------------- 
+09:46:16.241 INFO  Your app is listening a http://localhost:3000 
+09:46:29.484 INFO  Mongodb connected! 
+09:46:29.573 INFO  Logged in as Comfi Dev#5575 
+09:46:29.574 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:46:29.574 INFO  ------------------------------------- 
+09:46:29.580 INFO  Your app is listening a http://localhost:3000 
+09:50:31.387 INFO  Mongodb connected! 
+09:50:31.409 INFO  Logged in as Comfi Dev#5575 
+09:50:31.410 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+09:50:31.410 INFO  ------------------------------------- 
+09:50:31.416 INFO  Your app is listening a http://localhost:3000 
+10:00:04.673 INFO  Logged in as Comfi Dev#5575 
+10:00:04.674 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:00:04.675 INFO  ------------------------------------- 
+10:00:04.680 INFO  Your app is listening a http://localhost:3000 
+10:00:04.699 INFO  Mongodb connected! 
+10:00:38.799 ERROR TypeError: {(intermediate value)(intermediate value)(intermediate value)}.setAuthor is not a function
+    at /home/runner/Comfi-beta/commands/mod/ban.js:275:15
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+10:01:11.821 INFO  Mongodb connected! 
+10:01:11.869 INFO  Logged in as Comfi Dev#5575 
+10:01:11.869 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:01:11.870 INFO  ------------------------------------- 
+10:01:11.875 INFO  Your app is listening a http://localhost:3000 
+10:01:56.877 INFO  Logged in as Comfi Dev#5575 
+10:01:56.878 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:01:56.878 INFO  ------------------------------------- 
+10:01:56.884 INFO  Your app is listening a http://localhost:3000 
+10:01:56.897 INFO  Mongodb connected! 
+10:16:11.072 INFO  Mongodb connected! 
+10:16:11.187 INFO  Logged in as Comfi Dev#5575 
+10:16:11.187 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:16:11.188 INFO  ------------------------------------- 
+10:16:11.194 INFO  Your app is listening a http://localhost:3000 
+10:18:02.883 ERROR DiscordAPIError: Cannot send an empty message
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async DMChannel.send (/home/runner/Comfi-beta/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:172:15) 
+10:28:15.785 ERROR /home/runner/Comfi-beta/commands/mod/ban.js:200
+      interaction.channel.send(content: `<@${tbuser.id} has been unbanned after tempban of ${regex}`); 		
+                               ^^^^^^^
+
+SyntaxError: missing ) after argument list
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+10:28:16.067 INFO  Logged in as Comfi Dev#5575 
+10:28:16.067 INFO  Watching 38 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:28:16.068 INFO  ------------------------------------- 
+10:28:16.072 INFO  Your app is listening a http://localhost:3000 
+10:28:16.154 INFO  Mongodb connected! 
+10:28:36.389 ERROR /home/runner/Comfi-beta/commands/mod/ban.js:200
+      interaction.channel.send({content: `<@${tbuser.id}> has been unbanned after tempban of ${regex}`); 		
+                                                                                                      ^
+
+SyntaxError: Unexpected token ')'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+10:28:36.704 INFO  Mongodb connected! 
+10:28:36.718 INFO  Logged in as Comfi Dev#5575 
+10:28:36.718 INFO  Watching 38 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:28:36.718 INFO  ------------------------------------- 
+10:28:36.724 INFO  Your app is listening a http://localhost:3000 
+10:29:07.174 INFO  Logged in as Comfi Dev#5575 
+10:29:07.175 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:29:07.175 INFO  ------------------------------------- 
+10:29:07.183 INFO  Your app is listening a http://localhost:3000 
+10:29:07.200 INFO  Mongodb connected! 
+10:29:35.105 INFO  Logged in as Comfi Dev#5575 
+10:29:35.106 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:29:35.106 INFO  ------------------------------------- 
+10:29:35.112 INFO  Your app is listening a http://localhost:3000 
+10:29:35.128 INFO  Mongodb connected! 
+10:31:18.474 INFO  Logged in as Comfi Dev#5575 
+10:31:18.475 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:31:18.476 INFO  ------------------------------------- 
+10:31:18.482 INFO  Your app is listening a http://localhost:3000 
+10:31:18.508 INFO  Mongodb connected! 
+10:31:46.464 ERROR TypeError: {(intermediate value)(intermediate value)(intermediate value)}.setAuthor is not a function
+    at /home/runner/Comfi-beta/commands/mod/ban.js:275:15
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+10:33:56.833 INFO  Logged in as Comfi Dev#5575 
+10:33:56.834 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:33:56.834 INFO  ------------------------------------- 
+10:33:56.841 INFO  Your app is listening a http://localhost:3000 
+10:33:56.902 INFO  Mongodb connected! 
+10:36:05.313 INFO  Mongodb connected! 
+10:36:05.378 INFO  Logged in as Comfi Dev#5575 
+10:36:05.379 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:36:05.379 INFO  ------------------------------------- 
+10:36:05.384 INFO  Your app is listening a http://localhost:3000 
+10:38:07.260 INFO  Logged in as Comfi Dev#5575 
+10:38:07.261 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:38:07.261 INFO  ------------------------------------- 
+10:38:07.268 INFO  Your app is listening a http://localhost:3000 
+10:38:07.327 INFO  Mongodb connected! 
+10:38:49.992 INFO  Mongodb connected! 
+10:38:50.010 INFO  Logged in as Comfi Dev#5575 
+10:38:50.011 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:38:50.011 INFO  ------------------------------------- 
+10:38:50.016 INFO  Your app is listening a http://localhost:3000 
+10:39:14.591 INFO  Logged in as Comfi Dev#5575 
+10:39:14.591 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:39:14.592 INFO  ------------------------------------- 
+10:39:14.598 INFO  Your app is listening a http://localhost:3000 
+10:39:14.652 INFO  Mongodb connected! 
+10:39:27.923 INFO  Logged in as Comfi Dev#5575 
+10:39:27.924 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:39:27.924 INFO  ------------------------------------- 
+10:39:27.931 INFO  Your app is listening a http://localhost:3000 
+10:39:27.982 INFO  Mongodb connected! 
+10:40:05.838 INFO  Mongodb connected! 
+10:40:05.856 INFO  Logged in as Comfi Dev#5575 
+10:40:05.857 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:40:05.857 INFO  ------------------------------------- 
+10:40:05.862 INFO  Your app is listening a http://localhost:3000 
+10:40:05.942 ERROR undefined 
+10:40:05.971 ERROR undefined 
+10:40:05.983 ERROR undefined 
+10:42:11.336 INFO  Logged in as Comfi Dev#5575 
+10:42:11.336 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:42:11.337 INFO  ------------------------------------- 
+10:42:11.343 INFO  Your app is listening a http://localhost:3000 
+10:42:11.395 INFO  Mongodb connected! 
+10:43:42.554 INFO  Logged in as Comfi Dev#5575 
+10:43:42.554 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:43:42.555 INFO  ------------------------------------- 
+10:43:42.560 INFO  Your app is listening a http://localhost:3000 
+10:43:42.581 INFO  Mongodb connected! 
+10:46:26.643 INFO  Logged in as Comfi Dev#5575 
+10:46:26.644 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:46:26.644 INFO  ------------------------------------- 
+10:46:26.651 INFO  Your app is listening a http://localhost:3000 
+10:46:26.748 INFO  Mongodb connected! 
+10:46:49.048 INFO  Logged in as Comfi Dev#5575 
+10:46:49.049 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+10:46:49.049 INFO  ------------------------------------- 
+10:46:49.056 INFO  Your app is listening a http://localhost:3000 
+10:46:49.080 INFO  Mongodb connected! 
+11:16:26.670 INFO  Logged in as Comfi Dev#5575 
+11:16:26.671 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:16:26.671 INFO  ------------------------------------- 
+11:16:26.678 INFO  Your app is listening a http://localhost:3000 
+11:16:26.727 INFO  Mongodb connected! 
+11:17:51.899 INFO  Logged in as Comfi Dev#5575 
+11:17:51.900 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:17:51.900 INFO  ------------------------------------- 
+11:17:51.908 INFO  Your app is listening a http://localhost:3000 
+11:17:51.957 INFO  Mongodb connected! 
+11:18:48.065 INFO  Logged in as Comfi Dev#5575 
+11:18:48.066 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:18:48.066 INFO  ------------------------------------- 
+11:18:48.073 INFO  Your app is listening a http://localhost:3000 
+11:18:48.089 INFO  Mongodb connected! 
+11:20:33.055 INFO  Logged in as Comfi Dev#5575 
+11:20:33.056 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:20:33.057 INFO  ------------------------------------- 
+11:20:33.064 INFO  Your app is listening a http://localhost:3000 
+11:20:33.155 INFO  Mongodb connected! 
+11:20:52.545 INFO  Logged in as Comfi Dev#5575 
+11:20:52.546 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:20:52.546 INFO  ------------------------------------- 
+11:20:52.557 INFO  Your app is listening a http://localhost:3000 
+11:20:52.619 INFO  Mongodb connected! 
+11:21:12.773 INFO  Mongodb connected! 
+11:21:12.831 INFO  Logged in as Comfi Dev#5575 
+11:21:12.832 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:21:12.832 INFO  ------------------------------------- 
+11:21:12.838 INFO  Your app is listening a http://localhost:3000 
+11:21:12.920 ERROR undefined 
+11:21:12.945 ERROR undefined 
+11:21:12.961 ERROR undefined 
+11:23:23.937 INFO  Logged in as Comfi Dev#5575 
+11:23:23.938 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:23:23.938 INFO  ------------------------------------- 
+11:23:23.945 INFO  Your app is listening a http://localhost:3000 
+11:23:23.996 INFO  Mongodb connected! 
+11:25:07.354 INFO  Logged in as Comfi Dev#5575 
+11:25:07.355 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:25:07.355 INFO  ------------------------------------- 
+11:25:07.361 INFO  Your app is listening a http://localhost:3000 
+11:25:07.382 INFO  Mongodb connected! 
+11:25:36.668 ERROR DiscordAPIError: Missing Permissions
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildBanManager.create (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/GuildBanManager.js:143:5) 
+11:26:19.453 ERROR DiscordAPIError: Missing Permissions
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildBanManager.create (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/GuildBanManager.js:143:5) 
+11:28:51.214 INFO  Logged in as Comfi Dev#5575 
+11:28:51.215 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:28:51.215 INFO  ------------------------------------- 
+11:28:51.221 INFO  Your app is listening a http://localhost:3000 
+11:28:51.277 INFO  Mongodb connected! 
+11:30:23.110 ERROR DiscordAPIError: Missing Permissions
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildBanManager.create (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/GuildBanManager.js:143:5) 
+11:31:46.174 INFO  Logged in as Comfi Dev#5575 
+11:31:46.175 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:31:46.175 INFO  ------------------------------------- 
+11:31:46.183 INFO  Your app is listening a http://localhost:3000 
+11:31:46.236 INFO  Mongodb connected! 
+11:32:00.216 INFO  Mongodb connected! 
+11:32:00.238 INFO  Logged in as Comfi Dev#5575 
+11:32:00.239 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:32:00.239 INFO  ------------------------------------- 
+11:32:00.245 INFO  Your app is listening a http://localhost:3000 
+11:32:14.434 INFO  Mongodb connected! 
+11:32:14.452 INFO  Logged in as Comfi Dev#5575 
+11:32:14.453 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:32:14.453 INFO  ------------------------------------- 
+11:32:14.459 INFO  Your app is listening a http://localhost:3000 
+11:32:14.531 ERROR undefined 
+11:32:14.571 ERROR undefined 
+11:32:14.604 ERROR undefined 
+11:32:54.122 ERROR DiscordAPIError: Invalid Form Body
+user_id: Value "if (banMember === interaction.user) return interaction.editReply("**You Cannot Ban Yourself**")" is not snowflake.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async UserManager.fetch (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/UserManager.js:70:18) 
+11:33:14.088 ERROR DiscordAPIError: Unknown Ban
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildBanManager.remove (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/GuildBanManager.js:174:5)
+    at async /home/runner/Comfi-beta/commands/mod/ban.js:260:6 
+11:34:04.494 INFO  Logged in as Comfi Dev#5575 
+11:34:04.494 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:34:04.495 INFO  ------------------------------------- 
+11:34:04.501 INFO  Your app is listening a http://localhost:3000 
+11:34:04.517 INFO  Mongodb connected! 
+11:36:17.234 INFO  Logged in as Comfi Dev#5575 
+11:36:17.235 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:36:17.235 INFO  ------------------------------------- 
+11:36:17.241 INFO  Your app is listening a http://localhost:3000 
+11:36:17.297 INFO  Mongodb connected! 
+11:37:39.352 INFO  Logged in as Comfi Dev#5575 
+11:37:39.353 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:37:39.353 INFO  ------------------------------------- 
+11:37:39.359 INFO  Your app is listening a http://localhost:3000 
+11:37:39.403 INFO  Mongodb connected! 
+11:38:34.967 INFO  Logged in as Comfi Dev#5575 
+11:38:34.968 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:38:34.968 INFO  ------------------------------------- 
+11:38:34.975 INFO  Your app is listening a http://localhost:3000 
+11:38:35.034 INFO  Mongodb connected! 
+11:39:09.699 INFO  Logged in as Comfi Dev#5575 
+11:39:09.700 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:39:09.701 INFO  ------------------------------------- 
+11:39:09.707 INFO  Your app is listening a http://localhost:3000 
+11:39:09.800 INFO  Mongodb connected! 
+11:40:07.047 INFO  Mongodb connected! 
+11:40:07.501 INFO  Logged in as Comfi Dev#5575 
+11:40:07.502 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:40:07.502 INFO  ------------------------------------- 
+11:40:07.508 INFO  Your app is listening a http://localhost:3000 
+11:40:40.413 INFO  Mongodb connected! 
+11:40:40.481 INFO  Logged in as Comfi Dev#5575 
+11:40:40.482 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:40:40.482 INFO  ------------------------------------- 
+11:40:40.488 INFO  Your app is listening a http://localhost:3000 
+11:41:10.467 INFO  Logged in as Comfi Dev#5575 
+11:41:10.468 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:41:10.468 INFO  ------------------------------------- 
+11:41:10.475 INFO  Your app is listening a http://localhost:3000 
+11:41:10.530 INFO  Mongodb connected! 
+11:45:15.529 ERROR DiscordAPIError: Cannot send an empty message
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async DMChannel.send (/home/runner/Comfi-beta/node_modules/discord.js/src/structures/interfaces/TextBasedChannel.js:172:15) 
+11:46:00.357 INFO  Logged in as Comfi Dev#5575 
+11:46:00.358 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:46:00.358 INFO  ------------------------------------- 
+11:46:00.365 INFO  Your app is listening a http://localhost:3000 
+11:46:00.417 INFO  Mongodb connected! 
+11:48:44.098 INFO  Logged in as Comfi Dev#5575 
+11:48:44.099 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:48:44.099 INFO  ------------------------------------- 
+11:48:44.105 INFO  Your app is listening a http://localhost:3000 
+11:48:44.203 INFO  Mongodb connected! 
+11:49:41.350 INFO  Mongodb connected! 
+11:49:41.374 INFO  Logged in as Comfi Dev#5575 
+11:49:41.374 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:49:41.375 INFO  ------------------------------------- 
+11:49:41.380 INFO  Your app is listening a http://localhost:3000 
+11:49:54.734 INFO  Logged in as Comfi Dev#5575 
+11:49:54.735 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+11:49:54.735 INFO  ------------------------------------- 
+11:49:54.742 INFO  Your app is listening a http://localhost:3000 
+11:49:54.789 INFO  Mongodb connected! 
+12:49:44.180 INFO  Logged in as Comfi Dev#5575 
+12:49:44.181 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+12:49:44.181 INFO  ------------------------------------- 
+12:49:44.187 INFO  Your app is listening a http://localhost:3000 
+12:49:44.234 INFO  Mongodb connected! 
+12:50:52.763 INFO  Logged in as Comfi Dev#5575 
+12:50:52.764 INFO  Watching 92 Slashs, 63 Channels and 10 Users in  3 Servers 
+12:50:52.764 INFO  ------------------------------------- 
+12:50:52.769 INFO  Your app is listening a http://localhost:3000 
+12:50:52.815 INFO  Mongodb connected! 
+12:53:05.992 ERROR /home/runner/Comfi-beta/commands/mod/mute.js:241
+}}
+  
+
+SyntaxError: Unexpected end of input
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+12:53:06.365 INFO  Logged in as Comfi Dev#5575 
+12:53:06.365 INFO  Watching 44 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:53:06.365 INFO  ------------------------------------- 
+12:53:06.371 INFO  Your app is listening a http://localhost:3000 
+12:53:06.379 INFO  Mongodb connected! 
+12:53:21.521 INFO  Logged in as Comfi Dev#5575 
+12:53:21.522 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:53:21.522 INFO  ------------------------------------- 
+12:53:21.534 INFO  Your app is listening a http://localhost:3000 
+12:53:21.557 INFO  Mongodb connected! 
+12:59:11.496 INFO  Mongodb connected! 
+12:59:11.715 INFO  Logged in as Comfi Dev#5575 
+12:59:11.716 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:59:11.716 INFO  ------------------------------------- 
+12:59:11.722 INFO  Your app is listening a http://localhost:3000 
+12:59:49.461 INFO  Logged in as Comfi Dev#5575 
+12:59:49.462 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:59:49.462 INFO  ------------------------------------- 
+12:59:49.468 INFO  Your app is listening a http://localhost:3000 
+12:59:49.483 INFO  Mongodb connected! 
+13:00:14.808 ERROR ReferenceError: user is not defined
+    at Timeout._onTimeout (/home/runner/Comfi-beta/commands/mod/mute.js:135:11)
+    at listOnTimeout (node:internal/timers:557:17)
+    at processTimers (node:internal/timers:500:7) 
+13:03:19.091 INFO  Mongodb connected! 
+13:03:19.201 INFO  Logged in as Comfi Dev#5575 
+13:03:19.202 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:03:19.202 INFO  ------------------------------------- 
+13:03:19.208 INFO  Your app is listening a http://localhost:3000 
+13:03:50.372 INFO  Mongodb connected! 
+13:03:50.393 INFO  Logged in as Comfi Dev#5575 
+13:03:50.394 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:03:50.394 INFO  ------------------------------------- 
+13:03:50.399 INFO  Your app is listening a http://localhost:3000 
+13:04:10.593 INFO  Logged in as Comfi Dev#5575 
+13:04:10.593 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:04:10.594 INFO  ------------------------------------- 
+13:04:10.601 INFO  Your app is listening a http://localhost:3000 
+13:04:10.648 INFO  Mongodb connected! 
+13:04:10.683 ERROR undefined 
+13:04:10.730 ERROR undefined 
+13:04:10.765 ERROR undefined 
+13:05:26.007 INFO  Mongodb connected! 
+13:05:26.023 INFO  Logged in as Comfi Dev#5575 
+13:05:26.024 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:05:26.024 INFO  ------------------------------------- 
+13:05:26.030 INFO  Your app is listening a http://localhost:3000 
+13:07:15.875 ERROR ReferenceError: user is not defined
+    at Timeout._onTimeout (/home/runner/Comfi-beta/commands/mod/mute.js:136:11)
+    at listOnTimeout (node:internal/timers:557:17)
+    at processTimers (node:internal/timers:500:7) 
+13:08:49.691 INFO  Logged in as Comfi Dev#5575 
+13:08:49.692 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:08:49.692 INFO  ------------------------------------- 
+13:08:49.698 INFO  Your app is listening a http://localhost:3000 
+13:08:49.747 INFO  Mongodb connected! 
+13:10:02.965 ERROR ReferenceError: MutedRole is not defined
+    at Timeout._onTimeout (/home/runner/Comfi-beta/commands/mod/mute.js:136:36)
+    at listOnTimeout (node:internal/timers:557:17)
+    at processTimers (node:internal/timers:500:7) 
+13:10:39.592 INFO  Logged in as Comfi Dev#5575 
+13:10:39.593 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:10:39.593 INFO  ------------------------------------- 
+13:10:39.599 INFO  Your app is listening a http://localhost:3000 
+13:10:39.616 INFO  Mongodb connected! 
+13:12:34.644 ERROR ReferenceError: mutedRole is not defined
+    at Timeout._onTimeout (/home/runner/Comfi-beta/commands/mod/mute.js:136:36)
+    at listOnTimeout (node:internal/timers:557:17)
+    at processTimers (node:internal/timers:500:7) 
+13:14:03.061 INFO  Logged in as Comfi Dev#5575 
+13:14:03.062 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:14:03.062 INFO  ------------------------------------- 
+13:14:03.070 INFO  Your app is listening a http://localhost:3000 
+13:14:03.119 INFO  Mongodb connected! 
+13:14:58.439 INFO  Mongodb connected! 
+13:14:58.459 INFO  Logged in as Comfi Dev#5575 
+13:14:58.460 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:14:58.460 INFO  ------------------------------------- 
+13:14:58.465 INFO  Your app is listening a http://localhost:3000 
+13:15:26.177 INFO  Logged in as Comfi Dev#5575 
+13:15:26.178 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:15:26.178 INFO  ------------------------------------- 
+13:15:26.184 INFO  Your app is listening a http://localhost:3000 
+13:15:26.229 INFO  Mongodb connected! 
+13:17:23.672 INFO  Mongodb connected! 
+13:17:23.676 INFO  Logged in as Comfi Dev#5575 
+13:17:23.676 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:17:23.676 INFO  ------------------------------------- 
+13:17:23.682 INFO  Your app is listening a http://localhost:3000 
+13:17:53.379 INFO  Mongodb connected! 
+13:17:53.405 INFO  Logged in as Comfi Dev#5575 
+13:17:53.405 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:17:53.405 INFO  ------------------------------------- 
+13:17:53.411 INFO  Your app is listening a http://localhost:3000 
+13:18:06.623 INFO  Mongodb connected! 
+13:18:06.678 INFO  Logged in as Comfi Dev#5575 
+13:18:06.679 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:18:06.679 INFO  ------------------------------------- 
+13:18:06.686 INFO  Your app is listening a http://localhost:3000 
+13:18:06.763 ERROR undefined 
+13:18:06.798 ERROR undefined 
+13:18:06.807 ERROR undefined 
+13:18:54.015 INFO  Logged in as Comfi Dev#5575 
+13:18:54.015 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:18:54.016 INFO  ------------------------------------- 
+13:18:54.023 INFO  Your app is listening a http://localhost:3000 
+13:18:54.045 INFO  Mongodb connected! 
+13:19:13.185 INFO  Logged in as Comfi Dev#5575 
+13:19:13.186 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:19:13.186 INFO  ------------------------------------- 
+13:19:13.193 INFO  Your app is listening a http://localhost:3000 
+13:19:13.208 INFO  Mongodb connected! 
+13:19:13.297 ERROR undefined 
+13:19:13.309 ERROR undefined 
+13:19:13.327 ERROR undefined 
+13:20:30.665 ERROR ReferenceError: mute_role is not defined
+    at Timeout._onTimeout (/home/runner/Comfi-beta/commands/mod/mute.js:137:36)
+    at listOnTimeout (node:internal/timers:557:17)
+    at processTimers (node:internal/timers:500:7) 
+13:21:42.115 INFO  Mongodb connected! 
+13:21:42.118 INFO  Logged in as Comfi Dev#5575 
+13:21:42.119 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:21:42.119 INFO  ------------------------------------- 
+13:21:42.125 INFO  Your app is listening a http://localhost:3000 
+13:29:41.739 ERROR undefined 
+13:30:06.032 INFO  Logged in as Comfi Dev#5575 
+13:30:06.033 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:30:06.033 INFO  ------------------------------------- 
+13:30:06.040 INFO  Your app is listening a http://localhost:3000 
+13:30:06.085 INFO  Mongodb connected! 
+13:31:32.024 INFO  Logged in as Comfi Dev#5575 
+13:31:32.025 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:31:32.025 INFO  ------------------------------------- 
+13:31:32.032 INFO  Your app is listening a http://localhost:3000 
+13:31:32.048 INFO  Mongodb connected! 
+13:31:50.697 INFO  Mongodb connected! 
+13:31:50.745 INFO  Logged in as Comfi Dev#5575 
+13:31:50.746 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:31:50.746 INFO  ------------------------------------- 
+13:31:50.752 INFO  Your app is listening a http://localhost:3000 
+13:32:28.023 INFO  Logged in as Comfi Dev#5575 
+13:32:28.024 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:32:28.024 INFO  ------------------------------------- 
+13:32:28.029 INFO  Your app is listening a http://localhost:3000 
+13:32:28.042 INFO  Mongodb connected! 
+13:32:28.128 ERROR undefined 
+13:32:28.152 ERROR undefined 
+13:32:28.160 ERROR undefined 
+13:42:57.051 ERROR undefined 
+13:49:20.373 INFO  Logged in as Comfi Dev#5575 
+13:49:20.374 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:49:20.374 INFO  ------------------------------------- 
+13:49:20.380 INFO  Your app is listening a http://localhost:3000 
+13:49:20.396 INFO  Mongodb connected! 
+13:58:49.217 INFO  Mongodb connected! 
+13:58:49.235 INFO  Logged in as Comfi Dev#5575 
+13:58:49.236 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:58:49.236 INFO  ------------------------------------- 
+13:58:49.242 INFO  Your app is listening a http://localhost:3000 
+13:59:23.101 INFO  Logged in as Comfi Dev#5575 
+13:59:23.102 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:59:23.102 INFO  ------------------------------------- 
+13:59:23.108 INFO  Your app is listening a http://localhost:3000 
+13:59:23.162 INFO  Mongodb connected! 
+13:59:51.428 INFO  Logged in as Comfi Dev#5575 
+13:59:51.429 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:59:51.429 INFO  ------------------------------------- 
+13:59:51.434 INFO  Your app is listening a http://localhost:3000 
+13:59:51.476 INFO  Mongodb connected! 
+14:18:01.237 INFO  Logged in as Comfi Dev#5575 
+14:18:01.238 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:18:01.238 INFO  ------------------------------------- 
+14:18:01.245 INFO  Your app is listening a http://localhost:3000 
+14:18:01.294 INFO  Mongodb connected! 
+14:19:34.721 ERROR ReferenceError: member is not defined
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:70:52)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:21:25.873 INFO  Logged in as Comfi Dev#5575 
+14:21:25.874 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:21:25.874 INFO  ------------------------------------- 
+14:21:25.880 INFO  Your app is listening a http://localhost:3000 
+14:21:26.002 INFO  Mongodb connected! 
+14:23:56.690 INFO  Mongodb connected! 
+14:23:56.794 INFO  Logged in as Comfi Dev#5575 
+14:23:56.795 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:23:56.795 INFO  ------------------------------------- 
+14:23:56.800 INFO  Your app is listening a http://localhost:3000 
+14:24:37.133 ERROR TypeError: Cannot read properties of undefined (reading 'user')
+    at /home/runner/Comfi-beta/commands/mod/warn.js:111:121
+    at Array.forEach (<anonymous>)
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:108:25)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:25:47.470 INFO  Logged in as Comfi Dev#5575 
+14:25:47.470 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:25:47.470 INFO  ------------------------------------- 
+14:25:47.476 INFO  Your app is listening a http://localhost:3000 
+14:25:47.521 INFO  Mongodb connected! 
+14:29:58.598 ERROR TypeError: Cannot read properties of undefined (reading 'name')
+    at /home/runner/Comfi-beta/commands/mod/warn.js:112:303
+    at Array.forEach (<anonymous>)
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:108:25)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:38:04.302 INFO  Mongodb connected! 
+14:38:04.343 INFO  Logged in as Comfi Dev#5575 
+14:38:04.343 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:38:04.343 INFO  ------------------------------------- 
+14:38:04.349 INFO  Your app is listening a http://localhost:3000 
+14:40:55.723 INFO  Logged in as Comfi Dev#5575 
+14:40:55.724 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:40:55.724 INFO  ------------------------------------- 
+14:40:55.730 INFO  Your app is listening a http://localhost:3000 
+14:40:55.782 INFO  Mongodb connected! 
+14:41:23.488 ERROR TypeError: Cannot read properties of null (reading 'create')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:77:30)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:42:16.581 INFO  Logged in as Comfi Dev#5575 
+14:42:16.582 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:42:16.582 INFO  ------------------------------------- 
+14:42:16.587 INFO  Your app is listening a http://localhost:3000 
+14:42:16.641 INFO  Mongodb connected! 
+14:42:59.186 ERROR TypeError: Cannot read properties of undefined (reading 'tag')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:122:72)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:43:26.147 INFO  Logged in as Comfi Dev#5575 
+14:43:26.148 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:43:26.148 INFO  ------------------------------------- 
+14:43:26.153 INFO  Your app is listening a http://localhost:3000 
+14:43:26.166 INFO  Mongodb connected! 
+14:44:30.356 ERROR TypeError: Cannot read properties of undefined (reading 'tag')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:122:72)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:46:00.247 INFO  Logged in as Comfi Dev#5575 
+14:46:00.247 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:46:00.248 INFO  ------------------------------------- 
+14:46:00.254 INFO  Your app is listening a http://localhost:3000 
+14:46:00.302 INFO  Mongodb connected! 
+14:50:54.137 ERROR TypeError: Cannot read properties of undefined (reading 'user')
+    at /home/runner/Comfi-beta/commands/mod/warn.js:111:121
+    at Array.forEach (<anonymous>)
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:108:25)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:53:27.669 INFO  Logged in as Comfi Dev#5575 
+14:53:27.669 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:53:27.670 INFO  ------------------------------------- 
+14:53:27.675 INFO  Your app is listening a http://localhost:3000 
+14:53:27.723 INFO  Mongodb connected! 
+14:54:55.244 ERROR TypeError: Cannot read properties of undefined (reading 'tag')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/warn.js:122:72)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+14:55:33.330 INFO  Logged in as Comfi Dev#5575 
+14:55:33.331 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:55:33.331 INFO  ------------------------------------- 
+14:55:33.338 INFO  Your app is listening a http://localhost:3000 
+14:55:33.352 INFO  Mongodb connected! 
+14:57:10.857 INFO  Logged in as Comfi Dev#5575 
+14:57:10.858 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+14:57:10.858 INFO  ------------------------------------- 
+14:57:10.864 INFO  Your app is listening a http://localhost:3000 
+14:57:10.909 INFO  Mongodb connected! 
+15:06:54.581 INFO  Logged in as Comfi Dev#5575 
+15:06:54.582 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+15:06:54.582 INFO  ------------------------------------- 
+15:06:54.587 INFO  Your app is listening a http://localhost:3000 
+15:06:54.642 INFO  Mongodb connected! 

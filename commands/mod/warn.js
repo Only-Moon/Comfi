@@ -3,7 +3,7 @@ const uuid = require('uuid');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	    name: 'warn',
+	    name: 'warnn',
       description:
 				'Warn a user, get a list of a user, and remove the warned user!',
 			ownerOnly:  false,
@@ -103,7 +103,7 @@ let warn = new MessageEmbed()
         .setTitle(`__Warned__`)    
         .setDescription(`You have been warned by ${interaction.user} \n Reason: ${getReason}`)
             .setColor(bot.color);
-        user.send({embeds: [ warn ]})
+        user.send({embeds: [ warn ]}).catch(() => null)
             .catch(error => interaction.editReply(`Sorry ${interaction.user} I couldn't n't warn because of : ${error}`));
             let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
@@ -141,7 +141,7 @@ let warn = new MessageEmbed()
 						.addFields(
            {
                         name: `ID: ${warnId} • Moderator: ${getModeratorUser?.user.tag}`,
-                        value: ` > ${bot.error} • **Reason:** ${reason}\n > ${bot.error} • **Date:** <t:${timestamp}>`
+                        value: `> <a:pinkheart_cs:883033001599074364> • **Reason:** ${reason} \n> <a:pinkheart_cs:883033001599074364> • **Date:** <t:${timestamp}>`
            } 
               )
 						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
@@ -175,6 +175,7 @@ let warn = new MessageEmbed()
 
 let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
+  .setAuthor(`Request Successful`, bot.user.displayAvatarURL())
             .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
            .setColor(bot.color)
       interaction.editReply({embeds: [ warnEmbed ]})

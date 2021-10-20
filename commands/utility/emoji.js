@@ -3,7 +3,7 @@ const simplydjs = require("simply-djs")
 
 module.exports = {
     name: "emoji",
-    description: "Enlarge an Emoji or Get a List of Server Emotes",
+    description: "Enlarge an one or more than one emote",
     ownerOnly: false,
     options: [
         {
@@ -22,6 +22,8 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 
+try {
+      
 const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
 
 const emote = interaction.options.getString("name")
@@ -30,7 +32,7 @@ if (emojis.length === 1) {
       
 const emo = Util.parseEmoji(emote);
   
-if (!emojis.name || !emojis.id) return interaction.editReply(`${bot.error} Invalid emote argument`);
+if (!emo.name || !emo.id) return interaction.editReply(`${bot.error} Invalid emote argument`);
   
     const res = `https://cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
     
@@ -84,5 +86,10 @@ skipBtn: false,
 })
 
 }
- 
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \n[Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+}
+  
 }}

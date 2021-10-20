@@ -1,4 +1,5 @@
 const guilds = require('../../models/guild');
+const users = require("../../models/users")
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -49,8 +50,8 @@ if (subcommand === 'enable') {
 
     try {
 
-      await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
-                  mute: true, 
+      await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
+                  mute: true,
                   mute_role: role,
                   })
 
@@ -67,8 +68,8 @@ if (subcommand === 'enable') {
 
 if (subcommand === 'disable') {
 
-await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
-                  mute: true,
+await guilds.findOneAndDelete({guildId: interaction.guild.id}, { 
+                  mute_role: "none",
                   }) 
 return interaction.editReply(`Successfully Removed Muterole`)
   

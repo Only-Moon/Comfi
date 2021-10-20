@@ -56,23 +56,24 @@ const schema = new Schema({
     welcome: {type: Boolean, default: false},
     welcome_channel: {type: String, default: "NONE"},
     welcome_dmuser: {type: Boolean, default: false},
-    welcome_message: {type: String, default: "Welcome {{user.mention}}"},
-    welcome_image: {type: String, default: "http://imgur.com/rmJzOKE.gif"},
+    welcome_message: {type: String, default: "Welcome {{user#mention}}"},
+    welcome_image: {type: String, default: "https://i.imgur.com/8MggL9S.png"},
     welcome_embed: {type: Boolean, default: false},
     
     // Leave
     leave: {type: Boolean, default: false},
     leave_channel: {type: String, default: "NONE"},
     leave_dmuser: {type: Boolean, default: false},
-    leave_message: {type: String, default: "Goodbye {{user.mention}}"},
-    leave_image: {type: String},
+    leave_message: {type: String, default: "Goodbye {{user#tag}}"},
+    leave_image: {type: String, default: "https://i.imgur.com/wyFi8zu.png"},
     leave_embed: {type: Boolean, default: false},
 
     // Boost
     boost: {type: Boolean, default: false},
     boost_channel: {type: String, default: "NONE"},
-    boost_message: {type: String, default: "{user.mention} just boosted {server}. Now We Have {boost.count} boosts"},
-    boots_image: {type: String},
+    boost_message: {type: String, default: "{{user#mention}} just boosted {server}. Now We Have {{boost#count}} boosts"},
+    boost_image: {type: String, default: "https://i.imgur.com/wTKiUY8.png"},
+    boost_embed: {type: Boolean, default: false},
 
     // Logs
     logging: {type: Boolean, default: false},
@@ -80,7 +81,7 @@ const schema = new Schema({
     modlog: {type: Boolean,  default:  false},
     mod_channel: {type: String,  default:  "NONE"}, 
 
-    // MutedRole 
+// Mute 
     mute: {type: Boolean, default: false},
     mute_role: {type: String, default: "NONE"},
     muted_role: {type: Array,  default: []},

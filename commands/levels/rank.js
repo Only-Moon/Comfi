@@ -28,7 +28,7 @@ module.exports = {
 const target = interaction.options.getUser('user') || interaction.user;
 
 const guild = await guilds.findOne({guildId: interaction.guild.id}) 
-  
+
 const user = await users.findOne({guildId: interaction.guild.id, userId: target.id})
      
 if (!user) {
@@ -40,35 +40,19 @@ interaction.editReply(`${bot.error} User haven't Leveled Up yet or User is a Bot
 if(guild.leveling) {
 
 rankCard(bot, interaction, {
-    member: user, 
+    slash: true,
+    member: target, 
     level: user.level,
+    rank: user.level,
+    color: bot.color,
     currentXP: user.xp, 
     neededXP: user.requiredXp,
-    rank: '', 
-    background: ''
+    background: "https://i.imgur.com/rkGiaIO.png"
   })
   
-/*
-const rank = new canvacord.Rank()
-        .setAvatar(target.avatarURL({format: 'png', size: 512}))
-        .setCurrentXP(user.xp)
-        .setRequiredXP(user.requiredXp)
-        .setRank(0, "level", false)
-        .setLevel(user.level)
-        .setBackground("IMAGE", "https://media.discordapp.net/attachments/882842239800311828/885464221666652160/rank_card_banner.png")
-        .setOverlay("#F54D94", true)
-        .setProgressBar("#F6B5DF")
-        .setUsername(target.username)
-        .renderEmojis(true)
-  .setDiscriminator(target.discriminator);
 
-    rank.build()
-        .then(data => {
-        const attachment = new MessageAttachment(data, "RankCard.png");
-        
-interaction.editReply({files: [ attachment ]})
-    });
-*/
+} else {
+  interaction.editReply(`${bot.error} Leveling is Disabled In this guild`)
 }
 } 
       

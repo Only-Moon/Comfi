@@ -43,7 +43,8 @@ try {
     .setFooter("Type a message to remove your AFK");
         
     if(interaction.member.manageable) interaction.member.setNickname("[AFK] " + interaction.member.displayName)
-        interaction.editReply({embeds: [embed]})
+        
+await interaction.editReply({embeds: [embed]})
        }, 1000);
 
      } catch (err) {

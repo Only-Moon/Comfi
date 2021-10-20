@@ -45,7 +45,7 @@ module.exports = {
 
         const step6 = new MessageEmbed()
         .setTitle(`Welcome Message / Embed [4]`, bot.user.displayAvatarURL())
-        .setDescription(`What should the welcome image be ( **Only Url** )`)
+        .setDescription(`What should the welcome image be ( **Only Url** ). Say **skip** to use default one`)
         .setColor(bot.color)
         .setFooter(`You can say "cancel" at any time to cancel the process`)
 
@@ -58,7 +58,8 @@ module.exports = {
             channel: undefined,
             dm: undefined,
             embed: undefined,
-            interaction: undefined
+            message: undefined,
+            image: undefined
         }
         const collector = new MessageCollector(interaction.channel)
 
@@ -149,9 +150,16 @@ module.exports = {
                     hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
                 break;
                 case 5: 
-  finalData['image'] = msg.content
+                    if(msg.content.toLowerCase() === "skip") {                
+  finalData['image'] = "https://i.imgur.com/wyFi8zu.png";
+      msg.delete().catch(() => {})      
+              } else {
+                      
+  finalData['image'] = msg.content || msg.attachments.first().url
+                    }
                     hoisterMessage.delete().catch(() => {})
                     collector.stop("2")
+                    
                 break;
             }
         })
@@ -177,9 +185,10 @@ module.exports = {
                     leave_dmuser: finalData.dm,
                     leave_channel: finalData.channel,
                     leave_message: finalData.message,
+                    leave_image: finalData.image,
                     leave_embed: finalData.embed
                 })
-                return interaction.channel.send({content: `${bot.tick} • Leave data has now been setup!`})
+                return interaction.channel.send({content: `${bot.tick} • Leave data has now been setup! Dont delete the image above`})
             }
         })
     }

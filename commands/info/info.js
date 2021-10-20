@@ -4,7 +4,6 @@ const { version } = require('../../package.json');
 const ms = require('pretty-ms');
 const { version: discordjsVersion } = require('discord.js');
 const moment = require('moment');
-const { user } = require('../..');
 
 module.exports = {
     name: "infoo",

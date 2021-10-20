@@ -42,9 +42,9 @@ if (!kickMember)
 				return interaction.editReply('**User Is Not In The Guild!**');
 
 			if (kickMember === interaction.member)
-				return interaction.editReply('**You Cannot Kick Yourself!**');
+				return interaction.editReply('${bot.crosss} • **You Cannot Kick Yourself!**');
 				   if (userRank >= memberRank) {
-            return interaction.editReply(":x: | **You can\'t kick this member due to your role being lower than that member role.**")
+            return interaction.editReply(`${bot.crosss} • **You can\'t kick this member due to your role being lower than that member role.**`)
         }
 
 			if (kickMember.kickable) {
@@ -58,18 +58,18 @@ if (!kickMember)
 			kickMember.send({ embed: [ sembed2 ]})	
 				kickMember.kick();
 			} else {
-			  return interaction.editReply(":x: | **I can\'t kick this user make sure that the users role is lower than my role.**");
+			  return interaction.editReply(`${bot.crosss} • **I can\'t kick this user make sure that the users role is lower than my role.**`);
 			}
 			if (reason) {
 				var sembed = new MessageEmbed()
-					.setColor('GREEN')
+					.setColor(bot.color)
 					.setDescription(
 						`**${kickMember.user.username}** has been kicked for ${reason}`
 					);
 				interaction.editReply({embeds: [ sembed ]});
 			} else {
 				var sembed2 = new MessageEmbed()
-					.setColor('GREEN')
+					.setColor(bot.color)
 					.setDescription(`**${kickMember.user.username}** has been kicked`);
 				interaction.editReply({embeds: [ sembed2 ]});
 			}
@@ -82,7 +82,7 @@ if (!kickMember)
 
 			const embed = new MessageEmbed()
 				.setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
-				.setColor('#ff0000')
+				.setColor(bot.color)
 				.setThumbnail(kickMember.user.displayAvatarURL({ dynamic: true }))
 				.setFooter(interaction.guild.name, interaction.guild.iconURL())
 				.addField('**Moderation**', 'kick')

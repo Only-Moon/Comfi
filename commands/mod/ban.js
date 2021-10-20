@@ -77,7 +77,7 @@ module.exports = {
             options: [
     {
             name: "user",
-            description: "User To Unban",
+            description: "UserId To Unban",
             type: "STRING",
             required: true,
     },
@@ -91,7 +91,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
       
   let [ sub ] = args
  
@@ -109,9 +109,7 @@ module.exports = {
 ;
           if (!banMember) return interaction.channel.send("**Please Provide A User To Ban!**")
             if (!banMember) return interaction.editReply("**User Is Not In The Guild**");
-            if (banMember === interaction.member) return interaction.editReply("**You Cannot Ban Yourself**")
-
-            if (!banMember.bannable) return interaction.editReply("**Cant Ban That User**")
+            if (banMember === interaction.user) return interaction.editReply("**You Cannot Ban Yourself**")
             try {
             interaction.guild.members.ban(banMember, { reason: `${reason}`})
             banMember.send(`**Hello, You Have Been Banned From ${interaction.guild.name} for - ${reason || "No Reason"}**`).catch(() => null)
@@ -119,13 +117,13 @@ module.exports = {
             }
             if (reason) {
             var sembed = new MessageEmbed()
-                .setColor("#F4B3CA")
-                .setDescription(`**${banMember.user.username}** has been banned for ${reason}`)
+                .setColor(bot.color)
+                .setDescription(`**${banMember.username}** has been banned for ${reason}`)
             await interaction.editReply({embeds: [ sembed ]})
             } else {
                 var sembed2 = new MessageEmbed()
-                .setColor("#F4B3CA")
-                .setDescription(`**${banMember.user.username}** has been banned`)
+                .setColor(bot.color)
+                .setDescription(`**${banMember.username}** has been banned`)
             await interaction.editReply({embeds: [ sembed2 ]})
             }
 
@@ -140,10 +138,10 @@ if (guild.modlog) {
             const embed = new MessageEmbed()
                 .setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())
                 .setColor(bot.color)
-                .setThumbnail(banMember.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(banMember.displayAvatarURL({ dynamic: true }))
                 .setFooter(interaction.guild.name, interaction.guild.iconURL())
                 .addField("**Moderation**", "ban")
-                .addField("**Banned**", banMember.user.username.toLocaleString())
+                .addField("**Banned**", banMember.username.toLocaleString())
                 .addField("**ID**", `${banMember.id}`)
                 .addField("**Banned By**", `${interaction.user.username}`)
                 .addField("**Reason**", `${reason || "**No Reason**"}`)
@@ -167,7 +165,7 @@ if (sub === "temporary") {
   
   const tbuser = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]); 		
   const regex = interaction.options.getString("time")	 		
-  if (tbuser === interaction.user.id) { 			
+  if (tbuser === interaction.member) { 			
     return interaction.editReply(`${bot.error} Really!! Are you going to ban yourself..`); 	
   } 	
 
@@ -179,8 +177,7 @@ if(!reason) reason = "No Reason Provided";
     .setColor(bot.color) 			
     .addField("Reason:", reason.toString()) 			
     .addField("Time (s)", regex.toString()) 			
-    .addField("Moderator:", interaction.user.username); 		
-  tbuser.send(tbuembed); 		
+    .addField("Moderator:", interaction.user.username);	
   
   const tbembed = new MessageEmbed() 			
     .setTitle("Action: Tempban") 			
@@ -197,7 +194,8 @@ if(!reason) reason = "No Reason Provided";
   
   interaction.guild.members.ban( tbuser, { reason: `${reason}`}).then(() => { 
     setTimeout( function (){ 		
-      interaction.channel.send(`<@${tbuser.id} has been unbanned after tempban of ${regex}`); 		
+          interaction.guild.members.unban(tbuser.id);
+      interaction.channel.send({content: `${bot.tick} • <@${tbuser.id}> has been unbanned after tempban of ${regex}`}); 		
     }, ms(regex)); 		
     return undefined; 	
   })
@@ -211,8 +209,10 @@ return interaction.editReply(`${bot.error} An error has occured. \nError: ${err}
 
 if (sub === "hack") {
   
-  const target = interaction.options.getUser("user");
+  const target = interaction.options.getUser("user") || interaction.guild.members.cache.get(args[0]);
         if (isNaN(target)) return interaction.editReply(`${bot.error} • Please specify an ID or USERNAME`);
+
+              if (target === interaction.user) return interaction.editReply("**You Cannot Ban Yourself**")
 
         const reason   = interaction.options.getString("reason");
 
@@ -220,7 +220,7 @@ if (sub === "hack") {
                 interaction.guild.members.ban(target, { reason: reason.length < 1 ? 'No reason supplied.': reason});
                 const embed2 = new MessageEmbed()
                 .setColor(bot.color)
-                .setDescription("**They were successfully banned. User was not notified!**");
+                .setDescription(`${bot.tick} • ${target. user.id} **were successfully banned. User was not notified!**`);
                 await interaction.editReply({embeds: [ embed2 ]});
     if(!guild.modlog) return;
 
@@ -253,31 +253,32 @@ if (sub === "remove") {
   
   try {
 
-      const user = interaction.options.getString("user");
+      const userId = interaction.options.getString("user") 
 
-      // default embed
-      const embed = new MessageEmbed().setColor("RED");
-
-      const totalbans = await interaction.guild.bans.fetch()
-
-
-      // we will match three conditions 1. id, 2. username, 3. tag
-      const userToUnban = totalbans.find(x => x.user.id === user.value || x.user.username === user.value || x.user.tag === user.value)
-
-      let userTag;
-      if (!userToUnban) {
-        embed.setDescription(`${bot.error} • Invalid User or User is Not Banned`)
-        return interaction.editReply({embeds: [embed]})
-      }
-
-      userTag = userToUnban.user.tag || "User";
-
-      await interaction.guild.bans.remove(userToUnban.user.id);
-
-      embed.setColor(bot.color).setDescription(`${bot.tick} • Unbanned ${userTag} Successfully`)
-      await interaction.editReply({embeds: [embed]})
-    
-     } catch (err) {
+     bot.users.fetch(userId).then(async (user) => {
+     
+     await interaction.guild.members.unban(user.id).catch(() => {return interaction.editReply({content: 
+ `${bot.crosss} • User is Not Banned`})})
+     const ban = new MessageEmbed()
+            .setColor(bot.color)
+            .setTimestamp()
+            .addFields(
+              {
+                name: `Unbanned :`,
+                value: `<@${userId}>`,
+                inline: true,
+              },
+              {
+                name: `Moderator :`,
+                value: `<@${interaction.user.id}>`, 
+                inline: true,
+              }
+              )
+             .setAuthor(interaction.user.username, interaction.user.avatarURL({ dynamic:  true}));
+       interaction.editReply({embeds: [ban]}).catch(() => {return interaction.editReply({content: 
+ `${bot.crosss} • User is Not Banned`})})
+      })    
+  } catch (err) {
 
 return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
     }

@@ -1,0 +1,313 @@
+06:29:25.147 ERROR /home/runner/Comfi-beta/commands/setup/boost.js:163
+                    boost_embed: finalData.embed
+                    ^^^^^^^^^^^
+
+SyntaxError: Unexpected identifier
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+06:29:25.513 INFO  Logged in as Comfi Dev#5575 
+06:29:25.513 INFO  Watching 59 Slashs, 63 Channels and 11 Users in  3 Servers 
+06:29:25.513 INFO  ------------------------------------- 
+06:29:25.518 INFO  Your app is listening a http://localhost:3000 
+06:29:25.526 INFO  Mongodb connected! 
+06:31:48.602 INFO  Logged in as Comfi Dev#5575 
+06:31:48.603 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+06:31:48.603 INFO  ------------------------------------- 
+06:31:48.609 INFO  Your app is listening a http://localhost:3000 
+06:31:48.697 INFO  Mongodb connected! 
+06:45:50.411 INFO  Logged in as Comfi Dev#5575 
+06:45:50.412 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+06:45:50.413 INFO  ------------------------------------- 
+06:45:50.419 INFO  Your app is listening a http://localhost:3000 
+06:45:50.486 INFO  Mongodb connected! 
+06:46:59.400 INFO  Mongodb connected! 
+06:46:59.426 INFO  Logged in as Comfi Dev#5575 
+06:46:59.427 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+06:46:59.427 INFO  ------------------------------------- 
+06:46:59.434 INFO  Your app is listening a http://localhost:3000 
+07:05:53.663 INFO  Mongodb connected! 
+07:05:53.692 INFO  Logged in as Comfi Dev#5575 
+07:05:53.693 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:05:53.693 INFO  ------------------------------------- 
+07:05:53.699 INFO  Your app is listening a http://localhost:3000 
+07:06:46.781 ERROR DiscordAPIError: Invalid Form Body
+embeds[0].image.url: Scheme "undefined" is not supported. Scheme must be one of ('http', 'https').
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async MessageManager.edit (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/MessageManager.js:131:15) 
+07:15:51.220 INFO  Logged in as Comfi Dev#5575 
+07:15:51.221 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:15:51.221 INFO  ------------------------------------- 
+07:15:51.228 INFO  Your app is listening a http://localhost:3000 
+07:15:51.247 INFO  Mongodb connected! 
+07:28:34.117 INFO  Logged in as Comfi Dev#5575 
+07:28:34.118 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:28:34.118 INFO  ------------------------------------- 
+07:28:34.125 INFO  Your app is listening a http://localhost:3000 
+07:28:34.181 INFO  Mongodb connected! 
+07:29:59.687 ERROR CastError: Cast to string failed for value "MessageAttachment {
+  attachment: 'https://cdn.discordapp.com/attachments/782566657646264381/899922312382521374/Untitled226_20211018230824.png',
+  name: 'Untitled226_20211018230824.png',
+  id: '899922312382521374',
+  size: 1457934,
+  url: 'https://cdn.discordapp.com/attachments/782566657646264381/899922312382521374/Untitled226_20211018230824.png',
+  proxyURL: 'https://media.discordapp.net/attachments/782566657646264381/899922312382521374/Untitled226_20211018230824.png',
+  height: 1000,
+  width: 2000,
+  contentType: 'image/png',
+  ephemeral: false
+}" (type MessageAttachment) at path "boost_image"
+    at model.Query.exec (/home/runner/Comfi-beta/node_modules/mongoose/lib/query.js:4540:21)
+    at model.Query.Query.then (/home/runner/Comfi-beta/node_modules/mongoose/lib/query.js:4639:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+07:42:05.445 INFO  Logged in as Comfi Dev#5575 
+07:42:05.446 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:42:05.446 INFO  ------------------------------------- 
+07:42:05.453 INFO  Your app is listening a http://localhost:3000 
+07:42:05.709 INFO  Mongodb connected! 
+07:46:40.993 INFO  Logged in as Comfi Dev#5575 
+07:46:40.994 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:46:40.994 INFO  ------------------------------------- 
+07:46:41.000 INFO  Your app is listening a http://localhost:3000 
+07:46:41.047 INFO  Mongodb connected! 
+07:53:30.286 INFO  Logged in as Comfi Dev#5575 
+07:53:30.287 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:53:30.288 INFO  ------------------------------------- 
+07:53:30.295 INFO  Your app is listening a http://localhost:3000 
+07:53:30.421 INFO  Mongodb connected! 
+07:58:16.895 INFO  Mongodb connected! 
+07:58:16.903 INFO  Logged in as Comfi Dev#5575 
+07:58:16.904 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:58:16.904 INFO  ------------------------------------- 
+07:58:16.910 INFO  Your app is listening a http://localhost:3000 
+08:01:09.306 INFO  Logged in as Comfi Dev#5575 
+08:01:09.307 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:01:09.307 INFO  ------------------------------------- 
+08:01:09.314 INFO  Your app is listening a http://localhost:3000 
+08:01:09.364 INFO  Mongodb connected! 
+08:29:06.668 INFO  Logged in as Comfi Dev#5575 
+08:29:06.669 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:29:06.669 INFO  ------------------------------------- 
+08:29:06.676 INFO  Your app is listening a http://localhost:3000 
+08:29:06.738 INFO  Mongodb connected! 
+08:29:44.240 ERROR ReferenceError: target is not defined
+    at Object.run (/home/runner/Comfi-beta/commands/setup/settings.js:21:78)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+08:30:29.655 INFO  Logged in as Comfi Dev#5575 
+08:30:29.656 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:30:29.656 INFO  ------------------------------------- 
+08:30:29.664 INFO  Your app is listening a http://localhost:3000 
+08:30:29.691 INFO  Mongodb connected! 
+08:37:25.957 INFO  Mongodb connected! 
+08:37:26.056 INFO  Logged in as Comfi Dev#5575 
+08:37:26.057 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:37:26.057 INFO  ------------------------------------- 
+08:37:26.062 INFO  Your app is listening a http://localhost:3000 
+10:06:00.269 INFO  Logged in as Comfi Dev#5575 
+10:06:00.269 INFO  Watching 92 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:06:00.270 INFO  ------------------------------------- 
+10:06:00.275 INFO  Your app is listening a http://localhost:3000 
+10:06:00.326 INFO  Mongodb connected! 
+10:54:02.096 INFO  Mongodb connected! 
+10:54:02.158 INFO  Logged in as Comfi Dev#5575 
+10:54:02.159 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:54:02.159 INFO  ------------------------------------- 
+10:54:02.166 INFO  Your app is listening a http://localhost:3000 
+10:56:49.663 INFO  Mongodb connected! 
+10:56:49.677 INFO  Logged in as Comfi Dev#5575 
+10:56:49.678 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:56:49.678 INFO  ------------------------------------- 
+10:56:49.684 INFO  Your app is listening a http://localhost:3000 
+11:00:22.357 ERROR TypeError: Cannot read properties of null (reading 'length')
+    at Object.run (/home/runner/Comfi-beta/commands/utility/emoji.js:29:12)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:01:51.043 INFO  Mongodb connected! 
+11:01:51.093 INFO  Logged in as Comfi Dev#5575 
+11:01:51.093 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:01:51.093 INFO  ------------------------------------- 
+11:01:51.099 INFO  Your app is listening a http://localhost:3000 
+11:07:24.804 INFO  Logged in as Comfi Dev#5575 
+11:07:24.805 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:07:24.805 INFO  ------------------------------------- 
+11:07:24.813 INFO  Your app is listening a http://localhost:3000 
+11:07:24.829 INFO  Mongodb connected! 
+11:12:42.366 INFO  Logged in as Comfi Dev#5575 
+11:12:42.366 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:12:42.367 INFO  ------------------------------------- 
+11:12:42.372 INFO  Your app is listening a http://localhost:3000 
+11:12:42.466 INFO  Mongodb connected! 
+11:14:37.258 ERROR TypeError: Cannot read properties of null (reading '0')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/emote.js:181:67)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:16:37.332 INFO  Mongodb connected! 
+11:16:37.362 INFO  Logged in as Comfi Dev#5575 
+11:16:37.363 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:16:37.363 INFO  ------------------------------------- 
+11:16:37.370 INFO  Your app is listening a http://localhost:3000 
+11:16:37.460 ERROR DiscordAPIError: Invalid Form Body
+34.options[2].options[1].name: This field is required
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+11:16:37.516 ERROR DiscordAPIError: Invalid Form Body
+34.options[2].options[1].name: This field is required
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+11:16:37.533 ERROR DiscordAPIError: Invalid Form Body
+34.options[2].options[1].name: This field is required
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+11:17:14.816 INFO  Logged in as Comfi Dev#5575 
+11:17:14.817 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:17:14.817 INFO  ------------------------------------- 
+11:17:14.824 INFO  Your app is listening a http://localhost:3000 
+11:17:14.838 INFO  Mongodb connected! 
+11:18:49.223 ERROR TypeError: Cannot read properties of null (reading '0')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/emote.js:168:73)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:19:24.982 INFO  Logged in as Comfi Dev#5575 
+11:19:24.983 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:19:24.984 INFO  ------------------------------------- 
+11:19:24.990 INFO  Your app is listening a http://localhost:3000 
+11:19:25.083 INFO  Mongodb connected! 
+11:20:23.727 ERROR DiscordAPIError: Invalid Form Body
+name: Must be between 2 and 32 in length. String value did not match validation regex.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildEmoji.edit (/home/runner/Comfi-beta/node_modules/discord.js/src/structures/GuildEmoji.js:109:21) 
+11:22:10.897 INFO  Logged in as Comfi Dev#5575 
+11:22:10.898 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:22:10.898 INFO  ------------------------------------- 
+11:22:10.905 INFO  Your app is listening a http://localhost:3000 
+11:22:10.958 INFO  Mongodb connected! 
+11:22:36.902 ERROR TypeError: Cannot read properties of null (reading '0')
+    at Object.run (/home/runner/Comfi-beta/commands/mod/emote.js:168:71)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:23:57.415 INFO  Logged in as Comfi Dev#5575 
+11:23:57.416 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:23:57.416 INFO  ------------------------------------- 
+11:23:57.422 INFO  Your app is listening a http://localhost:3000 
+11:23:57.512 INFO  Mongodb connected! 
+11:31:36.785 INFO  Logged in as Comfi Dev#5575 
+11:31:36.786 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:31:36.786 INFO  ------------------------------------- 
+11:31:36.793 INFO  Your app is listening a http://localhost:3000 
+11:31:36.885 INFO  Mongodb connected! 
+11:32:10.421 INFO  Mongodb connected! 
+11:32:10.433 INFO  Logged in as Comfi Dev#5575 
+11:32:10.433 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:32:10.433 INFO  ------------------------------------- 
+11:32:10.439 INFO  Your app is listening a http://localhost:3000 
+11:43:21.336 INFO  Logged in as Comfi Dev#5575 
+11:43:21.337 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:43:21.337 INFO  ------------------------------------- 
+11:43:21.344 INFO  Your app is listening a http://localhost:3000 
+11:43:21.507 INFO  Mongodb connected! 
+11:45:19.590 INFO  Logged in as Comfi Dev#5575 
+11:45:19.591 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:45:19.591 INFO  ------------------------------------- 
+11:45:19.597 INFO  Your app is listening a http://localhost:3000 
+11:45:19.645 INFO  Mongodb connected! 
+11:48:21.592 INFO  Logged in as Comfi Dev#5575 
+11:48:21.593 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:48:21.593 INFO  ------------------------------------- 
+11:48:21.599 INFO  Your app is listening a http://localhost:3000 
+11:48:21.700 INFO  Mongodb connected! 
+11:52:21.924 ERROR ReferenceError: boterror is not defined
+    at Object.run (/home/runner/Comfi-beta/commands/mod/emote.js:206:36)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:52:50.090 INFO  Logged in as Comfi Dev#5575 
+11:52:50.091 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:52:50.091 INFO  ------------------------------------- 
+11:52:50.097 INFO  Your app is listening a http://localhost:3000 
+11:52:50.147 INFO  Mongodb connected! 
+12:14:09.743 INFO  Logged in as Comfi Dev#5575 
+12:14:09.744 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:14:09.744 INFO  ------------------------------------- 
+12:14:09.750 INFO  Your app is listening a http://localhost:3000 
+12:14:09.797 INFO  Mongodb connected! 
+12:29:51.099 INFO  Logged in as Comfi Dev#5575 
+12:29:51.100 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:29:51.100 INFO  ------------------------------------- 
+12:29:51.107 INFO  Your app is listening a http://localhost:3000 
+12:29:51.166 INFO  Mongodb connected! 
+12:40:13.195 INFO  Logged in as Comfi Dev#5575 
+12:40:13.195 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:40:13.196 INFO  ------------------------------------- 
+12:40:13.201 INFO  Your app is listening a http://localhost:3000 
+12:40:13.228 INFO  Mongodb connected! 
+12:42:55.941 INFO  Logged in as Comfi Dev#5575 
+12:42:55.942 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:42:55.943 INFO  ------------------------------------- 
+12:42:55.949 INFO  Your app is listening a http://localhost:3000 
+12:42:56.000 INFO  Mongodb connected! 
+12:50:00.221 INFO  Logged in as Comfi Dev#5575 
+12:50:00.222 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:50:00.222 INFO  ------------------------------------- 
+12:50:00.230 INFO  Your app is listening a http://localhost:3000 
+12:50:00.332 INFO  Mongodb connected! 
+12:51:41.082 ERROR undefined 
+12:53:18.994 ERROR undefined 
+12:56:53.884 INFO  Logged in as Comfi Dev#5575 
+12:56:53.885 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:56:53.885 INFO  ------------------------------------- 
+12:56:53.893 INFO  Your app is listening a http://localhost:3000 
+12:56:53.942 INFO  Mongodb connected! 
+13:08:46.193 INFO  Mongodb connected! 
+13:08:46.256 INFO  Logged in as Comfi Dev#5575 
+13:08:46.257 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:08:46.257 INFO  ------------------------------------- 
+13:08:46.263 INFO  Your app is listening a http://localhost:3000 
+13:11:18.881 INFO  Mongodb connected! 
+13:11:18.888 INFO  Logged in as Comfi Dev#5575 
+13:11:18.889 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:11:18.889 INFO  ------------------------------------- 
+13:11:18.895 INFO  Your app is listening a http://localhost:3000 
+13:15:13.817 INFO  Logged in as Comfi Dev#5575 
+13:15:13.818 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:15:13.818 INFO  ------------------------------------- 
+13:15:13.825 INFO  Your app is listening a http://localhost:3000 
+13:15:13.877 INFO  Mongodb connected! 
+13:27:25.548 INFO  Logged in as Comfi Dev#5575 
+13:27:25.549 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:27:25.549 INFO  ------------------------------------- 
+13:27:25.557 INFO  Your app is listening a http://localhost:3000 
+13:27:25.618 INFO  Mongodb connected! 
+13:27:54.538 ERROR ReferenceError: mute_role is not defined
+    at Object.run (/home/runner/Comfi-beta/commands/setup/muterole.js:72:19)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+13:28:38.935 INFO  Mongodb connected! 
+13:28:38.951 INFO  Logged in as Comfi Dev#5575 
+13:28:38.952 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+13:28:38.952 INFO  ------------------------------------- 
+13:28:38.960 INFO  Your app is listening a http://localhost:3000 

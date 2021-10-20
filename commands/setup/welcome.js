@@ -46,7 +46,7 @@ module.exports = {
 
         const step6 = new MessageEmbed()
         .setTitle(`Welcome Message / Embed [4]`, bot.user.displayAvatarURL())
-        .setDescription(`What should the welcome image be ( **Only Url** )`)
+        .setDescription(`What should the welcome image be ( **Only Url** ). Say **skip** to use the default ones`)
         .setColor(bot.color)
         .setFooter(`You can say "cancel" at any time to cancel the process`)
 
@@ -150,10 +150,17 @@ module.exports = {
                     counter++
                     hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
                 break;
-                case 5: 
-  finalData['image'] = msg.content
+                case 5:
+                    if(msg.content.toLowerCase() === "skip") {                
+  finalData['image'] = "https://i.imgur.com/8MggL9S.png";
+ msg.delete().catch(() => {})           
+              } else {
+                      
+  finalData['image'] = msg.content || msg.attachments.first().url
+                    }
                     hoisterMessage.delete().catch(() => {})
                     collector.stop("2")
+                    
                 break;
             }
         })
@@ -182,7 +189,7 @@ module.exports = {
                     welcome_embed: finalData.embed,
                     welcome_image: finalData.image
                 })
-                return interaction.channel.send({content: `${bot.tick} • Welcome data has now been setup!`})
+                return interaction.channel.send({content: `${bot.tick} • Welcome data has now been setup! Dont delete the image above if you sent one`})
             }
         })
     }

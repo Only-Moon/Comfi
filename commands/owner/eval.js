@@ -27,7 +27,7 @@ module.exports = {
             }
         
             const toEval = args.join(" ");
-            //await eval(toEval)
+            await eval(toEval)
             const evaluated = eval(toEval); 
 
             let embed = new MessageEmbed()

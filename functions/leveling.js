@@ -12,7 +12,7 @@ module.exports = async (message, bot) => {
  
     const guild = await guilds.findOne({guildId: message.guild.id})
     if(guild.leveling) {
-        const amount = Math.floor(Math.random() * 29) + 1
+        const amount = Math.floor(Math.random() * 15) + 1
 
         const user = await users.findOne({userId: message.author.id, guildId: message.guild.id})
         await users.findOneAndUpdate({userId: message.author.id, guildId: message.guild.id}, {

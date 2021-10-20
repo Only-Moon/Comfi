@@ -13,8 +13,7 @@ const schema = new Schema({
     level: {type: Number, default: 0},
     xp: {type: Number, default: 0},
     requiredXp: {type: Number, default: 500},
-
-
+  
     // Afk
     afk: {type: Boolean, default: false},
     afk_reason: String,
