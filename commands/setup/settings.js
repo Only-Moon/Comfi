@@ -27,16 +27,16 @@ module.exports = {
         let text = msg;
     
   const terms = [
-         { name: '{{user#mention}}', value: `<@${interaction.user.id}>` },
-         { name: '{{user#tag}}', value: `${interaction.user.tag}` },
-         { name: '{{user#id}}', value: `${interaction.user.id}` },
+         { name: '{{user#mention}}', value: `<@${interaction.user.id || "NONE"}>` },
+         { name: '{{user#tag}}', value: `${interaction.user.tag || "NONE"}` },
+         { name: '{{user#id}}', value: `${interaction.user.id || "NONE"}` },
          { name: '{{server#id}}', value: `${interaction.guild.id}` },
-         { name: '{{server#name}}', value: `${interaction.guild.name}` },
-         { name: '{{server#membercount}}', value: `${interaction.guild.memberCount}` },
-         { name: '{{server}}', value: `${interaction.guild.name}` },
-         { name: '{{boostcount}}', value: `${interaction.guild.premiumSubscriptionCount}` },
-         { name: '{{level}}', value: `${user.level}`},
-         { name: '{{xp}}', value: `${user.xp}`},
+         { name: '{{server#name}}', value: `${interaction.guild.name || "NONE"}` },
+         { name: '{{server#membercount}}', value: `${interaction.guild.memberCount || "NONE"}` },
+         { name: '{{server}}', value: `${interaction.guild.name || "NONE"}` },
+         { name: '{{boostcount}}', value: `${interaction.guild.premiumSubscriptionCount || "NONE"}` },
+         { name: '{{level}}', value: `${user.level || "NONE"}`},
+         { name: '{{xp}}', value: `${user.xp || "NONE"}`},
        ];
        
        for (let { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);
