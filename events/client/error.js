@@ -1,8 +1,6 @@
 let { MessageEmbed } = require("discord.js")
 let bot = require("../../index.js")
 
-  
-/**
 process.on("unhandledRejection", (reason, promise) => {
 
   const channel = bot.channels.cache.find(c => c.id === "880101469586604032");
@@ -24,7 +22,6 @@ process.on("unhandledRejection", (reason, promise) => {
   }
 
 });
-*/
 
 process.on("uncaughtException", (err, origin) => {
 

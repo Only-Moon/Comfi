@@ -207,3 +207,101 @@ SyntaxError: Unexpected end of input
 12:59:51.882 INFO  Watching 87 Slashs, 79 Channels and 12 Users in  4 Servers 
 12:59:51.883 INFO  ------------------------------------- 
 12:59:51.890 INFO  Your app is listening a http://localhost:3000 
+13:10:34.010 INFO  Mongodb connected! 
+13:10:36.039 INFO  Logged in as Comfi#6893 
+13:10:36.040 INFO  Watching 87 Slashs, 4167 Channels and 28233 Users in  73 Servers 
+13:10:36.040 INFO  ------------------------------------- 
+13:10:36.093 INFO  Your app is listening a http://localhost:3000 
+13:12:08.560 INFO  Mongodb connected! 
+13:12:10.343 INFO  Logged in as Comfi#6893 
+13:12:10.344 INFO  Watching 87 Slashs, 4167 Channels and 28251 Users in  73 Servers 
+13:12:10.344 INFO  ------------------------------------- 
+13:12:10.353 INFO  Your app is listening a http://localhost:3000 
+13:12:10.817 ERROR undefined 
+13:12:10.819 ERROR undefined 
+13:12:10.821 ERROR undefined 
+13:12:10.822 ERROR undefined 
+13:12:10.828 ERROR undefined 
+13:12:10.830 ERROR undefined 
+13:12:10.831 ERROR undefined 
+13:12:10.832 ERROR undefined 
+13:12:10.833 ERROR undefined 
+13:12:10.835 ERROR undefined 
+13:12:10.836 ERROR undefined 
+13:12:10.836 ERROR undefined 
+13:12:10.838 ERROR undefined 
+13:12:10.843 ERROR undefined 
+13:12:10.845 ERROR undefined 
+13:12:10.845 ERROR undefined 
+13:12:10.848 ERROR undefined 
+13:12:10.849 ERROR undefined 
+13:12:10.851 ERROR undefined 
+13:12:10.872 ERROR undefined 
+13:12:10.873 ERROR undefined 
+13:12:10.874 ERROR undefined 
+13:12:10.877 ERROR undefined 
+13:12:10.879 ERROR undefined 
+13:12:10.882 ERROR undefined 
+13:16:00.333 INFO  Mongodb connected! 
+13:16:02.038 INFO  Logged in as Comfi#6893 
+13:16:02.039 INFO  Watching 87 Slashs, 4167 Channels and 28296 Users in  73 Servers 
+13:16:02.039 INFO  ------------------------------------- 
+13:16:02.098 INFO  Your app is listening a http://localhost:3000 
+13:16:02.743 ERROR '[object Object]' 
+13:16:02.747 ERROR '[object Object]' 
+13:16:02.748 ERROR '[object Object]' 
+13:16:02.750 ERROR '[object Object]' 
+13:16:02.751 ERROR '[object Object]' 
+13:16:02.774 ERROR '[object Object]' 
+13:16:02.776 ERROR '[object Object]' 
+13:16:02.779 ERROR '[object Object]' 
+13:16:02.781 ERROR '[object Object]' 
+13:16:02.785 ERROR '[object Object]' 
+13:16:02.787 ERROR '[object Object]' 
+13:16:02.788 ERROR '[object Object]' 
+13:16:02.789 ERROR '[object Object]' 
+13:16:02.790 ERROR '[object Object]' 
+13:16:02.791 ERROR '[object Object]' 
+13:16:02.794 ERROR '[object Object]' 
+13:16:02.795 ERROR '[object Object]' 
+13:16:02.796 ERROR '[object Object]' 
+13:16:02.797 ERROR '[object Object]' 
+13:16:02.798 ERROR '[object Object]' 
+13:16:02.803 ERROR '[object Object]' 
+13:16:02.815 ERROR '[object Object]' 
+13:16:02.953 ERROR '[object Object]' 
+13:16:02.967 ERROR '[object Object]' 
+13:18:12.183 INFO  Mongodb connected! 
+13:18:14.446 INFO  Logged in as Comfi#6893 
+13:18:14.447 INFO  Watching 87 Slashs, 4168 Channels and 28301 Users in  73 Servers 
+13:18:14.447 INFO  ------------------------------------- 
+13:18:14.509 INFO  Your app is listening a http://localhost:3000 
+13:18:15.189 ERROR [object Object] limit 
+13:18:15.199 ERROR [object Object] limit 
+13:18:15.200 ERROR [object Object] limit 
+13:18:15.207 ERROR [object Object] limit 
+13:18:15.208 ERROR [object Object] limit 
+13:18:15.209 ERROR [object Object] limit 
+13:18:15.210 ERROR [object Object] limit 
+13:18:15.219 ERROR [object Object] limit 
+13:18:15.220 ERROR [object Object] limit 
+13:18:15.221 ERROR [object Object] limit 
+13:18:15.222 ERROR [object Object] limit 
+13:18:15.223 ERROR [object Object] limit 
+13:18:15.224 ERROR [object Object] limit 
+13:18:15.235 ERROR [object Object] limit 
+13:18:15.245 ERROR [object Object] limit 
+13:18:15.255 ERROR [object Object] limit 
+13:18:15.258 ERROR [object Object] limit 
+13:18:15.259 ERROR [object Object] limit 
+13:18:15.261 ERROR [object Object] limit 
+13:18:15.261 ERROR [object Object] limit 
+13:18:15.262 ERROR [object Object] limit 
+13:18:15.272 ERROR [object Object] limit 
+13:18:15.273 ERROR [object Object] limit 
+13:18:15.291 ERROR [object Object] limit 
+13:18:37.488 INFO  Mongodb connected! 
+13:18:39.723 INFO  Logged in as Comfi#6893 
+13:18:39.723 INFO  Watching 87 Slashs, 4168 Channels and 28301 Users in  73 Servers 
+13:18:39.723 INFO  ------------------------------------- 
+13:18:39.800 INFO  Your app is listening a http://localhost:3000 
