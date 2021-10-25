@@ -67,26 +67,3 @@ if(channel) {
   }
 
 });
-
-process.on("multipleResolves", (type, promise, reason) => {
-
-  const channel = bot.channels.cache.find(c => c.id === "880101469586604032");
-
-    const embed = new MessageEmbed()
-    .setTitle(`${bot.error} • Multiple Resolves`)
-    .setURL("https://nodejs.org/api/process.html#event-multipleresolves")
-    .addField("Type", `\`\`\`${type}\`\`\``, false)
-    .addField("Promise", `\`\`\`${promise}\`\`\``, true)
-    .addField("Reason", `\`\`\`${reason}\`\`\``, true)
-      .setImage('https://giffiles.alphacoders.com/354/35481.gif')
-    .setTimestamp()
-    .setFooter("Imagine a bot without anti-crash")
-    .setColor("#FF5757")
-
-if(channel) {
-    channel.send({ embeds: [ embed ]});
-  } else if (!channel) {
-    bot.logger.error(`${reason.stack}`)
-  }
-
-});

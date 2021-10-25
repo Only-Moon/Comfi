@@ -28,7 +28,7 @@ class Comfi extends Discord.Client {
         this.on("disconnect", (e) => this.logger.log(`bot is disconnecting ${e}`))
             .on("reconnecting", (e) => this.logger.log(`Bot is reconnecting ${e}`))
             .on("error", (e) => this.logger.error(`${e}  error`))
-            .on("rateLimit", (e) => this.logger.error(`${e} limit`))
+            .on("rateLimit", (error) => this.logger.error(`${error} limit`))
             .on("warn", (info) => this.logger.warn(`${info} info`));
         this.login(process.env.TOKEN)
         this.config = require('../config.json')
