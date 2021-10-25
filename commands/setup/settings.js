@@ -34,9 +34,7 @@ module.exports = {
          { name: '{{server#name}}', value: `${interaction.guild.name || "NONE"}` },
          { name: '{{server#membercount}}', value: `${interaction.guild.memberCount || "NONE"}` },
          { name: '{{server}}', value: `${interaction.guild.name || "NONE"}` },
-         { name: '{{boostcount}}', value: `${interaction.guild.premiumSubscriptionCount || "NONE"}` },
-         { name: '{{level}}', value: `${user.level || "NONE"}`},
-         { name: '{{xp}}', value: `${user.xp || "NONE"}`},
+         { name: '{{boostcount}}', value: `${interaction.guild.premiumSubscriptionCount || "NONE"}` }
        ];
        
        for (let { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);

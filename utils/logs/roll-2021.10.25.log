@@ -305,3 +305,65 @@ SyntaxError: Unexpected end of input
 13:18:39.723 INFO  Watching 87 Slashs, 4168 Channels and 28301 Users in  73 Servers 
 13:18:39.723 INFO  ------------------------------------- 
 13:18:39.800 INFO  Your app is listening a http://localhost:3000 
+13:22:08.779 INFO  Mongodb connected! 
+13:22:10.074 INFO  Logged in as Comfi#6893 
+13:22:10.075 INFO  Watching 87 Slashs, 4170 Channels and 28388 Users in  73 Servers 
+13:22:10.075 INFO  ------------------------------------- 
+13:22:10.145 INFO  Your app is listening a http://localhost:3000 
+13:22:10.547 ERROR [object Object] limit 
+13:22:10.551 ERROR [object Object] limit 
+13:22:10.552 ERROR [object Object] limit 
+13:22:10.554 ERROR [object Object] limit 
+13:22:10.555 ERROR [object Object] limit 
+13:22:10.556 ERROR [object Object] limit 
+13:22:10.558 ERROR [object Object] limit 
+13:22:10.559 ERROR [object Object] limit 
+13:22:10.561 ERROR [object Object] limit 
+13:22:10.562 ERROR [object Object] limit 
+13:22:10.563 ERROR [object Object] limit 
+13:22:10.565 ERROR [object Object] limit 
+13:22:10.571 ERROR [object Object] limit 
+13:22:10.576 ERROR [object Object] limit 
+13:22:10.581 ERROR [object Object] limit 
+13:22:10.584 ERROR [object Object] limit 
+13:22:10.606 ERROR [object Object] limit 
+13:22:10.617 ERROR [object Object] limit 
+13:22:10.726 ERROR [object Object] limit 
+13:22:10.732 ERROR [object Object] limit 
+13:22:10.742 ERROR [object Object] limit 
+13:22:10.746 ERROR [object Object] limit 
+13:22:10.749 ERROR [object Object] limit 
+13:22:10.756 ERROR [object Object] limit 
+13:25:34.950 ERROR [object Object] limit 
+13:27:09.071 ERROR [object Object] limit 
+13:27:20.159 ERROR [object Object] limit 
+13:27:43.229 ERROR [object Object] limit 
+13:31:40.728 INFO  Mongodb connected! 
+13:31:42.205 INFO  Logged in as Comfi#6893 
+13:31:42.206 INFO  Watching 87 Slashs, 4172 Channels and 28520 Users in  73 Servers 
+13:31:42.206 INFO  ------------------------------------- 
+13:31:42.312 INFO  Your app is listening a http://localhost:3000 
+13:31:42.796 ERROR [object Object] limit 
+13:31:42.798 ERROR [object Object] limit 
+13:31:42.800 ERROR [object Object] limit 
+13:31:42.802 ERROR [object Object] limit 
+13:31:42.803 ERROR [object Object] limit 
+13:31:42.805 ERROR [object Object] limit 
+13:31:42.806 ERROR [object Object] limit 
+13:31:42.808 ERROR [object Object] limit 
+13:31:42.809 ERROR [object Object] limit 
+13:31:42.810 ERROR [object Object] limit 
+13:31:42.811 ERROR [object Object] limit 
+13:31:42.814 ERROR [object Object] limit 
+13:31:42.819 ERROR [object Object] limit 
+13:31:42.820 ERROR [object Object] limit 
+13:31:42.821 ERROR [object Object] limit 
+13:31:42.829 ERROR [object Object] limit 
+13:31:42.832 ERROR [object Object] limit 
+13:31:42.992 ERROR [object Object] limit 
+13:31:43.004 ERROR [object Object] limit 
+13:31:43.008 ERROR [object Object] limit 
+13:31:43.010 ERROR [object Object] limit 
+13:31:43.015 ERROR [object Object] limit 
+13:31:43.022 ERROR [object Object] limit 
+13:31:43.035 ERROR [object Object] limit 
