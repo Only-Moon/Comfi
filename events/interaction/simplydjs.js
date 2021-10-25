@@ -36,17 +36,18 @@ let cat = guild.ticket_category
   simplydjs.clickBtn(interaction, {
     embedDesc: 'Support Ticket', 
     embedColor: bot.color, 
-    closeColor: 'red', 
+    closeColor: 'grey' || 'SECONDARY', 
     credit: false,
     closeEmoji: '775083085124468736', 
-    delColor: '',
+    delColor: 'grey' || 'SECONDARY',
     delEmoji: '796196175627419678',
-    openColor: 'grey' , 
+    openColor: 'grey' || 'SECONDARY', 
     openEmoji: '855791964975530004',
     timeout: true,
     cooldownMsg: `${bot.error} Close Old Ticket First Then Open New One Again`,
     categoryID: `${cat}`,
-    role: `${support}`                               
+    role: `${support}`,
+    ticketname: "ticket-{tag}"                            
   }) 
     }
 

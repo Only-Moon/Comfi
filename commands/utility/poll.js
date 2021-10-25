@@ -21,14 +21,14 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
    const embed = new MessageEmbed()
-            .setColor("GREEN")
+            .setColor(bot.color)
             .setTitle(`Poll For ${interaction.guild.name} Sever`)
             .setFooter(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
             .setDescription(args[0])
         var msg = await interaction.channel.send({embeds: [ embed ]});
 
-        await msg.react('✅');
-        await msg.react('❎');
+        await msg.react(`${bot.tick}`);
+        await msg.react(`${bot.crosss}`);
 
     interaction.deleteReply({ timeout: 1000 });
     }

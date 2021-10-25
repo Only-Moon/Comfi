@@ -1,0 +1,209 @@
+09:47:23.417 INFO  Logged in as Comfi Dev#5575 
+09:47:23.421 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+09:47:23.421 INFO  ------------------------------------- 
+09:47:23.434 INFO  Your app is listening a http://localhost:3000 
+09:47:23.585 INFO  Mongodb connected! 
+10:30:13.926 ERROR /home/runner/Comfi-beta/commands/info/movie.js:51
+ 
+ 
+
+SyntaxError: Unexpected end of input
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+10:30:14.334 INFO  Mongodb connected! 
+10:30:14.363 INFO  Logged in as Comfi Dev#5575 
+10:30:14.366 INFO  Watching 20 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:30:14.366 INFO  ------------------------------------- 
+10:30:14.373 INFO  Your app is listening a http://localhost:3000 
+10:34:19.281 INFO  Logged in as Comfi Dev#5575 
+10:34:19.282 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:34:19.282 INFO  ------------------------------------- 
+10:34:19.294 INFO  Your app is listening a http://localhost:3000 
+10:34:19.315 INFO  Mongodb connected! 
+10:34:19.421 ERROR DiscordAPIError: Invalid Form Body
+21: Application command names are unique
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+10:34:19.462 ERROR DiscordAPIError: Invalid Form Body
+21: Application command names are unique
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+10:34:19.492 ERROR DiscordAPIError: Invalid Form Body
+21: Application command names are unique
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+10:34:43.751 INFO  Logged in as Comfi Dev#5575 
+10:34:43.752 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:34:43.753 INFO  ------------------------------------- 
+10:34:43.772 INFO  Your app is listening a http://localhost:3000 
+10:34:43.896 INFO  Mongodb connected! 
+10:35:29.161 ERROR ReferenceError: moment is not defined
+    at /home/runner/Comfi-beta/commands/info/npm.js:52:39
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+10:36:16.135 INFO  Mongodb connected! 
+10:36:16.199 INFO  Logged in as Comfi Dev#5575 
+10:36:16.199 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:36:16.200 INFO  ------------------------------------- 
+10:36:16.206 INFO  Your app is listening a http://localhost:3000 
+10:36:35.814 ERROR FetchError: invalid json response body at https://api.popcat.xyz/npm?q=discord.js reason: Unexpected token < in JSON at position 0
+    at /home/runner/Comfi-beta/node_modules/node-fetch/lib/index.js:273:32
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+10:38:16.625 INFO  Logged in as Comfi Dev#5575 
+10:38:16.626 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:38:16.626 INFO  ------------------------------------- 
+10:38:16.640 INFO  Your app is listening a http://localhost:3000 
+10:38:16.697 INFO  Mongodb connected! 
+10:38:56.907 ERROR FetchError: invalid json response body at https://api.popcat.xyz/npm?q=discord.js reason: Unexpected token < in JSON at position 0
+    at /home/runner/Comfi-beta/node_modules/node-fetch/lib/index.js:273:32
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+10:40:44.462 INFO  Logged in as Comfi Dev#5575 
+10:40:44.464 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:40:44.464 INFO  ------------------------------------- 
+10:40:44.474 INFO  Your app is listening a http://localhost:3000 
+10:40:44.680 INFO  Mongodb connected! 
+10:41:17.336 ERROR FetchError: invalid json response body at https://api.popcat.xyz/npm?q=discord.js reason: Unexpected token < in JSON at position 0
+    at /home/runner/Comfi-beta/node_modules/node-fetch/lib/index.js:273:32
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+10:42:13.183 INFO  Logged in as Comfi Dev#5575 
+10:42:13.184 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+10:42:13.184 INFO  ------------------------------------- 
+10:42:13.195 INFO  Your app is listening a http://localhost:3000 
+10:42:13.245 INFO  Mongodb connected! 
+11:22:03.109 INFO  Logged in as Comfi Dev#5575 
+11:22:03.110 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:22:03.110 INFO  ------------------------------------- 
+11:22:03.120 INFO  Your app is listening a http://localhost:3000 
+11:22:03.366 INFO  Mongodb connected! 
+11:39:13.174 INFO  Mongodb connected! 
+11:39:13.238 INFO  Logged in as Comfi Dev#5575 
+11:39:13.238 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:39:13.238 INFO  ------------------------------------- 
+11:39:13.249 INFO  Your app is listening a http://localhost:3000 
+11:39:29.562 ERROR ReferenceError: err is not defined
+    at Object.run (/home/runner/Comfi-beta/commands/utility/emoji.js:29:28)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:40:03.088 INFO  Mongodb connected! 
+11:40:03.226 INFO  Logged in as Comfi Dev#5575 
+11:40:03.226 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:40:03.226 INFO  ------------------------------------- 
+11:40:03.233 INFO  Your app is listening a http://localhost:3000 
+11:40:20.134 ERROR TypeError: Cannot read properties of null (reading 'length')
+    at Object.run (/home/runner/Comfi-beta/commands/utility/emoji.js:33:12)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:41:53.331 INFO  Logged in as Comfi Dev#5575 
+11:41:53.332 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:41:53.332 INFO  ------------------------------------- 
+11:41:53.342 INFO  Your app is listening a http://localhost:3000 
+11:41:53.363 INFO  Mongodb connected! 
+11:45:56.291 INFO  Logged in as Comfi Dev#5575 
+11:45:56.292 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:45:56.293 INFO  ------------------------------------- 
+11:45:56.300 INFO  Your app is listening a http://localhost:3000 
+11:45:56.433 INFO  Mongodb connected! 
+11:53:07.011 INFO  Logged in as Comfi Dev#5575 
+11:53:07.012 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:53:07.012 INFO  ------------------------------------- 
+11:53:07.020 INFO  Your app is listening a http://localhost:3000 
+11:53:07.117 INFO  Mongodb connected! 
+11:54:40.116 INFO  Logged in as Comfi Dev#5575 
+11:54:40.117 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:54:40.118 INFO  ------------------------------------- 
+11:54:40.130 INFO  Your app is listening a http://localhost:3000 
+11:54:40.165 INFO  Mongodb connected! 
+12:36:09.098 INFO  Logged in as Comfi Dev#5575 
+12:36:09.099 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:36:09.100 INFO  ------------------------------------- 
+12:36:09.118 INFO  Your app is listening a http://localhost:3000 
+12:36:09.219 INFO  Mongodb connected! 
+12:41:50.731 ERROR ReferenceError: ccc is not defined
+    at Object.<anonymous> (/home/runner/Comfi-beta/commands/utility/ping.js:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+12:41:51.138 INFO  Logged in as Comfi Dev#5575 
+12:41:51.139 INFO  Watching 78 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:41:51.139 INFO  ------------------------------------- 
+12:41:51.145 INFO  Your app is listening a http://localhost:3000 
+12:41:51.155 INFO  Mongodb connected! 
+12:46:07.449 ERROR ReferenceError: ccc is not defined
+    at Object.<anonymous> (/home/runner/Comfi-beta/commands/utility/ping.js:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+12:46:07.808 INFO  Logged in as Comfi Dev#5575 
+12:46:07.808 INFO  Watching 78 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:46:07.808 INFO  ------------------------------------- 
+12:46:07.813 INFO  Your app is listening a http://localhost:3000 
+12:46:07.863 INFO  Mongodb connected! 
+12:46:42.214 ERROR ReferenceError: ccc is not defined
+    at Object.<anonymous> (/home/runner/Comfi-beta/commands/utility/ping.js:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+12:46:42.568 INFO  Mongodb connected! 
+12:46:42.633 INFO  Logged in as Comfi Dev#5575 
+12:46:42.634 INFO  Watching 78 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:46:42.634 INFO  ------------------------------------- 
+12:46:42.642 INFO  Your app is listening a http://localhost:3000 
+12:47:33.130 INFO  Mongodb connected! 
+12:47:33.197 INFO  Logged in as Comfi Dev#5575 
+12:47:33.198 INFO  Watching 87 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:47:33.198 INFO  ------------------------------------- 
+12:47:33.214 INFO  Your app is listening a http://localhost:3000 
+12:50:08.386 INFO  Mongodb connected! 
+12:50:08.451 INFO  Logged in as Comfi Dev#5575 
+12:50:08.452 INFO  Watching 87 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:50:08.452 INFO  ------------------------------------- 
+12:50:08.461 INFO  Your app is listening a http://localhost:3000 
+12:54:50.763 INFO  Mongodb connected! 
+12:54:50.805 INFO  Logged in as Comfi Dev#5575 
+12:54:50.806 INFO  Watching 87 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:54:50.806 INFO  ------------------------------------- 
+12:54:50.814 INFO  Your app is listening a http://localhost:3000 
+12:57:22.898 INFO  Logged in as Comfi Dev#5575 
+12:57:22.898 INFO  Watching 87 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:57:22.899 INFO  ------------------------------------- 
+12:57:22.907 INFO  Your app is listening a http://localhost:3000 
+12:57:23.032 INFO  Mongodb connected! 
+12:59:51.842 INFO  Mongodb connected! 
+12:59:51.882 INFO  Logged in as Comfi Dev#5575 
+12:59:51.882 INFO  Watching 87 Slashs, 79 Channels and 12 Users in  4 Servers 
+12:59:51.883 INFO  ------------------------------------- 
+12:59:51.890 INFO  Your app is listening a http://localhost:3000 

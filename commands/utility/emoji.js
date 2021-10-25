@@ -8,7 +8,7 @@ module.exports = {
     options: [
         {
             type: 'STRING',
-            description: 'Emote to Enlarge',
+            description: 'Emojis to Enlarge',
             name: 'name',
             required: true,
         },
@@ -20,16 +20,23 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args) => {
+run: async (bot, interaction, args) => {
 
 try {
       
 const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
 
-const emote = interaction.options.getString("name")
-      
+if (!emojis) { 
+  return interaction.editReply({
+    content: `${bot.error} • Enter A Valid Emoji in :emoji: form`}).then((msg) => {
+  setTimeout(() => msg.delete(), bot.ms('15s'))
+  });
+} else if (emojis) {
+  
 if (emojis.length === 1) {
-      
+
+const emote = interaction.options.getString("name")
+  
 const emo = Util.parseEmoji(emote);
   
 if (!emo.name || !emo.id) return interaction.editReply(`${bot.error} Invalid emote argument`);
@@ -56,6 +63,8 @@ interaction.followUp({embeds: [ embed ],
 
 } else if (emojis.length > 1) {
 
+const emote = interaction.options.getString("name")
+  
 let pages = []
   
 emojis.forEach(emoji => {
@@ -87,9 +96,11 @@ skipBtn: false,
 
 }
 
-     } catch (err) {
+      }
+
+    } catch (err) {
 
 return interaction.editReply(`${bot.error} An error has occured. \n[Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
 }
-  
+
 }}

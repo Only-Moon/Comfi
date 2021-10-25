@@ -49,7 +49,7 @@ try {
   const embed = new MessageEmbed()
 .setAuthor(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
   .setDescription(`Here is your shortened url \n ${res}`)
-.setColor('#F4B3CA');
+.setColor(bot.color);
 
 interaction.editReply({embeds: [ embed ],
     components: [ row ]

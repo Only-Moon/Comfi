@@ -18,7 +18,7 @@ module.exports = {
      * @param {Message} message 
      * @param {String[]} args 
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
 
 try {
       
@@ -39,7 +39,7 @@ try {
             .setDescription(`**_Invites  of :_** ${user} `)
             .addField(`User Invites`, `${i}`)
             .addField('Invite Codes:', `${invCodes}`)
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
 
         interaction.followUp({ embeds: [tackerEmbed] });
 

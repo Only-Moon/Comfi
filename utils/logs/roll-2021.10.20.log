@@ -134,3 +134,8 @@ SyntaxError: Missing catch or finally after try
 12:28:44.813 INFO  Watching 88 Slashs, 3076 Channels and 26698 Users in  57 Servers 
 12:28:44.813 INFO  ------------------------------------- 
 12:28:44.833 INFO  Your app is listening a http://localhost:3000 
+12:30:57.567 INFO  Logged in as Comfi Dev#5575 
+12:30:57.572 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:30:57.572 INFO  ------------------------------------- 
+12:30:57.606 INFO  Your app is listening a http://localhost:3000 
+12:30:58.175 INFO  Mongodb connected! 

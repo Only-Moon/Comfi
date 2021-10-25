@@ -16,6 +16,7 @@ module.exports = {
             description: 'channel for suggestion',
             name: 'channel',
             required: true,
+            channelTypes: ["GUILD_TEXT"],
         },
     ],
         },

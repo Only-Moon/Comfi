@@ -44,12 +44,17 @@ const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
 
 bot.on("ready", async () => {
 
-//bot.guilds.cache.forEach((g) => {
+if (process.env.DEV_MODE) {
+                   
+bot.guilds.cache.forEach((g) => {
 
-//g.commands.set(arrayOfSlashCommands)
-//})
-  
-await bot.application.commands.set(arrayOfSlashCommands)
+g.commands.set(arrayOfSlashCommands)
 })
 
- }
+} else if (!process.env.DEV_MODE) {
+ 
+await bot.application.commands.set(arrayOfSlashCommands)
+} 
+ 
+})
+}

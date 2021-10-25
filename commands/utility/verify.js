@@ -5,8 +5,8 @@ module.exports = {
     name: "verify",
     description: "Incase the verify prompt is not working you can run this to verify",
     ownerOnly: false,
-    botperm: [],
-    userperm: [],
+    botperm: [""],
+    userperm: [""],
     /**
      * @param {CommandInteraction} interaction 
      * @param {String[]} args

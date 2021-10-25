@@ -1,0 +1,262 @@
+04:20:08.787 INFO  Logged in as Comfi Dev#5575 
+04:20:08.796 INFO  Watching 88 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:20:08.796 INFO  ------------------------------------- 
+04:20:08.808 INFO  Your app is listening a http://localhost:3000 
+04:20:08.913 INFO  Mongodb connected! 
+04:33:15.612 INFO  Logged in as Comfi Dev#5575 
+04:33:15.613 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:33:15.613 INFO  ------------------------------------- 
+04:33:15.618 INFO  Your app is listening a http://localhost:3000 
+04:33:15.635 INFO  Mongodb connected! 
+04:33:15.743 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+04:33:15.757 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+04:33:15.767 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+04:34:34.008 INFO  Logged in as Comfi Dev#5575 
+04:34:34.009 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:34:34.009 INFO  ------------------------------------- 
+04:34:34.014 INFO  Your app is listening a http://localhost:3000 
+04:34:34.015 ERROR TypeError: Cannot read properties of undefined (reading 'map')
+    at GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:147:22)
+    at /home/runner/Comfi-beta/handler/index.js:49:12
+    at Map.forEach (<anonymous>)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/handler/index.js:47:18)
+    at Comfi.emit (node:events:402:35)
+    at WebSocketManager.triggerClientReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:383:17)
+    at WebSocketManager.checkShardsReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:366:10)
+    at WebSocketShard.<anonymous> (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:188:14)
+    at WebSocketShard.emit (node:events:390:28)
+    at WebSocketShard.checkReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:474:12)
+    at WebSocketShard.onPacket (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:446:16)
+    at WebSocketShard.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:300:10)
+    at WebSocket.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+    at Receiver.receiverOnMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/websocket.js:1022:20)
+    at Receiver.emit (node:events:390:28) 
+04:34:34.016 ERROR TypeError: Cannot read properties of undefined (reading 'map')
+    at GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:147:22)
+    at /home/runner/Comfi-beta/handler/index.js:49:12
+    at Map.forEach (<anonymous>)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/handler/index.js:47:18)
+    at Comfi.emit (node:events:402:35)
+    at WebSocketManager.triggerClientReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:383:17)
+    at WebSocketManager.checkShardsReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:366:10)
+    at WebSocketShard.<anonymous> (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:188:14)
+    at WebSocketShard.emit (node:events:390:28)
+    at WebSocketShard.checkReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:474:12)
+    at WebSocketShard.onPacket (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:446:16)
+    at WebSocketShard.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:300:10)
+    at WebSocket.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+    at Receiver.receiverOnMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/websocket.js:1022:20)
+    at Receiver.emit (node:events:390:28) 
+04:34:34.016 ERROR TypeError: Cannot read properties of undefined (reading 'map')
+    at GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:147:22)
+    at /home/runner/Comfi-beta/handler/index.js:49:12
+    at Map.forEach (<anonymous>)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/handler/index.js:47:18)
+    at Comfi.emit (node:events:402:35)
+    at WebSocketManager.triggerClientReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:383:17)
+    at WebSocketManager.checkShardsReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:366:10)
+    at WebSocketShard.<anonymous> (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:188:14)
+    at WebSocketShard.emit (node:events:390:28)
+    at WebSocketShard.checkReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:474:12)
+    at WebSocketShard.onPacket (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:446:16)
+    at WebSocketShard.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:300:10)
+    at WebSocket.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+    at Receiver.receiverOnMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/websocket.js:1022:20)
+    at Receiver.emit (node:events:390:28) 
+04:34:34.016 ERROR TypeError: Cannot read properties of undefined (reading 'map')
+    at ApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:147:22)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/handler/index.js:52:32)
+    at Comfi.emit (node:events:402:35)
+    at WebSocketManager.triggerClientReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:383:17)
+    at WebSocketManager.checkShardsReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:366:10)
+    at WebSocketShard.<anonymous> (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketManager.js:188:14)
+    at WebSocketShard.emit (node:events:390:28)
+    at WebSocketShard.checkReady (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:474:12)
+    at WebSocketShard.onPacket (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:446:16)
+    at WebSocketShard.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/src/client/websocket/WebSocketShard.js:300:10)
+    at WebSocket.onMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+    at Receiver.receiverOnMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/websocket.js:1022:20)
+    at Receiver.emit (node:events:390:28)
+    at Receiver.dataMessage (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/receiver.js:522:14)
+    at Receiver.getData (/home/runner/Comfi-beta/node_modules/discord.js/node_modules/ws/lib/receiver.js:440:17) 
+04:34:34.026 INFO  Mongodb connected! 
+04:35:35.423 INFO  Logged in as Comfi Dev#5575 
+04:35:35.424 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:35:35.424 INFO  ------------------------------------- 
+04:35:35.429 INFO  Your app is listening a http://localhost:3000 
+04:35:35.443 INFO  Mongodb connected! 
+04:48:41.103 INFO  Logged in as Comfi Dev#5575 
+04:48:41.104 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:48:41.104 INFO  ------------------------------------- 
+04:48:41.108 INFO  Your app is listening a http://localhost:3000 
+04:48:41.113 INFO  Mongodb connected! 
+04:49:45.289 INFO  Logged in as Comfi Dev#5575 
+04:49:45.290 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:49:45.290 INFO  ------------------------------------- 
+04:49:45.295 INFO  Your app is listening a http://localhost:3000 
+04:49:45.375 INFO  Mongodb connected! 
+04:50:57.436 INFO  Logged in as Comfi Dev#5575 
+04:50:57.437 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:50:57.437 INFO  ------------------------------------- 
+04:50:57.441 INFO  Your app is listening a http://localhost:3000 
+04:50:57.523 INFO  Mongodb connected! 
+04:57:54.363 INFO  Logged in as Comfi Dev#5575 
+04:57:54.364 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+04:57:54.364 INFO  ------------------------------------- 
+04:57:54.369 INFO  Your app is listening a http://localhost:3000 
+04:57:54.448 INFO  Mongodb connected! 
+04:57:54.483 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+04:57:54.494 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+04:57:54.533 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+05:13:50.062 INFO  Logged in as Comfi Dev#5575 
+05:13:50.063 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+05:13:50.063 INFO  ------------------------------------- 
+05:13:50.068 INFO  Your app is listening a http://localhost:3000 
+05:13:50.084 INFO  Mongodb connected! 
+05:13:50.188 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+05:13:50.203 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+05:13:50.226 ERROR DiscordAPIError: Invalid Form Body
+68.options[0].options[0].channel_types[0]: Value "GUILD_CATEGORY" is not int.
+    at RequestHandler.execute (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:298:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async RequestHandler.push (/home/runner/Comfi-beta/node_modules/discord.js/src/rest/RequestHandler.js:50:14)
+    at async GuildApplicationCommandManager.set (/home/runner/Comfi-beta/node_modules/discord.js/src/managers/ApplicationCommandManager.js:146:18) 
+05:16:38.827 INFO  Logged in as Comfi Dev#5575 
+05:16:38.827 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+05:16:38.828 INFO  ------------------------------------- 
+05:16:38.833 INFO  Your app is listening a http://localhost:3000 
+05:16:38.884 INFO  Mongodb connected! 
+05:18:03.306 ERROR TypeError: Cannot read properties of undefined (reading 'id')
+    at Object.run (/home/runner/Comfi-beta/commands/setup/ticket.js:85:43)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+05:18:45.280 INFO  Logged in as Comfi Dev#5575 
+05:18:45.282 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+05:18:45.282 INFO  ------------------------------------- 
+05:18:45.293 INFO  Your app is listening a http://localhost:3000 
+05:18:45.418 INFO  Mongodb connected! 
+05:21:30.709 INFO  Logged in as Comfi Dev#5575 
+05:21:30.710 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+05:21:30.711 INFO  ------------------------------------- 
+05:21:30.719 INFO  Your app is listening a http://localhost:3000 
+05:21:30.743 INFO  Mongodb connected! 
+07:10:31.576 INFO  Logged in as Comfi Dev#5575 
+07:10:31.577 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+07:10:31.578 INFO  ------------------------------------- 
+07:10:31.587 INFO  Your app is listening a http://localhost:3000 
+07:10:31.655 INFO  Mongodb connected! 
+08:37:37.859 INFO  Logged in as Comfi Dev#5575 
+08:37:37.860 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:37:37.860 INFO  ------------------------------------- 
+08:37:37.880 INFO  Your app is listening a http://localhost:3000 
+08:37:37.951 INFO  Mongodb connected! 
+11:30:10.945 INFO  Mongodb connected! 
+11:30:10.994 INFO  Logged in as Comfi Dev#5575 
+11:30:10.995 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:30:10.996 INFO  ------------------------------------- 
+11:30:11.004 INFO  Your app is listening a http://localhost:3000 
+11:31:49.345 INFO  Logged in as Comfi Dev#5575 
+11:31:49.349 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:31:49.349 INFO  ------------------------------------- 
+11:31:49.364 INFO  Your app is listening a http://localhost:3000 
+11:31:49.510 INFO  Mongodb connected! 
+11:33:13.762 INFO  Logged in as Comfi Dev#5575 
+11:33:13.763 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:33:13.766 INFO  ------------------------------------- 
+11:33:13.779 INFO  Your app is listening a http://localhost:3000 
+11:33:13.902 INFO  Mongodb connected! 
+11:34:05.386 INFO  Logged in as Comfi Dev#5575 
+11:34:05.392 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:34:05.394 INFO  ------------------------------------- 
+11:34:05.411 INFO  Your app is listening a http://localhost:3000 
+11:34:05.545 INFO  Mongodb connected! 
+11:36:04.033 INFO  Logged in as Comfi Dev#5575 
+11:36:04.035 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:36:04.035 INFO  ------------------------------------- 
+11:36:04.104 INFO  Your app is listening a http://localhost:3000 
+11:36:04.476 INFO  Mongodb connected! 
+11:36:24.398 ERROR TypeError: Cannot read properties of undefined (reading 'name')
+    at Object.run (/home/runner/Comfi-beta/commands/utility/help.js:270:35)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+11:36:52.597 INFO  Logged in as Comfi Dev#5575 
+11:36:52.603 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:36:52.603 INFO  ------------------------------------- 
+11:36:52.644 INFO  Your app is listening a http://localhost:3000 
+11:36:52.757 INFO  Mongodb connected! 
+11:38:21.910 INFO  Logged in as Comfi Dev#5575 
+11:38:21.955 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:38:21.955 INFO  ------------------------------------- 
+11:38:21.995 INFO  Your app is listening a http://localhost:3000 
+11:38:22.100 INFO  Mongodb connected! 
+11:41:35.246 INFO  Logged in as Comfi Dev#5575 
+11:41:35.247 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+11:41:35.248 INFO  ------------------------------------- 
+11:41:35.259 INFO  Your app is listening a http://localhost:3000 
+11:41:35.450 INFO  Mongodb connected! 
+12:17:06.573 INFO  Logged in as Comfi Dev#5575 
+12:17:06.575 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:17:06.576 INFO  ------------------------------------- 
+12:17:06.589 INFO  Your app is listening a http://localhost:3000 
+12:17:06.722 INFO  Mongodb connected! 
+12:17:16.642 INFO  Mongodb connected! 
+12:17:16.686 INFO  Logged in as Comfi Dev#5575 
+12:17:16.687 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:17:16.687 INFO  ------------------------------------- 
+12:17:16.697 INFO  Your app is listening a http://localhost:3000 
+12:19:44.654 INFO  Logged in as Comfi Dev#5575 
+12:19:44.655 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:19:44.655 INFO  ------------------------------------- 
+12:19:44.662 INFO  Your app is listening a http://localhost:3000 
+12:19:44.675 INFO  Mongodb connected! 
+12:22:08.632 INFO  Logged in as Comfi Dev#5575 
+12:22:08.633 INFO  Watching 89 Slashs, 63 Channels and 11 Users in  3 Servers 
+12:22:08.633 INFO  ------------------------------------- 
+12:22:08.639 INFO  Your app is listening a http://localhost:3000 
+12:22:08.686 INFO  Mongodb connected! 

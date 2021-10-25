@@ -40,8 +40,9 @@ module.exports = {
     
     await interaction.editReply({ embeds: [ embed ] })
     
-   } catch (e) {
-    interaction.editReply(`${e.message}`)
+   } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
    } 
     
   } 

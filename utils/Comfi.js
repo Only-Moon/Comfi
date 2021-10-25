@@ -20,6 +20,7 @@ class Comfi extends Discord.Client {
         this.tick = '<a:tick:890113862706266112>'
         this.crosss = '<a:cross:890113459868553277>'
         this.dash = 'https://comfi.xx-mohit-xx.repl.co/'
+        this.ms = require("ms") 
         this.on('ready', () => {
             this.logger.ready(`Logged in as ${this.user.tag}`, 'ready')
         })
@@ -31,9 +32,6 @@ class Comfi extends Discord.Client {
             .on("warn", (info) => this.logger.warn(`${info.stack}`));
         this.login(process.env.TOKEN)
         this.config = require('../config.json')
-        this.discordTogether = new DiscordTogether(this, {
-  token: process.env['TOKEN']
-});
         this.categories = fs.readdirSync("./commands/");
         this.dbs(process.env.Mongoose)
         this.commands = new Discord.Collection()

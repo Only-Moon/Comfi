@@ -31,6 +31,7 @@ module.exports = {
         type: 'CHANNEL',
         description: 'Channel to start the giveaway',
         required: false,
+        channelTypes: ["GUILD_TEXT"],
       }
       ],
     userperm: ["MANAGE_GUILD"],

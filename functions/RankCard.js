@@ -53,12 +53,15 @@ async function rankCard(client, message, options = []) {
     const canvas = Canvas.createCanvas(1080, 400),
       ctx = canvas.getContext("2d");
 
+const name = member.tag;
+const noSymbols = string => string.replace(/[\u007f-\uffff]/g, "");
+    
     let BackgroundRadius = "20",
       BackGroundImg =
         options.background ||
         "https://i.imgur.com/rkGiaIO.png?width=640&height=427",
       AttachmentName = "Comfi_leveling.png",
-      Username = member.username,
+      Username = noSymbols(name),
       AvatarRoundRadius = "50",
       DrawLayerColor = "#000000",
       DrawLayerOpacity = "0.4",
@@ -171,7 +174,7 @@ async function rankCard(client, message, options = []) {
     ctx.shadowBlur = 15;
     ctx.shadowOffsetX = 1;
     ctx.shadowOffsetY = 1;
-    ctx.font = '39px "Arial-Unicode-MS"';
+    ctx.font = '39px "Poppins-Bold"';
     ctx.fillText(Username, 390, 80);
     ctx.restore();
 

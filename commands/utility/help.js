@@ -234,7 +234,7 @@ module.exports = {
             if (!command) {
                 const embed = new MessageEmbed()
                     .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
-                    .setColor("#FF7878");
+                    .setColor(bot.color);
 
                 return await interaction.editReply({
                     embeds: [embed]
@@ -258,6 +258,7 @@ module.exports = {
                     command.description :
                     "No description for this command."
                 )
+
                 .setFooter(`Comfi™ Help`, interaction.user.avatarURL({
                     dynamic: true
                 }))
@@ -266,7 +267,6 @@ module.exports = {
                     dynamic: true
                 }))
                 .setColor(bot.color);
-
             return await interaction.editReply({
                 embeds: [embed]
             });

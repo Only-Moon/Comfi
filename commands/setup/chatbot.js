@@ -35,6 +35,7 @@ module.exports = {
           description: 'Channel for Chatbot',
           name: 'name', 
           required: true,
+          channelTypes: ["GUILD_TEXT"],
         }, ], },
       { 
         type: 'SUB_COMMAND', 

@@ -15,6 +15,7 @@ module.exports = {
         type: 'CHANNEL',
         description: 'channel of that message',
         required: true,
+        channelTypes: ["GUILD_TEXT"],
     },
     {
         name: 'message',
@@ -41,19 +42,19 @@ module.exports = {
         required: false,
         choices: [
     {
-            name: 'PRIMARY',
+            name: 'Blue',
             value: 'PRIMARY'
    },
     {
-            name: 'SECONDARY',
+            name: 'Grey',
             value: 'SECONDARY'
     },
     {
-            name: 'SUCCESS',
+            name: 'Green',
             value: 'SUCCESS'
      },
      {
-            name: 'DANGER',
+            name: 'Red',
             value: 'DANGER'
     },
     ],
@@ -76,6 +77,7 @@ module.exports = {
        type: 'CHANNEL', 
        description: 'channel of that message', 
        required: true,
+       channelTypes: ["GUILD_TEXT"],
     }, 
     { 
        name: 'message', 

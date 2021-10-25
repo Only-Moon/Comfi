@@ -4,6 +4,8 @@ module.exports = {
     name: "invitee",
     description: "Sends an invite for the bot",
     ownerOnly: false,
+    userperm: [""],
+    botperm: [""],
 
     /**
      *
@@ -16,7 +18,7 @@ module.exports = {
           .setTitle('Comfi Invite Link!')
         .setDescription("I'm a cool Discord Bot, ain't I? Use the buttons below to invite me to your server or join our support server!\n\nStay Safe")
          .setThumbnail(bot.user.displayAvatarURL()) 
-          .setColor("#F4B3CA");
+          .setColor(bot.color);
       
       const yes = new MessageButton() 
         .setStyle("SUCCESS") 

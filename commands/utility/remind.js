@@ -37,7 +37,7 @@ module.exports = {
         let reminder = r
 
         const wrongtime = new MessageEmbed()
-            .setColor('#F4B3CA')
+            .setColor(bot.color)
             .setDescription(`**Sorry I only do d, m, h, or s.**`)
 
             if (
@@ -50,14 +50,14 @@ module.exports = {
                 return interaction.followUp({embeds: [wrongtime]})
                 
                 const remindertime = new MessageEmbed()
-                .setColor('#F4B3CA')
+                .setColor(bot.color)
                 .setDescription(`\**Your reminder will go off in ${time}**`)
                 interaction.followUp({embeds: [remindertime]})
 
                 const reminderdm = new MessageEmbed()
-                .setColor('#F4B3CA')
+                .setColor(bot.color)
                 .setTitle('**REMINDER**')
-                .setDescription(`**It has been ${time} here is your reminder:** ${reminder}`)  
+                .setDescription(`**It has been ${time}** \nReminder: **${reminder}**`)  
         
                 setTimeout(async function () {
                    try{

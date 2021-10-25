@@ -28,12 +28,12 @@ module.exports = {
 
     if (!videoName) return interaction.editReply(`${emoji.Error} Please provide a YouTube video name`);
 
-    const searchOptions = { maxResults: 1, key: apiKey, type: 'video' };
-
+    const searchOptions = { maxResults: 1, key: apiKey, type: 'video', safeSearch: "strict"};
+/**
     if (banned.some(word => args[0].toLowerCase().includes(word))) {
       return interaction.editReply(`${bot.error} Go search these nsfw things by yourself`)
     }
-
+*/
     let result = await search(videoName, searchOptions)
       .catch(err => {
         return interaction.editReply(`${bot.error} Please try again in a few seconds`);
