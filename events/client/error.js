@@ -3,7 +3,7 @@ let bot = require("../../index.js")
 
 process.on("unhandledRejection", (reason, promise) => {
 
-  const channel = bot.channels.cache.find(c => c.id === "880101469586604032");
+  const channel = bot.channels.cache.find(c => c.id === "881789380073783303");
 
     const embed = new MessageEmbed()
         .setTitle(`${bot.error} • Unhandled Rejection`)
@@ -25,7 +25,7 @@ process.on("unhandledRejection", (reason, promise) => {
 
 process.on("uncaughtException", (err, origin) => {
 
-  const channel = bot.channels.cache.find(c => c.id === "880101469586604032");
+  const channel = bot.channels.cache.find(c => c.id === "881789380073783303");
 
     const embed = new MessageEmbed()
     .setTitle(`${bot.error} • Uncaught Exception`)
@@ -48,7 +48,7 @@ if(channel) {
 
 process.on("uncaughtExceptionMonitor", (err, origin) => {
 
-  const channel = bot.channels.cache.find(c => c.id === "880101469586604032");
+  const channel = bot.channels.cache.find(c => c.id === "881789380073783303");
 
     const embed = new MessageEmbed()
     .setTitle(`${bot.error} • Uncaught Exception Monitor`)

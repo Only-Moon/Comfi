@@ -1,7 +1,7 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "cleverate",
+    name: "roll",
     description: "clever rate user",
     ownerOnly: false,
     options: [

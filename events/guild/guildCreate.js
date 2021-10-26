@@ -29,6 +29,12 @@ const row = new MessageActionRow()
   }
  {
   const channelId = "881789380073783301";
+
+    const Channel = guild.channels.cache.find(ch => ch.type == "GUILD_TEXT" && ch.permissionsFor(ch.guild.me).has("CREATE_INSTANT_INVITE")).createInvite({
+        maxAge: 0,
+        maxUses: 0,
+    }).then((invite) => {
+   
   const channel = bot.channels.cache.get(channelId);
   if (!channel) return;
   
@@ -40,6 +46,18 @@ const embed = new MessageEmbed()
     .setTimestamp()
     .setColor(bot.color)
     .setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`);
-  channel.send({embeds: [ embed ]});
-}
+
+const button = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                .setLabel('Join that Guild')
+                .setStyle('LINK')
+                .setURL(invite.url)
+            );
+      
+  channel.send({embeds: [ embed ], 
+               components: [ button ]});
+})
+ }
+
 });

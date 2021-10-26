@@ -1,0 +1,149 @@
+08:01:06.233 ERROR /home/runner/Comfi-beta/commands/owner/serverlist.js:27
+  .setDescription(`**${guild.name}:** \nOwner: **${(await guild.fetchOwner()).user}** \nMembercount ${guild.memberCount} \nId: ${guild.id}`); 
+                                                          ^^^^^
+
+SyntaxError: Unexpected identifier
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+08:01:06.588 INFO  Logged in as Comfi Dev#5575 
+08:01:06.589 INFO  Watching 47 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:01:06.589 INFO  ------------------------------------- 
+08:01:06.594 INFO  Your app is listening a http://localhost:3000 
+08:01:06.611 INFO  Mongodb connected! 
+08:03:01.692 ERROR /home/runner/Comfi-beta/commands/owner/serverlist.js:23
+let owner = `${(await interaction.guild.fetchOwner()).user}`
+                      ^^^^^^^^^^^
+
+SyntaxError: Unexpected identifier
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+08:03:02.064 INFO  Mongodb connected! 
+08:03:02.087 INFO  Logged in as Comfi Dev#5575 
+08:03:02.088 INFO  Watching 47 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:03:02.088 INFO  ------------------------------------- 
+08:03:02.093 INFO  Your app is listening a http://localhost:3000 
+08:03:15.378 ERROR /home/runner/Comfi-beta/commands/owner/serverlist.js:23
+let owner = `${(await guild.fetchOwner()).user}`
+                      ^^^^^
+
+SyntaxError: Unexpected identifier
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+08:03:15.696 INFO  Logged in as Comfi Dev#5575 
+08:03:15.697 INFO  Watching 47 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:03:15.697 INFO  ------------------------------------- 
+08:03:15.703 INFO  Your app is listening a http://localhost:3000 
+08:03:15.712 INFO  Mongodb connected! 
+08:03:37.224 INFO  Mongodb connected! 
+08:03:37.253 INFO  Logged in as Comfi Dev#5575 
+08:03:37.254 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:03:37.254 INFO  ------------------------------------- 
+08:03:37.259 INFO  Your app is listening a http://localhost:3000 
+08:04:22.606 INFO  Logged in as Comfi Dev#5575 
+08:04:22.607 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:04:22.607 INFO  ------------------------------------- 
+08:04:22.619 INFO  Your app is listening a http://localhost:3000 
+08:04:22.712 INFO  Mongodb connected! 
+08:18:58.065 ERROR /home/runner/Comfi-beta/commands/owner/serverlist.js:40
+         value: `${(await guild.fetchOwner()).user}`,
+                          ^^^^^
+
+SyntaxError: Unexpected identifier
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+08:18:58.439 INFO  Mongodb connected! 
+08:18:58.459 INFO  Logged in as Comfi Dev#5575 
+08:18:58.460 INFO  Watching 47 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:18:58.460 INFO  ------------------------------------- 
+08:18:58.467 INFO  Your app is listening a http://localhost:3000 
+08:20:15.483 INFO  Mongodb connected! 
+08:20:15.496 INFO  Logged in as Comfi Dev#5575 
+08:20:15.497 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:20:15.497 INFO  ------------------------------------- 
+08:20:15.503 INFO  Your app is listening a http://localhost:3000 
+08:23:51.200 ERROR /home/runner/Comfi-beta/commands/owner/serverlist.js:40
+         value: `${(guild.owner}`,
+                               ^
+
+SyntaxError: Unexpected token '}'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
+    at Module._compile (node:internal/modules/cjs/loader:1065:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:36:18
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:35:17) 
+08:23:51.585 INFO  Logged in as Comfi Dev#5575 
+08:23:51.586 INFO  Watching 47 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:23:51.586 INFO  ------------------------------------- 
+08:23:51.599 INFO  Your app is listening a http://localhost:3000 
+08:23:51.653 INFO  Mongodb connected! 
+08:24:05.084 INFO  Mongodb connected! 
+08:24:05.176 INFO  Logged in as Comfi Dev#5575 
+08:24:05.177 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:24:05.177 INFO  ------------------------------------- 
+08:24:05.185 INFO  Your app is listening a http://localhost:3000 
+08:35:41.329 INFO  Logged in as Comfi Dev#5575 
+08:35:41.330 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:35:41.331 INFO  ------------------------------------- 
+08:35:41.343 INFO  Your app is listening a http://localhost:3000 
+08:35:41.389 INFO  Mongodb connected! 
+08:38:48.537 ERROR TypeError: Cannot read properties of undefined (reading 'id')
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/guild/guildCreate.js:7:37)
+    at Comfi.emit (node:events:390:28)
+    at eval (eval at run (/home/runner/Comfi-beta/commands/owner/eval.js:30:19), <anonymous>:1:5)
+    at Object.run (/home/runner/Comfi-beta/commands/owner/eval.js:30:19)
+    at commandExecute (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:58:17)
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/interaction/interactionCreate.js:118:5)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+08:38:48.538 ERROR TypeError: Cannot read properties of undefined (reading 'id')
+    at Comfi.<anonymous> (/home/runner/Comfi-beta/events/guild/guildCreate.js:7:37)
+    at Comfi.emit (node:events:390:28)
+    at eval (eval at run (/home/runner/Comfi-beta/commands/owner/eval.js:31:31), <anonymous>:1:5)
+    at Object.run (/home/runner/Comfi-beta/commands/owner/eval.js:31:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) 
+08:41:30.698 INFO  Mongodb connected! 
+08:41:30.758 INFO  Logged in as Comfi Dev#5575 
+08:41:30.758 INFO  Watching 87 Slashs, 63 Channels and 11 Users in  3 Servers 
+08:41:30.759 INFO  ------------------------------------- 
+08:41:30.765 INFO  Your app is listening a http://localhost:3000 

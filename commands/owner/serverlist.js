@@ -19,12 +19,28 @@ const guilds = bot.guilds.cache.sort((a, b) => b.memberCount - a.memberCount);
 let pages = []
 
 guilds.forEach(guild => {
-
+  
 const embed = new MessageEmbed() 
         .setTitle(`Guilds for ${bot.user.username}`)
         .setColor(bot.color) 
   .setFooter(`Requested by ${interaction.user.tag}`) 
-  .setDescription(`**${guild.name}:** \nMembercount ${guild.memberCount} \nId: ${guild.id}`); 
+ .addFields(
+      {
+         name: "Guild Name 》",
+         value: `${guild.name}`,
+         inline: true
+      },
+      {
+         name: "Guild Id 》",
+         value: `${guild.id}`,
+         inline: true
+      },
+      {
+         name: "Member Count 》",
+         value: `${guild.memberCount}`,
+         inline: true
+      },
+)
       
 pages.push(embed)
 })

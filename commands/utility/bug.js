@@ -20,8 +20,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args, message) => {
-        const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
-        const reportCh = bot.channels.cache.get('889149558335111179');
+        const member = interaction.member;
+        const reportCh = bot.channels.cache.get('889149873893539900');
+        if(!reportCh) return;
         const query = args.join(" ");
         if (!query) return interaction.followUp({ content: "Specify a **bug**" });
         const reportEmbed = new MessageEmbed()
