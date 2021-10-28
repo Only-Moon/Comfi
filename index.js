@@ -5,7 +5,6 @@ console.log('Loading Bot...');
 
 //-----[ DEFINING DEPENDENCIES ]-----\\
 
-const Discord = require("discord.js");
 const Comfi = require("./utils/Comfi"),	
 bot = new Comfi(); 
 

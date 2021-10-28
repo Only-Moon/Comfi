@@ -2,7 +2,6 @@ const Discord = require('discord.js'),
     mongoose = require('mongoose'),
     chalk = require('chalk'),
     fs = require('fs');
-const { DiscordTogether } = require('discord-together');
 
 class Comfi extends Discord.Client {
     constructor() {
@@ -10,7 +9,7 @@ class Comfi extends Discord.Client {
             allowedMentions: { 
     parse: ['users', 'roles'],
     repliedUser: true },
-           intents: 32767,
+           intents: [ "GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_MESSAGES", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INVITES", "GUILD_PRESENCES", "GUILD_MESSAGE_TYPING" ],
            partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'GUILD', 'USER'],
           restRequestTimeout: 30000
         })

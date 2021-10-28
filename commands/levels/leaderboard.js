@@ -39,7 +39,7 @@ module.exports = {
 
                     msg.delete()
                     
-                    const embed = new MessageEmbed()
+  const embed = new MessageEmbed()
                     .setAuthor(`${interaction.guild.name}'s ranking leaderboard! (Top 10)`, interaction.guild.iconURL({dynamic: true}))
                     .setDescription(top10.join("\n"))
                     .setFooter(`Only shows top 10 members!`)

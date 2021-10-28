@@ -37,6 +37,7 @@
     "node-superfetch": "^0.2.3",
     "nodemon": "^2.0.14",
     "pm2": "^5.1.2",
+    "prettier": "^2.4.1",
     "pretty-ms": "^7.0.1",
     "quickmongo": "^3.0.2",
     "relevant-urban": "^2.0.0",
@@ -51,14 +52,14 @@
   },
   "devDependencies": {
     "husky": "^7.0.4",
-    "node": "^16.12.0",
+    "node": "^16.13.0",
     "pretty-quick": "^3.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --delay 10 index.js",
     "stop": "kill 1",
-		"prepare": "husky install"
+    "prepare": "husky install"
   },
   "author": "xxDeveloper, Xx-Mohit-xX",
   "license": "ISC"
