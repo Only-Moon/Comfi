@@ -46,7 +46,7 @@ bot.on("ready", async () => {
                    
 //bot.guilds.cache.forEach((g) => {
 
-//g.commands.set(arrayOfSlashCommands)
+//g.commands.set([])
 //})
  
 await bot.application.commands.set(arrayOfSlashCommands)
