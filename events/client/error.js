@@ -1,6 +1,12 @@
 let { MessageEmbed } = require("discord.js")
 let bot = require("../../index.js")
 
+bot.on("disconnect", (e) => bot.logger.log(`disconnect \n` + e))
+            .on("reconnecting", (e) => bot.logger.log(`Bot is reconnecting \n` + e))
+            .on("error", (e) => bot.logger.error(`error \n` + e))
+            .on("rateLimit", (err) => console.log(err))
+            .on("warn", (info) => bot.logger.warn(`info \n` + e));
+
 process.on("unhandledRejection", (reason, promise) => {
 
   const channel = bot.channels.cache.find(c => c.id === "881789380073783303");

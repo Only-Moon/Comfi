@@ -4,5 +4,5 @@ bot.on("messageUpdate", async (oldMessage, newMessage) => {
     if(newMessage.author?.bot) return;
     if(!newMessage.content?.length) return;
 
-    bot.emit("messageCreate", newMessage).catch(() => null)
+    bot.emit("messageCreate", newMessage)
 })

@@ -24,11 +24,6 @@ class Comfi extends Discord.Client {
             this.logger.ready(`Logged in as ${this.user.tag}`, 'ready')
         })
         this.owners = (require('../config.json').owners)
-        this.on("disconnect", (e) => this.logger.log(`disconnect \n` + e))
-            .on("reconnecting", (e) => this.logger.log(`Bot is reconnecting \n` + e))
-            .on("error", (e) => this.logger.error(`error \n` + e))
-            .on("rateLimit", (err) => this.logger.error(err))
-            .on("warn", (info) => this.logger.warn(`info \n` + e));
         this.login(process.env.TOKEN)
         this.config = require('../config.json')
         this.categories = fs.readdirSync("./commands/");
