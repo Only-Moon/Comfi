@@ -11,7 +11,7 @@ bot.on("channelUpdate", async (oldChannel, newChannel) => {
                     name.push(x)
             })
             let indexs = []
-            String(newChannel.guild.memberCount).split("").forEach((n) => {
+            String(newChannel.guild.members.cache.filter(member => !member.user.bot).size).split("").forEach((n) => {
                 indexs.push(name.indexOf(n))
             })
             const newName = newChannel.name.split("").slice(0, indexs[0])

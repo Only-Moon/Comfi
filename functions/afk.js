@@ -21,7 +21,7 @@ module.exports = async (message) => {
                     })
 
 if(message.member.manageable) {
-  message.member.setNickname('')
+  message.member.setNickname('').catch(() => null)
 }
                   
 let embed = new MessageEmbed()
@@ -34,7 +34,7 @@ return message.reply({embeds:  [ embed ], allowedMentions: { repliedUser: false 
   setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('30s'))
   }); 
                 } else {
-        message.delete();
+        message.delete().catch(() => null);
 
 let afk = new MessageEmbed()
      .setTitle(`**User Afk**`)

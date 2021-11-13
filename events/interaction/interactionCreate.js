@@ -60,6 +60,15 @@ if (interaction.user.bot) return;
 
 const user = await users.findOne({userId: interaction.user.id})
     if(!user) { await guilds.create({userId: interaction.user.id})}
+
+const logsChannel = interaction.guild.channels.cache.find(c => c.id === "890580695192305696" || "782566659088842762")
+
+const logsEmbed = new MessageEmbed()
+    .setDescription(` > <a:tick:890113862706266112> • __Command:__ **${cmd.name}**!\n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${interaction.guild ? interaction.guild.name : "dm"}**!\n > <a:emoji_87:883033003574579260> • __Id:__ **${interaction.guild ? interaction.guild.id : "dm"}**!`)			
+    .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)				
+    .setColor(bot.color)				
+    .setFooter(`Used by ${interaction.user.username}`)				
+    .setTimestamp();
   
 if(cmd.cooldown) {
     const current_time = Date.now();
@@ -103,9 +112,19 @@ cmd: cmd.name
 time: current_time
  });
                 commandExecute();
+                if(logsChannel) {
+
+logsChannel.send({embeds: [ logsEmbed ]}).catch(() => null)
+              
+};
             }
         } else {
             commandExecute();
+            if(logsChannel) {
+
+logsChannel.send({embeds: [ logsEmbed ]}).catch(() => null)  
+   }
+          
             users.create({
                 userId: interaction.member.id,
                 cmd: cmd.name,
@@ -116,6 +135,11 @@ time: current_time
     })
 } else {
     commandExecute();
+                if(logsChannel) {
+
+logsChannel.send({embeds: [ logsEmbed ]}).catch(() => null)  
+                }
+  
 };
       }
   
