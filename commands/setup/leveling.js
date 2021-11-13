@@ -92,7 +92,14 @@ module.exports = {
                     hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
                 break;
                 case 2: 
-                    finalData['message'] = msg.content
+
+        if(msg.content.lengt >= "4096") {
+                        collector.stop("3")
+                        hoisterMessage.delete().catch(() => {})
+                        return;
+                                                  }
+          
+                    finalData['message'] = msg.content.split("").slice(0,4096).join("")
                     msg.delete().catch(() => {})
                     hoisterMessage.delete().catch(() => {})
                     collector.stop("2")
@@ -107,6 +114,9 @@ module.exports = {
             }
             if(reason === "1") {
                return interaction.channel.send({content: `${bot.crosss} • There was an error with your anwser, please make sure to follow the steps!`})
+            }
+            if(reason === "3") {
+               return interaction.channel.send({content: `${bot.crosss} • Leveling Message  should not contain more than 1024 characters`})
             }
             if(reason === "4") {
                 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {

@@ -38,6 +38,14 @@ module.exports = {
             type: 'SUB_COMMAND',
             description: 'Sends the ticket panel',
             name: 'display',
+            options: [
+            {
+            type: 'STRING',
+            description: 'Subject of the ticket',
+            name: 'subject',
+            required: false,
+            },
+            ],
         },
         {
             type: 'SUB_COMMAND',
@@ -90,8 +98,11 @@ await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
       };
 
 if (option === 'display') {
+
+let desc = interaction.options.getString("subject") || "Create a new Ticket By Clicking Below"
+
 				simplydjs.ticketSystem(interaction, interaction.channel, { 
-    embedDesc: 'Create a new Ticket By Clicking Below',
+    embedDesc: `${desc}`,
     embedColor: bot.color, // default: #075FFFF 
     embedFoot: '', // default: message.guild.name 
     credit: false,

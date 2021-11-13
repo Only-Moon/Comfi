@@ -62,7 +62,8 @@ module.exports = async (message, bot) => {
             if(guild.leveling_channel === "message") {
                 return message.reply({content: `${format(guild.leveling_message)}`}).catch(() => null)
             } else {
-                const channel = message.guild.channels.cache.find(c => c.id === guild.leveling_channel).catch(() => null)
+                const channel = message.guild.channels.cache.find(c => c.id === guild.leveling_channel)
+              
                 if(!channel) {
                     return message.reply({content: `${format(guild.leveling_message)}`}).catch(() => null)
                 } else {

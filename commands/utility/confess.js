@@ -29,7 +29,7 @@ await interaction.deleteReply();
     let channel = guild.confess_channel
     if (!channel) return;
   
-  const confessionQuery = args[0]
+  const confessionQuery = interaction.options.getString("confession").split("").slice(0, 4000).join("")
   if(!confessionQuery) return interaction.editReply("Please Confess Something.");
     
   const embed = new MessageEmbed()

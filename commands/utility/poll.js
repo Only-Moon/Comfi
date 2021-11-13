@@ -20,11 +20,14 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
+
+const ques = interaction.options.getString("question").split("").slice(0, 4000).join("")
+      
    const embed = new MessageEmbed()
             .setColor(bot.color)
             .setTitle(`Poll For ${interaction.guild.name} Sever`)
             .setFooter(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
-            .setDescription(args[0])
+            .setDescription(`${ques}`)
         var msg = await interaction.channel.send({embeds: [ embed ]}).catch( (err) => {
    return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
                             });

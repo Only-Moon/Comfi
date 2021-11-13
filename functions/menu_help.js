@@ -22,7 +22,7 @@ const create_mh = (array) => {
   let menus = []; 
   
   const emo = {
-      admin: "<a:loli_2_cs:883017896245211166>", 
+      //admin: "<a:loli_2_cs:883017896245211166>", 
       anime: "<a:snowman_cs:883017868944502804>", 
       emoji: "<a:apple_cs:883033005172605020>",
       fun: "<a:shootingstaw_cs:883017879065354290>",

@@ -41,9 +41,9 @@ const emo = Util.parseEmoji(emote);
   
 if (!emo.name || !emo.id) return interaction.editReply(`${bot.error} Invalid emote argument`);
   
-    const res = `https/cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
+    const res = `https://cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
 
-  const img = `https/cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
+  const img = `https://cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
     
     let embed = new MessageEmbed()
       .setColor(bot.color)

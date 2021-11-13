@@ -9,7 +9,8 @@ module.exports = {
       {
       type: 'STRING',
       name: 'toggle',
-      description: 'Sets channel for Modlogs', 
+      required: true,
+      description: 'Sets the toggle for coleave', 
       choices: [ 
       { 
         name: 'true/on', 

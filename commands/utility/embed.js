@@ -58,7 +58,8 @@ module.exports = {
             name: "channel",
             type: "CHANNEL",
             required: false,
-            description: 'Choose a channel to send it.'
+            description: 'Choose a channel to send it.',
+            channelTypes: ["GUILD_TEXT"],
         }
     ],
     run: async (bot, interaction, args) => {
@@ -81,9 +82,9 @@ try {
         const footer = interaction.options.getString('footer');
 
         const resultat = new embed()
-        .setTitle(title)
+        .setTitle(title.split("").slice(0, 256).join(""))
 
-        if(description) resultat.setDescription(description)
+        if(description) resultat.setDescription(description.split("").slice(0, 1024).join(""))
 
         if(couleurr) {
             if (!isColor(couleurr).color) return interaction.editReply({ content: `${bot.error} You must enter a valid colour. The colour can be in RGB, HEX, HSL, HSV, CMYK.` });
@@ -126,7 +127,12 @@ try {
             resultat.setFooter(footer)
         }
 
-        channelstype.send({ embeds: [resultat] })
+        channelstype.send({ embeds: [resultat] }).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        });
+});
         interaction.editReply({ content: `The embed has been sent to the channel ${channelstype}`})
 
      } catch (err) {

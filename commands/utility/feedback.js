@@ -22,7 +22,7 @@ module.exports = {
     run: async (bot, interaction, args, message) => {
         const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
         const feedCh = bot.channels.cache.get('881789379809513500');
-        const query = args.join(" ");
+        const query = interaction.options.getString("msg").split("").slice(0, 2000).join("");
         if (!query) return interaction.followUp({ content: `${bot.error} Specify a **message**` });
         const feedEmbed = new MessageEmbed()
             .setTitle('Comfi™ Feedback')

@@ -145,7 +145,14 @@ module.exports = {
                     hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
                 break;
                 case 4: 
-  finalData['message'] = msg.content
+
+        if(msg.content.lengt >= "4096") {
+                        collector.stop("3")
+                        hoisterMessage.delete().catch(() => {})
+                        return;
+                                                  }
+          
+                    finalData['message'] = msg.content.split("").slice(0,4096).join("")
                     msg.delete().catch(() => {})
                     counter++
                     hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
@@ -172,6 +179,9 @@ module.exports = {
             }
             if(reason === "1") {
                return interaction.channel.send({content: `${bot.error} • There was an error with your anwser, please make sure to follow the steps!`})
+            }
+            if(reason === "3") {
+               return interaction.channel.send({content: `${bot.crosss} • Welcome Message  should not contain more than 1024 characters`})
             }
             if(reason === "4") {
                 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {

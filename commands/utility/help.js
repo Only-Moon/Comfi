@@ -34,11 +34,12 @@ module.exports = {
 
             let ignored = [
                 "owner",
-                "context"
+                "context",
+                "admin"
             ];
 
             const emo = {
-                admin: "<a:loli_2_cs:883017896245211166>",
+              // admin: "<a:loli_2_cs:883017896245211166>",
                 anime: "<a:snowman_cs:883017868944502804>",
                 emoji: "<a:apple_cs:883033005172605020>",
                 fun: "<a:shootingstaw_cs:883017879065354290>",
@@ -70,7 +71,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setTitle("Comfi™ Help")
-                .setDescription(`My Prefix For __**${interaction.guild.name}**__ Is  __**${prefix}**__\n\nFor More Command Information, Type The Following Command:\n**${prefix}help anime or** **${prefix}help ban**`)
+                .setDescription(`My Prefix For __**${interaction.guild.name}**__ Is  __**${prefix}**__\n\nFor More Command Information, Type The Following Command:\n**${prefix}help settings or** **${prefix}help ban**`)
                 .addFields(categories)
                 .setFooter(`Requested by ${interaction.member.displayName}`, interaction.user.avatarURL({
                     dynamic: true
