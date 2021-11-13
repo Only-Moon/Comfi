@@ -33,6 +33,8 @@ module.exports = {
             .setTimestamp()
             .setColor(bot.color)
         interaction.followUp({ content: "Report has been sent to the report channel!" })
-        reportCh.send({ embeds: [reportEmbed] });
+        reportCh.send({ embeds: [reportEmbed] }).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            });
     },
 };

@@ -36,7 +36,7 @@ module.exports = {
 
         try {
             member.voice.setDeaf(true, reason);
-            interaction.editReply("Success ✅ : Member Deafened")
+            interaction.editReply(`${bot.tick} • Deafened ${member.user.username} `)
      } catch (err) {
 
 return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)

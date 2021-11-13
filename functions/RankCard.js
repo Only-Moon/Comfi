@@ -242,21 +242,12 @@ const noSymbols = string => string.replace(/[\u007f-\uffff]/g, "");
     ctx.font = '30px "Poppins-Bold"';
     ctx.fillText(textXPEdited, 730, 180);
 
-    if (options.slash === true) {
       const attachment = new Discord.MessageAttachment(
         canvas.toBuffer(),
         AttachmentName
       );
 
       message.followUp({ files: [attachment], ephemeral: true });
-    } else if (!options.slash || options.slash === false) {
-      const attachment = new Discord.MessageAttachment(
-        canvas.toBuffer(),
-        AttachmentName
-      );
-
-      message.channel.send({ files: [attachment] });
-    }
   } catch (err) {
     console.log(`Error Occured. | rankCard | Error: ${err.stack}`);
   }

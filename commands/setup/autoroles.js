@@ -13,7 +13,7 @@ module.exports = {
         required: true,
     }
     ],  
-    botperm: [],
+    botperm: ["MANAGE_GUILD"],
     userperm: ["MANAGE_GUILD"],
     /**
      * @param {CommandInteraction} interaction 

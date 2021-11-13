@@ -7,7 +7,6 @@ module.exports = {
             description: "which action do you want",
             required: true,
             type: "STRING",
-            //You can also do it without choices but these are the only available types! Its recommended that u use choices
             choices: [
                 { 
                     name: "cuddle",

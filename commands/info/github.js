@@ -35,7 +35,7 @@ module.exports = {
 		}
 		catch (e) {
 			return interaction.editReply(
-        {content: `${bot.error} An error occured, please try again! \nError: ${e}`
+        {content: `${bot.error} An error occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) ! \nError: ${e}`
         });
 		}
 

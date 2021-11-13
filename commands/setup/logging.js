@@ -5,7 +5,7 @@ module.exports = {
     name: "logging",
     description: "Setup server logging",
     ownerOnly: false,
-    botperm: ["MANAGE_ROLES"],
+    botperm: ["MANAGE_GUILD"],
     userperm: ["ADMINISTRATOR"],
     /**
      * @param {CommandInteraction} interaction 
@@ -27,7 +27,7 @@ module.exports = {
        
         let steps = [step1, step2]
         let counter = 0
-        interaction.deleteReply()
+       await interaction.deleteReply().catch(() => null)
         let hoisterMessage = await interaction.channel.send({embeds: [steps[counter]]})
         const finalData = {
             value: undefined,

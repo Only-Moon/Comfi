@@ -12,7 +12,7 @@ run: async (bot, interaction, args) => {
     const embed = new Discord.MessageEmbed()
     .setColor(bot.color)
     .setTitle("Vote For Comfi")
-    .setDescription("You can vote for her from **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discordbotlist_** Coming soon")
+    .setDescription("You can vote for her from **discordbotlist** and **top.gg** \n Top.gg Coming soon \n\n **_discord.bots.gg_** Coming soon")
     .setTimestamp();
 let top = new Discord.MessageButton()
            .setStyle("LINK")
@@ -22,7 +22,7 @@ let top = new Discord.MessageButton()
 let bots = new Discord.MessageButton()
            .setStyle("LINK")
            .setURL("http://botlist.com")
-           .setLabel("discord.bot")
+           .setLabel("discord.bots.gg")
            .setDisabled();
 
 let row = new Discord.MessageActionRow()

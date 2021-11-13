@@ -20,7 +20,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args) => {
+run: async (bot, interaction, args) => {
 
 simplydjs.tictactoe(interaction, {    
   slash: true,    
@@ -28,7 +28,8 @@ simplydjs.tictactoe(interaction, {
   oEmoji: '883766798321864705',    
   idleEmoji: '883765946823630918',    
   embedColor: bot.color,    
-  embedFoot: 'Tictactoe'
+  embedFoot: 'Tictactoe',
+  credit: false
   })
 
     }

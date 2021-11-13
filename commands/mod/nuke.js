@@ -28,8 +28,8 @@ module.exports = {
     
             ch.send({
               embeds: [ NukeEmbed ]}).then((msg) => {
-  setTimeout(() => msg.delete(), ms('1m'))
-  });
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('60s'))
+  });;
        
     })
 

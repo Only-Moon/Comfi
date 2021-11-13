@@ -1,6 +1,7 @@
 const bot = require("../../index");
 const { MessageEmbed } = require('discord.js');
 const guilds = require('../../models/guild')
+const fetch = require("node-fetch")
 
 bot.on("messageCreate", async (message) => {
 
@@ -21,54 +22,59 @@ let ch = guild.chat_channel
   
   if(message.channel.id === ch) { 
 
-let name = bot.user.username;
-        let developer = "Moonbow and xxDeveloper";
+try {
+    
+const ranges = [
+			'\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
+			'\ud83d[\udc00-\ude4f]', // U+1F400 to U+1F64F
+			'\ud83d[\ude80-\udeff]' // U+1F680 to U+1F6FF
+		]
 
-        var ranges = [
-          "\ud83c[\udf00-\udfff]", // U+1F300 to U+1F3FF
-          "\ud83d[\udc00-\ude4f]", // U+1F400 to U+1F64F
-          "\ud83d[\ude80-\udeff]" // U+1F680 to U+1F6FF
-        ];
+		let input = message.cleanContent.replace(
+			new RegExp(ranges.join('|'), 'g'),
+			'.'
+		)
 
-        let input = message.content.replace(
-          new RegExp(ranges.join("|"), "g"),
-          "."
-        );
+		//Replacing Emojis
+		input = input.replace(/<a?:.+:\d+>/gm, '')
 
-        const hasEmoteRegex = /<a?:.+:\d+>/gm;
-        const emoteRegex = /<:.+:(\d+)>/gm;
-        const animatedEmoteRegex = /<a:.+:(\d+)>/gm;
+		await message.channel.sendTyping().catch(() => null)
 
-        const emoj = message.content.match(hasEmoteRegex);
+		const url = new URL('https://api.affiliateplus.xyz/api/chatbot'),
+			params = url.searchParams,
+			age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
 
-        input = input.replace(emoteRegex.exec(emoj), "");
+		params.set('message', input)
+		params.set('ownername', 'moonbow#2003')
+		params.set('botname', bot.user.username)
+		params.set('age', age)
+		params.set('birthyear', bot.user.createdAt.getFullYear())
+		params.set('birthdate', bot.user.createdAt.toLocaleDateString())
+		params.set('birthplace', 'House Of Emotes--')
+		params.set('location', message.guild.name)
+		params.set('user', message.author.id)
 
-        input = input.replace(animatedEmoteRegex.exec(emoj), "");
+		// Using await instead of .then
+		const jsonRes = await fetch(url).then((res) => res.json()) // Parsing the JSON
 
-      message.channel.sendTyping()
+		const chatbotReply = jsonRes.message
+			.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
+			.replace(/@here/g, '`@here`')
 
-        fetch(
-          `https://api.affiliateplus.xyz/api/chatbot?message=${input}&botname=${name}&ownername=${developer}&user=${message.author.id}`
-        )
-          .then((res) => {
-            let rep = res.json();
-            return rep;
-          })
-          .then(async (reply) => {
-            let mes = await reply.message.replace("@everyone", "`@everyone`");
-            let mess = mes.replace("@here", "`@here`");
-      
-      setTimeout(() => {
-            message.reply({
-              content: mess.toString(),
-              allowedMentions: { repliedUser: false }
-            });
-          }, 60);
-          })
-          .catch((err) => message.reply({ content: `Error: ${err}` })); 
-            } else { return; }
-
-  } else if(!guild.chatbot && message.channel.id === guild.chat_channel) {
-    return message.delete(), message.author.send({embeds: [ disabled ]})
+		await message.reply({
+			content: chatbotReply,
+			allowedMentions: { repliedUser: false }
+		}).catch(() => null)
+	} catch (err) {
+		if (err instanceof fetch.FetchError) {
+			if (err.type === 'invalid-json') {
+				message.reply({ content: '**Error:**\n```API offline```' }).catch(() => null) //Catch errors that happen while fetching
+			}
+		} else console.log(`Error Occured. | chatbot | Error: ${err.stack}`)
+}
+  } else return;
+    
+} else if(!guild.chatbot && message.channel.id === guild.chat_channel) {
+    return message.delete(), message.author.send({embeds: [ disabled ]}).catch(() => null)
   }
 })

@@ -32,6 +32,8 @@ module.exports = {
             .setTimestamp()
             .setColor(bot.color)
         interaction.followUp({ content: "Feedback has been sent to the support server!" })
-        feedCh.send({ embeds: [ feedEmbed ] });
+        feedCh.send({ embeds: [ feedEmbed ] }).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            });
     },
 };

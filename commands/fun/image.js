@@ -332,8 +332,8 @@ module.exports = {
         //Disability Image------------------------------------------------------------------------------------------------------------
         if (subcommand === `drake`) {
 
-const text1 = args[0];
-        const text2 = args.slice(1).join(" ")
+const text1 = interaction.options.getString("line_1");
+        const text2 = interaction.options.getString("line_2")
 
         const finalLink = 'https://luminabot.xyz/api/image/drake?yes=' + encodeURIComponent(text2) + '&no=' + encodeURIComponent(text1)
 
@@ -356,7 +356,7 @@ const text1 = args[0];
                 //make an attachment
                 let attachment = new MessageAttachment(image, "egg.png");
                 const genMeme = new MessageEmbed()
-                .setColor("#F4B3CA")  
+                .setColor(bot.color)  
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://egg.png")
                     .setFooter("Generated with memer API")
@@ -372,7 +372,7 @@ const text1 = args[0];
          
             const text = interaction.options.getString('text');
             let temp = new MessageEmbed()
-                .setColor("#F4B3CA")
+                .setColor(bot.color)
                 .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
 
             await interaction.followUp({ embeds: [temp] });
@@ -382,7 +382,7 @@ const text1 = args[0];
                 let attachment = new MessageAttachment(image, "emergencymeeting.png");
                 //delete old message
                 const genMeme = new MessageEmbed()
-               .setColor("#F4B3CA")   
+               .setColor(bot.color)   
                     .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setImage("attachment://emergencymeeting.png")
                     .setFooter("Generated with memer API")

@@ -3,7 +3,7 @@ const simplydjs = require("simply-djs")
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "ticket-system",
+    name: "ticket",
     description: "Setup the ticket system",
     ownerOnly: false,
     options: [

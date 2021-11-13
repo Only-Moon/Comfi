@@ -32,11 +32,11 @@ module.exports = {
                         })
                     }
                 })
-                return msg.edit({content: `${bot.tick} • All user levels have been reset!`})
+                return msg.edit({content: `${bot.tick} • All user levels have been reset!`}).catch(() => null)
             })
             
         } else {
-            return interaction.editReply({content: `${bot.crosss} • Please setup leveling before using this command!`})
+            return interaction.editReply({content: `${bot.crosss} • Please setup leveling before using this command!`}).catch(() => null)
         }
     
   }

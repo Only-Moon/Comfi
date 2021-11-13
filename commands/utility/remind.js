@@ -52,7 +52,9 @@ module.exports = {
                 const remindertime = new MessageEmbed()
                 .setColor(bot.color)
                 .setDescription(`\**Your reminder will go off in ${time}**`)
-                interaction.followUp({embeds: [remindertime]})
+                interaction.followUp({embeds: [remindertime]}).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            })
 
                 const reminderdm = new MessageEmbed()
                 .setColor(bot.color)
@@ -62,10 +64,12 @@ module.exports = {
                 setTimeout(async function () {
                    try{
         
-                    await interaction.user.send({embeds: [reminderdm]})
+                    await interaction.user.send({embeds: [reminderdm]}).catch( (err) => {
+   return interaction.channel.send(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            })
      } catch (err) {
 
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+return interaction.editReply(`${bot.error} An error has occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err}`)
     } 
                    
                 }, ms(time));

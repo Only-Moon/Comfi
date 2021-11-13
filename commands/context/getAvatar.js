@@ -20,7 +20,7 @@ module.exports = {
 .setColor(bot.color)           
           .setImage(user.displayAvatarURL({dynamic: true}));
 
-        interaction.followUp({embeds: [av]})
+        interaction.followUp({embeds: [av]}).catch(() => null)
         
     },
 };

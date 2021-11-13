@@ -39,7 +39,7 @@ module.exports = {
 
         let steps = [step1, step2, step3, step4]
         let counter = 0
-      interaction.deleteReply()
+     await interaction.deleteReply().catch(() => null)
         let hoisterinteraction = await interaction.channel.send({embeds: [steps[counter]]})
         const finalData = {
             value: undefined,

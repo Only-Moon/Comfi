@@ -54,7 +54,7 @@ const embed = new MessageEmbed()
   .setFooter(`${bot.guilds.cache.size} Guilds`, bot.user.displayAvatarURL())
 
 bot.channels.cache.find(c => c.id === "881789380073783302").send({embeds: [embed]})
-  guild.leave() 
+ await guild.leave() 
 
 interaction.editReply(`${bot.tick} left ${guild.id}`)
   

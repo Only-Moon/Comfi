@@ -7,6 +7,8 @@ bot.on("guildMemberUpdate", async (oldMember, newMember) => {
   const newStatus = newMember?.premiumSince; 
   const guild = oldMember.guild;
 
+if (!guild) return;
+  
   const guilD = await guilds.findOne({ 
     guildId: guild.id,
   }); 

@@ -6,7 +6,7 @@ module.exports = {
     name: "leaderboard",
     description: "See the servers level leader board",
     ownerOnly: false,
-    botperm: [],
+    botperm: ["SEND_MESSAGES"],
     userperm: [],
     /**
      * @param {CommandInteraction} interaction 
@@ -26,8 +26,8 @@ module.exports = {
                     })
                    }
                 }
-            })
-            interaction.editReply({content: `${bot.error} • Generating leaderboard `}).then((msg) => {
+})       
+            interaction.editReply({content: `${bot.tick} • Generating leaderboard `}).then((msg) => {
                 
                 setTimeout(() => {
                     let top10 = []

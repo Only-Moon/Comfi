@@ -1,4 +1,5 @@
 const { CommandInteraction, MessageEmbed, Util } = require("discord.js");
+const simplydjs = require("simply-djs")
 
 module.exports = {
     name: "emotee",
@@ -54,8 +55,26 @@ module.exports = {
 
 let [ sub ] = args
 
+let Name = interaction.options.getString("name");
+      
 if (sub === "add") {
 
+   let maxLength 
+        if(interaction.guild.premiumTier === "NONE") {
+            maxLength = 100
+        }
+        if(interaction.guild.premiumTier === "TIER_1") {
+            maxLength = 200
+        }
+        if(interaction.guild.premiumTier === "TIER_2") {
+            maxLength = 300
+        }
+        if(interaction.guild.premiumTier === "TIER_3") {
+            maxLength = 500
+        }
+if(interaction.guild.emojis.cache.size >= maxLength) {
+  interaction.editReply({content: `${bot.error} • Guild at max emoji cap ~ ${interaction.guild.emojis.cache.size}/${maxLength}`});
+} else {
 try {
   
 let isUrl = require("is-url");
@@ -65,7 +84,7 @@ let emote = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi);
 if (emote) {
   emote = emote[0];
   type = "emoji";
-  name = args.join(" ").replace(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi, "").trim().split(" ")[0];
+  name = Name;
 } else  {
   emote = `${args.find(arg => isUrl(arg))}`
   name = args.find(arg => arg != emote);
@@ -96,8 +115,9 @@ let emoji = { name: "" };
 
      } catch (err) {
 
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+return interaction.editReply(`${bot.error} An error has occured [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err}`)
     }
+}
 }
 
 if (sub === "addmany") {
@@ -119,8 +139,8 @@ interaction.deleteReply();
             ).then(em => interaction.channel.send(em.toString() + " added!")).catch (e => {
             let embed = new MessageEmbed()
             .setColor(bot.color)
-            .setTitle(`${bot.Error} Error!`)
-            .setDescription(`${bot.error} An error has occured \nError: ${e} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`);
+            .setTitle(`${bot.error} Error!`)
+            .setDescription(`${bot.error} An error has occured [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${e}`);
 
             interaction.editReply({embeds: [ embed ]});
 
@@ -132,45 +152,59 @@ interaction.deleteReply();
 }
 
 if (sub === "stats") {
-  
-  let Animated = interaction.guild.emojis.cache.filter(emoji => emoji.animated).size.toString();
+
+   let maxLength 
+        if(interaction.guild.premiumTier === "NONE") {
+            maxLength = 50
+        }
+        if(interaction.guild.premiumTier === "TIER_1") {
+            maxLength = 100
+        }
+        if(interaction.guild.premiumTier === "TIER_2") {
+            maxLength = 150
+        }
+        if(interaction.guild.premiumTier === "TIER_3") {
+            maxLength = 250
+        }
+          
+let Animated = interaction.guild.emojis.cache.filter(emoji => emoji.animated).size.toString();
 
 let Emani = interaction.guild.emojis.cache.filter(emoji => emoji.animated).map(em => em.toString());
 
-let EmojisAnimated = (Emani.length < 25 ? Emani.join(' ') : Emani.length > 25 ? `${Emani.slice(0, 25).join(' ')} \`+ ${Emani.length-25} emotes...\`` : 'None')
+let EmojisAnimated = (Emani.length < maxLength ? Emani.join(' ') : Emani.length > maxLength ? `${Emani.slice(0, maxLength).join(' ')} \`+ ${Emani.length-maxLength} emotes...\`` : 'None')
 
 
 let EmojiCount = interaction.guild.emojis.cache.filter(emoji => !emoji.animated).size.toString();
 
 let Em = interaction.guild.emojis.cache.filter(emoji => !emoji.animated).map(emo => emo.toString());
 
-let Emojis = (Em.length < 25 ? Em.join(' ') : Em.length > 25 ? `${Em.slice(0, 25).join(' ')} \`+ ${Em.length-25} emotes...\`` : 'None')
+let Emojis = (Em.length < maxLength ? Em.join(' ') : Em.length > maxLength ? `${Em.slice(0, maxLength).join(' ')} \`+ ${Em.length-maxLength} emotes...\`` : 'None')
 
 let OverallEmoji = Number(Animated) + Number(EmojiCount)
 
 let Embed1 = new MessageEmbed() 
-  .setTitle(`Emojis in ${interaction.guild.name}.`) 
-  .setThumbnail(interaction.guild.iconURL({ dynamic:  true}))
-  .addFields(
-    {
-      name: `**Animated [${Animated}]**`, 
-      value: `${EmojisAnimated}`, 
-      inline: true
-    },
-    {
-       name: `**Standard [${EmojiCount}]**`, 
-       value: `${Emojis}`,
-       inline: true
-    },
-    {
-       name: `**Over all emojis**`, 
-       value: `${OverallEmoji}`, 
-       inline: true
-    }
-)
+  .setTitle(`Animated Emojis in ${interaction.guild.name} ~ ${Animated}.`) 
+  .setThumbnail(interaction.guild.iconURL({ dynamic:  true }))
+  .setDescription(`${EmojisAnimated}`)
   .setColor(bot.color); 
+
+let Embed2 = new MessageEmbed() 
+  .setTitle(`Non-Animated Emojis in ${interaction.guild.name} ~ ${EmojiCount}.`) 
+  .setThumbnail(interaction.guild.iconURL({ dynamic:  true}))
+  .setDescription(`${Emojis}`)
+  .setColor(bot.color); 
+
+let pages = [ Embed1, Embed2 ]
   
-interaction.editReply({embeds: [Embed1]}); 
+simplydjs.embedPages(bot, interaction, pages, {
+slash: true,
+backEmoji: '884420649580363796', 
+delEmoji: '891534962917007410',  
+forwardEmoji: '884420650549272586', 
+btncolor: 'SECONDARY',
+delcolor: 'SECONDARY', 
+skipBtn: false,
+})
   
 }
 

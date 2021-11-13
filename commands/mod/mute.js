@@ -119,14 +119,14 @@ return interaction.editReply(`${bot.error} An error has occured. \nError: ${err}
         const sembed = new MessageEmbed() 
           .setColor(bot.color) 
           .setAuthor(interaction.guild.name, interaction.guild.iconURL()) 
-          .setDescription(`${mutee.user.username} was successfully muted for ${reason}`) 
+          .setDescription(`${bot.tick} • ${mutee.user.username} was successfully muted for ${reason}`) 
           
         interaction.editReply({embeds: [ sembed ]});
       } else { 
         
   const sembed2 = new MessageEmbed() 
     .setColor(bot.color) 
-    .setDescription(`${mutee.user.username} was successfully muted`) ;
+    .setDescription(`${bot.tick} • ${mutee.user.username} was successfully muted`) ;
 interaction.editReply({embeds: [ sembed2 ]}); 
     } 
 
@@ -139,8 +139,8 @@ interaction.editReply({embeds: [ sembed2 ]});
         
               if (!roleadds) return;
           
-          roleadds.forEach(role => mutee.roles.add(role))
-        }) ;
+          roleadds.forEach(role => mutee.roles.add(role)).catch(() => null)
+        }).catch(() => null)
         }, ms(time))
  }
 
@@ -174,7 +174,7 @@ if (sub === "remove") {
   try {
       const mutee = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]) || interaction.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || interaction.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
 
-      if (!mutee) return interaction.editReply(`${bot.error} **Please Enter A Valid User!**`);
+      if (!mutee) return interaction.editReply(`${bot.error} • **Please Enter A Valid User!**`);
 
       let muterole;
       let dbmute = guild.mute_role;
@@ -189,8 +189,8 @@ if (sub === "remove") {
         
       if (!rolefetched) return; 
       
-      if (!muterole) return interaction.editReply(`${bot.error} **There Is No Mute Role To Remove!**`) 
-      if (!mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} **User is not Muted!**`) 
+      if (!muterole) return interaction.editReply(`${bot.error} • **There Is No Mute Role To Remove!**`) 
+      if (!mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} • **User is not Muted!**`) 
         
       try { 
         mutee.roles.remove(muterole.id).then(() => { 
@@ -199,12 +199,12 @@ if (sub === "remove") {
         
               if (!roleadds) return;
           
-          roleadds.forEach(role => mutee.roles.add(role))
-        }) 
+          roleadds.forEach(role => mutee.roles.add(role)).catch(() => null)
+        }).catch(() => null) 
       } catch { 
   let roleadds2 = rolefetched 
   if (!roleadds2) return; 
-  mutee.roles.add([ roleadds2 ]) 
+  mutee.roles.add([ roleadds2 ]).catch(() => null)
       
       } 
 const sembed = new MessageEmbed() 

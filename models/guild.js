@@ -19,6 +19,9 @@ const schema = new Schema({
     confession: {type: Boolean, default: false},
     confess_channel: {type: String, default: "NONE"},
 
+    //NQN
+    nqn: {type: Boolean, default: false },
+  
     // Tickets
     ticket: {type: Boolean, default: false},
     ticket_category: {type: String, default: "NONE"},
@@ -26,8 +29,9 @@ const schema = new Schema({
   
     // Leveling
     leveling: {type: Boolean, default: false},
+    leveling_coleave: {type: Boolean, default: false},
     leveling_channel: {type: String, default: "NONE"},
-    leveling_message: {type: String, default: "Congrats $user.mention$ on reaching level $level$"},
+    leveling_message: {type: String, default: "Congrats {{user#mention}} on reaching level {{level}}"},
     leveling_roles: {type: Array, default: []},
 
     

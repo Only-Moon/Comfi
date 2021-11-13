@@ -33,7 +33,7 @@ module.exports = {
       const embed = new MessageEmbed().setColor(bot.color)
 
       if (!user.member.manageable && user.member.id !== bot.user.id) {
-        embed.setDescription(`${bot.error} I Cant Change ${user.member.toString()}'s Nickname`)
+        embed.setDescription(`${bot.error} • I Cant Change ${user.member.toString()}'s Nickname`)
         return interaction.editReply({embeds: [embed]})
       }
 
@@ -43,7 +43,7 @@ module.exports = {
 
       embed.setDescription(`${bot.tick} • ${user.member.toString()}'s Nickname Changed`).setFooter(`From ${oldNick} to ${nickname.value}`);
       
-await interaction.editReply({ embeds: [embed] });
+await interaction.editReply({ embeds: [embed] }).catch(() => null);
 
                 const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(!guild.modlog) return;

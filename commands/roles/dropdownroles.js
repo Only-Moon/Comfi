@@ -91,7 +91,7 @@ if (sub === "add") {
         .setColor(bot.color)
 
         let counter = 0
-        interaction.deleteReply()
+      await interaction.deleteReply()
         const steps = [step1, step2, step3, step4, step5, step6]
         const hoisterMessage = await interaction.channel.send({embeds: [steps[counter]]})
         const collector = new MessageCollector(interaction.channel)
@@ -193,7 +193,7 @@ if (sub === "add") {
                     }
                     const serverrole = msg.mentions.roles.first() || interaction.guild.roles.cache.find(r => r.id === roles.join(" ") || r.name.toLowerCase() === roles.join(" ").toLowerCase())
                     if(!serverrole) {
-                        interaction.channel.send({content: `${bot.crosss} • Please supply a valid role!`})
+                        interaction.channel.send({content: `${bot.crosss} • Please supply a valid role!`}).catch(() => null)
                         hoisterMessage.delete().catch(() => {})
                         collector.stop(stopreasons.ERR)
                         
@@ -216,7 +216,7 @@ if (sub === "add") {
                 let dropdownMenuItems = []
                 dropdownMenuItems.push({
                     emoji: `<:icons_pause:884877256797855744>`,
-                        label: `Click To Get Roles`,
+                        label: `Click Me First To Get Roles`,
                         value: `place_holder`
                 })
                 finalData.roles.forEach((r) => {
@@ -248,7 +248,7 @@ if (sub === "add") {
                 }
                 
                 const channel = interaction.guild.channels.cache.find(c => c.id === finalData.channel)
-                const finalMessage = await channel.send({embeds: [finalEmbed], components: [row]})
+                const finalMessage = await channel.send({embeds: [finalEmbed], components: [row]}).catch(() => null)
                 const msgId = getId()
                 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
                     $push: {
@@ -266,7 +266,7 @@ if (sub === "add") {
                 .setColor(bot.color)
                 .setDescription(` > ${bot.tick} • **Created Dropdown roles!**\n\n > ${bot.tick} • Id: \`${msgId}\`\n > ${bot.tick} • [\`Jump\`](https://discordapp.com/channels/${interaction.guild.id}/${channel.id}/${finalMessage.id})`)
            
-                interaction.channel.send({embeds: [embed]})
+                interaction.channel.send({embeds: [embed]}).catch(() => null)
             }
         })
         
@@ -286,7 +286,7 @@ if (sub === "list") {
             .setDescription(arr.join("\n"))
             .setColor(bot.color)
 
-            return interaction.editReply({embeds: [embed]})
+            return interaction.editReply({embeds: [embed]}).catch(() => null)
         }
   
 }
@@ -299,7 +299,7 @@ if (sub === "remove") {
             return interaction.editReply({content: `${bot.crosss} • This server has no dropdown roles setup!`})
         } else {
             if(!id.length) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply a valid dropdown role's ID!`})
+                return interaction.editReply({content: `${bot.crosss} • Please supply a valid dropdown role's ID!`}).catch(() => null)
             }
             let value;
             let dropdown;
@@ -314,7 +314,7 @@ if (sub === "remove") {
             })
  
             if(!value) {
-                return interaction.editReply({content: `${bot.crosss} • Please supply a valid dropdown role's ID!`})
+                return interaction.editReply({content: `${bot.crosss} • Please supply a valid dropdown role's ID!`}).catch(() => null)
             }
             const channel = interaction.guild.channels.cache.find(c => c.id === dd_values.chanId)
             if(channel) {
@@ -333,7 +333,7 @@ if (sub === "remove") {
             .setDescription(` > ${bot.tick} • Removed dropdown (If the message isn't deleted, then delete it manually) \`${id}\``)
             .setColor(bot.color)
 
-            return interaction.editReply({embeds: [embed]})
+            return interaction.editReply({embeds: [embed]}).catch(() => null)
         
         }
   

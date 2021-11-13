@@ -37,6 +37,6 @@ bot.logger.log(`Your app is listening a http://localhost:${port}`));
 
 setInterval(() => {
         require(`../../functions/member_counter`)(bot)
-    }, 60000 * 10);
+}, 60000 * 10);
       
 });

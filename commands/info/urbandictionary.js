@@ -14,13 +14,13 @@ module.exports = {
         },
     ],
     userperm: [""],
-    botperm: [""],
+    botperm: ["SEND_MESSAGES"],
     /**
      *
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
 
         let image = "http://cdn.marketplaceimages.windowsphone.com/v8/images/5c942bfe-6c90-45b0-8cd7-1f2129c6e319?imageType=ws_icon_medium";
         try {
@@ -29,7 +29,7 @@ module.exports = {
                 let { word, urbanURL, definition, example, thumbsUp, thumbsDown, author } = res;
 
                 let embed = new MessageEmbed()
-                    .setColor("#F4B3CA")
+                    .setColor(bot.color)
                     .setAuthor(`Word - ${word}`)
                     .setThumbnail(image)
                     .setDescription(`**Defintion:**\n*${definition || "No definition"}*\n\n**Example:**\n*${example || "No Example"}*`)
@@ -41,8 +41,7 @@ module.exports = {
                 interaction.editReply({embeds: [ embed ]})
             
         } catch (e) {
-            console.log(e)
-            return interaction.editReply("looks like i've broken! Try again")
+            return interaction.editReply(`Error Occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) `) 
         }
     }
 }

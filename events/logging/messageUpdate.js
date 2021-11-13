@@ -23,5 +23,5 @@ bot.on("messageUpdate", async (oldMessage, newMessage) => {
     const channel = newMessage.guild.channels.cache.find(c => c.id === guild.logging_channel)
     if(channel) {
         channel.send({embeds: [embed]})
-    }
+    } else if (!channel) return;
 })

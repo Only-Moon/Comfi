@@ -5,7 +5,7 @@ module.exports = {
     name: "leveling",
     description: "Setup server leveling",
     ownerOnly: false,
-    botperm: [],
+    botperm: ["MANAGE_GUILD", "SEND_MESSAGES"],
     userperm: ["ADMINISTRATOR"],
     /**
      * @param {CommandInteraction} interaction 
@@ -32,7 +32,7 @@ module.exports = {
 
         let steps = [step1, step2, step3]
         let counter = 0
-        interaction.deleteReply()
+      await interaction.deleteReply().catch(() => null)
         let hoisterMessage = await interaction.channel.send({embeds: [steps[counter]]})
         const finalData = {
             value: undefined,

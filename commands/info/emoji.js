@@ -29,7 +29,7 @@ const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
 if (!emojis) { 
   return interaction.editReply({
     content: `${bot.error} • Enter A Valid Emoji in :emoji: form`}).then((msg) => {
-  setTimeout(() => msg.delete(), bot.ms('15s'))
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('15s'))
   });
 } else if (emojis) {
   
@@ -41,19 +41,32 @@ const emo = Util.parseEmoji(emote);
   
 if (!emo.name || !emo.id) return interaction.editReply(`${bot.error} Invalid emote argument`);
   
-    const res = `https://cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
+    const res = `https/cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
+
+  const img = `https/cdn.discordapp.com/emojis/${emo.id}.${emo.animated ? "gif" : "png"}`;
     
     let embed = new MessageEmbed()
       .setColor(bot.color)
       .setAuthor("Enlarged Emoji", interaction.user.avatarURL({ dynamic: true }))
-      .setImage(`${res}`)
+      .setImage(`${img}`)
       .setDescription(`${emo.name} ${emo.id}`);
 
     const row = new MessageActionRow()
 			.addComponents( new MessageButton()
+        .setStyle('SECONDARY')
+        .setCustomId(`backEmoji`)
+        .setEmoji("884420649580363796")
+        .setDisabled(true),
+    new MessageButton()
         .setStyle('LINK')
         .setURL(`${res}`) 
-        .setLabel('Emote Url!'), 
+        .setLabel('Download!'),
+    new MessageButton()
+        .setStyle('SECONDARY')
+        .setCustomId('forwardEmoji')
+        .setEmoji("884420650549272586")
+        .setDisabled(true),          
+                     
 );
   
 interaction.followUp({embeds: [ embed ],

@@ -24,19 +24,27 @@ module.exports = {
   run: async (bot, interaction) => {
       const say = interaction.options.getString("msg")
 
-      await interaction.editReply({ content: "Sending..." });
-      await interaction.deleteReply();
+      await interaction.editReply({ content: "Sending..." }).catch(() => null);
+      await interaction.deleteReply().catch(() => null);
 
 if(isUrl(say)){
 
 const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
 
-interaction.channel.send({ files: [attach] })
+interaction.channel.send({ files: [attach] }).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        })
+})
   
 } else {
-await interaction.channel.send({ content: say }).catch((err) => {
-console.log("Something Went Wrong => "`${err}`)
-})
+await interaction.channel.send({ content: say }).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        });
+});
   }
   
   }

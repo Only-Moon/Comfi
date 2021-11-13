@@ -17,7 +17,7 @@ module.exports = {
     botperm: [""],
 
 run: async (bot, interaction, args) => {
-        const [name] = args
+        const [name] = interaction.options.getString("name")
         const search = name
         malScraper.getInfoFromName(search)
       .then((data) => {

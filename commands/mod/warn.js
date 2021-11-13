@@ -103,13 +103,14 @@ let warn = new MessageEmbed()
         .setTitle(`__Warned__`)    
         .setDescription(`You have been warned by ${interaction.user} \n Reason: ${getReason}`)
             .setColor(bot.color);
-        user.send({embeds: [ warn ]}).catch(() => null)
-            .catch(error => interaction.editReply(`Sorry ${interaction.user} I couldn't n't warn because of : ${error}`));
+        user.send({embeds: [ warn ]}).catch(error => interaction.editReply(`${bot.crosss} • Sorry ${interaction.user} I couldn't n't warn because of : ${error}`));
             let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
-            .setDescription(`Warned **${user.tag}**, They now have **${warnCount}** warning${warnGrammar}`)
+            .setDescription(`${bot.tick} • Warned **${user.tag}** \n${bot.tick} • They now have **${warnCount}** warning${warnGrammar} \n${bot.tick} • Reason: ${getReason}`)
             .setColor(bot.color);
-            interaction.editReply({embeds: [ warnEmbed ]});
+            interaction.editReply({embeds: [ warnEmbed ]}).then((msg) => {
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('30s'))
+  });
 				break;
 
 			case 'list':
@@ -176,9 +177,9 @@ let warn = new MessageEmbed()
 let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
   .setAuthor(`Request Successful`, bot.user.displayAvatarURL())
-            .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
+            .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning ${warnedRemoveGrammar}!`)
            .setColor(bot.color)
-      interaction.editReply({embeds: [ warnEmbed ]})
+      interaction.editReply({embeds: [ warnEmbed ]}).catch(() => null)
           } else {
 					interaction.editReply({
 						content: `${bot.error} That is not a valid Warn ID!`,

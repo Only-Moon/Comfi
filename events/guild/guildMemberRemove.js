@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js")
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
+const users = require("../../models/users")
 
 bot.on("guildMemberRemove", async (member) => {
 
@@ -21,7 +22,24 @@ bot.on("guildMemberRemove", async (member) => {
        return text
        }
 
-    const guild = await guilds.findOne({guildId: member.guild.id})
+const guild = await guilds.findOne({guildId: member.guild.id})
+
+if (guild.leveling_coleave) {
+
+await users.findOneAndUpdate(
+						{
+							guildId: member.guild.id,
+							userId: member.id,
+						},
+						{
+							level:  0,
+              xp:  0,
+              requiredXp: 500,
+						},
+					);
+  
+}
+  
     if(guild.leave) {
         const channel = member.guild.channels.cache.find(c => c.id === guild.leave_channel)
         if(channel) {

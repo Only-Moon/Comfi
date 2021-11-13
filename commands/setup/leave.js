@@ -5,7 +5,7 @@ module.exports = {
     name: "leave",
     description: "Setup server leave system",
     ownerOnly: false,
-    botperm: [],
+    botperm: ["MANAGE_GUILD"],
     userperm: ["ADMINISTRATOR"],
     /**
      * @param {CommandInteraction} interaction 
@@ -51,7 +51,7 @@ module.exports = {
 
         let steps = [step1, step2, step3, step4, step5, step6]
         let counter = 0
-        interaction.deleteReply()
+       await interaction.deleteReply().catch(() => null)
         let hoisterMessage = await interaction.channel.send({embeds: [steps[counter]]})
         const finalData = {
             value: undefined,

@@ -150,13 +150,16 @@ module.exports = {
                         return interaction.message.edit({
                             embeds: [combed],
                             components: menus.smenu,
-                        });
+                        }).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            });
                     }
                 };
 
-                const filter = (interaction) => {
+const filter = (interaction) => {
                     return (!interaction.user.bot && interaction.user.id == interaction.user.id);
                 };
+
 
                 const collector = msgg.createMessageComponentCollector({
                     filter,
@@ -228,7 +231,9 @@ module.exports = {
 
                 return interaction.editReply({
                     embeds: [combed]
-                });
+                }).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            });
             }
 
             if (!command) {
@@ -269,7 +274,9 @@ module.exports = {
                 .setColor(bot.color);
             return await interaction.editReply({
                 embeds: [embed]
-            });
+            }).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            });
         }
     }
 }

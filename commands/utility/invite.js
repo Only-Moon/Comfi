@@ -34,6 +34,9 @@ module.exports = {
         .addComponents(yes) 
         .addComponents(no); 
       
- interaction.editReply({ content: `<@${interaction.user.id}>`, embeds: [embed], components: [row] })
+ interaction.editReply({ content: `<@${interaction.user.id}>`, embeds: [embed], components: [row] }).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            })
+      
     },
 };

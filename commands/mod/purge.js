@@ -11,8 +11,10 @@ module.exports = {
         {
             name: 'amount',
             type: 'INTEGER',
-            description: 'Number of messages to delete (2-99)',
-            required: true
+            description: 'Number of messages to delete',
+            required: true,
+            min_value: 1,
+            max_value: 99 
         }
     ],
     /** 
@@ -38,11 +40,11 @@ await interaction.channel.bulkDelete(filtered);
 interaction.channel.send({            content: `I've cleared \`${filtered.size 
 - 1}\` messages :broom:`       
 }).then((msg) => {
-  setTimeout(() => msg.delete(), ms('5 seconds'))
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('15s'))
   });
      } catch (err) {
 
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+return interaction.editReply(`${bot.error} An error has occured [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err}`)
        
      }
 }

@@ -1,5 +1,4 @@
 const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord.js");
-const canvacord = require("canvacord")
 const guilds = require("../../models/guild")
 const users = require("../../models/users")
 const rankCard = require("../../functions/RankCard")

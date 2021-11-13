@@ -17,7 +17,7 @@ const guild = await guilds.findOne({guildId: interaction.guild.id})
 
   const cmd = bot.slashCommands.get(interaction.commandName) || bot.register.get(interaction.commandName);
   if (!cmd) 
-    return interaction.followUp({ content: "An error has occured ",}); 
+    return interaction.followUp({ content: "An error has occured ",}).catch(() => null); 
   
   const args = []; 
     
@@ -42,12 +42,12 @@ const userp = new MessageEmbed().setDescription(`${bot.error} You need \`${cmd.u
   
 const userperm = interaction.member.permissions.has(cmd.userperm);
 
-        if (!userperm) return interaction.followUp({embeds: [ userp ]});
+        if (!userperm) return interaction.followUp({embeds: [ userp ]}).catch(() => null);
     
 const botp = new MessageEmbed().setDescription(`${bot.error} I need \`${cmd.botperm || []}\` Permissions`).setColor("#FC7C7C")
 
     const botperm = interaction.guild.me.permissions.has(cmd.botperm);
-        if (!botperm) return interaction.followUp({embeds: [ botp ]});
+        if (!botperm) return interaction.followUp({embeds: [ botp ]}).catch(() => null);
   
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
@@ -80,20 +80,20 @@ userId: interaction.member.id,
                     let hrs = new MessageEmbed()
        .setDescription(`${bot.error} Please wait ${parseInt(hour)} more hours before using \`${cmd.name}\`!`)
        .setColor('#FF8080');                
-                      return interaction.followUp({embeds: [ hrs ]})
+                      return interaction.followUp({embeds: [ hrs ]}).catch(() => null)
               }
                 if(time_left.toFixed(1) >= 60) {
                     let minute = (time_left.toFixed(1) / 60);
                     let min = new MessageEmbed()
          .setDescription(`${bot.error} Please wait ${parseInt(minute)} more minutes before using \`${cmd.name}\`!`)
        .setColor('#FF8080');
-                  return interaction.followUp({embeds: [ min ]})
+                  return interaction.followUp({embeds: [ min ]}).catch(() => null)
                 }
                 let seconds = (time_left.toFixed(1));
                 let sec = new MessageEmbed()
         .setDescription(`${bot.error} Please wait ${parseInt(seconds)} more seconds before using \`${cmd.name}\`!`)
        .setColor('#FF8080');
-              return interaction.followUp({embeds: [ sec ]})
+              return interaction.followUp({embeds: [ sec ]}).catch(() => null)
             } else {
                 await users.findOneAndUpdate({ 
 userId: interaction.member.id,

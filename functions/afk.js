@@ -1,7 +1,6 @@
 const bot = require("../index")
 const users = require(`../models/users`)
 const { MessageEmbed, Message } = require('discord.js')
-const ms = require("ms")
 /**
  * 
  * @param {Message} message
@@ -32,7 +31,7 @@ let embed = new MessageEmbed()
 .setColor(bot.color);
 
 return message.reply({embeds:  [ embed ], allowedMentions: { repliedUser: false } }).then((msg) => {
-  setTimeout(() => msg.delete(), ms('30 seconds'))
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('30s'))
   }); 
                 } else {
         message.delete();
@@ -43,7 +42,7 @@ let afk = new MessageEmbed()
       .setColor(bot.color);
       
 return message.channel.send({embeds: [ afk ], allowedMentions: { repliedUser: false } }).then((msg) => {
-  setTimeout(() => msg.delete(), ms('30 seconds'))
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('30s'))
   });
                 }
             }

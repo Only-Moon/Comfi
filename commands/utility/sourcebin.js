@@ -104,7 +104,7 @@ const row = new MessageActionRow()			.addComponents( new MessageButton()
       })
       .catch(e => {
         interaction.followUp({
-          content: `${bot.error} Error, try again later \n Error: ${e}`,
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
           ephemeral: true
         });
       });

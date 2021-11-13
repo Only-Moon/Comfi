@@ -20,24 +20,27 @@ bot.on("messageCreate", async (message) => {
 let sup = new MessageButton()
     .setStyle("LINK")
     .setLabel("Join Support!")
-    .setURL("https://discord.gg/dvAUCFPaCJ");
+       .setURL("https://comfibot.tk/discord")
+    .setEmoji("883032991293653062");
 
 let inv = new MessageButton()
    .setStyle("LINK")
    .setLabel("Invite Me!")
-   .setURL("https://discord.com/api/oauth2/authorize?client_id=873473703470563378&permissions=8&scope=bot%20applications.commands")
+   .setURL("https://comfibot.tk/invite")
+  .setEmoji("883017868944502804");
 
 let dash = new MessageButton()
     .setStyle("LINK")
     .setLabel("Check Website!")
-    .setURL("https://comfi.xx-mohit-xx.repl.co/");
+    .setURL("https://comfibot.tk/")
+    .setEmoji("883017884014637066");
     
 let row = new MessageActionRow()
    .addComponents(sup, inv, dash);
     
 message.reply({embeds: [ ping ],
                components: [ row ],
-               allowedMentions: { repliedUser: false }});
+               allowedMentions: { repliedUser: false }}).catch(() => null);
 }
   
 })
