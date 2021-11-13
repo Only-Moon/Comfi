@@ -35,10 +35,14 @@ bot.guilds.cache.forEach((g) => {
 g.commands.set(arrayOfSlashCommands)
 })
 
+bot.logger.ready(`Loaded Guild commands...`)
+  
 } else if (dev === false.toString()) {
 
 await bot.application.commands.set(arrayOfSlashCommands)
- 
+
+bot.logger.ready(`Loaded Global Commands...`)
+  
 }
 
 })
