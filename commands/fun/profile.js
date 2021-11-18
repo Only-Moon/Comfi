@@ -72,6 +72,7 @@ module.exports = {
             else await interaction.followUp(`${bot.tick} • Successfully set your name to ${col.first().content}`).catch(() => null)
             user.UserName = col.first().content
             await user.save()
+      
         })
     }
 
@@ -149,7 +150,7 @@ module.exports = {
 
             const Embed = new MessageEmbed()
             .setTitle(searchedUser.CustomId)
-            .setThumbnail(`${searchedUser.UserPfp}`, { dynamic: true})
+            .setThumbnail(`${searchedUser.UserPfp}`, { dynamic: true })
 .setImage(`${searchedUser.UserBanner}`)
             .addField("<a:bf_HE:796373377878589490> Name :", `${searchedUser.UserName}`, true)
             .addField("<a:bf_HE:796373377878589490> Age :", `${searchedUser.UserAge}`, true)

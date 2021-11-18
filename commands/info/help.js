@@ -151,9 +151,12 @@ module.exports = {
                         return interaction.message.edit({
                             embeds: [combed],
                             components: menus.smenu,
-                        }).catch( (err) => {
-   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
-                            });
+                        }).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        });
+});;
                     }
                 };
 
@@ -232,9 +235,7 @@ const filter = (interaction) => {
 
                 return interaction.editReply({
                     embeds: [combed]
-                }).catch( (err) => {
-   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
-                            });
+                }).catch(() => null);
             }
 
             if (!command) {
@@ -244,14 +245,31 @@ const filter = (interaction) => {
 
                 return await interaction.editReply({
                     embeds: [embed]
-                });
+                }).catch(() => null);
             }
 
-            const embed = new MessageEmbed()
+let subc = []
+
+if(command.options){
+command.options.forEach(sub => {
+  if(sub.type === 'SUB_COMMAND'){
+  subc.push(`- **${sub.name}** \n \`${sub.description}\`\n`)
+   }
+})
+}
+
+if(subc.length < 1 || subc === []) { subc = "" }
+else if(subc.length > 1) { subc = `${subc.toString().replaceAll(',', '')}\n`}
+
+          const embed = new MessageEmbed()
                 .setTitle("Command Details:")
                 .addField(
                     "Command:",
                     command.name ? `\`${command.name}\`` : "No name for this command."
+                )
+                .addField(
+                    "Sub Commands:",
+                    subc ? subc : "No Sub Command for this command"
                 )
                 .addField(
                     "Usage:",
@@ -273,11 +291,15 @@ const filter = (interaction) => {
                     dynamic: true
                 }))
                 .setColor(bot.color);
+          
             return await interaction.editReply({
                 embeds: [embed]
-            }).catch( (err) => {
-   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
-                            });
+            }).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        });
+});
         }
     }
 }

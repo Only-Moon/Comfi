@@ -56,6 +56,8 @@ module.exports = {
 let [ sub ] = args
 
 let Name = interaction.options.getString("name");
+
+let emoote = interaction.options.getString("emoji")      
       
 if (sub === "add") {
 
@@ -82,7 +84,7 @@ let type = "";
 let name = "";
 let emote = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi);
 if (emote) {
-  emote = emote[0];
+  emote = emoote;
   type = "emoji";
   name = Name;
 } else  {
@@ -125,7 +127,7 @@ if (sub === "addmany") {
   const emojis = args.join(" ").match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
         if (!emojis) return interaction.editReply(`${bot.error} | **Provde The emojis to add**`);
 
-interaction.deleteReply();
+await interaction.deleteReply().catch(() => null);
       
         emojis.forEach(emote => {
         let emoji = Util.parseEmoji(emote);

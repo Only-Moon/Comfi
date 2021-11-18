@@ -106,6 +106,7 @@ let desc = interaction.options.getString("subject") || "Create a new Ticket By C
     embedColor: bot.color, // default: #075FFFF 
     embedFoot: '', // default: message.guild.name 
     credit: false,
+    slash: true,
     emoji: '855791964975530004', // default:, 🎫
     color: 'SECONDARY', // default: blurple 
     })
