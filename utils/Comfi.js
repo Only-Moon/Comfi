@@ -9,7 +9,7 @@ class Comfi extends Discord.Client {
             allowedMentions: { 
     parse: ['users', 'roles'],
     repliedUser: true },
-           intents: [ "GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_MESSAGES", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INVITES", "GUILD_PRESENCES", "GUILD_MESSAGE_TYPING" ],
+           intents: [ "GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_MESSAGES", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INVITES", "GUILD_MESSAGE_TYPING" ],
            partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'GUILD_MEMBER', 'GUILD', 'USER'],
           restRequestTimeout: 30000
         })
