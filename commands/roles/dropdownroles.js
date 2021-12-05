@@ -215,7 +215,7 @@ if (sub === "add") {
                 let roles = []
                 let dropdownMenuItems = []
                 dropdownMenuItems.push({
-                    emoji: `<:icons_pause:884877256797855744>`,
+                    emoji: `<a:p_loading2:883233237760086037>`,
                         label: `Click Me First To Get Roles`,
                         value: `place_holder`
                 })
