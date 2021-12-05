@@ -215,7 +215,7 @@ if (sub === "add") {
                 let roles = []
                 let dropdownMenuItems = []
                 dropdownMenuItems.push({
-                    emoji: `<:icons_pause:884877256797855744>`,
+                    emoji: `<a:p_loading2:883233237760086037>`,
                         label: `Click Me First To Get Roles`,
                         value: `place_holder`
                 })
@@ -248,7 +248,8 @@ if (sub === "add") {
                 }
                 
                 const channel = interaction.guild.channels.cache.find(c => c.id === finalData.channel)
-                const finalMessage = await channel.send({embeds: [finalEmbed], components: [row]}).catch(() => null)
+                const finalMessage = await channel.send({embeds: [finalEmbed], components: [row]})
+
                 const msgId = getId()
                 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
                     $push: {

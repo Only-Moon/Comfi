@@ -28,7 +28,8 @@ module.exports = {
 
     if (!videoName) return interaction.editReply(`${emoji.Error} Please provide a YouTube video name`);
 
-    const searchOptions = { maxResults: 1, key: apiKey, type: 'video', safeSearch: "strict"};
+ const searchOptions = { maxResults: 1, key: apiKey, type: 'video', safeSearch: 'strict'};
+
 /**
     if (banned.some(word => args[0].toLowerCase().includes(word))) {
       return interaction.editReply(`${bot.error} Go search these nsfw things by yourself`)

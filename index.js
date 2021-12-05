@@ -1,13 +1,13 @@
 //----------[ LOADING BOT ]----------\\
 
-console.clear();
-console.log('Loading Bot...');
+console.clear()
+console.log('Loading Bot...')
 
 //-----[ DEFINING DEPENDENCIES ]-----\\
 
-const Comfi = require("./utils/Comfi"),	
-bot = new Comfi(); 
+const Comfi = require('./utils/Comfi'),
+	bot = new Comfi()
 
-module.exports = bot;
+module.exports = bot
 
 //---------[ PROCESS ENDED ]---------\\

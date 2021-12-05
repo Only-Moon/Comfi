@@ -175,8 +175,8 @@ if (subcommand === 'channel') {
 
 let ch = interaction.options.getChannel('name')
 
-let channel = bot.guilds.cache.get(interaction.guild.id).channels.cache.get(ch) || interaction.guild.channels.cache.find(r => r.name.toLowerCase() === args.join(' ').toLocaleLowerCase()) || interaction.channel;
-        if (!channel) return message.channel.send("**Channel Not Found!**");
+let channel = ch || interaction.channel;
+        if (!channel) return interaction.editReply("**Channel Not Found!**");
 
         let embed = new MessageEmbed()
             .setTitle(`Channel Information for ${channel.name}`)
@@ -248,7 +248,7 @@ const sticker = interaction.options.getString("url");
                     inline: true
                 },
                 
-            )
+            ) 
         interaction.editReply({ embeds: [embed] });
 
   

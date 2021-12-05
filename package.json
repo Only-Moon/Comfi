@@ -5,11 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "@iamtraction/google-translate": "^1.1.2",
-    "ascii-table": "0.0.9",
     "axios": "^0.21.4",
     "beautify": "0.0.8",
     "bing-translate-api": "^2.2.1",
-    "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
     "coloras": "^2.0.2",
@@ -28,18 +26,19 @@
     "mal-scraper": "^2.11.3",
     "memer-api": "^4.0.1",
     "moment": "^2.29.1",
-    "mongoose": "^6.0.13",
+    "mongoose": "^6.0.14",
     "ms": "^2.1.3",
     "node-fetch": "^2.6.6",
     "node-superfetch": "^0.2.3",
     "nodemon": "^2.0.15",
     "pm2": "^5.1.2",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.1",
     "pretty-ms": "^7.0.1",
     "quickmongo": "^3.0.2",
     "relevant-urban": "^2.0.0",
     "simple-node-logger": "^21.8.12",
-    "simply-djs": "^2.2.0",
+    "simply-djs": "^2.2.2",
+    "simply-eco": "0.0.6",
     "sourcebin_js": "0.0.3-ignore",
     "twitter-api.js": "0.0.12",
     "uuid": "^8.3.2",
@@ -47,18 +46,15 @@
     "youtube-search": "^1.1.6"
   },
   "devDependencies": {
-    "clean-jsdoc-theme": "^3.2.7",
     "husky": "^7.0.4",
-    "jsdoc": "^3.6.7",
-    "node": "^16.13.0",
+    "node": "^17.2.0",
     "pretty-quick": "^3.1.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --delay 10 index.js",
     "stop": "kill 1",
-    "prepare": "husky install",
-    "generate-docs": "jsdoc --configure jsdocs.json --verbose"
+    "prepare": "husky install"
   },
   "author": "Xx-Mohit-xX",
   "license": "ISC"
