@@ -4,7 +4,7 @@ let bot = require("../../index.js")
 bot.on("disconnect", (e) => bot.logger.log(`disconnect \n` + e))
             .on("reconnecting", (e) => bot.logger.log(`Bot is reconnecting \n` + e))
             .on("error", (e) => bot.logger.error(`error \n` + e))
-            .on("rateLimit", (err) => console.log(err))
+            .on("rateLimit", (err) => bot.logger.limit(err))
             .on("warn", (info) => bot.logger.warn(`info \n` + e));
 
 process.on("unhandledRejection", (reason, promise) => {
