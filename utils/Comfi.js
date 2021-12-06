@@ -1,7 +1,7 @@
 const Discord = require('discord.js'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk'),
-	fs = require('fs')
+	fs = require('fs');
 
 class Comfi extends Discord.Client {
 	constructor() {
@@ -107,7 +107,7 @@ class Comfi extends Discord.Client {
 	 * @param {string} search
 	 * @param {Guild} guild
 	 */
-	resolveRole(search, guild) {
+	async resolveRole(search, guild) {
 		if (!search || typeof search !== 'string') return null
 		search = search.split(' ').join('')
 		let role = null
@@ -121,7 +121,7 @@ class Comfi extends Discord.Client {
 	 * @returns {Channel|null}
 	 * @param {string} search
 	 */
-	resolveChannel(search) {
+	async resolveChannel(search) {
 		if (!search) return null
 		let channel = null
 		channel = this.channels.cache.get(
@@ -179,7 +179,7 @@ class Comfi extends Discord.Client {
 			message,
 			image,
 			embed,
-			color = 'BLUE',
+			color = this.color,
 			max = 1,
 			time = 60000,
 			obj = false
@@ -327,7 +327,6 @@ class Comfi extends Discord.Client {
 				.join('_')
 		}
 	}
-
 	async msToTime(duration) {
 		const ms = Math.floor((duration % 1000) / 100),
 			seconds = Math.floor((duration / 1000) % 60),
