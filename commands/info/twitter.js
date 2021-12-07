@@ -55,7 +55,7 @@ module.exports = {
 					'This user is either in private mode or deleted account'
 				);
 			else if (e.status === 404) return interaction.editReply('Not Found');
-			else return interaction.editReply(`Unknown error: \`${e.message}\``);
+			else return interaction.editReply(`Unknown error: \`${e.message} - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \``);
 		}
 	}
 };

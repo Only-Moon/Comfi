@@ -16,6 +16,7 @@ module.exports = {
             description: 'modlogs channel',
             name: 'name',
             required: true,
+            channelTypes: ["GUILD_TEXT"],
         },
     ],
         },

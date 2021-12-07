@@ -10,7 +10,8 @@ module.exports = {
             description: 'enable or disable server lockdown',
             name: 'option',
             required: true,
-            choices: [ { 
+            choices: [ 
+{ 
         name: 'true/on', 
         value: 'true' 
       }, 
@@ -30,13 +31,13 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-        
-        if(!args[0]) {
-        return interaction.editReply("Please specify something.`Either on/off`")
-        };
 
+try {
+
+let arg = interaction.options.getString("option")
+  
         const channels = interaction.guild.channels.cache.filter(ch => ch.type !== 'GUILD_CATEGORY');
-        if (args[0] === 'on') {
+        if (arg === 'true') {
             channels.forEach(channel => {
                 channel.permissionOverwrites.create(interaction.guild.roles.everyone, {
                     SEND_MESSAGES: false
@@ -46,11 +47,11 @@ module.exports = {
             let lockEmbed = new MessageEmbed()
                 
                 .setThumbnail(`https://media.giphy.com/media/JozO6wdFcC81VPO6RS/giphy.gif`)
-.setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())                .setDescription(`**\n\nDone! Server Fully Locked! 🔒**`)
-                .setColor('#F4B3CA')
+.setAuthor(`${interaction.guild.name} Modlogs`, interaction.guild.iconURL())                .setDescription(`**\n\n${bot.tick} • Done! Server Fully Locked! 🔒**`)
+                .setColor(bot.color)
             return interaction.editReply({embeds: [ lockEmbed ]});
 
-        } else if (args[0] === 'off') {
+        } else if (arg === 'false') {
             channels.forEach(channel => {
                 channel.permissionOverwrites.create(interaction.guild.roles.everyone, {
                     SEND_MESSAGES: true
@@ -58,10 +59,16 @@ module.exports = {
             })
             
             let lockEmbed2 = new MessageEmbed()
-                .setColor('#F4B3CA')    
+                .setColor(bot.color)    
                 .setThumbnail(`https://media.giphy.com/media/JozO6wdFcC81VPO6RS/giphy.gif`)
-.setAuthor(`${interaction.guild.name}`, interaction.guild.iconURL())               .setDescription(`**\n\nDone! Server Fully Unlocked! 🔓**`)
+.setAuthor(`${interaction.guild.name}`, interaction.guild.iconURL())               .setDescription(`**\n\n${bot.tick} • Done! Server Fully Unlocked! 🔓**`)
             return interaction.editReply({embeds: [ lockEmbed2 ]})
         }
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
+  
     }
 }

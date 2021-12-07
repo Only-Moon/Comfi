@@ -18,7 +18,10 @@ module.exports = {
      * @param {Message} message 
      * @param {String[]} args 
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
+
+try {
+      
         const user = interaction.guild.members.cache.get(args[0]) || interaction.member
 
         let invites = await interaction.guild.invites.fetch();
@@ -36,8 +39,14 @@ module.exports = {
             .setDescription(`**_Invites  of :_** ${user} `)
             .addField(`User Invites`, `${i}`)
             .addField('Invite Codes:', `${invCodes}`)
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
 
         interaction.followUp({ embeds: [tackerEmbed] });
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err})`)
+    }
+  
     }
 }

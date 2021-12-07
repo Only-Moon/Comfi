@@ -37,7 +37,7 @@ module.exports = {
         let reminder = r
 
         const wrongtime = new MessageEmbed()
-            .setColor('#F4B3CA')
+            .setColor(bot.color)
             .setDescription(`**Sorry I only do d, m, h, or s.**`)
 
             if (
@@ -50,22 +50,27 @@ module.exports = {
                 return interaction.followUp({embeds: [wrongtime]})
                 
                 const remindertime = new MessageEmbed()
-                .setColor('#F4B3CA')
+                .setColor(bot.color)
                 .setDescription(`\**Your reminder will go off in ${time}**`)
-                interaction.followUp({embeds: [remindertime]})
+                interaction.followUp({embeds: [remindertime]}).catch( (err) => {
+   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            })
 
                 const reminderdm = new MessageEmbed()
-                .setColor('#F4B3CA')
+                .setColor(bot.color)
                 .setTitle('**REMINDER**')
-                .setDescription(`**It has been ${time} here is your reminder:** ${reminder}`)  
+                .setDescription(`**It has been ${time}** \nReminder: **${reminder}**`)  
         
                 setTimeout(async function () {
                    try{
         
-                    await interaction.user.send({embeds: [reminderdm]})
-                   }catch(err){
-        
-                   } 
+                    await interaction.user.send({embeds: [reminderdm]}).catch( (err) => {
+   return interaction.channel.send(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
+                            })
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err}`)
+    } 
                    
                 }, ms(time));
             

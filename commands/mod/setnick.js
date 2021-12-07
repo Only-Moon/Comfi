@@ -24,17 +24,16 @@ module.exports = {
    *
    * @param {Interaction} interaction
    */
-  run: async (bot, interaction) => {
+  run: async (bot, interaction, args) => {
     try {
-      const args = interaction.options._hoistedOptions;
 
       // now extract values
-      const user = args.find(x => x.name === "user");
-      const nickname = args.find(x => x.name === "nickname");
+      const user = interaction.options.getUser("user") || interaction.guild.members.cache.get(args[0]);
+      const nickname = interaction.options.getString("nickname");
       const embed = new MessageEmbed().setColor(bot.color)
 
       if (!user.member.manageable && user.member.id !== bot.user.id) {
-        embed.setDescription(`${bot.error} I Cant Change ${user.member.toString()}'s Nickname`)
+        embed.setDescription(`${bot.error} • I Cant Change ${user.member.toString()}'s Nickname`)
         return interaction.editReply({embeds: [embed]})
       }
 
@@ -44,7 +43,7 @@ module.exports = {
 
       embed.setDescription(`${bot.tick} • ${user.member.toString()}'s Nickname Changed`).setFooter(`From ${oldNick} to ${nickname.value}`);
       
-await interaction.editReply({ embeds: [embed] });
+await interaction.editReply({ embeds: [embed] }).catch(() => null);
 
                 const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(!guild.modlog) return;
@@ -70,7 +69,7 @@ await interaction.editReply({ embeds: [embed] });
             sChannel.send({embeds: [ sembed ]})
     }
     } catch (err) {
-      return interaction.channel.send({content: `${bot.error} **Something Went Wrong =>** \n${err}`});
+      return interaction.channel.send({content: `${bot.error} **Something Went Wrong =>** \n${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`});
     } 
   },
 };

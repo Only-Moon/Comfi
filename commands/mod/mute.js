@@ -1,5 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
-const guilds = require('../../models/guild');
+const ms = require("ms");
+const guilds = require("../../models/guild");
 
 module.exports = {
       name: "mutee",
@@ -19,7 +20,7 @@ module.exports = {
     },
     {
          name: "time",
-         description: "Time Till Mute in Minutes",
+         description: "Time Till Mute in Minutes. In the form of s, m, h",
          type: 'STRING',
          required: false,
     },
@@ -50,32 +51,30 @@ module.exports = {
   /**
    *
    * @param {CommandInteraction} interaction
+   * @param {String[]} args
    */
   run: async (bot, interaction, args) => {
        
  let [ sub ] = args
- 
- let guild = await guilds.findOne({guildId: interaction.guild.id})
+
+const guild = await guilds.findOne({guildId: interaction.guild.id})  
        
 if (sub === "add") {   
        
-       var mutee = interaction.options.getMember('user');
+       var mutee = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]);
       var time = interaction.options.getString('time');
+  
       if (mutee === interaction.member) return interaction.editReply(`${bot.error} • **You Cannot Mute Yourself!**`)
         if (mutee.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0) return interaction.editReply(` ${bot.error} • **Cannot Mute This User!**`)
-          let reason = args.slice(1).join(" ") || interaction.options.getString('reason'); 
-      if (mutee.user.bot) return interaction.editReply(`${bot.error} • **Cannot Mute Bots!**`); 
+          let reason = interaction.options.getString('reason');
 
-const guild = await guilds.findOne({guildId: interaction.guild.id})
-    if(!guild.muterole) return;
-
-    if(guild.muterole) {
+      if (mutee.user.bot) return interaction.editReply(`${bot.error} • **Cannot Mute Bots!**`);
       
-  const userRoles = mutee.roles.cache .filter(r => r.id !== interaction.guild.id) .map(r => r.id) 
+  const userRoles = mutee.roles.cache .filter(r => r.id !== interaction.guild.id).map(r => r.id) 
   let muterole; 
-      let dbmute = guild.muterole
+      let dbmute = guild.mute_role
       let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted")
-        if (!interaction.guild.roles.cache.has(dbmute)) { 
+        if (!guild.mute && !interaction.guild.roles.cache.has(dbmute) ) { 
           muterole = muteerole
         } else { 
           muterole = interaction.guild.roles.cache.get(dbmute) 
@@ -100,8 +99,9 @@ const guild = await guilds.findOne({guildId: interaction.guild.id})
                 SPEAK: false,
               })
         })
-        } catch (e) {
-          console.log(e);
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
         } 
       };
       if (mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} • **User Is Already Muted!**`) 
@@ -119,23 +119,29 @@ const guild = await guilds.findOne({guildId: interaction.guild.id})
         const sembed = new MessageEmbed() 
           .setColor(bot.color) 
           .setAuthor(interaction.guild.name, interaction.guild.iconURL()) 
-          .setDescription(`${mutee.user.username} was successfully muted for ${reason}`) 
+          .setDescription(`${bot.tick} • ${mutee.user.username} was successfully muted for ${reason}`) 
           
         interaction.editReply({embeds: [ sembed ]});
       } else { 
         
   const sembed2 = new MessageEmbed() 
     .setColor(bot.color) 
-    .setDescription(`${mutee.user.username} was successfully muted`) ;
+    .setDescription(`${bot.tick} • ${mutee.user.username} was successfully muted`) ;
 interaction.editReply({embeds: [ sembed2 ]}); 
     } 
 
    // for timed mute
       if (time) {
         setTimeout(async () => {
-          await user.member.roles.remove(MutedRole);
-        }, time.value * 60 * 1000)
-  await mutee.send("You have been Unmuted from the server"); 
+          await mutee.roles.remove(muterole.id).then(() => { 
+          mutee.send(`**Hello, You Have Been Unmuted In ${interaction.guild.name}**`).catch(() => null) 
+            let roleadds = guild.muted_role
+        
+              if (!roleadds) return;
+          
+          roleadds.forEach(role => mutee.roles.add(role)).catch(() => null)
+        }).catch(() => null)
+        }, ms(time))
  }
 
     if(!guild.modlog) return;
@@ -160,7 +166,6 @@ interaction.editReply({embeds: [ sembed2 ]});
             if (!sChannel) return;
             sChannel.send({embeds: [ embeds1 ]})
     }
-  }
   
 }
 
@@ -168,25 +173,24 @@ if (sub === "remove") {
   
   try {
       const mutee = interaction.options.getMember('user') || interaction.guild.members.cache.get(args[0]) || interaction.guild.members.cache.find(r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()) || interaction.guild.members.cache.find(ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase());
-      if (!mutee) return interaction.editReply(`${bot.error} **Please Enter A Valid User!**`);
 
-                const guild = await guilds.findOne({guildId: interaction.guild.id})
-      
-      let muterole; 
-      let dbmute = guild.muterole;
+      if (!mutee) return interaction.editReply(`${bot.error} • **Please Enter A Valid User!**`);
+
+      let muterole;
+      let dbmute = guild.mute_role;
       let muteerole = interaction.guild.roles.cache.find(r => r.name === "muted") 
-        if (!interaction.guild.roles.cache.has(dbmute)) { 
+        if (!guild.mute && !interaction.guild.roles.cache.has(dbmute)) { 
           muterole = muteerole
         } else { 
           muterole = interaction.guild.roles.cache.get(dbmute) 
         } 
       
-      let rolefetched = guild.mutedrole
+      let rolefetched = guild.muted_role
         
       if (!rolefetched) return; 
       
-      if (!muterole) return interaction.editReply(`${bot.error} **There Is No Mute Role To Remove!**`) 
-      if (!mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} **User is not Muted!**`) 
+      if (!muterole) return interaction.editReply(`${bot.error} • **There Is No Mute Role To Remove!**`) 
+      if (!mutee.roles.cache.has(muterole.id)) return interaction.editReply(`${bot.error} • **User is not Muted!**`) 
         
       try { 
         mutee.roles.remove(muterole.id).then(() => { 
@@ -195,12 +199,12 @@ if (sub === "remove") {
         
               if (!roleadds) return;
           
-          roleadds.forEach(role => mutee.roles.add(role))
-        }) 
+          roleadds.forEach(role => mutee.roles.add(role)).catch(() => null)
+        }).catch(() => null) 
       } catch { 
   let roleadds2 = rolefetched 
   if (!roleadds2) return; 
-  mutee.roles.add([ roleadds2 ]) 
+  mutee.roles.add([ roleadds2 ]).catch(() => null)
       
       } 
 const sembed = new MessageEmbed() 
@@ -230,8 +234,9 @@ interaction.editReply({embeds: [ sembed ]});
         if (!sChannel) return;
         sChannel.send({embeds: [ embeds1 ]})      
     }   
-    } catch (err) {
-      console.log(`Error => `, err);
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
     }
   
 }

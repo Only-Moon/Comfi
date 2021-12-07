@@ -24,10 +24,10 @@ module.exports = {
 
 simplydjs.rps(interaction, {    
 slash: true,    
-embedColor: "#F4B3CA", // default: #075FFF            
-timeoutEmbedColor: "#F4B3CA", // default: #c90000            
-drawEmbedColor: "#F4B3CA", // default: #075FFF            
-winEmbedColor: "#F4B3CA", // default: #06bd00            
+embedColor: bot.color,          
+timeoutEmbedColor: bot.color,           
+drawEmbedColor: bot.color,           
+winEmbedColor: bot.color,           
 embedFooter: "A Game of RPS",            
 rockColor: "", // default: SECONDARY            
 paperColor: "", // default: SECONDARY            

@@ -20,7 +20,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => { 
+    run: async (bot, interaction, args) => { 
 
     PlayStore.search({
       term: args[0],
@@ -37,7 +37,7 @@ module.exports = {
       }
 try {
       let embed = new MessageEmbed()
-        .setColor("#F4B3CA")
+        .setColor(bot.color)
         .setThumbnail(App.icon)
         .setURL(App.url)
         .setTitle(`${App.title}`)
@@ -50,7 +50,7 @@ try {
 
       return interaction.editReply({embeds: [ embed ]});
 } catch (err) {
-return interaction.editReply(err.toString())
+return interaction.editReply(` Error Occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) `)
 }
     });
   }

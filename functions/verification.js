@@ -35,7 +35,7 @@ module.exports = async (member, bot) => {
     const embed = new MessageEmbed()
     .setImage(`https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`)
     .setColor(bot.color)
-        const hoisterMsg = await channel.send({content: `${format(guild.verification_message)}`, embeds: [embed]})
+        const hoisterMsg = await channel.send({content: `${format(guild.verification_message)}`, embeds: [embed]}).catch(() => null)
 
         const collector = new MessageCollector(channel, {time: 30000})
         collector.on("collect", (m) => {

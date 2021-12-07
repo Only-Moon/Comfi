@@ -21,12 +21,15 @@ module.exports = {
             .setImage(`${r.url}`)
             .setTitle(`${r.title}`)
             .setURL(`${r.postLink}`)
-            .setColor("#F4B3CA")
+            .setColor(bot.color)
             .setFooter(`🔼 ${r.ups} | Author: ${r.author}`)
 
-            const send = await interaction.editReply({embeds: [embed]})
-            send.react('🔼')
-            send.react('🔽')
+await interaction.editReply({embeds: [embed]}).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        });
         }) 
-    }
+    })
+}
 }

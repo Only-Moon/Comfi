@@ -6,7 +6,9 @@ bot.on("messageDelete", async (message) => {
     const guild = await guilds.findOne({guildId: message.guild.id})
     if(!guild.logging) return;
     if(!message.guild) return;
-      
+    if(!message.author) return;
+    if(message.author.bot) return;
+  
     if(message.author) {
     const embed = new MessageEmbed()
     .setTitle(`Message Deleted!`)

@@ -16,6 +16,7 @@ module.exports = {
             description: 'confess channel',
             name: 'channel',
             required: true,
+            channelTypes: ["GUILD_TEXT"],
         },
     ],
         },

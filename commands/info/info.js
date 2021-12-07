@@ -1,10 +1,9 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 const axios = require("axios")
 const { version } = require('../../package.json');
 const ms = require('pretty-ms');
 const { version: discordjsVersion } = require('discord.js');
 const moment = require('moment');
-const { user } = require('../..');
 
 module.exports = {
     name: "infoo",
@@ -131,7 +130,7 @@ const api = process.env.TOKEN
 
         const embed = new MessageEmbed()
         .setTitle(`${user.tag}'s Banner`)
-        .setImage(url)
+        .setImage(`${url}`)
         .setColor(accent_color || bot.color);
         
         interaction.followUp({ embeds: [embed] })
@@ -162,10 +161,9 @@ let embed = new MessageEmbed()
             .addField('❯ Guild Count:', `${bot.guilds.cache.size} guilds`, true)
             .addField(`❯ User Count:`, `${bot.guilds.cache.reduce((users , value) => users + value.memberCount, 0)} users`, true)
             .addField('❯ Slash Commands:', `${bot.slashCommands.size} Commands`,true)
-            .addField('❯ Text Commands:', `${bot.commands.size} Commands`,true)
             .addField('❯ Node:', `${process.version} on ${process.platform} ${process.arch}`, true)
             .addField('❯ Discord.js:', `v${discordjsVersion}`, true)
-            .addField('❯ Credits:', '[Xx-Mohit-xX](https://github.com/Xx-Mohit-xX), [xxDeveloper](https://github.com/Murtatrxx) (Bot)', true) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
+            .addField('❯ Credits:', '[Xx-Mohit-xX](https://github.com/Xx-Mohit-xX)', true) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
             .setFooter(`Requested By ${interaction.member.displayName}`)
             .setTimestamp();
    
@@ -186,7 +184,7 @@ let channel = bot.guilds.cache.get(interaction.guild.id).channels.cache.get(ch) 
             .addField("**NSFW**", ` \`\`\`\ ${channel.nsfw} \`\`\`\ `)
             .addField("**Channel ID**", ` \`\`\`\ ${channel.id} \`\`\`\ `)
             .addField("**Channel Type**", ` \`\`\`\ ${channel.type} \`\`\`\ `)
-           .addField("**Channel threads**", ` \`\`\`\ ${interaction.guild.channels.cache.filter(channel => channel.type === 'THREAD').size.toString() || "No Threads"} \`\`\`\ `) 
+           .addField("**Channel Threads**", ` \`\`\`\ ${interaction.guild.channels.cache.filter(channel => channel.type === 'THREAD').size.toString() || "No Threads"} \`\`\`\ `) 
            .addField("**Channel Description**", ` \`\`\`\ ${channel.topic || "No Description"} \`\`\`\ `)
             .addField("**Channel Created At**", ` \`\`\`\ ${channel.createdAt} \`\`\`\ `)
             .setColor(bot.color)
@@ -341,7 +339,13 @@ const embed = new MessageEmbed()
       .setDescription(" We do not store any data apart from the Commands Database and if the User Contact us from anywhere his data will be cleared, we do not store any type of personal data. We Follow all [Discord's Terms of Service](https://discord.com/terms) and [Community Guidelines](https://discord.com/guidelines).")
       .setColor(bot.color)
 
-    await interaction.editReply({ embeds: [ embed ]})
+      const row = new MessageActionRow()			.addComponents( new MessageButton()
+        .setStyle('LINK')
+        .setURL("https://comfibot.tk/privacy") 
+        .setLabel('Read More!')
+    ) 
+  
+    await interaction.editReply({ embeds: [ embed ], components: [ row ]})
 
 }
       

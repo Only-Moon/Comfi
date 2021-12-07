@@ -12,7 +12,7 @@ module.exports = async (message, bot) => {
  
     const guild = await guilds.findOne({guildId: message.guild.id})
     if(guild.leveling) {
-        const amount = Math.floor(Math.random() * 29) + 1
+        const amount = Math.floor(Math.random() * 15) + 1
 
         const user = await users.findOne({userId: message.author.id, guildId: message.guild.id})
         await users.findOneAndUpdate({userId: message.author.id, guildId: message.guild.id}, {
@@ -24,14 +24,10 @@ module.exports = async (message, bot) => {
         if(guild.leveling_roles.length > 0) {
             guild.leveling_roles.map((l) => {
                 if(l.level <= user3.level) {
-                    message.member.roles.add(l.id).catch(() => {
-                        message.channel.send({content: `Failed to give you your level role! Please report this to an admin!`})
-                    })
+                    message.member.roles.add(l.id).catch(() => null)
                 }
                 if(l.level > user3.level) {
-                    message.member.roles.remove(l.id).catch(() => {
-                        message.channel.send({content: `Failed to give you your level role! Please report this to an admin!`})
-                    })
+                    message.member.roles.remove(l.id).catch(() => null)
                 }
             })
         } 
@@ -64,13 +60,14 @@ module.exports = async (message, bot) => {
                }
 
             if(guild.leveling_channel === "message") {
-                return message.reply({content: `${format(guild.leveling_message)}`})
+                return message.reply({content: `${format(guild.leveling_message)}`}).catch(() => null)
             } else {
                 const channel = message.guild.channels.cache.find(c => c.id === guild.leveling_channel)
+              
                 if(!channel) {
-                    return message.reply({content: `${format(guild.leveling_message)}`})
+                    return message.reply({content: `${format(guild.leveling_message)}`}).catch(() => null)
                 } else {
-                    return channel.send({content: `${format(guild.leveling_message)}`})
+                    return channel.send({content: `${format(guild.leveling_message)}`}).catch(() => null)
                 }
             }
         }

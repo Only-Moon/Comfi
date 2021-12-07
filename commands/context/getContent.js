@@ -17,7 +17,7 @@ module.exports = {
       
       const msg = await interaction.channel.messages.fetch(interaction.targetId);
 
-        interaction.followUp({content: `${user.DisplayName}: ${msg}`})
+        interaction.followUp({content: `${user.DisplayName}: ${msg}`}).catch(() => null)
         
     },
 };

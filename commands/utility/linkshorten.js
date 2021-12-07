@@ -28,6 +28,8 @@ module.exports = {
      */
     run: async (bot, interaction, args, message) => {
 
+try {
+      
         if (!args[0]) {
             shorten.shorten(args[0], function(res) {
                 if(res.startsWith('Error:')) return interaction.editReply(`<a:Attention:883349868062576701> Provide a valid url **${res}**`)
@@ -47,7 +49,7 @@ module.exports = {
   const embed = new MessageEmbed()
 .setAuthor(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
   .setDescription(`Here is your shortened url \n ${res}`)
-.setColor('#F4B3CA');
+.setColor(bot.color);
 
 interaction.editReply({embeds: [ embed ],
     components: [ row ]
@@ -57,4 +59,10 @@ interaction.editReply({embeds: [ embed ],
         })
 
     }
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err})`)
+    }
+  
 }}

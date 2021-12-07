@@ -17,5 +17,6 @@ module.exports = {
   simplydjs.calculator(interaction, {
     embedColor: bot.color,
     slash: true,
+    credit: true
   })      
 }}

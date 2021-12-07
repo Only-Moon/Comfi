@@ -17,6 +17,7 @@ module.exports = {
             description: 'Channel to lock',
             name: 'channel',
             required: false,
+          channelTypes: ["GUILD_TEXT", "GUILD_VOICE"],
         },
     ],
         },
@@ -29,6 +30,7 @@ module.exports = {
             type: 'CHANNEL',
             description: 'Channel to Unlock',
             name: 'channel',
+          channelTypes: ["GUILD_TEXT", "GUILD_VOICE"],
             required: false,
         },
     ],
@@ -55,13 +57,14 @@ if (sub === "enable") {
                     ADD_REACTIONS: false
                 });
             });
-        } catch (e) {
-            console.log(e);
-        }
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
 let embed = new MessageEmbed()
         .setDescription(`${bot.tick} • **Successfully Locked ${channel}**`)
         .setColor(bot.color);
-        interaction.editReply({embeds: [ embed ]});
+        interaction.editReply({embeds: [ embed ]}).catch(() => null);
     }
 
 if (sub === "disable") {
@@ -73,14 +76,15 @@ if (sub === "disable") {
                     ADD_REACTIONS: true
                 });
             });
-        } catch (e) {
-            console.log(e);
-        }
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }
 
         let embed = new MessageEmbed()
         .setDescription(`${bot.tick} • **Successfully Unlocked ${channel}**`)
         .setColor(bot.color);
-        interaction.editReply({embeds: [ embed ]});
+        interaction.editReply({embeds: [ embed ]}).catch(() => null);
     }
     
 }};

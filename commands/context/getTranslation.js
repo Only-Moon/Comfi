@@ -24,6 +24,6 @@ module.exports = {
       .addField("Translateted Text:", `\`\`\`${translated.text}\`\`\``)
       .setColor(bot.color)
 
-      interaction.followUp({ embeds: [embed] })
+      interaction.followUp({ embeds: [embed] }).catch(() => null)
     },
 };

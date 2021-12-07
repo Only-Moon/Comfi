@@ -1,4 +1,5 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
+const simplydjs = require("simply-djs")
 
 module.exports = {
     name: "serverlist",
@@ -12,139 +13,47 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-  /**
-      try {
-interaction.deleteReply();
-      let i0 = 0;
-      let i1 = 10;
-      let page = 1;
+        
+const guilds = bot.guilds.cache.sort((a, b) => b.memberCount - a.memberCount); 
 
-      let description =
-        `Total Servers - ${bot.guilds.cache.size}\n\n` +
-        bot.guilds.cache
-          .sort((a, b) => b.memberCount - a.memberCount)
-          .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
-          .slice(0, 10)
-          .join("\n");
+let pages = []
 
-      let embed = new MessageEmbed()
-        .setAuthor(
-          interaction.user.tag,
-          interaction.user.avatarURL({ dynamic: true })
-        )
-        .setColor(bot.color)
-        .setFooter(bot.user.username)
-        .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
-        .setDescription(description);
-
-      let msg = await interaction.channel.send({embeds: [ embed ]});
-
-      await msg.react("⬅");
-      await msg.react("➡");
-      await msg.react("❌");
-
-      let collector = msg.createReactionCollector(
-        (reaction, user) => user.id === interaction.user.id
-      );
-
-      collector.on("collect", async (reaction, user) => {
-        if (reaction._emoji.name === "⬅") {
-          // Updates variables
-          i0 = i0 - 10;
-          i1 = i1 - 10;
-          page = page - 1;
-
-          // if there is no guild to display, delete the message
-          if (i0 + 1 < 0) {
-            return msg.delete();
-          }
-          if (!i0 || !i1) {
-            return msg.delete();
-          }
-
-          description =
-            `Total Servers - ${bot.guilds.cache.size}\n\n` +
-            bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount)
-              .map(r => r)
-              .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members`
-              )
-              .slice(i0, i1)
-              .join("\n");
-
-          // Update the embed with new informations
-          embed
-            .setTitle(
-              `Page - ${page}/${Math.round(bot.guilds.cache.size / 10 + 1)}`
-            )
-            .setDescription(description);
-
-          // Edit the message
-          msg.edit(embed);
-        }
-
-        if (reaction._emoji.name === "➡") {
-          // Updates variables
-          i0 = i0 + 10;
-          i1 = i1 + 10;
-          page = page + 1;
-
-          // if there is no guild to display, delete the message
-          if (i1 > bot.guilds.cache.size + 10) {
-            return msg.delete();
-          }
-          if (!i0 || !i1) {
-            return msg.delete();
-          }
-
-          description =
-            `Total Servers - ${bot.guilds.cache.size}\n\n` +
-            bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount)
-              .map(r => r)
-              .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members`
-              )
-              .slice(i0, i1)
-              .join("\n");
-
-          // Update the embed with new informations
-          embed
-            .setTitle(
-              `Page - ${page}/${Math.round(bot.guilds.cache.size / 10 + 1)}`
-            )
-            .setDescription(description);
-
-          // Edit the message
-          msg.edit(embed);
-        }
-
-        if (reaction._emoji.name === "❌") {
-          return msg.delete();
-        }
-
-        // Remove the reaction when the user react to the message
-        await reaction.users.remove(message.author.id);
-      });
-    } catch(err) {
-      return console.log(err);
-    }
-      */
-
-const guilds = bot.guilds.cache; 
-      const embed = new MessageEmbed() 
-        .setTitle(`Guilds for ${bot.user.username}`) 
-        .setColor(bot.color) .
-        setFooter(interaction.user.tag); 
-      let description = ""; 
-      guilds.forEach((guild) => { 
-        description += `**${guild.name}:** | ${guild.memberCount} | Id: ${guild.id}\n `; 
-      }); 
-      embed.setDescription(description); 
+guilds.forEach(guild => {
+  
+const embed = new MessageEmbed() 
+        .setTitle(`Guilds for ${bot.user.username}`)
+        .setColor(bot.color) 
+  .setFooter(`Requested by ${interaction.user.tag}`) 
+ .addFields(
+      {
+         name: "Guild Name 》",
+         value: `${guild.name}`,
+         inline: true
+      },
+      {
+         name: "Guild Id 》",
+         value: `${guild.id}`,
+         inline: true
+      },
+      {
+         name: "Member Count 》",
+         value: `${guild.memberCount}`,
+         inline: true
+      },
+)
       
-     interaction.editReply({ embeds: [embed] });
+pages.push(embed)
+})
+  
+simplydjs.embedPages(bot, interaction, pages, {
+slash: true,
+backEmoji: '884420649580363796', 
+delEmoji: '891534962917007410',  
+forwardEmoji: '884420650549272586', 
+btncolor: 'SECONDARY',
+delcolor: 'SECONDARY', 
+skipBtn: false,
+})
       
   }
 };

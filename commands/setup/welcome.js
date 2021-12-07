@@ -44,16 +44,23 @@ module.exports = {
         .setColor(bot.color)
         .setFooter(`You can say "cancel" at any time to cancel the process`)
 
-        let steps = [step1, step2, step3, step4, step5]
+        const step6 = new MessageEmbed()
+        .setTitle(`Welcome Message / Embed [4]`, bot.user.displayAvatarURL())
+        .setDescription(`What should the welcome image be ( **Only Url** ). Say **skip** to use the default ones`)
+        .setColor(bot.color)
+        .setFooter(`You can say "cancel" at any time to cancel the process`)
+
+        let steps = [step1, step2, step3, step4, step5, step6]
         let counter = 0
-        interaction.deleteReply()
+       await interaction.deleteReply().catch(() => null)
         let hoisterMessage = await interaction.channel.send({embeds: [steps[counter]]})
         const finalData = {
             value: undefined,
             channel: undefined,
             dm: undefined,
             embed: undefined,
-            message: undefined
+            message: undefined,
+            image: undefined
         }
         const collector = new MessageCollector(interaction.channel)
 
@@ -138,10 +145,29 @@ module.exports = {
                     hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
                 break;
                 case 4: 
-  finalData['message'] = msg.content
+
+        if(msg.content.lengt >= "4096") {
+                        collector.stop("3")
+                        hoisterMessage.delete().catch(() => {})
+                        return;
+                                                  }
+          
+                    finalData['message'] = msg.content.split("").slice(0,4096).join("")
                     msg.delete().catch(() => {})
+                    counter++
+                    hoisterMessage.edit({embeds: [steps[counter]]}).catch(() => {})
+                break;
+                case 5:
+                    if(msg.content.toLowerCase() === "skip") {                
+  finalData['image'] = "https://i.imgur.com/8MggL9S.png";
+ msg.delete().catch(() => {})           
+              } else {
+                      
+  finalData['image'] = msg.content || msg.attachments.first().url
+                    }
                     hoisterMessage.delete().catch(() => {})
                     collector.stop("2")
+                    
                 break;
             }
         })
@@ -153,6 +179,9 @@ module.exports = {
             }
             if(reason === "1") {
                return interaction.channel.send({content: `${bot.error} • There was an error with your anwser, please make sure to follow the steps!`})
+            }
+            if(reason === "3") {
+               return interaction.channel.send({content: `${bot.crosss} • Welcome Message  should not contain more than 1024 characters`})
             }
             if(reason === "4") {
                 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
@@ -167,9 +196,10 @@ module.exports = {
                     welcome_dmuser: finalData.dm,
                     welcome_channel: finalData.channel,
                     welcome_message: finalData.message,
-                    welcome_embed: finalData.embed
+                    welcome_embed: finalData.embed,
+                    welcome_image: finalData.image
                 })
-                return interaction.channel.send({content: `${bot.tick} • Welcome data has now been setup!`})
+                return interaction.channel.send({content: `${bot.tick} • Welcome data has now been setup! Dont delete the image above if you sent one`})
             }
         })
     }

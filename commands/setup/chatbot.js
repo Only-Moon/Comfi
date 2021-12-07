@@ -14,7 +14,8 @@ module.exports = {
       description: 'Toggle chatbot', 
       name: 'option', 
       required: true, 
-      choices: [ { 
+      choices: [ 
+     { 
         name: 'true/on', 
         value: 'true' 
       }, 
@@ -30,12 +31,16 @@ module.exports = {
         type: 'SUB_COMMAND', 
         description: 'Sets the channel for chatbot', 
         name: 'channel', 
-        options : [ { 
+        options : [ 
+        { 
           type: 'CHANNEL',
           description: 'Channel for Chatbot',
           name: 'name', 
           required: true,
-        }, ], },
+          channelTypes: ["GUILD_TEXT"],
+        }, 
+        ], 
+      },
       { 
         type: 'SUB_COMMAND', 
         description: 'Disables the chatbot system',
@@ -50,7 +55,7 @@ module.exports = {
 * @param {String[]} args 
 */
   
-run: async (bot, interaction, args, message) => { 
+run: async (bot, interaction, args) => { 
   let [ option ] = args
 
     const guild = await guilds.findOne({guildId: interaction.guild.id})

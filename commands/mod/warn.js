@@ -3,7 +3,7 @@ const uuid = require('uuid');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-	    name: 'warn',
+	    name: 'warnn',
       description:
 				'Warn a user, get a list of a user, and remove the warned user!',
 			ownerOnly:  false,
@@ -66,7 +66,7 @@ module.exports = {
 run: async (bot, interaction, args) => {
 		const subCommandName = interaction.options._subcommand;
 
-		const user = interaction.options.getUser('user');
+		const user = interaction.options.getUser('user') || interaction.guild.members.cache.get(args[0]);
 		const getWarnId = interaction.options.getString('warnid');
 
 		switch (subCommandName) {
@@ -103,13 +103,14 @@ let warn = new MessageEmbed()
         .setTitle(`__Warned__`)    
         .setDescription(`You have been warned by ${interaction.user} \n Reason: ${getReason}`)
             .setColor(bot.color);
-        user.send({embeds: [ warn ]})
-            .catch(error => interaction.editReply(`Sorry ${interaction.user} I couldn't n't warn because of : ${error}`));
+        user.send({embeds: [ warn ]}).catch(error => interaction.editReply(`${bot.crosss} • Sorry ${interaction.user} I couldn't n't warn because of : ${error}`));
             let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
-            .setDescription(`Warned **${user.tag}**, They now have **${warnCount}** warning${warnGrammar}`)
+            .setDescription(`${bot.tick} • Warned **${user.tag}** \n${bot.tick} • They now have **${warnCount}** warning${warnGrammar} \n${bot.tick} • Reason: ${getReason}`)
             .setColor(bot.color);
-            interaction.editReply({embeds: [ warnEmbed ]});
+            interaction.editReply({embeds: [ warnEmbed ]}).then((msg) => {
+  setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('30s'))
+  });
 				break;
 
 			case 'list':
@@ -141,7 +142,7 @@ let warn = new MessageEmbed()
 						.addFields(
            {
                         name: `ID: ${warnId} • Moderator: ${getModeratorUser?.user.tag}`,
-                        value: ` > ${bot.error} • **Reason:** ${reason}\n > ${bot.error} • **Date:** <t:${timestamp}>`
+                        value: `> <a:pinkheart_cs:883033001599074364> • **Reason:** ${reason} \n> <a:pinkheart_cs:883033001599074364> • **Date:** <t:${timestamp}>`
            } 
               )
 						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
@@ -175,9 +176,10 @@ let warn = new MessageEmbed()
 
 let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
-            .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
+  .setAuthor(`Request Successful`, bot.user.displayAvatarURL())
+            .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning ${warnedRemoveGrammar}!`)
            .setColor(bot.color)
-      interaction.editReply({embeds: [ warnEmbed ]})
+      interaction.editReply({embeds: [ warnEmbed ]}).catch(() => null)
           } else {
 					interaction.editReply({
 						content: `${bot.error} That is not a valid Warn ID!`,

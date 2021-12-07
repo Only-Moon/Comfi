@@ -37,9 +37,9 @@ module.exports = {
    embedColor: bot.color, // defaultL #075FFF
    credit: false,
    yesEmoji: `${bot.tick}`, // default: ☑️
-   yesColor: '', // default: green 
+   yesColor: 'SECONDARY', // default: green 
    noEmoji: `${bot.crosss}`, // default: X
-   noColor: '', // default: red
+   noColor: 'SECONDARY', // default: red
    });
   } else if (!guild.suggestions) {
 

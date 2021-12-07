@@ -3,3 +3,5 @@ node_modules
 .replit
 package-lock.json
 config.json
+jsdocs/
+utils/logs/roll-????.??.??.log

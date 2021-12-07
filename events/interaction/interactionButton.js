@@ -22,10 +22,8 @@ if (interaction.isButton()) {
 const row = new MessageActionRow()
 			.addComponents(joindsc);
     
-   		await interaction.editReply({ embeds: [inviteyb], components: [row] }); 	 
-  }
-  
-  if(interaction.customId === 'inviteno')   { 
+   		await interaction.editReply({ embeds: [inviteyb], components: [row] }).catch(() => null); 	 
+  } else if(interaction.customId === 'inviteno')   { 
     await interaction.deferUpdate() 
   const noooyb = new MessageEmbed() 
   .setTitle('Okay Then') 
@@ -40,7 +38,7 @@ const row = new MessageActionRow()
 const row1 = new MessageActionRow()
 			.addComponents(joindscc)
     
- 		await interaction.editReply({ embeds: [noooyb], components: [row1] });
+ 		await interaction.editReply({ embeds: [noooyb], components: [row1] }).catch(() => null);
     }
   }
   

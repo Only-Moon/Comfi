@@ -11,12 +11,6 @@ const schema = new Schema({
     suggestions: {type: Boolean, default: false},
     suggestions_channel: {type: String, default: "NONE"},
 
-    // Bump
-    bump: {type: Boolean, default: false},
-    bump_channel: {type: String, default: "NONE"}, 
-    bump_time: {type: String, default: "NONE"},
-    bump_hi: {type: String, default: "NONE"},
-
     // Chatbot
     chatbot: {type: Boolean, default: false},
     chat_channel: {type: String, default: "NONE"}, 
@@ -25,6 +19,9 @@ const schema = new Schema({
     confession: {type: Boolean, default: false},
     confess_channel: {type: String, default: "NONE"},
 
+    //NQN
+    nqn: {type: Boolean, default: false },
+  
     // Tickets
     ticket: {type: Boolean, default: false},
     ticket_category: {type: String, default: "NONE"},
@@ -32,8 +29,9 @@ const schema = new Schema({
   
     // Leveling
     leveling: {type: Boolean, default: false},
+    leveling_coleave: {type: Boolean, default: false},
     leveling_channel: {type: String, default: "NONE"},
-    leveling_message: {type: String, default: "Congrats $user.mention$ on reaching level $level$"},
+    leveling_message: {type: String, default: "Congrats {{user#mention}} on reaching level {{level}}"},
     leveling_roles: {type: Array, default: []},
 
     
@@ -62,20 +60,24 @@ const schema = new Schema({
     welcome: {type: Boolean, default: false},
     welcome_channel: {type: String, default: "NONE"},
     welcome_dmuser: {type: Boolean, default: false},
-    welcome_message: {type: String, default: "Welcome {{user.mention}}"},
+    welcome_message: {type: String, default: "Welcome {{user#mention}}"},
+    welcome_image: {type: String, default: "https://i.imgur.com/8MggL9S.png"},
     welcome_embed: {type: Boolean, default: false},
     
     // Leave
     leave: {type: Boolean, default: false},
     leave_channel: {type: String, default: "NONE"},
     leave_dmuser: {type: Boolean, default: false},
-    leave_message: {type: String, default: "Goodbye {{user.mention}}"},
+    leave_message: {type: String, default: "Goodbye {{user#tag}}"},
+    leave_image: {type: String, default: "https://i.imgur.com/wyFi8zu.png"},
     leave_embed: {type: Boolean, default: false},
 
     // Boost
     boost: {type: Boolean, default: false},
     boost_channel: {type: String, default: "NONE"},
-    boost_message: {type: String, default: "{user.mention} just boosted {server}. Now We Have {boost.count} boosts"},
+    boost_message: {type: String, default: "{{user#mention}} just boosted {server}. Now We Have {{boost#count}} boosts"},
+    boost_image: {type: String, default: "https://i.imgur.com/wTKiUY8.png"},
+    boost_embed: {type: Boolean, default: false},
 
     // Logs
     logging: {type: Boolean, default: false},
@@ -83,7 +85,7 @@ const schema = new Schema({
     modlog: {type: Boolean,  default:  false},
     mod_channel: {type: String,  default:  "NONE"}, 
 
-    // MutedRole 
+// Mute 
     mute: {type: Boolean, default: false},
     mute_role: {type: String, default: "NONE"},
     muted_role: {type: Array,  default: []},

@@ -18,11 +18,6 @@ simplydjs.suggestBtn(interaction, db, {
   agreeEmbColor: '#6EE57F',
   })
 
- // Giveaway
-simplydjs.clickBtn(interaction, {
-  db: db
-})
-
 // Ticket
 const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(guild.ticket) {
@@ -33,20 +28,30 @@ let support = guild.ticket_role
 let cat = guild.ticket_category
    if (!cat) return;
 
+let log = guild.mod_channel
+   if (!log) return;
+
   simplydjs.clickBtn(interaction, {
     embedDesc: 'Support Ticket', 
     embedColor: bot.color, 
-    closeColor: 'red', 
+    closeColor: 'SECONDARY', 
     credit: false,
     closeEmoji: '775083085124468736', 
-    delColor: '',
+    delColor: 'SECONDARY',
     delEmoji: '796196175627419678',
-    openColor: 'grey' , 
+    openColor: 'SECONDARY', 
     openEmoji: '855791964975530004',
+    trEmoji: '905055261021061150',
+    trColor: 'SECONDARY',
     timeout: true,
     cooldownMsg: `${bot.error} Close Old Ticket First Then Open New One Again`,
     categoryID: `${cat}`,
-    role: `${support}`                               
+    role: `${support}`,
+    pingRole: `${support}`,
+    ticketname: "ticket-{tag}",
+    logChannel: `${log}`,
+
+    db: db
   }) 
     }
 

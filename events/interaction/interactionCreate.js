@@ -9,13 +9,15 @@ bot.on("interactionCreate", async (interaction, args) => {
 
 if (interaction.isCommand()) {
   await interaction.deferReply({ ephemeral: false }).catch(() => {}); 
+
+if (!interaction.guild) return;
   
 const guild = await guilds.findOne({guildId: interaction.guild.id})
     if(!guild) { await guilds.create({guildId: interaction.guild.id})}
 
   const cmd = bot.slashCommands.get(interaction.commandName) || bot.register.get(interaction.commandName);
   if (!cmd) 
-    return interaction.followUp({ content: "An error has occured ",}); 
+    return interaction.followUp({ content: "An error has occured ",}).catch(() => null); 
   
   const args = []; 
     
@@ -40,17 +42,16 @@ const userp = new MessageEmbed().setDescription(`${bot.error} You need \`${cmd.u
   
 const userperm = interaction.member.permissions.has(cmd.userperm);
 
-        if (!userperm) return interaction.followUp({embeds: [ userp ]});
+        if (!userperm) return interaction.followUp({embeds: [ userp ]}).catch(() => null);
     
 const botp = new MessageEmbed().setDescription(`${bot.error} I need \`${cmd.botperm || []}\` Permissions`).setColor("#FC7C7C")
 
     const botperm = interaction.guild.me.permissions.has(cmd.botperm);
-        if (!botperm) return interaction.followUp({embeds: [ botp ]});
+        if (!botperm) return interaction.followUp({embeds: [ botp ]}).catch(() => null);
   
 
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
  
-if (!interaction.guild) return;
 if (interaction.user.bot) return;
   
     async function commandExecute(){
@@ -59,6 +60,15 @@ if (interaction.user.bot) return;
 
 const user = await users.findOne({userId: interaction.user.id})
     if(!user) { await guilds.create({userId: interaction.user.id})}
+
+const logsChannel = bot.channels.cache.get("890580695192305696" || "782566659088842762")
+  
+const logsEmbed = new MessageEmbed()
+    .setDescription(` > <a:tick:890113862706266112> • __Command:__ **${cmd.name}**!\n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${interaction.guild ? interaction.guild.name : "dm"}**\n > <a:emoji_87:883033003574579260> • __Id:__ **${interaction.guild ? interaction.guild.id : "dm"}**`)			
+    .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)				
+    .setColor(bot.color)				
+    .setFooter(`Used by ${interaction.user.username}`)				
+    .setTimestamp();
   
 if(cmd.cooldown) {
     const current_time = Date.now();
@@ -79,20 +89,20 @@ userId: interaction.member.id,
                     let hrs = new MessageEmbed()
        .setDescription(`${bot.error} Please wait ${parseInt(hour)} more hours before using \`${cmd.name}\`!`)
        .setColor('#FF8080');                
-                      return interaction.followUp({embeds: [ hrs ]})
+                      return interaction.followUp({embeds: [ hrs ]}).catch(() => null)
               }
                 if(time_left.toFixed(1) >= 60) {
                     let minute = (time_left.toFixed(1) / 60);
                     let min = new MessageEmbed()
          .setDescription(`${bot.error} Please wait ${parseInt(minute)} more minutes before using \`${cmd.name}\`!`)
        .setColor('#FF8080');
-                  return interaction.followUp({embeds: [ min ]})
+                  return interaction.followUp({embeds: [ min ]}).catch(() => null)
                 }
                 let seconds = (time_left.toFixed(1));
                 let sec = new MessageEmbed()
         .setDescription(`${bot.error} Please wait ${parseInt(seconds)} more seconds before using \`${cmd.name}\`!`)
        .setColor('#FF8080');
-              return interaction.followUp({embeds: [ sec ]})
+              return interaction.followUp({embeds: [ sec ]}).catch(() => null)
             } else {
                 await users.findOneAndUpdate({ 
 userId: interaction.member.id,
@@ -102,9 +112,19 @@ cmd: cmd.name
 time: current_time
  });
                 commandExecute();
+                if(logsChannel) {
+
+logsChannel.send({embeds: [ logsEmbed ]}).catch(() => null)
+              
+};
             }
         } else {
             commandExecute();
+            if(logsChannel) {
+
+logsChannel.send({embeds: [ logsEmbed ]}).catch(() => null)  
+   }
+          
             users.create({
                 userId: interaction.member.id,
                 cmd: cmd.name,
@@ -115,6 +135,11 @@ time: current_time
     })
 } else {
     commandExecute();
+                if(logsChannel) {
+
+logsChannel.send({embeds: [ logsEmbed ]}).catch(() => null)  
+                }
+  
 };
       }
   

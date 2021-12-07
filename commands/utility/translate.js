@@ -26,7 +26,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
+    run: async (bot, interaction, args) => {
 
     try {
 
@@ -40,8 +40,9 @@ module.exports = {
       .addField('Translated to', `\`\`\`${result.translation}\`\`\``)
       .setTimestamp()
       interaction.editReply({embeds: [ embed ]})
-    }  catch (err) {
-      interaction.editReply(`<a:Attention:883349868062576701> Failed to translate **${args[1]}** to **${args[0]}**`);
+    } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
     }
   }
 }

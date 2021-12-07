@@ -58,14 +58,18 @@ module.exports = {
             name: "channel",
             type: "CHANNEL",
             required: false,
-            description: 'Choose a channel to send it.'
+            description: 'Choose a channel to send it.',
+            channelTypes: ["GUILD_TEXT"],
         }
     ],
     run: async (bot, interaction, args) => {
+
+try {
+      
         const ch = interaction.options.getChannel('channel') || interaction.channel;
         const channelstype = interaction.guild.channels.cache.get(ch.id)
-        if(!channelstype) return interaction.editReply({ content: `<a:Attention:883349868062576701> You must enter a valid channel.`})
-        if(channelstype.type !== 'GUILD_TEXT') return interaction.editReply({ content: `<a:Attention:883349868062576701> You must enter a valid text channel.`})
+        if(!channelstype) return interaction.editReply({ content: `${bot.error} You must enter a valid channel.`})
+        if(channelstype.type !== 'GUILD_TEXT') return interaction.editReply({ content: `${bot.error} You must enter a valid text channel.`})
 
         const author = interaction.options.getUser('author');
 
@@ -78,12 +82,12 @@ module.exports = {
         const footer = interaction.options.getString('footer');
 
         const resultat = new embed()
-        .setTitle(title)
+        .setTitle(title.split("").slice(0, 256).join(""))
 
-        if(description) resultat.setDescription(description)
+        if(description) resultat.setDescription(description.split("").slice(0, 1024).join(""))
 
         if(couleurr) {
-            if (!isColor(couleurr).color) return interaction.editReply({ content: `:-<a:Attention:883349868062576701> You must enter a valid colour. The colour can be in RGB, HEX, HSL, HSV, CMYK.` });
+            if (!isColor(couleurr).color) return interaction.editReply({ content: `${bot.error} You must enter a valid colour. The colour can be in RGB, HEX, HSL, HSV, CMYK.` });
             const color = new Color(couleurr);
             resultat.setColor(color.toHex())
         }
@@ -93,7 +97,7 @@ module.exports = {
                 resultat.setURL(url)
             }
             else{
-                return interaction.editReply({ content: `<a:Attention:883349868062576701> The link is not valid.`})
+                return interaction.editReply({ content: `${bot.error} The link is not valid.`})
             }
         }
 
@@ -102,7 +106,7 @@ module.exports = {
                 resultat.setImage(image)
             }
             else{
-                return interaction.editReply({ content: `<a:Attention:883349868062576701> The link for the image is not valid.`})
+                return interaction.editReply({ content: `${bot.error} The link for the image is not valid.`})
             }
         }
 
@@ -111,7 +115,7 @@ module.exports = {
                 resultat.setThumbnail(thumbnail)
             }
             else {
-                return interaction.editReply({ content: `<a:Attention:883349868062576701> The link for the thumbnail is not valid.`})
+                return interaction.editReply({ content: `${bot.error} The link for the thumbnail is not valid.`})
             }
         }
 
@@ -123,8 +127,18 @@ module.exports = {
             resultat.setFooter(footer)
         }
 
-        channelstype.send({ embeds: [resultat] })
+        channelstype.send({ embeds: [resultat] }).catch(e => {
+        interaction.followUp({
+          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+          ephemeral: true
+        });
+});
         interaction.editReply({ content: `The embed has been sent to the channel ${channelstype}`})
 
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err}`)
+    }
+  
     },
 };

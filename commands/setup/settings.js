@@ -1,6 +1,7 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const simplydjs = require("simply-djs")
 const guilds = require("../../models/guild");
+const users = require("../../models/users")
 
 module.exports = {
     name: "settings",
@@ -16,11 +17,41 @@ module.exports = {
     run: async (bot, interaction, args) => {
          
     const guildID = interaction.guild.id; 
-        const messageChannel = interaction.channel; 
+    const messageChannel = interaction.channel; 
+    const user = await users.findOne({guildId: interaction.guild.id, userId: interaction.user.id})
     const guild = await guilds.findOne({ 
             guildId: interaction.guild.id,
             });    
-         
+
+    function format(msg) {
+        let text = msg;
+    
+  const terms = [
+         { name: '{{user#mention}}', value: `<@${interaction.user.id || "NONE"}>` },
+         { name: '{{user#tag}}', value: `${interaction.user.tag || "NONE"}` },
+         { name: '{{user#id}}', value: `${interaction.user.id || "NONE"}` },
+         { name: '{{server#id}}', value: `${interaction.guild.id}` },
+         { name: '{{server#name}}', value: `${interaction.guild.name || "NONE"}` },
+         { name: '{{server#membercount}}', value: `${interaction.guild.memberCount || "NONE"}` },
+         { name: '{{server}}', value: `${interaction.guild.name || "NONE"}` },
+         { name: '{{boostcount}}', value: `${interaction.guild.premiumSubscriptionCount || "NONE"}` }
+       ];
+       
+       for (let { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);
+       
+       return text
+    }
+
+        const auto = new MessageEmbed() 
+                        .setAuthor( `${interaction.guild.name} - Settings - Auto Nickname`, interaction.guild.iconURL({ dynamic: true }) ) 
+                        .setDescription( "You can change the settings by `/autonick`" ) 
+                        .addFields( { 
+                            name: "» AutoNick", 
+                            value: `\`\`\`\n${guild.auto_nick}\n\`\`\``,
+                        }) 
+                            .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
+                            .setColor(bot.color); 
+  
          const boost = new MessageEmbed() 
                         .setAuthor( `${interaction.guild.name} - Settings - Boost Detector`, interaction.guild.iconURL({ dynamic: true }) ) 
                         .setDescription( "You can change the settings by `/boost message or /boost channel`" ) 
@@ -29,14 +60,18 @@ module.exports = {
                             value: `\`\`\`\n${guild.boost}\n\`\`\``,
                             },
                             { 
-                            name: "» Boost Message", 
-                            value: `\`\`\`\n${guild.boost_message}\n\`\`\``,
-                            }, 
+                            name: "» Boost Embed Toogle", 
+                            value: `\`\`\`\n${guild.boost_embed}\n\`\`\``,
+                            },
                             { 
-                                name: "» Boost Channel", 
-                                value: `<#${guild.boost_channel}>`, 
-                                
-                            } ) 
+                            name: "» Boost Message", 
+                            value: `${format(guild.boost_message)}`,
+                            }, 
+                           { 
+                            name: "» Boost Image", 
+                            value: `\`\`\`\n${`Preview Below`}\n\`\`\``,
+                            }, ) 
+    .setImage(`${guild.boost_image}`)
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
 
@@ -107,9 +142,14 @@ module.exports = {
                             },
                             { 
                             name: "» Leave Message", 
-                            value: `\`\`\`\n${guild.leave_message}\n\`\`\``,
+                            value: `${format(guild.leave_message)}`,
+                            },       
+                            { 
+                            name: "» Leave Image", 
+                            value: `\`\`\`\n${`Preview Below`}\n\`\`\``,
                             },
                             ) 
+.setImage(guild.leave_image)
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
    
@@ -122,7 +162,7 @@ module.exports = {
                             },
                             { 
                             name: "» Leveling Message", 
-                            value: `\`\`\`\n${guild.leveling_message}\n\`\`\``,
+                            value: `${format(guild.leveling_message)}`,
                             }, 
                             { 
                                 name: "» Leveling Channel", 
@@ -243,7 +283,7 @@ module.exports = {
                             },
                             { 
                             name: "» Verification Message", 
-                            value: `\`\`\`\n${guild.verification_message}\n\`\`\``,
+                            value: `${format(guild.verification_message)}`,
                             }, 
                             { 
                                 name: "» verification Channel", 
@@ -280,14 +320,19 @@ module.exports = {
                             },
                             { 
                             name: "» Welcome Message", 
-                            value: `\`\`\`\n${guild.welcome_message}\n\`\`\``,
+                            value: `${format(guild.welcome_message)}`,
                             },
-                            ) 
+                            { 
+                            name: "» Welcome Image", 
+                            value: `\`\`\`\n${`Preview Below`}\n\`\`\``,
+                            },
+                            )
+.setImage(guild.welcome_image) 
                             .setFooter( `Requested by: ${interaction.user.tag}`, interaction.user.avatarURL({ dynamic: true }) ) 
                             .setColor(bot.color); 
                             
-const pages = [boost, bump, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, ticket, verification, welcome]; 
-                            
+const pages = [auto, boost, chatbot, confess, leave, leveling, logging, membercount, modlog, mute, suggest, verification, welcome]; 
+                          
 simplydjs.embedPages(bot, interaction, pages, {
 slash: true,
 firstEmoji: '884420649580363796', 
@@ -300,4 +345,5 @@ delcolor: 'SECONDARY',
 skipcolor: 'SECONDARY', 
 skipBtn: true,
 })
+
     }}

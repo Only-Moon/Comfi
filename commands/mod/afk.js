@@ -19,6 +19,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async(bot, interaction, args) => {
+
+try {
+      
         const user = await users.findOne({userId: interaction.user.id})
         if(!user) {
             await users.create({userId: interaction.user.id})
@@ -40,7 +43,14 @@ module.exports = {
     .setFooter("Type a message to remove your AFK");
         
     if(interaction.member.manageable) interaction.member.setNickname("[AFK] " + interaction.member.displayName)
-        interaction.editReply({embeds: [embed]})
+        
+await interaction.editReply({embeds: [embed]})
        }, 1000);
+
+     } catch (err) {
+
+return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+    }  
+  
     }
 }

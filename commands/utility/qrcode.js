@@ -28,7 +28,7 @@ module.exports = {
         interaction: interaction,
         embedFooter: `Requested by ${interaction.member.displayName}`, //The Footer of the embed
         embedTitle: "Generated A QR Code", //The title of the embed
-        embedColor: "RANDOM", //The color of the embed! (Use Hex codes or use the color name)
+        embedColor: bot.color, //The color of the embed! (Use Hex codes or use the color name)
         })
         util.qrcode()
         

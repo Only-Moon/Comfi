@@ -3,7 +3,7 @@ const simplydjs = require("simply-djs")
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "ticket-system",
+    name: "ticket",
     description: "Setup the ticket system",
     ownerOnly: false,
     options: [
@@ -15,6 +15,7 @@ module.exports = {
           {
             type: 'CHANNEL',
             description: 'Category id to open tickets',
+            channelTypes: ["GUILD_CATEGORY"],
             name: 'id',
             required: true,
         },
@@ -37,6 +38,14 @@ module.exports = {
             type: 'SUB_COMMAND',
             description: 'Sends the ticket panel',
             name: 'display',
+            options: [
+            {
+            type: 'STRING',
+            description: 'Subject of the ticket',
+            name: 'subject',
+            required: false,
+            },
+            ],
         },
         {
             type: 'SUB_COMMAND',
@@ -61,7 +70,7 @@ if (option === 'category') {
 if (Channel.type === "GUILD_CATEGORY"){ 
 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
                   ticket: true, 
-                  ticket_category: Channel,
+                  ticket_category: Channel.id,
                   }) 
          interaction.editReply(
 					'**The Ticket Category has been set to**' + Channel.toString()
@@ -81,7 +90,7 @@ if (option === 'role') {
       return interaction.editReply(`${bot.error} **Please Enter A Valid Role Name or ID!**`);
 
 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
-                  ticket_role: role.irole.id,
+                  ticket_role: role.id,
                   })
 				return interaction.editReply(
           `**\`${role.name}\` Has Been Set Successfully As Supportrole!**`
@@ -89,13 +98,17 @@ await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
       };
 
 if (option === 'display') {
+
+let desc = interaction.options.getString("subject") || "Create a new Ticket By Clicking Below"
+
 				simplydjs.ticketSystem(interaction, interaction.channel, { 
-    embedDesc: 'Create a new Ticket By Clicking Below',
+    embedDesc: `${desc}`,
     embedColor: bot.color, // default: #075FFFF 
     embedFoot: '', // default: message.guild.name 
     credit: false,
+    slash: true,
     emoji: '855791964975530004', // default:, 🎫
-    color: '', // default: blurple 
+    color: 'SECONDARY', // default: blurple 
     })
 }
 
