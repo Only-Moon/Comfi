@@ -2,7 +2,7 @@ const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
 const translate = require("@iamtraction/google-translate")
 
 module.exports = {
-    name: "Translate",
+    name: "translate",
     type: 'MESSAGE',
     userperm: [""],
     botperm: [""],
@@ -24,6 +24,12 @@ module.exports = {
       .addField("Translateted Text:", `\`\`\`${translated.text}\`\`\``)
       .setColor(bot.color)
 
-      interaction.followUp({ embeds: [embed] }).catch(() => null)
+      interaction.followUp({ embeds: [embed] }).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        }
+      })
     },
 };

@@ -15,10 +15,10 @@ module.exports = {
     run: async(bot, interaction, args) => {
        
     try {
-      interaction.channel.clone().then((ch) => {
-            ch.setParent(interaction.channel.parent.id)
-            ch.setPosition(interaction.channel.position)
-            interaction.channel.delete();
+      interaction.channel.clone().then(async(ch) => {
+            await ch.setParent(interaction.channel.parent.id)
+            await ch.setPosition(interaction.channel.position)
+            await interaction.channel.delete();
 
             const NukeEmbed = new MessageEmbed()
             .setColor(bot.color)
@@ -31,11 +31,22 @@ module.exports = {
   setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('60s'))
   });;
        
-    })
+    }).catch(() => null)
 
-     } catch (err) {
-
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
-    }
+     } catch(e) {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
+        interaction.followUp({
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
+        });
+        }
       
 }}

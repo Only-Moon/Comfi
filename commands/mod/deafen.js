@@ -37,10 +37,21 @@ module.exports = {
         try {
             member.voice.setDeaf(true, reason);
             interaction.editReply(`${bot.tick} • Deafened ${member.user.username} `)
-     } catch (err) {
-
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+     } catch (e) {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
+        interaction.followUp({
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
+        });
+        }
     }
 
     }
-}

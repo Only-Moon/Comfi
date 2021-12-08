@@ -47,9 +47,21 @@ try {
 await interaction.editReply({embeds: [embed]})
        }, 1000);
 
-     } catch (err) {
+     } catch (e) {
 
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
+        interaction.followUp({
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
+        });
     }  
   
     }

@@ -167,7 +167,22 @@ module.exports = {
 						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`)
 				}
 
-				interaction.editReply({ embeds: [embed] })
+				interaction.editReply({ embeds: [embed] }).catch(e => {
+					bot.sendhook(`Error Occured \n ${e.stack}`),
+						{
+							channel: bot.err_chnl
+						}
+					interaction.followUp({
+						embeds: [
+							{
+								description: `${
+									bot.error
+								} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+								color: bot.color
+							}
+						]
+					})
+				})
 				break
 
 			case 'remove':
@@ -202,7 +217,22 @@ module.exports = {
 							}** warning, they now have **${warnedRemoveCount}** warning ${warnedRemoveGrammar}!`
 						)
 						.setColor(bot.color)
-					interaction.editReply({ embeds: [warnEmbed] }).catch(() => null)
+					interaction.editReply({ embeds: [warnEmbed] }).catch(e => {
+						bot.sendhook(`Error Occured \n ${e.stack}`),
+							{
+								channel: bot.err_chnl
+							}
+						interaction.followUp({
+							embeds: [
+								{
+									description: `${
+										bot.error
+									} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+									color: bot.color
+								}
+							]
+						})
+					})
 				} else {
 					interaction.editReply({
 						content: `${bot.error} That is not a valid Warn ID!`,

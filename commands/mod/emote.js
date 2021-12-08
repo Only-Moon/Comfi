@@ -115,11 +115,22 @@ let emoji = { name: "" };
 
         })
 
-     } catch (err) {
-
-return interaction.editReply(`${bot.error} An error has occured [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${err}`)
+     } catch (e) {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
+        interaction.followUp({
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
+        });
+        }
     }
-}
 }
 
 if (sub === "addmany") {
@@ -138,14 +149,20 @@ await interaction.deleteReply().catch(() => null);
             interaction.guild.emojis.create(
                 `${Link}`,
                 `${`${emoji.name}`}`
-            ).then(em => interaction.channel.send(em.toString() + " added!")).catch (e => {
-            let embed = new MessageEmbed()
-            .setColor(bot.color)
-            .setTitle(`${bot.error} Error!`)
-            .setDescription(`${bot.error} An error has occured [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) \nError: ${e}`);
-
-            interaction.editReply({embeds: [ embed ]});
-
+            ).then(em => interaction.channel.send(em.toString() + " added!")).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
+        interaction.followUp({
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
+        });
         })
           
         }

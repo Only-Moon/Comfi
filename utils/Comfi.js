@@ -40,6 +40,7 @@ class Comfi extends Discord.Client {
 			this.logger.ready(`Logged in as ${this.user.tag}`, 'ready')
 		})
 		this.owners = require('../config.json').owners
+   this.err_chnl = "918100194699132978" || "881789380073783303"
 		this.login(process.env.TOKEN)
 		this.config = require('../config.json')
 		this.categories = fs.readdirSync('./commands/')
@@ -49,24 +50,8 @@ class Comfi extends Discord.Client {
 		this.slashCommands = new Discord.Collection()
 		this.timeout = new Discord.Collection()
 		this.init()
-	}
-	dbs(s) {
-		mongoose
-			.connect(
-				s,
-				{
-					useNewUrlParser: true,
-					useUnifiedTopology: true
-				}
-			)
-			.then(() => this.logger.log('Mongodb connected!'))
-			.catch(err => this.logger.error(`${err}`))
-	}
-
-	init() {
-		require('../handler/index')(this)
-	}
-
+  }
+  
 	async resolveUser(search) {
 		if (!search || typeof search !== 'string') return null
 		let user = null
@@ -107,7 +92,7 @@ class Comfi extends Discord.Client {
 	 * @param {string} search
 	 * @param {Guild} guild
 	 */
-	async resolveRole(search, guild) {
+	resolveRole(search, guild) {
 		if (!search || typeof search !== 'string') return null
 		search = search.split(' ').join('')
 		let role = null
@@ -121,7 +106,7 @@ class Comfi extends Discord.Client {
 	 * @returns {Channel|null}
 	 * @param {string} search
 	 */
-	async resolveChannel(search) {
+	resolveChannel(search) {
 		if (!search) return null
 		let channel = null
 		channel = this.channels.cache.get(
@@ -173,122 +158,7 @@ class Comfi extends Discord.Client {
 			return '<t:' + datum.getTime() / 1000 + `>`
 		}
 	}
-	async awaitReply(
-		content = null,
-		{
-			message,
-			image,
-			embed,
-			color = this.color,
-			max = 1,
-			time = 60000,
-			obj = false
-		}
-	) {
-		const filter = m => m.user.id === interaction.user.id
-		await interaction.channel.send({
-			embeds: embed
-				? embed
-				: [
-						{
-							description: content,
-							color: color,
-							image: {
-								url: image ? image : null
-							},
-							footer: {
-								text: `Time: ${format(time)}`
-							}
-						}
-				  ]
-		})
 
-		try {
-			const collected = await interaction.channel.awaitMessages({
-				filter,
-				max: max,
-				time: time,
-				errors: ['time']
-			})
-			if (obj) {
-				return collected.first()
-			}
-			return collected.first().content
-		} catch (e) {
-			return false
-		}
-	}
-	async send(
-		content = null,
-		{
-			message,
-			embed,
-			color = this.color,
-			image,
-			timeout,
-			channel = null,
-			type = null
-		}
-	) {
-		let msg = (await type)
-			? ((await this.resolveUser(channel)) || interaction.user)
-					.send({
-						embeds: embed
-							? embed
-							: [
-									{
-										author: {
-											icon_url: interaction.user.displayAvatarURL({
-												dynamic: true
-											}),
-											name: interaction.user.username
-										},
-										description: content,
-										color: color,
-										image: {
-											url: image ? image : null
-										}
-									}
-							  ]
-					})
-					.then(a => {
-						if (timeout) {
-							setTimeout(() => {
-								a.delete()
-							}, timeout)
-						} else null
-					})
-			: (channel ? this.channels.cache.get(channel) : interaction.channel)
-					.send({
-						embeds: embed
-							? embed
-							: [
-									{
-										author: {
-											icon_url: interaction.user.displayAvatarURL({
-												dynamic: true
-											}),
-											name: interaction.user.username
-										},
-										description: content,
-										color: color,
-										image: {
-											url: image ? image : null
-										}
-									}
-							  ]
-					})
-					.then(a => {
-						if (timeout) {
-							setTimeout(() => {
-								a.delete()
-							}, timeout)
-						} else null
-					})
-
-		return { message: msg }
-		//EZ :V
-	}
 	async sendhook(
 		msg,
 		{
@@ -296,12 +166,13 @@ class Comfi extends Discord.Client {
 			channel,
 			embed = null,
 			name = 'COMFI HOOK',
-			avatar = this.user.displayAvatarURL()
+			avatar = "https://i.imgur.com/At2XO1M.png",
+      bot = this
 		}
 	) {
 		if (!channel || typeof channel !== 'string')
 			throw new SyntaxError('Invaild Channel')
-		const channel_ = await this.resolveChannel(channel)
+		const channel_ = await bot.resolveChannel(channel)
 		let webhook = await channel_
 			.fetchWebhooks()
 			.then(x => x.find(x => x.name === name))
@@ -339,6 +210,26 @@ class Comfi extends Discord.Client {
 
 		return hour + ':' + minute + ':' + second + '.'
 	}
+
+	dbs(s) {
+		mongoose
+			.connect(
+				s,
+				{
+					useNewUrlParser: true,
+					useUnifiedTopology: true
+				}
+			)
+			.then(() => this.logger.log('Mongodb connected!'))
+			.catch(err => this.logger.error(`${err}`))
+	}
+
+	init() {
+		require('../handler/index')(this)
+  }
+  
 }
+
+
 
 module.exports = Comfi

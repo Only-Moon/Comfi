@@ -54,7 +54,13 @@ module.exports = {
                 .setAuthor(`${member.user.tag} Asked me`, member.user.avatarURL({ dynamic: true }))
                 .setDescription(`**Question:** \n ${yq} \n**My Answer:** \n ${answers[Math.floor(Math.random() * answers.length)]}`)
                 .setColor(bot.color)
-            interaction.followUp({ embeds: [embed] });
+            interaction.followUp({ embeds: [embed] }).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        }
+      });
         }
     }
 }

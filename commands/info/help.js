@@ -20,7 +20,7 @@ module.exports = {
     }, ],
     userperm: [""],
     botperm: [""],
-
+  
     /**
      *
      * @param {CommandInteraction} interaction
@@ -86,94 +86,8 @@ module.exports = {
             return interaction.editReply({
                 embeds: [embed],
                 components: menus.smenu
-            }).then((msgg) => {
-                const menuID = menus.sid;
-                const select = async (interaction) => {
-                    if (interaction.customId != menuID) return;
-                    let {
-                        values
-                    } = interaction;
-                    let value = values[0];
-                    let catts = [];
-                    readdirSync("./commands/").forEach((dir) => {
-                        if (dir.toLowerCase() !== value.toLowerCase()) return;
-                        const commands = readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith(".js"));
-                        const cmds = commands.map((command) => {
-                            let file = require(`../../commands/${dir}/${command}`);
-
-                            if (!file.name) return "No command name.";
-                            let name = file.name.replace(".js", "");
-                            if (bot.slashCommands.get(name).hidden) return;
-
-                            let des = bot.slashCommands.get(name).description;
-                            let emo = bot.slashCommands.get(name).emoji;
-                            let emoe = emo ? `${emo} - ` : "";
-
-                            let obj = {
-                                cname: `${emoe}\`${name}\``,
-                                des,
-                            };
-
-                            return obj;
-                        });
-
-                        let dota = new Object();
-                        cmds.map((co) => {
-                            if (co == undefined) return;
-                            dota = {
-                                name: `${cmds.length === 0 ? "In progress." : co.cname}`,
-                                value: co.des ? co.des : "No Description",
-                                inline: true,
-                            };
-
-                            catts.push(dota);
-                        });
-
-                        cots.push(dir.toLowerCase());
-                    });
-
-                    if (cots.includes(value.toLowerCase())) {
-                        const combed = new MessageEmbed()
-                            .setTitle(`__${ value.charAt(0).toUpperCase() + value.slice(1) } Commands!__`)
-                            .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
-                            .addFields(catts)
-                            .setFooter(`Comfi™ Help`, interaction.user.avatarURL({
-                                dynamic: true
-                            }))
-                            .setTimestamp()
-                            .setThumbnail(bot.user.displayAvatarURL({
-                                dynamic: true
-                            }))
-                            .setColor(bot.color);
-
-                        await interaction.deferUpdate();
-
-                        return interaction.message.edit({
-                            embeds: [combed],
-                            components: menus.smenu,
-                        }).catch(e => {
-        interaction.followUp({
-          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-          ephemeral: true
-        });
-});;
-                    }
-                };
-
-const filter = (interaction) => {
-                    return (!interaction.user.bot && interaction.user.id == interaction.user.id);
-                };
-
-
-                const collector = msgg.createMessageComponentCollector({
-                    filter,
-                    componentType: "SELECT_MENU",
-                });
-
-                collector.on("collect", select);
-
-                collector.on("end", () => null);
-            });
+            })
+              
         } else {
 
             let catts = [];
@@ -294,12 +208,21 @@ else if(subc.length > 1) { subc = `${subc.toString().replaceAll(',', '')}\n`}
           
             return await interaction.editReply({
                 embeds: [embed]
-            }).catch(e => {
+            }).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
         interaction.followUp({
-          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-          ephemeral: true
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
         });
-});
+        });
         }
     }
 }

@@ -25,7 +25,21 @@ module.exports = {
         if(guild.verification) {
             const member = interaction.options.getMember('user')
 
-            member.roles.add(guild.verification_role)
+            await member.roles.add(guild.verification_role).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
+        interaction.followUp({
+          embeds: [
+            {
+        description: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+        color: bot.color,  
+           },
+        ]
+        });
+        })
             const embed = new MessageEmbed()
                 .setDescription(` > ${bot.tick} • ${member} has been verified!`)
                 .setColor(bot.color)

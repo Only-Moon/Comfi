@@ -29,7 +29,7 @@ module.exports = async (message, bot) => {
 		})
 
 		if (guild.leveling_roles.length > 0) {
-			guild.leveling_roles.map(l => {
+			guild.leveling_roles.map(async l => {
 				if (l.level <= user3.level) {
 					await message.member.roles.add(l.id).catch(() => null)
 				}

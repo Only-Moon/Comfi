@@ -45,12 +45,19 @@ bot.on('messageCreate', async message => {
 
 		let row = new MessageActionRow().addComponents(sup, inv, dash)
 
-		message
+    
+		await message
 			.reply({
 				embeds: [ping],
 				components: [row],
 				allowedMentions: { repliedUser: false }
 			})
-			.catch(() => null)
+			.catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        }
+      })
 	}
 })

@@ -24,7 +24,12 @@ module.exports = {
             .setColor(bot.color)
             .setFooter(`🔼 ${r.ups} | Author: ${r.author}`)
 
-await interaction.editReply({embeds: [embed]}).catch(e => {
+await interaction.editReply({embeds: [embed]}).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        ), {
+          channel: bot.err_chnl
+        } 
         interaction.followUp({
           content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
           ephemeral: true
