@@ -1,55 +1,58 @@
-const { CommandInteraction, MessageEmbed } = require('discord.js')
-const fetch = require('node-fetch')
+import got from 'got'
+const { CommandInteraction } = require('discord.js')
+const Discord = require('discord.js')
 
 module.exports = {
 	name: 'npm',
-	description: 'Get info about npm package',
-	ownerOnly: false,
+	description: 'Get Information of a NPM Package',
+	type: 'CHAT_INPUT',
+  userperm: [],
+  botperm: [],
+  ownerOnly: false,
 	options: [
 		{
+			name: 'package',
 			type: 'STRING',
-			description: 'Package Name',
-			name: 'npm',
-			required: true
+			required: true,
+			description: 'The Name of the Package'
 		}
 	],
-	userperm: [''],
-	botperm: [''],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
 	run: async (bot, interaction, args) => {
-		let npm = interaction.options.getString('npm')
-
-		try {
-			const response = await fetch(
-				`https://api.notzerotwo.ml/data/npm?api=moon_bow&package=${npm}`
-			)
-			const data = await response.json()
-
-			let embed = new MessageEmbed()
-				.setTitle(`Npm Info - ${data.name}`)
-				.setDescription(
-					`**Name: ** ${data.name} \n**Version: ** ${
-						data.version
-					} \n**Description :** ${data.description} \n**Author :** ${
-						data.author
-					} \n **License :** ${data.license}`
-				)
+		const name = interaction.options.getString('package')
+		const url = 'https://api.discube.gq/npm?package=' + name
+		got(url).then(async response => {
+			const pkg = JSON.parse(response.body)
+			if (!pkg)
+				return await interaction.editReply({
+					content: `${bot.error} • Could not find that package!`
+				})
+      
+			const embed = new Discord.MessageEmbed()
+				.setTitle('NPM Package Info Of: ' + pkg.name)
+				.addField('Name', pkg.name, true)
+				.addField('Version', pkg.version, true)
+				.addField('Description', pkg.description, true)
+				.addField('Author Name', pkg.author.name, true)
+				.addField('Publisher Name', pkg.publisher.username, true)
+				.addField('Keywords', pkg.keywords, true)
+				.addField('Created On', pkg.created, true)
+				.addField('URL', pkg.links.npm, true)
+				.setURL(pkg.links.npm)
 				.setColor(bot.color)
-				.setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-
-				.setFooter(`Requested by ${interaction.user.tag}`)
-
-			await interaction.editReply({ embeds: [embed] })
-		} catch (err) {
-			return interaction.editReply(
-				`${
-					bot.error
-				} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`
-			)
-		}
+			return await interaction.editReply({
+				embeds: [emed]
+			}).catch((e) => {
+        bot.sendhook(
+          `Error Occured \n ${e.stack}`
+        , {
+          channel: bot.err_chnl
+        })
+      })
+		})
 	}
 }

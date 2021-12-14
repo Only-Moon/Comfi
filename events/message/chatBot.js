@@ -4,7 +4,13 @@ const guilds = require('../../models/guild')
 const fetch = require('node-fetch')
 
 bot.on('messageCreate', async message => {
-	if (message.author.bot || !message.guild || message.webhookID) return
+	if (
+		message.author.bot ||
+		!message.guild ||
+		message.webhookID ||
+		!message.channel
+	)
+		return
 
 	const guild = await guilds.findOne({ guildId: message.guild.id })
 
@@ -57,6 +63,13 @@ bot.on('messageCreate', async message => {
 				const chatbotReply = jsonRes.message
 					.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
 					.replace(/@here/g, '`@here`')
+
+				if (chatbotReply === '') {
+					return message.reply({
+						content: 'Uh What ?',
+						allowedMentions: { repliedUser: false }
+					})
+				}
 
 				await message
 					.reply({

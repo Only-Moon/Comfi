@@ -20,7 +20,7 @@ bot.on('guildMemberUpdate', async (oldMember, newMember) => {
 			{ name: '{{user#mention}}', value: `<@${newMember.id}>` },
 			{ name: '{{user}}', value: `${newMember.user.tag}` },
 			{ name: '{{server}}', value: `${guild.name}` },
-			{ name: '{{boostcount}}', value: `${guild.premiumSubscriptionCount}` }
+			{ name: '{{boost#count}}', value: `${guild.premiumSubscriptionCount}` }
 		]
 
 		for (let { name, value } of terms)

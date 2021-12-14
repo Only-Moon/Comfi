@@ -1,7 +1,7 @@
 const Discord = require('discord.js'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk'),
-	fs = require('fs');
+	fs = require('fs')
 
 class Comfi extends Discord.Client {
 	constructor() {
@@ -36,11 +36,9 @@ class Comfi extends Discord.Client {
 		this.crosss = '<a:cross:890113459868553277>'
 		this.dash = 'https://comfi.xx-mohit-xx.repl.co/'
 		this.ms = require('ms')
-		this.on('ready', () => {
-			this.logger.ready(`Logged in as ${this.user.tag}`, 'ready')
-		})
+
 		this.owners = require('../config.json').owners
-   this.err_chnl = "918100194699132978" || "881789380073783303"
+		this.err_chnl = process.env['error_channel']
 		this.login(process.env.TOKEN)
 		this.config = require('../config.json')
 		this.categories = fs.readdirSync('./commands/')
@@ -50,8 +48,8 @@ class Comfi extends Discord.Client {
 		this.slashCommands = new Discord.Collection()
 		this.timeout = new Discord.Collection()
 		this.init()
-  }
-  
+	}
+
 	async resolveUser(search) {
 		if (!search || typeof search !== 'string') return null
 		let user = null
@@ -162,24 +160,22 @@ class Comfi extends Discord.Client {
 	async sendhook(
 		msg,
 		{
-			remove = false,
-			channel,
+      channel,
 			embed = null,
 			name = 'COMFI HOOK',
-			avatar = "https://i.imgur.com/At2XO1M.png",
-      bot = this
+			avatar = 'https://i.imgur.com/At2XO1M.png',
+			bot = this
 		}
 	) {
-		if (!channel || typeof channel !== 'string')
-			throw new SyntaxError('Invaild Channel')
-		const channel_ = await bot.resolveChannel(channel)
-		let webhook = await channel_
-			.fetchWebhooks()
-			.then(x => x.find(x => x.name === name))
-		if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
-		return await webhook.send(embed ? { embeds: embed } : msg).then(e => {
-			remove ? webhook.delete() : e
-		})
+    console.log(channel)
+		//if (!channel || typeof channel !== 'string')
+			//throw new SyntaxError('Invaild Channel')
+		//const channel_ = await bot.resolveChannel(channel)
+		//let webhook = await channel_
+			//.fetchWebhooks()
+			//t.then(x => x.find(x => x.name === name))
+		//if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
+		//return await webhook.send(embed ? { embeds: embed } : msg)
 	}
 	async emoji(name, option) {
 		let emojis = this.emojis.cache.find(x => x.name === name)
@@ -226,10 +222,7 @@ class Comfi extends Discord.Client {
 
 	init() {
 		require('../handler/index')(this)
-  }
-  
+	}
 }
 
-
-
-module.exports = Comfi
+export defaultStatus Comfi

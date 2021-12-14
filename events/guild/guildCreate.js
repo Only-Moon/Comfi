@@ -54,14 +54,17 @@ bot.on('guildCreate', async guild => {
 				maxAge: 0,
 				maxUses: 0
 			})
-			.then(invite => {
+			.then(async (invite) => {
 				const channel = bot.channels.cache.get(channelId)
 				if (!channel) return
 
+    let theowner = "Owner Not Found !!";
+    await guild.fetchOwner().then(({ user }) => { theowner = user; }).catch(() => {})
+        
 				const embed = new MessageEmbed()
 					.setTitle('Someone invited me!')
 					.setDescription(
-						`**Guild Name:** ${guild.name} (${guild.id})\n**Members:** ${
+						`**Guild Name:** ${guild.name} (${guild.id})\n **Owner Info:** \`\`\`${theowner ? `${theowner.tag} (${theowner.id})` : `${theowner} (${guild.ownerId})`}\`\`\` \n**Members:** ${
 							guild.memberCount
 						}`
 					)

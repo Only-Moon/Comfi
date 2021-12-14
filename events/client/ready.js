@@ -2,7 +2,7 @@ const bot = require('../../index')
 const Discord = require("discord.js")
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8089
 
 bot.on('ready', async () => {
 	bot.logger.table({ 
