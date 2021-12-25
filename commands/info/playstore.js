@@ -49,8 +49,27 @@ try {
         .setTimestamp();
 
       return interaction.editReply({embeds: [ embed ]});
-} catch (err) {
-return interaction.editReply(` Error Occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) `)
+} catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
 }
     });
   }

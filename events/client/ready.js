@@ -1,22 +1,32 @@
 const bot = require('../../index')
-const Discord = require("discord.js")
+const Discord = require('discord.js')
 const express = require('express')
 const app = express()
-const port = 8089
+const port = 8080
+const ClientSchema = require('../../models/Client')
 
 bot.on('ready', async () => {
-	bot.logger.table({ 
-      'Bot User:' : `${bot.user.tag}` ,
-      'Guild(s):' : `${bot.guilds.cache.size} Servers` ,
-      'Watching:' : `${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Members` ,
-      'Prefix:' : `/` ,
-      'Commands:' : `${bot.slashCommands.size}` ,
-      'Discord.js:' : `v${Discord.version}` ,
-      'Node.js:' : `${process.version}` ,
-      'Plattform:' : `${process.platform} ${process.arch}` ,
-      'Memory:' : `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB / ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB`
-    }) 
-  
+	const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
+	if (!clientschem) {
+		await ClientSchema.create({ clientId: bot.user.id })
+	}
+
+	bot.logger.table({
+		'Bot User:': `${bot.user.tag}`,
+		'Guild(s):': `${bot.guilds.cache.size} Servers`,
+		'Watching:': `${bot.guilds.cache.reduce(
+			(a, b) => a + b.memberCount,
+			0
+		)} Members`,
+		'Prefix:': `/`,
+		'Commands:': `${bot.slashCommands.size}`,
+		'Discord.js:': `v${Discord.version}`,
+		'Node.js:': `${process.version}`,
+		'Plattform:': `${process.platform} ${process.arch}`,
+		'Memory:': `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
+			2
+		)} MB / ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB`
+	})
 	bot.logger.ready('-------------------------------------', 'ready')
 
 	let totalCommands = 0

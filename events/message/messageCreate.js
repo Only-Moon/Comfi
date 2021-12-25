@@ -45,7 +45,7 @@ bot.on('messageCreate', async message => {
 		p = 'Cr!'
 	}
 
-	if (!message.content.startsWith(p)) return
+	if (!message.content.startsWith(p)) return;
 	if (!message.guild) return
 	if (!message.member) message.member = await message.guild.fetchMember(message)
 	const args = message.content

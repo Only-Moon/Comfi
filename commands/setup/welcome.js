@@ -1,248 +1,365 @@
-const {
-	CommandInteraction,
-	MessageEmbed,
-	MessageCollector
-} = require('discord.js')
+const { CommandInteraction, MessageEmbed } = require('discord.js')
 const guilds = require('../../models/guild')
+const embedCreate = require('../../functions/embed')
 
 module.exports = {
-	name: 'welcome',
-	description: 'Setup server welcome system',
-	type: 'CHAT_INPUT',
-	ownerOnly: false,
-	botperm: ['MANAGE_GUILD'],
-	userperm: ['ADMINISTRATOR'],
+  name: 'welcome',
+  description: 'Setup Welcome System',
+  ownerOnly: false,
+  options: [
+    {
+      name: 'toggle',
+      description: 'Toggle the system on or off',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'option',
+          description: 'Options for welcome toggle',
+          type: 'STRING',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: 'true'
+            },
+            {
+              name: 'false/off',
+              value: 'false'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'embed-toggle',
+      description: 'Embed Toogle for welcome system',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          type: 'STRING',
+          description: 'Options for welcome system embed toggle',
+          name: 'options',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: 'true'
+            },
+            {
+              name: 'false/off',
+              value: 'false'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'dm-toggle',
+      description: 'Dm Toogle for welcome system',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          type: 'STRING',
+          description: 'Options for welcome dm toggle',
+          name: 'options',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: 'true'
+            },
+            {
+              name: 'false/off',
+              value: 'false'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: "joinrole",
+      type: "SUB_COMMAND",
+      description: "Add role to user upon joining",
+      options: [
+        {
+          type: 'STRING',
+          description: 'Options to enable or disable joinrole',
+          name: 'options',
+          required: true,
+          choices: [
+            {
+              name: 'add',
+              value: 'true'
+            },
+            {
+              name: 'remove',
+              value: 'false'
+            }
+          ]
+        },
+        {
+          name: "role",
+          description: `Mention the roles to add to user upon joining`,
+          required: true,
+          type: "ROLE"
+        },
+      ],
+    },
+    {
+      name: 'channel',
+      description: 'Channel for welcome system',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'name',
+          type: 'CHANNEL',
+          description: 'Channel for welcome detector',
+          required: true,
+          channelTypes: ['GUILD_TEXT']
+        }
+      ]
+    },
+    {
+      name: 'embed',
+      description: 'Setup embed for welcome system',
+      type: 'SUB_COMMAND'
+    },
+    {
+      name: 'content',
+      description: 'Setup content when embedtoggle is off',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'message',
+          type: 'STRING',
+          description: 'Message for welcome system',
+          required: true
+        },
+        {
+          name: 'image',
+          type: 'STRING',
+          description: 'Image url for welcome system',
+          required: false
+        }
+      ]
+    },
+    {
+      name: "help",
+      description: "Variables for welcome system",
+      type: "SUB_COMMAND"
+    },
+  ],
+  userperm: ['MANAGE_GUILD'],
+  botperm: ['MANAGE_GUILD'],
 	/**
+	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args) => {
-		const step1 = new MessageEmbed()
-			.setTitle(`Welcome Message / Embed [1]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`Would you like to enable or disabled the feature? Types: \`disable\`,\`enable\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+  run: async (bot, interaction, args) => {
+    let [sub] = args
+    try {
+      const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
-		const step2 = new MessageEmbed()
-			.setTitle(`Welcome Message / Embed [2]`, bot.user.displayAvatarURL())
-			.setDescription(`What should the welcome message channel be?`)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'toggle') {
+        let toggle = interaction.options.getString('option')
+        if (guild.welcome === toggle) {
+          await interaction.editReply(
+            `${bot.error} •  Welcome toogle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              welcome: toggle
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Welcome has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		const step3 = new MessageEmbed()
-			.setTitle(`Welcome Message / Embed [3]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`Should the bot dm the user the message? Types: \`true\`,\`false\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'embed-toggle') {
+        let toggle = interaction.options.getString('options')
+        if (guild.welcome_embedtgl === toggle) {
+          await interaction.editReply(
+            `${
+            bot.error
+            } •  Welcome Embed toggle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              welcome_embedtgl: toggle
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Welcome Embed toggle has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		const step4 = new MessageEmbed()
-			.setTitle(`Welcome Message / Embed [4]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`Should the message be in an embed? Types: \`true\`,\`false\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'dm-toggle') {
+        let toggle = interaction.options.getString('options')
+        if (guild.welcome_dmuser === toggle) {
+          await interaction.editReply(
+            `${bot.error} •  Welcome dm toggle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              welcome_dmuser: toggle
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Welcome dm toggle has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		const step5 = new MessageEmbed()
-			.setTitle(`Welcome Message / Embed [5]`, bot.user.displayAvatarURL())
-			.setDescription(`What should the welcome Message be?`)
-			.addFields({
-				name: 'Tags',
-				value: `\`\`\`{{user#mention}} - mentions the user\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{server#membercount}} - the servers membercount\n{{server#name}} - the servers name\n{{server#id}} - the servers id\n\`\`\``
-			})
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'channel') {
+        let channel = interaction.options.getChannel('name')
+        if (guild.welcome_channel === channel.id) {
+          await interaction.editReply(
+            `${bot.error} • ${
+            channel.name
+            } already exists as welcome channel !!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              welcome_channel: channel.id
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Welcome Channel Has Been Set Successfully in \`${
+            channel.name
+            }\`!**`
+          )
+        }
+      }
 
-		const step6 = new MessageEmbed()
-			.setTitle(`Welcome Message / Embed [4]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`What should the welcome image be ( **Only Url** ). Say **skip** to use the default ones`
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'embed') {
+        embedCreate(interaction, {
+          name: "Welcome System's",
+          footer: 'Welcome Embed Creator'
+        }).then(async em => {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              welcome_embed: em
+            }
+          )
+        })
+      }
 
-		let steps = [step1, step2, step3, step4, step5, step6]
-		let counter = 0
-		await interaction.deleteReply().catch(() => null)
-		let hoisterMessage = await interaction.channel.send({
-			embeds: [steps[counter]]
-		})
-		const finalData = {
-			value: undefined,
-			channel: undefined,
-			dm: undefined,
-			embed: undefined,
-			message: undefined,
-			image: undefined
-		}
-		const collector = new MessageCollector(interaction.channel)
+      if (sub === "joinrole") {
 
-		collector.on('collect', msg => {
-			if (msg.author.id !== interaction.user.id) return
-			if (msg.content.toLowerCase() === 'cancel') {
-				collector.stop('0')
-				hoisterMessage.delete().catch(() => {})
-			}
+        const toggle = interaction.options.getString("options")
+        const role = interaction.options.getRole("role")
 
-			switch (counter) {
-				case 0:
-					if (!['enable', 'disable'].includes(msg.content.toLowerCase())) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-					}
 
-					if (msg.content.toLowerCase() === 'disable') {
-						collector.stop('4')
-						hoisterMessage.delete().catch(() => {})
-					}
+        if (toggle === "true") {
 
-					let val = false
-					if (msg.content.toLowerCase() === 'enable') {
-						val = true
-					} else {
-						val = false
-					}
+          if (guild.welcome_joinrole.find(r => r === role.id)) {
 
-					finalData['value'] = val
-					msg.delete().catch(() => {})
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 1:
-					let channel =
-						msg.mentions.channels.first() ||
-						interaction.guild.channels.cache.find(
-							c =>
-								c.id === msg.content ||
-								c.name.toLowerCase() === msg.content.toLowerCase()
-						)
+            interaction.editReply(`${bot.error} • \`${role.name}\` is already available as a join role`)
 
-					if (!channel) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-						return
-					}
-					msg.delete().catch(() => {})
-					finalData['channel'] = channel.id
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 2:
-					if (!['true', 'false'].includes(msg.content.toLowerCase())) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-					}
+          } else {
+            guild.welcome_joinrole.push(role.id)
+            await guild.save()
+            await interaction.editReply(`${bot.tick} • Successfully Added \`${role.name}\` as a join role`)
+          }
+        } else if (toggle === "false") {
+          if (guild.welcome_joinrole.find(r => r === role.id)) {
+            guild.welcome_joinrole.filter(r => r.id !== role.id)
+            await guild.save()
+            await interaction.editReply(`${bot.tick} • Successfully Removed \`${role.name}\` from JoinRole`)
+          } else {
+            await interaction.editReply(`${bot.error} • \`${role.name}\` doesn't exists in join role !!`)
+          }
+        }
+      }
 
-					let val2 = false
-					if (msg.content.toLowerCase() === 'true') {
-						val2 = true
-					} else {
-						val2 = false
-					}
-					msg.delete().catch(() => {})
-					finalData['dm'] = val2
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 3:
-					if (!['true', 'false'].includes(msg.content.toLowerCase())) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-					}
+      if (sub === 'content') {
+        let msg = interaction.options.getString('message')
+        let img = interaction.options.getString('image')
 
-					let val3 = false
-					if (msg.content.toLowerCase() === 'true') {
-						val3 = true
-					} else {
-						val3 = false
-					}
-					msg.delete().catch(() => {})
-					finalData['embed'] = val3
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 4:
-					if (msg.content.lengt >= '4096') {
-						collector.stop('3')
-						hoisterMessage.delete().catch(() => {})
-						return
-					}
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            welcome_message: msg
+          }
+        )
+        interaction.editReply(
+          `${
+          bot.tick
+          } • **Welcome Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
+        )
 
-					finalData['message'] = msg.content
-						.split('')
-						.slice(0, 4096)
-						.join('')
-					msg.delete().catch(() => {})
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 5:
-					if (msg.content.toLowerCase() === 'skip') {
-						finalData['image'] = 'https://i.imgur.com/8MggL9S.png'
-						msg.delete().catch(() => {})
-					} else {
-						finalData['image'] = msg.content || msg.attachments.first().url
-					}
-					hoisterMessage.delete().catch(() => {})
-					collector.stop('2')
+        if (img) {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              welcome_image: img
+            }
+          )
+          interaction.editReply(
+            `${
+            bot.tick
+            } • **Welcome Image Has Been Set Successfully in ${img}!**`
+          )
+        }
+      }
 
-					break
-			}
-		})
+      if (sub === "help") {
 
-		collector.on('end', async (collected, reason) => {
-			if (reason === '0') {
-				return interaction.channel.send({
-					content: `${bot.crosss} • Process has been stopped!`
-				})
-			}
-			if (reason === '1') {
-				return interaction.channel.send({
-					content: `${
-						bot.error
-					} • There was an error with your anwser, please make sure to follow the steps!`
-				})
-			}
-			if (reason === '3') {
-				return interaction.channel.send({
-					content: `${
-						bot.crosss
-					} • Welcome Message  should not contain more than 1024 characters`
-				})
-			}
-			if (reason === '4') {
-				await guilds.findOneAndUpdate(
-					{ guildId: interaction.guild.id },
-					{
-						welcome: false
-					}
-				)
-				return interaction.channel.send({
-					content: `${bot.tick} • Welcomes have now been disabled!`
-				})
-			}
-			if (reason === '2') {
-				await guilds.findOneAndUpdate(
-					{ guildId: interaction.guild.id },
-					{
-						welcome: true,
-						welcome_dmuser: finalData.dm,
-						welcome_channel: finalData.channel,
-						welcome_message: finalData.message,
-						welcome_embed: finalData.embed,
-						welcome_image: finalData.image
-					}
-				)
-				return interaction.channel.send({
-					content: `${
-						bot.tick
-					} • Welcome data has now been setup! Dont delete the image above if you sent one`
-				})
-			}
-		})
-	}
+        const embed = new MessageEmbed()
+          .setTitle(`Welcome System variables`, bot.user.displayAvatarURL())
+          .setDescription(`Need Help setting Welcome system?`)
+          .addFields(
+            {
+              name: "Commands",
+              value: `\`\`\`toggle - turn on/off the welcome system\nembed-toggle - make the welcome message show in embed or non embed text\ndm-toggle - make the welcome message send in user's dm\nchannel - sets the channel for welcome system\nembed - make an embed for welcome system using the embed builder\ncontent - sets the non embed content for welcome system\njoinrole - add roles to user upon \`\`\``,
+              inline: true
+            },
+            {
+              name: 'Tags',
+              value: `\`\`\`{{user#mention}} - mentions the user\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{server#membercount}} - the servers membercount\n{{server#humancount}} - humans / non btmem-ers count of the server \n{{server#name}} - the servers name\n{{server#id}} - the servers id\n\`\`\``,
+              inline: true
+            }
+          )
+          .setColor(bot.color)
+          .setFooter(`Comfi™ Welcome System`);
+        await interaction.editReply({ embeds: [embed] })
+
+      }
+
+    } catch (e) {
+      let emed = new MessageEmbed()
+        .setTitle(`${bot.error} • Error Occured`)
+        .setDescription(`\`\`\`${e.stack}\`\`\``)
+        .setColor(bot.color)
+
+      bot.sendhook(null, {
+        channel: bot.err_chnl,
+        embed: emed
+      })
+
+      interaction.followUp({
+        embeds: [
+          {
+            description: `${
+              bot.error
+              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+            color: bot.color
+          }
+        ]
+      })
+    }
+  }
 }

@@ -1,174 +1,264 @@
-const {
-	CommandInteraction,
-	MessageEmbed,
-	MessageCollector
-} = require('discord.js')
+const { CommandInteraction, MessageEmbed } = require('discord.js')
 const guilds = require('../../models/guild')
+const embedCreate = require('../../functions/embed')
 
 module.exports = {
-	name: 'leveling',
-	description: 'Setup server leveling',
-	ownerOnly: false,
-	botperm: ['MANAGE_GUILD', 'SEND_MESSAGES'],
-	userperm: ['ADMINISTRATOR'],
+  name: 'leveling',
+  description: 'Setup Leveling System',
+  ownerOnly: false,
+  options: [
+    {
+      name: 'toggle',
+      description: 'Toggle the system on or off',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'option',
+          description: 'Options for leveling toggle',
+          type: 'STRING',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: 'true'
+            },
+            {
+              name: 'false/off',
+              value: 'false'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'embed-toggle',
+      description: 'Embed Toogle for leveling system',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          type: 'STRING',
+          description: 'Options for leveling system embed toggle',
+          name: 'options',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: 'true'
+            },
+            {
+              name: 'false/off',
+              value: 'false'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'channel',
+      description: 'Channel for leveling system',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'name',
+          type: 'CHANNEL',
+          description: 'Channel for leveling system',
+          required: true,
+          channelTypes: ['GUILD_TEXT']
+        }
+      ]
+    },
+    {
+      name: 'embed',
+      description: 'Setup embed for leveling system',
+      type: 'SUB_COMMAND'
+    },
+    {
+      name: 'content',
+      description: 'Setup content when embedtoggle is off',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'message',
+          type: 'STRING',
+          description: 'Message for leveling system',
+          required: true
+        },
+        {
+          name: 'image',
+          type: 'STRING',
+          description: 'Image url for leveling system',
+          required: false
+        }
+      ]
+    },
+    {
+      name: "help",
+      description: "Variables for leveling system",
+      type: "SUB_COMMAND"
+    },
+  ],
+  userperm: ['MANAGE_GUILD'],
+  botperm: ['MANAGE_GUILD'],
 	/**
+	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args) => {
-		const step1 = new MessageEmbed()
-			.setTitle(`Leveling [1]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`Would you like to enable or disabled the feature? Types: \`disable\`,\`enable\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+  run: async (bot, interaction, args) => {
+    let [sub] = args
+    try {
+      const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
-		const step2 = new MessageEmbed()
-			.setTitle(`Leveling [2]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`What should the leveling channel be? (Use **bind** to set it to respond the the current channel!)`
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'toggle') {
+        let toggle = interaction.options.getString('option')
+        if (guild.leveling === toggle) {
+          await interaction.editReply(
+            `${bot.error} •  Leveling toogle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              leveling: toggle
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Leveling has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		const step3 = new MessageEmbed()
-			.setTitle(`Leveling [3]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`What should the level up message be?\n\`\`\`{{user#mention}} - the users id\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{level}} - the users new level\n{{xp}} - the users xp\n{{requiredxp}} - the new required xp amount\n\`\`\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'embed-toggle') {
+        let toggle = interaction.options.getString('options')
+        if (guild.leveling_embedtgl === toggle) {
+          await interaction.editReply(
+            `${
+            bot.error
+            } •  Leveling Embed toggle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              leveling_embedtgl: toggle
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Leveling Embed toggle has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		let steps = [step1, step2, step3]
-		let counter = 0
-		await interaction.deleteReply().catch(() => null)
-		let hoisterMessage = await interaction.channel.send({
-			embeds: [steps[counter]]
-		})
-		const finalData = {
-			value: undefined,
-			channel: undefined,
-			interaction: undefined
-		}
-		const collector = new MessageCollector(interaction.channel)
+      if (sub === 'channel') {
+        let channel = interaction.options.getChannel('name')
+        if (guild.leveling_channel === channel.id) {
+          await interaction.editReply(
+            `${bot.error} • ${
+            channel.name
+            } already exists as leveling channel !!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              leveling_channel: channel.id
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Leveling Channel Has Been Set Successfully in \`${
+            channel.name
+            }\`!**`
+          )
+        }
+      }
 
-		collector.on('collect', msg => {
-			if (msg.author.id !== interaction.user.id) return
-			if (msg.content.toLowerCase() === 'cancel') {
-				collector.stop('0')
-				hoisterMessage.delete().catch(() => {})
-			}
+      if (sub === 'embed') {
+        embedCreate(interaction, {
+          name: "Leveling System's",
+          footer: 'Leveling Embed Creator'
+        }).then(async em => {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              leveling_embed: em
+            }
+          )
+        })
+      }
 
-			switch (counter) {
-				case 0:
-					if (!['enable', 'disable'].includes(msg.content.toLowerCase())) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-					}
+      if (sub === 'content') {
+        let msg = interaction.options.getString('message')
+        let img = interaction.options.getString('image')
 
-					if (msg.content.toLowerCase() === 'disable') {
-						collector.stop('4')
-						hoisterMessage.delete().catch(() => {})
-					}
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            leveling_message: msg
+          }
+        )
+        interaction.editReply(
+          `${
+          bot.tick
+          } • **Leveling Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
+        )
 
-					let val = false
-					if (msg.content.toLowerCase() === 'enable') {
-						val = true
-					} else {
-						val = false
-					}
+        if (img) {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              leveling_image: img
+            }
+          )
+          interaction.editReply(
+            `${
+            bot.tick
+            } • **Leveling Image Has Been Set Successfully in ${img}!**`
+          )
+        }
+      }
 
-					finalData['value'] = val
-					msg.delete().catch(() => {})
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 1:
-					let channel =
-						msg.mentions.channels.first() ||
-						interaction.guild.channels.cache.find(
-							c =>
-								c.id === msg.content ||
-								c.name.toLowerCase() === msg.content.toLowerCase()
-						)
-					if (msg.content.toLowerCase() === 'bind') {
-						finalData['channel'] === 'message'
-					} else {
-						if (!channel) {
-							collector.stop('1')
-							hoisterMessage.delete().catch(() => {})
-							return
-						}
+      if (sub === "help") {
 
-						finalData['channel'] = channel.id
-					}
-					msg.delete().catch(() => {})
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 2:
-					if (msg.content.lengt >= '4096') {
-						collector.stop('3')
-						hoisterMessage.delete().catch(() => {})
-						return
-					}
+        const embed = new MessageEmbed()
+          .setTitle(`Leveling System variables`, bot.user.displayAvatarURL())
+          .setDescription(`Need Help setting Leveling system?`)
+          .addFields(
+            {
+              name: "Commands",
+              value: `\`\`\`toggle - turn on/off the leveling system\nembed-toggle - make the leveling message show in embed or non embed text\nembed - make an embed for leveling system using the embed builder\ncontent - sets the non embed content for leveling system\n\`\`\``
+            },
+            {
+              name: "Commands",
+              value: `\`\`\`{{user#mention}} - the users id\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{level}} - the users new level\n{{xp}} - the users xp\n{{requiredxp}} - the new required xp amount\n\`\`\``
+            },
+          )
+          .setColor(bot.color)
+          .setFooter(`Comfi™ Leveling System`);
+        await interaction.editReply({ embeds: [embed] })
 
-					finalData['message'] = msg.content
-						.split('')
-						.slice(0, 4096)
-						.join('')
-					msg.delete().catch(() => {})
-					hoisterMessage.delete().catch(() => {})
-					collector.stop('2')
-					break
-			}
-		})
+      }
 
-		collector.on('end', async (collected, reason) => {
-			if (reason === '0') {
-				return interaction.channel.send({
-					content: `${bot.crosss} • Process has been stopped!`
-				})
-			}
-			if (reason === '1') {
-				return interaction.channel.send({
-					content: `${
-						bot.crosss
-					} • There was an error with your anwser, please make sure to follow the steps!`
-				})
-			}
-			if (reason === '3') {
-				return interaction.channel.send({
-					content: `${
-						bot.crosss
-					} • Leveling Message  should not contain more than 1024 characters`
-				})
-			}
-			if (reason === '4') {
-				await guilds.findOneAndUpdate(
-					{ guildId: interaction.guild.id },
-					{
-						leveling: false
-					}
-				)
-				return interaction.channel.send({
-					content: `${bot.tick} • Leveling have now been disabled!`
-				})
-			}
-			if (reason === '2') {
-				await guilds.findOneAndUpdate(
-					{ guildId: interaction.guild.id },
-					{
-						leveling: true,
-						leveling_channel: finalData.channel,
-						leveling_message: finalData.message
-					}
-				)
-				return interaction.channel.send({
-					content: `${bot.tick} • Leveling data has now been setup!`
-				})
-			}
-		})
-	}
+    } catch (e) {
+      let emed = new MessageEmbed()
+        .setTitle(`${bot.error} • Error Occured`)
+        .setDescription(`\`\`\`${e.stack}\`\`\``)
+        .setColor(bot.color)
+
+      bot.sendhook(null, {
+        channel: bot.err_chnl,
+        embed: emed
+      })
+
+      interaction.followUp({
+        embeds: [
+          {
+            description: `${
+              bot.error
+              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+            color: bot.color
+          }
+        ]
+      })
+    }
+  }
 }

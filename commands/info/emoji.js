@@ -87,23 +87,7 @@ module.exports = {
 						.followUp({
 							embeds: [embed],
 							components: [row]
-						})
-						.catch(e => {
-							bot.sendhook(`Error Occured \n ${e.stack}`),
-								{
-									channel: bot.err_chnl
-								}
-							interaction.followUp({
-								embeds: [
-									{
-										description: `${
-											bot.error
-										} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-										color: bot.color
-									}
-								]
-							})
-						})
+						}).catch(() => null)
 				} else if (emojis.length > 1) {
 					const emote = interaction.options.getString('name')
 
@@ -134,21 +118,27 @@ module.exports = {
 					})
 
 					simplydjs.embedPages(bot, interaction, pages, {
-						slash: true,
 						backEmoji: '884420649580363796',
 						delEmoji: '891534962917007410',
 						forwardEmoji: '884420650549272586',
 						btncolor: 'SECONDARY',
 						delcolor: 'SECONDARY',
-						skipBtn: false
+						skipBtn: false,
+            pgCount: true,
 					})
 				}
 			}
 		} catch (e) {
-			bot.sendhook(`Error Occured \n ${e.stack}`),
-				{
-					channel: bot.err_chnl
-				}
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
 			interaction.followUp({
 				embeds: [
 					{
@@ -159,6 +149,6 @@ module.exports = {
 					}
 				]
 			})
-		}
+    }
 	}
 }

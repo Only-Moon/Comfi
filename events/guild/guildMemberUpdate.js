@@ -3,54 +3,69 @@ const { MessageEmbed } = require('discord.js')
 const guilds = require('../../models/guild')
 
 bot.on('guildMemberUpdate', async (oldMember, newMember) => {
-	const oldStatus = oldMember?.premiumSince
+  const oldStatus = oldMember?.premiumSince
 	const newStatus = newMember?.premiumSince
-	const guild = oldMember.guild
+	const guild = oldMember?.guild
 
-	if (!guild) return
+	if (!guild) return;
 
-	const guilD = await guilds.findOne({
-		guildId: guild.id
-	})
+  const guilD = await guilds.findOne({
+    guildId: guild.id
+  })
 
-	function format(msg) {
-		let text = msg
+  function format(msg) {
+    let text = msg
 
-		const terms = [
-			{ name: '{{user#mention}}', value: `<@${newMember.id}>` },
-			{ name: '{{user}}', value: `${newMember.user.tag}` },
-			{ name: '{{server}}', value: `${guild.name}` },
-			{ name: '{{boost#count}}', value: `${guild.premiumSubscriptionCount}` }
-		]
+    const terms = [
+      { name: '{{user#mention}}', value: `<@${newMember ?.id}>` },
+      { name: '{{user#tag}}', value: `${newMember ?.user.tag}` },
+      { name: '{{server#name}}', value: `${guild ?.name}` },
+      { name: '{{boost#count}}', value: `${guild ?.premiumSubscriptionCount}` }
+    ]
 
-		for (let { name, value } of terms)
-			text = text.replace(new RegExp(name, 'igm'), value)
+    for (let { name, value } of terms)
+      text = text.replace(new RegExp(name, 'igm'), value)
 
-		return text
-	}
+    return text
+  }
 
-	if (guilD.boost) {
-		if (!oldStatus && newStatus) {
-			const boostChannel = guild.channels.cache.get(guilD.boost_channel)
-			if (!boostChannel) return
+  if (guilD?.boost) {
+    if (!oldStatus && newStatus) {
+      let system = guild?.systemChannel?.messages.fetch()
 
-			const boostMessage = guilD.boost_message
+			if (system.type === 'USER_PREMIUM_GUILD_SUBSCRIPTION') {
+        const boostChannel = guild.channels.cache.get(guilD.boost_channel)
+        if (!boostChannel) return;
 
-			let boost = new MessageEmbed()
-				.setTitle(`${guild.name} Got Boosted`)
-				.setDescription(format(guilD.boost_message))
-				.setImage(guilD.boost_image)
-				.setColor(bot.color)
-				.setThumbnail(guild.iconURL({ dynamic: true }))
+        const emb = guilD.boost_embed.map(async (em) => {
 
-			if (guilD.boost_embed) {
-				boostChannel.send({ embeds: [boost] })
-			} else {
-				boostChannel.send({ content: format(guilD.boost_message) })
-			}
-		}
-	} else {
-		return
-	}
-	if (oldStatus && !newStatus) return
+          const embed = new MessageEmbed()
+            .setAuthor(
+              em.embed.author ?.text ? em.embed.author ?.text : '',
+              em.embed.author ?.icon_url
+                ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
+					)
+            .setTitle(format(em.embed.title || ''))
+            .setDescription(format(em.embed.description || ''))
+            .setColor(em.embed.color || '#36393F')
+            .setImage(em.embed.image ? em.embed.image.url : "https://i.imgur.com/wTKiUY8.png")
+            .setURL(em.embed.url || '')
+            .setTimestamp(em.embed.timestamp ? new Date() : false)
+            .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
+            .setFooter(format(em.embed.footer.text || ''));
+
+          let cont = format(em.content);
+
+          if (guilD.boost_embedtgl) {
+          await  boostChannel.send({ content: `${cont}`, embeds: [embed] })
+          } else {
+                      let image = new MessageAttachment(`${guilD.boost_image}`)
+            await boostChannel.send({ content: format(cont), files: [image] })
+          }
+        })
+      } else return;
+    } else return;
+  } else return;
+  
+  if (oldStatus && !newStatus) return;
 })

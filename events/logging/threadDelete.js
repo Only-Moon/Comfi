@@ -10,13 +10,13 @@ bot.on('threadDelete', async thread => {
 	try {
 		await thread.leave()
 	} catch (e) {
-		bot.sendhook(`Error Occured \n ${e.stack}`),
+		bot.sendhook(`Error Occured \n ${e.stack}`,
 			{
 				channel: bot.err_chnl
-			}
+			})
 	}
 
-	if (!guild.logging) return
+	if (!guild.logging) return;
 	if (!thread.guild.me.permissions.has('VIEW_AUDIT_LOG')) return
 
 	const AuditLogFetch = await thread.guild.fetchAuditLogs({

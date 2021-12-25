@@ -55,14 +55,14 @@ module.exports = {
 	 */
 	run: async (bot, interaction, args) => {
 		let [sub] = args
-
+try {
 		const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
 		if (sub === 'add') {
-			var mutee =
+			const mutee =
 				interaction.options.getMember('user') ||
 				interaction.guild.members.cache.get(args[0])
-			var time = interaction.options.getString('time')
+			const time = interaction.options.getString('time')
 
 			if (mutee === interaction.member)
 				return interaction.editReply(
@@ -114,10 +114,16 @@ module.exports = {
 						})
 					})
 				} catch (e) {
-					bot.sendhook(`Error Occured \n ${e.stack}`),
-						{
-							channel: bot.err_chnl
-						}
+					let emed = new MessageEmbed()
+						.setTitle(`${bot.error} • Error Occured`)
+						.setDescription(`\`\`\`${e.stack}\`\`\``)
+						.setColor(bot.color)
+
+					bot.sendhook(null, {
+						channel: bot.err_chnl,
+						embed: emed
+					})
+
 					interaction.followUp({
 						embeds: [
 							{
@@ -226,7 +232,7 @@ module.exports = {
 		}
 
 		if (sub === 'remove') {
-			try {
+      
 				const mutee =
 					interaction.options.getMember('user') ||
 					interaction.guild.members.cache.get(args[0]) ||
@@ -319,11 +325,18 @@ module.exports = {
 					if (!sChannel) return
 					sChannel.send({ embeds: [embeds1] })
 				}
+    }
 			} catch (e) {
-				bot.sendhook(`Error Occured \n ${e.stack}`),
-					{
-						channel: bot.err_chnl
-					}
+				let emed = new MessageEmbed()
+					.setTitle(`${bot.error} • Error Occured`)
+					.setDescription(`\`\`\`${e.stack}\`\`\``)
+					.setColor(bot.color)
+
+				bot.sendhook(null, {
+					channel: bot.err_chnl,
+					embed: emed
+				})
+
 				interaction.followUp({
 					embeds: [
 						{
@@ -337,4 +350,4 @@ module.exports = {
 			}
 		}
 	}
-}
+

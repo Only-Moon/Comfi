@@ -1,7 +1,13 @@
 const bot = require('../../index')
 const { readdirSync } = require('fs')
 const prefix = '/'
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
+const {
+	MessageEmbed,
+	MessageActionRow,
+	MessageButton,
+	MessageSelectMenuMenu
+} = require('discord.js')
+const data = require("../../models/Client")
 
 bot.on('interactionCreate', async interaction => {
 	if (interaction.isSelectMenu()) {
@@ -97,7 +103,94 @@ bot.on('interactionCreate', async interaction => {
 			}
 		}
 
-    
-    
+		if (interaction.customId === 'b-panel') {
+			await interaction.deferReply({ ephemeral: true })
+			const memberId = interaction.values[0]
+			const member = interaction.guild.members.cache.get(memberId)
+
+			const options = data.BlackListedUser.map(b => {
+				const members = interaction.guild.members.cache.get(b)
+
+				return {
+					label: members.user.username,
+					value: members.user.id,
+					description: 'No description'
+				}
+			})
+
+			const components = [
+				new MessageActionRow().addComponents(
+					new MessageSelectMenu()
+						.setCustomId('b-panel')
+						.setMaxValues(1)
+						.addOptions(options)
+				)
+			]
+
+			const button = new MessageActionRow().addComponents(
+				new MessageButton()
+					.setCustomId('yes')
+					.setLabel('Yes')
+					.setStyle('SUCCESS'),
+				new MessageButton()
+					.setCustomId('no')
+					.setLabel('No')
+					.setStyle('DANGER')
+			)
+
+			if (data?.BlackListedUser?.includes(member.id)) {
+				const filter = i => {
+					i.deferUpdate()
+					return i.user.id === interaction.user.id
+				}
+				await interaction
+					.followUp({
+						content:
+							'Do you want to remove this member from the Blacklist database ?',
+						components: [button],
+						ephemeral: true
+					})
+					.then(async i => {
+						const collector = i.channel.createMessageComponentCollector({
+							filter,
+							componentType: 'BUTTON',
+							time: 10000
+						})
+
+						collector.on('collect', async i => {
+							if (i.customId === 'yes') {
+								const index = data.BlackListedUser.indexOf(member.id)
+
+								if (index > -1) {
+									data.BlackListedUser.splice(index, 1)
+								}
+								await data.save()
+								interaction.followUp({
+									content:
+										'Successfully removed member from the Blacklist database.',
+									components,
+									ephemeral: true
+								})
+							} else {
+								interaction.followUp({
+									content:
+										'Cancelled removed member from the Blacklist database.',
+									components,
+									ephemeral: true
+								})
+							}
+						})
+
+						collector.on('end', async collected => {
+							await interaction.followUp({
+								content:
+									'Looks like you didnt select the options to remove member from the Blacklist database.',
+								components,
+								ephemeral: true
+							})
+						})
+					})
+			} else return
+		}
 	}
 })

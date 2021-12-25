@@ -32,16 +32,15 @@ module.exports = {
 			let movie = await imob.get({ name: args.join(' ') })
 
 			let poster
-			if (movie.poster === 'n/a' || 'N/A') {
-				poster = null
+			if (movie.poster == 'N/A') {
+				poster = 'https://images.app.goo.gl/ZGf8fjdWPoAX16tD8'
 			} else {
 				poster = movie.poster
 			}
-
 			let embed = new MessageEmbed()
 				.setTitle(movie.title.toString())
 				.setColor(bot.color)
-				.setThumbnail(poster ? poster : bot.avatarUrl())
+				.setThumbnail(`${poster}`)
 				.setDescription(movie.plot.toString())
 				.setFooter(`Ratings: ${movie.rating}`)
 				.addField('Country', movie.country, true)
@@ -57,10 +56,16 @@ module.exports = {
 
 			await interaction.editReply({ embeds: [embed], components: [row] })
 		} catch (e) {
-			bot.sendhook(`Error Occured \n ${e.stack}`,
-				{
-					channel: bot.err_chnl
-				})
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
 			interaction.followUp({
 				embeds: [
 					{

@@ -5,8 +5,8 @@ console.log('Loading Bot...')
 
 //-----[ DEFINING DEPENDENCIES ]-----\\
 
-import Comfi from './utils/Comfi.js'
-const	bot = new Comfi()
+const Comfi = require('./utils/Comfi'),
+	bot = new Comfi()
 
 module.exports = bot
 

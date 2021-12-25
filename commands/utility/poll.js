@@ -28,15 +28,11 @@ const ques = interaction.options.getString("question").split("").slice(0, 4000).
             .setTitle(`Poll For ${interaction.guild.name} Sever`)
             .setFooter(`${interaction.user.username}`, interaction.user.avatarURL({ dynamic: true }))
             .setDescription(`${ques}`)
-        var msg = await interaction.channel.send({embeds: [ embed ]}).catch( (err) => {
-   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
-                            });
+        var msg = await interaction.channel.send({embeds: [ embed ]}).catch(() => null);
 
         await msg.react(`${bot.tick}`);
         await msg.react(`${bot.crosss}`);
 
-    interaction.deleteReply({ timeout: 1000 }).catch( (err) => {
-   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
-                            });
+    interaction.deleteReply({ timeout: 1000 }).catch(() => null)
     }
 }

@@ -168,10 +168,10 @@ module.exports = {
 				}
 
 				interaction.editReply({ embeds: [embed] }).catch(e => {
-					bot.sendhook(`Error Occured \n ${e.stack}`),
+					bot.sendhook(`Error Occured \n ${e.stack}`,
 						{
 							channel: bot.err_chnl
-						}
+						})
 					interaction.followUp({
 						embeds: [
 							{
@@ -218,10 +218,10 @@ module.exports = {
 						)
 						.setColor(bot.color)
 					interaction.editReply({ embeds: [warnEmbed] }).catch(e => {
-						bot.sendhook(`Error Occured \n ${e.stack}`),
+						bot.sendhook(`Error Occured \n ${e.stack}`,
 							{
 								channel: bot.err_chnl
-							}
+							})
 						interaction.followUp({
 							embeds: [
 								{
