@@ -1,4 +1,4 @@
-const { Message, MessageEmbed, Channel } = require('discord.js')
+const { Message, MessageAttachment, MessageEmbed, Channel } = require('discord.js')
 const bot = require('../index')
 const guilds = require(`../models/guild`)
 const users = require(`../models/users`)

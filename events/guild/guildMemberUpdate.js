@@ -1,5 +1,5 @@
 const bot = require('../../index')
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed, MessageAttachment } = require('discord.js')
 const guilds = require('../../models/guild')
 
 bot.on('guildMemberUpdate', async (oldMember, newMember) => {

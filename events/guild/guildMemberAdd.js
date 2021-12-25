@@ -96,7 +96,7 @@ await member.roles
 .add(r)
 .catch(() => null)
   
-}).catch(() => null)
+})
    
  } else return;
   } else return;

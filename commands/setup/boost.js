@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, MessageEmbed, MessageAttachment } = require('discord.js')
 const guilds = require('../../models/guild')
 const embedCreate = require('../../functions/embed')
 
