@@ -353,10 +353,10 @@ module.exports = {
 						)
 
 					interaction.channel.send({ embeds: [embed] }).catch(e => {
-						bot.sendhook(`Error Occured \n ${e.stack}`),
+						bot.sendhook(`Error Occured \n ${e.stack}`,
 							{
 								channel: bot.err_chnl
-							}
+							})
 						interaction.followUp({
 							embeds: [
 								{
@@ -394,10 +394,10 @@ module.exports = {
 					.setColor(bot.color)
 
 				return interaction.editReply({ embeds: [embed] }).catch(e => {
-					bot.sendhook(`Error Occured \n ${e.stack}`),
+					bot.sendhook(`Error Occured \n ${e.stack}`,
 						{
 							channel: bot.err_chnl
-						}
+						})
 					interaction.followUp({
 						embeds: [
 							{
@@ -474,10 +474,10 @@ module.exports = {
 					.setColor(bot.color)
 
 				return interaction.editReply({ embeds: [embed] }).catch(e => {
-					bot.sendhook(`Error Occured \n ${e.stack}`),
+					bot.sendhook(`Error Occured \n ${e.stack}`,
 						{
 							channel: bot.err_chnl
-						}
+						})
 					interaction.followUp({
 						embeds: [
 							{

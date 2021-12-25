@@ -40,9 +40,27 @@ module.exports = {
       .addField('Translated to', `\`\`\`${result.translation}\`\`\``)
       .setTimestamp()
       interaction.editReply({embeds: [ embed ]})
-    } catch (err) {
+    } catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
 
-return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`)
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
     }
   }
 }

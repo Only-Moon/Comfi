@@ -57,9 +57,27 @@ module.exports = {
         		.setTimestamp();
 
 			interaction.editReply({embeds: [ embed ]});
-		} catch (err) {
-			return interaction.editReply(
-    {content:`${bot.error} Please provide a valid user \nError: ${err}`        });
-		}
+		} catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
+    }
     }
 };

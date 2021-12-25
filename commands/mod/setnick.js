@@ -45,10 +45,9 @@ module.exports = {
 				: user.member.user.username
 
 			await user.member.setNickname(nickname.value).catch(e => {
-				bot.sendhook(`Error Occured \n ${e.stack}`),
-					{
-						channel: bot.err_chnl
-					}
+				bot.sendhook(`Error Occured \n ${e.stack}`, {
+					channel: bot.err_chnl
+				})
 				interaction.followUp({
 					embeds: [
 						{
@@ -98,10 +97,16 @@ module.exports = {
 				sChannel.send({ embeds: [sembed] })
 			}
 		} catch (e) {
-			bot.sendhook(`Error Occured \n ${e.stack}`),
-				{
-					channel: bot.err_chnl
-				}
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
 			interaction.followUp({
 				embeds: [
 					{

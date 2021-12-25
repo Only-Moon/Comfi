@@ -10,12 +10,12 @@ bot.on('messageCreate', async message => {
 		message.webhookID ||
 		!message.channel
 	)
-		return
+		return;
 
 	const guild = await guilds.findOne({ guildId: message.guild.id })
 
 	let disabled = new MessageEmbed()
-		.setTitle('Chatbot Error')
+		.setTitle(`${bot.error} • Chatbot Error`)
 		.setColor(bot.color)
 		.setDescription('Chat Bot is disabled by the Owner in this Server!')
 		.setFooter(`Requested by ${message.author.username}`)
@@ -48,7 +48,7 @@ bot.on('messageCreate', async message => {
 					age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
 
 				params.set('message', input)
-				params.set('ownername', 'moonbow#2003')
+				params.set('ownername', 'moonbow#5817')
 				params.set('botname', bot.user.username)
 				params.set('age', age)
 				params.set('birthyear', bot.user.createdAt.getFullYear())
@@ -86,7 +86,7 @@ bot.on('messageCreate', async message => {
 					}
 				} else console.log(`Error Occured. | chatbot | Error: ${err.stack}`)
 			}
-		} else return
+		} else return;
 	} else if (!guild.chatbot && message.channel.id === guild.chat_channel) {
 		return (
 			message.delete(),

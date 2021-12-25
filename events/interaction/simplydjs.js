@@ -40,7 +40,7 @@ bot.on('interactionCreate', async (interaction, args) => {
 				openEmoji: '855791964975530004',
 				trEmoji: '905055261021061150',
 				trColor: 'SECONDARY',
-				timeout: true,
+				timeout: false,
 				cooldownMsg: `${
 					bot.error
 				} Close Old Ticket First Then Open New One Again`,

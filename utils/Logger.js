@@ -9,7 +9,7 @@ const log = require('simple-node-logger').createRollingFileLogger({
 const bot = require(`../index`)
 // LOGGERS
 exports.log = (content, type = 'log') => {
-	if (content == 'error') return
+	if (content == 'error') return;
 	const timestamp = `[${moment().format('HH:mm:ss:SSS')}]:`
 	switch (type) {
 		case 'log':
@@ -40,11 +40,11 @@ exports.log = (content, type = 'log') => {
 			break
 		case 'table':
 			log.info(content)
-      console.log(`${timestamp} ${chalk.bgGreen(type.toUpperCase())}`)
+			console.log(`${timestamp} ${chalk.bgGreen(type.toUpperCase())}`)
 			console.table(content)
 			break
 		case 'limit':
-			log.info(content)
+			log.error(content)
 
 			console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())}`)
 			console.log(content)

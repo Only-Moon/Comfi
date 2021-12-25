@@ -63,7 +63,7 @@ async function reRun(member, bot, interaction) {
     const embed = new MessageEmbed()
     .setImage(`https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`)
     .setColor(bot.color)
-    const hoisterMsg = await channel.send({content: `${format(guild.verification_interaction)}`, embeds: [embed]})
+    const hoisterMsg = await channel.send({content: `${format(guild.verification_message)}`, embeds: [embed]})
 
         const collector = new MessageCollector(channel, {time: 60000})
         collector.on("collect", (m) => {

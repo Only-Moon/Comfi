@@ -55,9 +55,9 @@ bot.on('messageCreate', async message => {
 			.catch((e) => {
         bot.sendhook(
           `Error Occured \n ${e.stack}`
-        ), {
+        , {
           channel: bot.err_chnl
-        }
+        })
       })
 	}
 })

@@ -8,7 +8,7 @@ class Comfi extends Discord.Client {
 		super({
 			allowedMentions: {
 				parse: ['users', 'roles'],
-				repliedUser: true
+				repliedUser: false
 			},
 			intents: [
 				'GUILDS',
@@ -34,13 +34,11 @@ class Comfi extends Discord.Client {
 		this.error = '<a:error:890107682013474846>'
 		this.tick = '<a:tick:890113862706266112>'
 		this.crosss = '<a:cross:890113459868553277>'
-		this.dash = 'https://comfi.xx-mohit-xx.repl.co/'
+		this.dash = 'https://comfibot.tk/'
 		this.ms = require('ms')
-
 		this.owners = require('../config.json').owners
 		this.err_chnl = process.env['error_channel']
 		this.login(process.env.TOKEN)
-		this.config = require('../config.json')
 		this.categories = fs.readdirSync('./commands/')
 		this.dbs(process.env.Mongoose)
 		this.commands = new Discord.Collection()
@@ -160,6 +158,7 @@ class Comfi extends Discord.Client {
 	async sendhook(
 		msg,
 		{
+      remove = false,
       channel,
 			embed = null,
 			name = 'COMFI HOOK',
@@ -167,15 +166,15 @@ class Comfi extends Discord.Client {
 			bot = this
 		}
 	) {
-    console.log(channel)
-		//if (!channel || typeof channel !== 'string')
-			//throw new SyntaxError('Invaild Channel')
-		//const channel_ = await bot.resolveChannel(channel)
-		//let webhook = await channel_
-			//.fetchWebhooks()
-			//t.then(x => x.find(x => x.name === name))
-		//if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
-		//return await webhook.send(embed ? { embeds: embed } : msg)
+		if (!channel || typeof channel !== 'string')
+			throw new SyntaxError('Invaild Channel')
+		const channel_ = await bot.resolveChannel(channel)
+		let webhook = await channel_
+			.fetchWebhooks()
+			.then(x => x.find(x => x.name === name))
+		if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
+		return await webhook.send(embed ? { embeds: [embed] } : msg).then(e => {			remove ? webhook.delete() : e		
+    })
 	}
 	async emoji(name, option) {
 		let emojis = this.emojis.cache.find(x => x.name === name)
@@ -217,7 +216,7 @@ class Comfi extends Discord.Client {
 				}
 			)
 			.then(() => this.logger.log('Mongodb connected!'))
-			.catch(err => this.logger.error(`${err}`))
+			.catch(err => this.logger.error(`${err.stack}`))
 	}
 
 	init() {
@@ -225,4 +224,4 @@ class Comfi extends Discord.Client {
 	}
 }
 
-export defaultStatus Comfi
+module.exports = Comfi

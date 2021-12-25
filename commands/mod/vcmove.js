@@ -61,10 +61,16 @@ module.exports = {
 				`${bot.tick} • Moved ${member.user.username} to <#${channel.id}> !`
 			)
 		} catch (e) {
-			bot.sendhook(`Error Occured \n ${e.stack}`),
-				{
-					channel: bot.err_chnl
-				}
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
 			interaction.followUp({
 				embeds: [
 					{

@@ -43,29 +43,53 @@ await users.findOneAndUpdate(
     if(guild.leave) {
         const channel = member.guild.channels.cache.find(c => c.id === guild.leave_channel)
         if(channel) {
-            if(guild.leave_embed) {
-                const embed = new MessageEmbed()
-                .setAuthor(`Member Left!`, member.user.displayAvatarURL({dynamic: true}))
-                .setDescription(format(guild.leave_message))
-                .setColor(bot.color)
-              .setImage(guild.leave_image)
+            if(guild.leave_embedtgl) {
 
-                if(guild.leave_dmuser) {
-                    member.send({embeds: [embed]}).catch(() => {})
+              const emb = guild.leave_embed.map(async (em) => {
+
+                const embed = new MessageEmbed()
+                  .setAuthor(
+                    em.embed.author ?.text ? em.embed.author ?.text : '',
+                    em.embed.author ?.icon_url
+                      ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
+					)
+                  .setTitle(format(em.embed.title || ''))
+                  .setDescription(format(em.embed.description || ''))
+                  .setColor(em.embed.color || '#36393F')
+                  .setImage(em.embed.image ? em.embed.image.url : "https://i.imgur.com/wyFi8zu.png")
+                  .setURL(em.embed.url || '')
+                  .setTimestamp(em.embed.timestamp ? new Date() : false)
+                  .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
+                  .setFooter(format(em.embed.footer.text || ''))
+                let cont = format(em.content);
+                if
+                  (guild.leave_dmuser) {
+                  await member.send({
+                    content: `${cont}`,
+                    embeds: [embed]
+                  }).catch(() => { })
                 } else {
-                    channel.send({embeds: [embed]}).catch(() => {})
+                  channel
+                    .send({
+
+                      content: `${cont}`,
+                      embeds: [embed]
+                    })
+                    .catch(() => { })
                 }
+
+              })
             } else {
                 if(guild.leave_dmuser) {
-let leave_image = new MessageAttachment(`${guild.welcome_image}`) 
-                    member.send({content: `${format(guild.leave_message)}`, files: [ leave_image]}).catch(() => {})
-                } else {
-
-let leave_image = new MessageAttachment(`${guild.welcome_image}`) 
-
+let leave_image = new MessageAttachment(`${guild.leave_image}`) 
+                  member.send({content: `${format(guild.leave_message)}`, files: [ leave_image]}).catch(() => {})
+              } else {
+            
+          e = new MessageAttachment(`${guild.leave_image}`) 
+      
                     channel.send({content: `${format(guild.leave_message)}`, files: [ leave_image ]}).catch(() => {})
-                }
             }
-        }
+            }
+       }
     }
 })

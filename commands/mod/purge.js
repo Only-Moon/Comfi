@@ -65,10 +65,16 @@ module.exports = {
 					}, bot.ms('15s'))
 				})
 		} catch (e) {
-			bot.sendhook(`Error Occured \n ${e.stack}`),
-				{
-					channel: bot.err_chnl
-				}
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
 			interaction.followUp({
 				embeds: [
 					{

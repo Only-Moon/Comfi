@@ -1,220 +1,264 @@
-const {
-	CommandInteraction,
-	MessageEmbed,
-	MessageCollector
-} = require('discord.js')
+const { CommandInteraction, MessageEmbed } = require('discord.js')
 const guilds = require('../../models/guild')
+const embedCreate = require('../../functions/embed')
 
 module.exports = {
-	name: 'boost',
-	description: 'Setup server boost detector system',
-	ownerOnly: false,
-	botperm: ['MANAGE_GUILD'],
-	userperm: ['ADMINISTRATOR'],
+  name: 'boost',
+  description: 'Setup Boost Detector System',
+  ownerOnly: false,
+  options: [
+    {
+      name: 'toggle',
+      description: 'Toggle the system on or off',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'option',
+          description: 'Options for boost Detector toggle',
+          type: 'STRING',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: "true"
+            },
+            {
+              name: 'false/off',
+              value: "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'embed-toggle',
+      description: 'Embed Toogle for boosy detector system',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          type: 'STRING',
+          description: 'Options for boost detector embed toggle',
+          name: 'options',
+          required: true,
+          choices: [
+            {
+              name: 'true/on',
+              value: "true"
+            },
+            {
+              name: 'false/off',
+              value: "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'channel',
+      description: 'Channel for boost detector',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'name',
+          type: 'CHANNEL',
+          description: 'Channel for boost detector',
+          required: true,
+          channelTypes: ['GUILD_TEXT']
+        }
+      ]
+    },
+    {
+      name: 'embed',
+      description: 'Setup embed for boost detector',
+      type: 'SUB_COMMAND'
+    },
+    {
+      name: 'content',
+      description: 'Setup content for boost detector when embed toggle is off',
+      type: 'SUB_COMMAND',
+      options: [
+        {
+          name: 'message',
+          type: 'STRING',
+          description: 'Message for boost detector',
+          required: true
+        },
+        {
+          name: 'image',
+          type: 'STRING',
+          description: 'Image url for boost detector',
+          required: false
+        }
+      ]
+    },
+    {
+      name: "help",
+      description: "Help for leave Boost Detector",
+      type: "SUB_COMMAND"
+    },
+  ],
+  userperm: ['MANAGE_GUILD'],
+  botperm: ['MANAGE_GUILD'],
 	/**
+	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args) => {
-		const step1 = new MessageEmbed()
-			.setTitle(`Boost Message / Embed [1]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`Would you like to enable or disabled the feature? Types: \`disable\`,\`enable\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+  run: async (bot, interaction, args) => {
+    let [sub] = args
+    try {
+      const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
-		const step2 = new MessageEmbed()
-			.setTitle(`Boost Message / Embed [2]`, bot.user.displayAvatarURL())
-			.setDescription(`What should the boost message channel be?`)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'toggle') {
+        let toggle = interaction.options.getString('option')
+        if (guild.boost_toggle === toggle) {
+          await interaction.editReply(
+            `${bot.error} •  Boost toogle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              boost: toggle
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Boost Detector has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		const step3 = new MessageEmbed()
-			.setTitle(`Boost Message / Embed [4]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`Should the message be in an embed? Types: \`true\`,\`false\``
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'embed-toggle') {
+        let toggle = interaction.options.getString('option')
+        if (guild.boost_embedtgl === toggle) {
+          await interaction.editReply(
+            `${
+            bot.error
+            } •  Boost Detector elbed toggle is already setted as ${toggle}!!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              boost_embedtgl: toggle
+            }
+          )
+          interaction.editReply(
+            `${
+            bot.tick
+            } • **Boost Detector  embed toggle has setted as ${toggle} !**`
+          )
+        }
+      }
 
-		const step4 = new MessageEmbed()
-			.setTitle(`Boost Message / Embed [5]`, bot.user.displayAvatarURL())
-			.setDescription(`What should the boost Message be?`)
-			.addFields({
-				name: 'Tags',
-				value: `\`\`\`{{user#mention}} - mentions the user who boosted\n{{user}} - the user tag of person who boosted the server \n{{server}} - the server name\n{{boost#count}} - the amount of boost server has\n\`\`\``
-			})
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'channel') {
+        let channel = interaction.options.getChannel('name')
+        if (guild.boost_channel === channel.id) {
+          await interaction.editReply(
+            `${bot.error} • ${channel.name} already exists as boost channel !!`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              boost_channel: channel.id
+            }
+          )
+          interaction.editReply(
+            `${bot.tick} • **Boost Channel Has Been Set Successfully in \`${
+            channel.name
+            }\`!**`
+          )
+        }
+      }
 
-		const step5 = new MessageEmbed()
-			.setTitle(`Boost Message / Embed [4]`, bot.user.displayAvatarURL())
-			.setDescription(
-				`What should the welcome image be ( **Only Url** ). Say **skip** to use default one`
-			)
-			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+      if (sub === 'embed') {
+        embedCreate(interaction, {
+          name: "Boost Detector's",
+          footer: 'Boost Detector Embed Creator'
+        }).then(async em => {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              boost_embed: em
+            }
+          )
+        })
+      }
 
-		let steps = [step1, step2, step3, step4, step5]
-		let counter = 0
-		await interaction.deleteReply().catch(() => null)
-		let hoisterMessage = await interaction.channel.send({
-			embeds: [steps[counter]]
-		})
-		const finalData = {
-			value: undefined,
-			channel: undefined,
-			embed: undefined,
-			message: undefined,
-			image: undefined
-		}
-		const collector = new MessageCollector(interaction.channel)
+      if (sub === 'content') {
+        let msg = interaction.options.getString('message')
+        let img = interaction.options.getString('image')
 
-		collector.on('collect', msg => {
-			if (msg.author.id !== interaction.user.id) return
-			if (msg.content.toLowerCase() === 'cancel') {
-				collector.stop('0')
-				hoisterMessage.delete().catch(() => {})
-			}
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            boost_message: msg
+          }
+        )
+        interaction.editReply(
+          `${
+          bot.tick
+          } • **Boost Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
+        )
 
-			switch (counter) {
-				case 0:
-					if (!['enable', 'disable'].includes(msg.content.toLowerCase())) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-					}
+        if (img) {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            {
+              boost_image: img
+            }
+          )
+          interaction.editReply(
+            `${
+            bot.tick
+            } • **Boost Channel Has Been Set Successfully in ${img}!**. Used only when embed toggle is off`
+          )
+        }
+      }
 
-					if (msg.content.toLowerCase() === 'disable') {
-						collector.stop('4')
-						hoisterMessage.delete().catch(() => {})
-					}
+      if (sub === "help") {
 
-					let val = false
-					if (msg.content.toLowerCase() === 'enable') {
-						val = true
-					} else {
-						val = false
-					}
+        const embed = new MessageEmbed()
+          .setTitle(`Leave System variables`, bot.user.displayAvatarURL())
+          .setDescription(`Need Help setting Leave system?`)
+          .addFields(
+            {
+              name: "Commands",
+              value: `\`\`\`toggle - turn on/off the boost detector\nembed-toggle - make the boost message show in embed or non embed text\nembed - make an embed for boost detector using the embed builder\ncontent - sets the non embed content for boost detector\n\`\`\``
+            },
+            {
+              name: 'Tags',
+              value: `\`\`\`{{user#mention}} - mentions the user\n{{user#tag}} - the user of the person who \n{{server#name}} - the servers name\n{{boost#count}} - boost count of the server\n\`\`\``,
+              inline: true
+            }
+          )
+          .setColor(bot.color)
+          .setFooter(`Comfi™ Boost Detector`);
+        await interaction.editReply({ embeds: [embed] })
 
-					finalData['value'] = val
-					msg.delete().catch(() => {})
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 1:
-					let channel =
-						msg.mentions.channels.first() ||
-						interaction.guild.channels.cache.find(
-							c =>
-								c.id === msg.content ||
-								c.name.toLowerCase() === msg.content.toLowerCase()
-						)
+      }
+    } catch (e) {
+      let emed = new MessageEmbed()
+        .setTitle(`${bot.error} • Error Occured`)
+        .setDescription(`\`\`\`${e.stack}\`\`\``)
+        .setColor(bot.color)
 
-					if (!channel) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-						return
-					}
-					msg.delete().catch(() => {})
-					finalData['channel'] = channel.id
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 2:
-					if (!['true', 'false'].includes(msg.content.toLowerCase())) {
-						collector.stop('1')
-						hoisterMessage.delete().catch(() => {})
-					}
+      bot.sendhook(null, {
+        channel: bot.err_chnl,
+        embed: emed
+      })
 
-					let val3 = false
-					if (msg.content.toLowerCase() === 'true') {
-						val3 = true
-					} else {
-						val3 = false
-					}
-					msg.delete().catch(() => {})
-					finalData['embed'] = val3
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 3:
-					if (msg.content.lengt >= '4096') {
-						collector.stop('3')
-						hoisterMessage.delete().catch(() => {})
-						return
-					}
-
-					finalData['message'] = msg.content
-						.split('')
-						.slice(0, 4096)
-						.join('')
-					msg.delete().catch(() => {})
-					counter++
-					hoisterMessage.edit({ embeds: [steps[counter]] }).catch(() => {})
-					break
-				case 4:
-					if (msg.content.toLowerCase() === 'skip') {
-						finalData['image'] = 'https://i.imgur.com/wTKiUY8.png'
-						msg.delete().catch(() => {})
-					} else {
-						finalData['image'] = msg.content || msg.attachments.first().url
-					}
-					hoisterMessage.delete().catch(() => {})
-					collector.stop('2')
-
-					break
-			}
-		})
-
-		collector.on('end', async (collected, reason) => {
-			if (reason === '0') {
-				return interaction.channel.send({
-					content: `${bot.crosss} • Process has been stopped!`
-				})
-			}
-			if (reason === '1') {
-				return interaction.channel.send({
-					content: `${
-						bot.crosss
-					} • There was an error with your anwser, please make sure to follow the steps!`
-				})
-			}
-			if (reason === '3') {
-				return interaction.channel.send({
-					content: `${
-						bot.crosss
-					} • Boost Message  should not contain more than 1024 characters`
-				})
-			}
-			if (reason === '4') {
-				await guilds.findOneAndUpdate(
-					{ guildId: interaction.guild.id },
-					{
-						boost: false
-					}
-				)
-				return interaction.channel.send({
-					content: `${bot.tick} • Boost Detector has now been disabled!`
-				})
-			}
-			if (reason === '2') {
-				await guilds.findOneAndUpdate(
-					{ guildId: interaction.guild.id },
-					{
-						boost: true,
-						boost_channel: finalData.channel,
-						boost_message: finalData.message,
-						boost_image: finalData.image,
-						boost_embed: finalData.embed
-					}
-				)
-				return interaction.channel.send({
-					content: `${
-						bot.tick
-					} • Boost data has now been setup! Dont delete the image above`
-				})
-			}
-		})
-	}
+      interaction.followUp({
+        embeds: [
+          {
+            description: `${
+              bot.error
+              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+            color: bot.color
+          }
+        ]
+      })
+    }
+  }
 }

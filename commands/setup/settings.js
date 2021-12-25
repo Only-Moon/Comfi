@@ -24,7 +24,7 @@ module.exports = {
 		const guild = await guilds.findOne({
 			guildId: interaction.guild.id
 		})
-
+try {
 		function format(msg) {
 			let text = msg
 
@@ -44,9 +44,8 @@ module.exports = {
 					name: '{{server#membercount}}',
 					value: `${interaction.guild.memberCount || 'NONE'}`
 				},
-				{ name: '{{server}}', value: `${interaction.guild.name || 'NONE'}` },
-				{
-					name: '{{boostcount}}',
+        {
+					name: '{{boost#count}}',
 					value: `${interaction.guild.premiumSubscriptionCount || 'NONE'}`
 				}
 			]
@@ -88,7 +87,7 @@ module.exports = {
 				},
 				{
 					name: '» Boost Embed Toogle',
-					value: `\`\`\`\n${guild.boost_embed}\n\`\`\``
+					value: `\`\`\`\n${guild.boost_embedtgl}\n\`\`\``
 				},
 				{
 					name: '» Boost Message',
@@ -199,7 +198,7 @@ module.exports = {
 				},
 				{
 					name: '» Leave Embed Toogle',
-					value: `\`\`\`\n${guild.leave_embed}\n\`\`\``
+					value: `\`\`\`\n${guild.leave_embedtgl}\n\`\`\``
 				},
 				{
 					name: '» Leave Message',
@@ -424,8 +423,14 @@ module.exports = {
 				`Requested by: ${interaction.user.tag}`,
 				interaction.user.avatarURL({ dynamic: true })
 			)
-			.setColor(bot.color)
+			.setColor(bot.color);
+  
+let role = [];
+const joinrole = guild.welcome_joinrole.forEach(r => {
+ role.push(`<@&${r}>`)
 
+})
+  
 		const welcome = new MessageEmbed()
 			.setAuthor(
 				`${interaction.guild.name} - Settings - Welcome`,
@@ -447,8 +452,12 @@ module.exports = {
 				},
 				{
 					name: '» Welcome Embed Toogle',
-					value: `\`\`\`\n${guild.welcome_embed}\n\`\`\``
+					value: `\`\`\`\n${guild.welcome_embedtgl}\n\`\`\``
 				},
+        {
+          name: '» Welcome JoinRole',
+          value: `\n${role.join(` , `)}\n`
+        },
 				{
 					name: '» Welcome Message',
 					value: `${format(guild.welcome_message)}`
@@ -482,7 +491,6 @@ module.exports = {
 		]
 
 		simplydjs.embedPages(bot, interaction, pages, {
-			slash: true,
 			firstEmoji: '884420649580363796',
 			backEmoji: '884421503205134356',
 			delEmoji: '891534962917007410',
@@ -491,7 +499,30 @@ module.exports = {
 			btncolor: 'SECONDARY',
 			delcolor: 'SECONDARY',
 			skipcolor: 'SECONDARY',
-			skipBtn: true
+			skipBtn: true,
+			pgCount: true
 		})
-	}
+	} catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
+}
+  }
 }
