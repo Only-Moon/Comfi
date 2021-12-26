@@ -34,9 +34,9 @@ const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
 interaction.channel.send({ files: [attach] }).catch((e) => {
         bot.sendhook(
           `Error Occured \n ${e.stack}`
-        ), {
+        , {
           channel: bot.err_chnl
-        } 
+        } )
         interaction.followUp({
           content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
           ephemeral: true
@@ -44,12 +44,12 @@ interaction.channel.send({ files: [attach] }).catch((e) => {
         })
   
 } else {
-await interaction.channel.send({ content: say }).catch((e) => {
+await interaction.channel.send({ content: say, allowedMentions: { repliedUser: false } }).catch((e) => {
         bot.sendhook(
           `Error Occured \n ${e.stack}`
-        ), {
+        , {
           channel: bot.err_chnl
-        } 
+        })
         interaction.followUp({
           content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
           ephemeral: true

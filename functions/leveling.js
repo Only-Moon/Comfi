@@ -75,61 +75,61 @@ module.exports = async (message, bot) => {
         return text
       }
 
-        const channel = message.guild.channels.cache.find(
-          c => c.id === guild.leveling_channel
-        )
-    
+      const channel = message.guild.channels.cache.find(
+        c => c.id === guild.leveling_channel
+      )
 
-        if (guild.leave_embedtgl) {
 
-          const emb = guild.leave_embed.map(async (em) => {
+      if (guild.leave_embedtgl) {
 
-            const embed = new MessageEmbed()
-              .setAuthor(
-                em.embed.author ?.text ? em.embed.author ?.text : '',
-                em.embed.author ?.icon_url
-                  ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
+        const emb = guild.leave_embed.map(async (em) => {
+
+          const embed = new MessageEmbed()
+            .setAuthor(
+              em.embed.author ?.text ? em.embed.author ?.text : '',
+              em.embed.author ?.icon_url
+                ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
 					)
-              .setTitle(format(em.embed.title || ''))
-              .setDescription(format(em.embed.description || ''))
-              .setColor(em.embed.color || '#36393F')
-              .setImage(em.embed.image ? em.embed.image.url : "")
-              .setURL(em.embed.url || '')
-              .setTimestamp(em.embed.timestamp ? new Date() : false)
-              .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
-              .setFooter(format(em.embed.footer.text || ''));
-            const cont = format(em.content);
-            if (!channel) {
-              return message
-                .reply({ content: `${cont}`, embeds: [embed] })
-                .catch(() => null)
-            } else if (guild.leveling_channel === 'message') {
-        return message
-          .reply({ content: `${cont}`, embeds: [embed] })
-          .catch(() => null)
-              
-            } else {
-              return channel
-                .send({ content: `${cont}`, embeds: [embed] })
-                .catch(() => null)
-            }
-          })
-        } else {
-const image = new MessageAttachment(guild.leveling_image)
+            .setTitle(format(em.embed.title || ''))
+            .setDescription(format(em.embed.description || ''))
+            .setColor(em.embed.color || '#36393F')
+            .setImage(em.embed.image ? em.embed.image.url : "")
+            .setURL(em.embed.url || '')
+            .setTimestamp(em.embed.timestamp ? new Date() : false)
+            .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
+            .setFooter(format(em.embed.footer.text || ''));
+          const cont = format(em.content);
           if (!channel) {
             return message
-              .reply({ content: `${format(guild.leveling_message)}`, files: [image] })
+              .reply({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
               .catch(() => null)
           } else if (guild.leveling_channel === 'message') {
-        return message
-          .reply({ content: `${format(guild.leveling_message)}`, files: [image] })
-          .catch(() => null)
-      } else {
+            return message
+              .reply({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
+              .catch(() => null)
+
+          } else {
             return channel
-              .send({ content: `${format(guild.leveling_message)}`, files: [image]})
+              .send({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
               .catch(() => null)
           }
-        };
-      } else return;
+        })
+      } else {
+        const image = new MessageAttachment(guild.leveling_image)
+        if (!channel) {
+          return message
+            .reply({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
+            .catch(() => null)
+        } else if (guild.leveling_channel === 'message') {
+          return message
+            .reply({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
+            .catch(() => null)
+        } else {
+          return channel
+            .send({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
+            .catch(() => null)
+        }
+      };
     } else return;
-  }
+  } else return;
+}

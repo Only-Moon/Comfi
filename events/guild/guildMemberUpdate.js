@@ -3,9 +3,9 @@ const { MessageEmbed, MessageAttachment } = require('discord.js')
 const guilds = require('../../models/guild')
 
 bot.on('guildMemberUpdate', async (oldMember, newMember) => {
-  const oldStatus = oldMember?.premiumSince
-	const newStatus = newMember?.premiumSince
-	const guild = oldMember?.guild
+  const oldStatus = oldMember ?.premiumSince
+	const newStatus = newMember ?.premiumSince
+	const guild = oldMember ?.guild
 
 	if (!guild) return;
 
@@ -29,9 +29,9 @@ bot.on('guildMemberUpdate', async (oldMember, newMember) => {
     return text
   }
 
-  if (guilD?.boost) {
+  if (guilD ?.boost) {
     if (!oldStatus && newStatus) {
-      let system = guild?.systemChannel?.messages.fetch()
+      let system = guild ?.systemChannel ?.messages.fetch()
 
 			if (system.type === 'USER_PREMIUM_GUILD_SUBSCRIPTION') {
         const boostChannel = guild.channels.cache.get(guilD.boost_channel)
@@ -57,15 +57,15 @@ bot.on('guildMemberUpdate', async (oldMember, newMember) => {
           let cont = format(em.content);
 
           if (guilD.boost_embedtgl) {
-          await  boostChannel.send({ content: `${cont}`, embeds: [embed] })
+            await boostChannel.send({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
           } else {
-                      let image = new MessageAttachment(`${guilD.boost_image}`)
-            await boostChannel.send({ content: format(cont), files: [image] })
+            let image = new MessageAttachment(`${guilD.boost_image}`)
+            await boostChannel.send({ content: format(cont), files: [image], allowedMentions: { repliedUser: true } })
           }
         })
       } else return;
     } else return;
   } else return;
-  
+
   if (oldStatus && !newStatus) return;
 })

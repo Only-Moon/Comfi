@@ -60,7 +60,7 @@ bot.on('guildMemberAdd', async member => {
               .send({
 
                 content: `${cont}`, 
-                embeds: [embed]
+                embeds: [embed], allowedMentions: { repliedUser:  true }
               })
               .catch(() => { })
           }
@@ -73,7 +73,7 @@ bot.on('guildMemberAdd', async member => {
           member
             .send({
               content: `${format(guild.welcome_message)}`,
-              files: [welcome_image]
+              files: [welcome_image], allowedMentions: { repliedUser:  true }
             })
             .catch(() => { })
         } else {
@@ -82,7 +82,7 @@ bot.on('guildMemberAdd', async member => {
           channel
             .send({
               content: `${format(guild.welcome_message)}`,
-              files: [welcome_image]
+              files: [welcome_image], allowedMentions: { repliedUser:  true }
             })
             .catch(() => { })
         }
