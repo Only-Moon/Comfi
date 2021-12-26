@@ -5,11 +5,11 @@ const { MessageEmbed } = require('discord.js')
 bot.on('threadCreate', async thread => {
 	const guild = await guilds.findOne({ guildId: thread.guild.id })
 
-	if (!thread.guild) return
+	if (!thread.guild) return;
 
 	try {
 		if (thread.joinable && !thread.joined) {
-			await thread.join()
+			await thread.join().catch(() => null)
 		}
 	} catch (e) {
 		bot.sendhook(`Error Occured \n ${e.stack}`,

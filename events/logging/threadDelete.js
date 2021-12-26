@@ -5,10 +5,10 @@ const { MessageEmbed } = require('discord.js')
 bot.on('threadDelete', async thread => {
 	const guild = await guilds.findOne({ guildId: thread.guild.id })
 
-	if (!thread.guild) return
+	if (!thread.guild) return;
 
 	try {
-		await thread.leave()
+		await thread.leave().catch(() => null)
 	} catch (e) {
 		bot.sendhook(`Error Occured \n ${e.stack}`,
 			{
