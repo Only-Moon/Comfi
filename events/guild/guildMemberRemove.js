@@ -85,7 +85,7 @@ let leave_image = new MessageAttachment(`${guild.leave_image}`)
                   member.send({content: `${format(guild.leave_message)}`, files: [ leave_image]}).catch(() => {})
               } else {
             
-          e = new MessageAttachment(`${guild.leave_image}`) 
+          const leave_image = new MessageAttachment(`${guild.leave_image}`) 
       
                     channel.send({content: `${format(guild.leave_message)}`, files: [ leave_image ]}).catch(() => {})
             }

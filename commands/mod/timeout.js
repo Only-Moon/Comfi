@@ -100,54 +100,71 @@ module.exports = {
         }
 
         if (Time <= 10000) {
-         return await interaction.editReply(`${bot.error} • **Time can't be less than 10 seconds !!**`)
+          return await interaction.editReply(`${bot.error} • **Time can't be less than 10 seconds !!**`)
         }
 
         if (Time > 2332800000) {
-        return await interaction.editReply(`${bot.error} • **Time can't be greater than 27 days !!**`)
+          return await interaction.editReply(`${bot.error} • **Time can't be greater than 27 days !!**`)
         }
 
-        await member.timeout(Time, `${reason}`).then(async () => {
-          await member
-            .send(
-              `**Hello, You Have Been Timeouted In ${
-              interaction.guild.name
-              } for ${bot.msToTime(time)} \nReason: ${reason || 'No Reason'}**`
+        if (member.communicationDisabledUntilTimestamp >= Date.now()) {
+          return await interaction.editReply(`${bot.error} • **${member.user.tag} is already timeout'ed**`)
+        } else {
+
+          await member.timeout(Time, `${reason}`).then(async () => {
+
+            let embed1 = new MessageEmbed()
+              .setTitle(`__Timeout'ed__`)
+              .setDescription(
+                `${bot.tick} • **Moderator: **${
+                interaction.user.tag
+                } \n${bot.tick} • **Guild: **${interaction.guild.name}\n${bot.tick} • **Reason: **${reason ? reason : "No Reason Provided"} \n${bot.tick} • **Time: **${time}`
+              )
+              .setColor(bot.color)
+            await member
+              .send({ embeds: [embed1] })
+              .catch(() => null)
+          })
+
+          let embed2 = new MessageEmbed()
+            .setTitle('**__Timeout Report__**')
+            .setDescription(
+              `${bot.tick} • Timeout'ed **${member.user.tag}** \n${
+              bot.tick
+              } • Time: ${time}\n${
+              bot.tick
+              } • Reason: ${reason ? reason : "No Reason Provided"}`
             )
-            .catch(() => null)
-        })
-
-        const embed = new MessageEmbed()
-          .setColor(bot.color)
-          .setDescription(`${bot.tick} • **Successfully timeout'ed** ${member.user.tag} for ${time} with Reason: ${reason}`)
-
-        await interaction.editReply({ embeds: [embed] })
-        if (!guild.modlog) return;
-
-        if (guild.modlog) {
-          let channel = interaction.guild.channels.cache.find(
-            c => c.id === guild.mod_channel
-          )
-          if (!channel) return
-
-          let embeds1 = new MessageEmbed()
             .setColor(bot.color)
-            .setThumbnail(interaction.user.avatarURL({ dynamic: true }))
-            .setAuthor(
-              `${interaction.guild.name} Modlogs`,
-              interaction.guild.iconURL()
-            )
-            .addField('**Moderation**', 'Timeout')
-            .addField('**Member**', member.user.username.toString())
-            .addField('**Moderator**', interaction.user.username)
-            .addField('**Reason**', `${reason || '**No Reason**'}`)
-            .addField('**Date**', interaction.createdAt.toLocaleString())
-            .setFooter(interaction.guild.name, interaction.guild.iconURL())
-            .setTimestamp();
+          await interaction.editReply({ embeds: [embed2] })
 
-          var sChannel = interaction.guild.channels.cache.get(channel)
-          if (!sChannel) return;
-          sChannel.send({ embeds: [embeds1] })
+          if (!guild.modlog) return;
+
+          if (guild.modlog) {
+            let channel = interaction.guild.channels.cache.find(
+              c => c.id === guild.mod_channel
+            )
+            if (!channel) return
+
+            let embeds1 = new MessageEmbed()
+              .setColor(bot.color)
+              .setThumbnail(interaction.user.avatarURL({ dynamic: true }))
+              .setAuthor(
+                `${interaction.guild.name} Modlogs`,
+                interaction.guild.iconURL()
+              )
+              .addField('**Moderation**', 'Timeout')
+              .addField('**Member**', member.user.username.toString())
+              .addField('**Moderator**', interaction.user.username)
+              .addField('**Reason**', `${reason || '**No Reason**'}`)
+              .addField('**Date**', interaction.createdAt.toLocaleString())
+              .setFooter(interaction.guild.name, interaction.guild.iconURL())
+              .setTimestamp();
+
+            var sChannel = interaction.guild.channels.cache.get(channel)
+            if (!sChannel) return;
+            sChannel.send({ embeds: [embeds1] })
+          }
         }
       }
 
@@ -161,45 +178,53 @@ module.exports = {
           interaction.guild.members.cache.find(
             ro => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase()
           )
-        const reason = interaction.options.getString("reason") || "NONE"
+        const reason = interaction.options.getString("reason")
         if (!member)
           return interaction.editReply(
             `${bot.error} • **Please Enter A Valid User!**`
           )
+        if (member.communicationDisabledUntilTimestamp <= Date.now()) {
+          return await interaction.editReply(`${bot.error} • **${member.user.tag} is not timeout'ed**`)
+        } else {
+          await member.timeout(null, `${reason}`)
 
-        await member.timeout(null, `${reason}`)
-
-        const sembed = new MessageEmbed()
-          .setColor(bot.color)
-          .setDescription(`Successfully  Removed Timeout from ${member.user.username}`)
-
-        await interaction.editReply({ embeds: [sembed] })
-
-        if (!guild.modlog) return;
-
-        if (guild.modlog) {
-          let channel = interaction.guild.channels.cache.find(
-            c => c.id === guild.mod_channel
-          )
-          if (!channel) return
-
-          let embeds1 = new MessageEmbed()
-            .setColor(bot.color)
-            .setThumbnail(member.user.avatarURL({ dynamic: true }))
-            .setAuthor(
-              `${interaction.guild.name} Modlogs`,
-              interaction.guild.iconURL()
+          const embed = new MessageEmbed()
+            .setTitle('**__Timeout Report__**')
+            .setAuthor(`Request Successful`, bot.user.displayAvatarURL())
+            .setDescription(
+              `**Successfully deleted timeout for** ${
+              member.user.tag
+              } \n**Reason: **${reason ? reason : "No Reason Provided"}`
             )
-            .addField('**Moderation**', 'timeout - remove')
-            .addField('**Unmuted**', member.user.username.toString())
-            .addField('**Moderator**', interaction.user.username)
-            .addField('**Date**', interaction.createdAt.toString())
-            .setFooter(interaction.guild.name, interaction.guild.iconURL())
-            .setTimestamp()
+            .setColor(bot.color);
+          await interaction.editReply({ embeds: [embed] })
 
-          sChannel = interaction.guild.channels.cache.get(channel)
-          if (!sChannel) return
-          sChannel.send({ embeds: [embeds1] })
+          if (!guild.modlog) return;
+
+          if (guild.modlog) {
+            let channel = interaction.guild.channels.cache.find(
+              c => c.id === guild.mod_channel
+            )
+            if (!channel) return
+
+            let embeds1 = new MessageEmbed()
+              .setColor(bot.color)
+              .setThumbnail(member.user.avatarURL({ dynamic: true }))
+              .setAuthor(
+                `${interaction.guild.name} Modlogs`,
+                interaction.guild.iconURL()
+              )
+              .addField('**Moderation**', 'timeout - remove')
+              .addField('**Unmuted**', member.user.username.toString())
+              .addField('**Moderator**', interaction.user.username)
+              .addField('**Date**', interaction.createdAt.toString())
+              .setFooter(interaction.guild.name, interaction.guild.iconURL())
+              .setTimestamp()
+
+            sChannel = interaction.guild.channels.cache.get(channel)
+            if (!sChannel) return
+            sChannel.send({ embeds: [embeds1] })
+          }
         }
       }
     } catch (e) {

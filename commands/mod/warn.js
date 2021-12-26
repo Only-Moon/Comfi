@@ -108,7 +108,7 @@ module.exports = {
 						} \n Reason: ${getReason}`
 					)
 					.setColor(bot.color)
-				user
+			await user
 					.send({ embeds: [warn] })
 					.catch(error =>
 						interaction.editReply(
