@@ -168,7 +168,7 @@ async function embed(message, options = []) {
 							resolve({
 								embed: membed.embeds[0].toJSON(),
 								content: membed.content
-							})
+							}).catch(() => null)
 						} else if (button.values[0] === 'setTimestamp') {
 							let btn = new Discord.MessageButton()
 								.setLabel('Yes')

@@ -51,18 +51,7 @@ module.exports = {
 						.addField('Temperature', `${current.temperature}° Degrees`, true)
 						.addField('Observation Time', `${current.observationtime}`, true)
 
-					return interaction.followUp({ embeds: [embed] })
-				})
-				.catch(e => {
-					let emed = new MessageEmbed()
-						.setTitle(`${bot.error} • Error Occured`)
-						.setDescription(`\`\`\`${e.stack}\`\`\``)
-						.setColor(bot.color)
-
-					bot.sendhook(null, {
-						channel: bot.err_chnl,
-						embed: emed
-					})
+					return interaction.followUp({ embeds: [embed] });
 				})
 		} catch (e) {
 			let emed = new MessageEmbed()

@@ -193,18 +193,22 @@ class Comfi extends Discord.Client {
 				.join('_')
 		}
 	}
-	async msToTime(duration) {
-		const ms = Math.floor((duration % 1000) / 100),
-			seconds = Math.floor((duration / 1000) % 60),
-			minutes = Math.floor((duration / (1000 * 60)) % 60),
-			hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
+ async msToTime(duration) {
+	const ms = Math.floor((duration % 1000) / 100),
+		seconds = Math.floor((duration / 1000) % 60),
+		minutes = Math.floor((duration / (1000 * 60)) % 60),
+		hours = Math.floor((duration / (1000 * 60 * 60)) % 24),
+		days = Math.floor((duration / (1000 * 60 * 60 * 24)) % 30);
 
-		const hour = hours < 10 ? '0' + hours : hours
-		const minute = minutes < 10 ? '0' + minutes : minutes
-		const second = seconds < 10 ? '0' + seconds : seconds
+	const day = days < 10 ? '0' + days : days;
+	const hour = hours < 10 ? '0' + hours : hours;
+	const minute = minutes < 10 ? '0' + minutes : minutes;
+	const second = seconds < 10 ? '0' + seconds : seconds;
 
-		return hour + ':' + minute + ':' + second + '.'
-	}
+	return (
+		day + ' Days : ' + hour + ' Hrs : ' + minute + ' Min : ' + second + ' Sec.'
+	);
+}
 
 	dbs(s) {
 		mongoose

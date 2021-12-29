@@ -3,9 +3,28 @@ const guilds = require(`../../models/guild`)
 const { MessageEmbed, MessageAttachment } = require('discord.js')
 
 bot.on('guildMemberAdd', async member => {
+
+  try {
+  
   const guild = await guilds.findOne({ guildId: member.guild.id })
   require(`../../functions/verification`)(member, bot)
 
+					const members = (await member.guild.members.fetch({
+						time: 9999999,
+						withPresences: true
+					}))
+						.sort((a, b) => a.joinedTimestamp - b.joinedTimestamp)
+						.map(m => m)
+
+					const position = new Promise(ful => {
+						for (let i = 1; i < members.length + 1; i++) {
+							// @ts-ignore
+							if (members[i - 1].id === member.id) ful(i)
+						}
+					})
+  
+  const posi = await position 
+  
   function format(msg) {
     let text = msg
 
@@ -16,7 +35,8 @@ bot.on('guildMemberAdd', async member => {
       { name: '{{server#id}}', value: `${member.guild.id}` },
       { name: '{{server#name}}', value: `${member.guild.name}` },
       { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
-      { name: '{{server#humancount}}', value: `${member.guild.members.cache.filter(member => !member.user.bot)}` }
+      { name: '{{server#humancount}}', value: `${member.guild.members.cache.filter(member => !member.user.bot)}` },
+      { name: '{{join#position}}', value: `${getOrdinal(posi)}`}
     ]
 
     for (let { name, value } of terms)
@@ -54,7 +74,7 @@ bot.on('guildMemberAdd', async member => {
             await member.send({ 
               content: `${cont}`, 
               embeds: [embed] 
-            }).catch(() => { })
+            }).catch(() => null)
           } else {
             channel
               .send({
@@ -62,7 +82,7 @@ bot.on('guildMemberAdd', async member => {
                 content: `${cont}`, 
                 embeds: [embed], allowedMentions: { repliedUser:  true }
               })
-              .catch(() => { })
+              .catch(() => null)
           }
 
         })
@@ -75,7 +95,7 @@ bot.on('guildMemberAdd', async member => {
               content: `${format(guild.welcome_message)}`,
               files: [welcome_image], allowedMentions: { repliedUser:  true }
             })
-            .catch(() => { })
+            .catch(() => null)
         } else {
           let welcome_image = new MessageAttachment(`${guild.welcome_image}`)
 
@@ -84,7 +104,7 @@ bot.on('guildMemberAdd', async member => {
               content: `${format(guild.welcome_message)}`,
               files: [welcome_image], allowedMentions: { repliedUser:  true }
             })
-            .catch(() => { })
+            .catch(() => null)
         }
       }
     }
@@ -104,4 +124,39 @@ await member.roles
   if (guild.auto_nick.toLowerCase() === 'none') return;
   let nick = `${guild.auto_nick}`
   member.setNickname(`${nick}` + member.user.username).catch(() => { })
+
+  } catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
+  }
+    
 })
+
+function getOrdinal(input) {
+	let j = input % 10,
+		k = input % 100
+
+	if (j == 1 && k != 11) return input + 'st'
+	if (j == 2 && k != 12) return input + 'nd'
+	if (j == 3 && k != 13) return input + 'rd'
+
+	return input + 'th'
+            }

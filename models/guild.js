@@ -37,7 +37,7 @@ const schema = new Schema({
 		type: String,
 		default: 'Congrats {{user#mention}} on reaching level {{level}}'
 	},
-  leveling_image: { type: String, default:  "https://i.imgur.com/emWmlqA.png"},
+  leveling_image: { type: String, default:  "https://i.imgur.com/InltiPs.png" },
 	leveling_embedtgl: { type: Boolean, default: true },
 	leveling_embed: { type: Array, default: [] },
 	leveling_roles: { type: Array, default: [] },

@@ -173,7 +173,7 @@ module.exports = {
 						bot.user.displayAvatarURL()
 					)
 					.setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-					.addField('❯ Uptime :', `${ms(bot.uptime)}`, true)
+					.addField('❯ Uptime :', `${(await bot.msToTime(bot.uptime))}`, true)
 					.addField('❯ WS Ping:', `${bot.ws.ping}ms`, true)
 					.addField(
 						'❯ Memory:',
@@ -205,8 +205,8 @@ module.exports = {
 					)
 					.addField('❯ Discord.js:', `v${discordjsVersion}`, true)
 					.addField(
-						'❯ Made by **Moonbow** :',
-						`Github • [Xx-Mohit-xX](https://github.com/Xx-Mohit-xX) \n Discord • [꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817]()`,
+						'❯ Made by:',
+						`Github • [Xx-Mohit-xX](https://github.com/Xx-Mohit-xX) \nDiscord • [꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817](https://discord.com/users/753974636508741673)`,
 						true
 					) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
 					.setFooter(`Requested By ${interaction.member.displayName}`)
@@ -269,7 +269,7 @@ module.exports = {
 					})
 
 				let stickerID = sticker.id
-				let stickeName = stickername
+				let stickeName = sticker.name
 				// let uploader = sticker.fetchUser();
 
 				let embed = new MessageEmbed()
@@ -308,7 +308,7 @@ module.exports = {
 							inline: true
 						}
 					)
-				interaction.editReply({ embeds: [embed] })
+				await interaction.editReply({ embeds: [embed] })
 			}
 
 			if (subcommand === 'role') {
@@ -357,7 +357,7 @@ module.exports = {
 							inline: true
 						}
 					)
-				return interaction.editReply({ embeds: [embed] })
+				return await interaction.editReply({ embeds: [embed] })
 			}
 
 			if (subcommand === 'server') {
@@ -395,7 +395,9 @@ module.exports = {
 					)
 					.addField(
 						`<:768584793691783179:883017859444379648> No. of Members`,
-						interaction.guild.memberCount.toString(),
+						interaction.guild.members.cache
+            .filter(member => !member.user.bot)
+            .size.toString(),
 						true
 					)
 					.addField(
@@ -406,8 +408,10 @@ module.exports = {
 						true
 					)
 					.addField(
-						`<:zz_heart_retsu_f2u:883032970468933633> Emojis:`,
-						interaction.guild.emojis.cache.size.toString(),
+						`<:zz_heart_retsu_f2u:883032970468933633> Non - Animated Emojis:`,
+						interaction.guild.emojis.cache
+            .filter(emoji => !emoji.animated)
+            .size.toString(),
 						true
 					)
 					.addField(
@@ -420,21 +424,21 @@ module.exports = {
 					.addField(
 						`<:textchannel:890106455284392026> # of Text Channel\'s:`,
 						interaction.guild.channels.cache
-							.filter(channel => channel.type === 'GUILD_TEXT')
+							.filter(channel => channel.isText())
 							.size.toString(),
 						true
 					)
 					.addField(
 						`<:thread:890106257350983730> # of Thread\'s:`,
 						interaction.guild.channels.cache
-							.filter(channel => channel.type === 'THREAD')
+							.filter(channel => channel.isThread())
 							.size.toString(),
 						true
 					)
 					.addField(
 						`<:voice:890106643449274398> # of Voice Channel\'s:`,
 						interaction.guild.channels.cache
-							.filter(channel => channel.type === 'GUILD_VOICE')
+							.filter(channel => channel.isVoice())
 							.size.toString(),
 						true
 					)

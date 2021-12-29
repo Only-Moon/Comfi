@@ -48,7 +48,8 @@ const embed = new MessageEmbed()
   }, 
   {
     name: "Invite", 
-    value: `${invite}`
+    value: `${invite}`,
+    inline: true
   } ) 
   .setColor(bot.color) 
   .setFooter(`${bot.guilds.cache.size} Guilds`, bot.user.displayAvatarURL())

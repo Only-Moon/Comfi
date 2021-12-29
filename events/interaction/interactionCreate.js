@@ -17,7 +17,7 @@ bot.on('interactionCreate', async (interaction, args) => {
   if (interaction.isCommand()) {
     await interaction.deferReply({ ephemeral: false }).catch(() => { })
 
-    if (!interaction.guild) return
+    if (!interaction.guild) return;
 
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
     if (!guild) {
@@ -35,7 +35,7 @@ bot.on('interactionCreate', async (interaction, args) => {
     for (let option of interaction.options.data) {
       if (option.type === 'SUB_COMMAND') {
         if (option.name) args.push(option.name)
-        option.options ?.forEach(x => {
+        option.options?.forEach(x => {
           if (x.value) args.push(x.value)
         })
 			} else if (option.value) args.push(option.value)
@@ -54,30 +54,30 @@ bot.on('interactionCreate', async (interaction, args) => {
 
     const userp = new MessageEmbed()
       .setDescription(
-        `${bot.error} You need \`${cmd.userperm || []}\` Permissions`
+        `${bot.error} You need \`${cmd.userperm ? cmd.userperm : []}\` Permissions`
       )
       .setColor('#FC7C7C')
 
     const userperm = interaction.member.permissions.has(cmd.userperm)
 
-    if (!userperm)
+    if (!userperm) {
       return interaction.followUp({ embeds: [userp] }).catch(() => null)
-
+    }
     const botp = new MessageEmbed()
       .setDescription(
-        `${bot.error} I need \`${cmd.botperm || []}\` Permissions`
+        `${bot.error} • I need \`${cmd.botperm ? cmd.botperm : []}\` Permissions`
       )
       .setColor('#FC7C7C')
 
     const botperm = interaction.guild.me.permissions.has(cmd.botperm)
-    if (!botperm)
+    if (!botperm) {
       return interaction.followUp({ embeds: [botp] }).catch(() => null)
-
+    }
     interaction.member = interaction.guild.members.cache.get(
       interaction.user.id
     )
 
-    if (interaction.user.bot) return
+    if (interaction.user.bot) return;
 
     const clientSchema = await Client.findOne({ clientId: bot.user.id })
     if (clientSchema.blackListedUsers.includes(interaction.user.id)) {
@@ -89,7 +89,9 @@ bot.on('interactionCreate', async (interaction, args) => {
         )
         .setColor('#FC7C7C')
 
-      return await interaction.editReply({ embeds: [blkuser] })
+      return await interaction.editReply({ embeds: [blkuser] }).then((msg) => {
+        setTimeout(() => { if (!msg.deleted) msg.delete() }, bot.ms('60s'))
+      });
     }
 
     if (clientSchema.blackListedServers.includes(interaction.guild.id)) {
@@ -101,17 +103,25 @@ bot.on('interactionCreate', async (interaction, args) => {
         )
         .setColor('#FC7C7C')
 
-      return await interaction.editReply({ embeds: [blkguild] })
+      return await interaction.editReply({ embeds: [blkguild] }).then((msg) => {
+        setTimeout(() => { if (!msg.deleted) msg.delete() }, bot.ms('60s'))
+      });;
     }
 
-    if (clientSchema.blackListedCmds.includes(cmd.name)) {
-      const blkcmd = new MessageEmbed()
+    if (!interaction.channel.viewable) {
+
+      const channel = new MessageEmbed()
         .setDescription(
-          `${bot.error} ${cmd.name} is Disabled in this server`
+          `${bot.error} This guild is blacklisted from using <@${
+          bot.user.id
+          }>'s commands`
         )
         .setColor('#FC7C7C')
 
-      return await interaction.editReply({ embeds: [blkcmd] })
+      return await interaction.editReply({ embeds: [channel] }).then((msg) => {
+        setTimeout(() => { if (!msg.deleted) msg.delete() }, bot.ms('30s'))
+      });
+
     }
 
     //if (cmd.premium) {}
