@@ -15,7 +15,10 @@ bot.on('interactionCreate', async (interaction, args) => {
   // Slash Command Handling
 
   if (interaction.isCommand()) {
-    await interaction.deferReply({ ephemeral: false }).catch(() => { })
+
+    const cmd = bot.slashCommands.get(interaction.commandName)
+    
+    await interaction.deferReply({ ephemeral: cmd.ephemeral ? cmd.ephemeral: false }).catch(() => { })
 
     if (!interaction.guild) return;
 
@@ -24,7 +27,6 @@ bot.on('interactionCreate', async (interaction, args) => {
       await guilds.create({ guildId: interaction.guild.id })
     }
 
-    const cmd = bot.slashCommands.get(interaction.commandName)
     if (!cmd)
       return interaction
         .followUp({ content: `${bot.error} • An error has occured` })
@@ -174,7 +176,7 @@ bot.on('interactionCreate', async (interaction, args) => {
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)
-      .setFooter(`Used by ${interaction.user.username}`)
+      .setFooter({text: `Used by ${interaction.user.username}`})
       .setTimestamp();
 
     if (cmd.cooldown) {
@@ -286,7 +288,7 @@ bot.on('interactionCreate', async (interaction, args) => {
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)
-      .setFooter(`Used by ${interaction.user.username}`)
+      .setFooter({text: `Used by ${interaction.user.username}`})
       .setTimestamp();
 
     try {

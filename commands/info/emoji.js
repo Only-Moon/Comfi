@@ -61,11 +61,11 @@ module.exports = {
             .editReply({
               content: `${bot.error} • Enter A Valid Emoji in :emoji: form`
             })
-            .then(msg => {
-              setTimeout(() => {
-                if (!msg.deleted) msg.delete()
-              }, bot.ms('15s'))
-            })
+            .then((msg) => {
+         setTimeout(() => { 
+        if(msg.deletable) msg.delete()
+ }, bot.ms('30s'))
+  });
         } else if (emojis) {
           if (emojis.length === 1) {
             const emote = interaction.options.getString('name')
@@ -85,10 +85,10 @@ module.exports = {
 
             let embed = new MessageEmbed()
               .setColor(bot.color)
-              .setAuthor(
-                'Enlarged Emoji',
-                interaction.user.avatarURL({ dynamic: true })
-              )
+              .setAuthor({
+                name: 'Comfi™ Enlarged Emoji',
+iconURL:                interaction.user.avatarURL({ dynamic: true })
+                         })
               .setImage(`${img}`)
               .setDescription(`${emo.name} ${emo.id}`)
 
@@ -133,10 +133,10 @@ module.exports = {
 
               let embed = new MessageEmbed()
                 .setColor(bot.color)
-                .setAuthor(
-                  'Enlarged Emoji',
-                  interaction.user.avatarURL({ dynamic: true })
-                )
+                .setAuthor({
+                  name:'Enlarged Emoji',
+iconURL:                  interaction.user.avatarURL({ dynamic: true })
+                           })
                 .setImage(`${res}`)
                 .setDescription(`${emo.name} ${emo.id}`)
 
@@ -149,10 +149,48 @@ module.exports = {
       if (sub === "find") {
 
         const name = interaction.options.getString("emote")
+
+     if (name.toLowerCase() === "all" || "max") {
+        let emojis = []
+        let pages = []
+               const emos = await bot.emojis.fetch()
+          emosforEach(emo => {
+
+            if (!emo.name || !emo.id)
+  {             return interaction.editReply(
+                `${bot.error} Invalid emote argument`
+              )
+
+
+            }            const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+              emo.animated ? 'gif' : 'png'
+              }`
+
+            let embed = new MessageEmbed()
+              .setColor(bot.color)
+              .setAuthor({
+                name: 'Comfi™ Emojis',
+iconURL:                interaction.user.avatarURL({ dynamic: true })
+          })
+              .setImage(`${res}`)
+              .setDescription(`${emo.name} ${emo.id}`)
+
+            pages.push(embed)
+          })
+          simplydjs.embedPages(bot, interaction, pages, {
+            backEmoji: '884420649580363796',
+            delEmoji: '891534962917007410',
+            forwardEmoji: '884420650549272586',
+            btncolor: 'SECONDARY',
+            delcolor: 'SECONDARY',
+            skipBtn: true,
+            pgCount: true,
+          })
+            } else {
         
         let emojis = []
-        bot.emojis.cache
-          .filter(emoji => emoji.name.includes(name))
+        const emos = bot.emojis.fetch()
+          emos.filter(emoji => emoji.name.includes(name))
           .forEach(emoji => emojis.push(emoji));
         if (emojis.length > 1) {
 
@@ -171,10 +209,10 @@ module.exports = {
 
             let embed = new MessageEmbed()
               .setColor(bot.color)
-              .setAuthor(
-                'Enlarged Emoji',
-                interaction.user.avatarURL({ dynamic: true })
-              )
+              .setAuthor({
+                name: 'Comfi™ Enlarged Emoji',
+iconURL:                interaction.user.avatarURL({ dynamic: true })
+          })
               .setImage(`${res}`)
               .setDescription(`${emo.name} ${emo.id}`)
 
@@ -204,10 +242,10 @@ module.exports = {
 
           let embed = new MessageEmbed()
             .setColor(bot.color)
-            .setAuthor(
-              'Enlarged Emoji',
-              interaction.user.avatarURL({ dynamic: true })
-            )
+            .setAuthor({
+              name: 'Enlarged Emoji',
+iconURL:              interaction.user.avatarURL({ dynamic: true })
+        })
             .setImage(`${img}`)
             .setDescription(`${emo.name} ${emo.id}`)
 ;
@@ -237,11 +275,10 @@ module.exports = {
             .editReply({
               content: `${bot.error} **• Emoji not found !!**`
             })
-            .then(msg => {
-              setTimeout(() => {
-                if (!msg.deleted) msg.delete()
-              }, bot.ms('60s'))
-            });
+            .then((msg) => {
+  setTimeout(() => { if(msg.deletable) msg.delete() }, bot.ms('30s'))
+  });
+      }
       }
       }	catch (e) {
 			let emed = new MessageEmbed()

@@ -15,16 +15,16 @@ module.exports = {
 	run: async (bot, interaction, args) => {
 		const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
-		let [sub] = args
-
 		try {
-			if (sub === 'reset') {
+
 				if (guild.leveling) {
-					interaction
+					await interaction
 						.editReply({ content: `${bot.cross} • Resetting all user levels.` })
-						.then(msg => {
-							interaction.guild.members.cache.forEach(async m => {
-								const user = await users.findOne({
+						.then(async msg => {
+							const mem = await interaction.guild.members.fetch()
+                mem.forEach(async m => {
+		
+                  const user = await users.findOne({
 									userId: m.id,
 									guildId: interaction.guild.id
 								})
@@ -34,26 +34,26 @@ module.exports = {
 										{
 											level: 0,
 											xp: 0,
-											requiredXp: 1000
+											requiredXp: 500
 										}
 									)
 								}
 							})
-							return msg
+							return await msg
 								.edit({
 									content: `${bot.tick} • All user levels have been reset!`
 								})
 								.catch(() => null)
 						})
 				} else {
-					return interaction
+					return await interaction
 						.editReply({
 							content: `${
 								bot.crosss
 							} • Please setup leveling before using this command!`
 						})
 						.catch(() => null)
-				}
+
 			}
 		} catch (e) {
 			let emed = new MessageEmbed()

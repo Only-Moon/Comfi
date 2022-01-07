@@ -51,7 +51,7 @@ module.exports = {
 					.setTitle(`${target.tag}`)
 					.setImage(target.displayAvatarURL({ dynamic: true, size: 4096 }))
 					.setColor(bot.color)
-				interaction.editReply({ embeds: [avatarEmbed] })
+				await interaction.editReply({ embeds: [avatarEmbed] })
 			}
 
 			if (choice == 'member') {
@@ -76,13 +76,13 @@ module.exports = {
 						.setTitle(`${target.tag}`)
 						.setImage(url)
 						.setColor(bot.color)
-					interaction.editReply({ embeds: [avatarEmbed] })
+					await interaction.editReply({ embeds: [avatarEmbed] })
 				} else {
 					const avatarEmbed = new MessageEmbed()
 						.setTitle(`${target.tag}`)
 						.setImage(target.displayAvatarURL({ dynamic: true, size: 4096 }))
 						.setColor(target.displayHexColor)
-					interaction.editReply({ embeds: [avatarEmbed] })
+					await interaction.editReply({ embeds: [avatarEmbed] })
 				}
 			}
 		} catch (e) {

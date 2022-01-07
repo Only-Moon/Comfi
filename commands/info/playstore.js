@@ -1,5 +1,5 @@
 const PlayStore = require("google-play-scraper");
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, MessageEmbed, MessageButton,  MessageActionRow } = require("discord.js");
 
 module.exports = {
     name: "playstore",
@@ -14,7 +14,7 @@ module.exports = {
         },
     ],
     userperm: [""],
-    botperm: [""],
+    botperm: ["SEND_MESSAGES"],
     /**
      *
      * @param {CommandInteraction} interaction
@@ -23,9 +23,9 @@ module.exports = {
     run: async (bot, interaction, args) => { 
 
     PlayStore.search({
-      term: args[0],
+      term: interaction.options.getString("name"),
       num: 1
-    }).then(Data => {
+    }).then(async (Data) => {
       let App;
 
       try {
@@ -45,10 +45,17 @@ try {
         .addField(`Price`, `${App.priceText}`)
         .addField(`Developer`, `${App.developer}`)
         .addField(`Score`, `${App.scoreText}`)
-        .setFooter(`Requested By ${interaction.user.username}`)
+        .setFooter({text: `Requested By ${interaction.user.username}`})
         .setTimestamp();
 
-      return interaction.editReply({embeds: [ embed ]});
+      const row = new MessageActionRow().addComponents(
+        new MessageButton()
+          .setStyle('LINK')
+          .setURL(`${App.url}`)
+          .setLabel('Go to playstore !!')
+      )
+  
+      return await interaction.editReply({embeds: [ embed ], components:  [row]});
 } catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

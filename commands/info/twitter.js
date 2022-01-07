@@ -16,25 +16,25 @@ module.exports = {
         },
     ],
     userperm: [""],
-    botperm: [""],
+    botperm: ["SEND_MESSAGES"],
     /**
      *
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (bot, interaction, args, message) => {
-		let user = args[0];
+    run: async (bot, interaction, args) => {
+		let user = interaction.options.getString("username ")
 
 		try {
 			const body = await twitter.users(user);
 			const tweet = new MessageEmbed()
 				.setColor('BLUE')
-				.setAuthor(
-					`@${body.screen_name.toLowerCase()}`,
-					body.verified
+				.setAuthor({ 
+name: 					`@${body.screen_name.toLowerCase()}`,
+					iconURL: body.verified
 						? 'https://emoji.gg/assets/emoji/6817_Discord_Verified.png'
 						: null
-				)
+                   })
 				.setDescription(
 					stripIndents` ${body.description}
       \`•\` Followers: **${body.followers_count.toLocaleString()}**
@@ -42,13 +42,13 @@ module.exports = {
       \`•\` Tweets: **${body.statuses_count.toLocaleString()}**
       \`•\` Account Created At: ${body.created_at}`
 				)
-				.setFooter(
-					`Twitter ID: ${body.id}`,
-					'https://abs.twimg.com/favicons/twitter.ico'
-				)
+				.setFooter({
+					text: `Twitter ID: ${body.id}`,
+iconURL:					'https://abs.twimg.com/favicons/twitter.ico'
+                   })
 				.setThumbnail(body.profile_image_url_https.replace('_normal', ''))
 				.setImage(body.profile_banner_url);
-			interaction.editReply({embeds: [ tweet ]});
+			await interaction.editReply({embeds: [ tweet ]});
 		} catch (e) {
 			if (e.status === 403)
 				return interaction.editReply(

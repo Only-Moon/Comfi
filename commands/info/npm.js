@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require('discord.js')
 const fetch = require('node-fetch')
 
 module.exports = {
@@ -27,12 +27,20 @@ module.exports = {
       const response = await fetch(`https://api.notzerotwo.ml/data/npm?api=moon_bow&package=${npm}`)
       const data = await response.json()
       let embed = new MessageEmbed()
-        .setTitle(`Npm Info - ${data.name}`)
+        .setAuthor({name: `Comfi™ Npm Info - ${data.name}`, iconURL: bot.user.displayAvatarURL({dynamic:true})})
         .setDescription(`**Name: ** ${data.name} \n**Version: ** ${data.version} \n**Description :** ${data.description} \n**Author :** ${data.author} \n **License :** ${data.license}`)
         .setColor(bot.color)
         .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-        .setFooter(`Requested by ${interaction.user.tag}`);
-      await interaction.editReply({ embeds: [embed] })
+        .setFooter({text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL({dynamic: t})});
+
+				const row = new MessageActionRow().addComponents(
+					new MessageButton()
+						.setStyle('LINK')
+						.setURL(`https://www.npmjs.com/package/${npm}`)          
+          .setEmoji(`883017868944502804`)
+						.setLabel('Go to Package!!')	);
+
+      await interaction.editReply({ embeds: [embed], components: [row] })
     } catch (e) {
       let emed = new MessageEmbed()
         .setTitle(`${bot.error} • Error Occured`)

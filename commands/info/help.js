@@ -31,11 +31,11 @@ module.exports = {
 			if (!args[0]) {
 				//categories to ignore
 
-				let ignored = ['owner', 'context', 'admin']
+				let ignored = ['owner', 'admin']
 
 				const emo = {
-					// admin: "<a:loli_2_cs:883017896245211166>",
 					anime: '<a:snowman_cs:883017868944502804>',
+					context: "<a:loli_2_cs:883017896245211166>",
 					emoji: '<a:apple_cs:883033005172605020>',
 					fun: '<a:shootingstaw_cs:883017879065354290>',
 					info: '<a:stars_cs:883033007836000308>',
@@ -56,7 +56,7 @@ module.exports = {
 
 					cats = {
 						name: name,
-						value: `\`/help ${dir.toLowerCase()}\``,
+						value: `\`/helpp ${dir.toLowerCase()}\``,
 						inline: true
 					}
 
@@ -69,25 +69,25 @@ module.exports = {
 					.setDescription(
 						`My Prefix For __**${
 							interaction.guild.name
-						}**__ Is  __**${prefix}**__\n\nFor More Command Information, Type The Following Command:\n**${prefix}help settings or** **${prefix}help ban**`
+						}**__ Is  __**${prefix}**__\n\nFor More Command Information, Type The Following Command:\n**${prefix}helpp settings or** **${prefix}helpp bann**`
 					)
 					.addFields(categories)
-					.setFooter(
-						`Requested by ${interaction.member.displayName}`,
-						interaction.user.avatarURL({
+					.setFooter({
+						text: `Requested by ${interaction.member.displayName}`,
+						iconURL: interaction.user.avatarURL({
 							dynamic: true
 						})
-					)
+          })
 					.setTimestamp()
 					.setThumbnail(
 						bot.user.displayAvatarURL({
 							dynamic: true
 						})
 					)
-					.setColor(bot.color)
+					.setColor(bot.color);
 
 				let menus = create_mh(ccate)
-				return interaction.editReply({
+				return await interaction.editReply({
 					embeds: [embed],
 					components: menus.smenu
 				})
@@ -104,7 +104,7 @@ module.exports = {
 
 						let name = file.name.replace('.js', '')
 
-						if (bot.slashCommands.get(name).hidden) return
+						if (bot.slashCommands.get(name).hidden) return;
 						let des = bot.slashCommands.get(name).description
 						let emo = bot.slashCommands.get(name).emoji
 						let emoe = emo ? `${emo} - ` : ''
@@ -148,21 +148,21 @@ module.exports = {
 							`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`
 						)
 						.addFields(catts)
-						.setFooter(
-							`Comfi™ Help`,
-							interaction.user.avatarURL({
+						.setFooter({
+							text: `Comfi™ Help`,
+iconURL:							interaction.user.avatarURL({
 								dynamic: true
 							})
-						)
+                       })
 						.setTimestamp()
 						.setThumbnail(
 							bot.user.displayAvatarURL({
 								dynamic: true
 							})
 						)
-						.setColor(bot.color)
+						.setColor(bot.color);
 
-					return interaction
+					return await interaction
 						.editReply({
 							embeds: [combed]
 						})
@@ -172,7 +172,7 @@ module.exports = {
 				if (!command) {
 					const embed = new MessageEmbed()
 						.setTitle(
-							`Invalid command! Use \`${prefix}help\` for all of my commands!`
+							`Invalid command! Use \`${prefix}helpp\` for all of my commands!`
 						)
 						.setColor(bot.color)
 
@@ -222,12 +222,12 @@ module.exports = {
 							: 'No description for this command.'
 					)
 
-					.setFooter(
-						`Comfi™ Help`,
-						interaction.user.avatarURL({
+					.setFooter({
+						text: `Comfi™ Help`,
+						iconURL: interaction.user.avatarURL({
 							dynamic: true
 						})
-					)
+                     })
 					.setTimestamp()
 					.setThumbnail(
 						bot.user.displayAvatarURL({

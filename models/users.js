@@ -4,7 +4,6 @@ const schema = new Schema({
     // General
     userId: String,
     guildId: String,
-    staff: {type: Boolean, default: false},
 
     // Mod
     warns: {type: Object, default: []},
@@ -23,14 +22,6 @@ const schema = new Schema({
     cmd: {type: String}, 
     time: {type: Number, default: 0}, 
     cooldown: {type: Number, default: 0},
-
- // Profile
-    UserName: { type: String, default: null },
-    UserPfp: { type: String, default: null },
-    UserBanner: { type: String, default:  null },
-    UserAge: { type: Number, default: 0 },
-    UserHobby: { type: String, default: null },
-    CustomId: { type: String, default: null },
   
 })
 

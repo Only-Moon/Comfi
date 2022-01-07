@@ -58,4 +58,9 @@ bot.on('ready', async () => {
 	setInterval(() => {
 		require(`../../functions/member_counter`)(bot)
 	}, 60000 * 10)
+
+setInterval(() => {
+  require('../../functions/reminder')(bot)
+}, 1000)
+  
 })

@@ -111,7 +111,7 @@ async function embed(message, options = []) {
 					'https://user-images.githubusercontent.com/71836991/145395922-311bb29a-a45b-476a-b55e-73cd4717f401.png'
 				)
 				.setColor(bot.color)
-				.setFooter(foot)
+				.setFooter({ text: `${foot}`})
 
 			let e
 			if (message.commandId) {
@@ -166,9 +166,9 @@ async function embed(message, options = []) {
 							e.delete().catch(() => {})
 
 							resolve({
-								embed: membed.embeds[0].toJSON(),
+								embed: membed?.embeds[0]?.toJSON(),
 								content: membed.content
-							}).catch(() => null)
+							})
 						} else if (button.values[0] === 'setTimestamp') {
 							let btn = new Discord.MessageButton()
 								.setLabel('Yes')
@@ -212,17 +212,17 @@ async function embed(message, options = []) {
 												? membed.embeds[0].thumbnail.url
 												: ''
 										)
-										.setAuthor(
-											membed.embeds[0].author?.name
+										.setAuthor({
+name: 											membed.embeds[0].author?.name
 												? membed.embeds[0].author?.name
 												: '',
-											membed.embeds[0].author?.icon_url
+iconURL:											membed.embeds[0].author?.icon_url
 												? membed.embeds[0].author?.icon_url
 												: '',
-											membed.embeds[0].author?.url
+url:											membed.embeds[0].author?.url
 												? membed.embeds[0].author?.url
 												: ''
-										)
+                      })
 										.setTimestamp(new Date())
 
 									button.editReply({
@@ -252,17 +252,17 @@ async function embed(message, options = []) {
 												? membed.embeds[0].thumbnail.url
 												: ''
 										)
-										.setAuthor(
-											membed.embeds[0].author?.name
+										.setAuthor({
+											name: membed.embeds[0].author?.name
 												? membed.embeds[0].author?.name
 												: '',
-											membed.embeds[0].author?.icon_url
+iconURL: membed.embeds[0].author?.icon_url
 												? membed.embeds[0].author?.icon_url
 												: '',
-											membed.embeds[0].author?.url
+                      url: membed.embeds[0].author?.url
 												? membed.embeds[0].author?.url
 												: ''
-										)
+                      })
 										.setTimestamp(false)
 
 									button.editReply({
@@ -338,7 +338,7 @@ async function embed(message, options = []) {
 											.setTitle(membed.embeds[0].title || '')
 											.setDescription(membed.embeds[0].description || '')
 											.setColor(membed.embeds[0].color || '#36393F')
-											.setFooter(membed.embeds[0].footer.text || '')
+											.setFooter({text: membed.embeds[0].footer.text || ''})
 											.setImage(url)
 											.setURL(membed.embeds[0].url || '')
 											.setThumbnail(
@@ -346,15 +346,15 @@ async function embed(message, options = []) {
 													? membed.embeds[0].thumbnail.url
 													: ''
 											)
-											.setAuthor(
-												m.content,
-												membed.embeds[0].author?.icon_url
+											.setAuthor({
+												name: m.content,
+iconURL:												membed.embeds[0].author?.icon_url
 													? membed.embeds[0].author?.icon_url
 													: '',
-												membed.embeds[0].author?.url
+url:												membed.embeds[0].author?.url
 													? membed.embeds[0].author?.url
 													: ''
-											)
+                                 })
 											.setTimestamp(
 												membed.embeds[0].timestamp ? new Date() : false
 											)
@@ -403,7 +403,7 @@ async function embed(message, options = []) {
 											.setTitle(membed.embeds[0].title || '')
 											.setDescription(membed.embeds[0].description || '')
 											.setColor(membed.embeds[0].color || '#36393F')
-											.setFooter(membed.embeds[0].footer.text || '')
+											.setFooter({text: membed.embeds[0].footer.text || ''})
 											.setImage(url)
 											.setURL(membed.embeds[0].url || '')
 											.setThumbnail(
@@ -414,15 +414,15 @@ async function embed(message, options = []) {
 											.setTimestamp(
 												membed.embeds[0].timestamp ? new Date() : false
 											)
-											.setAuthor(
-												membed.embeds[0].author?.name
+											.setAuthor({
+name:												membed.embeds[0].author?.name
 													? membed.embeds[0].author?.name
 													: '',
-												m.content || m.attachments.first().url || '',
-												membed.embeds[0].author?.url
+iconURL:												m.content || m.attachments.first().url || '',
+url:												membed.embeds[0].author?.url
 													? membed.embeds[0].author?.url
 													: ''
-											)
+                                 })
 
 										titleclr.stop()
 										m.delete().catch(() => {})
@@ -461,7 +461,7 @@ async function embed(message, options = []) {
 												.setTitle(membed.embeds[0].title || '')
 												.setDescription(membed.embeds[0].description || '')
 												.setColor(membed.embeds[0].color || '#36393F')
-												.setFooter(membed.embeds[0].footer.text || '')
+												.setFooter({text: membed.embeds[0].footer.text || ''})
 												.setImage(url)
 												.setURL(membed.embeds[0].url || '')
 												.setThumbnail(
@@ -469,15 +469,15 @@ async function embed(message, options = []) {
 														? membed.embeds[0].thumbnail.url
 														: ''
 												)
-												.setAuthor(
-													membed.embeds[0].author?.name
+												.setAuthor({
+name:													membed.embeds[0].author?.name
 														? membed.embeds[0].author?.name
 														: '',
-													membed.embeds[0].author?.icon_url
+iconURL:													membed.embeds[0].author?.icon_url
 														? membed.embeds[0].author?.icon_url
 														: '',
-													m.content || ''
-												)
+url:													m.content || ''
+                    })
 												.setTimestamp(
 													membed.embeds[0].timestamp ? new Date() : false
 												)
@@ -516,7 +516,7 @@ async function embed(message, options = []) {
 									.setTitle(membed.embeds[0].title || '')
 									.setDescription(membed.embeds[0].description || '')
 									.setColor(membed.embeds[0].color || '#36393F')
-									.setFooter(membed.embeds[0].footer.text || '')
+									.setFooter({text: membed.embeds[0].footer.text || ''})
 									.setImage(url)
 									.setURL(membed.embeds[0].url || '')
 									.setThumbnail(
@@ -525,17 +525,17 @@ async function embed(message, options = []) {
 											: ''
 									)
 									.setTimestamp(membed.embeds[0].timestamp ? new Date() : false)
-									.setAuthor(
-										membed.embeds[0].author?.name
+									.setAuthor({
+name:										membed.embeds[0].author?.name
 											? membed.embeds[0].author?.name
 											: '',
-										membed.embeds[0].author?.icon_url
+iconURL:										membed.embeds[0].author?.icon_url
 											? membed.embeds[0].author?.icon_url
 											: '',
-										membed.embeds[0].author?.url
+url:										membed.embeds[0].author?.url
 											? membed.embeds[0].author?.url
 											: ''
-									)
+                             })
 
 								titleclr.stop()
 								m.delete().catch(() => {})
@@ -582,20 +582,20 @@ async function embed(message, options = []) {
 									.setDescription(membed.embeds[0].description || '')
 									.setColor(membed.embeds[0].color || '#2F3136')
 									.setURL(membed.embeds[0].url || '')
-									.setFooter(membed.embeds[0].footer.text || '')
+									.setFooter({text: membed.embeds[0].footer.text || ''})
 									.setImage(url)
 									.setThumbnail(m.content || m.attachments.first().url || '')
-									.setAuthor(
-										membed.embeds[0].author?.name
+									.setAuthor({
+name:										membed.embeds[0].author?.name
 											? membed.embeds[0].author?.name
 											: '',
-										membed.embeds[0].author?.icon_url
+iconURL:										membed.embeds[0].author?.icon_url
 											? membed.embeds[0].author?.icon_url
 											: '',
-										membed.embeds[0].author?.url
+url:										membed.embeds[0].author?.url
 											? membed.embeds[0].author?.url
 											: ''
-									)
+              })
 									.setTimestamp(membed.embeds[0].timestamp ? new Date() : false)
 
 								titleclr.stop()
@@ -629,19 +629,19 @@ async function embed(message, options = []) {
 										.setDescription(membed.embeds[0].description || '')
 										.setColor(`${m.content}`)
 										.setURL(membed.embeds[0].url || '')
-										.setFooter(membed.embeds[0].footer.text || '')
+										.setFooter({text:membed.embeds[0].footer.text || ''})
 										.setImage(url)
-										.setAuthor(
-											membed.embeds[0].author?.name
+										.setAuthor({
+name:											membed.embeds[0].author?.name
 												? membed.embeds[0].author?.name
 												: '',
-											membed.embeds[0].author?.icon_url
+iconURL:											membed.embeds[0].author?.icon_url
 												? membed.embeds[0].author?.icon_url
 												: '',
-											membed.embeds[0].author?.url
+url:											membed.embeds[0].author?.url
 												? membed.embeds[0].author?.url
 												: ''
-										)
+                               })
 										.setTimestamp(
 											membed.embeds[0].timestamp ? new Date() : false
 										)
@@ -687,17 +687,17 @@ async function embed(message, options = []) {
 										: ''
 									let msg = new MessageEmbed()
 										.setTitle(membed.embeds[0].title || '')
-										.setAuthor(
-											membed.embeds[0].author?.name
+										.setAuthor({
+											name: membed.embeds[0].author?.name
 												? membed.embeds[0].author?.name
 												: '',
-											membed.embeds[0].author?.icon_url
+iconURL:											membed.embeds[0].author?.icon_url
 												? membed.embeds[0].author?.icon_url
 												: '',
-											membed.embeds[0].author?.url
+url:											membed.embeds[0].author?.url
 												? membed.embeds[0].author?.url
 												: ''
-										)
+                      })
 										.setTimestamp(
 											membed.embeds[0].timestamp ? new Date() : false
 										)
@@ -705,7 +705,7 @@ async function embed(message, options = []) {
 										.setDescription(membed.embeds[0].description || '')
 										.setColor(membed.embeds[0].color || '#2F3136')
 										.setImage(url || '')
-										.setFooter(membed.embeds[0].footer.text || '')
+										.setFooter({text: membed.embeds[0].footer.text || ''})
 										.setThumbnail(
 											membed.embeds[0].thumbnail
 												? membed.embeds[0].thumbnail.url
@@ -749,18 +749,18 @@ async function embed(message, options = []) {
 									.setTitle(membed.embeds[0].title || '')
 									.setDescription(membed.embeds[0].description || '')
 									.setColor(membed.embeds[0].color || '#2F3136')
-									.setFooter(membed.embeds[0].footer.text || '')
-									.setAuthor(
-										membed.embeds[0].author?.name
+									.setFooter({text: membed.embeds[0].footer.text || ''})
+									.setAuthor({
+name:										membed.embeds[0].author?.name
 											? membed.embeds[0].author?.name
 											: '',
-										membed.embeds[0].author?.icon_url
+iconURL:										membed.embeds[0].author?.icon_url
 											? membed.embeds[0].author?.icon_url
 											: '',
-										membed.embeds[0].author?.url
+url:										membed.embeds[0].author?.url
 											? membed.embeds[0].author?.url
 											: ''
-									)
+                             })
 									.setImage(m.content || m.attachments.first().url)
 									.setURL(membed.embeds[0].url)
 									.setThumbnail(
@@ -798,17 +798,17 @@ async function embed(message, options = []) {
 									.setTitle(m.content)
 									.setURL(membed.embeds[0].url || '')
 									.setDescription(membed.embeds[0].description || '')
-									.setAuthor(
-										membed.embeds[0].author?.name
+									.setAuthor({
+name:										membed.embeds[0].author?.name
 											? membed.embeds[0].author?.name
 											: '',
-										membed.embeds[0].author?.icon_url
+iconURL:										membed.embeds[0].author?.icon_url
 											? membed.embeds[0].author?.icon_url
 											: '',
-										membed.embeds[0].author?.url
+url:										membed.embeds[0].author?.url
 											? membed.embeds[0].author?.url
 											: ''
-									)
+                             })
 									.setColor(membed.embeds[0].color || '#2F3136')
 									.setThumbnail(
 										membed.embeds[0].thumbnail
@@ -817,7 +817,7 @@ async function embed(message, options = []) {
 									)
 									.setTimestamp(membed.embeds[0].timestamp ? new Date() : false)
 									.setImage(url || '')
-									.setFooter(membed.embeds[0].footer.text || '')
+									.setFooter({text: membed.embeds[0].footer.text || ''})
 								m.delete().catch(() => {})
 								titleclr.stop()
 
@@ -849,17 +849,17 @@ async function embed(message, options = []) {
 									.setURL(membed.embeds[0].url || '')
 									.setDescription(m.content)
 									.setTimestamp(membed.embeds[0].timestamp ? new Date() : false)
-									.setAuthor(
-										membed.embeds[0].author?.name
+									.setAuthor({
+name:										membed.embeds[0].author?.name
 											? membed.embeds[0].author?.name
 											: '',
-										membed.embeds[0].author?.icon_url
+iconURL:										membed.embeds[0].author?.icon_url
 											? membed.embeds[0].author?.icon_url
 											: '',
-										membed.embeds[0].author?.url
+url:										membed.embeds[0].author?.url
 											? membed.embeds[0].author?.url
 											: ''
-									)
+                    })
 									.setThumbnail(
 										membed.embeds[0].thumbnail
 											? membed.embeds[0].thumbnail.url
@@ -867,7 +867,7 @@ async function embed(message, options = []) {
 									)
 									.setColor(membed.embeds[0].color || '#2F3136')
 									.setImage(url || '')
-									.setFooter(membed.embeds[0].footer.text || '')
+									.setFooter({ text: membed.embeds[0].footer.text || ''})
 								m.delete().catch(() => {})
 								titleclr.stop()
 								membed
@@ -904,19 +904,19 @@ async function embed(message, options = []) {
 									)
 									.setDescription(membed.embeds[0].description || '')
 									.setColor(membed.embeds[0].color || '#2F3136')
-									.setFooter(m.content || '')
+									.setFooter({text: am.content || ''})
 									.setImage(url || '')
-									.setAuthor(
-										membed.embeds[0].author?.name
+									.setAuthor({
+name:										membed.embeds[0].author?.name
 											? membed.embeds[0].author?.name
 											: '',
-										membed.embeds[0].author?.icon_url
+iconURL:										membed.embeds[0].author?.icon_url
 											? membed.embeds[0].author?.icon_url
 											: '',
-										membed.embeds[0].author?.url
+url:										membed.embeds[0].author?.url
 											? membed.embeds[0].author?.url
 											: ''
-									)
+                             })
 
 								m.delete().catch(() => {})
 

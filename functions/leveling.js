@@ -10,25 +10,38 @@ const users = require(`../models/users`)
  */
 module.exports = async (message, bot) => {
   const guild = await guilds.findOne({ guildId: message.guild.id })
-  if (guild.leveling) {
-    const amount = Math.floor(Math.random() * 15) + 1
-
-    const user = await users.findOne({
+  const user = await users.findOne({
       userId: message.author.id,
       guildId: message.guild.id
     })
+
+try {
+  
+  if (guild.leveling) {
+
+    setTimeout(async () => {
+  
+
+      const max = 30
+      const min = 15
+  
+    const amount = Math.floor(Math.random() * (max - min) + min)
+      
     await users.findOneAndUpdate(
       { userId: message.author.id, guildId: message.guild.id },
       {
-        xp: Number(user.xp) + amount
+        xp: Number(user.xp) + Number(amount)
       }
     )
+    }, bot.ms("1m"))
+    
     const user3 = await users.findOne({
       userId: message.author.id,
       guildId: message.guild.id
     })
 
     if (guild.leveling_roles.length > 0) {
+      setTimeout(async () => {
       guild.leveling_roles.map(async l => {
         if (l.level <= user3.level) {
           await message.member.roles.add(l.id).catch(() => null)
@@ -37,6 +50,7 @@ module.exports = async (message, bot) => {
           await message.member.roles.remove(l.id).catch(() => null)
         }
       })
+      }, bot.ms("1m"))    
     }
     if (user3.xp >= user.requiredXp) {
       await users.findOneAndUpdate(
@@ -80,16 +94,16 @@ module.exports = async (message, bot) => {
       )
 
 
-      if (guild.leave_embedtgl) {
+      if (guild.leveling_embedtgl) {
 
-        const emb = guild.leave_embed.map(async (em) => {
+        const emb = guild.leveling_embed.map(async (em) => {
 
           const embed = new MessageEmbed()
-            .setAuthor(
-              em.embed.author ?.text ? em.embed.author ?.text : '',
-              em.embed.author ?.icon_url
-                ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
-					)
+            .setAuthor({
+              name: em.embed.author ?.text ? em.embed.author ?.text : '',
+              iconURL: em.embed.author ?.icon_url
+                ? em.embed.author ?.icon_url : '', url: em.embed.author ?.url ? em.embed.author ?.url : ''
+                       })
             .setTitle(format(em.embed.title || ''))
             .setDescription(format(em.embed.description || ''))
             .setColor(em.embed.color || '#36393F')
@@ -97,7 +111,7 @@ module.exports = async (message, bot) => {
             .setURL(em.embed.url || '')
             .setTimestamp(em.embed.timestamp ? new Date() : false)
             .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
-            .setFooter(format(em.embed.footer.text || ''));
+            .setFooter({text: format(em.embed.footer.text || '')});
           const cont = format(em.content);
           if (!channel) {
             return message
@@ -132,4 +146,15 @@ module.exports = async (message, bot) => {
       };
     } else return;
   } else return;
-}
+} catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+}}

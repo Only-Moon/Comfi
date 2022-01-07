@@ -87,7 +87,7 @@ module.exports = {
 			)
 			.then(src => {
 				let embed = new MessageEmbed()
-					.setTitle(`Sourcebin`)
+					.setTitle(`Comfi™ Sourcebin`)
 					.setColor(bot.color)
 					.setDescription(`Code:\n\`\`\`js\n${Content}\n\`\`\``)
 

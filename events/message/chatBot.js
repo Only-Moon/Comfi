@@ -12,6 +12,7 @@ bot.on('messageCreate', async message => {
 	)
 		return;
 
+
 	const guild = await guilds.findOne({ guildId: message.guild.id })
 
 	let disabled = new MessageEmbed()
@@ -20,8 +21,8 @@ bot.on('messageCreate', async message => {
 		.setDescription('Chat Bot is disabled by the Owner in this Server!')
 		.setFooter(`Requested by ${message.author.username}`)
 
-	if (guild.chatbot) {
-		let ch = guild.chat_channel
+	if (guild?.chatbot) {
+		let ch = guild?.chat_channel
 
 		if (!ch || ch === undefined) return
 

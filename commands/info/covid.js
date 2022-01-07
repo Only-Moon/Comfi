@@ -13,6 +13,8 @@ module.exports = {
 			required: true
 		}
 	],
+  userperm: [""],
+  botperm: [""],
 
 	/**
 	 *
@@ -21,7 +23,7 @@ module.exports = {
 	 */
 	run: async (bot, interaction, args) => {
 		try {
-			const [country] = args
+			const country = interaction.options.getString("country")
 
 			const noArgs = new MessageEmbed()
 				.setTitle('Missing fields')
@@ -36,34 +38,36 @@ module.exports = {
 			if (country === 'all') {
 				fetch(`https://covid19.mathdro.id/api`)
 					.then(response => response.json())
-					.then(data => {
+					.then(async (data) => {
 						let confirmed = data.confirmed.value.toLocaleString()
 						let recovered = data.recovered.value.toLocaleString()
 						let deaths = data.deaths.value.toLocaleString()
 
 						const embed = new MessageEmbed()
 							.setTitle(`Worldwide COVID-19 Stats 🌎`)
-							.addField('Confirmed Cases', confirmed)
-							.addField('Recovered', recovered)
-							.addField('Deaths', deaths)
+							.addField('Confirmed Cases', confirmed, true)
+							.addField('Recovered', recovered, true)
+							.addField('Deaths', deaths, true)
+            .setColor(bot.color);
 
-						interaction.followUp({ embeds: [embed] })
+						await interaction.followUp({ embeds: [embed] })
 					})
 			} else {
 				fetch(`https://covid19.mathdro.id/api/countries/${country}`)
 					.then(response => response.json())
-					.then(data => {
+					.then(async (data) => {
 						let confirmed = data.confirmed.value.toLocaleString()
 						let recovered = data.recovered.value.toLocaleString()
 						let deaths = data.deaths.value.toLocaleString()
 
 						const embed = new MessageEmbed()
 							.setTitle(`COVID-19 Stats for **${country}**`)
-							.addField('Confirmed Cases', confirmed)
-							.addField('Recovered', recovered)
-							.addField('Deaths', deaths)
+							.addField('Confirmed Cases', confirmed, true)
+							.addField('Recovered', recovered, true)
+							.addField('Deaths', deaths, true)
+            .setColor(bot.color);
 
-						interaction.followUp({ embeds: [embed] })
+						await interaction.followUp({ embeds: [embed] })
 					})
 					.catch(e => {
 						return interaction.followUp({ content: `Invalid Country Provided` })

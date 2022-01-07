@@ -4,6 +4,7 @@ require('moment-duration-format')
 
 module.exports = {
 	name: 'UserInfo',
+  description: "get user's info using context menu",
 	type: 'USER',
 	/**
 	 *
@@ -32,7 +33,7 @@ module.exports = {
 				'MMMM Do YYYY, H:mm:ss'
 			)
 			const embed = new MessageEmbed()
-				.setAuthor(user.tag)
+				.setAuthor({name: user.tag})
 				.setThumbnail(user.displayAvatarURL({ dynamic: true }))
 
 				.setDescription(
@@ -49,21 +50,7 @@ module.exports = {
 				)
 				.setColor(bot.color)
 				.setTimestamp()
-			interaction.followUp({ embeds: [embed] }).catch(e => {
-				bot.sendhook(`Error Occured \n ${e.stack}`, {
-					channel: bot.err_chnl
-				})
-				interaction.followUp({
-					embeds: [
-						{
-							description: `${
-								bot.error
-							} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-							color: bot.color
-						}
-					]
-				})
-			})
+			await interaction.followUp({ embeds: [embed] })
 		} catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

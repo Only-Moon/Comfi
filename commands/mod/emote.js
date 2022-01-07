@@ -57,7 +57,7 @@ module.exports = {
 		let Name = interaction.options.getString('name')
 
 		let emoote = interaction.options.getString('emoji')
-
+try {
 		if (sub === 'add') {
 			let maxLength
 			if (interaction.guild.premiumTier === 'NONE') {
@@ -74,12 +74,12 @@ module.exports = {
 			}
 			if (interaction.guild.emojis.cache.size >= maxLength) {
 				interaction.editReply({
-					content: `${bot.error} • Guild at max emoji cap ~ ${
+					content: `${bot.error} • **Guild at max emoji cap ~ ${
 						interaction.guild.emojis.cache.size
-					}/${maxLength}`
+					}/${maxLength}**`
 				})
 			} else {
-				try {
+			
 					let isUrl = require('is-url')
 					let type = ''
 					let name = ''
@@ -109,37 +109,9 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
           
 					await interaction.guild.emojis
 						.create(`${Link}`, `${`${name || emoji.name}`}`)
-						.then(em => interaction.editReply(em.toString() + ' added!'))
-						.catch(e => {
-							let embed = new MessageEmbed()
-								.setColor(bot.color)
-								.setTitle(`${bot.error} Error!`)
-								.setDescription(e.toString())
-
-							interaction.editReply({ embeds: [embed] })
-						})
-				} catch (e) {
-					let emed = new MessageEmbed()
-						.setTitle(`${bot.error} • Error Occured`)
-						.setDescription(`\`\`\`${e.stack}\`\`\``)
-						.setColor(bot.color)
-
-					bot.sendhook(null, {
-						channel: bot.err_chnl,
-						embed: emed
-					})
-
-					interaction.followUp({
-						embeds: [
-							{
-								description: `${
-									bot.error
-								} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-								color: bot.color
-							}
-						]
-					})
-				}
+						.then(async em => await interaction.editReply(`${bot.tick} • **Added ${em} to ${interaction.guild.name}. Slots left ~ ${				interaction.guild.emojis.cache.size
+					}/${maxLength} !!**`))
+				
 			}
 		}
 
@@ -149,7 +121,26 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 				return interaction.editReply(
 					`${bot.error} | **Provde The emojis to add**`
 				)
-
+			let maxLength
+			if (interaction.guild.premiumTier === 'NONE') {
+				maxLength = 100
+			}
+			if (interaction.guild.premiumTier === 'TIER_1') {
+				maxLength = 200
+			}
+			if (interaction.guild.premiumTier === 'TIER_2') {
+				maxLength = 300
+			}
+			if (interaction.guild.premiumTier === 'TIER_3') {
+				maxLength = 500
+			}
+			if (interaction.guild.emojis.cache.size >= maxLength) {
+				interaction.editReply({
+					content: `${bot.error} • **Guild at max emoji cap ~ ${
+						interaction.guild.emojis.cache.size
+					}/${maxLength}**`
+				})
+			} else {
 			await interaction.deleteReply().catch(() => null)
 
 			emojis.forEach(async emote => {
@@ -160,28 +151,16 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 					}`
 					await interaction.guild.emojis
 						.create(`${Link}`, `${`${emoji.name}`}`)
-						.then(em => interaction.channel.send(em.toString() + ' added!'))
-						.catch(e => {
-							bot.sendhook(`Error Occured \n ${e.stack}`, {
-								channel: bot.err_chnl
-							})
-							interaction.followUp({
-								embeds: [
-									{
-										description: `${
-											bot.error
-										} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-										color: bot.color
-									}
-								]
-							})
-						})
+						.then(async em => interaction.channel.send(`${bot.tick} • **Added ${em} to ${interaction.guild.name}. Slots left ~ ${				interaction.guild.emojis.cache.size
+					}/${maxLength} !!**`))
+						
 				}
 			})
 		}
+      }  
 
 		if (sub === 'stats') {
-			try {
+	
 				let maxLength
 				if (interaction.guild.premiumTier === 'NONE') {
 					maxLength = 50
@@ -257,6 +236,7 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 					delcolor: 'SECONDARY',
 					skipBtn: false
 				})
+      }
 			} catch (e) {
 				let emed = new MessageEmbed()
 					.setTitle(`${bot.error} • Error Occured`)
@@ -279,6 +259,6 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 					]
 				})
 			}
-		}
+		
 	}
 }

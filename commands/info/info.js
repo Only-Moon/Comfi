@@ -109,7 +109,7 @@ module.exports = {
 		}
 	],
 	userperm: [''],
-	botperm: [''],
+	botperm: ['SEND_MESSAGES'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -128,7 +128,7 @@ module.exports = {
 							Authorization: `Bot ${api}`
 						}
 					})
-					.then(res => {
+					.then(async (res) => {
 						const { banner, accent_color } = res.data
 
 						if (banner) {
@@ -142,7 +142,7 @@ module.exports = {
 								.setImage(`${url}`)
 								.setColor(accent_color || bot.color)
 
-							interaction.followUp({ embeds: [embed] })
+							await interaction.followUp({ embeds: [embed] })
 						} else {
 							if (accent_color) {
 								const embed = new MessageEmbed()
@@ -153,9 +153,9 @@ module.exports = {
 									)
 									.setColor(accent_color)
 
-								interaction.followUp({ embeds: [embed] })
+								await interaction.followUp({ embeds: [embed] })
 							} else {
-								interaction.followUp({
+							await	interaction.followUp({
 									content: `**${
 										user.tag
 									}** does not have a banner, they have an accent color.`
@@ -168,10 +168,10 @@ module.exports = {
 			if (subcommand === 'bot') {
 				let embed = new MessageEmbed()
 					.setColor(bot.color)
-					.setAuthor(
-						`${bot.user.username}™ v${version}`,
-						bot.user.displayAvatarURL()
-					)
+					.setAuthor({
+						name: `${bot.user.username}™ v${version}`,
+						iconURL: bot.user.displayAvatarURL({ dynamic: true })
+                     })
 					.setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
 					.addField('❯ Uptime :', `${(await bot.msToTime(bot.uptime))}`, true)
 					.addField('❯ WS Ping:', `${bot.ws.ping}ms`, true)
@@ -209,7 +209,7 @@ module.exports = {
 						`Github • [Xx-Mohit-xX](https://github.com/Xx-Mohit-xX) \nDiscord • [꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817](https://discord.com/users/753974636508741673)`,
 						true
 					) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
-					.setFooter(`Requested By ${interaction.member.displayName}`)
+					.setFooter({ text: `Requested By ${interaction.member.displayName}`})
 					.setTimestamp()
 
 				interaction.followUp({ embeds: [embed] })
@@ -219,20 +219,22 @@ module.exports = {
 				let ch = interaction.options.getChannel('name')
 
 				let channel = ch || interaction.channel
-				if (!channel) return interaction.editReply('**Channel Not Found!**')
+				if (!channel) return interaction.editReply(`${bot.error} • **Channel Not Found!**`)
+  const rte = secondsToHms(channel.rateLimitPerUser)
 
 				let embed = new MessageEmbed()
-					.setTitle(`Channel Information for ${channel.name}`)
+					.setTitle(`Channel Information for **${channel.name}**`)
 					.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-					.addField('**NSFW**', ` \`\`\`\ ${channel.nsfw} \`\`\`\ `)
+					.addField('**Name**', ` \`\`\`\ ${channel.name} \`\`\`\ `, true)
+					.addField('**Parent**', ` \`\`\`\ ${channel.parent.name} \`\`\`\ `, true)
+					.addField('**NSFW**', ` \`\`\`\ ${channel.nsfw} \`\`\`\ `, true)
 					.addField('**Channel ID**', ` \`\`\`\ ${channel.id} \`\`\`\ `)
 					.addField('**Channel Type**', ` \`\`\`\ ${channel.type} \`\`\`\ `)
 					.addField(
 						'**Channel Threads**',
-						` \`\`\`\ ${interaction.guild.channels.cache
-							.filter(channel => channel.type === 'THREAD')
-							.size.toString() || 'No Threads'} \`\`\`\ `
-					)
+						` \`\`\`\ ${channel.threads ? channel.threads.cache.size.toString() : 'No Threads'} \`\`\`\ `
+		)					
+					.addField('**Slowmode**', ` \`\`\`\ ${rte} \`\`\`\ `, true)
 					.addField(
 						'**Channel Description**',
 						` \`\`\`\ ${channel.topic || 'No Description'} \`\`\`\ `
@@ -242,29 +244,29 @@ module.exports = {
 						` \`\`\`\ ${channel.createdAt} \`\`\`\ `
 					)
 					.setColor(bot.color)
-				interaction.editReply({ embeds: [embed] })
+				await interaction.editReply({ embeds: [embed] })
 			}
 
 			if (subcommand === 'membercount') {
+        const member = await interaction.guild.members.fetch()
 				const embed = new MessageEmbed()
-					.setTitle(`${interaction.guild.name}`)
+					.setTitle(`${interaction.guild.name} • Member Count`)
 
-					.setColor(bot.color)
-
-					.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
+					.setColor(bot.color)				
+          .setThumbnail(
+  interaction.guild.iconURL()
+)
 					.setDescription(
-						`<a:stars_aesthetic:883033007836000308> Member Count: ${
-							interaction.guild.memberCount
-						}`
-					)
+						`<a:stars_aesthetic:883033007836000308> Bot Count: ${member.filter(a => a.user.bot).size		}\n<a:stars_aesthetic:883033007836000308> Human Count: ${member.filter(a => !a.user.bot).size.toString()} \n<a:stars_aesthetic:883033007836000308> Total Member Count: ${interaction.guild.memberCount}`
+					);
 
-				interaction.followUp({ embeds: [embed] })
+			await	interaction.followUp({ embeds: [embed] })
 			}
 
 			if (subcommand === 'sticker') {
 				const sticker = interaction.options.getString('url')
 				if (!sticker)
-					return interactico.editReply({
+					return interacticon.editReply({
 						content: `${bot.error} • **Please specify a sticker!**`
 					})
 
@@ -279,7 +281,7 @@ module.exports = {
 					)
 					.setThumbnail(`${sticker.url}`, { dynamic: true })
 					.setColor(bot.color)
-					.setFooter(`Checker: ${interaction.user.tag}`)
+					.setFooter({ text:`Checker: ${interaction.user.tag}`})
 					.setTimestamp()
 					.addFields(
 						{
@@ -362,9 +364,9 @@ module.exports = {
 
 			if (subcommand === 'server') {
 				const vanityCode = interaction.guild.vanityURLCode
+        const members = await interaction.guild.members.fetch()
 				let vanityInvite = `https://discord.gg/${vanityCode}`
 				if (vanityCode === null) vanityInvite = 'No custom URL'
-				const members = interaction.guild.members.cache
 				const roles = interaction.guild.roles.cache
 					.filter(r => r.id !== interaction.guild.id)
 					.map(role => role.toString())
@@ -395,14 +397,14 @@ module.exports = {
 					)
 					.addField(
 						`<:768584793691783179:883017859444379648> No. of Members`,
-						interaction.guild.members.cache
+						members
             .filter(member => !member.user.bot)
             .size.toString(),
 						true
 					)
 					.addField(
 						`<a:776973591891017749:883017868944502804> No. of Bots:`,
-						interaction.guild.members.cache
+						members.cache
 							.filter(member => member.user.bot)
 							.size.toString(),
 						true
@@ -483,8 +485,8 @@ module.exports = {
 										15} roles...\``
 								: 'None'
 					)
-					.setAuthor(`${interaction.guild.name}`)
-				interaction.editReply({ embeds: [embed] })
+					.setAuthor({name: `${interaction.guild.name}`})
+				await interaction.editReply({ embeds: [embed] })
 			}
 
 			if (subcommand === 'privacy') {
@@ -546,7 +548,7 @@ module.exports = {
 					.substr(user.displayAvatarURL({ dynamic: true }).length - 3)
 
 				let embed = new MessageEmbed()
-					.setAuthor(user.tag, user.displayAvatarURL({ dynamic: true }))
+					.setAuthor({name: user.tag, iconURL:  user.displayAvatarURL({ dynamic: true })})
 					.setThumbnail(user.avatarURL({ dynamic: true }))
 					.setDescription(
 						`**[${user.username}](https://discord.com/users/${
@@ -598,11 +600,11 @@ module.exports = {
 							}`,
 							false
 						)
-						.setFooter(`Join position: ${getOrdinal(await position)}`)
+						.setFooter({text: `Join position: ${getOrdinal(await position)}`})
 						.setColor(bot.color)
 				}
 
-				interaction.followUp({ embeds: [embed] })
+				await interaction.followUp({ embeds: [embed] })
 			}
 
 			if (subcommand === 'uptime') {
@@ -618,12 +620,12 @@ module.exports = {
 						`I am Online from **${days}** days, **${hours}** hours, **${minutes}** minutes, **${seconds}** seconds`
 					)
 					.setThumbnail(bot.user.displayAvatarURL())
-					.setFooter(
-						`${interaction.user.username}`,
-						interaction.user.avatarURL({ dynamic: true })
-					)
-					.setAuthor(bot.user.username, bot.user.displayAvatarURL())
-				interaction.editReply({ embeds: [embed] })
+					.setFooter({
+						text: `${interaction.user.username}`,
+						iconURL: interaction.user.avatarURL({ dynamic: true })
+                     })
+					.setAuthor({ name: bot.user.username, iconURL: bot.user.displayAvatarURL({dynamic: true})})
+			await	interaction.editReply({ embeds: [embed] })
 			}
 		} catch (e) {
 			let emed = new MessageEmbed()
@@ -690,4 +692,17 @@ function trimArray(array, maxLen = 10) {
 		array.push(` and ${len} more...`)
 	}
 	return array
+}
+
+function secondsToHms(d) {
+  d = Number(d);
+  var h = Math.floor(d / 3600); 
+  var m = Math.floor(d % 3600 / 60);
+  var s = Math.floor(d % 3600 % 60);
+  var hDisplay = h > 0 ? h + (h == 1 ? " hour " : " hours ") : ""; 
+  var mDisplay = m > 0 ? m + (m == 1 ? " minute " : " minutes ") : ""; 
+  var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : ""; 
+  var Hms = hDisplay + mDisplay + sDisplay ? hDisplay + mDisplay + sDisplay : "No Slowmode"
+
+  return Hms
 }

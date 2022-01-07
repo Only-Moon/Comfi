@@ -11,6 +11,7 @@ module.exports = {
             description: 'Language you want the text to get translated to',
             name: 'language',
             required: true,
+            autocomplete: true
         },
       {
             type: 'STRING',
@@ -29,17 +30,23 @@ module.exports = {
     run: async (bot, interaction, args) => {
 
     try {
-
-      const result = await translate(args.slice(1).join(' '), null, args[0]);
+const lang = interaction.options.getString("language")
+      const text = interaction.options
+        .getString('text')
+        .split("")
+        .slice(0, 999)
+        .join("");
       
+      const result = await translate(text, null, lang);
       const embed = new MessageEmbed()
   
-      .setTitle('Translator')
-      .setColor(interaction.guild.me.displayHexColor)
+      .setAuthor({ name: `Comfi™ Translator`, iconURL: bot.user.displayAvatarURL({dynamic:  true })})
+    .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
+      .setColor(bot.color)
       .addField('Translated from', `\`\`\`${result.text}\`\`\``)
       .addField('Translated to', `\`\`\`${result.translation}\`\`\``)
-      .setTimestamp()
-      interaction.editReply({embeds: [ embed ]})
+       .setFooter({ text: `translated to ${result.language.to} from ${result.language.from}`})
+      await interaction.editReply({embeds: [ embed ]})
     } catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

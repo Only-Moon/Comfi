@@ -96,20 +96,24 @@ module.exports = {
 
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
+try {
+    
     if (sub === 'permanent') {
-      try {
-        const user = interaction.options.getUser('user')
+  
+        const user = interaction.options.getMember('user')
         const reason =
           interaction.options.getString('reason') ||
           `Banned by ${interaction.member.username}`
 
         let banMember = interaction.guild.members.cache.get(args[0]) || user
-        if (!banMember)
+        if (!banMember) {
           return interaction.editReply('**User Is Not In The Guild**')
-        if (banMember === interaction.user)
-          return interaction.editReply('**You Cannot Ban Yourself**')
-
-        const userRank = user.member.roles.highest.rawPosition
+        }
+        
+        if (banMember.user === interaction.user) {
+          return interaction.editReply(`${bot.error} • **You Cannot Ban Yourself**`)
+        }
+        const userRank = banmember.roles.highest.rawPosition
         const memberRank = interaction.member.roles.highest.rawPosition
 
         if (userRank >= memberRank) {
@@ -129,7 +133,7 @@ module.exports = {
           var sembed = new MessageEmbed()
             .setColor(bot.color)
             .setDescription(
-              `**${banMember.username}** has been banned for ${reason}`)
+              `*${bot.error} • *${banMember.username}** has been banned for ${reason}`)
 
           await interaction.editReply({ embeds: [sembed] })
         } else {
@@ -150,13 +154,13 @@ module.exports = {
 
         if (guild.modlog) {
           const embed = new MessageEmbed()
-            .setAuthor(
-              `${interaction.guild.name} Modlogs`,
-              interaction.guild.iconURL()
-            )
+            .setAuthor({
+name:              `${interaction.guild.name} Modlogs`,
+iconURL:              interaction.guild.iconURL()
+            })
             .setColor(bot.color)
             .setThumbnail(banMember.displayAvatarURL({ dynamic: true }))
-            .setFooter(interaction.guild.name, interaction.guild.iconURL())
+            .setFooter({text:interaction.guild.name, iconURL: interaction.guild.iconURL()})
             .addField('**Moderation**', 'ban')
             .addField('**Banned**', banMember.username.toLocaleString())
             .addField('**ID**', `${banMember.id}`)
@@ -169,28 +173,6 @@ module.exports = {
           if (!sChannel) return
           sChannel.send({ embeds: [embed] })
         } else return;
-      } catch (e) {
-        let emed = new MessageEmbed()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${e.stack}\`\`\``)
-          .setColor(bot.color);
-
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
-        interaction.followUp({
-          embeds: [
-            {
-              description: `${
-                bot.error} \n
-               Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-              color: bot.color
-            }
-          ]
-        })
-
-      }
     }
 
     if (sub === 'temporary') {
@@ -218,9 +200,7 @@ module.exports = {
 
       if (userRank >= memberRank) {
         return interaction.editReply(`${bot.error} • You cant ban that user due to the role hierarchy`)
-      }
-
-      try {
+      } 
         if (!reason) reason = 'No Reason Provided'
         const tbuembed = new MessageEmbed()
           .setTitle(' You have been banned!')
@@ -238,11 +218,11 @@ module.exports = {
           .addField('Time (s)', regex.toString())
           .addField('Moderator:', interaction.user.username)
 
-        interaction.editReply({ embeds: [tbembed] })
+        await interaction.editReply({ embeds: [tbembed] })
 
-        tbuser.send({ embeds: [tbuembed] }).catch(() => null)
+        await tbuser.send({ embeds: [tbuembed] }).catch(() => null)
 
-        interaction.guild.members
+        await interaction.guild.members
           .ban(tbuser, { reason: `${reason}` })
           .then(() => {
             setTimeout(function() {
@@ -255,51 +235,30 @@ module.exports = {
             }, ms(regex))
             return undefined
           })
-      } catch (e) {
-        let emed = new MessageEmbed()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${e.stack}\`\`\``)
-          .setColor(bot.color)
-
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
-
-        interaction.followUp({
-          embeds: [
-            {
-              description: `${
-                bot.error
-                } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-              color: bot.color
-            }
-          ]
-        })
-      }
     }
 
     if (sub === 'hack') {
       const target =
-        interaction.options.getUser('user') ||
+        interaction.options.getMember('user') ||
         interaction.guild.members.cache.get(args[0])
+      
       if (isNaN(target))
         return interaction.editReply(
           `${bot.error} • Please specify an ID or USERNAME`
         )
 
-      if (target === interaction.user)
-        return interaction.editReply('**You Cannot Ban Yourself**')
-
+      if (target.user === interaction.user){
+        return await interaction.editReply('**You Cannot Ban Yourself**')
+      }
       const reason = interaction.options.getString('reason')
 
       if (
-        target.member.roles.highest.comparePositionTo(
+        target.roles.highest.comparePositionTo(
           interaction.guild.me.roles.highest
         ) >= 0
       ) {
-        return interaction.editReply(
-          ` ${bot.error} • **Cannot Mute This User!**`
+        return await interaction.editReply(
+          ` ${bot.error} • **Cannot Ban This User coz User's role is higher than me!**`
         )
       }
 
@@ -307,11 +266,9 @@ module.exports = {
       const memberRank = interaction.member.roles.highest.rawPosition
 
       if (userRank >= memberRank) {
-        return interaction.editReply(`${bot.error} • You cant ban that user due to the role hierarchy`)
+        return await interaction.editReply(`${bot.error} • You cant ban that user due to the role hierarchy`)
       }
 
-
-      try {
         await interaction.guild.members.ban(target, {
           reason: reason.length < 1 ? 'No reason supplied.' : reason
         })
@@ -323,7 +280,7 @@ module.exports = {
             } **were successfully banned. User was not notified!**`
           )
         await interaction.editReply({ embeds: [embed2] })
-        if (!guild.modlog) return
+        if (!guild.modlog) return;
 
         if (guild.modlog) {
           let channel = interaction.guild.channels.cache.find(
@@ -331,12 +288,12 @@ module.exports = {
           )
           if (!channel) return
           const embed = new MessageEmbed()
-            .setAuthor(
-              `${interaction.guild.name} Modlogs`,
-              interaction.guild.iconURL()
-            )
+            .setAuthor({
+ name:             `${interaction.guild.name} Modlogs`,
+iconURL:              interaction.guild.iconURL()
+                       })
             .setColor(bot.color)
-            .setFooter(interaction.guild.name, interaction.guild.iconURL())
+            .setFooter({text: interaction.guild.name, iconURL: interaction.guild.iconURL()})
             .addField('**Moderation**', 'ban')
             .addField('**ID**', `${target}`)
             .addField('**Banned By**', interaction.user.username.toString())
@@ -345,35 +302,13 @@ module.exports = {
             .setTimestamp()
 
           var sChannel = interaction.guild.channels.cache.get(channel)
-          if (!sChannel) return
+          if (!sChannel) return;
           sChannel.send({ embeds: [embed] })
         }
-      } catch (e) {
-        let emed = new MessageEmbed()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${e.stack}\`\`\``)
-          .setColor(bot.color)
-
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
-
-        interaction.followUp({
-          embeds: [
-            {
-              description: `${
-                bot.error
-                } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-              color: bot.color
-            }
-          ]
-        })
-      }
     }
 
     if (sub === 'remove') {
-      try {
+
         const userId = interaction.options.getString('user')
 
         bot.users.fetch(userId).then(async user => {
@@ -397,16 +332,17 @@ module.exports = {
                 inline: true
               }
             )
-            .setAuthor(
-              interaction.user.username,
-              interaction.user.avatarURL({ dynamic: true })
-            )
-          interaction.editReply({ embeds: [ban] }).catch(() => {
+            .setAuthor({
+             name: interaction.user.username,
+ iconURL:             interaction.user.avatarURL({ dynamic: true })
+            })
+                       await interaction.editReply({ embeds: [ban] }).catch(() => {
             return interaction.editReply({
               content: `${bot.crosss} • User is Not Banned`
             })
           })
         })
+    }
       } catch (e) {
         let emed = new MessageEmbed()
           .setTitle(`${bot.error} • Error Occured`)
@@ -431,4 +367,3 @@ module.exports = {
       }
     }
   }
-}
