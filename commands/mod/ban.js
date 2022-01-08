@@ -107,25 +107,24 @@ try {
 
         let banMember = interaction.guild.members.cache.get(args[0]) || user
         if (!banMember) {
-          return interaction.editReply('**User Is Not In The Guild**')
+        return await  bot.errorEmbed(bot, interaction, `**User Is Not In The Guild**`)
         }
         
         if (banMember.user === interaction.user) {
-          return interaction.editReply(`${bot.error} • **You Cannot Ban Yourself**`)
+        return await  bot.errorEmbed(bot, interaction, `**You Cannot Ban Yourself**`)
         }
-        const userRank = banmember.roles.highest.rawPosition
+        const userRank = banMember.roles.highest.rawPosition
         const memberRank = interaction.member.roles.highest.rawPosition
 
         if (userRank >= memberRank) {
-          return interaction.editReply(
-            ` ${bot.error} • **Cannot Ban This User due to role hierarchy!**`
+        return await  bot.errorEmbed(bot, interaction, `**Cannot Ban This User due to role hierarchy !**`
           )
         }
 
         await interaction.guild.members.ban(banMember, {
           reason: reason.length < 1 ? 'No reason supplied.' : reason
         })
-        banMember.send(
+        await banMember.send(
           `**Hello, You Have Been Banned From ${interaction.guild.name}
              for - ${reason || 'No Reason'}**`).catch(() => null)
 
@@ -199,7 +198,7 @@ iconURL:              interaction.guild.iconURL()
       const memberRank = interaction.member.roles.highest.rawPosition
 
       if (userRank >= memberRank) {
-        return interaction.editReply(`${bot.error} • You cant ban that user due to the role hierarchy`)
+        return await  bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy**`)
       } 
         if (!reason) reason = 'No Reason Provided'
         const tbuembed = new MessageEmbed()
@@ -212,7 +211,7 @@ iconURL:              interaction.guild.iconURL()
         const tbembed = new MessageEmbed()
           .setTitle('Action: Tempban')
           .addField('User:', tbuser.toString())
-          .setAuthor(`${interaction.user.username}`)
+          .setAuthor({name: `${interaction.user.username}`})
           .setColor(bot.color)
           .addField('Reason:', reason.toString())
           .addField('Time (s)', regex.toString())
@@ -227,13 +226,13 @@ iconURL:              interaction.guild.iconURL()
           .then(() => {
             setTimeout(function() {
               interaction.guild.members.unban(tbuser.id)
-              interaction.channel.send({
+               interaction.channel.send({
                 content: `${bot.tick} • <@${
                   tbuser.id
                   }> has been unbanned after tempban of ${regex}`
               })
-            }, ms(regex))
-            return undefined
+            }, bot.ms(regex))
+            return undefined;
           })
     }
 
@@ -248,7 +247,7 @@ iconURL:              interaction.guild.iconURL()
         )
 
       if (target.user === interaction.user){
-        return await interaction.editReply('**You Cannot Ban Yourself**')
+        return await  bot.errorEmbed(bot, interaction, `**You Cannot Ban Yourself**`)
       }
       const reason = interaction.options.getString('reason')
 
@@ -257,16 +256,15 @@ iconURL:              interaction.guild.iconURL()
           interaction.guild.me.roles.highest
         ) >= 0
       ) {
-        return await interaction.editReply(
-          ` ${bot.error} • **Cannot Ban This User coz User's role is higher than me!**`
+        return await  bot.errorEmbed(bot, interaction, `**Cannot Ban This User coz User's role is higher than me !**`
         )
       }
 
-      const userRank = user.member.roles.highest.rawPosition
+      const userRank = target.roles.highest.rawPosition
       const memberRank = interaction.member.roles.highest.rawPosition
 
       if (userRank >= memberRank) {
-        return await interaction.editReply(`${bot.error} • You cant ban that user due to the role hierarchy`)
+        return await  bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy*j`)
       }
 
         await interaction.guild.members.ban(target, {
@@ -311,7 +309,7 @@ iconURL:              interaction.guild.iconURL()
 
         const userId = interaction.options.getString('user')
 
-        bot.users.fetch(userId).then(async user => {
+        bot.users.fetch(userId).then(async (user) => {
           await interaction.guild.members.unban(user.id).catch(() => {
             return interaction.editReply({
               content: `${bot.crosss} • User is Not Banned`

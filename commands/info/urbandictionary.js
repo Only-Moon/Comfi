@@ -1,5 +1,5 @@
 const urban = require('relevant-urban');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 
 module.exports = {
     name: "urbandictionary",
@@ -36,9 +36,16 @@ module.exports = {
                     .addField('**Rating:**', `**\`Upvotes: ${thumbsUp} | Downvotes: ${thumbsDown}\`**`)
                     .addField("**Link**",  `[link to ${word}](${urbanURL})`)
                     .addField("**Author:**", `${author || "unknown"}`)
-                    .setTimestamp()
+                    .setTimestamp();
 
-                interaction.editReply({embeds: [ embed ]})
+      const row = new MessageActionRow().addComponents(
+        new MessageButton()
+          .setStyle('LINK')
+          .setURL(`${urbanURL}`)
+          .setLabel(`Link to ${word}`)
+      )
+          
+                await interaction.editReply({embeds: [ embed ],  components:  [row]})
             
         } catch (e) {
 			let emed = new MessageEmbed()

@@ -147,7 +147,7 @@ try {
 				}
 			)
 			try {
-				mutee.roles.set([muterole.id]).then(() => {
+				await mutee.roles.set([muterole.id]).then(() => {
 					mutee
 						.send(
 							`**Hello, You Have Been Muted In ${
@@ -162,22 +162,23 @@ try {
 			if (reason) {
 				const sembed = new MessageEmbed()
 					.setColor(bot.color)
-					.setAuthor(interaction.guild.name, interaction.guild.iconURL())
+					.setAuthor({name: interaction.guild.name, iconURL: interaction.guild.iconURL()})
 					.setDescription(
 						`${bot.tick} • ${
 							mutee.user.username
 						} was successfully muted for ${reason}`
 					)
 
-				interaction.editReply({ embeds: [sembed] })
+				await interaction.editReply({ embeds: [sembed] })
+        await interaction.channel.send({content: `${bot.error} **• Mute Command will be removed in next update, Kindly use \`/timeoutt\` **`})        
 			} else {
 				const sembed2 = new MessageEmbed()
 					.setColor(bot.color)
 					.setDescription(
 						`${bot.tick} • ${mutee.user.username} was successfully muted`
 					)
-				interaction.editReply({ embeds: [sembed2] })
-			}
+				await interaction.editReply({ embeds: [sembed2] })
+        await interaction.channel.send({content: `${bot.error} **• Mute Command will be removed in next update, Kindly use \`/timeoutt\` **`})			}
 
 			// for timed mute
 			if (time) {
@@ -196,37 +197,37 @@ try {
 
 							if (!roleadds) return
 
-							roleadds.forEach(role => mutee.roles.add(role)).catch(() => null)
+							roleadds.forEach(async role => await mutee.roles.add(role)).catch(() => null)
 						})
 						.catch(() => null)
 				}, ms(time))
 			}
 
-			if (!guild.modlog) return
+			if (!guild.modlog) return;
 
 			if (guild.modlog) {
 				let channel = interaction.guild.channels.cache.find(
 					c => c.id === guild.mod_channel
 				)
-				if (!channel) return
+				if (!channel) return;
 
 				let embeds1 = new MessageEmbed()
 					.setColor(bot.color)
 					.setThumbnail(interaction.user.avatarURL({ dynamic: true }))
-					.setAuthor(
+					.setAuthor({name: 
 						`${interaction.guild.name} Modlogs`,
-						interaction.guild.iconURL()
-					)
+iconURL: 						interaction.guild.iconURL()
+                     })
 					.addField('**Moderation**', 'mute')
 					.addField('**Mutee**', mutee.user.username.toString())
 					.addField('**Moderator**', interaction.user.username)
 					.addField('**Reason**', `${reason || '**No Reason**'}`)
 					.addField('**Date**', interaction.createdAt.toLocaleString())
-					.setFooter(interaction.guild.name, interaction.guild.iconURL())
+					.setFooter({text: interaction.guild.name, iconURL: interaction.guild.iconURL()})
 					.setTimestamp()
 
 				var sChannel = interaction.guild.channels.cache.get(channel)
-				if (!sChannel) return
+				if (!sChannel) return;
 				sChannel.send({ embeds: [embeds1] })
 			}
 		}
@@ -261,7 +262,7 @@ try {
 
 				let rolefetched = guild.muted_role
 
-				if (!rolefetched) return
+				if (!rolefetched) return;
 
 				if (!muterole)
 					return interaction.editReply(
@@ -271,7 +272,7 @@ try {
 					return interaction.editReply(`${bot.error} • **User is not Muted!**`)
 
 				try {
-					mutee.roles
+					await mutee.roles
 						.remove(muterole.id)
 						.then(() => {
 							mutee
@@ -283,9 +284,9 @@ try {
 								.catch(() => null)
 							let roleadds = rolefetched
 
-							if (!roleadds) return
+							if (!roleadds) return;
 
-							roleadds.forEach(role => mutee.roles.add(role)).catch(() => null)
+							roleadds.forEach(async role => await mutee.roles.add(role)).catch(() => null)
 						})
 						.catch(() => null)
 				} catch {
@@ -297,23 +298,24 @@ try {
 					.setColor(bot.color)
 					.setDescription(`${mutee.user.username} was successfully unmuted.`)
 
-				interaction.editReply({ embeds: [sembed] })
+				await interaction.editReply({ embeds: [sembed] })
 
-				if (!guild.modlog) return
+        await interaction.channel.send({content: `${bot.error} **• Mute Command will be removed in next update, Kindly use \`/timeoutt\` **`})
+      				if (!guild.modlog) return;
 
 				if (guild.modlog) {
 					let channel = interaction.guild.channels.cache.find(
 						c => c.id === guild.mod_channel
 					)
-					if (!channel) return
+					if (!channel) return;
 
 					let embeds1 = new MessageEmbed()
 						.setColor(bot.color)
 						.setThumbnail(mutee.user.avatarURL({ dynamic: true }))
-						.setAuthor(
-							`${interaction.guild.name} Modlogs`,
-							interaction.guild.iconURL()
-						)
+					.setAuthor({name: 
+						`${interaction.guild.name} Modlogs`,
+iconURL: 						interaction.guild.iconURL()
+                     })
 						.addField('**Moderation**', 'unmute')
 						.addField('**Unmuted**', mutee.user.username.toString())
 						.addField('**Moderator**', interaction.user.username)

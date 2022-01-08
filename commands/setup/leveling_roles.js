@@ -76,9 +76,8 @@ module.exports = {
 				})
 			}
 			if (!role) {
-				return interaction.editReply({
-					content: `${bot.crosss} • Please supply a role!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `**Please supply a role!**`
+				)
 			}
 			await guilds.findOneAndUpdate(
 				{ guildId: interaction.guild.id },
@@ -94,32 +93,27 @@ module.exports = {
 				}
 			)
 
-			return interaction.editReply({
-				content: `${
-					bot.tick
-				} • Added! now at level \`${level}\` you will gain the **${
+        return await bot.successEmbed(bot, interaction, `Added! now at level \`${level}\` you will gain the **${
 					role.name
 				}** role!`
-			})
+			)
 		}
 
 		if (sub === 'remove') {
 			let level = interaction.options.getInteger('level')
 			let roles = interaction.options.getRole('role')
 			if (guild.leveling_roles.length <= 0) {
-				return interaction.editReply({
-					content: `${bot.crosss} • Please add some level auto roles first!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `**Please add some level auto roles first !**`
+				)
 			}
 			if (!level) {
-				return interaction.editReply({
-					content: `${bot.crosss} • Please supply a level!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `**Please supply a level !**`
+				)
 			}
 			let valid = false
 			let index
 			let roleId
-			guild.leveling_roles.forEach(r => {
+			guild.leveling_roles.forEach((r) => {
 				if (r.level === level) {
 					roleId = r.id
 					valid = true
@@ -129,26 +123,22 @@ module.exports = {
 			let role = interaction.guild.roles.cache.find(r => r.id === roleId)
 			if (valid) {
 				guild.leveling_roles.splice(index, 1)
-				guild.save()
-				return interaction.editReply({
-					content: `${
-						bot.tick
-					} • Removed! now at level \`${level}\` you will not get **${
+				await guild.save()
+
+        return await bot.successEmbed(bot, interaction, `Removed! now at level \`${level}\` you will not get **${
 						role.name
 					}** role!`
-				})
+				)
 			} else {
-				return interaction.editReply({
-					content: `${bot.crosss} • Please supply a valid leveling auto role!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `**Please supply a valid leveling auto role !**`
+				)
 			}
 		}
 
 		if (sub === 'list') {
 			if (guild.leveling_roles.length <= 0) {
-				return interaction.editReply({
-					content: `${bot.crosss} • Please add some level auto roles first!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `**Please add some level auto roles first !**`
+			)
 			}
 
 			let roles = []
@@ -162,7 +152,7 @@ module.exports = {
 				.setDescription(roles.join('\n'))
 				.setColor(bot.color)
 
-			return interaction.editReply({ embeds: [embed] })
+			return await interaction.editReply({ embeds: [embed] })
 		}
 	}
 }

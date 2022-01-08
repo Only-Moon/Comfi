@@ -60,35 +60,51 @@ run: async (bot, interaction, args) => {
 
     const guild = await guilds.findOne({guildId: interaction.guild.id})
   
-  if (option === 'toggle') { 				const toggle = interaction.options.getString('option') 				
+  if (option === 'toggle') { 				const toggle = interaction.options.getString('option') 		
+
+ if (guild.chatbot.toString() === toggle) {
+
+        return await  bot.errorEmbed(bot, interaction, `**Chatbot toggle for this guild is set as ${toggle}`)
+
+ } else {                      
+                            
     await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
                     chatbot: toggle
                 }) 				
-                            return interaction.editReply( 					
-                              `The Chatbot for **${ 	
+        return await bot.successEmbed(bot, interaction, `The Chatbot for **${ 	
 interaction.guild.name 	
 }** has been set to: **${toggle}**` 				
                             );
-                           }			
+ }
+ }			
   if (option === 'channel') { 				
     const channel = interaction.options.getChannel('name'); 				
     if (!channel) 				
-      return interaction.editReply(`${bot.error} **Specify the channel**`); 				
+      return interaction.editReply(`${bot.error} **Specify the channel**`);
+
+if (guild.chat_channel === channel) {
+
+        return await  bot.errorEmbed(bot, interaction, `**Chatnot channel is already setted as ${channel}**`)
+  
+} else {
+    
    await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
                     chat_channel: channel,
                 }) 				
-    return interaction.editReply( 					'**The chatbot channel has been set to** ' + channel.toString() 		
+        return await bot.successEmbed(bot, interaction, `**The chatbot channel has been set to** ` + channel.toString() 		
                                 ); 
+  }
   }
   
   if (option === 'disable') { 
     if(!guild.chatbot) { 	
-      return interaction.editReply(`${bot.error} Please set the required fields first or i cant disable it!!`); 	
+        return await  bot.errorEmbed(bot, interaction, `**Please set the required fields first or i cant disable it!**`); 	
     } else { 		
       await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
                     chatbot: false,
                     chat_channel: "NONE",
                 }) 		
-      return interaction.editReply("Disabled the Chatbot System in the server :)"); 				}
+        return await bot.successEmbed(bot, interaction, `**Disabled the Chatbot System in the server :)**`); 				
+    }
   }
 }}

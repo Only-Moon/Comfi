@@ -9,13 +9,13 @@ module.exports = {
 		{
 			name: 'user',
 			description: 'User To Kick',
-			type: 6,
+			type: "USER",
 			required: true
 		},
 		{
 			name: 'reason',
 			description: 'Reason To Kick',
-			type: 3,
+			type: "STRING",
 			required: false
 		}
 	],
@@ -30,7 +30,7 @@ module.exports = {
 			// NOW lets get the user from options
 			const options = interaction.options._hoistedOptions
 
-			const user = options.find(e => e.name === 'user')
+			const user = interaction.options.getMember("user")
 			const reason =
 				options.find(e => e.name === 'reason') ||
 				`Kicked by ${interaction.member.displayName}`
@@ -57,14 +57,14 @@ module.exports = {
 
 			if (kickMember.kickable) {
 				const sembed2 = new MessageEmbed()
-					.setColor('RED')
+					.setColor(bot.color)
 					.setDescription(
 						`**You Have Been Kicked From ${
 							interaction.guild.name
 						} for - ${reason || 'No Reason!'}**`
 					)
-					.setFooter(interaction.guild.name, interaction.guild.iconURL())
-				kickMember.send({ embeds: [sembed2] }).catch(() => null)
+					.setFooter({text: interaction.guild.name, iconURL: interaction.guild.iconURL()})
+				await kickMember.send({ embeds: [sembed2] }).catch(() => null)
 				kickMember.kick()
 			} else {
 				return interaction.editReply(
@@ -79,15 +79,15 @@ module.exports = {
 					.setDescription(
 						`**${kickMember.user.username}** has been kicked for ${reason}`
 					)
-				interaction.editReply({ embeds: [sembed] })
+				await interaction.editReply({ embeds: [sembed] })
 			} else {
 				var sembed2 = new MessageEmbed()
 					.setColor(bot.color)
 					.setDescription(`**${kickMember.user.username}** has been kicked`)
-				interaction.editReply({ embeds: [sembed2] }).catch(() => null)
+				await interaction.editReply({ embeds: [sembed2] }).catch(() => null)
 			}
 			const guild = await guilds.findOne({ guildId: interaction.guild.id })
-			if (!guild.modlog) return
+			if (!guild.modlog) return;
 
 			if (guild.modlog) {
 				let channel = interaction.guild.channels.cache.find(
@@ -96,13 +96,13 @@ module.exports = {
 				if (!channel) return;
 
 				const embed = new MessageEmbed()
-					.setAuthor(
-						`${interaction.guild.name} Modlogs`,
-						interaction.guild.iconURL()
-					)
+					.setAuthor({
+name:						`${interaction.guild.name} Modlogs`,
+iconURL:						interaction.guild.iconURL()
+            })
 					.setColor(bot.color)
 					.setThumbnail(kickMember.user.displayAvatarURL({ dynamic: true }))
-					.setFooter(interaction.guild.name, interaction.guild.iconURL())
+					.setFooter({text: interaction.guild.name, iconURL: interaction.guild.iconURL()})
 					.addField('**Moderation**', 'kick')
 					.addField('**User Kicked**', kickMember.user.username.toString())
 					.addField('**Kicked By**', interaction.user.username)

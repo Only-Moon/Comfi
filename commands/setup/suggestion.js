@@ -35,32 +35,31 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
 let [ subcommand ] = args;
-
+const guild = await guilds.findOn({guildId: interaction.guild.id })
 if (subcommand === 'enable') {
         let Channel = interaction.options.getChannel('channel') || interaction.guild.channels.cache.get(args[0]);
 
-        if (!Channel) return interaction.editReply(`${bot.error} Please Mention A Channel!`);
+        if (!Channel) return await  bot.errorEmbed(bot, interaction, `**Please Mention A Channel !**`);
 
-        if (Channel.type === "GUILD_Voice") return interaction.editReply(`${bot.error} Please Mention A Text Channel!`);
+if (guild.suggestions_channel === Channel.id) {
+        return await  bot.errorEmbed(bot, interaction, `**Suggestion Channel is already set as ${Channel} !**`)
 
-await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
+} else {
+  await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
                   suggestions: true, 
-                  suggestions_channel: Channel,
+                  suggestions_channel: Channel.id,
                   })
 
-        let embed = new MessageEmbed()
-        .setColor(bot.color)
-        .setDescription(`${bot.tick} • Suggestion Channel is setted as <#${Channel.id}>`)
-
-        return interaction.editReply({embeds: [ embed ]});
+        return await bot.successEmbed(bot, interaction, `**Suggestion Channel is setted as <#${Channel.id}> !**`)
 }
 
+}
 if (subcommand === 'disable') {
 
 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
                   suggestions: false, 
                   })
-return interaction.editReply(`${bot.tick} • Successfully Removed Suggestion Channel`)
+return await bot.successEmbed(bot, interaction, `**Successfully Removed Suggestion Channel !**`)
   
 }
     }

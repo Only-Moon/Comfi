@@ -63,19 +63,25 @@ module.exports = {
     run: async (bot, interaction, args, message) => {
 
 let [ option ] = args
-      
+ 
+ const guild = await guilds.findOne({guildId:  interaction.guild.id })
+  
 if (option === 'category') {
 				let Channel = interaction.options.getChannel('id') || interaction.guild.channels.cache.get(args[0]);
-    
-if (Channel.type === "GUILD_CATEGORY"){ 
+
+if (guild.ticket_category === Channel.id ) {
+
+        return await bot.successEmbed(bot, interaction, `**Ticket Category is already set as ${Channel.id} !**`)
+  
+} else { 
 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
                   ticket: true, 
                   ticket_category: Channel.id,
                   }) 
-         interaction.editReply(
-					'**The Ticket Category has been set to**' + Channel.toString()
+
+        return await bot.successEmbed(bot, interaction, `**The Ticket Category has been set to**` + Channel.toString()
 				);
-    } else return interaction.editReply({content: `${bot.error} Provide a Valid Category Id`})
+    } 
 }		
       
 if (option === 'role') {
@@ -89,13 +95,19 @@ if (option === 'role') {
     if (!role)
       return interaction.editReply(`${bot.error} **Please Enter A Valid Role Name or ID!**`);
 
+if (guild.ticket_role === role.id) {
+
+        return await  bot.errorEmbed(bot, interaction, `**Ticket Support Role is already set as ${role} !**`)
+  
+} else {
+  
 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
                   ticket_role: role.id,
                   })
-				return interaction.editReply(
-          `**\`${role.name}\` Has Been Set Successfully As Supportrole!**`
+
+        return await bot.successEmbed(bot, interaction, `**\`${role.name}\` Has Been Set Successfully As Supportrole!**`
         );
-      };
+      }};
 
 if (option === 'display') {
 
@@ -117,7 +129,7 @@ if (option === 'disable') {
 await guilds.findOneAndUpdate({guildId: interaction.guild.id}, { 
                   ticket: false,
                   })
-  interaction.editReply({content: `${bot.tick} • Disabled Ticket System for this guild`})
+        return await bot.successEmbed(bot, interaction, `Disabled Ticket System for this guild`)
 }
       
   }}

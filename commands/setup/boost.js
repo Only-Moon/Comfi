@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed, MessageAttachment } = require('discord.js')
+const { CommandInteraction, MessageEmbed, } = require('discord.js')
 const guilds = require('../../models/guild')
 const embedCreate = require('../../functions/embed')
 
@@ -111,9 +111,8 @@ module.exports = {
 
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
-        if (guild.boost_toggle === toggle) {
-          await interaction.editReply(
-            `${bot.error} •  Boost toogle is already setted as ${toggle}!!`
+        if (guild.boost_toggle.toString() === toggle) {
+        return await  bot.errorEmbed(bot, interaction, `**Boost toogle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -122,19 +121,15 @@ module.exports = {
               boost: toggle
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Boost Detector has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Boost Detector has setted as ${toggle} !**`
           )
         }
       }
 
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('option')
-        if (guild.boost_embedtgl === toggle) {
-          await interaction.editReply(
-            `${
-            bot.error
-            } •  Boost Detector elbed toggle is already setted as ${toggle}!!`
+        if (guild.boost_embedtgl.toString() === toggle) {
+        return await  bot.errorEmbed(bot, interaction, `**Boost Detector embed toggle is already setted as ${toggle}!**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -143,10 +138,7 @@ module.exports = {
               boost_embedtgl: toggle
             }
           )
-          interaction.editReply(
-            `${
-            bot.tick
-            } • **Boost Detector  embed toggle has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Boost Detector  embed toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -154,8 +146,7 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.boost_channel === channel.id) {
-          await interaction.editReply(
-            `${bot.error} • ${channel.name} already exists as boost channel !!`
+        return await  bot.errorEmbed(bot, interaction, `**${channel.name} already exists as boost channel !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -164,8 +155,7 @@ module.exports = {
               boost_channel: channel.id
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Boost Channel Has Been Set Successfully in \`${
+        return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in \`${
             channel.name
             }\`!**`
           )
@@ -196,10 +186,7 @@ module.exports = {
             boost_message: msg
           }
         )
-        interaction.editReply(
-          `${
-          bot.tick
-          } • **Boost Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
+        return await bot.successEmbed(bot, interaction, `**Boost Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!`
         )
 
         if (img) {
@@ -209,10 +196,7 @@ module.exports = {
               boost_image: img
             }
           )
-          interaction.editReply(
-            `${
-            bot.tick
-            } • **Boost Channel Has Been Set Successfully in ${img}!**. Used only when embed toggle is off`
+        return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in ${img}!**. Used only when embed toggle is off`
           )
         }
       }
@@ -220,8 +204,8 @@ module.exports = {
       if (sub === "help") {
 
         const embed = new MessageEmbed()
-          .setTitle(`Leave System variables`, bot.user.displayAvatarURL())
-          .setDescription(`Need Help setting Leave system?`)
+          .setTitle(`Boost System variables`, bot.user.displayAvatarURL())
+          .setDescription(`Need Help setting Boost system?`)
           .addFields(
             {
               name: "Commands",

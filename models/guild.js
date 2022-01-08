@@ -49,6 +49,8 @@ const schema = new Schema({
 	automod_words: { type: Boolean, default: false },
 	automod_words_list: { type: Array, default: [] },
 	anti_alt: { type: Boolean, default: false },
+  anti_scam: { type: Boolean, default: false },
+  anti_scam_time: { type: Number, default: 43200000 },
 
 	verification: { type: Boolean, default: false },
 	verification_channel: { type: String, default: 'NONE' },

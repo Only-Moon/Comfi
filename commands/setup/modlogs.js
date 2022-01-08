@@ -45,10 +45,6 @@ module.exports = {
 			try {
 				let channel = interaction.options.getChannel('name')
 
-				if (channel === 'GUILD_VOICE')
-					return interaction.editReply(
-						`${bot.error} **Please Mention a Text Channel To Set!**`
-					)
 				bot.guilds.cache
 					.get(interaction.guild.id)
 					.channels.cache.get(channel.id)

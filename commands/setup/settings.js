@@ -92,6 +92,25 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
                    })
         .setColor(bot.color)
 
+      const anti = new MessageEmbed()
+        .setAuthor({
+name:          `${interaction.guild.name} - Settings - Anti Scam`,
+iconURL:          interaction.guild.iconURL({ dynamic: true })
+          })
+        .setDescription('You can change the settings by `/antiscam toggle, antiscam duration, antiscam disable`')
+        .addFields({
+          name: '» AutoScam Toggle',
+          value: `\`\`\`\n${guild.anti_scam}\n\`\`\``, inline: true
+        }, {
+          name: '» AutoScam Timeout Duration',
+          value: `\`\`\`\n${bot.ms(guild.anti_scam_time)}\n\`\`\``
+        })
+        .setFooter({
+text:          `Requested by: ${interaction.user.tag}`,
+iconURL:          interaction.user.avatarURL({ dynamic: true })
+                   })
+        .setColor(bot.color)
+
       const boost = new MessageEmbed()
         .setAuthor({
 name:          `${interaction.guild.name} - Settings - Boost Detector `,
@@ -519,6 +538,7 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
         .setColor(bot.color)
 
       const pages = [
+        anti,
         auto,
         boost,
         chatbot,

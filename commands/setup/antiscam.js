@@ -63,16 +63,15 @@ module.exports = {
     
     if (option === 'toggle') {
       const toggle = interaction.options.getString('option')
-      if (guild.anti_scam === toggle) {
+      
+      if (guild.anti_scam.toString() === toggle) {
 
-        return await interaction.editReply(`${bot.error} • Antiscam toggle is already setted as ${toggle}`)
-
+        return await  bot.errorEmbed(bot, interaction, `Antiscam toggle is already setted as ${toggle}`)
       } else {
         await guilds.findOneAndUpdate({ guildId: interaction.guild.id }, {
           anti_scam: toggle
         })
-        return await interaction.editReply(
-          `The Antiscam toggle for **${
+        return await bot.successEmbed(bot, interaction, `The Antiscam toggle for **${
           interaction.guild.name
           }** has been set to: **${toggle}**`
         );
@@ -85,33 +84,33 @@ module.exports = {
 
         const Time = bot.ms(time)
         if (!Time) {
-          return interaction.editReply(`${bot.error} • **Provide a valid time in d, h, m, s format**`)
+        return await  bot.errorEmbed(bot, interaction, `**Provide a valid time in d, h, m, s, ms format`)
         }
 
         if (Time <= 10000) {
-          return await interaction.editReply(`${bot.error} • **Time can't be less than 10 seconds !!**`)
+        return await  bot.errorEmbed(bot, interaction, `**Time cant be lesser than 10 seconds**`)
         }
 
         if (Time > 2332800000) {
-          return await interaction.editReply(`${bot.error} • **Time can't be greater than 27 days !!**`)
+        return await  bot.errorEmbed(bot, interaction, `**Time can't be greater than 27 days !!**`)
         }
 
         await guilds.findOneAndUpdate({ guildId: interaction.guild.id }, {
           anti_scam_time: Time,
         })
-        return interaction.editReply(`${bot.tick} • Successfully setted antiscam timeout as ${time}`)
+        return await bot.successEmbed(bot, interaction, `**Successfully setted antiscam timeout as ${time}**`)
 
       }
 
     if (option === 'disable') {
       if (!guild.anti_scam) {
-        return interaction.editReply(`${bot.error} • Please enable antiscam first or i cant disable it!!`);
+        return await  bot.errorEmbed(bot, interaction, `**Please enable antiscam first or i cant disable it!**`);
       } else {
         await guilds.findOneAndUpdate({ guildId: interaction.guild.id }, {
           anti_scam: false,
           anti_scam_time: "43200000",
         })
-        return interaction.editReply("Disabled the Antiscam System in the server :)");
+        return await bot.successEmbed(bot, interaction, `**Disabled the Antiscam System in the server :)**`);
       }
     }
   } catch (e) {

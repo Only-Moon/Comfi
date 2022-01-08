@@ -150,11 +150,10 @@ iconURL:                  interaction.user.avatarURL({ dynamic: true })
 
         const name = interaction.options.getString("emote")
 
-     if (name.toLowerCase() === "all" || "max") {
+     if (name.toLowerCase() === "all") {
         let emojis = []
         let pages = []
-               const emos = await bot.emojis.fetch()
-          emosforEach(emo => {
+               const emos = await bot.emojis.cache.forEach(emo => {
 
             if (!emo.name || !emo.id)
   {             return interaction.editReply(
@@ -177,20 +176,23 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
 
             pages.push(embed)
           })
-          simplydjs.embedPages(bot, interaction, pages, {
-            backEmoji: '884420649580363796',
-            delEmoji: '891534962917007410',
-            forwardEmoji: '884420650549272586',
-            btncolor: 'SECONDARY',
-            delcolor: 'SECONDARY',
-            skipBtn: true,
-            pgCount: true,
-          })
+        simplydjs.embedPages(bot, interaction, pages, {
+        firstEmoji: '884420649580363796',
+        backEmoji: '884421503205134356',
+        delEmoji: '891534962917007410',
+        forwardEmoji: '884421235965059113',
+        lastEmoji: '884420650549272586',
+        btncolor: 'SECONDARY',
+        delcolor: 'SECONDARY',
+        skipcolor: 'SECONDARY',
+        skipBtn: true,
+        pgCount: true
+      })
             } else {
-        
+
         let emojis = []
-        const emos = bot.emojis.fetch()
-          emos.filter(emoji => emoji.name.includes(name))
+        const emos = bot.emojis.cache
+          .filter(emoji => emoji.name.includes(name))
           .forEach(emoji => emojis.push(emoji));
         if (emojis.length > 1) {
 
@@ -210,7 +212,7 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
             let embed = new MessageEmbed()
               .setColor(bot.color)
               .setAuthor({
-                name: 'Comfi™ Enlarged Emoji',
+                name: 'Comfi™ Emojis',
 iconURL:                interaction.user.avatarURL({ dynamic: true })
           })
               .setImage(`${res}`)
@@ -218,15 +220,18 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
 
             pages.push(embed)
           })
-          simplydjs.embedPages(bot, interaction, pages, {
-            backEmoji: '884420649580363796',
-            delEmoji: '891534962917007410',
-            forwardEmoji: '884420650549272586',
-            btncolor: 'SECONDARY',
-            delcolor: 'SECONDARY',
-            skipBtn: false,
-            pgCount: true,
-          })
+        simplydjs.embedPages(bot, interaction, pages, {
+        firstEmoji: '884420649580363796',
+        backEmoji: '884421503205134356',
+        delEmoji: '891534962917007410',
+        forwardEmoji: '884421235965059113',
+        lastEmoji: '884420650549272586',
+        btncolor: 'SECONDARY',
+        delcolor: 'SECONDARY',
+        skipcolor: 'SECONDARY',
+        skipBtn: true,
+        pgCount: true
+      })
         } else if (emojis.length === 1) {
           const emo = emojis[0]   
   if (!emo.name || !emo.id) {

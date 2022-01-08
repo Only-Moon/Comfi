@@ -134,9 +134,8 @@ module.exports = {
 
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
-        if (guild.leave === toggle) {
-          await interaction.editReply(
-            `${bot.error} •  Leave toogle is already setted as ${toggle}!!`
+        if (guild.leave.toString() === toggle) {
+        return await  bot.errorEmbed(bot, interaction, `**Leave toogle is already setted as ${toggle}!!**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -145,19 +144,15 @@ module.exports = {
               leave: toggle
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leave has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Leave has setted as ${toggle} !**`
           )
         }
       }
 
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('options')
-        if (guild.leave_embedtgl === toggle) {
-          await interaction.editReply(
-            `${
-            bot.error
-            } •  Leave Embed toggle is already setted as ${toggle}!!`
+        if (guild.leave_embedtgl.toString() === toggle) {
+        return await  bot.errorEmbed(bot, interaction, `**Leave Embed toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -166,17 +161,15 @@ module.exports = {
               leave_embedtgl: toggle
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leave Embed toggle has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Leave Embed toggle has setted as ${toggle} !**`
           )
         }
       }
 
       if (sub === 'dm-toggle') {
         let toggle = interaction.options.getString('options')
-        if (guild.leave_dmuser === toggle) {
-          await interaction.editReply(
-            `${bot.error} •  Leave dm toggle is already setted as ${toggle}!!`
+        if (guild.leave_dmuser.toString() === toggle) {
+        return await  bot.errorEmbed(bot, interaction, `**Leave dm toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -185,8 +178,7 @@ module.exports = {
               leave_dmuser: toggle
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leave dm toggle has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Leave dm toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -194,10 +186,9 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.leave_channel === channel.id) {
-          await interaction.editReply(
-            `${bot.error} • ${
+        return await  bot.errorEmbed(bot, interaction, `**${
             channel.name
-            } already exists as leave channel !!`
+            } already exists as leave channel !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -206,8 +197,7 @@ module.exports = {
               leave_channel: channel.id
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leave Channel Has Been Set Successfully in \`${
+        return await bot.successEmbed(bot, interaction, `**Leave Channel Has Been Set Successfully in \`${
             channel.name
             }\`!**`
           )
@@ -238,10 +228,7 @@ module.exports = {
             leave_message: msg
           }
         )
-        interaction.editReply(
-          `${
-          bot.tick
-          } • **Leave Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
+        return await bot.successEmbed(bot, interaction, `**Leave Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
         )
 
         if (img) {
@@ -251,10 +238,7 @@ module.exports = {
               leave_image: img
             }
           )
-          interaction.editReply(
-            `${
-            bot.tick
-            } • **Leave Image Has Been Set Successfully in ${img}!**`
+        return await bot.successEmbed(bot, interaction, `**Leave Image Has Been Set Successfully in ${img}!**`
           )
         }
       }

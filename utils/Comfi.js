@@ -210,7 +210,24 @@ class Comfi extends Discord.Client {
 	);
 }
 
-	dbs(s) {
+ async successEmbed(bot, interaction, argument) {
+    const embed = new Discord.MessageEmbed()
+        .setDescription(`${bot.tick} • ${argument}`)
+        .setColor(bot.color);
+
+    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false } });
+
+};
+ async errorEmbed(bot, interaction, argument) {
+   const embed = new Discord.MessageEmbed()
+      
+        .setDescription(`${bot.error} • ${argument}`)
+        .setColor("#FE6666");
+
+    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true });
+}
+
+dbs(s) {
 		mongoose
 			.connect(
 				s,

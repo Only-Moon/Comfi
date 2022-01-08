@@ -111,9 +111,9 @@ module.exports = {
 
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
-        if (guild.leveling === toggle) {
-          await interaction.editReply(
-            `${bot.error} •  Leveling toogle is already setted as ${toggle}!!`
+        if (guild.leveling.toString() === toggle) {
+
+        return await  bot.errorEmbed(bot, interaction, `**Leveling toogle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -122,19 +122,15 @@ module.exports = {
               leveling: toggle
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leveling has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Leveling has setted as ${toggle} !**`
           )
         }
       }
 
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('options')
-        if (guild.leveling_embedtgl === toggle) {
-          await interaction.editReply(
-            `${
-            bot.error
-            } •  Leveling Embed toggle is already setted as ${toggle}!!`
+        if (guild.leveling_embedtgl.toString() === toggle) {
+        return await  bot.errorEmbed(bot, interaction, `**Leveling Embed toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -143,8 +139,7 @@ module.exports = {
               leveling_embedtgl: toggle
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leveling Embed toggle has setted as ${toggle} !**`
+        return await bot.successEmbed(bot, interaction, `**Leveling Embed toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -152,10 +147,9 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.leveling_channel === channel.id) {
-          await interaction.editReply(
-            `${bot.error} • ${
+        return await  bot.errorEmbed(bot, interaction, `**${
             channel.name
-            } already exists as leveling channel !!`
+            } already exists as leveling channel !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -164,10 +158,9 @@ module.exports = {
               leveling_channel: channel.id
             }
           )
-          interaction.editReply(
-            `${bot.tick} • **Leveling Channel Has Been Set Successfully in \`${
+        return await bot.successEmbed(bot, interaction, `**Leveling Channel Has Been Set Successfully in \`${
             channel.name
-            }\`!**`
+            }\` !**`
           )
         }
       }
@@ -196,10 +189,7 @@ module.exports = {
             leveling_message: msg
           }
         )
-        interaction.editReply(
-          `${
-          bot.tick
-          } • **Leveling Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
+        return await bot.successEmbed(bot, interaction, `**Leveling Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
         )
 
         if (img) {
@@ -209,10 +199,7 @@ module.exports = {
               leveling_image: img
             }
           )
-          interaction.editReply(
-            `${
-            bot.tick
-            } • **Leveling Image Has Been Set Successfully in ${img}!**`
+        return await bot.successEmbed(bot, interaction, `**Leveling Image Has Been Set Successfully in ${img}!**`
           )
         }
       }

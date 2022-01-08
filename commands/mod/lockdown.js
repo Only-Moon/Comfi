@@ -37,26 +37,10 @@ module.exports = {
 				ch => ch.type !== 'GUILD_CATEGORY'
 			)
 			if (arg === 'true') {
-				channels.forEach(channel => {
-					channel.permissionOverwrites
+				channels.forEach(async channel => {
+					await channel.permissionOverwrites
 						.create(interaction.guild.roles.everyone, {
 							SEND_MESSAGES: false
-						})
-						.catch(e => {
-							bot.sendhook(`Error Occured \n ${e.stack}`),
-								{
-									channel: bot.err_chnl
-								}
-							interaction.followUp({
-								embeds: [
-									{
-										description: `${
-											bot.error
-										} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-										color: bot.color
-									}
-								]
-							})
 						})
 				})
 
@@ -65,16 +49,16 @@ module.exports = {
 					.setThumbnail(
 						`https://media.giphy.com/media/JozO6wdFcC81VPO6RS/giphy.gif`
 					)
-					.setAuthor(
+					.setAuthor({name: 
 						`${interaction.guild.name} Modlogs`,
-						interaction.guild.iconURL()
-					)
+iconURL:						interaction.guild.iconURL()
+                     })
 					.setDescription(`**\n\n${bot.tick} • Done! Server Fully Locked! 🔒**`)
 					.setColor(bot.color)
-				return interaction.editReply({ embeds: [lockEmbed] })
+				return await interaction.editReply({ embeds: [lockEmbed] })
 			} else if (arg === 'false') {
-				channels.forEach(channel => {
-					channel.permissionOverwrites.create(
+				channels.forEach(async channel => {
+					await channel.permissionOverwrites.create(
 						interaction.guild.roles.everyone,
 						{
 							SEND_MESSAGES: true
@@ -87,7 +71,7 @@ module.exports = {
 					.setThumbnail(
 						`https://media.giphy.com/media/JozO6wdFcC81VPO6RS/giphy.gif`
 					)
-					.setAuthor(`${interaction.guild.name}`, interaction.guild.iconURL())
+					.setAuthor({name: `${interaction.guild.name}`, iconURL: interaction.guild.iconURL()})
 					.setDescription(
 						`**\n\n${bot.tick} • Done! Server Fully Unlocked! 🔓**`
 					)

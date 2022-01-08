@@ -36,10 +36,10 @@ module.exports = {
 
 			if (!member)
 				return interaction.editReply(
-					'Unable to find the mentioned user in this guild.'
+					`${bot.error} • Unable to find the mentioned user in this guild.`
 				)
 
-			let reason = args.slice(1).join(' ')
+			let reason = interaction.options.getString("reason")
 
 			await member.voice.setDeaf(true, reason)
 			interaction.editReply(`${bot.tick} • Deafened ${member.user.username} `)

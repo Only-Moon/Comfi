@@ -57,7 +57,7 @@ module.exports = {
 				let embed = new MessageEmbed()
 					.setDescription(`${bot.tick} • **Successfully Locked ${channel}**`)
 					.setColor(bot.color)
-				interaction.editReply({ embeds: [embed] }).catch(() => null)
+				await interaction.editReply({ embeds: [embed] }).catch(() => null)
 			} catch (e) {
 				let emed = new MessageEmbed()
 					.setTitle(`${bot.error} • Error Occured`)

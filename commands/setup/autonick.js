@@ -21,33 +21,41 @@ module.exports = {
 	 */
 	run: async (bot, interaction, args) => {
 		try {
-			if (!args.length || args.length >= 32) {
-				return interaction.editReply({
-					content: `${
-						bot.crosss
-					} • Please supply a nickname! (FYI: Set the nickname as "none" if you want it to be disabled)`
-				})
-			}
+const arg = interaction.options.getString("name")		
+  if (!args.length || args.length >= 32) {
+        return await  bot.errorEmbed(bot, interaction, `Please supply a nickname! (FYI: Set the nickname as "none" if you want it to be disabled)`
+				)
+			} else {
 			await guilds.findOneAndUpdate(
 				{ guildId: interaction.guild.id },
-				{
-					auto_nick: args.join(' ')
-				}
+        { auto_nick: args				}
 			)
 
-			return interaction.editReply({
-				content: `${
-					bot.tick
-				} • Auto nick has been set! Current value: **${args.join(
-					' '
-				)}**\n Use **none** as a value to disable it.`
+        return await bot.successEmbed(bot, interaction, `Auto nick has been set! Current value: **${args}**\n Use **none** as a value to disable it.`
+)	  
+  }
+    } catch (er) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
 			})
-		} catch (err) {
-			return interaction.editReply(
-				`${
-					bot.error
-				} An error has occured. \nError: ${err} \n [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord)`
-			)
-		}
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
+	    
 	}
+}
 }
