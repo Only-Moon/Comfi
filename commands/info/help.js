@@ -35,7 +35,7 @@ module.exports = {
 
 				const emo = {
 					anime: '<a:snowman_cs:883017868944502804>',
-					context: "<a:loli_2_cs:883017896245211166>",
+					context: "<a:milk_cs:883017898984103986>",
 					emoji: '<a:apple_cs:883033005172605020>',
 					fun: '<a:shootingstaw_cs:883017879065354290>',
 					info: '<a:stars_cs:883033007836000308>',

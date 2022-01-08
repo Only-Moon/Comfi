@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const port = 8080
 const ClientSchema = require('../../models/Client')
+const guilds = require(`../../models/guild`)
 
 bot.on('ready', async () => {
 	const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
@@ -62,5 +63,30 @@ bot.on('ready', async () => {
 setInterval(() => {
   require('../../functions/reminder')(bot)
 }, 1000)
+
+bot.guilds.cache.forEach(async (guild) => {
+  const guilD = await guilds.findOne({        guildId: guild?.id})
+
+if (!guilD) {
+  try {
+bot.emit("guildCreate", guild)
+//await guilds.create({ guildId: guild?.id })
+
+  } catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+  }
+    
+} else if (guilD) return;
   
+  })
+      
 })

@@ -31,7 +31,7 @@ module.exports = {
         .setDescription(`**Name: ** ${data.name} \n**Version: ** ${data.version} \n**Description :** ${data.description} \n**Author :** ${data.author} \n **License :** ${data.license}`)
         .setColor(bot.color)
         .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-        .setFooter({text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL({dynamic: t})});
+        .setFooter({text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL({dynamic: true})});
 
 				const row = new MessageActionRow().addComponents(
 					new MessageButton()
