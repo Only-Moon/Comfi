@@ -9,7 +9,7 @@ try {
 		setTimeout(async () => {
 			const guild = await guilds.findOne({ guildId: g.id })
 
-const mem = await g.members.fetch()
+const mem = await g.members.cache
 		if (guild?.member_counter) {
 				const channel = g.channels.cache.find(
 					c =>
