@@ -904,7 +904,7 @@ url:										membed.embeds[0].author?.url
 									)
 									.setDescription(membed.embeds[0].description || '')
 									.setColor(membed.embeds[0].color || '#2F3136')
-									.setFooter({text: am.content || ''})
+									.setFooter({text: m.content || ''})
 									.setImage(url || '')
 									.setAuthor({
 name:										membed.embeds[0].author?.name

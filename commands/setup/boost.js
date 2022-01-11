@@ -111,7 +111,7 @@ module.exports = {
 
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
-        if (guild.boost_toggle.toString() === toggle) {
+        if (guild?.boost.toString() === toggle) {
         return await  bot.errorEmbed(bot, interaction, `**Boost toogle is already setted as ${toggle} !**`
           )
         } else {

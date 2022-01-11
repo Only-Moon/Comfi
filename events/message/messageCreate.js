@@ -9,6 +9,7 @@ const Timeout = new Collection()
 bot.on('messageCreate', async message => {
 	if (message.author.bot) return;
 	if (!message.guild) return;
+  if (!message.author) return;
 
   try {
   

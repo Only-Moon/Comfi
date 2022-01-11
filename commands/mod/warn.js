@@ -68,7 +68,7 @@ run: async (bot, interaction, args) => {
 
 		const user = interaction.options.getUser('user');
 		const getWarnId = interaction.options.getString('warnid');
-
+try {
 		switch (subCommandName) {
 			case 'add':
 				const getReason = interaction.options.getString('reason');
@@ -101,15 +101,17 @@ run: async (bot, interaction, args) => {
 
 let warn = new MessageEmbed()
         .setTitle(`__Warned__`)    
-        .setDescription(`You have been warned by ${interaction.user} \n Reason: ${getReason}`)
+        .setDescription(`You have been warned by ${interaction.user} \nReason: ${getReason}`)
             .setColor(bot.color);
         user.send({embeds: [ warn ]})
-            .catch(error => interaction.editReply(`Sorry ${interaction.user} I couldn't n't warn because of : ${error}`));
+            .catch(() => null)
             let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
-            .setDescription(`Warned **${user.tag}**, They now have **${warnCount}** warning${warnGrammar}`)
+            .setDescription(`${bot.tick} • Warned **${user.tag}** \n${bot.tick} • They now have **${warnCount}** warning${warnGrammar} \n${bot.tick} • Reason: ${getReason}`)
             .setColor(bot.color);
-            interaction.editReply({embeds: [ warnEmbed ]});
+            await interaction.editReply({embeds: [ warnEmbed ]}).then((msg) => {
+  setTimeout(() => { if(msg.deletable) msg.delete() }, bot.ms('30s'))
+  });
 				break;
 
 			case 'list':
@@ -138,14 +140,14 @@ let warn = new MessageEmbed()
 						(user) => user.id === authorId,
 					);
 					string += embed
-						.addField(
-							`Warn ID: ${warnId} | Moderator: ${getModeratorUser?.user.tag}`,
-							`${reason} - <t:${timestamp}>`,
-						)
-						.setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
+						.addFields({							
+              name: `ID: ${warnId} • Moderator: ${getModeratorUser?.user.tag}`,							
+              value: `> <a:pinkheart_cs:883033001599074364> • **Reason:** ${reason} \n> <a:pinkheart_cs:883033001599074364> • **Date:** <t:${timestamp}>`						
+            })						
+            .setTitle(`${getWarnedUser.user.username}'s Warning Lists!`)
 				}
 
-				interaction.editReply({ embeds: [embed] });
+				await interaction.editReply({ embeds: [embed] });
 				break;
 
 			case 'remove':
@@ -175,9 +177,9 @@ let warnEmbed = new MessageEmbed()
             .setTitle("**__Warn Report__**")
             .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
            .setColor(bot.color)
-      interaction.editReply({embeds: [ warnEmbed ]})
+      await interaction.editReply({embeds: [ warnEmbed ]})
           } else {
-					interaction.editReply({
+					await interaction.editReply({
 						content: `${bot.error} That is not a valid Warn ID!`,
 						ephemeral: true,
 					});
@@ -185,5 +187,26 @@ let warnEmbed = new MessageEmbed()
 
 				break;
 		}
-	}
+	} catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
+}}
 };

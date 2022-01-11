@@ -20,7 +20,6 @@ try {
   if (guild.leveling) {
 
     setTimeout(async () => {
-  
 
       const max = 30
       const min = 15
@@ -28,7 +27,7 @@ try {
     const amount = Math.floor(Math.random() * (max - min) + min)
       
     await users.findOneAndUpdate(
-      { userId: message.author.id, guildId: message.guild.id },
+      { userId: message.author?.id, guildId: message.guild?.id },
       {
         xp: Number(user.xp) + Number(amount)
       }

@@ -9,7 +9,7 @@ const clients = require('../../models/Client')
 module.exports = {
 	name: 'command',
 	description: "Enable or Disable Comfi's commands ",
-	ownerOnly: false,
+	ownerOnly: true,
 	options: [
 		{
 			type: 'SUB_COMMAND',

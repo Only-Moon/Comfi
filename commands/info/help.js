@@ -87,7 +87,7 @@ module.exports = {
 					.setColor(bot.color);
 
 				let menus = create_mh(ccate)
-				return await interaction.editReply({
+	   await interaction.editReply({
 					embeds: [embed],
 					components: menus.smenu
 				})

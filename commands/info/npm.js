@@ -25,7 +25,11 @@ module.exports = {
     let npm = interaction.options.getString('npm')
     try {
       const response = await fetch(`https://api.notzerotwo.ml/data/npm?api=moon_bow&package=${npm}`)
+      
       const data = await response.json()
+      
+if (data.error) return await  bot.errorEmbed(bot, interaction, `**The Npm Package doesn't exists**`)
+      
       let embed = new MessageEmbed()
         .setAuthor({name: `Comfi™ Npm Info - ${data.name}`, iconURL: bot.user.displayAvatarURL({dynamic:true})})
         .setDescription(`**Name: ** ${data.name} \n**Version: ** ${data.version} \n**Description :** ${data.description} \n**Author :** ${data.author} \n **License :** ${data.license}`)

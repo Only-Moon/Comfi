@@ -37,7 +37,7 @@ module.exports = {
 
       if (interaction.member.permissions.has("ADMINISTRATOR")) {
 
-        await interaction.channel.send({ content: `${say}`, allowedMentions: { repliedUser: false } })
+        await interaction.channel.send({ content: `${say}`, allowedMentions: { repliedUser: true } })
 
       } else {
 

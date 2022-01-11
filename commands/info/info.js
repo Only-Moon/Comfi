@@ -397,14 +397,14 @@ module.exports = {
 					)
 					.addField(
 						`<:768584793691783179:883017859444379648> No. of Members`,
-						members
+		 members
             .filter(member => !member.user.bot)
             .size.toString(),
 						true
 					)
 					.addField(
 						`<a:776973591891017749:883017868944502804> No. of Bots:`,
-						members.cache
+						members
 							.filter(member => member.user.bot)
 							.size.toString(),
 						true

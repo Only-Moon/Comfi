@@ -21,7 +21,7 @@ module.exports = {
         },
     ],
     userperm: [""],
-    botperm: [""],
+    botperm: ["SEND_MESSAGES"],
     /**
      *
      * @param {CommandInteraction} interaction
@@ -30,7 +30,7 @@ module.exports = {
     run: async (bot, interaction, args) => {
 
     try {
-const lang = interaction.options.getString("language")
+const lang = interaction.options.getString("language");
       const text = interaction.options
         .getString('text')
         .split("")
