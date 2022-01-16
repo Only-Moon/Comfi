@@ -3,17 +3,17 @@ const guilds = require('../../models/guild');
 
 module.exports = {
     name: "confession",
-    description: "Confession setup for server",
+    description: "Anonymous Confession setup for server",
     ownerOnly: false,
     options: [
       {
       type: 'SUB_COMMAND',
       name: 'enable',
-      description: 'Sets channel for Confessios',
+      description: 'Sets channel for Confession',
       options: [
         {
             type: 'CHANNEL',
-            description: 'confess channel',
+            description: 'channel for confession',
             name: 'channel',
             required: true,
             channelTypes: ["GUILD_TEXT"],
@@ -23,7 +23,7 @@ module.exports = {
         {
             type: 'SUB_COMMAND',
             name: 'disable',
-            description: 'Disables the confess channel',
+            description: 'Disables the confession channel',
         },
     ],
     userperm: ["MANAGE_GUILD"],

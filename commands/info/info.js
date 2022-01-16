@@ -515,11 +515,79 @@ module.exports = {
 					.fetch(user.id)
 					.catch(() => {})
 
+		let flags = user.flags.toArray().join(`\n`);
+
+		if (!flags) {
+			flags = "None";
+		}
+
+		flags = flags.replace(
+			"HOUSE_BRAVERY",
+			"• HypeSquad Bravery"
+		);
+		flags = flags.replace(
+			"EARLY_SUPPORTER",
+			"• Early Supporter"
+		);
+		flags = flags.replace(
+			"VERIFIED_DEVELOPER",
+			"• Verified Bot Developer"
+		);
+		flags = flags.replace(
+			"EARLY_VERIFIED_DEVELOPER",
+			"• Verified Bot Developer"
+		);
+		flags = flags.replace(
+			"HOUSE_BRILLIANCE",
+			"• HypeSquad Brilliance"
+		);
+		flags = flags.replace(
+			"HOUSE_BALANCE",
+			"• HypeSquad Balance"
+		);
+		flags = flags.replace(
+			"DISCORD_PARTNER",
+			"• Partner"
+		);
+		flags = flags.replace(
+			"HYPESQUAD_EVENTS",
+			"• Hypesquad Events"
+		);
+		flags = flags.replace(
+			"DISCORD_CLASSIC",
+			"• Discord Classic"
+		);
+        
+		let nitroBadge = user.displayAvatarURL({
+			dynamic: true
+		});
+        
+		if (nitroBadge.includes("gif")) {
+			flags =
+				flags +
+				"• Nitro";
+		}
+
+		const row = new MessageActionRow().addComponents(
+			new MessageButton()
+			.setCustomId("banner")
+			.setLabel("Banner")
+			.setStyle("SECONDARY")
+      .setEmoji("883017858446135307"),
+
+			new MessageButton()
+			.setCustomId("permissions")
+			.setLabel("Permissions")
+			.setStyle("SECONDARY")
+      .setEmoji("883017898984103986")
+		)
+      
 				let roles, members, position
 				if (member) {
 					roles = member.roles.cache
 						.sort((a, b) => b.position - a.position)
 						.map(role => role.toString())
+            .filter(x => x.name !== "@everyone")
 						.slice(0, -1)
 
 					members = (await interaction.guild.members.fetch({
@@ -557,19 +625,20 @@ module.exports = {
 							user.createdTimestamp
 						).format('Do MMM YYYY')}.`
 					)
-					.addField(
-						'User information',
-						`**ID:** ${user.id}\n**Username:** ${
+					.addFields(
+          {
+						name: 'User information',
+						value: `**ID:** ${user.id}\n**Username:** ${
 							user.username
 						}\n**Discriminator:** #${user.discriminator}\n**Bot:** ${
 							user.bot ? 'Yes' : 'No'
-						}\n**Avatar:** ${
+						}\n**Flags: ** ${flags} \n**Avatar:** ${
 							format === 'gif'
 								? `[gif](${gif})`
 								: `[png](${png}) | [webp](${webp}) | [jpg](${jpg})`
 						}`,
-						false
-					)
+            inline: true,
+          })
 					.setTimestamp()
 					.setColor(bot.color)
 
@@ -604,7 +673,110 @@ module.exports = {
 						.setColor(bot.color)
 				}
 
-				await interaction.followUp({ embeds: [embed] })
+		const msg = await interaction.followUp({ 
+      embeds: [embed], 
+      components: [row] 
+    })
+
+		const filter = async (inter) => {
+
+			if (inter.user.id !== interaction.user.id) {
+				inter.reply({
+					content: `${bot.error} • **This is not your buttons**`,
+					ephemeral: true
+				});
+				return false;
+			};
+			return true;
+		}
+
+		const collector = msg.createMessageComponentCollector({
+			filter,
+			componentType: 'BUTTON',
+		})
+
+		collector.on("collect", async (int) => {
+
+			if (int.customId === "banner") {
+				int.deferUpdate()
+				axios.get(`https://discord.com/api/users/${member ? member.id : user.id}`, {
+						headers: {
+							Authorization: `Bot ${bot.token}`
+						},
+					})
+					.then(async (res) => {
+						const {
+							banner,
+							accent_color
+						} = res.data;
+
+						if (banner) {
+							const extension = banner.startsWith("a_") ? ".gif" : ".png";
+							const url = `https://cdn.discordapp.com/banners/${member.id}/${banner}${extension}?size=2048`;
+              
+							const embed = new MessageEmbed()
+								.setTitle(`${member ? member.user.tag : user.tag}'s Banner`)
+								.setImage(`${url}`)
+								.setColor(accent_color ? accent_color : bot.color)
+
+						await int.followUp({
+								embeds: [embed],
+								ephemeral: true
+							})
+						} else {
+if (accent_color) {
+								const embed = new MessageEmbed()
+									.setDescription(
+										`**${
+											member ? member.user.tag : user.tag
+										}** does not have a banner but they have an accent color`
+									)
+									.setColor(accent_color)
+
+								await int.followUp({ embeds: [embed], ephemeral:true })
+							} else {
+							        return await  int.followUp({content: `**${
+										member ? member .user.tag : user.tag
+									}** does not have a banner, nor an accent color.`,
+            ephemeral: true
+                                                 })
+							}
+						}
+
+					})
+			}
+
+      let permissions;
+    if (member) {
+      
+        permissions = member.permissions.toArray().map(perm => {
+                return perm
+                  .toLowerCase()
+                  .replace(/_/g, " ") 
+                  .replace(/\w\S*/g, txt => {
+                  
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                  });
+              });
+    } else {
+     permissions = "Permissions Not Found".split(`,`);
+    }
+
+      
+			if (int.customId === "permissions") {
+				await int.deferUpdate()
+				const gay1 = new MessageEmbed()
+					.setTitle(`${member ? member.user.tag : user.tag}'s Permissions`)
+					.setDescription(`${permissions.join(`\n<a:p_arrowright4:884420650549272586> `)}`)
+					.setColor(bot.color);
+			await int.followUp({
+					embeds: [gay1],
+					ephemeral: true
+				})
+
+			}
+		})
+        
 			}
 
 			if (subcommand === 'uptime') {
