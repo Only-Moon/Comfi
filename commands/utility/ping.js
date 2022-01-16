@@ -31,5 +31,6 @@ module.exports = {
 				} ${bot.ws.ping}ms`
 			);
 		await interaction.editReply({ embeds: [pingEmbed] }).catch(() => null)
+
 	}
 }

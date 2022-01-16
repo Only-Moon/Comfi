@@ -28,7 +28,7 @@ module.exports = {
 								interaction.user.tag
 							}** Successfully Nuked this channel.`
 						)
-						.setImage('https://tenor.com/view/nuke-gif-8044239')
+						.setImage(`https://tenor.com/view/nuke-gif-8044239`)
 
 					ch.send({
 						embeds: [NukeEmbed]

@@ -38,22 +38,7 @@ module.exports = {
 				msg => Date.now() - msg.createdTimestamp < ms('14 days')
 			)
 
-			await interaction.channel.bulkDelete(filtered).catch(e => {
-				bot.sendhook(`Error Occured \n ${e.stack}`),
-					{
-						channel: bot.err_chnl
-					}
-				interaction.followUp({
-					embeds: [
-						{
-							description: `${
-								bot.error
-							} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-							color: bot.color
-						}
-					]
-				})
-			})
+			await interaction.channel.bulkDelete(filtered)
 
 			interaction.channel
 				.send({

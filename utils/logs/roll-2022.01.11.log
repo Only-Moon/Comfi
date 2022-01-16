@@ -1,0 +1,15 @@
+08:25:16.012 INFO  Loaded Guild commands... 
+08:25:16.332 INFO  Mongodb connected! 
+08:25:17.354 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"90","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"53.77 MB / 124.95 MB"} 
+08:25:17.358 INFO  ------------------------------------- 
+08:25:17.364 INFO  Your app is listening a http://localhost:8080 
+11:01:40.061 INFO  Loaded Guild commands... 
+11:01:41.075 INFO  Mongodb connected! 
+11:01:42.471 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"90","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"50.84 MB / 124.03 MB"} 
+11:01:42.476 INFO  ------------------------------------- 
+11:01:42.488 INFO  Your app is listening a http://localhost:8080 
+12:26:49.247 INFO  Loaded Guild commands... 
+12:26:49.344 INFO  Mongodb connected! 
+12:26:50.278 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"90","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"48.69 MB / 125.56 MB"} 
+12:26:50.286 INFO  ------------------------------------- 
+12:26:50.295 INFO  Your app is listening a http://localhost:8080 

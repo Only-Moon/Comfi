@@ -4,8 +4,9 @@ const { Message } = require('discord.js')
 module.exports = async bot => {
 
 try {
-  
+
 	bot.guilds.cache.forEach(async g => {
+
 		setTimeout(async () => {
 			const guild = await guilds.findOne({ guildId: g.id })
 

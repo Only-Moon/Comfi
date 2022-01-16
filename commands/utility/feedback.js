@@ -19,7 +19,10 @@ module.exports = {
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args, message) => {
+	run: async (bot, interaction, args) => {
+
+try {
+    
 		const member =
 			interaction.guild.members.cache.get(args[0]) || interaction.member
 		const feedCh = bot.channels.cache.get('881789379809513500')
@@ -44,8 +47,32 @@ module.exports = {
 		interaction.followUp({
 			content: 'Feedback has been sent to the support server!'
 		})
-		if (feedch) {
+		if (feedCh) {
 			feedCh.send({ embeds: [feedEmbed] }).catch(() => null)
 		} else return;
-	}
+	
+
+  } catch (e) {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+
+			interaction.followUp({
+				embeds: [
+					{
+						description: `${
+							bot.error
+						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+						color: bot.color
+					}
+				]
+			})
+}
+  }  
 }

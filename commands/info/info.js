@@ -226,7 +226,7 @@ module.exports = {
 					.setTitle(`Channel Information for **${channel.name}**`)
 					.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
 					.addField('**Name**', ` \`\`\`\ ${channel.name} \`\`\`\ `, true)
-					.addField('**Parent**', ` \`\`\`\ ${channel.parent.name} \`\`\`\ `, true)
+					.addField('**Parent**', ` \`\`\`\ ${channel.parent ? channel.parent.name : "Parent Not Found"} \`\`\`\ `, true)
 					.addField('**NSFW**', ` \`\`\`\ ${channel.nsfw} \`\`\`\ `, true)
 					.addField('**Channel ID**', ` \`\`\`\ ${channel.id} \`\`\`\ `)
 					.addField('**Channel Type**', ` \`\`\`\ ${channel.type} \`\`\`\ `)

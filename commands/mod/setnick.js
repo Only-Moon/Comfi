@@ -16,8 +16,13 @@ module.exports = {
 			description: 'New nickname',
 			type: 3,
 			required: true
-		}
-	],
+		},
+    {
+      name: "reason",
+      description: "Reason to change nickname", 
+      type: 3,
+      required: false
+     }	],
 	userperm: ['MANAGAE_NICKNAMES'],
 	botperm: ['MANAGAE_NICKNAMES'],
 	/**
@@ -27,76 +32,38 @@ module.exports = {
 	run: async (bot, interaction, args) => {
 		try {
 			// now extract values
-			const user =
-				interaction.options.getUser('user') ||
+			const member =
+				interaction.options.getMember('user') ||
 				interaction.guild.members.cache.get(args[0])
 			const nickname = interaction.options.getString('nickname')
-			const embed = new MessageEmbed().setColor(bot.color)
+	const reason = interaction.options.getString("reason")		
+    const embed = new MessageEmbed().setColor(bot.color)
 
-			if (!user.member.manageable && user.member.id !== bot.user.id) {
+			if (!usmber.manageable && usmber.i.userd !== bot.user.id) {
 				embed.setDescription(
-					`${bot.error} • I Cant Change ${user.member.toString()}'s Nickname`
+					`${bot.error} • I Cant Change ${usmber.toString()}'s Nickname`
 				)
 				return interaction.editReply({ embeds: [embed] })
 			}
 
-			const oldNick = user.member.nickname
-				? user.member.nickname
-				: user.member.user.username
+			const oldNick = usmber.nickname
+				? usmber.nickname
+				: usmber.user.username
 
-			await user.member.setNickname(nickname.value).catch(e => {
-				bot.sendhook(`Error Occured \n ${e.stack}`, {
-					channel: bot.err_chnl
-				})
-				interaction.followUp({
-					embeds: [
-						{
-							description: `${
-								bot.error
-							} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-							color: bot.color
-						}
-					]
-				})
-			})
-
-			embed
+			await member.setNickname(nickname.value)			
+        embed
 				.setDescription(
-					`${bot.tick} • ${user.member.toString()}'s Nickname Changed`
+					`${bot.tick} • ${usmber.toString()}'s Nickname Changed`
 				)
 				.setFooter(`From ${oldNick} to ${nickname.value}`)
 
 			await interaction.editReply({ embeds: [embed] }).catch(() => null)
 
-			const guild = await guilds.findOne({ guildId: interaction.guild.id })
-			if (!guild.modlog) return
-
-			if (guild.modlog) {
-				let channel = interaction.guild.channels.cache.find(
-					c => c.id === guild.mod_channel
-				)
-				if (!channel) return
-
-				const sembed = new MessageEmbed()
-					.setAuthor(
-						`${interaction.guild.name} Modlogs`,
-						interaction.guild.iconURL({ dynamic: true })
-					)
-					.setColor(bot.color)
-					.setThumbnail(user.user.avatarURL({ dynamic: true }))
-					.setFooter(interaction.guild.name, interaction.guild.iconURL())
-					.addField('**Moderation**', 'setnick')
-					.addField('**Nick Changed Of**', user.user.username.toString())
-					.addField('**Nick Changed By**', interaction.user.username.toString())
-					.addField('**Nick Changed To**', args[1].toString())
-					.addField('**Date**', interaction.createdAt.toLocaleString())
-					.setTimestamp()
-
-				var sChannel = interaction.guild.channels.cache.get(channel)
-				if (!sChannel) return
-				sChannel.send({ embeds: [sembed] })
-			}
-		} catch (e) {
+			await bot.modlog({ Member: member, 
+                  Action: "nickname changed ", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)	
+    } catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)
 				.setDescription(`\`\`\`${e.stack}\`\`\``)

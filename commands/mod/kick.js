@@ -86,34 +86,10 @@ module.exports = {
 					.setDescription(`**${kickMember.user.username}** has been kicked`)
 				await interaction.editReply({ embeds: [sembed2] }).catch(() => null)
 			}
-			const guild = await guilds.findOne({ guildId: interaction.guild.id })
-			if (!guild.modlog) return;
-
-			if (guild.modlog) {
-				let channel = interaction.guild.channels.cache.find(
-					c => c.id === guild.mod_channel
-				)
-				if (!channel) return;
-
-				const embed = new MessageEmbed()
-					.setAuthor({
-name:						`${interaction.guild.name} Modlogs`,
-iconURL:						interaction.guild.iconURL()
-            })
-					.setColor(bot.color)
-					.setThumbnail(kickMember.user.displayAvatarURL({ dynamic: true }))
-					.setFooter({text: interaction.guild.name, iconURL: interaction.guild.iconURL()})
-					.addField('**Moderation**', 'kick')
-					.addField('**User Kicked**', kickMember.user.username.toString())
-					.addField('**Kicked By**', interaction.user.username)
-					.addField('**Reason**', `${reason || '**No Reason**'}`)
-					.addField('**Date**', interaction.createdAt.toString())
-					.setTimestamp()
-
-				var sChannel = interaction.guild.channels.cache.get(channel)
-				if (!sChannel) return
-				sChannel.send({ embeds: [embed] })
-			}
+await bot.modlog({ Member: kickMember, 
+                  Action: "kick", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)
 		} catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

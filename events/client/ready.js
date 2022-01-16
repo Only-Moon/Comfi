@@ -36,9 +36,9 @@ bot.on('ready', async () => {
 	})
 	const activites = [
 		{ name: `/invite | ${bot.guilds.cache.size} servers!`, type: 'WATCHING' },
-		{ name: `/infoo | ${bot.users.cache.size} users!`, type: 'LISTENING' },
-		{ name: `/vote | ${bot.ws.ping}ms`, type: 'LISTENING' },
-		{ name: `/help | ${totalCommands} commands!`, type: 'PLAYING' }
+		{ name: `/infoo | ${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`, type: 'LISTENING' },
+		{ name: `/settings | ${bot.ws.ping}ms`, type: 'LISTENING' },
+		{ name: `/helpp | ${totalCommands} commands!`, type: 'PLAYING' }
 	]
 	let activity = 0
 	bot.user.setPresence({ status: 'online', activity: activites[0] })
@@ -66,7 +66,7 @@ setInterval(() => {
 
 bot.guilds.cache.forEach(async (guild) => {
   const guilD = await guilds.findOne({        guildId: guild?.id})
-
+  
 if (!guilD) {
   try {
 bot.emit("guildCreate", guild)

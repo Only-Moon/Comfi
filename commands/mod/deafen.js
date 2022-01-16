@@ -35,8 +35,7 @@ module.exports = {
 				)
 
 			if (!member)
-				return interaction.editReply(
-					`${bot.error} • Unable to find the mentioned user in this guild.`
+        return await  bot.errorEmbed(bot, interaction, `**Unable to find the mentioned user in this guild.**`
 				)
 
 			let reason = interaction.options.getString("reason")

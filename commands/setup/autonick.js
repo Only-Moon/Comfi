@@ -34,7 +34,7 @@ const arg = interaction.options.getString("name")
         return await bot.successEmbed(bot, interaction, `Auto nick has been set! Current value: **${args}**\n Use **none** as a value to disable it.`
 )	  
   }
-    } catch (er) {
+    } catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)
 				.setDescription(`\`\`\`${e.stack}\`\`\``)

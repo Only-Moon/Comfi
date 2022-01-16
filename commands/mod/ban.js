@@ -105,7 +105,7 @@ try {
           interaction.options.getString('reason') ||
           `Banned by ${interaction.member.username}`
 
-        let banMember = interaction.guild.members.cache.get(args[0]) || user
+        let banMember = interaction.guild.members.cache.get(args[0]) || bot.users.cache.get(args[0]) || user
         if (!banMember) {
         return await  bot.errorEmbed(bot, interaction, `**User Is Not In The Guild**`)
         }
@@ -138,40 +138,14 @@ try {
         } else {
           var sembed2 = new MessageEmbed()
             .setColor(bot.color)
-            .setDescription(`**${banMember.username}** has been banned`)
+            .setDescription(`**${banMember.user.username}** has been banned`)
           await interaction.editReply({ embeds: [sembed2] })
 
         }
-        if (!guild.modlog) return;
-
-        let channel = interaction.guild.channels.cache.find(
-          c => c.id === guild.mod_channel)
-
-        if (channel == null) return;
-
-        if (!channel) return;
-
-        if (guild.modlog) {
-          const embed = new MessageEmbed()
-            .setAuthor({
-name:              `${interaction.guild.name} Modlogs`,
-iconURL:              interaction.guild.iconURL()
-            })
-            .setColor(bot.color)
-            .setThumbnail(banMember.displayAvatarURL({ dynamic: true }))
-            .setFooter({text:interaction.guild.name, iconURL: interaction.guild.iconURL()})
-            .addField('**Moderation**', 'ban')
-            .addField('**Banned**', banMember.username.toLocaleString())
-            .addField('**ID**', `${banMember.id}`)
-            .addField('**Banned By**', `${interaction.user.username}`)
-            .addField('**Reason**', `${reason || '**No Reason**'}`)
-            .addField('**Date**', `${interaction.createdAt.toDateString()}`)
-            .setTimestamp()
-
-          var sChannel = interaction.guild.channels.cache.get(channel)
-          if (!sChannel) return
-          sChannel.send({ embeds: [embed] })
-        } else return;
+await bot.modlog({ Member: banMember, 
+                  Action: "ban", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)
     }
 
     if (sub === 'temporary') {
@@ -218,7 +192,12 @@ iconURL:              interaction.guild.iconURL()
           .addField('Moderator:', interaction.user.username)
 
         await interaction.editReply({ embeds: [tbembed] })
-
+      
+await bot.modlog({ Member: tbuser, 
+                  Action: "temporary ban", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)
+      
         await tbuser.send({ embeds: [tbuembed] }).catch(() => null)
 
         await interaction.guild.members
@@ -278,31 +257,12 @@ iconURL:              interaction.guild.iconURL()
             } **were successfully banned. User was not notified!**`
           )
         await interaction.editReply({ embeds: [embed2] })
-        if (!guild.modlog) return;
 
-        if (guild.modlog) {
-          let channel = interaction.guild.channels.cache.find(
-            c => c.id === guild.mod_channel
-          )
-          if (!channel) return
-          const embed = new MessageEmbed()
-            .setAuthor({
- name:             `${interaction.guild.name} Modlogs`,
-iconURL:              interaction.guild.iconURL()
-                       })
-            .setColor(bot.color)
-            .setFooter({text: interaction.guild.name, iconURL: interaction.guild.iconURL()})
-            .addField('**Moderation**', 'ban')
-            .addField('**ID**', `${target}`)
-            .addField('**Banned By**', interaction.user.username.toString())
-            .addField('**Reason**', `${reason || '**No Reason**'}`)
-            .addField('**Date**', interaction.createdAt.toString())
-            .setTimestamp()
+await bot.modlog({ Member: target, 
+                  Action: "hack ban", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)
 
-          var sChannel = interaction.guild.channels.cache.get(channel)
-          if (!sChannel) return;
-          sChannel.send({ embeds: [embed] })
-        }
     }
 
     if (sub === 'remove') {
@@ -311,9 +271,8 @@ iconURL:              interaction.guild.iconURL()
 
         bot.users.fetch(userId).then(async (user) => {
           await interaction.guild.members.unban(user.id).catch(() => {
-            return interaction.editReply({
-              content: `${bot.crosss} • User is Not Banned`
-            })
+        return interaction.editReply(`${bot.error} • **User is Not Banned**`
+            )
           })
           const ban = new MessageEmbed()
             .setColor(bot.color)
@@ -334,11 +293,13 @@ iconURL:              interaction.guild.iconURL()
              name: interaction.user.username,
  iconURL:             interaction.user.avatarURL({ dynamic: true })
             })
-                       await interaction.editReply({ embeds: [ban] }).catch(() => {
-            return interaction.editReply({
-              content: `${bot.crosss} • User is Not Banned`
-            })
-          })
+                       await interaction.editReply({ embeds: [ban] })
+
+await bot.modlog({ Member: target, 
+                  Action: "unban", 
+                  Reason: 'No reason supplied.'
+                 }, interaction)
+          
         })
     }
       } catch (e) {

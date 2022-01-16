@@ -32,7 +32,7 @@ module.exports = {
       options: [
         {
           name: "emote",
-          description: "enter a name to search emote",
+          description: `enter a name to search emote or \`all\` to get list of all emotes`,
           type: "STRING",
           required: true
         }
@@ -57,24 +57,24 @@ module.exports = {
         const emojis = args.join(' ').match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
 
         if (!emojis) {
-          return interaction
-            .editReply({
-              content: `${bot.error} • Enter A Valid Emoji in :emoji: form`
-            })
+        return await  bot.errorEmbed(bot, interaction, `**Enter A Valid Emoji in** \`:emoji:\` **form not** \`<:emojiname:emojiid>\``
+            )
             .then((msg) => {
          setTimeout(() => { 
         if(msg.deletable) msg.delete()
  }, bot.ms('30s'))
   });
-        } else if (emojis) {
+        } 
+
           if (emojis.length === 1) {
             const emote = interaction.options.getString('name')
 
             const emo = Util.parseEmoji(emote)
 
-            if (!emo.name || !emo.id)
-              return interaction.editReply(`${bot.error} Invalid emote argument`)
-
+            if (!emo.name || !emo.id) {
+        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`)
+            }
+            
             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
               emo.animated ? 'gif' : 'png'
               }`
@@ -109,25 +109,25 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
                 .setDisabled(true)
             )
 
-            interaction
+            await interaction
               .followUp({
                 embeds: [embed],
                 components: [row]
               }).catch(() => null)
-          } else if (emojis.length > 1) {
+    } else if (emojis.length > 1) {
             const emote = interaction.options.getString('name')
-
+            
             let pages = []
 
             emojis.forEach(emoji => {
               const emo = Util.parseEmoji(emoji)
 
-              if (!emo.name || !emo.id)
-                return interaction.editReply(
-                  `${bot.error} Invalid emote argument`
-                )
-
-              const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+       if (!emo.name || !emo.id) {
+                    return interaction.editReply({content:`${bot.error} • **Invalid emote argument**`
+                                                     })
+              }
+              
+             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
                 emo.animated ? 'gif' : 'png'
                 }`
 
@@ -143,8 +143,21 @@ iconURL:                  interaction.user.avatarURL({ dynamic: true })
               pages.push(embed)
             })
 
-          }
-        }
+        simplydjs.embedPages(bot, interaction, pages, {
+        firstEmoji: '884420649580363796',
+        backEmoji: '884421503205134356',
+        delEmoji: '891534962917007410',
+        forwardEmoji: '884421235965059113',
+        lastEmoji: '884420650549272586',
+        btncolor: 'SECONDARY',
+        delcolor: 'SECONDARY',
+        skipcolor: 'SECONDARY',
+        skipBtn: true,
+        pgCount: true
+      })
+            
+          } else return interaction.editReply({content: `${bot.error} **• An error occured**`})
+        
       }
       if (sub === "find") {
 
@@ -153,11 +166,11 @@ iconURL:                  interaction.user.avatarURL({ dynamic: true })
      if (name.toLowerCase() === "all") {
         let emojis = []
         let pages = []
-               const emos = await bot.emojis.cache.forEach(emo => {
+               const emos = bot.emojis.cache.forEach(async (emo) => {
 
             if (!emo.name || !emo.id)
-  {             return interaction.editReply(
-                `${bot.error} Invalid emote argument`
+  {                     
+    return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
               )
 
 
@@ -176,6 +189,7 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
 
             pages.push(embed)
           })
+       
         simplydjs.embedPages(bot, interaction, pages, {
         firstEmoji: '884420649580363796',
         backEmoji: '884421503205134356',
@@ -188,6 +202,7 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
         skipBtn: true,
         pgCount: true
       })
+       
             } else {
 
         let emojis = []
@@ -198,13 +213,13 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
 
           let pages = []
 
-          emojis.forEach(emo => {
+          emojis.forEach(async (emo) => {
 
-            if (!emo.name || !emo.id)
-              return interaction.editReply(
-                `${bot.error} Invalid emote argument`
+            if (!emo.name || !emo.id) {
+        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
               )
-
+            }
+            
             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
               emo.animated ? 'gif' : 'png'
               }`
@@ -220,6 +235,7 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
 
             pages.push(embed)
           })
+          
         simplydjs.embedPages(bot, interaction, pages, {
         firstEmoji: '884420649580363796',
         backEmoji: '884421503205134356',
@@ -232,10 +248,11 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
         skipBtn: true,
         pgCount: true
       })
+          
         } else if (emojis.length === 1) {
           const emo = emojis[0]   
   if (!emo.name || !emo.id) {
-            return interaction.editReply(`${bot.error} Invalid emote argumentt`)
+        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`)
   }    
           const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
             emo.animated ? 'gif' : 'png'
@@ -248,7 +265,7 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
           let embed = new MessageEmbed()
             .setColor(bot.color)
             .setAuthor({
-              name: 'Enlarged Emoji',
+              name: 'Comfi™ Emojis',
 iconURL:              interaction.user.avatarURL({ dynamic: true })
         })
             .setImage(`${img}`)
@@ -271,16 +288,13 @@ iconURL:              interaction.user.avatarURL({ dynamic: true })
               .setDisabled(true)
           )
 
-          interaction
+          await interaction
             .followUp({
               embeds: [embed],
               components: [row]
             }).catch(() => null)
-        } else return interaction
-            .editReply({
-              content: `${bot.error} **• Emoji not found !!**`
-            })
-            .then((msg) => {
+        } else  return await  bot.errorEmbed(bot, interaction, ` **• Emoji not found !!**`
+            ).then((msg) => {
   setTimeout(() => { if(msg.deletable) msg.delete() }, bot.ms('30s'))
   });
       }

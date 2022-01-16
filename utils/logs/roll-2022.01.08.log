@@ -1,0 +1,110 @@
+09:14:08.367 ERROR /home/runner/Comfi-beta/commands/mod/ban.js:229
+              await interaction.channel.send({
+              ^^^^^
+
+SyntaxError: await is only valid in async functions and the top level bodies of modules
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:17:16
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:16:16) 
+09:14:09.246 INFO  Mongodb connected! 
+09:14:10.386 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"31","Discord.js:":"v13.5.0","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"47.20 MB / 119.31 MB"} 
+09:14:10.390 INFO  ------------------------------------- 
+09:14:10.399 INFO  Your app is listening a http://localhost:8080 
+09:14:56.505 INFO  Loaded Guild commands... 
+09:14:56.849 INFO  Mongodb connected! 
+09:14:57.696 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.0","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"52.76 MB / 125.15 MB"} 
+09:14:57.709 INFO  ------------------------------------- 
+09:14:57.731 INFO  Your app is listening a http://localhost:8080 
+10:28:35.362 INFO  Loaded Guild commands... 
+10:28:35.580 INFO  Mongodb connected! 
+10:28:37.070 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"48.98 MB / 123.48 MB"} 
+10:28:37.074 INFO  ------------------------------------- 
+10:28:37.080 INFO  Your app is listening a http://localhost:8080 
+10:42:03.395 ERROR /home/runner/Comfi-beta/events/client/ready.js:68
+  const guild = await guilds.findOne({        guildId: guild?.id})
+        ^
+
+SyntaxError: Identifier 'guild' has already been declared
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:9:26
+    at Array.map (<anonymous>) 
+10:42:04.325 INFO  Mongodb connected! 
+10:43:00.073 ERROR Error: Cannot find module '../models/guilds'
+Require stack:
+- /home/runner/Comfi-beta/events/client/ready.js
+- /home/runner/Comfi-beta/handler/index.js
+- /home/runner/Comfi-beta/utils/Comfi.js
+- /home/runner/Comfi-beta/index.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/home/runner/Comfi-beta/events/client/ready.js:7:16)
+    at Module._compile (node:internal/modules/cjs/loader:1097:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19) 
+10:43:00.854 INFO  Mongodb connected! 
+10:43:21.268 ERROR Error: Cannot find module '../../models/guilds'
+Require stack:
+- /home/runner/Comfi-beta/events/client/ready.js
+- /home/runner/Comfi-beta/handler/index.js
+- /home/runner/Comfi-beta/utils/Comfi.js
+- /home/runner/Comfi-beta/index.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/home/runner/Comfi-beta/events/client/ready.js:7:16)
+    at Module._compile (node:internal/modules/cjs/loader:1097:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19) 
+10:43:22.259 INFO  Mongodb connected! 
+10:43:53.327 INFO  Loaded Guild commands... 
+10:43:53.770 INFO  Mongodb connected! 
+10:43:54.668 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"51.25 MB / 124.50 MB"} 
+10:43:54.671 INFO  ------------------------------------- 
+10:43:54.676 INFO  Your app is listening a http://localhost:8080 
+10:45:36.918 INFO  Loaded Guild commands... 
+10:45:37.228 INFO  Mongodb connected! 
+10:45:38.194 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"51.40 MB / 125.17 MB"} 
+10:45:38.197 INFO  ------------------------------------- 
+10:45:38.203 INFO  Your app is listening a http://localhost:8080 
+10:45:49.601 INFO  Loaded Guild commands... 
+10:45:50.027 INFO  Mongodb connected! 
+10:45:50.888 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"53.06 MB / 125.74 MB"} 
+10:45:50.892 INFO  ------------------------------------- 
+10:45:50.898 INFO  Your app is listening a http://localhost:8080 
+10:51:00.136 INFO  Loaded Guild commands... 
+10:51:00.499 INFO  Mongodb connected! 
+10:51:01.370 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"52.40 MB / 125.13 MB"} 
+10:51:01.374 INFO  ------------------------------------- 
+10:51:01.380 INFO  Your app is listening a http://localhost:8080 
+11:02:12.983 INFO  Loaded Guild commands... 
+11:02:13.610 INFO  Mongodb connected! 
+11:02:14.525 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"51.21 MB / 125.33 MB"} 
+11:02:14.528 INFO  ------------------------------------- 
+11:02:14.535 INFO  Your app is listening a http://localhost:8080 
+17:46:00.048 INFO  Loaded Guild commands... 
+17:46:00.979 INFO  Mongodb connected! 
+17:46:02.152 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.5.1","Node.js:":"v17.3.0","Plattform:":"linux x64","Memory:":"50.90 MB / 123.77 MB"} 
+17:46:02.157 INFO  ------------------------------------- 
+17:46:02.183 INFO  Your app is listening a http://localhost:8080 

@@ -1,7 +1,8 @@
 const Discord = require('discord.js'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk'),
-	fs = require('fs')
+	fs = require('fs'),
+  guilds = require('../models/guild')
 
 class Comfi extends Discord.Client {
 	constructor() {
@@ -226,7 +227,61 @@ class Comfi extends Discord.Client {
 
     return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true });
 }
+  
+	/**
+	 * @param {Member} - Guild Member
+   * @param {string} Action - the mod action
+   * @param {tring
+} eason - the reason
+   * @param {Discord.CommandInteraction} interaction - Interaction
+  */
+  async modlog({ Member, Action, Reason, Mod}, interaction) {
+   const data = await guilds.findOne({ guildId: interaction.guild.id }); 
+   if(!data.modlog) return;
+  
+   const channel = interaction.guild.channels.cache.get(data.mod_channel);
 
+   const logsembed = new Discord.MessageEmbed()
+   .setColor(this.color)
+   .addFields({
+     name: "**Modlogs**",
+     value: `${Action ? (Action + "ed") : "Not Found"}`,
+     inline: true
+   },
+   {
+     name: `**${Action ? (Action.toUpperCase() + "ED") : "Not Found"}**`,
+     value: `${Member.user ? Member.user.username : "Not Found"}`,
+     inline: true
+   },
+{
+     name: "**ID**",
+     value: `${Member ? Member.id : "Not Found"}`,
+     inline: true
+   },
+  {
+     name: `**${Action.toUpperCase()}ED by: **`,
+     value: `${interaction.user ? interaction.user.username : "Not Found"}`,
+     inline: true
+   },
+  {
+     name: "**Reason**",
+     value: `${Reason ? Reason : "No Reason Provided"}`,
+     inline: true
+   },
+  {
+     name: "**Date**",
+     value: `${interaction.createdAt ? interaction.createdAt.toDateString() : "Not Available"}`,
+     inline: true
+   })
+   .setThumbnail(Member.displayAvatarURL({dynamic: true}))
+   .setAuthor({name: `${interaction.guild?.name} • Modlogs`, iconURL: `${interaction.guild.iconURL() ? interaction.guild.iconURL() : this.user.displayAvatarURL({dynamic: 
+true })}`})
+   .setTimestamp()
+   .setFooter({text: "Comfi™ Modlogs"});
+
+if (channel) channel.send({ embeds: [logsembed] });
+ }
+      
 dbs(s) {
 		mongoose
 			.connect(

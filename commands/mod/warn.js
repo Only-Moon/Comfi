@@ -55,10 +55,16 @@ module.exports = {
 						},
 						{
 							name: 'user',
-							description: 'Provide a user to remove the warned user!',
+							description: 'Provide a user to remove the warning!',
 							type: 'USER',
 							required: true,
 						},
+						{
+							name: 'reason',
+							description: 'Provide a us reason!',
+							type: 'STRING',
+							required: false,
+						}
 					],
 				},
 			],
@@ -68,6 +74,7 @@ run: async (bot, interaction, args) => {
 
 		const user = interaction.options.getUser('user');
 		const getWarnId = interaction.options.getString('warnid');
+  const reason = interaction.options.getString("reason")
 try {
 		switch (subCommandName) {
 			case 'add':
@@ -112,6 +119,10 @@ let warn = new MessageEmbed()
             await interaction.editReply({embeds: [ warnEmbed ]}).then((msg) => {
   setTimeout(() => { if(msg.deletable) msg.delete() }, bot.ms('30s'))
   });
+await bot.modlog({ Member: user.member, 
+                  Action: "warn", 
+                  Reason: getReason.length < 1 ? 'No reason supplied.' : getReason
+                 }, interaction)        
 				break;
 
 			case 'list':
@@ -178,7 +189,11 @@ let warnEmbed = new MessageEmbed()
             .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
            .setColor(bot.color)
       await interaction.editReply({embeds: [ warnEmbed ]})
-          } else {
+await bot.modlog({ Member: getRemovedWarnedUser, 
+                  Action: "warn remov", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason,
+                  Mod: warnedRemoveData.authorId ? warnedRemoveData.authorId : "Not Found"
+                 }, interaction)          } else {
 					await interaction.editReply({
 						content: `${bot.error} That is not a valid Warn ID!`,
 						ephemeral: true,

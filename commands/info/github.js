@@ -22,9 +22,9 @@ module.exports = {
      */
     run: async (bot, interaction, args) => {
     
-        const name = args.join(' ');
+        const name = interaction.options.getString("username");
 		if (!name) {
-			return interaction.editReply(`🚫 Please provide a valid user`);
+			return interaction.editReply(`${bot.error} • Please provide a valid user`);
 		}
 
 		const url = `https://api.github.com/users/${name}`;
@@ -56,7 +56,7 @@ module.exports = {
 				.setThumbnail(response.avatar_url)
         		.setTimestamp();
 
-			interaction.editReply({embeds: [ embed ]});
+			await interaction.editReply({embeds: [ embed ]});
 		} catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

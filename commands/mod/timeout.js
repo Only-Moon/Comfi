@@ -138,33 +138,10 @@ module.exports = {
             .setColor(bot.color)
           await interaction.editReply({ embeds: [embed2] })
 
-          if (!guild.modlog) return;
-
-          if (guild.modlog) {
-            let channel = interaction.guild.channels.cache.find(
-              c => c.id === guild.mod_channel
-            )
-            if (!channel) return
-
-            let embeds1 = new MessageEmbed()
-              .setColor(bot.color)
-              .setThumbnail(interaction.user.avatarURL({ dynamic: true }))
-              .setAuthor(
-                `${interaction.guild.name} Modlogs`,
-                interaction.guild.iconURL()
-              )
-              .addField('**Moderation**', 'Timeout')
-              .addField('**Member**', member.user.username.toString())
-              .addField('**Moderator**', interaction.user.username)
-              .addField('**Reason**', `${reason || '**No Reason**'}`)
-              .addField('**Date**', interaction.createdAt.toLocaleString())
-              .setFooter(interaction.guild.name, interaction.guild.iconURL())
-              .setTimestamp();
-
-            var sChannel = interaction.guild.channels.cache.get(channel)
-            if (!sChannel) return;
-            sChannel.send({ embeds: [embeds1] })
-          }
+await bot.modlog({ Member: member, 
+                  Action: "timeout", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)
         }
       }
 
@@ -199,32 +176,10 @@ module.exports = {
             .setColor(bot.color);
           await interaction.editReply({ embeds: [embed] })
 
-          if (!guild.modlog) return;
-
-          if (guild.modlog) {
-            let channel = interaction.guild.channels.cache.find(
-              c => c.id === guild.mod_channel
-            )
-            if (!channel) return
-
-            let embeds1 = new MessageEmbed()
-              .setColor(bot.color)
-              .setThumbnail(member.user.avatarURL({ dynamic: true }))
-              .setAuthor(
-                `${interaction.guild.name} Modlogs`,
-                interaction.guild.iconURL()
-              )
-              .addField('**Moderation**', 'timeout - remove')
-              .addField('**Unmuted**', member.user.username.toString())
-              .addField('**Moderator**', interaction.user.username)
-              .addField('**Date**', interaction.createdAt.toString())
-              .setFooter(interaction.guild.name, interaction.guild.iconURL())
-              .setTimestamp()
-
-            sChannel = interaction.guild.channels.cache.get(channel)
-            if (!sChannel) return
-            sChannel.send({ embeds: [embeds1] })
-          }
+await bot.modlog({ Member: member, 
+                  Action: "timeout remov", 
+                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
+                 }, interaction)
         }
       }
     } catch (e) {
