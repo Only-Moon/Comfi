@@ -3,9 +3,9 @@ const moment = require('moment')
 require('moment-duration-format')
 
 module.exports = {
-	name: 'UserInfo',
-  description: "get user's info using context menu",
+	name: 'userinfo',
 	type: 'USER',
+  description: "get user's info using context menu",
 	/**
 	 *
 	 * @param {ContextMenuInteraction} interaction

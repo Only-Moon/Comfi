@@ -173,3 +173,17 @@ SyntaxError: await is only valid in async functions and the top level bodies of 
 14:53:48.962 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.17 MB / 125.26 MB"} 
 14:53:48.967 INFO  ------------------------------------- 
 14:53:48.973 INFO  Your app is listening a http://localhost:8080 
+15:10:40.469 INFO  Loaded Guild commands... 
+15:10:40.591 INFO  Mongodb connected! 
+15:10:41.492 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"52.01 MB / 126.39 MB"} 
+15:10:41.496 INFO  ------------------------------------- 
+15:11:45.208 INFO  Loaded Guild commands... 
+15:11:45.518 INFO  Mongodb connected! 
+15:11:46.473 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"53.29 MB / 125.29 MB"} 
+15:11:46.477 INFO  ------------------------------------- 
+15:11:46.485 INFO  Listening on port http://localhost:8080 
+15:13:14.481 INFO  Loaded Guild commands... 
+15:13:14.595 INFO  Mongodb connected! 
+15:13:15.715 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.92 MB / 126.09 MB"} 
+15:13:15.719 INFO  ------------------------------------- 
+15:13:15.729 INFO  Listening on port http://localhost:8080 
