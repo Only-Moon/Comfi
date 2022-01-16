@@ -698,7 +698,7 @@ module.exports = {
 		collector.on("collect", async (int) => {
 
 			if (int.customId === "banner") {
-				int.deferUpdate()
+				await int.deferUpdate()
 				axios.get(`https://discord.com/api/users/${member ? member.id : user.id}`, {
 						headers: {
 							Authorization: `Bot ${bot.token}`
@@ -735,7 +735,7 @@ if (accent_color) {
 
 								await int.followUp({ embeds: [embed], ephemeral:true })
 							} else {
-							        return await  int.followUp({content: `**${
+							        await  int.followUp({content: `**${
 										member ? member .user.tag : user.tag
 									}** does not have a banner, nor an accent color.`,
             ephemeral: true

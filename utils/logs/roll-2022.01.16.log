@@ -163,3 +163,13 @@ SyntaxError: await is only valid in async functions and the top level bodies of 
 12:59:50.318 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"53.60 MB / 126.07 MB"} 
 12:59:50.321 INFO  ------------------------------------- 
 12:59:50.328 INFO  Your app is listening a http://localhost:8080 
+13:02:38.113 INFO  Loaded Guild commands... 
+13:02:38.427 INFO  Mongodb connected! 
+13:02:39.955 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.47 MB / 124.82 MB"} 
+13:02:39.969 INFO  ------------------------------------- 
+13:02:39.990 INFO  Your app is listening a http://localhost:8080 
+14:53:46.763 INFO  Loaded Guild commands... 
+14:53:47.071 INFO  Mongodb connected! 
+14:53:48.962 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"89","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.17 MB / 125.26 MB"} 
+14:53:48.967 INFO  ------------------------------------- 
+14:53:48.973 INFO  Your app is listening a http://localhost:8080 
