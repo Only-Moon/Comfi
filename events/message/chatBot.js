@@ -88,7 +88,7 @@ bot.on('messageCreate', async message => {
 				} else console.log(`Error Occured. | chatbot | Error: ${err.stack}`)
 			}
 		} else return;
-	} else if (!guild.chatbot && message.channel.id === guild.chat_channel) {
+	} else if (!guild.chatbot && message.channel?.id === guild.chat_channel) {
 		return (
 			message.delete(),
 			message.author.send({ embeds: [disabled] }).catch(() => null)

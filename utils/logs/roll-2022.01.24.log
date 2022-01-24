@@ -1,0 +1,10 @@
+10:23:00.598 INFO  Loaded Guild commands... 
+10:23:00.888 INFO  Mongodb connected! 
+10:23:01.878 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"88","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.28 MB / 125.48 MB"} 
+10:23:01.881 INFO  ------------------------------------- 
+10:23:01.887 INFO  Listening on port http://localhost:8080 
+10:23:22.134 INFO  Loaded Guild commands... 
+10:23:22.257 INFO  Mongodb connected! 
+10:23:23.120 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"88","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"51.67 MB / 124.70 MB"} 
+10:23:23.123 INFO  ------------------------------------- 
+10:23:23.129 INFO  Listening on port http://localhost:8080 

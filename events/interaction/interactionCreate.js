@@ -49,9 +49,8 @@ bot.on('interactionCreate', async (interaction, args) => {
 
     if (cmd.ownerOnly) {
       if (!owners.includes(interaction.user.id))
-        return interaction.editReply({
-          content: `${bot.error} You are not Authorized to use this Command`
-        })
+                return await  bot.errorEmbed(bot, interaction, `**You are not Authorized to use this Command !!**`
+        )
     }
 
     const userp = new MessageEmbed()
@@ -110,13 +109,21 @@ bot.on('interactionCreate', async (interaction, args) => {
       });;
     }
 
-    if (!interaction.channel.viewable) {
+  if(clientSchema.blackListedCmds.includes(cmd.name) && !owners.includes(interaction.user.id)) { 
+        return await  bot.errorEmbed(bot, interaction, `**This command has been disabled by the developer !**`) 
+  } 
+
+if (cmd.nsfw && !interaction.channel.nsfw) {
+
+        return await  bot.errorEmbed(bot, interaction, `**Nsfw Command can't be used in an Non-NSFW Channel**`)
+
+}
+    
+ if (!interaction.channel.viewable) {
 
       const channel = new MessageEmbed()
         .setDescription(
-          `${bot.error} This guild is blacklisted from using <@${
-          bot.user.id
-          }>'s commands`
+          `${bot.error} • I can't see this channel`
         )
         .setColor('#FC7C7C')
 
@@ -157,18 +164,19 @@ bot.on('interactionCreate', async (interaction, args) => {
 
     const user = await users.findOne({ userId: interaction.user.id })
     if (!user) {
-      await guilds.create({ userId: interaction.user.id })
+      await users.create({ userId: interaction.user.id })
     }
 
-    const logsChannel = bot.channels.cache.get(
-      '890580695192305696' || '782566659088842762'
-    )
+const c1 = bot.channels.cache.get('890580695192305696')
+const c2 = bot.channels.cache.get('932596444278423563');
+
+    const logsChannel = c1 ? c1 : c2;
 
     const logsEmbed = new MessageEmbed()
       .setDescription(
         ` > <a:tick:890113862706266112> • __Command:__ **${
         cmd.name
-        }**!\n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
+        }**!\n\n > <a:tick:890113862706266112> • __Args :__ **${args ? args : "Not Found"}** \n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
         interaction.guild ? interaction.guild.name : 'dm'
         }**\n > <a:emoji_87:883033003574579260> • __Id:__ **${
         interaction.guild ? interaction.guild.id : 'dm'

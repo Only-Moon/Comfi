@@ -169,24 +169,14 @@ module.exports = {
 				let embed = new MessageEmbed()
 					.setColor(bot.color)
 					.setAuthor({
-						name: `${bot.user.username}™ v${version}`,
+						name: `${bot.user.username}™ Information`,
 						iconURL: bot.user.displayAvatarURL({ dynamic: true })
                      })
 					.setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-					.addField('❯ Uptime :', `${(await bot.msToTime(bot.uptime))}`, true)
-					.addField('❯ WS Ping:', `${bot.ws.ping}ms`, true)
+					.addField('↠ Made with love by', '꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817', true)
+					.addField('↠ You can find me on', `${bot.guilds.cache.size} guilds`, true)
 					.addField(
-						'❯ Memory:',
-						`${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB RSS\n${(
-							process.memoryUsage().heapUsed /
-							1024 /
-							1024
-						).toFixed(2)} MB Heap`,
-						true
-					)
-					.addField('❯ Guild Count:', `${bot.guilds.cache.size} guilds`, true)
-					.addField(
-						`❯ User Count:`,
+						`↠ I am watching over`,
 						`${bot.guilds.cache.reduce(
 							(users, value) => users + value.memberCount,
 							0
@@ -194,25 +184,12 @@ module.exports = {
 						true
 					)
 					.addField(
-						'❯ Slash Commands:',
-						`${bot.slashCommands.size} Commands`,
+						'↠ I have a total of',
+						`${bot.slashCommands.size} commands`,
 						true
 					)
-					.addField(
-						'❯ Node:',
-						`${process.version} on ${process.platform} ${process.arch}`,
-						true
-					)
-					.addField('❯ Discord.js:', `v${discordjsVersion}`, true)
-					.addField(
-						'❯ Made by:',
-						`Github • [Xx-Mohit-xX](https://github.com/Xx-Mohit-xX) \nDiscord • [꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817](https://discord.com/users/753974636508741673)`,
-						true
-					) //\n [Vlad44](https://github.com/xVlad44), [xxDeveloper](https://github.com/Murtatrxx) (Web)', true)
-					.setFooter({ text: `Requested By ${interaction.member.displayName}`})
-					.setTimestamp()
-
-				interaction.followUp({ embeds: [embed] })
+         // .addField('↠ Please Consider donating', 'to support comfi development and hosting', true);         
+				await interaction.followUp({ embeds: [embed] })
 			}
 
 			if (subcommand === 'channel') {
@@ -223,24 +200,24 @@ module.exports = {
   const rte = secondsToHms(channel.rateLimitPerUser)
 
 				let embed = new MessageEmbed()
-					.setTitle(`Channel Information for **${channel.name}**`)
+					.setTitle(`✧ Channel Information for **${channel.name}**`)
 					.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-					.addField('**Name**', ` \`\`\`\ ${channel.name} \`\`\`\ `, true)
-					.addField('**Parent**', ` \`\`\`\ ${channel.parent ? channel.parent.name : "Parent Not Found"} \`\`\`\ `, true)
-					.addField('**NSFW**', ` \`\`\`\ ${channel.nsfw} \`\`\`\ `, true)
-					.addField('**Channel ID**', ` \`\`\`\ ${channel.id} \`\`\`\ `)
-					.addField('**Channel Type**', ` \`\`\`\ ${channel.type} \`\`\`\ `)
+					.addField('↦ **Name**', ` \`\`\`\ ${channel.name} \`\`\`\ `, true)
+					.addField('↦ **Parent**', ` \`\`\`\ ${channel.parent ? channel.parent.name : "Parent Not Found"} \`\`\`\ `, true)
+					.addField('↦ **NSFW**', ` \`\`\`\ ${channel.nsfw} \`\`\`\ `, true)
+					.addField('↦ **Channel ID**', ` \`\`\`\ ${channel.id} \`\`\`\ `)
+					.addField('↦ **Channel Type**', ` \`\`\`\ ${channel.type} \`\`\`\ `)
 					.addField(
-						'**Channel Threads**',
+						'↦ **Channel Threads**',
 						` \`\`\`\ ${channel.threads ? channel.threads.cache.size.toString() : 'No Threads'} \`\`\`\ `
 		)					
-					.addField('**Slowmode**', ` \`\`\`\ ${rte} \`\`\`\ `, true)
+					.addField('↦ **Slowmode**', ` \`\`\`\ ${rte} \`\`\`\ `, true)
 					.addField(
-						'**Channel Description**',
+						'↦ **Channel Description**',
 						` \`\`\`\ ${channel.topic || 'No Description'} \`\`\`\ `
 					)
 					.addField(
-						'**Channel Created At**',
+						'↦ **Channel Created At**',
 						` \`\`\`\ ${channel.createdAt} \`\`\`\ `
 					)
 					.setColor(bot.color)
@@ -257,7 +234,7 @@ module.exports = {
   interaction.guild.iconURL()
 )
 					.setDescription(
-						`<a:stars_aesthetic:883033007836000308> Bot Count: ${member.filter(a => a.user.bot).size		}\n<a:stars_aesthetic:883033007836000308> Human Count: ${member.filter(a => !a.user.bot).size.toString()} \n<a:stars_aesthetic:883033007836000308> Total Member Count: ${interaction.guild.memberCount}`
+						`✗Bot Count: ${member.filter(a => a.user.bot).size		}\n✗Human Count: ${member.filter(a => !a.user.bot).size.toString()} \n✗Total Member Count: ${interaction.guild.memberCount}`
 					);
 
 			await	interaction.followUp({ embeds: [embed] })
@@ -285,27 +262,27 @@ module.exports = {
 					.setTimestamp()
 					.addFields(
 						{
-							name: '__Name:__',
+							name: '↝__Name:__',
 							value: `\`\`\`\n${stickeName}\n\`\`\``,
 							inline: true
 						},
 						{
-							name: '__ID:__',
+							name: '↝__ID:__',
 							value: `\`\`\`\n${stickerID}\n\`\`\``,
 							inline: true
 						},
 						{
-							name: '__Created At:__',
+							name: '↝__Created At:__',
 							value: `\`\`\`\n${sticker.createdAt}\n\`\`\``,
 							inline: false
 						},
 						{
-							name: '__URL:__',
+							name: '↝__URL:__',
 							value: `[Click Here](${sticker.url})`,
 							inline: true
 						},
 						{
-							name: '__Format:__',
+							name: '↝__Format:__',
 							value: `\`\`\`\n${sticker.format}\n\`\`\``,
 							inline: true
 						}
@@ -331,30 +308,30 @@ module.exports = {
 					.setThumbnail(`https://singlecolorimage.com/get/${hex}/400x400`)
 					.addFields(
 						{
-							name: 'Mention & ID',
-							value: `${role}\n》 \`${role.id}\``
+							name: '↝Mention & ID',
+							value: `${role} • \`${role.id}\``
 						},
 						{
-							name: 'Name',
+							name: '↝Name',
 							value: role.name,
 							inline: true
 						},
 						{
-							name: 'Color',
+							name: '↝Color',
 							value: `${role.hexColor}`,
 							inline: true
 						},
 						{
-							name: 'Position',
+							name: '↝Position',
 							value: `${role.position}`
 						},
 						{
-							name: `Hoisted`,
+							name: `↝Hoisted`,
 							value: `${ishoist}`,
 							inline: true
 						},
 						{
-							name: 'Mentionable',
+							name: '↝Mentionable',
 							value: `${role.mentionable}`,
 							inline: true
 						}
@@ -376,108 +353,108 @@ module.exports = {
 					.setColor(bot.color)
 					.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
 					.addField(
-						`<a:wing:883032991293653062> Name of server:`,
+						`↣ Name of server:`,
 						interaction.guild.name,
 						true
 					)
 					.addField(
-						`<a:emoji_87:883033003574579260> ID of server`,
+						`↣ ID of server`,
 						interaction.guild.id,
 						true
 					)
 					.addField(
-						'<a:778519044226809868:883017858446135307> Owner ID:',
+						'↣ Owner ID:',
 						`${(await interaction.guild.fetchOwner()).id}`,
 						true
 					)
 					.addField(
-						`<a:owner:890114196308631602> Owner Name:`,
+						`↣ Owner Name:`,
 						`${(await interaction.guild.fetchOwner()).user}`,
 						true
 					)
 					.addField(
-						`<:768584793691783179:883017859444379648> No. of Members`,
+						`↣ No. of Members`,
 		 members
             .filter(member => !member.user.bot)
             .size.toString(),
 						true
 					)
 					.addField(
-						`<a:776973591891017749:883017868944502804> No. of Bots:`,
+						`↣ No. of Bots:`,
 						members
 							.filter(member => member.user.bot)
 							.size.toString(),
 						true
 					)
 					.addField(
-						`<:zz_heart_retsu_f2u:883032970468933633> Non - Animated Emojis:`,
+						`↣ Non - Animated Emojis:`,
 						interaction.guild.emojis.cache
             .filter(emoji => !emoji.animated)
             .size.toString(),
 						true
 					)
 					.addField(
-						`<a:zzzghostheart:883017884014637066> Animated Emoji\'s:`,
+						`↣ Animated Emoji\'s:`,
 						interaction.guild.emojis.cache
 							.filter(emoji => emoji.animated)
 							.size.toString(),
 						true
 					)
 					.addField(
-						`<:textchannel:890106455284392026> # of Text Channel\'s:`,
+						`↣ # of Text Channel\'s:`,
 						interaction.guild.channels.cache
 							.filter(channel => channel.isText())
 							.size.toString(),
 						true
 					)
 					.addField(
-						`<:thread:890106257350983730> # of Thread\'s:`,
+						`↣ # of Thread\'s:`,
 						interaction.guild.channels.cache
 							.filter(channel => channel.isThread())
 							.size.toString(),
 						true
 					)
 					.addField(
-						`<:voice:890106643449274398> # of Voice Channel\'s:`,
+						`↣ # of Voice Channel\'s:`,
 						interaction.guild.channels.cache
 							.filter(channel => channel.isVoice())
 							.size.toString(),
 						true
 					)
 					.addField(
-						`<:Role:890114731149508618> Total Amount of Roles:`,
+						`↣ Total Amount of Roles:`,
 						interaction.guild.roles.cache.size.toString(),
 						true
 					)
 					.addField(
-						`<a:839921866738106390:883017898984103986> Created at`,
+						`↣ Created at`,
 						`${moment(interaction.guild.createdTimestamp).format(
 							'LLL'
 						)} | \`${moment(interaction.guild.createdTimestamp).fromNow()}\``,
 						true
 					)
 					.addField(
-						`<a:link:888754659639042068> Vanity Link`,
+						`↣ Vanity Link`,
 						`${vanityInvite}`,
 						true
 					)
 					.addField(
-						`<a:boost:888752346501382144> Boost Level`,
+						`↣ Boost Level`,
 						interaction.guild.premiumTier.toString(),
 						true
 					)
 					.addField(
-						`<:booster_bun_HE:815802504829730827> Total Boosts`,
+						`↣ Total Boosts`,
 						interaction.guild.premiumSubscriptionCount.toString(),
 						true
 					)
 					.addField(
-						`<a:754784872265941032:883033006145691678> Verification Level`,
+						`↣ Verification Level`,
 						interaction.guild.verificationLevel.toString(),
 						true
 					)
 					.addField(
-						`<a:amt_shootingstaws:883017879065354290> Roles [${roles.length}]`,
+						`↣ Roles [${roles.length}]`,
 						roles.length < 15
 							? roles.join(' | ')
 							: roles.length > 15

@@ -37,7 +37,8 @@ module.exports = {
 				ch => ch.type !== 'GUILD_CATEGORY'
 			)
 			if (arg === 'true') {
-				channels.forEach(async channel => {
+      setTimeout(async () => {
+				channels.forEach(async (channel) => {
 					await channel.permissionOverwrites
 						.create(interaction.guild.roles.everyone, {
 							SEND_MESSAGES: false
@@ -56,8 +57,10 @@ iconURL:						interaction.guild.iconURL()
 					.setDescription(`**\n\n${bot.tick} • Done! Server Fully Locked! 🔒**`)
 					.setColor(bot.color)
 				return await interaction.editReply({ embeds: [lockEmbed] })
-			} else if (arg === 'false') {
-				channels.forEach(async channel => {
+}, 20000)			
+      } else if (arg === 'false') {
+
+        setTimeout(async () => {				channels.forEach(async channel => {
 					await channel.permissionOverwrites.create(
 						interaction.guild.roles.everyone,
 						{
@@ -76,7 +79,8 @@ iconURL:						interaction.guild.iconURL()
 						`**\n\n${bot.tick} • Done! Server Fully Unlocked! 🔓**`
 					)
 				return interaction.editReply({ embeds: [lockEmbed2] })
-			}
+	        }, 20000)		
+      }
 		} catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

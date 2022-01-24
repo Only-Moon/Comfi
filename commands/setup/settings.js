@@ -548,7 +548,6 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
         logging,
         membercount,
         modlog,
-        mute,
         suggest,
         verification,
         welcome

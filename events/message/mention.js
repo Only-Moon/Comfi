@@ -12,17 +12,17 @@ bot.on('messageCreate', async message => {
 		bot.slashCommands.each(c => totalCommands++)
 		const ping = new MessageEmbed()
 			.setDescription(
-				` > <a:tick:890113862706266112> • **Hello I'm ${
+				` > ɛiɜ • **Hello I'm ${
 					bot.user.username
-				}**!\n\n > <a:emoji_87:883033003574579260> • You can see all my commands by running \`/help\`!\n > <a:emoji_87:883033003574579260> • I have a total of **${
+				}**!\n\n > ↛ • You can see all my commands by running \`/helpp\`!\n > ↛ • I have a total of **${
 					bot.guilds.cache.size
-				}** servers and **${
+				}** servers, **${
 					bot.users.cache.size
-				}** users!\n > <a:emoji_87:883033003574579260> • ${totalCommands} commands!`
+				}** users, ${bot.emojis.cache.size} emojis and ${totalCommands} commands !!`
 			)
 			.setThumbnail(`${message.author.displayAvatarURL({ dynamic: true })}`)
 			.setColor(bot.color)
-			.setFooter(`Requested by ${message.author.username}`)
+			.setFooter({text: `Requested by ${message.author.username}`})
 			.setTimestamp()
 
 		let sup = new MessageButton()

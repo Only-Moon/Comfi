@@ -17,7 +17,7 @@ module.exports = {
 			name: 'disable',
 			options: [
 				{
-					name: 'command-name',
+					name: 'name',
 					type: 'STRING',
 					description: 'command name to disable',
 					required: true
@@ -30,7 +30,7 @@ module.exports = {
 			name: 'enable',
 			options: [
 				{
-					name: 'command-name',
+					name: 'name',
 					type: 'STRING',
 					description: 'name of command to enable',
 					required: true
@@ -49,8 +49,9 @@ module.exports = {
 	run: async (bot, interaction, args) => {
 		const [choice] = args
 
-		const name = interaction.options.getString('command-name')
-
+		const name = interaction.options.getString('name')
+			const client = await clients.findOne({ clientId: bot.user.id })
+    
 		if (choice === 'disable') {
 			const validCommand = bot.slashCommands.find(
 				cmd => cmd.name.toLowerCase() === name.toLowerCase()
@@ -62,9 +63,7 @@ module.exports = {
 
 				return await interaction.editReply({ embeds: [embed] })
 			}
-
-			const client = await clients.findOne({ clientId: bot.user.id })
-			client.blackListedCmds.push([validCommand.name])
+			client.blackListedCmds.push(validCommand.name)
 			await client.save()
 
 			const embed = new MessageEmbed()
@@ -87,8 +86,7 @@ module.exports = {
 
 				return await interaction.editReply({ embeds: [embed] })
 			}
-			const clientschema = await clients.findOne({ clientId: bot.user.id })
-			if (!clientschema.blackListedCmds.includes(validCommand.name)) {
+			if (!client.blackListedCmds.includes(validCommand.name)) {
 				const embed = new MessageEmbed()
 					.setDescription(
 						` >  ${bot.crosss} • Please supply a valid disabled command!`
@@ -97,13 +95,16 @@ module.exports = {
 
 				return await interaction.editReply({ embeds: [embed] })
 			} else if (client.blackListedCmds.includes(validCommand.name)) {
-				const index = client.blackListedCmds.indexOf(validCommand)
+				await clients.findOneAndUpdate(
+          {
+            clientId: bot.user.id 
+          },
+          {
+            $pull: { blackListedCmds: validCommand.name }
+          }
+)
 
-				if (index > -1) {
-					client.blackListedCmds.splice(index, 1)
-				}
-				await client.save()
-
+      
 				const embed = new MessageEmbed()
 					.setDescription(
 						` >  ${bot.tick} • Command \`${
@@ -114,7 +115,6 @@ module.exports = {
 
 				return await interaction
 					.editReply({ embeds: [embed] })
-					.catch(() => null)
 			}
 		}
 	}

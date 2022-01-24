@@ -37,7 +37,7 @@ module.exports = {
 
 			var kickMember = interaction.guild.members.cache.get(args[0]) || user
 
-			const userRank = user.member.roles.highest.rawPosition
+			const userRank = kickMember.roles.highest.rawPosition
 			const memberRank = interaction.member.roles.highest.rawPosition
 
 			if (!kickMember)

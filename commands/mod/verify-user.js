@@ -28,9 +28,9 @@ module.exports = {
             await member.roles.add(guild.verification_role).catch((e) => {
         bot.sendhook(
           `Error Occured \n ${e.stack}`
-        ), {
+        , {
           channel: bot.err_chnl
-        } 
+        } )
         interaction.followUp({
           embeds: [
             {

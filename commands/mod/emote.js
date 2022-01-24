@@ -73,7 +73,7 @@ try {
 				maxLength = 500
 			}
 			if (interaction.guild.emojis.cache.size >= maxLength) {
-				interaction.editReply({
+		return await interaction.editReply({
 					content: `${bot.error} • **Guild at max emoji cap ~ ${
 						interaction.guild.emojis.cache.size
 					}/${maxLength}**`
