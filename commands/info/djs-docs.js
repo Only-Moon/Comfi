@@ -3,7 +3,7 @@ const axios = require('axios')
 module.exports = {
 	name: 'djsdocs',
 	description: 'Search Djs Docs',
-
+  directory: "info",
 	options: [
 		{
 			name: 'query',

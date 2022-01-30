@@ -10,6 +10,7 @@ module.exports = {
   name: 'imdb',
   description: 'Search anime, movie, game or series from imdb !!',
   ownerOnly: false,
+  directory: "info",
   options: [
     {
       type: 'STRING',

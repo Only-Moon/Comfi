@@ -18,6 +18,7 @@ module.exports = {
 	name: 'dropdownrole',
 	description: 'Dropdown Roles Setup',
 	ownerOnly: false,
+  directory: "role",
 	options: [
 		{
 			name: 'add',

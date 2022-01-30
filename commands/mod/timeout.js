@@ -5,6 +5,7 @@ const guilds = require('../../models/guild')
 module.exports = {
   name: 'timeoutt',
   description: 'Mute 2.0 aka timeout command',
+  directory: "mod",
   ownerOnly: false,
   options: [
     {

@@ -12,6 +12,7 @@ module.exports = {
       type: 'STRING'
     }
   ],
+  directory: "info",
   userperm: [''],
   botperm: [''],
 

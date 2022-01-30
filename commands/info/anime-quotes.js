@@ -11,6 +11,7 @@ module.exports = {
 			required: false
 		}
 	],
+  directory: "info",
 	userperm: [''],
 	botperm: [''],
 

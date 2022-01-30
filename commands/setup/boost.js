@@ -5,6 +5,7 @@ const embedCreate = require('../../functions/embed')
 module.exports = {
   name: 'boost',
   description: 'Setup Boost Detector System',
+  directory: "setting",
   ownerOnly: false,
   options: [
     {

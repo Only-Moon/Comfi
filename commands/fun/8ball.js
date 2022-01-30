@@ -4,6 +4,7 @@ module.exports = {
 	name: '8ball',
 	description: 'You ask and i answer',
 	ownerOnly: false,
+  directory: "fun",
 	options: [
 		{
 			type: 'STRING',

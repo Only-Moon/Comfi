@@ -4,6 +4,7 @@ module.exports = {
 	name: 'ping',
 	description: 'Shows Bot Ping',
 	ownerOnly: false,
+  directory: "utility",
 	userperm: [''],
 	botperm: [''],
 	/**

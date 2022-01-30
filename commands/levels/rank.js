@@ -5,6 +5,7 @@ const rankCard = require("../../functions/RankCard")
 
 module.exports = {
   name: "rank",
+  directory: "level",
   description: "check your rank",
   ownerOnly: false,
   options: [

@@ -4,6 +4,7 @@ const guilds = require("../../models/guild")
 module.exports = {
     name: "verify",
     description: "Incase the verify prompt is not working you can run this to verify",
+  directory: "utility",
     ownerOnly: false,
     botperm: ["MANAGE_GUILD"],
     userperm: ["MANAGE_GUILD"],

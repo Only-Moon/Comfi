@@ -19,7 +19,7 @@ bot.on('messageCreate', async message => {
 		.setTitle(`${bot.error} • Chatbot Error`)
 		.setColor(bot.color)
 		.setDescription('Chat Bot is disabled by the Owner in this Server!')
-		.setFooter(`Requested by ${message.author.username}`)
+		.setFooter({text: `Requested by ${message.author.username}`})
 
 	if (guild?.chatbot) {
 		let ch = guild?.chat_channel

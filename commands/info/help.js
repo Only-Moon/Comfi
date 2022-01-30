@@ -6,6 +6,7 @@ const { CommandInteraction, MessageEmbed } = require('discord.js')
 module.exports = {
 	name: 'helpp',
 	description: 'Show all the Available bot Commands in Menu Form',
+  directory: "info",
 	ownerOnly: false,
 	options: [
 		{

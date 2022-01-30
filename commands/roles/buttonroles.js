@@ -3,6 +3,7 @@ const simplydjs = require('simply-djs')
 module.exports = {
 	name: 'buttonrole',
 	description: 'Reaction Roles With Buttons',
+  directory: "role",
 	ownerOnly: false,
 	options: [
 		{

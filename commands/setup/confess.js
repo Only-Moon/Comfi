@@ -5,6 +5,7 @@ module.exports = {
     name: "confession",
     description: "Anonymous Confession setup for server",
     ownerOnly: false,
+  directory: "setting",
     options: [
       {
       type: 'SUB_COMMAND',

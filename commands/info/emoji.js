@@ -11,6 +11,7 @@ module.exports = {
   name: 'emoji',
   description: 'Enlarge an emote or find emote from Comfi\'s emote list',
   ownerOnly: false,
+  directory: "info",
   options: [
     {
       name: "enlarge",

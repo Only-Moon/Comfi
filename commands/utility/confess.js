@@ -4,6 +4,7 @@ const guilds = require('../../models/guild')
 module.exports = {
   name: 'confess',
   description: 'Sends an anonymous Confession',
+  directory: "utility",
   ownerOnly: false,
   options: [
     {

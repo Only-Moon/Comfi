@@ -241,6 +241,11 @@ class Comfi extends Discord.Client {
   
    const channel = interaction.guild.channels.cache.get(data.mod_channel);
 
+    let auth;
+if (interaction.customId) {
+  auth = interaction.user.username
+} else if (!interaction.customId) {
+  auth = interaction.author.username }
    const logsembed = new Discord.MessageEmbed()
    .setColor(this.color)
    .addFields({
@@ -260,7 +265,7 @@ class Comfi extends Discord.Client {
    },
   {
      name: `**${Action.toUpperCase()}ED by: **`,
-     value: `${interaction.user ? interaction.user.username : "Not Found"}`,
+     value: `${auth ? auth: "Not Found"}`,
      inline: true
    },
   {
@@ -276,7 +281,6 @@ class Comfi extends Discord.Client {
    .setThumbnail(Member.displayAvatarURL({dynamic: true}))
    .setAuthor({name: `${interaction.guild?.name} • Modlogs`, iconURL: `${interaction.guild.iconURL() ? interaction.guild.iconURL() : this.user.displayAvatarURL({dynamic: 
 true })}`})
-   .setTimestamp()
    .setFooter({text: "Comfi™ Modlogs"});
 
 if (channel) channel.send({ embeds: [logsembed] });

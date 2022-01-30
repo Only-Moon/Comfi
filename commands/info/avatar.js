@@ -4,6 +4,7 @@ const fetch = require('axios')
 module.exports = {
 	name: 'avatar',
 	description: 'Gets the user or member avatar',
+  directory: "info",
 	options: [
 		{
 			name: 'user',

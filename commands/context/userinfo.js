@@ -6,6 +6,7 @@ module.exports = {
 	name: 'userinfo',
 	type: 'USER',
   description: "get user's info using context menu",
+  directory: "context",
 	/**
 	 *
 	 * @param {ContextMenuInteraction} interaction

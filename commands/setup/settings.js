@@ -7,6 +7,7 @@ module.exports = {
   name: 'settings',
   description: 'Shows server setup',
   ownerOnly: false,
+  directory: "setting",
   userperm: [''],
   botperm: ['SEND_MESSAGES'],
 	/**
@@ -51,11 +52,13 @@ module.exports = {
           },
           { name: '{{user#tag}}', value: `${interaction.user.tag || 'NONE'}` },
           { name: '{{user#id}}', value: `${interaction.user.id || 'NONE'}` },
+      { name: '{{user#avatar}}', value: `${interaction.member.avatarURL({dynamic: true})}`},
           { name: '{{server#id}}', value: `${interaction.guild.id}` },
           {
             name: '{{server#name}}',
             value: `${interaction.guild.name || 'NONE'}`
           },
+      { name: '{{server#icon}}', value: `${interaction.guild.iconURL({dynamic:true})}`},
           {
             name: '{{server#membercount}}',
             value: `${interaction.guild.memberCount || 'NONE'}`
@@ -507,7 +510,8 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           },
           {
             name: '» Welcome Channel',
-            value: `<#${guild.welcome_channel}>`
+            value: `${guild.welcome_channel ? 
+`<#${guild.welcome_channel}` : "Not Found"}`
           },
           {
             name: '» Welcome Dm Toogle',
@@ -519,11 +523,11 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           },
           {
             name: '» Welcome JoinRole',
-            value: `\n${role.join(` , `)}\n`
+            value: `\n${role ? role.join(` , `) : "Not Found"}\n`
           },
           {
             name: '» Welcome Message',
-            value: `${format(guild.welcome_message)}`
+            value: `${guild.welcome_message ? format(guild.welcome_message) : "Not Found"}`
           },
           {
             name: '» Welcome Image',

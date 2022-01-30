@@ -1,0 +1,208 @@
+18:45:48.419 INFO  Loaded Guild commands... 
+18:45:48.748 INFO  Mongodb connected! 
+18:45:50.139 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"88","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.05 MB / 125.55 MB"} 
+18:45:50.143 INFO  ------------------------------------- 
+18:45:50.156 INFO  Listening on port http://localhost:8080 
+18:54:12.835 INFO  Loaded Guild commands... 
+18:54:13.238 INFO  Mongodb connected! 
+18:54:14.154 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"54.09 MB / 126.28 MB"} 
+18:54:14.157 INFO  ------------------------------------- 
+18:54:14.162 INFO  Listening on port http://localhost:8080 
+18:55:04.120 INFO  Loaded Guild commands... 
+18:55:04.714 INFO  Mongodb connected! 
+18:55:05.681 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"53.72 MB / 124.72 MB"} 
+18:55:05.684 INFO  ------------------------------------- 
+18:55:05.703 INFO  Listening on port http://localhost:8080 
+18:56:49.652 INFO  Loaded Guild commands... 
+18:56:50.022 INFO  Mongodb connected! 
+18:56:51.036 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.32 MB / 125.27 MB"} 
+18:56:51.046 INFO  ------------------------------------- 
+18:56:51.059 INFO  Listening on port http://localhost:8080 
+19:17:38.994 ERROR /home/runner/Comfi-beta/events/message/messageCreate.js:46
+let response = await fetch(`https://anti-fish.bitflow.dev/check/`, {
+
+SyntaxError: Invalid left-hand side in assignment
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:9:26
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:9:13) 
+19:17:40.217 INFO  Mongodb connected! 
+19:17:41.150 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"0","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"36.81 MB / 91.23 MB"} 
+19:17:41.156 INFO  ------------------------------------- 
+19:17:41.164 INFO  Listening on port http://localhost:8080 
+19:18:21.146 ERROR /home/runner/Comfi-beta/events/message/messageCreate.js:46
+let response = await fetch(`https://anti-fish.bitflow.dev/check`, {
+
+SyntaxError: Invalid left-hand side in assignment
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:9:26
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:9:13) 
+19:18:22.509 INFO  Mongodb connected! 
+19:18:23.380 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"0","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"36.17 MB / 91.66 MB"} 
+19:18:23.383 INFO  ------------------------------------- 
+19:18:23.389 INFO  Listening on port http://localhost:8080 
+19:20:06.992 INFO  Loaded Guild commands... 
+19:20:07.410 INFO  Mongodb connected! 
+19:20:08.357 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"51.61 MB / 125.82 MB"} 
+19:20:08.360 INFO  ------------------------------------- 
+19:20:08.366 INFO  Listening on port http://localhost:8080 
+19:20:55.909 INFO  Loaded Guild commands... 
+19:20:56.252 INFO  Mongodb connected! 
+19:20:57.226 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"50.10 MB / 124.80 MB"} 
+19:20:57.229 INFO  ------------------------------------- 
+19:20:57.244 INFO  Listening on port http://localhost:8080 
+19:21:18.528 INFO  Loaded Guild commands... 
+19:21:18.853 INFO  Mongodb connected! 
+19:21:19.782 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"51.95 MB / 125.37 MB"} 
+19:21:19.784 INFO  ------------------------------------- 
+19:21:19.789 INFO  Listening on port http://localhost:8080 
+19:22:10.353 INFO  Loaded Guild commands... 
+19:22:10.504 INFO  Mongodb connected! 
+19:22:11.422 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"53.16 MB / 125.66 MB"} 
+19:22:11.426 INFO  ------------------------------------- 
+19:22:11.433 INFO  Listening on port http://localhost:8080 
+19:22:55.858 INFO  Loaded Guild commands... 
+19:22:56.147 INFO  Mongodb connected! 
+19:22:57.027 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"51.61 MB / 125.42 MB"} 
+19:22:57.034 INFO  ------------------------------------- 
+19:22:57.049 INFO  Listening on port http://localhost:8080 
+19:24:21.407 INFO  Loaded Guild commands... 
+19:24:21.570 INFO  Mongodb connected! 
+19:24:22.580 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.73 MB / 125.63 MB"} 
+19:24:22.583 INFO  ------------------------------------- 
+19:24:22.589 INFO  Listening on port http://localhost:8080 
+19:25:00.086 INFO  Loaded Guild commands... 
+19:25:00.545 INFO  Mongodb connected! 
+19:25:01.602 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.83 MB / 124.72 MB"} 
+19:25:01.605 INFO  ------------------------------------- 
+19:25:01.611 INFO  Listening on port http://localhost:8080 
+19:26:54.762 INFO  Loaded Guild commands... 
+19:26:55.121 INFO  Mongodb connected! 
+19:26:56.295 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"52.12 MB / 124.36 MB"} 
+19:26:56.301 INFO  ------------------------------------- 
+19:26:56.314 INFO  Listening on port http://localhost:8080 
+19:41:24.770 INFO  Loaded Guild commands... 
+19:41:25.003 INFO  Mongodb connected! 
+19:41:26.056 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"51.68 MB / 125.58 MB"} 
+19:41:26.065 INFO  ------------------------------------- 
+19:41:26.075 INFO  Listening on port http://localhost:8080 
+19:44:22.380 INFO  Loaded Guild commands... 
+19:44:22.699 INFO  Mongodb connected! 
+19:44:23.718 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"51.44 MB / 125.61 MB"} 
+19:44:23.721 INFO  ------------------------------------- 
+19:44:23.726 INFO  Listening on port http://localhost:8080 
+19:46:05.610 INFO  Loaded Guild commands... 
+19:46:05.876 INFO  Mongodb connected! 
+19:46:06.932 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.3.1","Plattform:":"linux x64","Memory:":"49.14 MB / 125.69 MB"} 
+19:46:06.936 INFO  ------------------------------------- 
+19:46:06.942 INFO  Listening on port http://localhost:8080 
+19:48:11.441 INFO  Loaded Guild commands... 
+19:48:11.870 INFO  Mongodb connected! 
+19:48:12.834 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.53 MB / 125.09 MB"} 
+19:48:12.837 INFO  ------------------------------------- 
+19:48:12.844 INFO  Listening on port http://localhost:8080 
+19:50:08.109 INFO  Loaded Guild commands... 
+19:50:08.505 INFO  Mongodb connected! 
+19:50:09.531 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.39 MB / 124.40 MB"} 
+19:50:09.535 INFO  ------------------------------------- 
+19:50:09.545 INFO  Listening on port http://localhost:8080 
+19:52:17.649 INFO  Loaded Guild commands... 
+19:52:17.992 INFO  Mongodb connected! 
+19:52:18.953 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.43 MB / 125.43 MB"} 
+19:52:18.961 INFO  ------------------------------------- 
+19:52:18.970 INFO  Listening on port http://localhost:8080 
+19:54:22.380 INFO  Loaded Guild commands... 
+19:54:22.694 INFO  Mongodb connected! 
+19:54:23.660 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.15 MB / 125.36 MB"} 
+19:54:23.667 INFO  ------------------------------------- 
+19:54:23.674 INFO  Listening on port http://localhost:8080 
+19:55:20.754 INFO  Loaded Guild commands... 
+19:55:20.984 INFO  Mongodb connected! 
+19:55:21.933 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"48.86 MB / 125.48 MB"} 
+19:55:21.936 INFO  ------------------------------------- 
+19:55:21.941 INFO  Listening on port http://localhost:8080 
+19:58:30.731 ERROR /home/runner/Comfi-beta/events/message/messageCreate.js:71
+         if message.member.moderatable { const timeout = await message.member.timeout(time ? time : 43200000, "Sending Scam links").catch(() => null) }
+            ^^^^^^^
+
+SyntaxError: Unexpected identifier
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:9:26
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:9:13) 
+19:58:31.685 INFO  Mongodb connected! 
+19:58:32.552 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"0","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"36.74 MB / 90.84 MB"} 
+19:58:32.555 INFO  ------------------------------------- 
+19:58:32.560 INFO  Listening on port http://localhost:8080 
+19:58:53.552 ERROR /home/runner/Comfi-beta/events/message/messageCreate.js:71
+         if (message.member.moderatable) const timeout = await message.member.timeout(time ? time : 43200000, "Sending Scam links").catch(() => null) 
+                                         ^^^^^
+
+SyntaxError: Unexpected token 'const'
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:9:26
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:9:13) 
+19:58:54.473 INFO  Mongodb connected! 
+19:58:55.364 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"0","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"33.06 MB / 91.78 MB"} 
+19:58:55.368 INFO  ------------------------------------- 
+19:58:55.375 INFO  Listening on port http://localhost:8080 
+19:59:35.503 INFO  Loaded Guild commands... 
+19:59:35.663 INFO  Mongodb connected! 
+19:59:36.654 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.68 MB / 123.78 MB"} 
+19:59:36.660 INFO  ------------------------------------- 
+19:59:36.675 INFO  Listening on port http://localhost:8080 
+20:06:42.794 INFO  Loaded Guild commands... 
+20:06:43.289 INFO  Mongodb connected! 
+20:06:44.175 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"53.12 MB / 124.87 MB"} 
+20:06:44.178 INFO  ------------------------------------- 
+20:06:44.183 INFO  Listening on port http://localhost:8080 
+20:08:18.641 INFO  Mongodb connected! 
+20:08:19.376 INFO  Loaded Guild commands... 
+20:08:19.628 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"48.70 MB / 124.49 MB"} 
+20:08:19.632 INFO  ------------------------------------- 
+20:08:19.637 INFO  Listening on port http://localhost:8080 
+20:12:26.510 INFO  Loaded Guild commands... 
+20:12:26.903 INFO  Mongodb connected! 
+20:12:27.844 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"51.72 MB / 125.74 MB"} 
+20:12:27.847 INFO  ------------------------------------- 
+20:12:27.914 INFO  Listening on port http://localhost:8080 
+20:17:08.379 INFO  Loaded Guild commands... 
+20:17:08.828 INFO  Mongodb connected! 
+20:17:09.773 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.41 MB / 124.10 MB"} 
+20:17:09.776 INFO  ------------------------------------- 
+20:17:09.781 INFO  Listening on port http://localhost:8080 
+20:18:34.643 INFO  Loaded Guild commands... 
+20:18:35.142 INFO  Mongodb connected! 
+20:18:36.368 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"18 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"53.32 MB / 124.72 MB"} 
+20:18:36.386 INFO  ------------------------------------- 
+20:18:36.420 INFO  Listening on port http://localhost:8080 

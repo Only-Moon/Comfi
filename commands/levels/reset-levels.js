@@ -5,6 +5,7 @@ const guilds = require('../../models/guild')
 module.exports = {
 	name: 'reset_levels',
 	description: 'Reset Server Level System',
+  directory: "level",
 	ownerOnly: false,
 	botperm: ['MANAGE_GUILD'],
 	userperm: ['ADMINISTRATOR'],

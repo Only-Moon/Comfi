@@ -12,13 +12,23 @@ bot
 process.on('unhandledRejection', (reason, promise) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)
 
+if (reason.stack.includes("DiscordAPIError: Unknown Message")) return;
+
+if (reason.stack.includes("DiscordAPIError: Unknown Interaction")) return;  
+
+if (reason.stack.includes("DiscordAPIError: Unknown Webhook")) return;  
+
+if (reason.stack.includes("DiscordAPIError: Invalid Webhook Token")) return;  
+  
+if (reason.stack.includes("DiscordAPIError: Missing Permissions")) return;  
+    
 	const embed = new MessageEmbed()
 		.setTitle(`${bot.error} • Unhandled Rejection`)
 		.setURL('https://nodejs.org/api/process.html#event-unhandledrejection')
 		.setDescription(`\`\`\`${reason.stack.split("").slice(0, 3500).join("")}\`\`\``)
 		.setTimestamp()
 		.setImage('https://giffiles.alphacoders.com/354/35481.gif')
-		.setFooter('Imagine a bot without anti-crash')
+		.setFooter({text: 'Imagine a bot without anti-crash'})
 		.setColor(bot.color)
 
 	if (channel) {
@@ -37,7 +47,7 @@ process.on('uncaughtException', (err, origin) => {
 		.setDescription(`\`\`\`${err.stack.split("").slice(0, 3500).join("")}\`\`\``)
 		.setTimestamp()
 		.setImage('https://giffiles.alphacoders.com/354/35481.gif')
-		.setFooter('Imagine a bot without anti-crash')
+		.setFooter({text:'Imagine a bot without anti-crash'})
 		.setColor('#FF5757')
 
 	if (channel) {
@@ -59,7 +69,7 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
 		.setDescription(`\`\`\`${err.stack.split("").slice(0, 3500).join("")}\`\`\``)
 		.setImage('https://giffiles.alphacoders.com/354/35481.gif')
 		.setTimestamp()
-		.setFooter('Imagine a bot without anti-crash')
+		.setFooter({text: 'Imagine a bot without anti-crash'})
 		.setColor('#FF5757')
 
 	if (channel) {

@@ -4,6 +4,7 @@ const guilds = require('../../models/guild')
 module.exports = {
 	name: 'setnick',
 	description: 'Sets a Nickname to user',
+  directory: "mod",
 	options: [
 		{
 			name: 'user',
@@ -39,7 +40,7 @@ module.exports = {
 	const reason = interaction.options.getString("reason")		
     const embed = new MessageEmbed().setColor(bot.color)
 
-			if (!usmber.manageable && usmber.i.userd !== bot.user.id) {
+			if (!member.manageable && usmber.i.userd !== bot.user.id) {
 				embed.setDescription(
 					`${bot.error} • I Cant Change ${usmber.toString()}'s Nickname`
 				)

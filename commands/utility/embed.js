@@ -5,6 +5,7 @@ module.exports = {
 	name: 'embed',
 	description: 'Embed creator.',
   ownerOnly: false,
+  directory: "utility",
   userperm: [""],
   botperm: ["SEND_MESSAGES"],
 	

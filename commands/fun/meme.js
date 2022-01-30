@@ -4,6 +4,7 @@ const fetch = require('node-fetch')
 module.exports = {
     name: 'meme',
     description: 'Get a random meme from reddit',
+  directory: "fun",
     ownerOnly: false,
     userperm: [""],
     botperm: [""],

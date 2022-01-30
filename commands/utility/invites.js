@@ -1,15 +1,13 @@
 const {
-	Collection,
+	CommandInteraction,
 	MessageEmbed,
-	MessageActionRow,
-	MessageButton,
-	MessageAttachment
 } = require('discord.js')
 
 module.exports = {
 	name: 'invites',
 	description: 'Get the number of people that joined via your invites',
 	ownerOnly: false,
+  directory: "utility",
 	options: [
 		{
 			name: 'user',
@@ -21,7 +19,7 @@ module.exports = {
 	userperm: [''],
 	botperm: ['SEND_MESSAGES'],
 	/**
-	 * @param {Message} message
+	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
 	run: async (bot, interaction, args) => {
@@ -48,7 +46,7 @@ module.exports = {
 				.addField('Invite Codes:', `${invCodes}`)
 				.setColor(bot.color)
 
-			interaction.followUp({ embeds: [tackerEmbed] })
+			await interaction.followUp({ embeds: [tackerEmbed] })
 		} catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)

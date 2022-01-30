@@ -3,6 +3,7 @@ const { CommandInteraction } = require('discord.js'),
 
 module.exports = {
 	name: 'purge',
+  directory: "mod",
 	description: 'delete x amount of messages',
 	userperm: ['MANAGE_MESSAGES'],
 	botperm: ['MANAGE_MESSAGES'],

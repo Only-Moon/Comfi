@@ -10,6 +10,7 @@ module.exports = {
 	name: 'reminder',
 	description: 'Set a reminder',
 	ownerOnly: false,
+  directory: "utility",
 	options: [
 		{
 			name: 'set',

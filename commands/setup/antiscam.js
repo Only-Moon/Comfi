@@ -5,6 +5,7 @@ module.exports = {
   name: "antiscam",
   description: "Sets the antiscam system",
   ownerOnly: false,
+  directory: "setting",
   options: [{
     type: 'SUB_COMMAND',
     description: 'Sets the antiscam toggle true/false',

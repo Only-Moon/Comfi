@@ -4,6 +4,7 @@ const guilds = require('../../models/guild')
 module.exports = {
 	name: 'nqn',
 	description: 'Use animated emojis without nitro',
+  directory: "setting",
 	ownerOnly: false,
 	options: [
 		{

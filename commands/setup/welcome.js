@@ -6,6 +6,7 @@ module.exports = {
   name: 'welcome',
   description: 'Setup Welcome System',
   ownerOnly: false,
+  directory: "setting",
   options: [
     {
       name: 'toggle',

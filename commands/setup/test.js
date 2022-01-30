@@ -5,6 +5,7 @@ module.exports = {
     name: "test",
     description: "Test boost, leave or welcome message",
     ownerOnly: false,
+  directory: "setting",
     options: [
         {
             type: 'SUB_COMMAND',

@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'anime',
 	description: 'Get Anime Actions',
+  directory: "fun",
 	options: [
 		{
 			name: 'category',

@@ -5,6 +5,7 @@ module.exports = {
 	name: 'levelingrole',
 	description: 'Auto role upon leveling',
 	ownerOnly: false,
+  directory: "setting",
 	options: [
 		{
 			name: 'add',

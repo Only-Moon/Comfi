@@ -4,6 +4,7 @@ const guilds = require('../../models/guild')
 module.exports = {
 	name: 'modlogs',
 	description: 'Sets a Channel Where Bot Can Send Moderation logs!',
+  directory: "setting",
 	ownerOnly: false,
 	options: [
 		{
