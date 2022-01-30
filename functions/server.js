@@ -135,7 +135,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
     port: 2950,
     client: {
       id: process.env["clientID"],
-      secret: 'WiWWQavM8dtxSXrHMJwyXUA-WYdy_Xvu'
+      secret: process.env["Secret"]
     },
     redirectUri: `${web}discord/callback`,
     domain: `${web}`,
