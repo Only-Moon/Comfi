@@ -7,7 +7,8 @@ module.exports = async (bot) => {
  const DarkDashboard = require('dbd-dark-dashboard');
   const prefix = "/"
   const web = process.env["web"]
-
+  const webp = process.env["webp"]
+  
   let DBD = require('discord-dashboard');
   await DBD.useLicense('6968082f-cc27-4659-9c92-6ec40f28908c');
   DBD.Dashboard = DBD.UpdatedClass();
@@ -132,12 +133,12 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
 )
 
   const Dashboard = new DBD.Dashboard({
-    port: 2950,
+    port: 8080,
     client: {
       id: process.env["clientID"],
       secret: process.env["Secret"]
     },
-    redirectUri: `${web}discord/callback`,
+    redirectUri: `${webp}discord/callback`,
     domain: `${web}`,
     bot: bot,
     theme: DarkDashboard({
@@ -146,7 +147,6 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
         websiteTitle: "Comfi™",
         websiteName: "Comfi™",
         websiteUrl: `${web}`,
-        dashboardUrl: `${web}`,
         supportServer: "https://discord.gg/HNfhvCeR6d",
         imageFavicon: "https://i.imgur.com/At2XO1M.png",
         iconURL: "https://i.imgur.com/At2XO1M.png",
