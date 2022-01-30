@@ -1,6 +1,6 @@
 const guilds = require('../models/guild')
-const { permissions}
- = require("discord.js")
+const { permissions, MessageEmbed }
+ = require ("discord.js")
   
 module.exports = async (bot) => {
 
@@ -158,6 +158,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
         clientId: bot.user.id,
         scopes: ["bot", "applications.commands"],
         permissions: "8",
+        redirectUri: web
       },
       guildAfterAuthorization: { 
         use: true, 
@@ -258,6 +259,60 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
               return;
             },
           },
+          {
+            optionId: 'bug',
+            optionName: "BugReport",
+            optionDescription: "Report Comfi's Bugs (make sure to include screenshots as well)",
+            optionType: DBD.formTypes.textarea("", 1, 3999, false, false),
+            getActualSet: async ({ guild, user }) => {  
+        return "";
+            },
+            setNew: async ({ guild, user, newData }) => {
+const usr = bot.users.cache.get(user?.id)
+const guld = bot.guilds.cache.get(guild?.id)
+  const reportCh = bot.channels.cache.get(
+			'889149873893539900') || bot.channels.cache.get('863684464176922664')
+
+		const reportEmbed = new MessageEmbed()
+			.setTitle('Bug Report')
+			.setDescription(
+				`**Author :**\n> ${usr.username} \n**Report :**\n> ${newData}`)
+			.setFooter({text: `Sent from ${guld.name} - ${guld.id}`})
+			.setTimestamp()
+			.setColor(bot.color)
+		if (reportCh) {
+			reportCh.send({ embeds: [reportEmbed] }).catch(() => null)
+		} else return;
+              return;
+            },
+          },
+          {
+            optionId: 'feed',
+            optionName: "Feedback",
+            optionDescription: "Give Feedback About Comfi",
+            optionType: DBD.formTypes.textarea("", 1, 3999, false, false),
+            getActualSet: async ({ guild, user}) => {  
+        return "";
+            },
+            setNew: async ({ guild, user, newData }) => {
+
+const usr = bot.users.cache.get(user?.id)
+const guld = bot.guilds.cache.get(guild?.id)              
+  const repoCh = bot.channels.cache.get('881789379809513500')
+
+		const repoEmbed = new MessageEmbed()
+			.setTitle('Bug Report')
+			.setDescription(
+				`**Author :**\n> ${usr.username} \n**Report :**\n> ${newData}`)
+			.setFooter({text: `Sent from ${guld.name} - ${guld.id}`})
+			.setTimestamp()
+			.setColor(bot.color)
+		if (repoCh) {
+			repoCh.send({ embeds: [repoEmbed] }).catch(() => null)
+		} else return;
+              return;
+            },
+          },          
         ]
       },
       {
@@ -520,7 +575,7 @@ return {allowed: true, errorMessage:  null}
             optionId: 'welembed',
             optionName: "Embed",
             optionDescription: `Embed for Comfi's Welcome System`, 
-            optionType: DBD.formTypes.embedBuilder({username: bot.user.username, avatarURL: bot.user.displayAvatarURL({dynamic:true})}),
+            optionType: DBD.formTypes.embedBuilder({username: bot.user.username, avatarURL: bot.user.displayAvatarURL({dynamic:true}), defaultJson: {content:  "", embed: {title: "", color: bot.color} }}),
             getActualSet: async ({ guild, user }) => {       
       const wel
 = await guilds.findOne({guildId: guild.id})
@@ -743,7 +798,7 @@ return {allowed: true, errorMessage:  null}
             optionId: 'levembed',
             optionName: "Embed",
             optionDescription: `Embed for Comfi's Leave System`, 
-            optionType: DBD.formTypes.embedBuilder({username: bot.user.username, avatarURL: bot.user.displayAvatarURL({dynamic:true})}),
+            optionType: DBD.formTypes.embedBuilder({username: bot.user.username, avatarURL: bot.user.displayAvatarURL({dynamic:true}), defaultJson: {content:  "", embed: {title: "", color: bot.color} }}),
             getActualSet: async ({ guild, user }) => {       
       const leave
 = await guilds.findOne({guildId: guild.id})
@@ -904,7 +959,7 @@ return {allowed: true, errorMessage: null}
             optionId: 'bstembed',
             optionName: "Embed",
             optionDescription: `Embed for Comfi's Boost System`, 
-            optionType: DBD.formTypes.embedBuilder({username: bot.user.username, avatarURL: bot.user.displayAvatarURL({dynamic:true})}),
+            optionType: DBD.formTypes.embedBuilder({username: bot.user.username, avatarURL: bot.user.displayAvatarURL({dynamic:true}), defaultJson: {content:  "", embed: {title: "", color: bot.color} }}),
             getActualSet: async ({ guild, user }) => {       
       const bst
 = await guilds.findOne({guildId: guild.id})
@@ -1180,14 +1235,14 @@ if (!reg.match(newData)) return {error: "Submit a Valid Image Url"}
             getActualSet: async ({ guild }) => {       
       const tkt
 = await guilds.findOne({guildId: guild.id})
-        return tkt.ticket_channel;
+        return tkt.ticket_category;
             },
             setNew: async ({ guild, newData }) => {
               await guilds.findOneAndUpdate( 
                 { guildId: guild.id 
                 }, 
                 { 
-                  ticket_channel: newData
+                  ticket_category: newData
                 } 
               )
               return;
