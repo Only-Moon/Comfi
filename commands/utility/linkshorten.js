@@ -9,6 +9,7 @@ const {
 module.exports = {
 	name: 'linkshorten',
 	description: 'Shorten your Url to is.gd format !!',
+  directory: "utility",
 	ownerOnly: false,
 	options: [
 		{

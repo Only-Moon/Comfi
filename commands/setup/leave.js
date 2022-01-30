@@ -6,6 +6,7 @@ module.exports = {
   name: 'leave',
   description: 'Setup Leave System',
   ownerOnly: false,
+  directory: "setting",
   options: [
     {
       name: 'toggle',

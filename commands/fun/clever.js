@@ -3,6 +3,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "clever",
     description: "clever rate user",
+    directory: "fun",
     ownerOnly: false,
     options: [
         {

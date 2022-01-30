@@ -4,6 +4,7 @@ module.exports = {
 	name: 'deafan',
 	description: 'Deafen a member in Voice Channel',
 	ownerOnly: false,
+  directory: "mod",
 	options: [
 		{
 			type: 'USER',

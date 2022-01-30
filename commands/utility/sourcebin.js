@@ -4,6 +4,7 @@ const sourcebin = require('sourcebin_js'),
 module.exports = {
 	name: 'sourcebin',
 	description: 'Instantly share your code with the world using sourcebin',
+  directory: "utility",
 	options: [
 		{
 			type: 'STRING',

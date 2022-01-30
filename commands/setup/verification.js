@@ -8,6 +8,7 @@ const guilds = require('../../models/guild')
 module.exports = {
 	name: 'verification',
 	description: 'Setup server verification system',
+  directory: "setting",
 	type: 'CHAT_INPUT',
 	ownerOnly: false,
 	botperm: ['MANAGE_ROLES'],

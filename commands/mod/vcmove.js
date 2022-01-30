@@ -3,6 +3,7 @@ const { CommandInteraction, MessageEmbed } = require('discord.js')
 module.exports = {
 	name: 'vc-move',
 	description: 'moves a member from one vc to another',
+  directory: "mod",
 	ownerOnly: false,
 	options: [
 		{

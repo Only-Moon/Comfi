@@ -4,6 +4,7 @@ const simplydjs = require("simply-djs")
 module.exports = {
     name: "ttt",
     description: "Simple Tictactoe Game",
+    directory: "fun",
     ownerOnly: false,
     options: [
         {

@@ -4,6 +4,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "github",
     description: "Shows Information about github user",
+  directory: "info",
     ownerOnly: false,
     options: [
         {

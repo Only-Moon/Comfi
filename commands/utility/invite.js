@@ -8,6 +8,7 @@ const {
 module.exports = {
 	name: 'invitee',
 	description: 'Sends an invite for the bot',
+  directory: "utility",
 	ownerOnly: false,
 	userperm: [''],
 	botperm: [''],

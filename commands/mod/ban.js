@@ -5,6 +5,7 @@ const ms = require('ms')
 module.exports = {
   name: 'bann',
   description: 'Different ways to ban a user',
+  directory: "mod",
   ownerOnly: false,
   options: [
     {

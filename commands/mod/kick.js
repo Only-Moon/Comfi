@@ -5,6 +5,7 @@ module.exports = {
 	name: 'kick',
 	description: 'Kick Someone',
 	type: 'CHAT_INPUT',
+  directory: "mod",
 	options: [
 		{
 			name: 'user',

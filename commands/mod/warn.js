@@ -7,6 +7,7 @@ module.exports = {
       description:
 				'Warn a user, get a list of a user, and remove the warned user!',
 			ownerOnly:  false,
+  directory: "warn",
 			userPerm: ['KICK_MEMBERS', 'BAN_MEMBERS'],
 			botPerm: ['KICK_MEMBERS', 'BAN_MEMBERS'],
 			options: [

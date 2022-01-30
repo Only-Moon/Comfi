@@ -3,6 +3,7 @@ const { MessageEmbed, MessageActionRow, MessageButton, Permissions } = require("
 module.exports = {
     name: "announce",
     description: "Send a announcement to specified channel.",
+  directory: "utility",
     cooldown: 10,
     userperm: ["ADMINISTRATOR"],
     botperm: ["MANAGE_GUILD"],

@@ -4,6 +4,7 @@ module.exports = {
 	name: 'lockdown',
 	description: 'Locks whole server incase of raids, etc',
 	ownerOnly: false,
+  directory: "mod",
 	options: [
 		{
 			type: 'STRING',

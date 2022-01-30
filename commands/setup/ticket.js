@@ -5,6 +5,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ticket",
     description: "Setup the ticket system",
+  directory: "setting",
     ownerOnly: false,
     options: [
         {

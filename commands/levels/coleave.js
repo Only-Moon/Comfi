@@ -4,6 +4,7 @@ const guilds = require('../../models/guild');
 module.exports = {
     name: "coleave",
     description: "Removes user's xp upon leaving the guild!",
+   directory: "level",
     ownerOnly: false,
     options: [
       {

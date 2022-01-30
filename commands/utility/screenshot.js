@@ -5,6 +5,7 @@ module.exports = {
   name: 'screenshot',
   description: 'Take a screenshot of any webpage',
   ownerOnly: false,
+  directory: "utility",
   options: [
     {
       type: 'STRING',

@@ -4,6 +4,7 @@ module.exports = {
 	name: 'feedback',
 	description: 'Gives Feedback To Devs About Comfi',
 	ownerOnly: false,
+  directory: "utility",
 	options: [
 		{
 			type: 'STRING',

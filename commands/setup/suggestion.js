@@ -5,6 +5,7 @@ module.exports = {
     name: "suggestion",
     description: "Sets Suggestion Server for the Server",
     ownerOnly: false,
+   directory: "setting",
     options: [
       {
       type: 'SUB_COMMAND',

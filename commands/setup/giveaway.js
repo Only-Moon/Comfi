@@ -7,6 +7,7 @@ module.exports = {
     name: "giveaway",
     description: "Setups a giveaway in the server",
     ownerOnly: false,
+  directory: "setting",
     options: [
      {
         name: 'time',

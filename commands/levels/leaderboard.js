@@ -5,6 +5,7 @@ const guilds = require("../../models/guild")
 module.exports = {
   name: "leaderboard",
   description: "See the servers level leader board",
+  directory: "level",
   ownerOnly: false,
   botperm: [""],
   userperm: ["SEND_MESSAGES"],

@@ -5,6 +5,7 @@ module.exports = {
 	name: 'emotee',
 	description: 'Add, Addmany, Remove, Rename, Stats of Server Emotes',
 	ownerOnly: false,
+  directory: "mod",
 	options: [
 		{
 			name: 'add',

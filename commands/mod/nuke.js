@@ -3,6 +3,7 @@ const ms = require('ms')
 
 module.exports = {
 	name: 'nuke',
+  directory: "mod",
 	description: 'A simple nuke command.',
 	ownerOnly: false,
 	userperm: ['MANAGE_GUILD'],

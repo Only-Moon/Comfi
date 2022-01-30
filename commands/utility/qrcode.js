@@ -3,6 +3,7 @@ const { CommandInteraction } = require('discord.js')
 module.exports = {
 	name: 'qrcode',
 	description: 'Generate a qr code from a link',
+  directory: "utility",
 	ownerOnly: false,
 	options: [
 		{

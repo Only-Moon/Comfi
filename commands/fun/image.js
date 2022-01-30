@@ -5,6 +5,7 @@ const memer = new Meme(process.env.MEMER);
 module.exports = {
     name: "image",
     description: "Image manipulation commands",
+  directory: "fun",
     userperm: [""],
     botperm: [""],
     cooldown: 15,

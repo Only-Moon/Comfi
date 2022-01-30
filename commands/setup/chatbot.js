@@ -4,6 +4,7 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = { 
   name: "chatbot", 
   description: "Sets the chatbot system", 
+  directory: "setting",
   ownerOnly: false, 
   options: [ { 
     type: 'SUB_COMMAND', 

@@ -15,6 +15,8 @@ module.exports = async (message, bot) => {
       guildId: message.guild.id
     })
 
+if (!message.member) message.member = await message.guild.members.fetch(message.author.id)
+  
 try {
   
   if (guild.leveling) {
@@ -46,7 +48,7 @@ try {
           await message.member.roles.add(l.id).catch(() => null)
         }
         if (l.level > user3.level) {
-          await message.member.roles.remove(l.id).catch(() => null)
+          await message.member?.roles.remove(l.id).catch(() => null)
         }
       })
       }, bot.ms("1m"))    
@@ -71,12 +73,10 @@ try {
           { name: '{{user#mention}}', value: `<@${message.author.id}>` },
           { name: '{{user#tag}}', value: `${message.author.tag}` },
           { name: '{{user#id}}', value: `${message.author.id}` },
+      { name: '{{user#avatar}}', value: `${message.member.avatarURL({dynamic: true})}`},
           { name: '{{server#id}}', value: `${message.guild.id}` },
           { name: '{{server#name}}', value: `${message.guild.name}` },
-          {
-            name: '{{server#membercount}}',
-            value: `${message.guild.membercount}`
-          },
+      { name: '{{server#icon}}', value: `${message.guild.iconURL({dynamic:true})}`},
           { name: '{{level}}', value: `${user2.level}` },
           { name: '{{xp}}', value: `${user2.xp}` },
           { name: '{{requiredXp}}', value: `${user2.requiredXp}` }

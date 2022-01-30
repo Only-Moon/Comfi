@@ -8,6 +8,7 @@ const guilds = require('../../models/guild')
 module.exports = {
 	name: 'membercount',
 	description: 'Setup the member counting system',
+  directory: "setting",
 	ownerOnly: false,
 	botperm: ['MANAGE_GUILD'],
 	userperm: ['ADMINISTRATOR'],

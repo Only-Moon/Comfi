@@ -11,9 +11,11 @@ bot.on("guildMemberRemove", async (member) => {
     const terms = [
       { name: '{{user#mention}}', value: `<@${member.id}>` },
       { name: '{{user#tag}}', value: `${member.user.tag}` },
-      { name: '{{user#id}}', value: `${member.id}` },
+      { name: '{{user#id}}', value: `${member.id}` },      
+{ name: '{{user#avatar}}', value: `${member.avatarURL({dynamic: true})}`},
       { name: '{{server#id}}', value: `${member.guild.id}` },
       { name: '{{server#name}}', value: `${member.guild.name}` },
+      { name: '{{server#icon}}', value: `${member.guild.iconURL({dynamic:true})}`},
       { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
     ];
 

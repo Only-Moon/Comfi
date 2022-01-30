@@ -3,6 +3,7 @@ const { CommandInteraction, MessageEmbed } = require('discord.js')
 module.exports = {
 	name: 'bugreport',
 	description: 'Report a bug',
+  directory: "utility",
 	ownerOnly: false,
 	options: [
 		{

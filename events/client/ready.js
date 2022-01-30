@@ -50,35 +50,10 @@ bot.on('ready', async () => {
 		)
 	}, 1000 * 20)
 
-    const cmds = `
-    ${bot.slashCommands.map(command => `
-    <table>
-    <tr>
-    <td>/${command.name}</td>
-    <br>
-    </br>
-    <td> [ <th>Description: ${command.description} ]</th> </td>
-    </tr> 
-    </table>
-    `
-   )}
-    `
-
-    const html = `
-    <div align="center">
-    <h1>Comfi™ Commands</h1>
-    ${cmds}
-    </div>
-    `
-
-    app.get('/', async (req, res) => {
-        res.status(200).send(html);
-    })
-
-    app.listen(port, function () { bot.logger.log(`Listening on port http://localhost:${port}`) })
-
+require('../../functions/server')(bot)
+  
 	setInterval(() => {
-		require(`../../functions/member_counter`)(bot)
+  require(`../../functions/member_counter`)(bot)
 	}, 60000 * 10)
 
 setInterval(() => {

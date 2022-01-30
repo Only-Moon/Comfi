@@ -5,6 +5,7 @@ module.exports = {
 	name: 'logging',
 	description: 'Setup logging system!',
 	ownerOnly: false,
+  directory: "setting",
 	options: [
 		{
 			type: 'SUB_COMMAND',

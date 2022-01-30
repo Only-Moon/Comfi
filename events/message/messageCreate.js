@@ -3,7 +3,7 @@ const simplydjs = require('simply-djs')
 const guilds = require('../../models/guild')
 const users = require('../../models/users')
 const { Collection, MessageEmbed } = require('discord.js')
-const scam = require("../../functions/jsons/scam")
+const fetch = require("node-fetch")
 const Timeout = new Collection()
 
 bot.on('messageCreate', async message => {
@@ -34,27 +34,46 @@ bot.on('messageCreate', async message => {
 		}
 
 		require(`../../functions/leveling`)(message, bot)
-                }
-  if (guild.anti_scam) {
+  }
 
-if (scam.some(word => message.content.toLowerCase().includes(word))) {
+const reg = new RegExp("^(https?:\\/\\/)?" + "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + "((\\d{1,3}\\.){3}\\d{1,3}))" + "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + "(\\?[;&a-z\\d%_.~+=-]*)?" + "(\\#[-a-z\\d_]*)?$", "i")
+    
+if (reg.test(message.content)) {
+    
+const data = JSON.stringify({
+  message: message.content
+})
+
+let result = await fetch(`https://anti-fish.bitflow.dev/check`, {
+     method: 'POST',
+     headers: {
+       "User-Agent": "Comfi",
+       "Content-Type": "application/json"     
+     },
+     body: data
+})
+result = await result.json()
+    
+if (guild.anti_scam && result.match) {
+
           await message.delete()
 const time = guild.anti_scam_time
           const embed = new MessageEmbed()
               .setTitle(`Scam Link Detected !!`)
               .setColor(bot.color)
-              .setDescription(`**${message.author.tag}** sent a scam link/said a bad word: ||${message.content.toLowerCase()}|| and has been timeout'ed for ${time ? bot.ms(time) : "12 hours"}`)
+              .setDescription(`**${message.author.tag}** sent a scam link/said a bad word: ||${message.content.toLowerCase()}|| and has been timedout for ${time ? bot.ms(time) : "12 hours"}`)
             .setThumbnail(message.author.displayAvatarURL({dynamic: true }))
               .setFooter({text: `This is a new feature, report to my support server if it doesn't work properly <3`, iconURL: bot.user.displayAvatarURL({ dynamic: true })});
 
             await message.channel.send({ embeds: [embed] }).then((msg) => {
   setTimeout(() => { if(!msg.deleted) msg.delete() }, bot.ms('2m'))
   });
-          
              
          // Timeout the User for 12h
          const member = message.guild.members.cache.get(message.author)
-         const timeout = await message.member.timeout(time ? time : 43200000, "Sending Scam links").catch(() => null)
+      
+  if (message.member.moderatable) { 
+           await message.member.timeout(time ? time : 43200000, "Sending Scam links").catch(() => null) 
 
          const embed2 = new MessageEmbed()
          .setTitle(`Scam Link Detected !!`)
@@ -64,35 +83,14 @@ const time = guild.anti_scam_time
          .setTimestamp();
 
          await message.author.send({ embeds: [embed2]})
+  } 
 
-        if (!guild.modlog) return;
-
-        if (guild.modlog) {
-          let channel = message.guild.channels.cache.find(
-            c => c.id === guild.mod_channel
-          )
-          if (!channel) return;
-          const embed = new MessageEmbed()
-            .setAuthor({
-name:               `${message.guild.name} - Modlogs`,
-iconURL: message.guild.iconURL()
-              })
-            .setColor(bot.color)
-            .setFooter({text: message.guild.name, iconURL: message.guild.iconURL()})
-            .addField('**Moderation**', 'antiscam')
-            .addField('**ID**', `${message.author.id}`)
-            .addField('**Timeout\'ed for sending: **', `||${message.content.toLowerCase()}||`)
-            .addField('**Reason**', `**Sending Scam Links !!**`)
-            .addField('**Date**', message.createdAt.toString())
-            .setTimestamp();
-
-          var sChannel = message.guild.channels.cache.get(channel)
-          if (sChannel) {
-          sChannel.send({ embeds: [embed] })
-          } else return;
-        } else return;
-        }
-    
+   await bot.modlog({
+         Member: message.member,
+         Action: "Timeout",
+         Reason: `**Timeout\'ed for sending: ** ||${message.content.toLowerCase()}||`
+}, message)
+    }   
   }
   
 	if (guild.nqn) {

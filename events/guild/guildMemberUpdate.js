@@ -17,10 +17,12 @@ bot.on('guildMemberUpdate', async (oldMember, newMember) => {
     let text = msg
 
     const terms = [
-      { name: '{{user#mention}}', value: `<@${newMember ?.id}>` },
-      { name: '{{user#tag}}', value: `${newMember ?.user.tag}` },
-      { name: '{{server#name}}', value: `${guild ?.name}` },
-      { name: '{{boost#count}}', value: `${guild ?.premiumSubscriptionCount}` }
+      { name: '{{user#mention}}', value: `<@${newMember?.id}>` },
+      { name: '{{user#tag}}', value: `${newMember?.user.tag}` },
+      { name: '{{user#avatar}}', value: `${newMember?.avatarURL({dynamic: true})}`},
+      { name: '{{server#name}}', value: `${guild?.name}` },
+      { name: '{{server#icon}}', value: `${guild.iconURL({dynamic:true})}`},
+      { name: '{{boost#count}}', value: `${guild?.premiumSubscriptionCount}` }
     ]
 
     for (let { name, value } of terms)

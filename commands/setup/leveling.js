@@ -6,6 +6,7 @@ module.exports = {
   name: 'leveling',
   description: 'Setup Leveling System',
   ownerOnly: false,
+  directory: "setting",
   options: [
     {
       name: 'toggle',

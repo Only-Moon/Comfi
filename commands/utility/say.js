@@ -6,6 +6,7 @@ module.exports = {
   description: "Says What Said To say",
   type: "CHAT_INPUT",
   ownerOnly: false,
+  directory: "utility",
   options: [
     {
       name: "msg",

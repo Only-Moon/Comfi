@@ -6,6 +6,7 @@ module.exports = {
 	name: 'suggest',
 	description: 'Suggestion for server',
 	ownerOnly: false,
+  directory: "utility",
 	options: [
 		{
 			type: 'STRING',

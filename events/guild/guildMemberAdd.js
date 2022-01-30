@@ -32,8 +32,10 @@ bot.on('guildMemberAdd', async member => {
       { name: '{{user#mention}}', value: `<@${member.id}>` },
       { name: '{{user#tag}}', value: `${member.user.tag}` },
       { name: '{{user#id}}', value: `${member.id}` },
+      { name: '{{user#avatar}}', value: `${member.avatarURL({dynamic: true})}`},
       { name: '{{server#id}}', value: `${member.guild.id}` },
       { name: '{{server#name}}', value: `${member.guild.name}` },
+      { name: '{{server#icon}}', value: `${member.guild.iconURL({dynamic:true})}`},
       { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
       { name: '{{server#humancount}}', value: `${member.guild.members.cache.filter(member => !member.user.bot)}` },
       { name: '{{join#position}}', value: `${getOrdinal(posi)}`}
@@ -55,19 +57,19 @@ bot.on('guildMemberAdd', async member => {
         const emb = guild.welcome_embed.map(async (em) => {
 
           const embed = new MessageEmbed()
-            .setAuthor(
+            .setAuthor({ name: 
               em.embed.author ?.text ? em.embed.author ?.text : '',
-              em.embed.author ?.icon_url
-                ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
-					)
+          avatarURL:  em.embed.author?.icon_url
+                ? em.embed.author?.icon_url : '', url: em.embed.author?.url ? em.embed.author ?.url : ''
+					})
             .setTitle(format(em.embed.title || ''))
             .setDescription(format(em.embed.description || ''))
-            .setColor(em.embed.color || '#36393F')
+            .setColor(em.embed.color ? em.embed.color : bot.color)
             .setImage(em.embed.image ? em.embed.image.url : "https://i.imgur.com/8MggL9S.png")
             .setURL(em.embed.url || '')
             .setTimestamp(em.embed.timestamp ? new Date() : false)
             .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
-            .setFooter(format(em.embed.footer.text || ''));
+            .setFooter({text: format(em.embed.footer.text || '')});
           let cont = format(em.content);
           if
             (guild.welcome_dmuser) {

@@ -5,6 +5,7 @@ const guilds = require("../../models/guild")
 module.exports = {
     name: "verify-user",
     description: "Force verify a user / bot!",
+  directory: "mod",
     ownerOnly: false,
     options: [
     {

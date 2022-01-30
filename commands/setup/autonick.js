@@ -5,6 +5,7 @@ module.exports = {
 	name: 'autonick',
 	description: 'Auto nick members on join!',
 	ownerOnly: false,
+  directory: "setting",
 	options: [
 		{
 			name: 'nick',

@@ -5,6 +5,7 @@ module.exports = {
     name: "rps",
     description: "Simple Rps Game",
     ownerOnly: false,
+  directory: "fun",
     options: [
         {
             type: 'USER',

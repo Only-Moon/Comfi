@@ -3,6 +3,7 @@ const users = require(`../../models/users`)
 module.exports = {
 	name: 'afk',
 	description: 'Sets your afk in the server',
+  directory: "mod",
 	ownerOnly: false,
 	options: [
 		{

@@ -5,6 +5,7 @@ module.exports = {
     name: "roast",
     description: "roast someone",
     ownerOnly: false,
+  directory: "fun",
     options: [
         {
             name: "user",
