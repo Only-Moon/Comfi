@@ -1373,6 +1373,7 @@ if (!reg.match(newData)) return {error: "Submit a Valid Image Url"}
                                           ],
     minimizedConsoleLogs: true,
     assistantsSecureStrorageKey: "Comfi",
+    acceptPrivacyPolicy: true,
     reportError: (where, what) => {
       bot.logger.log(`Discord Dashboard Error - ${where}: ${what} `)
 }
