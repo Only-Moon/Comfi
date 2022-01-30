@@ -132,7 +132,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
 )
 
   const Dashboard = new DBD.Dashboard({
-    port: 80,
+    port: 2950,
     client: {
       id: process.env["clientID"],
       secret: 'WiWWQavM8dtxSXrHMJwyXUA-WYdy_Xvu'
