@@ -41,3 +41,27 @@ SyntaxError: await is only valid in async functions and the top level bodies of 
 07:04:24.984 INFO  Mongodb connected! 
 07:04:26.065 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"49.95 MB / 125.05 MB"} 
 07:04:26.081 INFO  ------------------------------------- 
+07:24:05.481 INFO  Loaded Guild commands... 
+07:24:08.189 INFO  Mongodb connected! 
+07:24:09.367 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"51.61 MB / 125.44 MB"} 
+07:24:09.498 INFO  ------------------------------------- 
+07:27:49.931 INFO  Loaded Guild commands... 
+07:27:52.380 INFO  Mongodb connected! 
+07:27:53.629 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"51.27 MB / 124.90 MB"} 
+07:27:53.653 INFO  ------------------------------------- 
+07:45:27.151 INFO  Loaded Guild commands... 
+07:45:27.638 INFO  Mongodb connected! 
+07:45:28.736 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"51.64 MB / 125.02 MB"} 
+07:45:28.764 INFO  ------------------------------------- 
+07:47:44.511 INFO  Loaded Guild commands... 
+07:47:44.791 INFO  Mongodb connected! 
+07:47:45.731 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"53.55 MB / 124.74 MB"} 
+07:47:45.740 INFO  ------------------------------------- 
+07:57:06.954 INFO  Loaded Guild commands... 
+07:57:07.228 INFO  Mongodb connected! 
+07:57:08.155 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"51.31 MB / 124.22 MB"} 
+07:57:08.175 INFO  ------------------------------------- 
+10:33:17.451 INFO  Loaded Guild commands... 
+10:33:18.702 INFO  Mongodb connected! 
+10:33:20.667 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"48.91 MB / 125.46 MB"} 
+10:33:20.773 INFO  ------------------------------------- 

@@ -157,7 +157,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
       invite: {
         clientId: bot.user.id,
         scopes: ["bot", "applications.commands"],
-        permissions: "1103740005559",
+        permissions: "1241204124887",
         redirectUri: web
       },
       guildAfterAuthorization: { 
@@ -206,6 +206,17 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
             link: "https://discord.gg/HNfhvCeR6d",
             id: "support",
         },
+ {
+            icon: `<svg style="position: absolute; margin-left: 8px; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#F21262">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path
+        d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+</svg>
+`,
+            title: "Invite Me",
+            link: `https://discord.com/api/oauth2/authorize?client_id=${process.env["clientID"]}&permissions=1241204124887&scope=bot%20applications.commands`,
+            id: "invite",
+              },              
 {
             icon: `<svg style="position: absolute; margin-left: 8px; margin-top: 2px;" fill="#F21262" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><g><path d="M16,13c3.09-2.81,6-5.44,6-7.7C22,3.45,20.55,2,18.7,2c-1.04,0-2.05,0.49-2.7,1.25C15.34,2.49,14.34,2,13.3,2 C11.45,2,10,3.45,10,5.3C10,7.56,12.91,10.19,16,13z M13.3,4c0.44,0,0.89,0.21,1.18,0.55L16,6.34l1.52-1.79 C17.81,4.21,18.26,4,18.7,4C19.44,4,20,4.56,20,5.3c0,1.12-2.04,3.17-4,4.99c-1.96-1.82-4-3.88-4-4.99C12,4.56,12.56,4,13.3,4z"/><path d="M19,16h-2c0-1.2-0.75-2.28-1.87-2.7L8.97,11H1v11h6v-1.44l7,1.94l8-2.5v-1C22,17.34,20.66,16,19,16z M3,20v-7h2v7H3z M13.97,20.41L7,18.48V13h1.61l5.82,2.17C14.77,15.3,15,15.63,15,16c0,0-1.99-0.05-2.3-0.15l-2.38-0.79l-0.63,1.9l2.38,0.79 c0.51,0.17,1.04,0.26,1.58,0.26H19c0.39,0,0.74,0.23,0.9,0.56L13.97,20.41z"/></g></g></g></g></svg>
 `,

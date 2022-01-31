@@ -28,8 +28,8 @@ class Comfi extends Discord.Client {
 				'GUILD',
 				'USER'
 			],
-			restRequestTimeout: 30000
-		})
+			restRequestTimeout: 30000,		
+    })
 		this.logger = require('./Logger.js')
 		this.color = '#F4B3CA'
 		this.error = '<a:error:890107682013474846>'
