@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@iamtraction/google-translate": "^1.1.2",
+    "anilist-node": "^1.11.0",
     "axios": "^0.21.4",
     "beautify": "0.0.8",
     "bing-translate-api": "^2.2.1",

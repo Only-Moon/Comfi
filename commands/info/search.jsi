@@ -1,0 +1,38 @@
+const { CommandInteraction, MessageEmbed } = require("discord.js");
+const anilist = require('anilist-node'); 
+const Anilist = new anilist()
+
+module.exports = {
+    name: "search",
+    description: "Search for anime, mange",
+    ownerOnly: false,
+    options: [
+        {
+            type: 'STRING',
+            description: 'The bug',
+            name: 'name',
+            required: true,
+        },
+    ],
+    userperm: [""],
+    botperm: [""],
+    /**
+     *
+     * @param {CommandInteraction} interaction
+     * @param {String[]} args
+     */
+    run: async (bot, interaction, args) => {
+
+const name = interaction.options.getString("name")
+
+let myFilter = { 
+  isAdult: false, 
+  
+}; 
+      Anilist.searchEntry.anime(name, myFilter, 1, 5).then(data => { 
+  // Data will return any entry that is adult which has 
+  // either an original or light novel source for the story. 
+  console.log(data.media); 
+});
+      
+}}

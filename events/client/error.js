@@ -18,7 +18,7 @@ bot
 		})
   
 	.on('warn', info => bot.logger.warn(`info \n` + info))
-  .on('debug', info => bot.logger.debug(info))
+  //.on('debug', info => bot.logger.debug(info))
 
 process.on('unhandledRejection', (reason, promise) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)

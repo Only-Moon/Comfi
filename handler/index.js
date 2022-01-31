@@ -32,7 +32,7 @@ module.exports = async bot => {
 
 			bot.logger.ready(`Loaded Guild commands...`)
 		} else if (dev === false.toString()) {
-			await bot.application.commands.set([])
+			await bot.application.commands.set(arrayOfSlashCommands)
 
 			bot.logger.ready(`Loaded Global Commands...`)
 		}
