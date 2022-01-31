@@ -138,16 +138,6 @@ await member.roles
 				embed: emed
 			})
 
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
   }
     
 })

@@ -5,16 +5,27 @@ bot
 	.on('disconnect', e => bot.logger.log(`disconnect \n` + e))
 	.on('reconnecting', e => bot.logger.log(`Bot is reconnecting \n` + e))
 	.on('error', e => bot.logger.error(`error \n` + e))
-	.on('rateLimit', err => {})
-    //bot.logger.limit(err))
-	.on('warn', info => bot.logger.warn(`info \n` + e))
+	.on('rateLimit', err => {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`Timeout: ${err.timeout}\n Limit: ${bot.ms(err.limit)}\n Method: ${err.method}\nPath: ${err.path}\nRoute: ${err.route}\nGlobal: ${err.global}`)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+		})
+  
+	.on('warn', info => bot.logger.warn(`info \n` + info))
+  .on('debug', info => bot.logger.debug(info))
 
 process.on('unhandledRejection', (reason, promise) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)
 
 if (reason.stack.includes("DiscordAPIError: Unknown Message")) return;
 
-if (reason.stack.includes("DiscordAPIError: Unknown Interaction")) return;  
+if (reason.stack.includes("DiscordAPIError: Missing Access")) return;  
 
 if (reason.stack.includes("DiscordAPIError: Unknown Webhook")) return;  
 

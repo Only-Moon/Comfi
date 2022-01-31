@@ -28,7 +28,7 @@ bot.on('messageCreate', async message => {
 		let sup = new MessageButton()
 			.setStyle('LINK')
 			.setLabel('Join Support!')
-			.setURL('https://comfibot.tk/discord')
+			.setURL('https://comfibot.tk/support')
 			.setEmoji('883032991293653062')
 
 		let inv = new MessageButton()

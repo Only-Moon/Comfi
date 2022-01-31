@@ -1,4 +1,4 @@
-const { CommandInteraction } = require('discord.js')
+const { CommandInteraction, MessageEmbed } = require('discord.js')
 const axios = require('axios')
 module.exports = {
 	name: 'djsdocs',
@@ -35,17 +35,6 @@ module.exports = {
 					} else {
 						interaction.followUp('Could not find that documentation')
 					}
-				})
-				.catch(e => {
-					let emed = new MessageEmbed()
-						.setTitle(`${bot.error} • Error Occured`)
-						.setDescription(`\`\`\`${e.stack}\`\`\``)
-						.setColor(bot.color)
-
-					bot.sendhook(null, {
-						channel: bot.err_chnl,
-						embed: emed
-					})
 				})
 		} catch (e) {
 			let emed = new MessageEmbed()

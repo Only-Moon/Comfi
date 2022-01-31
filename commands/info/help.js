@@ -70,7 +70,7 @@ module.exports = {
 					.setDescription(
 						`My Prefix For __**${
 							interaction.guild.name
-						}**__ Is  __**${prefix}**__\n\nFor More Command Information, Type The Following Command:\n**${prefix}helpp settings or** **${prefix}helpp bann**`
+						}**__ Is  __**${prefix}**__\n\nVisit https://comfibot.tk/commands To Get List Of All My Commands`
 					)
 					.addFields(categories)
 					.setFooter({
