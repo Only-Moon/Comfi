@@ -37,7 +37,7 @@ module.exports = {
 			.setDescription(
 				`**Author :**\n> ${member.user.username} \n**Report :**\n> ${query}`
 			)
-			.setFooter(`Author ID: ${member.user.id}`)
+			.setFooter({text:`Sent From ${member.guild.id}`})
 			.setThumbnail(member.user.avatarURL({ dynamic: true }))
 			.setTimestamp()
 			.setColor(bot.color)

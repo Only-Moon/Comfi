@@ -2,7 +2,7 @@ const { translate } = require('bing-translate-api');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "translate",
+    name: "translatee",
     description: "Translate Text to your preferred language",
   directory: "utility",
     ownerOnly: false,

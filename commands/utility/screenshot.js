@@ -1,5 +1,6 @@
-const { CommandInteraction, MessageButton, MessageActionRow, MessageEmbed } = require('discord.js')
+const { CommandInteraction, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment } = require('discord.js')
 const r = require('link-checker-malicious')
+const fetch = require("axios")
 
 module.exports = {
   name: 'screenshot',
@@ -39,17 +40,24 @@ module.exports = {
           .editReply(`${bot.error} **• Provide a Valid Url**`)
           .catch(e => { })
       }
-      let m = await interaction.editReply(`${bot.tick} **• Getting screenshot..**`)
+      let m = await interaction.editReply({content: `${bot.tick} **• Getting screenshot..**`}).then(async (msg) => {
 
       const nsfw = r.is_nsfw(url)
 
       if (nsfw.toString() === "true" && !interaction.channel.nsfw) {
         return interaction.editReply(`${bot.error} **• Nsfw Urls are not allowed in Non-NSFW Channel**`).catch(e => { })
       } else {
-        const emb = new MessageEmbed()
+
+let res = await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=ZRXWJKyu0aPM`)
+
+const buffer = new Buffer.from(res.data.screenshot.split(",")[1], "base64")
+  
+const image = new MessageAttachment(buffer, 'screenshot.png')
+  
+const emb = new MessageEmbed()
             .setColor(bot.color)
             .setAuthor({name: `Comfi™ Screenshot System`, iconURL:  bot.user.displayAvatarURL({dynamic:true})})
-            .setImage(`https://image.thum.io/get/png/width/1920/crop/720/noanimate/${url}`)
+            .setImage(`attachment://screenshot.png`)
             .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({ dynamic: true })}` });
 
 				const row = new MessageActionRow().addComponents(
@@ -61,10 +69,16 @@ module.exports = {
         
           await interaction.channel.send({
             embeds: [emb],
+            files: [ image ],
             components: [row]
           })
-          await m.delete().catch(() => null)
+          await msg.delete().catch(() => null)
       }
+
+      }).catch(async (e) => {
+        return await  bot.errorEmbed(bot, interaction, `I can't screenshot that url`)
+})
+
     } catch (e) {
       let emed = new MessageEmbed()
         .setTitle(`${bot.error} • Error Occured`)

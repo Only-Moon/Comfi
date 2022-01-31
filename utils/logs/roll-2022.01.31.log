@@ -1,0 +1,31 @@
+03:48:47.685 INFO  Loaded Guild commands... 
+03:48:48.860 INFO  Mongodb connected! 
+03:48:50.083 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"86","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"50.28 MB / 123.27 MB"} 
+03:48:50.108 INFO  ------------------------------------- 
+04:12:01.968 INFO  Loaded Guild commands... 
+04:12:02.546 INFO  Mongodb connected! 
+04:12:03.906 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"50.23 MB / 124.98 MB"} 
+04:12:03.912 INFO  ------------------------------------- 
+04:18:10.576 ERROR /home/runner/Comfi-beta/commands/utility/screenshot.js:79
+        return await  bot.errorEmbed(bot, interaction, `I can't screenshot that url`)
+               ^^^^^
+
+SyntaxError: await is only valid in async functions and the top level bodies of modules
+    at Object.compileFunction (node:vm:352:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1026:15)
+    at Module._compile (node:internal/modules/cjs/loader:1061:27)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at /home/runner/Comfi-beta/handler/index.js:17:16
+    at Array.map (<anonymous>)
+    at module.exports (/home/runner/Comfi-beta/handler/index.js:16:16) 
+04:18:11.456 INFO  Mongodb connected! 
+04:18:12.380 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"82","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"50.40 MB / 121.75 MB"} 
+04:18:12.394 INFO  ------------------------------------- 
+04:18:50.885 INFO  Loaded Guild commands... 
+04:18:51.267 INFO  Mongodb connected! 
+04:18:52.280 INFO  {"Bot User:":"Comfi Dev#5575","Guild(s):":"4 Servers","Watching:":"19 Members","Prefix:":"/","Commands:":"87","Discord.js:":"v13.6.0","Node.js:":"v17.4.0","Plattform:":"linux x64","Memory:":"53.62 MB / 124.68 MB"} 
+04:18:52.302 INFO  ------------------------------------- 

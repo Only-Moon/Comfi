@@ -41,7 +41,7 @@ try {
 			.setDescription(
 				`**Author :**\n> ${member.user.username} \n**Message:**\n> ${query}`
 			)
-			.setFooter(`Author ID: ${member.user.id}`)
+			.setFooter({text: `Sent from ${member.guild.id}`})
 			.setThumbnail(member.user.avatarURL({ dynamic: true }))
 			.setTimestamp()
 			.setColor(bot.color)

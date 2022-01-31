@@ -4,7 +4,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
 bot.on('interactionCreate', async (interaction, args) => {
 
 	if (interaction.isAutocomplete()) {
-		if (interaction.commandName === 'translate') {
+		if (interaction.commandName === 'translatee') {
 			const value = interaction.options.getFocused();
 			const choices = [
 				{
