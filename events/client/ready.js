@@ -19,7 +19,7 @@ bot.on('ready', async () => {
 			(a, b) => a + b.memberCount,
 			0
 		)} Members`,
-		'Prefix:': `/`,
+		'Emoji(s):': `${bot.emojis.cache.size} emotes`,
 		'Commands:': `${bot.slashCommands.size}`,
 		'Discord.js:': `v${Discord.version}`,
 		'Node.js:': `${process.version}`,
@@ -49,6 +49,8 @@ bot.on('ready', async () => {
 			activites[Math.floor(Math.random() * activites.length)]
 		)
 	}, 1000 * 20)
+
+require('../../functions/server')(bot)
   
 	setInterval(() => {
   require(`../../functions/member_counter`)(bot)
