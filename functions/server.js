@@ -141,6 +141,20 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
     redirectUri: `${webp}discord/callback`,
     domain: `${web}`,
     bot: bot,
+    invite: {
+        clientId: bot.user.id,
+        scopes: ["bot", "applications.commands"],
+        permissions: "1241204124887",
+        redirectUri: web
+      },
+      guildAfterAuthorization: { 
+        use: true, 
+        guildId: "881789379553656872" 
+      },
+      supportServer: {
+        slash: '/support',
+        inviteUrl: "https://discord.gg/HNfhvCeR6d"
+      },
     theme: DarkDashboard({
       information: {
         createdBy: "Xx-Mohit-xX",
@@ -153,20 +167,6 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
         pageBackGround: "linear-gradient(#F21262, #FAB3CA)",
         mainColor: "#F21262",
         subColor: "#FAB3CA",
-      },
-      invite: {
-        clientId: bot.user.id,
-        scopes: ["bot", "applications.commands"],
-        permissions: "1241204124887",
-        redirectUri: web
-      },
-      guildAfterAuthorization: { 
-        use: true, 
-        guildId: "881789379553656872" 
-      },
-      support: {
-        slash: 'support',
-        inviteUrl: "https://discord.gg/HNfhvCeR6d"
       },
       index: {
         card: {

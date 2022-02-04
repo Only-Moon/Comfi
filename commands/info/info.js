@@ -341,130 +341,127 @@ module.exports = {
 			}
 
 			if (subcommand === 'server') {
-				const vanityCode = interaction.guild.vanityURLCode
-        const members = await interaction.guild.members.fetch()
-				let vanityInvite = `https://discord.gg/${vanityCode}`
-				if (vanityCode === null) vanityInvite = 'No custom URL'
-				const roles = interaction.guild.roles.cache
-					.filter(r => r.id !== interaction.guild.id)
-					.map(role => role.toString())
-				const embed = new MessageEmbed()
-					.setTimestamp()
-					.setTitle('**Server Information**')
-					.setColor(bot.color)
-					.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-					.addField(
-						`↣ Name of server:`,
-						interaction.guild.name,
-						true
-					)
-					.addField(
-						`↣ ID of server`,
-						interaction.guild.id,
-						true
-					)
-					.addField(
-						'↣ Owner ID:',
-						`${(await interaction.guild.fetchOwner()).id}`,
-						true
-					)
-					.addField(
-						`↣ Owner Name:`,
-						`${(await interaction.guild.fetchOwner()).user}`,
-						true
-					)
-					.addField(
-						`↣ No. of Members`,
-		 members
-            .filter(member => !member.user.bot)
-            .size.toString(),
-						true
-					)
-					.addField(
-						`↣ No. of Bots:`,
-						members
-							.filter(member => member.user.bot)
-							.size.toString(),
-						true
-					)
-					.addField(
-						`↣ Non - Animated Emojis:`,
-						interaction.guild.emojis.cache
-            .filter(emoji => !emoji.animated)
-            .size.toString(),
-						true
-					)
-					.addField(
-						`↣ Animated Emoji\'s:`,
-						interaction.guild.emojis.cache
-							.filter(emoji => emoji.animated)
-							.size.toString(),
-						true
-					)
-					.addField(
-						`↣ # of Text Channel\'s:`,
-						interaction.guild.channels.cache
-							.filter(channel => channel.isText())
-							.size.toString(),
-						true
-					)
-					.addField(
-						`↣ # of Thread\'s:`,
-						interaction.guild.channels.cache
-							.filter(channel => channel.isThread())
-							.size.toString(),
-						true
-					)
-					.addField(
-						`↣ # of Voice Channel\'s:`,
-						interaction.guild.channels.cache
-							.filter(channel => channel.isVoice())
-							.size.toString(),
-						true
-					)
-					.addField(
-						`↣ Total Amount of Roles:`,
-						interaction.guild.roles.cache.size.toString(),
-						true
-					)
-					.addField(
-						`↣ Created at`,
-						`${moment(interaction.guild.createdTimestamp).format(
-							'LLL'
-						)} | \`${moment(interaction.guild.createdTimestamp).fromNow()}\``,
-						true
-					)
-					.addField(
-						`↣ Vanity Link`,
-						`${vanityInvite}`,
-						true
-					)
-					.addField(
-						`↣ Boost Level`,
-						interaction.guild.premiumTier.toString(),
-						true
-					)
-					.addField(
-						`↣ Total Boosts`,
-						interaction.guild.premiumSubscriptionCount.toString(),
-						true
-					)
-					.addField(
-						`↣ Verification Level`,
-						interaction.guild.verificationLevel.toString(),
-						true
-					)
-					.addField(
-						`↣ Roles [${roles.length}]`,
-						roles.length < 15
-							? roles.join(' | ')
-							: roles.length > 15
-								? `${roles.slice(0, 15).join(' | ')} | \`+ ${roles.length -
-										15} roles...\``
-								: 'None'
-					)
-					.setAuthor({name: `${interaction.guild.name}`})
-				await interaction.editReply({ embeds: [embed] })
+
+ const member = await interaction.guild.members.fetch()
+ const channel = await interaction.guild.channels.fetch()
+ const emoji = await interaction.guild.emojis.fetch()
+ const sticker = await interaction.guild.stickers.fetch()
+  
+ const embed = new MessageEmbed()
+ .setAuthor({name: interaction.guild.name, iconURL: interaction.guild.iconURL({dynamic: true})})
+ .setColor(bot.color).setTitle(`**Server Information**`)
+ .setThumbnail(interaction.guild.iconURL({dynamic: true}))
+ .addFields(
+ {
+ name: "↣ General",
+ value: 
+ `└➤ **Name**: ${interaction.guild.name}\n└➤ **Owner**: <@${interaction.guild.ownerId}>\n└➤ **Created**: <t:${parseInt(interaction.guild.createdTimestamp / 1000)}:R>\n\n└➤ **Description**: ${interaction.guild.description ? interaction.guild.description : "Description Not Found"}`,
+ inline: true
+ },
+ {
+ name: "↣ Users",
+ value: `\n└➤ **Members**: ${member.filter((m) => !m.user.bot).size}\n└➤ **Bots**: ${member.filter((m) => m.user.bot).size}\n\n└➤ **Total**: ${interaction.guild.memberCount}`,
+ inline: true
+ },
+ {
+ name: "↣ Channels",
+ value:
+ `\n└➤ **Text**: ${channel.filter((c) => c.type === "GUILD_TEXT").size}\n└➤ **Voice**: ${channel.filter((c) => c.type === "GUILD_VOICE").size}\n└➤ **Threads**: ${channel.filter((c) => c.isThread && c.type === "GUILD_NEWS_THREAD" && "GUILD_PRIVATE_THREAD" && "PUILD_PUBLIC_THREAD").size}\n└➤ **Categories**: ${channel.filter((c) => c.type === "GUILD_CATEGORY").size}\n└➤ **Stages**: ${channel.filter((c) => c.type === "GUILD_STAGE_VOICE").size}\n\n└➤ **Total**: ${channel.size}`,
+ inline: true
+ },
+ {
+ name: "↣ Emojis & Stickers",
+ value: 
+ `\n└➤ **Animated**: ${emoji.filter((e) => e.animated).size}\n└➤ **Normal**: ${emoji.filter((e) => !e.animated).size}\n└➤ **Stickers**: ${sticker.size}\n\n└➤ **Total**: ${sticker.size + emoji.size}
+ 
+ `,
+ inline: true
+ },
+ {
+ name: "↣ Boost Information",
+ value: 
+ `\n└➤ **Tier**: ${interaction.guild.premiumTier.replace("TIER_", "")}\n└➤ **Boosts**: ${interaction.guild.premiumSubscriptionCount}\n└➤ **Boosters**: ${member.filter((m) => m.premiumSince).size}`,
+ inline: true
+ });
+        
+if (interaction.guild.bannerURL()) {
+ embed.setImage(`${interaction.guild.bannerURL({dynamic: 
+true })}`) 
+}
+
+ 		const row = new MessageActionRow().addComponents(
+			new MessageButton()
+			.setCustomId("role")
+			.setLabel("Roles")
+			.setStyle("SECONDARY")
+      .setEmoji("883017858446135307"),
+
+			new MessageButton()
+			.setCustomId("features")
+			.setLabel("Features")
+			.setStyle("SECONDARY")
+      .setEmoji("883017898984103986"))
+ 
+ const msg = await interaction.editReply({ embeds: [embed], components: [row] , fetchReply: true})
+ 
+ 		const filter = async (inter) => {
+
+			if (inter.user.id !== interaction.user.id) {
+				inter.reply({
+					content: `${bot.error} • **This is not your buttons**`,
+					ephemeral: true
+				});
+				return false;
+			};
+			return true;
+		}
+
+		const collector = msg.createMessageComponentCollector({
+			filter,
+			componentType: 'BUTTON',
+		})
+
+		collector.on("collect", async (int) => {
+
+      let role = await interaction.guild.roles.fetch()
+				
+        role = role
+            .sort((a, b) => b.position - a.position)
+						.map(role => role.toString())
+            .filter(x => x.name !== "@everyone")
+						.slice(0, -1)
+
+      let feature = interaction.guild.features           
+   
+  if (int.customId === "features") {
+				await int.deferUpdate()
+				const gay1 = new MessageEmbed()
+					.setTitle(`${interaction.guild.name}'s Features`)
+					.setDescription(`${feature ? `<a:p_arrowright4:884420650549272586> ` + feature.sort().join(`\n<a:p_arrowright4:884420650549272586> `) : "Features Not Available"}`)
+					.setColor(bot.color);
+			await int.followUp({
+					embeds: [gay1],
+					ephemeral: true
+				})
+
+			}
+
+  if (int.customId === "role") {
+				await int.deferUpdate()
+				const gay1 = new MessageEmbed()
+					.setTitle(`${interaction.guild.name}'s Roles`)
+					.setDescription(`${role ? `<a:p_arrowright4:884420650549272586> ` + role.join(`\n<a:p_arrowright4:884420650549272586> `) : "No Features Found"}`)
+					.setColor(bot.color);
+			await int.followUp({
+					embeds: [gay1],
+					ephemeral: true
+				})
+
+			}
+      
+		})
+ 
+        
 			}
 
 			if (subcommand === 'privacy') {
@@ -478,7 +475,7 @@ module.exports = {
 				const row = new MessageActionRow().addComponents(
 					new MessageButton()
 						.setStyle('LINK')
-						.setURL('https://comfibot.tk/privacy')
+						.setURL('https://comfibot.tk/privacy-policy')
 						.setLabel('Read More!')
 				)
 
@@ -562,8 +559,8 @@ module.exports = {
       
 				let roles, members, position
 				if (member) {
-					roles = member.roles.cache
-						.sort((a, b) => b.position - a.position)
+					roles = await member.roles.fetch()
+					roles = roles.sort((a, b) => b.position - a.position)
 						.map(role => role.toString())
             .filter(x => x.name !== "@everyone")
 						.slice(0, -1)
@@ -745,7 +742,7 @@ if (accent_color) {
 				await int.deferUpdate()
 				const gay1 = new MessageEmbed()
 					.setTitle(`${member ? member.user.tag : user.tag}'s Permissions`)
-					.setDescription(`${permissions.join(`\n<a:p_arrowright4:884420650549272586> `)}`)
+					.setDescription(`${ `<a:p_arrowright4:884420650549272586> ` + permissions.join(`\n<a:p_arrowright4:884420650549272586> `)}`)
 					.setColor(bot.color);
 			await int.followUp({
 					embeds: [gay1],
@@ -757,26 +754,6 @@ if (accent_color) {
         
 			}
 
-			if (subcommand === 'uptime') {
-				let days = Math.floor(bot.uptime / 86400000)
-				let hours = Math.floor(bot.uptime / 3600000) % 24
-				let minutes = Math.floor(bot.uptime / 60000) % 60
-				let seconds = Math.floor(bot.uptime / 1000) % 60
-
-				const embed = new MessageEmbed()
-					.setTitle('Uptime')
-					.setColor('#F4B3CA')
-					.setDescription(
-						`I am Online from **${days}** days, **${hours}** hours, **${minutes}** minutes, **${seconds}** seconds`
-					)
-					.setThumbnail(bot.user.displayAvatarURL())
-					.setFooter({
-						text: `${interaction.user.username}`,
-						iconURL: interaction.user.avatarURL({ dynamic: true })
-                     })
-					.setAuthor({ name: bot.user.username, iconURL: bot.user.displayAvatarURL({dynamic: true})})
-			await	interaction.editReply({ embeds: [embed] })
-			}
 		} catch (e) {
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)
