@@ -145,7 +145,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
         clientId: bot.user.id,
         scopes: ["bot", "applications.commands"],
         permissions: "1241204124887",
-        redirectUri: web
+        redirectUri: `https://comfibot.tk/discord/callback`
       },
       guildAfterAuthorization: { 
         use: true, 
