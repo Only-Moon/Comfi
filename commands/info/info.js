@@ -2,13 +2,16 @@ const {
 	CommandInteraction,
 	MessageEmbed,
 	MessageButton,
-	MessageActionRow
+	MessageActionRow,
+  MessageAttachment
 } = require('discord.js')
 const axios = require('axios')
 const { version } = require('../../package.json')
 const ms = require('pretty-ms')
 const { version: discordjsVersion } = require('discord.js')
 const moment = require('moment')
+const { ChartJSNodeCanvas }= require("chartjs-node-canvas")
+const fs = require("fs")
 
 module.exports = {
 	name: 'infoo',
@@ -226,19 +229,64 @@ module.exports = {
 			}
 
 			if (subcommand === 'membercount') {
-        const member = await interaction.guild.members.fetch()
-				const embed = new MessageEmbed()
-					.setTitle(`${interaction.guild.name} • Member Count`)
+        let memb = await interaction.guild.members.fetch()
+        const member = memb.filter(x => x.user.bot === false).size
+        const bot = memb.filter(x => x.user.bot === true).size
 
-					.setColor(bot.color)				
-          .setThumbnail(
+const canvas = new ChartJSNodeCanvas({width: 600, height: 600, backgroundColor: "white"})
+
+const config = {
+  labels: [
+    `Members ${member}`,
+    `Bots ${bot}`
+  ],
+ datasets: [{
+   label: "Members of The Server",
+   data: [member, bot],
+   backgroundColor: [
+     bot.color,
+     bot.color
+   ],
+   borderColor: '#000000'
+ }]
+}
+
+const data = {
+  type: "pie",
+  data: config,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: `MemberCount of server: ${interaction.guild.name}`,
+        padding: {
+          top: 10,
+          bottom: 20
+        }
+      }
+    }
+  }
+};
+
+const image = await canvas.renderToBuffer(data)
+
+          
+const file = new MessageAttachment(image, "memberCount.png")
+
+console.log(file)
+        
+		const embed = new MessageEmbed()
+.setTitle(`${interaction.guild.name} • Member Count`)
+      .setImage("attachment://memberCount.png")			
+.setThumbnail(
   interaction.guild.iconURL()
 )
-					.setDescription(
-						`✗Bot Count: ${member.filter(a => a.user.bot).size		}\n✗Human Count: ${member.filter(a => !a.user.bot).size.toString()} \n✗Total Member Count: ${interaction.guild.memberCount}`
-					);
+.setDescription(
+						`✗Bot Count: ${memb.filter(a => a.user.bot).size		}\n✗Human Count: ${memb.filter(a => !a.user.bot).size.toString()} \n✗Total Member Count: ${interaction.guild.memberCount}`
+					)
+.setColor(bot.color);
 
-			await	interaction.followUp({ embeds: [embed] })
+			await	interaction.followUp({ embeds: [embed], file: [file] })
 			}
 
 			if (subcommand === 'sticker') {
