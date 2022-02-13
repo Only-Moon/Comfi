@@ -49,7 +49,9 @@ module.exports = {
 
 		if (sub === 'enable') {
 			try {
-				interaction.guild.roles.cache.forEach(async role => {
+        
+		setTimeout(async () => {       
+        interaction.guild.roles.cache.forEach(async role => {
 					await channel.permissionOverwrites.create(role, {
 						SEND_MESSAGES: false,
 						ADD_REACTIONS: false
@@ -59,7 +61,10 @@ module.exports = {
 					.setDescription(`${bot.tick} • **Successfully Locked ${channel}**`)
 					.setColor(bot.color)
 				await interaction.editReply({ embeds: [embed] }).catch(() => null)
-			} catch (e) {
+	
+    }, 20000)   
+    
+    } catch (e) {
 				let emed = new MessageEmbed()
 					.setTitle(`${bot.error} • Error Occured`)
 					.setDescription(`\`\`\`${e.stack}\`\`\``)
@@ -85,6 +90,9 @@ module.exports = {
 
 		if (sub === 'disable') {
 			try {
+
+		setTimeout(async () => {
+        
 				interaction.guild.roles.cache.forEach(async role => {
 					await channel.permissionOverwrites.create(role, {
 						SEND_MESSAGES: true,
@@ -96,6 +104,9 @@ module.exports = {
 					.setDescription(`${bot.tick} • **Successfully Unlocked ${channel}**`)
 					.setColor(bot.color)
 				interaction.editReply({ embeds: [embed] }).catch(() => null)
+
+    }, 20000)
+      
 			} catch (e) {
 				let emed = new MessageEmbed()
 					.setTitle(`${bot.error} • Error Occured`)

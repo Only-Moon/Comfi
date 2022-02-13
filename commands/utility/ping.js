@@ -27,11 +27,11 @@ module.exports = {
 			red: '<a:p_fire2:890138689072672788>'
 		}
 
+		setTimeout(() => {    
+
 let ping = msg.createdTimestamp - interaction.createdTimestamp
 
 const duration = moment.duration(bot.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
-
-		setTimeout(() => {
     
 		const pingEmbed = new MessageEmbed()
 			.setColor(bot.color)

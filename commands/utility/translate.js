@@ -4,15 +4,15 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "translatee",
     description: "Translate Text to your preferred language",
-  directory: "utility",
+    directory: "utility",
     ownerOnly: false,
     options: [
         {
             type: 'STRING',
             description: 'Language you want the text to get translated to',
             name: 'language',
+            autocomplete: true,
             required: true,
-            autocomplete: true
         },
       {
             type: 'STRING',

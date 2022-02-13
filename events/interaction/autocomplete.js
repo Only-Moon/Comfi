@@ -2,8 +2,9 @@ const bot = require('../../index')
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
 
 bot.on('interactionCreate', async (interaction, args) => {
-
+console.log(interaction.isAutocomplete())
 	if (interaction.isAutocomplete()) {
+    console.log(interaction)
 		if (interaction.commandName === 'translatee') {
 			const value = interaction.options.getFocused();
 			const choices = [
@@ -121,7 +122,9 @@ bot.on('interactionCreate', async (interaction, args) => {
 				.filter(choice => choice.name.startsWith(value))
 				.slice(0, 24)
 				.sort();
-      
+
+console.log(value)
+        
 			const response = await interaction.respond(
 				filtered.map(choice => ({ name: choice.name, value: choice.value }))
 			);

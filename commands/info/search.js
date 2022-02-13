@@ -9,7 +9,7 @@ module.exports = {
     {      
       name: "anime",
      type: "SUB_COMMAND",
-     description: "Search for animw",
+     description: "Search for anime",
      options: [
        {
             type: 'STRING',

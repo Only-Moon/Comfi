@@ -36,7 +36,10 @@ bot.on('interactionCreate', async interaction => {
 									})
 
 									if (hasrole) {
-										await interaction.member.roles.remove(r.role).catch(() => null)
+
+setTimeout(async () => {
+                    
+                    await interaction.member.roles.remove(r.role).catch(() => null)
 										const embed = new MessageEmbed()
 											.setDescription(
 												`> ${bot.tick} • I have removed the <@&${
@@ -47,7 +50,11 @@ bot.on('interactionCreate', async interaction => {
 										await interaction
 											.reply({ embeds: [embed], ephemeral: true })
 											.catch(() => null)
-									} else {
+              }, 20000)							
+                  } else {
+
+setTimeout(async () => {
+                    
 										await interaction.member.roles.add(r.role).catch(() => null)
 										const embed = new MessageEmbed()
 											.setDescription(
@@ -59,6 +66,9 @@ bot.on('interactionCreate', async interaction => {
 									await	interaction
 											.reply({ embeds: [embed], ephemeral: true })
 											.catch(() => null)
+
+}, 20000)
+  
 									}
 								}
 							})
