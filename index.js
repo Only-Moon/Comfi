@@ -5,8 +5,8 @@ console.log('Loading Bot...')
 
 //-----[ DEFINING DEPENDENCIES ]-----\\
 
-const Comfi = require('./utils/Comfi'),
-	bot = new Comfi()
+const Miyu = require('./utils/Miyu'),
+	bot = new Miyu()
 
 module.exports = bot
 
