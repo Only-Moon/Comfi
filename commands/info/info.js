@@ -10,7 +10,6 @@ const { version } = require('../../package.json')
 const ms = require('pretty-ms')
 const { version: discordjsVersion } = require('discord.js')
 const moment = require('moment')
-const { ChartJSNodeCanvas }= require("chartjs-node-canvas")
 const fs = require("fs")
 
 module.exports = {
@@ -228,56 +227,13 @@ module.exports = {
 				await interaction.editReply({ embeds: [embed] })
 			}
 
-			if (subcommand === 'membercount') {
+if (subcommand === 'membercount') {
         let memb = await interaction.guild.members.fetch()
         const member = memb.filter(x => x.user.bot === false).size
         const bot = memb.filter(x => x.user.bot === true).size
 
-const canvas = new ChartJSNodeCanvas({width: 600, height: 600, backgroundColor: "white"})
-
-const config = {
-  labels: [
-    `Members ${member}`,
-    `Bots ${bot}`
-  ],
- datasets: [{
-   label: "Members of The Server",
-   data: [member, bot],
-   backgroundColor: [
-     bot.color,
-     bot.color
-   ],
-   borderColor: '#000000'
- }]
-}
-
-const data = {
-  type: "pie",
-  data: config,
-  options: {
-    plugins: {
-      title: {
-        display: true,
-        text: `MemberCount of server: ${interaction.guild.name}`,
-        padding: {
-          top: 10,
-          bottom: 20
-        }
-      }
-    }
-  }
-};
-
-const image = await canvas.renderToBuffer(data)
-
-          
-const file = new MessageAttachment(image, "memberCount.png")
-
-console.log(file)
-        
-		const embed = new MessageEmbed()
-.setTitle(`${interaction.guild.name} • Member Count`)
-      .setImage("attachment://memberCount.png")			
+  const Embed = new MessageEmbed()
+.setTitle(`${interaction.guild.name} • Member Count`)			
 .setThumbnail(
   interaction.guild.iconURL()
 )
@@ -286,7 +242,7 @@ console.log(file)
 					)
 .setColor(bot.color);
 
-			await	interaction.followUp({ embeds: [embed], file: [file] })
+			await	interaction.followUp({ embeds: [Embed] })
 			}
 
 			if (subcommand === 'sticker') {

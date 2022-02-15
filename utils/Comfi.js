@@ -173,8 +173,14 @@ class Comfi extends Discord.Client {
 		let webhook = await channel_
 			.fetchWebhooks()
 			.then(x => x.find(x => x.name === name))
+    const emb = new Discord.MessageEmbed()
+    if (embed) {
+emb.setTitle(embed.title)  
+      emb.setDescription(embed.description.split(" ").slice(0, 4000).join(" "))
+emb.setColor(bot.color)    }
+    
 		if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
-		return await webhook.send(embed ? { embeds: [embed] } : msg).then(e => {			remove ? webhook.delete() : e		
+		return await webhook.send(embed ? { embeds: [emb] } : msg).then(e => {			remove ? webhook.delete() : e		
     })
 	}
 	async emoji(name, option) {
