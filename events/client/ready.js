@@ -52,13 +52,13 @@ bot.on('ready', async () => {
 
 require('../../functions/server')(bot)
   
-	setInterval(() => {
-  require(`../../functions/member_counter`)(bot)
-	}, 60000 * 10)
+	//setInterval(() => {
+  //require(`../../functions/member_counter`)(bot)
+	//}, 60000 * 10)
 
-setInterval(() => {
-  require('../../functions/reminder')(bot)
-}, 1000)
+//setInterval(() => {
+  //require('../../functions/reminder')(bot)
+//}, 1000)
 
 bot.guilds.cache.forEach(async (guild) => {
   const guilD = await guilds.findOne({        guildId: guild?.id})
