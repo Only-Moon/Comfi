@@ -59,7 +59,7 @@ require('../../functions/server')(bot)
 //setInterval(() => {
   //require('../../functions/reminder')(bot)
 //}, 1000)
-
+/**
 bot.guilds.cache.forEach(async (guild) => {
   const guilD = await guilds.findOne({        guildId: guild?.id})
   
@@ -84,5 +84,5 @@ bot.emit("guildCreate", guild)
 } else if (guilD) return;
   
   })
-      
+*/      
 })
