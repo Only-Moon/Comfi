@@ -1,6 +1,6 @@
 <div align="center"> 
-<a img ="https://comfibot.tk/invite">
-<src="https://i.imgur.com/At2XO1M.png" width="100"> 
+<a href="https://comfibot.tk/invite">
+<img src="https://i.imgur.com/At2XO1M.png" width="100"> 
 <h1>Comfi</h1> 
 <img src="https://img.shields.io/badge/discord.js-v13-7354F6?logo=discord&logoColor=white&style=flat-square"> 
 <img src="https://img.shields.io/github/stars/Xx-Mohit-xX/Comfi.svg?logo=github&style=flat-square"> 
