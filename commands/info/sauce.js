@@ -1,3 +1,10 @@
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 const axios = require('axios');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
@@ -67,6 +74,7 @@ const image = interaction.options.getString("image")
               .setColor(animeDetails.coverImage.color
                 ? parseInt(animeDetails.coverImage.color.replace('#', '0x'))
                 : bot.color)
+         .setFooter({ text: "Sauce from Anilist"})
               await interaction.editReply({embeds:[Embed]})
 
         }catch (e) {

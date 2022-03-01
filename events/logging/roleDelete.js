@@ -2,6 +2,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const { MessageEmbed } = require("discord.js")
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on("roleDelete", async (role) => {
     const guild = await guilds.findOne({guildId: role.guild.id})
     if(!guild.logging) return;
@@ -18,7 +25,7 @@ bot.on("roleDelete", async (role) => {
     .addFields(
         {name: "Role", value: `> <a:zzzghostheart:883017884014637066> • **Name:** ${role.name}\n > <a:zzzghostheart:883017884014637066> • **ID:** \`${role.id}\``},
     )
-    .setFooter("Comfi™ Logging")
+    .setFooter({text: "Comfi™ Logging"})
     .setTimestamp()
     
     const logsChannel = role.guild.channels.cache.find(c => c.id === guild.logging_channel)

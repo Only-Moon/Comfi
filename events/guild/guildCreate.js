@@ -7,6 +7,13 @@ const {
 } = require('discord.js')
 const guilds = require(`../../models/guild`)
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on('guildCreate', async guild => {
 	await guilds.create({ guildId: guild.id })
 
@@ -34,7 +41,7 @@ bot.on('guildCreate', async guild => {
 					guild.name
 				} :-<a:wing_cs:883032991293653062> \n My Prefix Is **/** \n\n To get started type **/help** Or **/help ping**`
 			)
-			.setFooter('Comfi™ v1.0.0')
+			.setFooter({text: 'Comfi™ v1.0.0'})
 
 		ch.send({
 			embeds: [msg],
@@ -70,7 +77,7 @@ bot.on('guildCreate', async guild => {
 					)
 					.setTimestamp()
 					.setColor(bot.color)
-					.setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`)
+					.setFooter({text: `I'm in ${bot.guilds.cache.size} Guilds Now!`})
 
 				const button = new MessageActionRow().addComponents(
 					new MessageButton()

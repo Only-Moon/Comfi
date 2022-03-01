@@ -2,6 +2,13 @@ const bot = require('../../index')
 const discord = require('discord.js')
 const guilds = require('../../models/guild')
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on('guildDelete', async guild => {
 	await guilds.findOneAndReplace({ guildId: guild.id })
 
@@ -28,7 +35,7 @@ bot.on('guildDelete', async guild => {
 		)
 		.setTimestamp()
 		.setColor(bot.color)
-		.setFooter(`I'm in ${bot.guilds.cache.size} Guilds Now!`)
+		.setFooter({text: `I'm in ${bot.guilds.cache.size} Guilds Now!`})
 
 	channel.send({ embeds: [embed] })
 })

@@ -3,6 +3,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const users = require("../../models/users")
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on("guildMemberRemove", async (member) => {
 
   function format(msg) {
@@ -50,11 +57,11 @@ bot.on("guildMemberRemove", async (member) => {
         const emb = guild.leave_embed.map(async (em) => {
 
           const embed = new MessageEmbed()
-            .setAuthor(
-              em.embed.author ?.text ? em.embed.author ?.text : '',
-              em.embed.author ?.icon_url
-                ? em.embed.author ?.icon_url : '', em.embed.author ?.url ? em.embed.author ?.url : ''
-					)
+            .setAuthor({
+              name: em.embed.author?.text ? em.embed.author?.text : '',
+avatarURL: em.embed.author?.icon_url
+                ? em.embed.author?.icon_url : '', url: em.embed.author?.url ? em.embed.author?.url : ''
+            })
             .setTitle(format(em.embed.title || ''))
             .setDescription(format(em.embed.description || ''))
             .setColor(em.embed.color || '#36393F')
@@ -62,7 +69,7 @@ bot.on("guildMemberRemove", async (member) => {
             .setURL(em.embed.url || '')
             .setTimestamp(em.embed.timestamp ? new Date() : false)
             .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
-            .setFooter(format(em.embed.footer.text || ''))
+            .setFooter({text: format(em.embed.footer.text || '')})
           let cont = format(em.content);
           if
             (guild.leave_dmuser) {

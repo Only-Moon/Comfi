@@ -1,10 +1,14 @@
 const bot = require('../../index')
 const Discord = require('discord.js')
-const express = require('express')
-const app = express()
-const port = 8080
 const ClientSchema = require('../../models/Client')
 const guilds = require(`../../models/guild`)
+
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
 
 bot.on('ready', async () => {
 	const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
@@ -51,38 +55,5 @@ bot.on('ready', async () => {
 	}, 1000 * 20)
 
 require('../../functions/server')(bot)
-  
-	//setInterval(() => {
-  //require(`../../functions/member_counter`)(bot)
-	//}, 60000 * 10)
-
-//setInterval(() => {
-  //require('../../functions/reminder')(bot)
-//}, 1000)
-/**
-bot.guilds.cache.forEach(async (guild) => {
-  const guilD = await guilds.findOne({        guildId: guild?.id})
-  
-if (!guilD) {
-  try {
-bot.emit("guildCreate", guild)
-//await guilds.create({ guildId: guild?.id })
-
-  } catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-  }
-    
-} else if (guilD) return;
-  
-  })
-*/      
+       
 })

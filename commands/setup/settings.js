@@ -1,3 +1,10 @@
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 const { CommandInteraction, MessageEmbed } = require('discord.js')
 const simplydjs = require('simply-djs')
 const guilds = require('../../models/guild')
@@ -310,37 +317,6 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
                    })
         .setColor(bot.color)
 
-      const membercount = new MessageEmbed()
-        .setAuthor({
-name:          `${interaction.guild.name} - Settings - Member Counter`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
-        .setDescription('You can change the settings by `/membercount`')
-        .addFields(
-          {
-            name: '» Member Counter Toogle',
-            value: `\`\`\`\n${guild.member_counter || 'NONE'}\n\`\`\``
-          },
-          {
-            name: '» Member Counter Channel Type',
-            value: `\`\`\`\n${guild.member_counter_channel_type ||
-              'NONE'}\n\`\`\``
-          },
-          {
-            name: '» Member Counter Channel Name',
-            value: `${guild.member_counter_channel_name || 'NONE'}`
-          },
-          {
-            name: '» Member Counter Channel',
-            value: `<#${guild.member_counter_channel || 'NONE'}>`
-          }
-        )
-        .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
-        .setColor(bot.color)
-
       const modlog = new MessageEmbed()
         .setAuthor({
 name:          `${interaction.guild.name} - Settings - Modlogs`,
@@ -550,7 +526,6 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
         leave,
         leveling,
         logging,
-        membercount,
         modlog,
         suggest,
         verification,

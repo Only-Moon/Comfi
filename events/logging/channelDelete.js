@@ -2,6 +2,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const { MessageEmbed } = require("discord.js")
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on("channelDelete", async (channel) => {
     if(!channel.guild) return;
     const guild = await guilds.findOne({guildId: channel.guild.id})
@@ -47,17 +54,6 @@ bot.on("channelDelete", async (channel) => {
                 boost: false,
                 boost_channel: "NONE",
                 boost_message: "{user} just boosted {server}",
-            })
-        }
-    }
-
-    if(guild.member_counter) {
-        if(guild.member_count === channel.id) {
-            await guilds.findOneAndUpdate({guildId: channel.guild.id}, {
-                member_counter: false,
-                member_counter__channel: "NONE",
-                member_counter_channel_type: "GUILD_VOICE",
-                member_counter_channel_name: "Members: ",
             })
         }
     }
@@ -135,7 +131,7 @@ bot.on("channelDelete", async (channel) => {
     .addFields(
         {name: "Channel", value: `> <a:zzzghostheart:883017884014637066> • **Name:** ${channel.name}\n > <a:zzzghostheart:883017884014637066> • **ID:** \`${channel.id}\``},
     )
-    .setFooter("Comfi™ Logging")
+    .setFooter({text: "Comfi™ Logging"})
     .setTimestamp()
 
     

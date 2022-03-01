@@ -2,6 +2,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const { MessageEmbed } = require('discord.js')
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on('threadCreate', async thread => {
 	const guild = await guilds.findOne({ guildId: thread.guild.id })
 
@@ -44,7 +51,7 @@ bot.on('threadCreate', async thread => {
 				thread.id
 			}>`
 		})
-		.setFooter('Comfi™ Logging')
+		.setFooter({text: 'Comfi™ Logging'})
 		.setTimestamp()
 
 	const logsChannel = thread.guild.channels.cache.find(

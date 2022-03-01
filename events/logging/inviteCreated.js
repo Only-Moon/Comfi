@@ -2,6 +2,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const { MessageEmbed } = require("discord.js")
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on("inviteCreate", async (invite) => {
     const guild = await guilds.findOne({guildId: invite.guild.id})
     if(!guild.logging) return;
@@ -15,7 +22,7 @@ bot.on("inviteCreate", async (invite) => {
      .addFields(
          {name: "Information", value: ` > <a:zzzghostheart:883017884014637066> • **Code:** ${invite.code}\n > <a:zzzghostheart:883017884014637066> • **Max uses:** ${invite.maxUses ? invite.maxUses : "Not defined"}\n > <a:zzzghostheart:883017884014637066> • **Expires:** ${invite.expiresTimestamp ? `<t:${Math.floor(invite.expiresTimestamp / 1000)}:f>` : "Not defined"}`},
          {name: "URL", value: `${invite.url}`})
-    .setFooter("Comfi™ Logging")
+    .setFooter({text: "Comfi™ Logging"})
     .setTimestamp()
 
    

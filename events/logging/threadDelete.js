@@ -2,6 +2,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const { MessageEmbed } = require('discord.js')
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on('threadDelete', async thread => {
 	const guild = await guilds.findOne({ guildId: thread.guild.id })
 
@@ -17,7 +24,7 @@ bot.on('threadDelete', async thread => {
 	}
 
 	if (!guild.logging) return;
-	if (!thread.guild.me.permissions.has('VIEW_AUDIT_LOG')) return
+	if (!thread.guild.me.permissions.has('VIEW_AUDIT_LOG')) return;
 
 	const AuditLogFetch = await thread.guild.fetchAuditLogs({
 		limit: 1,
@@ -38,7 +45,7 @@ bot.on('threadDelete', async thread => {
 				thread.name
 			}\n > <a:zzzghostheart:883017884014637066> • **ID:** \`${thread.id}\``
 		})
-		.setFooter('Comfi™ Logging')
+		.setFooter({text:'Comfi™ Logging'})
 		.setTimestamp()
 
 	const logsChannel = thread.guild.channels.cache.find(

@@ -9,7 +9,13 @@ const {
 const guilds = require('../../models/guild')
 const users = require('../../models/users')
 const Client = require('../../models/Client')
-const { owners } = require('../../config')
+
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
 
 bot.on('interactionCreate', async (interaction, args) => {
   // Slash Command Handling
@@ -48,7 +54,7 @@ bot.on('interactionCreate', async (interaction, args) => {
     )
 
     if (cmd.ownerOnly) {
-      if (!owners.includes(interaction.user.id))
+      if (bot.owners.includes(interaction.user.id))
                 return await  bot.errorEmbed(bot, interaction, `**You are not Authorized to use this Command !!**`
         )
     }

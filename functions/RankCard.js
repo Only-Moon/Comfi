@@ -1,6 +1,13 @@
 const Discord = require('discord.js')
 const bot = require('../index')
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 const { join } = require('path')
 
 const Canvas = require('canvas')
@@ -10,9 +17,6 @@ registerFont(join(__dirname, '../fonts', 'Poppins-SemiBold.ttf'), {
 })
 registerFont(join(__dirname, '../fonts', 'Poppins-SemiBold.ttf'), {
 	family: 'Poppins-Bold'
-})
-registerFont(join(__dirname, '../fonts', 'ArialUnicodeMS.ttf'), {
-	family: 'Arial-Unicode-MS'
 })
 
 /**
@@ -26,7 +30,6 @@ registerFont(join(__dirname, '../fonts', 'ArialUnicodeMS.ttf'), {
   member => GuildMember
   background => (Image URL) String
   color => HexColor
-  rank => Number
   currentXP => Number
   level => Number
   neededXP => Number
@@ -66,7 +69,6 @@ async function rankCard(client, message, options = []) {
 			BoxColor = options.color || '#096DD1',
 			LevelBarFill = bot.color,
 			LevelBarBackground = '#ffffff',
-			Rank = options.rank,
 			TextEXP = shortener(options.currentXP) + ' xp',
 			LvlText = `Level ${shortener(options.level)}`,
 			BarRadius = '20',
@@ -174,17 +176,6 @@ async function rankCard(client, message, options = []) {
 		ctx.shadowOffsetY = 1
 		ctx.font = '39px "Poppins-Bold"'
 		ctx.fillText(Username, 390, 80)
-		ctx.restore()
-
-		ctx.save()
-		ctx.textAlign = 'right'
-		ctx.fillStyle = '#ffffff'
-		ctx.shadowColor = '#000000'
-		ctx.shadowBlur = 15
-		ctx.shadowOffsetX = 1
-		ctx.shadowOffsetY = 1
-		ctx.font = '55px "Poppins-Bold"'
-		ctx.fillText('#' + Rank, canvas.width - 50 - 5, 80)
 		ctx.restore()
 
 		ctx.save()

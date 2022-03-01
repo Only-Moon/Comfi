@@ -1,6 +1,13 @@
 let { MessageEmbed } = require('discord.js')
 let bot = require('../../index.js')
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot
 	.on('disconnect', e => bot.logger.log(`disconnect \n` + e))
 	.on('reconnecting', e => bot.logger.log(`Bot is reconnecting \n` + e))
@@ -18,7 +25,7 @@ bot
 		})
   
 	.on('warn', info => bot.logger.warn(`info \n` + info))
-  .on('debug', info => bot.logger.debug(info))
+ // .on('debug', info => bot.logger.debug(info))
 
 process.on('unhandledRejection', (reason, promise) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)

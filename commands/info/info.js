@@ -104,11 +104,6 @@ module.exports = {
 					required: false
 				}
 			]
-		},
-		{
-			type: 'SUB_COMMAND',
-			description: 'Information about the bot uptime',
-			name: 'uptime'
 		}
 	],
 	userperm: [''],

@@ -1,8 +1,16 @@
+require('dotenv').config()
 const Discord = require('discord.js'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk'),
 	fs = require('fs'),
   guilds = require('../models/guild')
+
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
 
 class Comfi extends Discord.Client {
 	constructor() {
@@ -31,13 +39,13 @@ class Comfi extends Discord.Client {
 			restRequestTimeout: 30000,		
     })
 		this.logger = require('./Logger.js')
-		this.color = '#F4B3CA'
-		this.error = '<a:error:890107682013474846>'
-		this.tick = '<a:tick:890113862706266112>'
-		this.crosss = '<a:cross:890113459868553277>'
-		this.dash = 'https://comfibot.tk/'
+		this.color = process.env['color'] || '#F4B3CA'
+		this.error = process.env['error'] || '<a:error:890107682013474846>'
+		this.tick = process.env['tick'] || '<a:tick:890113862706266112>'
+		this.crosss = process.env['cross'] || '<a:cross:890113459868553277>'
+		this.dash = process.env['web']
 		this.ms = require('ms')
-		this.owners = require('../config.json').owners
+		this.owners = process.env['owner'] || ["753974636508741673"]
 		this.err_chnl = process.env['error_channel']
 		this.login(process.env.TOKEN)
 		this.categories = fs.readdirSync('./commands/')

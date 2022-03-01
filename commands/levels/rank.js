@@ -1,3 +1,10 @@
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord.js");
 const guilds = require("../../models/guild")
 const users = require("../../models/users")
@@ -31,20 +38,12 @@ module.exports = {
 
       const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
-const lb = await users
-  .find({guildId: interaction.guild.id})
-  .sort([['xp', 'descending']]) 
-  .exec() 
-        
       const user = await users.findOne({ guildId: interaction.guild.id, userId: target.id })
 
       if (!user) {
         interaction.editReply(`${bot.error} User haven't Leveled Up yet or User is a Bot`)
 
       } else {
-      
-user.position = lb.findIndex((i) => 
-  i.user === target.id)
 
         if (guild.leveling) {
 
@@ -52,7 +51,6 @@ user.position = lb.findIndex((i) =>
             slash: true,
             member: target,
             level: user.level,
-            rank: Number(user.position) ? isNaN(user.position) : 0 + 1,
             color: bot.color,
             currentXP: user.xp,
             neededXP: user.requiredXp,

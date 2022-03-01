@@ -2,6 +2,13 @@ const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const { MessageEmbed } = require("discord.js")
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on("messageDelete", async (message) => {
     const guild = await guilds.findOne({guildId: message.guild.id})
     if(!guild.logging) return;
@@ -20,7 +27,7 @@ bot.on("messageDelete", async (message) => {
      value: message.content.toString() || `${bot.error} **Sorry, I am unable to fetch that message <3**`
         }
     )
-    .setFooter("Comfi™ Logging")
+    .setFooter({text: "Comfi™ Logging"})
     .setTimestamp()
 
     

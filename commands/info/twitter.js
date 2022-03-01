@@ -1,3 +1,10 @@
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 const request = require('node-superfetch');
 const { stripIndents } = require('common-tags');
 const twitter = require('twitter-api.js');
@@ -29,7 +36,7 @@ module.exports = {
 		try {
 			const body = await twitter.users(user);
 			const tweet = new MessageEmbed()
-				.setColor('BLUE')
+				.setColor(bot.color)
 				.setAuthor({ 
 name: 					`@${body.screen_name.toLowerCase()}`,
 					iconURL: body.verified

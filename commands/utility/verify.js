@@ -1,3 +1,10 @@
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 const { CommandInteraction, MessageEmbed, MessageCollector} = require("discord.js")
 const guilds = require("../../models/guild")
 
@@ -6,8 +13,8 @@ module.exports = {
     description: "Incase the verify prompt is not working you can run this to verify",
   directory: "utility",
     ownerOnly: false,
-    botperm: ["MANAGE_GUILD"],
-    userperm: ["MANAGE_GUILD"],
+    botperm: [""],
+    userperm: [""],
     /**
      * @param {CommandInteraction} interaction 
      * @param {String[]} args

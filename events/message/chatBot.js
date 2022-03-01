@@ -3,6 +3,13 @@ const { MessageEmbed } = require('discord.js')
 const guilds = require('../../models/guild')
 const fetch = require('node-fetch')
 
+/* 
+* Comfi Bot for Discord 
+* Copyright (C) 2021 Xx-Mohit-xX
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+* For more information, see README.md and LICENSE 
+*/
+
 bot.on('messageCreate', async message => {
 	if (
 		message.author.bot ||
@@ -44,24 +51,24 @@ bot.on('messageCreate', async message => {
 
 				await message.channel.sendTyping().catch(() => null)
 
-				const url = new URL('https://api.affiliateplus.xyz/api/chatbot'),
+				const url = new URL('https://simplyapi.js.org/chatbot'),
 					params = url.searchParams,
 					age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
 
 				params.set('message', input)
-				params.set('ownername', 'moonbow#5817')
-				params.set('botname', bot.user.username)
+				params.set('developer', 'moonbow#5817')
+				params.set('name', bot.user.username)
 				params.set('age', age)
-				params.set('birthyear', bot.user.createdAt.getFullYear())
-				params.set('birthdate', bot.user.createdAt.toLocaleDateString())
-				params.set('birthplace', 'House Of Emotes--')
-				params.set('location', message.guild.name)
-				params.set('user', message.author.id)
+				params.set('year', bot.user.createdAt.getFullYear())
+				params.set('bday', bot.user.createdAt.toLocaleDateString())
+				params.set('birthplace', 'Comfi Development')
+				params.set('gender', 'female')
+				params.set('uid', message.author.id)
 
 				// Using await instead of .then
 				const jsonRes = await fetch(url).then(res => res.json()) // Parsing the JSON
-
-				const chatbotReply = jsonRes.message
+        
+				const chatbotReply = jsonRes.reply
 					.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
 					.replace(/@here/g, '`@here`')
 
