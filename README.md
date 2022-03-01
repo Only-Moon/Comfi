@@ -1,5 +1,6 @@
 <div align="center"> 
-<img src="https://i.imgur.com/At2XO1M.png" width="100"> 
+<a img ="https://comfibot.tk/invite">
+<src="https://i.imgur.com/At2XO1M.png" width="100"> 
 <h1>Comfi</h1> 
 <img src="https://img.shields.io/badge/discord.js-v13-7354F6?logo=discord&logoColor=white&style=flat-square"> 
 <img src="https://img.shields.io/github/stars/Xx-Mohit-xX/Comfi.svg?logo=github&style=flat-square"> 
@@ -23,14 +24,14 @@ Comfi requires some permissions before joining the server. to make sure it can w
 - **Commands** - for creating `Slash Command` within the server will make it easier to use. 
 
 ### Ready 
-[Invite Server](https://comfibot.tk/invite)
+[Invite Server](https://comfibot.tk/support)
 
 # Documents 
 If you want to learn more about Comfi such as commands, functions, etc., you can visit or study [Document](https://comfibot.tk/) of Comfi website.
 
 ## Self hosting
 - This discord bot uses [Mongodb](htttps://www.mongodb.com/) for its databases.
-- Rename .env.example to .env and fill the details
+- Rename `.env.example` to `.env` and fill the details
 
 ## License
 Comfi Bot is licensed under the terms of [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://github.com/Xx-Mohit-xX/Comfi-Bot/blob/master/LICENSE) ("CC-BY-NC-SA-4.0"). Commercial use is not allowed under this license. This includes any kind of revenue made with or based upon the software, even donations.
