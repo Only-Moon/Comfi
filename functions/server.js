@@ -1,6 +1,8 @@
 const guilds = require('../models/guild')
 const { permissions, MessageEmbed }
  = require ("discord.js")
+const fs = require("fs")
+
 
 /* 
 * Comfi Bot for Discord 
@@ -279,7 +281,6 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
 ],
           
     }),
-                               
     settings: [
       {
         categoryId: 'gen',

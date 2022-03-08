@@ -1,4 +1,3 @@
-require('dotenv').config()
 const Discord = require('discord.js'),
 	mongoose = require('mongoose'),
 	chalk = require('chalk'),

@@ -9,7 +9,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
 */
 
 bot.on('interactionCreate', async (interaction, args) => {
-console.log(interaction.isAutocomplete())
+
 	if (interaction.isAutocomplete()) {
     
 		if (interaction.commandName === 'translatee') {

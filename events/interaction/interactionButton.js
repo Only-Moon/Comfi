@@ -24,7 +24,7 @@ bot.on('interactionCreate', async (interaction, args) => {
 			const joindsc = new MessageButton()
 				.setStyle('LINK')
 				.setLabel('Join Our Support Server!')
-				.setURL('https://comfibot.tk/discord')
+				.setURL('https://comfibot.tk/support')
 
 			const row = new MessageActionRow().addComponents(joindsc)
 
@@ -41,7 +41,7 @@ bot.on('interactionCreate', async (interaction, args) => {
 			const joindscc = new MessageButton()
 				.setStyle('LINK')
 				.setLabel('Join Our Support Server!')
-				.setURL('https://comfibot.tk/discord')
+				.setURL('https://comfibot.tk/support')
 
 			const row1 = new MessageActionRow().addComponents(joindscc)
 

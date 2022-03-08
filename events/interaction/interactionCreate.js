@@ -52,9 +52,9 @@ bot.on('interactionCreate', async (interaction, args) => {
     interaction.member = interaction.guild.members.cache.get(
       interaction.user.id
     )
-
+    
     if (cmd.ownerOnly) {
-      if (bot.owners.includes(interaction.user.id))
+      if (!bot.owners.includes(interaction.user.id))
                 return await  bot.errorEmbed(bot, interaction, `**You are not Authorized to use this Command !!**`
         )
     }
