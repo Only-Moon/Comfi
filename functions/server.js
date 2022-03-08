@@ -142,19 +142,19 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
 )
 
   const Dashboard = new DBD.Dashboard({
-    port: 80,
+    port: process.env.PORT || 80,
     client: {
       id: process.env["clientID"],
       secret: process.env["Secret"]
     },
-    redirectUri: `${webp}discord/callback`,
+    redirectUri: `${web}discord/callback`,
     domain: `${web}`,
     bot: bot,
     invite: {
         clientId: bot.user.id,
         scopes: ["bot", "applications.commands"],
         permissions: "1241204124887",
-        redirectUri: `https://comfibot.tk/discord/callback`
+        redirectUri: `${web}discord/callback`
       },
       guildAfterAuthorization: { 
         use: true, 

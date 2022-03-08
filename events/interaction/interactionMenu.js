@@ -71,12 +71,12 @@ bot.on('interactionCreate', async interaction => {
 						`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`
 					)
 					.addFields(catts)
-					.setFooter(
-						`Comfi™ Help`,
-						interaction.user.avatarURL({
+					.setFooter({
+						name: `Comfi™ Help`,
+						iconURL: interaction.user.avatarURL({
 							dynamic: true
 						})
-					)
+})
 					.setTimestamp()
 					.setThumbnail(
 						bot.user.displayAvatarURL({
