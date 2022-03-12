@@ -64,8 +64,9 @@ bot.on('guildMemberAdd', async member => {
         const emb = guild.welcome_embed.map(async (em) => {
 
           const embed = new MessageEmbed()
-            .setAuthor({ name: 
-              em.embed.author ?.text ? em.embed.author ?.text : '',
+            .setAuthor({ 
+              name: 
+              em.embed.author?.text ? em.embed.author?.text : '',
           avatarURL:  em.embed.author?.icon_url
                 ? em.embed.author?.icon_url : '', url: em.embed.author?.url ? em.embed.author ?.url : ''
 					})

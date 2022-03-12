@@ -55,5 +55,24 @@ bot.on('ready', async () => {
 	}, 1000 * 20)
 
 require('../../functions/server')(bot)
-       
+
+bot.guilds.cache.forEach(async (guild) => { 
+  const guilD = await guilds.findOne({ guildId: guild?.id}) 
+    
+    if (!guilD) { 
+      try {
+        bot.emit("guildCreate", guild)
+      } catch (e) {			
+        let emed = new MessageEmbed()
+          .setTitle(`${bot.error} • Error Occured`)				
+          .setDescription(`\`\`\`${e.stack}\`\`\``)				
+          .setColor(bot.color) 			
+          bot.sendhook(null, {				
+            channel: bot.err_chnl,
+            embed: emed			
+          }) 
+      } 
+    } else if (guilD) return; 
+})
+    
 })

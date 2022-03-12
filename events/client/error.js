@@ -30,6 +30,7 @@ bot
 process.on('unhandledRejection', (reason, promise) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)
 
+  /*
 if (reason.stack.includes("DiscordAPIError: Unknown Message")) return;
 
 if (reason.stack.includes("DiscordAPIError: Missing Access")) return;  
@@ -39,7 +40,8 @@ if (reason.stack.includes("DiscordAPIError: Unknown Webhook")) return;
 if (reason.stack.includes("DiscordAPIError: Invalid Webhook Token")) return;  
   
 if (reason.stack.includes("DiscordAPIError: Missing Permissions")) return;  
-    
+  */
+  
 	const embed = new MessageEmbed()
 		.setTitle(`${bot.error} • Unhandled Rejection`)
 		.setURL('https://nodejs.org/api/process.html#event-unhandledrejection')

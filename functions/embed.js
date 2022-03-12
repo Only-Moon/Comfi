@@ -397,7 +397,7 @@ url:												membed.embeds[0].author?.url
 											m.content.match(
 												/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim
 											) != null ||
-											m.attachments.first().url ||
+											m.attachments.first()?.url ||
 											''
 										if (!isthumb)
 											return button.editReply({
