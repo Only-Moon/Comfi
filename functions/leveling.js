@@ -54,11 +54,14 @@ try {
         if (l.level <= user3.level) {
           await message.member.roles.add(l.id).catch(() => null)
         }
+      }, bot.ms("30s"))
+                               
+       setTimeout(async () => {
         if (l.level > user3.level) {
           await message.member?.roles.remove(l.id).catch(() => null)
         }
       })
-      }, bot.ms("1m"))    
+      }, bot.ms("40s"))    
     }
     if (user3.xp >= user.requiredXp) {
       await users.findOneAndUpdate(

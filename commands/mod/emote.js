@@ -88,7 +88,16 @@ try {
 				})
 			} else {
 			
-					let isUrl = require('is-url')
+    const isUrl = new RegExp(
+"^(https?:\\/\\/)?" +
+  "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
+  "((\\d{1,3}\\.){3}\\d{1,3}))" +
+  "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
+  "(\\?[;&a-z\\d%_.~+=-]*)?" +
+  "(\\#[-a-z\\d_]*)?$",
+  "i"
+);
+        
 					let type = ''
 					let name = ''
 					let emote = args.join(' ').match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
@@ -97,7 +106,7 @@ try {
 						type = 'emoji'
 						name = Name
 					} else {
-						emote = `${args.find(arg => isUrl(arg))}`
+						emote = `${args.find(args => isUrl.test(arg))}`
 						name = args.find(arg => arg != emote)
 						type = 'url'
 					}

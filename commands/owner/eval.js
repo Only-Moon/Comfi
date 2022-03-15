@@ -5,7 +5,6 @@
 * For more information, see README.md and LICENSE 
 */
 
-const beautify = require('beautify')
 const { CommandInteraction, MessageEmbed } = require('discord.js')
 
 module.exports = {
@@ -52,7 +51,7 @@ module.exports = {
 				.setTitle('Eval')
 				.addField(
 					'To Evaluate',
-					`\`\`\`js\n${beautify(args.join(' '), { format: 'js' })}\n\`\`\``
+					`\`\`\`js\n${args.join(' ')}\n\`\`\``
 				)
 				.addField('Evaluated:', `\`\`\`${evaluated || '??'}\`\`\``)
 				.addField('Type of:', `\`\`\`${typeof evaluated || '?'}\`\`\``)

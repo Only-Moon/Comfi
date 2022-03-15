@@ -5,8 +5,6 @@
 * For more information, see README.md and LICENSE 
 */
 
-const request = require('node-superfetch');
-const { stripIndents } = require('common-tags');
 const twitter = require('twitter-api.js');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
@@ -44,7 +42,7 @@ name: 					`@${body.screen_name.toLowerCase()}`,
 						: null
                    })
 				.setDescription(
-					stripIndents` ${body.description}
+				` ${body.description}
       \`•\` Followers: **${body.followers_count.toLocaleString()}**
       \`•\` Following: **${body.friends_count.toLocaleString()}**
       \`•\` Tweets: **${body.statuses_count.toLocaleString()}**

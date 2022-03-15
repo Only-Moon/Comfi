@@ -7,7 +7,7 @@ const {
 } = require('discord.js')
 const axios = require('axios')
 const { version } = require('../../package.json')
-const ms = require('pretty-ms')
+const ms = require('ms')
 const { version: discordjsVersion } = require('discord.js')
 const moment = require('moment')
 const fs = require("fs")

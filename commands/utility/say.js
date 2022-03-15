@@ -6,7 +6,15 @@
 */
 
 const { Interaction, MessageAttachment } = require("discord.js");
-const isUrl = require("is-url");
+const isUrl = new RegExp(
+"^(https?:\\/\\/)?" +
+  "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
+  "((\\d{1,3}\\.){3}\\d{1,3}))" +
+  "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
+  "(\\?[;&a-z\\d%_.~+=-]*)?" +
+  "(\\#[-a-z\\d_]*)?$",
+  "i"
+);;
 
 module.exports = {
   name: "say",
@@ -35,7 +43,7 @@ module.exports = {
     await interaction.editReply({ content: "Sending..." }).catch(() => null);
     await interaction.deleteReply().catch(() => null);
 
-    if (isUrl(say)) {
+    if (isUrl.test(say)) {
 
       const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
 

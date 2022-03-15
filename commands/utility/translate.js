@@ -5,77 +5,224 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { translate } = require('bing-translate-api');
+const fetch = require('axios');
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "translatee",
-    description: "Translate Text to your preferred language",
-    directory: "utility",
-    ownerOnly: false,
-    options: [
-        {
-            type: 'STRING',
-            description: 'Language you want the text to get translated to',
-            name: 'language',
-            autocomplete: true,
-            required: true,
-        },
+  name: "translatee",
+  description: "Translate Text to your preferred language",
+  directory: "utility",
+  ownerOnly: false,
+  options: [{
+    name: "text",
+    description: "The text to translate",
+    type: "STRING",
+    required: true
+  }, {
+    name: "to",
+    description: "The language you want your text to translate to",
+    type: "STRING",
+    choices: [
       {
-            type: 'STRING',
-            description: 'Text to translate',
-            name: 'text',
-            required: true,
-        },
+        name: "english",
+        value: "en"
+      },
+      {
+        name: "arabic",
+        value: "ar"
+      },
+      {
+        name: "chinese",
+        value: "zh"
+      },
+      {
+        name: "french",
+        value: "fr"
+      },
+      {
+        name: "german",
+        value: "de"
+      },
+      {
+        name: "hindi",
+        value: "hi"
+      },
+      {
+        name: "indonesia",
+        value: "id"
+      },
+      {
+        name: "irish",
+        value: "ga"
+      },
+      {
+        name: "italian",
+        value: "it"
+      },
+      {
+        name: "japanese",
+        value: "ja"
+      },
+      {
+        name: "korean",
+        value: "ko"
+      },
+      {
+        name: "polish",
+        value: "pl"
+      },
+      {
+        name: "portuguese",
+        value: "pt"
+      },
+      {
+        name: "russian",
+        value: "ru"
+      },
+      {
+        name: "spanish",
+        value: "es"
+      },
+      {
+        name: "turkish",
+        value: "tr"
+      },
+      {
+        name: "vietnamese",
+        value: "vi"
+      }
     ],
-    userperm: [""],
-    botperm: ["SEND_MESSAGES"],
-    /**
-     *
-     * @param {CommandInteraction} interaction
-     * @param {String[]} args
-     */
-    run: async (bot, interaction, args) => {
+    required: true
+  }, {
+    name: "from",
+    description: "The language you are translating from",
+    type: "STRING",
+    choices: [
+      {
+        name: "auto",
+        value: "auto"
+      },
+      {
+        name: "english",
+        value: "en"
+      },
+      {
+        name: "arabic",
+        value: "ar"
+      },
+      {
+        name: "chinese",
+        value: "zh"
+      },
+      {
+        name: "french",
+        value: "fr"
+      },
+      {
+        name: "german",
+        value: "de"
+      },
+      {
+        name: "hindi",
+        value: "hi"
+      },
+      {
+        name: "indonesia",
+        value: "id"
+      },
+      {
+        name: "irish",
+        value: "ga"
+      },
+      {
+        name: "italian",
+        value: "it"
+      },
+      {
+        name: "japanese",
+        value: "ja"
+      },
+      {
+        name: "korean",
+        value: "ko"
+      },
+      {
+        name: "polish",
+        value: "pl"
+      },
+      {
+        name: "portuguese",
+        value: "pt"
+      },
+      {
+        name: "russian",
+        value: "ru"
+      },
+      {
+        name: "spanish",
+        value: "es"
+      },
+      {
+        name: "turkish",
+        value: "tr"
+      },
+      {
+        name: "vietnamese",
+        value: "vi"
+      }
+    ],
+    required: true
+  }],
+  userperm: [""],
+  botperm: ["SEND_MESSAGES"],
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   * @param {String[]} args
+   */
+  run: async (bot, interaction, args) => {
 
     try {
-const lang = interaction.options.getString("language");
+      const lang = interaction.options.getString("to");
       const text = interaction.options
         .getString('text')
         .split("")
         .slice(0, 999)
         .join("");
-      
-      const result = await translate(text, null, lang);
-      const embed = new MessageEmbed()
+      const from = interaction.options.getString("from")
+      const key = process.env["UltraX"]
   
-      .setAuthor({ name: `Comfi™ Translator`, iconURL: bot.user.displayAvatarURL({dynamic:  true })})
-    .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
-      .setColor(bot.color)
-      .addField('Translated from', `\`\`\`${result.text}\`\`\``)
-      .addField('Translated to', `\`\`\`${result.translation}\`\`\``)
-       .setFooter({ text: `translated to ${result.language.to} from ${result.language.from}`})
-      await interaction.editReply({embeds: [ embed ]})
+      const result = await fetch(`https://api.ultrax-yt.com/v1/translate?from=${from}&to=${lang}&query=${text}&key=${key}`);
+
+if (!result.data || result.data.translation) return await  bot.errorEmbed(bot, interaction, `Something Went Wrong While Translating`)
+      
+       const embed = new MessageEmbed()
+          .setTitle("Comfi™ Translation")
+          .setDescription(`Translation: ${result.data.translation}`) 
+          .setColor(bot.color)
+      
+      await interaction.editReply({ embeds: [embed] })
     } catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+      let emed = new MessageEmbed()
+        .setTitle(`${bot.error} • Error Occured`)
+        .setDescription(`\`\`\`${e.stack}\`\`\``)
+        .setColor(bot.color)
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+      bot.sendhook(null, {
+        channel: bot.err_chnl,
+        embed: emed
+      })
 
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
+      interaction.followUp({
+        embeds: [
+          {
+            description: `${
+              bot.error
+              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+            color: bot.color
+          }
+        ]
+      })
     }
   }
 }

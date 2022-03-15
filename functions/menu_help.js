@@ -5,7 +5,6 @@
 * For more information, see README.md and LICENSE 
 */
 
-const chalk = require('chalk')
 const { MessageSelectMenu, MessageActionRow } = require('discord.js')
 
 /* MENU CREATOR */
@@ -18,15 +17,11 @@ const { MessageSelectMenu, MessageActionRow } = require('discord.js')
 const create_mh = array => {
 	if (!array)
 		throw new Error(
-			chalk.red.bold(
-				'The options were not provided! Make sure you provide all the options!'
-			)
+				'The options were not provided! Make sure you provide all the options!'		
 		)
 
 	if (array.length < 0)
-		throw new Error(
-			chalk.red.bold(`The array has to have atleast one thing to select!`)
-		)
+		throw new Error(`The array has to have atleast one thing to select!`)
 
 	let select_menu
 	let id = 'help-menus'

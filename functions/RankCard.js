@@ -12,10 +12,10 @@ const { join } = require('path')
 
 const Canvas = require('canvas')
 const { registerFont } = require('canvas')
-registerFont(join(__dirname, '../fonts', 'Poppins-SemiBold.ttf'), {
+registerFont(join(__dirname, '../fonts', 'tasty_donuts.otf'), {
 	family: 'Poppins-Regular'
 })
-registerFont(join(__dirname, '../fonts', 'Poppins-SemiBold.ttf'), {
+registerFont(join(__dirname, '../fonts', 'tasty_donuts.otf'), {
 	family: 'Poppins-Bold'
 })
 
@@ -147,7 +147,7 @@ async function rankCard(client, message, options = []) {
 		ctx.fillRect(40 + 30, 30 + 180 + 30 + 50 + 30, 180, 50)
 		ctx.globalAlpha = 1
 		ctx.fillStyle = '#ffffff'
-		ctx.font = '32px "Poppins-Bold"'
+		ctx.font = '38px "Poppins-Bold"'
 		ctx.textAlign = 'center'
 		ctx.fillText(TextEXP, 40 + 30 + 180 / 2, 30 + 180 + 30 + 30 + 50 + 38)
 		ctx.restore()
@@ -162,7 +162,7 @@ async function rankCard(client, message, options = []) {
 		ctx.fillRect(40 + 30, 30 + 180 + 30, 180, 50, 50)
 		ctx.globalAlpha = 1
 		ctx.fillStyle = '#ffffff'
-		ctx.font = '32px "Poppins-Bold"'
+		ctx.font = '38px "Poppins-Bold"'
 		ctx.textAlign = 'center'
 		ctx.fillText(LvlText, 40 + 30 + 180 / 2, 30 + 180 + 30 + 38)
 		ctx.restore()
@@ -174,7 +174,7 @@ async function rankCard(client, message, options = []) {
 		ctx.shadowBlur = 15
 		ctx.shadowOffsetX = 1
 		ctx.shadowOffsetY = 1
-		ctx.font = '39px "Poppins-Bold"'
+		ctx.font = '42px "Poppins-Bold"'
 		ctx.fillText(Username, 390, 80)
 		ctx.restore()
 
@@ -217,7 +217,7 @@ async function rankCard(client, message, options = []) {
 		ctx.textAlign = 'left'
 		ctx.fillStyle = '#ffffff'
 		ctx.globalAlpha = '0.8'
-		ctx.font = '30px "Poppins-Bold"'
+		ctx.font = '36px "Poppins-Bold"'
 		ctx.fillText('Next Level: ' + shortener(NeededXP) + ' xp', 390, 230)
 		ctx.restore()
 
@@ -228,7 +228,7 @@ async function rankCard(client, message, options = []) {
 		ctx.textAlign = 'center'
 		ctx.fillStyle = '#474747'
 		ctx.globalAlpha = 1
-		ctx.font = '30px "Poppins-Bold"'
+		ctx.font = '40px "Poppins-Bold"'
 		ctx.fillText(textXPEdited, 730, 180)
 
 		const attachment = new Discord.MessageAttachment(

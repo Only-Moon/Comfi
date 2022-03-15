@@ -32,6 +32,7 @@ module.exports = {
   run: async (bot, interaction, args) => {
     const user = interaction.user.tag
     const url = interaction.options.getString('url')
+    const key = process.env["UltraX"]
     try {
     const pattern = new RegExp(
 "^(https?:\\/\\/)?" +
@@ -55,7 +56,7 @@ module.exports = {
         return interaction.editReply(`${bot.error} **• Nsfw Urls are not allowed in Non-NSFW Channel**`).catch(e => { })
       } else {
 
-let res = await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=ZRXWJKyu0aPM`)
+let res = await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=${key}`)
 
 const buffer = new Buffer.from(res.data.screenshot.split(",")[1], "base64")
   
