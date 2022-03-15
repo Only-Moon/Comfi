@@ -7,7 +7,7 @@
     "anilist-node": "^1.11.1",
     "axios": "^0.21.4",
     "canvas": "^2.9.0",
-    "chalk": "^5.0.1",
+    "chalk": "^4.1.2",
     "dbd-dark-dashboard": "^1.6.35",
     "discord-dashboard": "^2.3.14",
     "discord-purger": "^1.0.2",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "husky": "^7.0.4",
-    "node": "^17.5.0",
+    "node": "^17.7.1",
     "npm": "^8.5.4",
     "pretty-quick": "^3.1.3"
   },
