@@ -25,7 +25,7 @@ module.exports = {
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
     
     const rep = await bot.emoji("reply")
-    const dot = await bot.emoji("Dot_HE")
+    const dot = await bot.emoji("bunny_cs")
     const one = await bot.emoji("_1_HE")
     const two = await bot.emoji("_2_HE")
     const three = await bot.emoji("_3_HE")
@@ -60,7 +60,7 @@ module.exports = {
             
             const emojis = [`${one}`, `${two}`, `${three}`];
             
-            top10.push(`**${emojis[i] || dot}#${pos++})** \`\`\`${mem.user.username}\`\`\` \n${rep}**Level: ** ${m.level}\n${rep}**Xp: ** ${shortener(m.xp)}/${shortener(m.requiredXp)}`)
+            top10.push(`**${emojis[i] || dot} #${pos++})** \`\`\`${mem.user.username}\`\`\` \n${rep}**Level: ** \`\`\`${m.level}\`\`\`\n${rep}**Xp: ** \`\`\`${shortener(m.xp)}/${shortener(m.requiredXp)}\`\`\``)
     
           })
           msg.delete().catch(() => null)

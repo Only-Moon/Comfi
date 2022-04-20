@@ -4,9 +4,9 @@
   "description": "Multipurpose Bot",
   "main": "index.js",
   "dependencies": {
-    "anilist-node": "^1.11.1",
+    "anilist-node": "^1.11.2",
     "axios": "^0.21.4",
-    "canvas": "^2.9.0",
+    "canvas": "^2.9.1",
     "chalk": "^4.1.2",
     "dbd-dark-dashboard": "^1.6.54",
     "discord-dashboard": "^2.3.19",

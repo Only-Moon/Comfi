@@ -48,16 +48,18 @@ try {
       guildId: message.guild.id
     })
 
-    if (guild.leveling_roles.length > 0) {
+if (guild.leveling_roles.length > 0) {
       setTimeout(async () => {
       guild.leveling_roles.map(async l => {
         if (l.level <= user3.level) {
           await message.member.roles.add(l.id).catch(() => null)
         }
+      })
       }, bot.ms("30s"))
                                
        setTimeout(async () => {
-        if (l.level > user3.level) {
+      guild.leveling_roles.map(async l => {
+      if (l.level > user3.level) {
           await message.member?.roles.remove(l.id).catch(() => null)
         }
       })
