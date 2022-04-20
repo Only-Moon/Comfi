@@ -106,7 +106,7 @@ try {
 						type = 'emoji'
 						name = Name
 					} else {
-						emote = `${args.find(args => isUrl.test(arg))}`
+						emote = `${args.find(arg => isUrl.test(arg))}`
 						name = args.find(arg => arg != emote)
 						type = 'url'
 					}
