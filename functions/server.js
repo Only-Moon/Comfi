@@ -304,24 +304,24 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
             optionId: 'bug',
             optionName: "BugReport",
             optionDescription: "Report Comfi's Bugs (make sure to include screenshots as well)",
-            optionType: DBD.formTypes.textarea("", 1, 3999, false, false),
+            optionType: DBD.formTypes.textarea(null, 1, 3999, false, false),
             getActualSet: async ({ guild, user }) => {  
-        return "";
+        return null;
             },
             setNew: async ({ guild, user, newData }) => {
 const usr = bot.users.cache.get(user?.id)
 const guld = bot.guilds.cache.get(guild?.id)
   const reportCh = bot.channels.cache.get(
 			'889149873893539900') || bot.channels.cache.get('863684464176922664')
-
+              
 		const reportEmbed = new MessageEmbed()
 			.setTitle('Bug Report')
 			.setDescription(
-				`**Author :**\n> ${usr.username} \n**Report :**\n> ${newData}`)
+				`**Author :**\n> ${usr.username} \n**Report :**\n> ${newData ? newData : null}`)
 			.setFooter({text: `Sent from ${guld.name} - ${guld.id}`})
 			.setTimestamp()
 			.setColor(bot.color)
-		if (reportCh) {
+		if (reportCh && newData) {
 			reportCh.send({ embeds: [reportEmbed] }).catch(() => null)
 		} else return;
               return;
@@ -331,24 +331,24 @@ const guld = bot.guilds.cache.get(guild?.id)
             optionId: 'feed',
             optionName: "Feedback",
             optionDescription: "Give Feedback About Comfi",
-            optionType: DBD.formTypes.textarea("", 1, 3999, false, false),
+            optionType: DBD.formTypes.textarea(null, 1, 3999, false, false),
             getActualSet: async ({ guild, user}) => {  
-        return "";
+        return null;
             },
             setNew: async ({ guild, user, newData }) => {
 
 const usr = bot.users.cache.get(user?.id)
 const guld = bot.guilds.cache.get(guild?.id)              
-  const repoCh = bot.channels.cache.get('881789379809513500')
+  const repoCh = bot.channels.cache.get('881789379809513500') || bot.channels.cache.get('863684464176922664')
 
 		const repoEmbed = new MessageEmbed()
-			.setTitle('Bug Report')
+			.setTitle('Comfi™ Feedback')
 			.setDescription(
-				`**Author :**\n> ${usr.username} \n**Report :**\n> ${newData}`)
+				`**Author :**\n> ${usr.username} \n**Feedback :**\n> ${newData ? newData : null}`)
 			.setFooter({text: `Sent from ${guld.name} - ${guld.id}`})
 			.setTimestamp()
 			.setColor(bot.color)
-		if (repoCh) {
+		if (repoCh && newData) {
 			repoCh.send({ embeds: [repoEmbed] }).catch(() => null)
 		} else return;
               return;
@@ -1471,7 +1471,7 @@ if (!reg.match(newData)) return {error: "Submit a Valid Image Url"}
     assistantsSecureStrorageKey: "Comfi",
     acceptPrivacyPolicy: true,
     reportError: (where, what) => {
-      bot.logger.log(`Discord Dashboard Error - ${where}: ${what} `)
+      bot.logger.log(`Dashboard Error - ${where} : ${what.stack} `)
 }
   });
 

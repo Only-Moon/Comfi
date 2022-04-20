@@ -199,7 +199,7 @@ let warnEmbed = new MessageEmbed()
       await interaction.editReply({embeds: [ warnEmbed ]})
 await bot.modlog({ Member: getRemovedWarnedUser, 
                   Action: "warn remov", 
-                  Reason: reason.length < 1 ? 'No reason supplied.' : reason,
+                  Reason: reason?.length < 1 ? 'No reason supplied.' : reason,
                   Mod: warnedRemoveData.authorId ? warnedRemoveData.authorId : "Not Found"
                  }, interaction)          } else {
 					await interaction.editReply({
