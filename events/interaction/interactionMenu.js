@@ -72,7 +72,7 @@ bot.on('interactionCreate', async interaction => {
 					)
 					.addFields(catts)
 					.setFooter({
-						name: `Comfi™ Help`,
+						text: `Comfi™ Help`,
 						iconURL: interaction.user.avatarURL({
 							dynamic: true
 						})
