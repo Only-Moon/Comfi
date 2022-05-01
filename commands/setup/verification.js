@@ -31,19 +31,19 @@ module.exports = {
 				`Would you like to enable or disabled the feature? Types: \`disable\`,\`enable\``
 			)
 			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
 		const step2 = new MessageEmbed()
 			.setTitle(`Verification [2]`, bot.user.displayAvatarURL())
 			.setDescription(`What should the verification channel be?`)
 			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
 		const step3 = new MessageEmbed()
 			.setTitle(`Verification [3]`, bot.user.displayAvatarURL())
 			.setDescription(`What is the verified role?`)
 			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
 		const step4 = new MessageEmbed()
 			.setTitle(`Verification [4]`, bot.user.displayAvatarURL())
@@ -51,7 +51,7 @@ module.exports = {
 				`What should the verfication message be?\n\`\`\`{{user#mention}} - the users id\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{server#id}} - the server id\n{{server#name}} - the server name\n{{server#membercount}} - the server membercount\n\`\`\``
 			)
 			.setColor(bot.color)
-			.setFooter(`You can say "cancel" at any time to cancel the process`)
+			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
 		let steps = [step1, step2, step3, step4]
 		let counter = 0

@@ -64,10 +64,10 @@ module.exports = {
 				return
 			} else {
 				const embed = new MessageEmbed()
-					.setAuthor(
-						`${member.user.tag} Asked me`,
-						member.user.avatarURL({ dynamic: true })
-					)
+					.setAuthor({
+						name: `${member.user.tag} Asked me`,
+						iconURL: member.user.avatarURL({ dynamic: true })
+                     })
 					.setDescription(
 						`**Question:** \n ${yq} \n**My Answer:** \n ${
 							answers[Math.floor(Math.random() * answers.length)]
