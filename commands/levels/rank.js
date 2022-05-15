@@ -41,7 +41,7 @@ module.exports = {
       const user = await users.findOne({ guildId: interaction.guild.id, userId: target.id })
 
       if (!user) {
-        interaction.editReply(`${bot.error} User haven't Leveled Up yet or User is a Bot`)
+        return await  bot.errorEmbed(bot, interaction, `User haven't Leveled Up yet or User is a Bot`)
 
       } else {
 

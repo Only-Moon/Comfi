@@ -43,10 +43,12 @@ bot.on('guildCreate', async guild => {
 			)
 			.setFooter({text: 'Comfi™ v1.0.0'})
 
+    if (ch) {
 		ch.send({
 			embeds: [msg],
 			components: [row]
 		})
+  }  
 	}
 	{
 		const channelId = '881789380073783301'
@@ -86,10 +88,12 @@ bot.on('guildCreate', async guild => {
 						.setURL(invite.url)
 				)
 
+        if (channel) {
 				channel.send({
 					embeds: [embed],
 					components: [button]
 				})
+      }
 			})
 	}
 })

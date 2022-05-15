@@ -325,12 +325,17 @@ module.exports = {
 					)
 					const finalMessage = await channel
 						.send({ embeds: [finalEmbed], components: [row] })
-						.catch(e => {
-							bot.sendhook(`Error Occured \n ${e.stack}`),
-								{
-									channel: bot.err_chnl
-								}
-						})
+						.catch((e) => {
+			let emed = new MessageEmbed()
+				.setTitle(`${bot.error} • Error Occured`)
+				.setDescription(`\`\`\`${e.stack}\`\`\``)
+				.setColor(bot.color)
+
+			bot.sendhook(null, {
+				channel: bot.err_chnl,
+				embed: emed
+			})
+		})
 
 					const msgId = getId()
 					await guilds.findOneAndUpdate(

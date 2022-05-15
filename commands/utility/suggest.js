@@ -49,10 +49,7 @@ module.exports = {
 					noColor: 'SECONDARY' // default: red
 				})
 			} else if (!guild.suggestions) {
-				interaction.editReply(
-					`${
-						bot.error
-					} Please Ask an Admin to set the suggestion channel first by using **/suggestion**`
+				        return await  bot.errorEmbed(bot, interaction, `Please Ask an Admin to set the suggestion channel first by using **/suggestion**`
 				)
 			}
 		} catch (e) {
