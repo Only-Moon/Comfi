@@ -23,8 +23,12 @@ bot.on('interactionCreate', async (interaction, args) => {
   if (interaction.isCommand()) {
 
     const cmd = bot.slashCommands.get(interaction.commandName)
-    
-    await interaction.deferReply({ ephemeral: cmd.ephemeral ? cmd.ephemeral: false }).catch(() => { })
+
+    if (!cmd.modal) {
+
+      await interaction.deferReply({ ephemeral: cmd.ephemeral ? cmd.ephemeral : false }).catch(() => { })
+
+    }
 
     if (!interaction.guild) return;
 
@@ -33,17 +37,18 @@ bot.on('interactionCreate', async (interaction, args) => {
       await guilds.create({ guildId: interaction.guild.id })
     }
 
-    if (!cmd)
+    if (!cmd) {
       return interaction
         .followUp({ content: `${bot.error} • An error has occured` })
         .catch(() => null)
+    }
 
     const args = []
 
     for (let option of interaction.options.data) {
       if (option.type === 'SUB_COMMAND') {
         if (option.name) args.push(option.name)
-        option.options?.forEach(x => {
+        option.options ?.forEach(x => {
           if (x.value) args.push(x.value)
         })
 			} else if (option.value) args.push(option.value)
@@ -52,10 +57,10 @@ bot.on('interactionCreate', async (interaction, args) => {
     interaction.member = interaction.guild.members.cache.get(
       interaction.user.id
     )
-    
+
     if (cmd.ownerOnly) {
       if (!bot.owners.includes(interaction.user.id))
-                return await  bot.errorEmbed(bot, interaction, `**You are not Authorized to use this Command !!**`
+        return await bot.errorEmbed(bot, interaction, `**You are not Authorized to use this Command !!**`
         )
     }
 
@@ -115,17 +120,17 @@ bot.on('interactionCreate', async (interaction, args) => {
       });;
     }
 
-  if(clientSchema.blackListedCmds.includes(cmd.name) && !owners.includes(interaction.user.id)) { 
-        return await  bot.errorEmbed(bot, interaction, `**This command has been disabled by the developer !**`) 
-  } 
+    if (clientSchema.blackListedCmds.includes(cmd.name) && !owners.includes(interaction.user.id)) {
+      return await bot.errorEmbed(bot, interaction, `**This command has been disabled by the developer !**`)
+    }
 
-if (cmd.nsfw && !interaction.channel.nsfw) {
+    if (cmd.nsfw && !interaction.channel.nsfw) {
 
-        return await  bot.errorEmbed(bot, interaction, `**Nsfw Command can't be used in an Non-NSFW Channel**`)
+      return await bot.errorEmbed(bot, interaction, `**Nsfw Command can't be used in an Non-NSFW Channel**`)
 
-}
-    
- if (!interaction.channel.viewable) {
+    }
+
+    if (!interaction.channel.viewable) {
 
       const channel = new MessageEmbed()
         .setDescription(
@@ -173,8 +178,8 @@ if (cmd.nsfw && !interaction.channel.nsfw) {
       await users.create({ userId: interaction.user.id })
     }
 
-const c1 = bot.channels.cache.get('890580695192305696')
-const c2 = bot.channels.cache.get('932596444278423563');
+    const c1 = bot.channels.cache.get('890580695192305696')
+    const c2 = bot.channels.cache.get('932596444278423563');
 
     const logsChannel = c1 ? c1 : c2;
 
@@ -190,7 +195,7 @@ const c2 = bot.channels.cache.get('932596444278423563');
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)
-      .setFooter({text: `Used by ${interaction.user.username}`})
+      .setFooter({ text: `Used by ${interaction.user.username}` })
       .setTimestamp();
 
     if (cmd.cooldown) {
@@ -302,7 +307,7 @@ const c2 = bot.channels.cache.get('932596444278423563');
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)
-      .setFooter({text: `Used by ${interaction.user.username}`})
+      .setFooter({ text: `Used by ${interaction.user.username}` })
       .setTimestamp();
 
     try {

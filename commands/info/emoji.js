@@ -43,6 +43,12 @@ module.exports = {
           description: `enter a name to search emote or \`all\` to get list of all emotes`,
           type: "STRING",
           required: true
+        }, 
+        {
+          name: "guild",
+          description: "search emote from a particular guild/server",
+          type: "STRING",
+          required: false
         }
       ],
     },
@@ -170,11 +176,21 @@ iconURL:                  interaction.user.avatarURL({ dynamic: true })
       if (sub === "find") {
 
         const name = interaction.options.getString("emote")
-
+        const guildd = interaction.options.getString("guild")
+        const guild = bot.guilds.cache.get(guildd)
+        
      if (name.toLowerCase() === "all") {
         let emojis = []
         let pages = []
-               const emos = bot.emojis.cache.forEach(async (emo) => {
+       let emoss
+
+        if (guild) {
+          emoss = guild
+        } else {
+          emoss = bot
+        }
+       
+               const emos = emoss.emojis.cache.forEach(async (emo) => {
 
             if (!emo.name || !emo.id)
   {                     
@@ -214,7 +230,13 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
             } else {
 
         let emojis = []
-        const emos = bot.emojis.cache
+        if (guild) {
+          emoss = guild
+        } else {
+          emoss = bot
+        }
+       
+               const emos = emoss.emojis.cache
           .filter(emoji => emoji.name.includes(name))
           .forEach(emoji => emojis.push(emoji));
         if (emojis.length > 1) {

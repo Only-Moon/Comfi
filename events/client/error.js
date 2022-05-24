@@ -1,4 +1,4 @@
-let { MessageEmbed } = require('discord.js')
+let { MessageEmbed, WebhookClient } = require('discord.js')
 let bot = require('../../index.js')
 
 /* 
@@ -7,6 +7,8 @@ let bot = require('../../index.js')
 * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
 * For more information, see README.md and LICENSE 
 */
+
+const hook = new WebhookClient({ url: process.env.debughook})
 
 bot
 	.on('disconnect', e => bot.logger.log(`disconnect \n` + e))
@@ -25,12 +27,14 @@ bot
 		})
   
 	.on('warn', info => bot.logger.warn(`info \n` + info))
- // .on('debug', info => bot.logger.debug(info))
+ .on('debug', info => {
+   hook.send({content: info})
+ })
 
 process.on('unhandledRejection', (reason, promise) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)
 
-  /*
+  
 if (reason.stack.includes("DiscordAPIError: Unknown Message")) return;
 
 if (reason.stack.includes("DiscordAPIError: Missing Access")) return;  
@@ -40,7 +44,7 @@ if (reason.stack.includes("DiscordAPIError: Unknown Webhook")) return;
 if (reason.stack.includes("DiscordAPIError: Invalid Webhook Token")) return;  
   
 if (reason.stack.includes("DiscordAPIError: Missing Permissions")) return;  
-  */
+  
   
 	const embed = new MessageEmbed()
 		.setTitle(`${bot.error} • Unhandled Rejection`)
