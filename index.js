@@ -13,7 +13,7 @@ console.log('Loading Bot...')
 //-----[ DEFINING DEPENDENCIES ]-----\\
 
 // Uncomment this if you need
-//require('dotenv').config() 
+//require('dotenv').config()
 const Comfi = require('./utils/Comfi'),
   bot = new Comfi()
 

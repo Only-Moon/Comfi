@@ -30,7 +30,7 @@ module.exports = async bot => {
 	})
 
 	bot.on('ready', async () => {
-		let dev = process.env['DEV_MODE']
+		let dev = process.env['DEV_MODE'] || "false" 
 
 		if (dev === true.toString()) {
 			bot.guilds.cache.forEach(g => {

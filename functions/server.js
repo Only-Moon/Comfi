@@ -22,45 +22,14 @@ module.exports = async (bot) => {
   await DBD.useLicense('6968082f-cc27-4659-9c92-6ec40f28908c');
   DBD.Dashboard = DBD.UpdatedClass();
   
-let fun = []
   
-bot.slashCommands.filter((cmd) => cmd.directory == 'fun')
-.map(command =>
-  fun.push({
-    commandName: `/${command.name}`,
-    commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`							
-    : `${prefix}${command.name}`,
-    commandDescription: command.description							
-      ? command.description							
-      : 'No description for this command.',
-    commandAlias: command.aliases ?
-          `${command.aliases.join(", ")}` :
-          "No aliases.",
-  })
-)
-  
-let info = []
-  
-bot.slashCommands.filter((cmd) => cmd.directory == 'info')
-.map(command =>
-  info.push({
-    commandName: `/${command.name}`,
-    commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`							
-    : `${prefix}${command.name}`,
-    commandDescription: command.description							
-      ? command.description							
-      : 'No description for this command.',
-    commandAlias: command.aliases ?
-          `${command.aliases.join(", ")}` :
-          "No aliases.",
-  })
-)
+function directory(file) {
 
-let level = []
-  
-bot.slashCommands.filter((cmd) => cmd.directory == 'level')
+let name = []
+
+bot.slashCommands.filter((cmd) => cmd.directory == file)
 .map(command =>
-  level.push({
+  name.push({
     commandName: `/${command.name}`,
     commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`							
     : `${prefix}${command.name}`,
@@ -72,74 +41,8 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'level')
           "No aliases.",
   })
 )
-
-let mod = []
-  
-bot.slashCommands.filter((cmd) => cmd.directory == 'mod')
-.map(command =>
-  mod.push({
-    commandName: `/${command.name}`,
-    commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`						
-    : `${prefix}${command.name}`,
-    commandDescription: command.description							
-      ? command.description							
-      : 'No description for this command.',
-    commandAlias: command.aliases ?
-          `${command.aliases.join(", ")}` :
-          "No aliases.",
-  })
-)
-
-let role = []
-  
-bot.slashCommands.filter((cmd) => cmd.directory == 'role')
-.map(command =>
-  role.push({
-    commandName: `/${command.name}`,
-    commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`							
-    : `${prefix}${command.name}`,
-    commandDescription: command.description							
-      ? command.description							
-      : 'No description for this command.',
-    commandAlias: command.aliases ?
-          `${command.aliases.join(", ")}` :
-          "No aliases.",
-  })
-)
-
-let setup = []
-  
-bot.slashCommands.filter((cmd) => cmd.directory == 'setting')
-.map(command =>
-  setup.push({
-    commandName: `/${command.name}`,
-    commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`							
-    : `${prefix}${command.name}`,
-    commandDescription: command.description							
-      ? command.description							
-      : 'No description for this command.',
-    commandAlias: command.aliases ?
-          `${command.aliases.join(", ")}` :
-          "No aliases.",
-  })
-)
-
-let utility = []
-  
-bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
-.map(command =>
-  utility.push({
-    commandName: `/${command.name}`,
-    commandUsage: command.usage							? `${prefix}${command.name} ${command.usage}`							
-    : `${prefix}${command.name}`,
-    commandDescription: command.description							
-      ? command.description							
-      : 'No description for this command.',
-    commandAlias: command.aliases ?
-          `${command.aliases.join(", ")}` :
-          "No aliases.",
-  })
-)
+  return name;
+}
 
   const Dashboard = new DBD.Dashboard({
     port: process.env.PORT || 80,
@@ -188,9 +91,9 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
           footer: "<a href='https://ko-fi.com/E1E057WWV' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>"
         },
         information: { 
-          category: "Note", 
+          category: "Comfi - The Aesthetic Multipurpose Bot", 
           title: "Information", 
-          description: `This bot and panel is currently a work in progress so contact support if you find any issues on discord.`, 
+          description: `Manage all of functions of Comfi using this Dashboard.`, 
           footer: `<a href="https://discord.gg/HNfhvCeR6d"> ↠ Click here to join my Support Server</a>`
         },
       },
@@ -240,43 +143,43 @@ bot.slashCommands.filter((cmd) => cmd.directory == 'utility')
         category: `Fun`,
         subTitle: `Fun Commands`,
         aliasesDisabled: true,
-        list: fun,
+        list: directory("fun"),
       },
       {
         category: `Info`,
         subTitle: `Info Commands`,
         aliasesDisabled: true,
-        list: info,
+        list: directory("info"),
       },
       {
         category: `Levels`,
         subTitle: `Levelings Commands`,
         aliasesDisabled: true,
-        list: level,
+        list: directory("level"),
       },
      {
         category: `Mod`,
         subTitle: `Moderation Commands`,
         aliasesDisabled: true,
-        list: mod,
+        list: directory("mod"),
       },
     {
         category: `Roles`,
         subTitle:  `Role Commands`,
         aliasesDisabled: true,
-        list: role,
+        list: directory("role"),
       },
     {
         category: `Setup`,
         subTitle: `Setup Commands`,
         aliasesDisabled: true,
-        list: setup,
+        list: directory("setup"),
       },
     {
         category: `Utility`,
         subTitle: `Utility Commands`,
         aliasesDisabled: true,
-        list: utility,
+        list: directory("utility"),
       },
 ],
           
