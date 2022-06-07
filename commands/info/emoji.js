@@ -43,10 +43,10 @@ module.exports = {
           description: `enter a name to search emote or \`all\` to get list of all emotes`,
           type: "STRING",
           required: true
-        }, 
+        },
         {
           name: "guild",
-          description: "search emote from a particular guild/server",
+          description: "search emote from a particular server using name or id",
           type: "STRING",
           required: false
         }
@@ -71,219 +71,24 @@ module.exports = {
         const emojis = args.join(' ').match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
 
         if (!emojis) {
-        return await  bot.errorEmbed(bot, interaction, `**Enter A Valid Emoji in** \`:emoji:\` **form not** \`<:emojiname:emojiid>\``
-            )
+          return await bot.errorEmbed(bot, interaction, `**Enter A Valid Emoji in** \`:emoji:\` **form not** \`<:emojiname:emojiid>\``
+          )
             .then((msg) => {
-         setTimeout(() => { 
-        if(msg.deletable) msg.delete()
- }, bot.ms('30s'))
-  });
-        } 
-
-          if (emojis.length === 1) {
-            const emote = interaction.options.getString('name')
-
-            const emo = Util.parseEmoji(emote)
-
-            if (!emo.name || !emo.id) {
-        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`)
-            }
-            
-            const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
-              emo.animated ? 'gif' : 'png'
-              }`
-
-            const img = `https://cdn.discordapp.com/emojis/${emo.id}.${
-              emo.animated ? 'gif' : 'png'
-              }`
-
-            let embed = new MessageEmbed()
-              .setColor(bot.color)
-              .setAuthor({
-                name: 'Comfi™ Enlarged Emoji',
-iconURL:                interaction.user.avatarURL({ dynamic: true })
-                         })
-              .setImage(`${img}`)
-              .setDescription(`${emo.name} ${emo.id}`)
-
-            const row = new MessageActionRow().addComponents(
-              new MessageButton()
-                .setStyle('SECONDARY')
-                .setCustomId(`backEmoji`)
-                .setEmoji('884420649580363796')
-                .setDisabled(true),
-              new MessageButton()
-                .setStyle('LINK')
-                .setURL(`${res}`)
-                .setLabel('Download!'),
-              new MessageButton()
-                .setStyle('SECONDARY')
-                .setCustomId('forwardEmoji')
-                .setEmoji('884420650549272586')
-                .setDisabled(true)
-            )
-
-            await interaction
-              .followUp({
-                embeds: [embed],
-                components: [row]
-              }).catch(() => null)
-    } else if (emojis.length > 1) {
-            const emote = interaction.options.getString('name')
-            
-            let pages = []
-
-            emojis.forEach(emoji => {
-              const emo = Util.parseEmoji(emoji)
-
-       if (!emo.name || !emo.id) {
-                    return interaction.editReply({content:`${bot.error} • **Invalid emote argument**`
-                                                     })
-              }
-              
-             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
-                emo.animated ? 'gif' : 'png'
-                }`
-
-              let embed = new MessageEmbed()
-                .setColor(bot.color)
-                .setAuthor({
-                  name:'Enlarged Emoji',
-iconURL:                  interaction.user.avatarURL({ dynamic: true })
-                           })
-                .setImage(`${res}`)
-                .setDescription(`${emo.name} ${emo.id}`)
-
-              pages.push(embed)
-            })
-
-        simplydjs.embedPages(bot, interaction, pages, {
-        firstEmoji: '884420649580363796',
-        backEmoji: '884421503205134356',
-        delEmoji: '891534962917007410',
-        forwardEmoji: '884421235965059113',
-        lastEmoji: '884420650549272586',
-        btncolor: 'SECONDARY',
-        delcolor: 'SECONDARY',
-        skipcolor: 'SECONDARY',
-        skipBtn: true,
-        pgCount: true
-      })
-            
-          } else return interaction.editReply({content: `${bot.error} **• An error occured**`})
-        
-      }
-      if (sub === "find") {
-
-        const name = interaction.options.getString("emote")
-        const guildd = interaction.options.getString("guild")
-        const guild = bot.guilds.cache.get(guildd)
-        
-     if (name.toLowerCase() === "all") {
-        let emojis = []
-        let pages = []
-       let emoss
-
-        if (guild) {
-          emoss = guild
-        } else {
-          emoss = bot
+              setTimeout(() => {
+                if (msg.deletable) msg.delete()
+              }, bot.ms('30s'))
+            });
         }
-       
-               const emos = emoss.emojis.cache.forEach(async (emo) => {
 
-            if (!emo.name || !emo.id)
-  {                     
-    return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
-              )
+        if (emojis.length === 1) {
+          const emote = interaction.options.getString('name')
 
+          const emo = Util.parseEmoji(emote)
 
-            }            const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
-              emo.animated ? 'gif' : 'png'
-              }`
+          if (!emo.name || !emo.id) {
+            return await bot.errorEmbed(bot, interaction, `**Invalid emote argument**`)
+          }
 
-            let embed = new MessageEmbed()
-              .setColor(bot.color)
-              .setAuthor({
-                name: 'Comfi™ Emojis',
-iconURL:                interaction.user.avatarURL({ dynamic: true })
-          })
-              .setImage(`${res}`)
-              .setDescription(`${emo.name} ${emo.id}`)
-
-            pages.push(embed)
-          })
-       
-        simplydjs.embedPages(bot, interaction, pages, {
-        firstEmoji: '884420649580363796',
-        backEmoji: '884421503205134356',
-        delEmoji: '891534962917007410',
-        forwardEmoji: '884421235965059113',
-        lastEmoji: '884420650549272586',
-        btncolor: 'SECONDARY',
-        delcolor: 'SECONDARY',
-        skipcolor: 'SECONDARY',
-        skipBtn: true,
-        pgCount: true
-      })
-       
-            } else {
-
-        let emojis = []
-        if (guild) {
-          emoss = guild
-        } else {
-          emoss = bot
-        }
-       
-               const emos = emoss.emojis.cache
-          .filter(emoji => emoji.name.includes(name))
-          .forEach(emoji => emojis.push(emoji));
-        if (emojis.length > 1) {
-
-          let pages = []
-
-          emojis.forEach(async (emo) => {
-
-            if (!emo.name || !emo.id) {
-        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
-              )
-            }
-            
-            const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
-              emo.animated ? 'gif' : 'png'
-              }`
-
-            let embed = new MessageEmbed()
-              .setColor(bot.color)
-              .setAuthor({
-                name: 'Comfi™ Emojis',
-iconURL:                interaction.user.avatarURL({ dynamic: true })
-          })
-              .setImage(`${res}`)
-              .setDescription(`${emo.name} ${emo.id}`)
-
-            pages.push(embed)
-          })
-          
-        simplydjs.embedPages(bot, interaction, pages, {
-        firstEmoji: '884420649580363796',
-        backEmoji: '884421503205134356',
-        delEmoji: '891534962917007410',
-        forwardEmoji: '884421235965059113',
-        lastEmoji: '884420650549272586',
-        btncolor: 'SECONDARY',
-        delcolor: 'SECONDARY',
-        skipcolor: 'SECONDARY',
-        skipBtn: true,
-        pgCount: true
-      })
-          
-        } else if (emojis.length === 1) {
-          const emo = emojis[0]   
-  if (!emo.name || !emo.id) {
-        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`)
-  }    
           const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
             emo.animated ? 'gif' : 'png'
             }`
@@ -295,12 +100,12 @@ iconURL:                interaction.user.avatarURL({ dynamic: true })
           let embed = new MessageEmbed()
             .setColor(bot.color)
             .setAuthor({
-              name: 'Comfi™ Emojis',
-iconURL:              interaction.user.avatarURL({ dynamic: true })
-        })
+              name: 'Comfi™ Enlarged Emoji',
+              iconURL: interaction.user.avatarURL({ dynamic: true })
+            })
             .setImage(`${img}`)
             .setDescription(`${emo.name} ${emo.id}`)
-;
+
           const row = new MessageActionRow().addComponents(
             new MessageButton()
               .setStyle('SECONDARY')
@@ -323,33 +128,230 @@ iconURL:              interaction.user.avatarURL({ dynamic: true })
               embeds: [embed],
               components: [row]
             }).catch(() => null)
-        } else  return await  bot.errorEmbed(bot, interaction, ` **• Emoji not found !!**`
-            ).then((msg) => {
-  setTimeout(() => { if(msg.deletable) msg.delete() }, bot.ms('30s'))
-  });
-      }
-      }
-      }	catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+        } else if (emojis.length > 1) {
+          const emote = interaction.options.getString('name')
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+          let pages = []
 
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-    }      
-  }}    
-  
+          emojis.forEach(emoji => {
+            const emo = Util.parseEmoji(emoji)
+
+            if (!emo.name || !emo.id) {
+              return interaction.editReply({
+                content: `${bot.error} • **Invalid emote argument**`
+              })
+            }
+
+            const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+              emo.animated ? 'gif' : 'png'
+              }`
+
+            let embed = new MessageEmbed()
+              .setColor(bot.color)
+              .setAuthor({
+                name: 'Enlarged Emoji',
+                iconURL: interaction.user.avatarURL({ dynamic: true })
+              })
+              .setImage(`${res}`)
+              .setDescription(`${emo.name} ${emo.id}`)
+
+            pages.push(embed)
+          })
+
+          simplydjs.embedPages(bot, interaction, pages, {
+            firstEmoji: '884420649580363796',
+            backEmoji: '884421503205134356',
+            delEmoji: '891534962917007410',
+            forwardEmoji: '884421235965059113',
+            lastEmoji: '884420650549272586',
+            btncolor: 'SECONDARY',
+            delcolor: 'SECONDARY',
+            skipcolor: 'SECONDARY',
+            skipBtn: true,
+            pgCount: true
+          })
+
+        } else return interaction.editReply({ content: `${bot.error} **• An error occured**` })
+
+      }
+      if (sub === "find") {
+
+        const name = interaction.options.getString("emote")
+        const guildd = interaction.options.getString("guild")
+        const guild = bot.guilds.cache.find(g => g.id === guildd) || bot.guilds.cache.find(g => g.name === guildd)
+        let emoss;
+
+        if (name.toLowerCase() === "all") {
+          let emojis = []
+          let pages = []
+
+
+          if (guild) {
+            emoss = guild
+          } else {
+            emoss = bot
+          }
+
+          const emos = emoss.emojis.cache.forEach(async (emo) => {
+
+            if (!emo.name || !emo.id) {
+              return await bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
+              )
+
+
+            } const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+              emo.animated ? 'gif' : 'png'
+              }`
+
+            let embed = new MessageEmbed()
+              .setColor(bot.color)
+              .setAuthor({
+                name: 'Comfi™ Emojis',
+                iconURL: bot.user.avatarURL({ dynamic: true })
+              })
+              .setImage(`${res}`)
+              .setFooter({text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({dynamic:  true})})
+              .setDescription(`${emo.name} ${emo.id}`)
+
+            pages.push(embed)
+          })
+
+          simplydjs.embedPages(bot, interaction, pages, {
+            firstEmoji: '884420649580363796',
+            backEmoji: '884421503205134356',
+            delEmoji: '891534962917007410',
+            forwardEmoji: '884421235965059113',
+            lastEmoji: '884420650549272586',
+            btncolor: 'SECONDARY',
+            delcolor: 'SECONDARY',
+            skipcolor: 'SECONDARY',
+            skipBtn: true,
+            pgCount: true
+          })
+
+        } else {
+
+          let emojis = []
+          if (guild) {
+            emoss = guild
+          } else {
+            emoss = bot
+          }
+          const emos = emoss.emojis.cache
+            .filter(emoji => emoji.name.includes(name))
+            .forEach(emoji => emojis.push(emoji));
+          if (emojis.length > 1) {
+
+            let pages = []
+
+            emojis.forEach(async (emo) => {
+
+              if (!emo.name || !emo.id) {
+                return await bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
+                )
+              }
+
+              const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+                emo.animated ? 'gif' : 'png'
+                }`
+
+              let embed = new MessageEmbed()
+                .setColor(bot.color)
+                .setAuthor({
+                  name: 'Comfi™ Emojis',
+                  iconURL: bot.user.avatarURL({ dynamic: true })
+                })
+                .setImage(`${res}`)
+                .setDescription(`${emo.name} ${emo.id}`)
+              .setFooter({text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({dynamic:  true})})
+
+              pages.push(embed)
+            })
+
+            simplydjs.embedPages(bot, interaction, pages, {
+              firstEmoji: '884420649580363796',
+              backEmoji: '884421503205134356',
+              delEmoji: '891534962917007410',
+              forwardEmoji: '884421235965059113',
+              lastEmoji: '884420650549272586',
+              btncolor: 'SECONDARY',
+              delcolor: 'SECONDARY',
+              skipcolor: 'SECONDARY',
+              skipBtn: true,
+              pgCount: true
+            })
+
+          } else if (emojis.length === 1) {
+            const emo = emojis[0]
+            if (!emo.name || !emo.id) {
+              return await bot.errorEmbed(bot, interaction, `**Invalid emote argument**`)
+            }
+            const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+              emo.animated ? 'gif' : 'png'
+              }`
+
+            const img = `https://cdn.discordapp.com/emojis/${emo.id}.${
+              emo.animated ? 'gif' : 'png'
+              }`
+
+            let embed = new MessageEmbed()
+              .setColor(bot.color)
+              .setAuthor({
+                name: 'Comfi™ Emojis',
+                iconURL: bot.user.avatarURL({ dynamic: true })
+              })
+              .setImage(`${img}`)
+              .setDescription(`${emo.name} ${emo.id}`)
+              .setFooter({text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({dynamic:  true})});
+            const row = new MessageActionRow().addComponents(
+              new MessageButton()
+                .setStyle('SECONDARY')
+                .setCustomId(`backEmoji`)
+                .setEmoji('884420649580363796')
+                .setDisabled(true),
+              new MessageButton()
+                .setStyle('LINK')
+                .setURL(`${res}`)
+                .setLabel('Download!'),
+              new MessageButton()
+                .setStyle('SECONDARY')
+                .setCustomId('forwardEmoji')
+                .setEmoji('884420650549272586')
+                .setDisabled(true)
+            )
+
+            await interaction
+              .followUp({
+                embeds: [embed],
+                components: [row]
+              }).catch(() => null)
+          } else return await bot.errorEmbed(bot, interaction, ` **• Emoji not found !!**`
+          ).then((msg) => {
+            setTimeout(() => { if (msg.deletable) msg.delete() }, bot.ms('30s'))
+          });
+        }
+      }
+    } catch (e) {
+      let emed = new MessageEmbed()
+        .setTitle(`${bot.error} • Error Occured`)
+        .setDescription(`\`\`\`${e.stack}\`\`\``)
+        .setColor(bot.color)
+
+      bot.sendhook(null, {
+        channel: bot.err_chnl,
+        embed: emed
+      })
+
+      interaction.followUp({
+        embeds: [
+          {
+            description: `${
+              bot.error
+              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+            color: bot.color
+          }
+        ]
+      })
+    }
+  }
+}

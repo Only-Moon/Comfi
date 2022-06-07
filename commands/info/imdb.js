@@ -17,6 +17,7 @@ module.exports = {
   name: 'imdb',
   description: 'Search anime, movie, game or series from imdb !!',
   ownerOnly: false,
+  cooldown: 15,
   directory: "info",
   options: [
     {

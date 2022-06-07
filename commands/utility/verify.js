@@ -28,7 +28,7 @@ module.exports = {
                 await reRun(interaction.member, bot, interaction)
             }
         } else {
-            return interaction.editReply({content: `${bot.crosss} • Verification is disabled in this server!`})
+            return await interaction.editReply({content: `${bot.crosss} • Verification is disabled in this server!`})
         }
     }
 }

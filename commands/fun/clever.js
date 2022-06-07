@@ -8,67 +8,67 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "clever",
-    description: "clever rate user",
-    directory: "fun",
-    ownerOnly: false,
-    options: [
-        {
-            type: 'USER',
-            description: 'The user',
-            name: 'user',
-            required: false,
-        },
-    ],
-    userperm: [""],
-    botperm: [""],
+  name: "clever",
+  description: "clever rate user",
+  directory: "fun",
+  ownerOnly: false,
+  options: [
+    {
+      type: 'USER',
+      description: 'The user',
+      name: 'user',
+      required: false,
+    },
+  ],
+  userperm: [""],
+  botperm: [""],
 
-run: async (bot, interaction, args) => {
+  run: async (bot, interaction, args) => {
 
-try {
-  
-        const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
+    try {
 
-        let rng = Math.floor(Math.random() * 101);
+      const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
 
-        const cleverembed = new MessageEmbed()
+      let rng = Math.floor(Math.random() * 101);
 
-            .setTitle("CLEVER Rate 💡")
+      const cleverembed = new MessageEmbed()
 
-             .setDescription(`**__${member.user.username}#${member.user.discriminator}__** ➡️`  + rng + `**% Clever!!**`)
+        .setTitle("CLEVER Rate 💡")
 
-            .setColor(bot.color)
+        .setDescription(`**__${member.user.username}#${member.user.discriminator}__** ➡️` + rng + `**% Clever!!**`)
 
-            .setThumbnail('https://www.poetry4kids.com/wp-content/uploads/2008/05/im-clever-whenever.png')
+        .setColor(bot.color)
 
-            .setFooter(member.user.username, member.user.avatarURL())
+        .setThumbnail('https://www.poetry4kids.com/wp-content/uploads/2008/05/im-clever-whenever.png')
 
-            .setTimestamp()
+        .setFooter(member.user.username, member.user.avatarURL())
 
-        await interaction.followUp({ embeds: [cleverembed] });
+        .setTimestamp()
 
-} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+      await interaction.editReply({ embeds: [cleverembed] });
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+    } catch (e) {
+      let emed = new MessageEmbed()
+        .setTitle(`${bot.error} • Error Occured`)
+        .setDescription(`\`\`\`${e.stack}\`\`\``)
+        .setColor(bot.color)
 
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-}
-  
+      bot.sendhook(null, {
+        channel: bot.err_chnl,
+        embed: emed
+      })
+
+      interaction.followUp({
+        embeds: [
+          {
+            description: `${
+              bot.error
+              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+            color: bot.color
+          }
+        ]
+      })
     }
+
+  }
 }

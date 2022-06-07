@@ -172,7 +172,7 @@ module.exports = {
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
         if (guild.welcome.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Welcome toogle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Welcome toogle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -181,7 +181,7 @@ module.exports = {
               welcome: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Welcome has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Welcome has setted as ${toggle} !**`
           )
         }
       }
@@ -189,7 +189,7 @@ module.exports = {
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('options')
         if (guild.welcome_embedtgl.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Welcome Embed toggle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Welcome Embed toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -198,7 +198,7 @@ module.exports = {
               welcome_embedtgl: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Welcome Embed toggle has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Welcome Embed toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -206,7 +206,7 @@ module.exports = {
       if (sub === 'dm-toggle') {
         let toggle = interaction.options.getString('options')
         if (guild.welcome_dmuser.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Welcome dm toggle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Welcome dm toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -215,7 +215,7 @@ module.exports = {
               welcome_dmuser: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Welcome dm toggle has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Welcome dm toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -223,7 +223,7 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.welcome_channel === channel.id) {
-        return await  bot.errorEmbed(bot, interaction, `**${
+          return await bot.errorEmbed(bot, interaction, `**${
             channel.name
             } already exists as welcome channel !**`
           )
@@ -234,7 +234,7 @@ module.exports = {
               welcome_channel: channel.id
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Welcome Channel Has Been Set Successfully in \`${
+          return await bot.successEmbed(bot, interaction, `**Welcome Channel Has Been Set Successfully in \`${
             channel.name
             }\` !**`
           )
@@ -265,20 +265,20 @@ module.exports = {
 
           if (guild.welcome_joinrole.find(r => r === role.id)) {
 
-        return await  bot.errorEmbed(bot, interaction, `**\`${role.name}\` is already available as a join role !**`)
+            return await bot.errorEmbed(bot, interaction, `**\`${role.name}\` is already available as a join role !**`)
 
           } else {
             guild.welcome_joinrole.push(role.id)
             await guild.save()
-        return await bot.successEmbed(bot, interaction, `**Successfully Added \`${role.name}\` as a join role !**`)
+            return await bot.successEmbed(bot, interaction, `**Successfully Added \`${role.name}\` as a join role !**`)
           }
         } else if (toggle === "false") {
           if (guild.welcome_joinrole.find(r => r === role.id)) {
             guild.welcome_joinrole.filter(r => r.id !== role.id)
             await guild.save()
-        return await bot.successEmbed(bot, interaction, `**Successfully Removed \`${role.name}\` from JoinRole !**`)
+            return await bot.successEmbed(bot, interaction, `**Successfully Removed \`${role.name}\` from JoinRole !**`)
           } else {
-        return await  bot.errorEmbed(bot, interaction, `**\`${role.name}\` doesn't exists in join role !**`)
+            return await bot.errorEmbed(bot, interaction, `**\`${role.name}\` doesn't exists in join role !**`)
           }
         }
       }
@@ -302,7 +302,7 @@ module.exports = {
               welcome_image: img
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Welcome Image Has Been Set Successfully in ${img}!**`)
+          return await bot.successEmbed(bot, interaction, `**Welcome Image Has Been Set Successfully in ${img}!**`)
         }
       }
 

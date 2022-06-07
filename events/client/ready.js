@@ -52,7 +52,7 @@ bot.on('ready', async () => {
 		bot.user.setActivity(
 			activites[Math.floor(Math.random() * activites.length)]
 		)
-	}, 1000 * 20)
+	}, 1000 * 30)
 
 require('../../functions/server')(bot)
 

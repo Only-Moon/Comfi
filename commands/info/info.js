@@ -18,7 +18,7 @@ module.exports = {
   description: 'Information Commands',
   ownerOnly: false,
   directory: "info",
-  cooldown: "10s",
+  cooldown: 10,
   options: [
     {
       name: 'banner',
