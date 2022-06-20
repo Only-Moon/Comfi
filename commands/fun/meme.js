@@ -9,66 +9,36 @@ const { MessageEmbed, CommandInteraction } = require('discord.js');
 const fetch = require('node-fetch')
 
 module.exports = {
-    name: 'meme',
-    description: 'Get a random meme from reddit',
+  name: 'meme',
+  description: 'Get a random meme from reddit',
   directory: "fun",
-    ownerOnly: false,
-    userperm: [""],
-    botperm: [""],
+  ownerOnly: false,
+  userperm: [""],
+  botperm: [""],
   /** 
      * @param {Client} client 
      * @param {CommandInteraction} interaction 
      * @param {String[]} args 
      */
-    run: async(bot, interaction, args) => {
+  run: async (bot, interaction, args) => {
 
-try {
-      
-        await fetch('http://meme-api.herokuapp.com/gimme/memes')
+    try {
+
+      await fetch('http://meme-api.herokuapp.com/gimme/memes')
         .then(response => response.json())
-        .then(async(r) => {
-            const embed = new MessageEmbed()
+        .then(async (r) => {
+          const embed = new MessageEmbed()
             .setImage(`${r.url}`)
             .setTitle(`${r.title}`)
             .setURL(`${r.postLink}`)
             .setColor(bot.color)
             .setFooter(`🔼 ${r.ups} | Author: ${r.author}`)
 
-await interaction.editReply({embeds: [embed]}).catch((e) => {
-        bot.sendhook(
-          `Error Occured \n ${e.stack}`
-        ), {
-          channel: bot.err_chnl
-        } 
-        interaction.followUp({
-          content: `${bot.error} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-          ephemeral: true
-        });
-        }) 
-    })
+          await interaction.editReply({ embeds: [embed] })
+        })
+    } catch (e) {
+      await bot.senderror(interaction, e)
+    }
 
-} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-}
-  
-}
+  }
 }

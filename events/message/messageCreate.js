@@ -16,7 +16,7 @@ bot.on('messageCreate', async message => {
   if (message.author.bot) return;
   if (!message.guild) return;
   if (!message.author) return;
-
+  
   try {
 
     const guild = await guilds.findOne({ guildId: message.guild.id })
@@ -57,7 +57,7 @@ bot.on('messageCreate', async message => {
           "Content-Type": "application/json"
         },
         body: data
-      })
+      }).catch(() => {})
       result = await result.json()
 
       if (guild.anti_scam && result.match) {
@@ -104,26 +104,7 @@ bot.on('messageCreate', async message => {
     }
 
   } catch (e) {
-    let emed = new MessageEmbed()
-      .setTitle(`${bot.error} • Error Occured`)
-      .setDescription(`\`\`\`${e.stack}\`\`\``)
-      .setColor(bot.color)
-
-    bot.sendhook(null, {
-      channel: bot.err_chnl,
-      embed: emed
-    })
-
-    message.channel.send({
-      embeds: [
-        {
-          description: `${
-            bot.error
-            } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-          color: bot.color
-        }
-      ]
-    })
+  await bot.senderror(message, e)
   }
 
 })

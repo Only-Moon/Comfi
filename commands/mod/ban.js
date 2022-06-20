@@ -104,10 +104,10 @@ module.exports = {
 
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
 
-try {
-    
-    if (sub === 'permanent') {
-  
+    try {
+
+      if (sub === 'permanent') {
+
         const user = interaction.options.getMember('user')
         const reason =
           interaction.options.getString('reason') ||
@@ -115,17 +115,17 @@ try {
 
         let banMember = interaction.guild.members.cache.get(args[0]) || bot.users.cache.get(args[0]) || user
         if (!banMember) {
-        return await  bot.errorEmbed(bot, interaction, `**User Is Not In The Guild**`)
+          return await bot.errorEmbed(bot, interaction, `**User Is Not In The Guild**`)
         }
-        
+
         if (banMember.user === interaction.user) {
-        return await  bot.errorEmbed(bot, interaction, `**You Cannot Ban Yourself**`)
+          return await bot.errorEmbed(bot, interaction, `**You Cannot Ban Yourself**`)
         }
         const userRank = banMember.roles.highest.rawPosition
         const memberRank = interaction.member.roles.highest.rawPosition
 
         if (userRank >= memberRank) {
-        return await  bot.errorEmbed(bot, interaction, `**Cannot Ban This User due to role hierarchy !**`
+          return await bot.errorEmbed(bot, interaction, `**Cannot Ban This User due to role hierarchy !**`
           )
         }
 
@@ -150,38 +150,39 @@ try {
           await interaction.editReply({ embeds: [sembed2] })
 
         }
-await bot.modlog({ Member: banMember, 
-                  Action: "ban", 
-                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
-                 }, interaction)
-    }
-
-    if (sub === 'temporary') {
-      const reason = interaction.options.getString('reason')
-
-      const tbuser =
-        interaction.options.getMember('user') ||
-        interaction.guild.members.cache.get(args[0])
-      const regex = interaction.options.getString('time')
-      if (tbuser === interaction.member) {
-        return interaction.editReply(
-          `${bot.error} Really!! Are you going to ban yourself..`
-        )
+        await bot.modlog({
+          Member: banMember,
+          Action: "ban",
+          Reason: reason.length < 1 ? 'No reason supplied.' : reason
+        }, interaction)
       }
 
-      if (tbuser.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0
-      ) {
-        return interaction.editReply(
-          ` ${bot.error} • **Cannot bans User!**`
-        )
-      }
+      if (sub === 'temporary') {
+        const reason = interaction.options.getString('reason')
 
-      const userRank = tbuser.roles.highest.rawPosition
-      const memberRank = interaction.member.roles.highest.rawPosition
+        const tbuser =
+          interaction.options.getMember('user') ||
+          interaction.guild.members.cache.get(args[0])
+        const regex = interaction.options.getString('time')
+        if (tbuser === interaction.member) {
+          return interaction.editReply(
+            `${bot.error} Really!! Are you going to ban yourself..`
+          )
+        }
 
-      if (userRank >= memberRank) {
-        return await  bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy**`)
-      } 
+        if (tbuser.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0
+        ) {
+          return interaction.editReply(
+            ` ${bot.error} • **Cannot bans User!**`
+          )
+        }
+
+        const userRank = tbuser.roles.highest.rawPosition
+        const memberRank = interaction.member.roles.highest.rawPosition
+
+        if (userRank >= memberRank) {
+          return await bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy**`)
+        }
         if (!reason) reason = 'No Reason Provided'
         const tbuembed = new MessageEmbed()
           .setTitle(' You have been banned!')
@@ -193,19 +194,20 @@ await bot.modlog({ Member: banMember,
         const tbembed = new MessageEmbed()
           .setTitle('Action: Tempban')
           .addField('User:', tbuser.toString())
-          .setAuthor({name: `${interaction.user.username}`})
+          .setAuthor({ name: `${interaction.user.username}` })
           .setColor(bot.color)
           .addField('Reason:', reason.toString())
           .addField('Time (s)', regex.toString())
           .addField('Moderator:', interaction.user.username)
 
         await interaction.editReply({ embeds: [tbembed] })
-      
-await bot.modlog({ Member: tbuser, 
-                  Action: "temporary ban", 
-                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
-                 }, interaction)
-      
+
+        await bot.modlog({
+          Member: tbuser,
+          Action: "temporary ban",
+          Reason: reason.length < 1 ? 'No reason supplied.' : reason
+        }, interaction)
+
         await tbuser.send({ embeds: [tbuembed] }).catch(() => null)
 
         await interaction.guild.members
@@ -213,7 +215,7 @@ await bot.modlog({ Member: tbuser,
           .then(() => {
             setTimeout(function() {
               interaction.guild.members.unban(tbuser.id)
-               interaction.channel.send({
+              interaction.channel.send({
                 content: `${bot.tick} • <@${
                   tbuser.id
                   }> has been unbanned after tempban of ${regex}`
@@ -221,38 +223,38 @@ await bot.modlog({ Member: tbuser,
             }, bot.ms(regex))
             return undefined;
           })
-    }
-
-    if (sub === 'hack') {
-      const target =
-        interaction.options.getMember('user') ||
-        interaction.guild.members.cache.get(args[0])
-      
-      if (isNaN(target))
-        return interaction.editReply(
-          `${bot.error} • Please specify an ID or USERNAME`
-        )
-
-      if (target.user === interaction.user){
-        return await  bot.errorEmbed(bot, interaction, `**You Cannot Ban Yourself**`)
-      }
-      const reason = interaction.options.getString('reason')
-
-      if (
-        target.roles.highest.comparePositionTo(
-          interaction.guild.me.roles.highest
-        ) >= 0
-      ) {
-        return await  bot.errorEmbed(bot, interaction, `**Cannot Ban This User coz User's role is higher than me !**`
-        )
       }
 
-      const userRank = target.roles.highest.rawPosition
-      const memberRank = interaction.member.roles.highest.rawPosition
+      if (sub === 'hack') {
+        const target =
+          interaction.options.getMember('user') ||
+          interaction.guild.members.cache.get(args[0])
 
-      if (userRank >= memberRank) {
-        return await  bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy*j`)
-      }
+        if (isNaN(target))
+          return interaction.editReply(
+            `${bot.error} • Please specify an ID or USERNAME`
+          )
+
+        if (target.user === interaction.user) {
+          return await bot.errorEmbed(bot, interaction, `**You Cannot Ban Yourself**`)
+        }
+        const reason = interaction.options.getString('reason')
+
+        if (
+          target.roles.highest.comparePositionTo(
+            interaction.guild.me.roles.highest
+          ) >= 0
+        ) {
+          return await bot.errorEmbed(bot, interaction, `**Cannot Ban This User coz User's role is higher than me !**`
+          )
+        }
+
+        const userRank = target.roles.highest.rawPosition
+        const memberRank = interaction.member.roles.highest.rawPosition
+
+        if (userRank >= memberRank) {
+          return await bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy*j`)
+        }
 
         await interaction.guild.members.ban(target, {
           reason: reason.length < 1 ? 'No reason supplied.' : reason
@@ -266,20 +268,21 @@ await bot.modlog({ Member: tbuser,
           )
         await interaction.editReply({ embeds: [embed2] })
 
-await bot.modlog({ Member: target, 
-                  Action: "hack ban", 
-                  Reason: reason.length < 1 ? 'No reason supplied.' : reason
-                 }, interaction)
+        await bot.modlog({
+          Member: target,
+          Action: "hack ban",
+          Reason: reason.length < 1 ? 'No reason supplied.' : reason
+        }, interaction)
 
-    }
+      }
 
-    if (sub === 'remove') {
+      if (sub === 'remove') {
 
         const userId = interaction.options.getString('user')
 
         bot.users.fetch(userId).then(async (user) => {
           await interaction.guild.members.unban(user.id).catch(() => {
-        return interaction.editReply(`${bot.error} • **User is Not Banned**`
+            return interaction.editReply(`${bot.error} • **User is Not Banned**`
             )
           })
           const ban = new MessageEmbed()
@@ -298,39 +301,21 @@ await bot.modlog({ Member: target,
               }
             )
             .setAuthor({
-             name: interaction.user.username,
- iconURL:             interaction.user.avatarURL({ dynamic: true })
+              name: interaction.user.username,
+              iconURL: interaction.user.avatarURL({ dynamic: true })
             })
-                       await interaction.editReply({ embeds: [ban] })
+          await interaction.editReply({ embeds: [ban] })
 
-await bot.modlog({ Member: target, 
-                  Action: "unban", 
-                  Reason: 'No reason supplied.'
-                 }, interaction)
-          
-        })
-    }
-      } catch (e) {
-        let emed = new MessageEmbed()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${e.stack}\`\`\``)
-          .setColor(bot.color)
+          await bot.modlog({
+            Member: target,
+            Action: "unban",
+            Reason: 'No reason supplied.'
+          }, interaction)
 
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
-
-        interaction.followUp({
-          embeds: [
-            {
-              description: `${
-                bot.error
-                } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-              color: bot.color
-            }
-          ]
         })
       }
+    } catch (e) {
+  await bot.senderror(interaction, e)
     }
   }
+}

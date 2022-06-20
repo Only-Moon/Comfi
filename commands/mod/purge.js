@@ -207,26 +207,7 @@ if (s !== 'bot-messages' && messages <= 1) return await  bot.errorEmbed(bot, int
   
 const pur = await purger.purge(sus, interaction, interaction.channel, num, user || string)
 } catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
+  await bot.senderror(interaction, e)
           }
   
     },

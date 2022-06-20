@@ -7,57 +7,101 @@
 
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const simplydjs = require("simply-djs");
-let { Database } = require('quickmongo')
-let db = new Database(process.env.Mongoose)
 
 module.exports = {
-    name: "giveaway",
-    description: "Setups a giveaway in the server",
-    ownerOnly: false,
+  name: "giveaway",
+  description: "Setups a giveaway in the server",
+  ownerOnly: false,
   directory: "setting",
-    options: [
-     {
-        name: 'time',
-        type: 'STRING',
-        description: 'Time when to finish the giveaway',
-        required: true,
-      },
+  options: [
+    {
+      name: 'time',
+      type: 'STRING',
+      description: 'Time when to finish the giveaway',
+      required: true,
+    },
+    {
+      name: 'winners',
+      type: 'NUMBER',
+      description: 'Number of Winners for the giveaway',
+      required: true,
+    },
+    {
+      name: 'prize',
+      type: 'STRING',
+      description: 'Prize given to the giveaway winner',
+      required: true,
+    },
+    {
+      name: "req-type",
+      type: "STRING",
+      description: "Type of requirements for giveaway aka 'Role', 'Guild', 'None'",
+      required: true,
+      choices: [
       {
-        name: 'winners',
-        type: 'INTEGER',
-        description: 'Number of Winners for the giveaway',
-        required: true,
+       name: "Guild",
+       value: "Guild"
       },
-      {
-        name: 'prize',
-        type: 'STRING',
-        description: 'Prize given to the giveaway winner',
-        required: true,
-      },
-      {
-        name: 'channel',
-        type: 'CHANNEL',
-        description: 'Channel to start the giveaway',
-        required: false,
-        channelTypes: ["GUILD_TEXT"],
+        {
+          name: "Role",
+          value: "Role"
+        },
+        {
+          name: "None",
+          value: "None"
+        }
+      ]
+    },
+    {
+      name: "req-id",
+      type: "STRING",
+      description: "role id or guild id for role or guild requirements",
+      required: false
+    },    
+    {
+      name: 'channel',
+      type: 'CHANNEL',
+      description: 'Channel to start the giveaway',
+      required: false,
+      channelTypes: ["GUILD_TEXT"],
+    }, 
+  ],
+  userperm: ["MANAGE_GUILD"],
+  botperm: ["MANAGE_GUILD"],
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   * @param {String[]} args
+   */
+  run: async (bot, interaction, args) => {
+    try {
+      const channel = interaction.options.getChannel("channel")
+      const type = interaction.options.getString("req-type")
+      const id = interaction.options.getString("req-id")
+      const time = interaction.options.getString("time")
+      const prize = interaction.options.getString("prize")
+      const winner = interaction.options.getNumber("winners")
+
+      simplydjs.giveawaySystem(bot, interaction, {
+        time: time,
+        winners: winner,
+        prize: prize,
+        channel: channel,
+        embed: {
+          title: "Giveaway",
+          color: bot.color,
+          credit: false,
+          footer: { text: "Comfi™ Giveaway System" }
+        },
+      req: {
+        type: type,
+        id: id
       }
-      ],
-    userperm: ["MANAGE_GUILD"],
-    botperm: ["MANAGE_GUILD"],
-    /**
-     *
-     * @param {CommandInteraction} interaction
-     * @param {String[]} args
-     */
-    run: async (bot, interaction, args) => {
+      })
 
-simplydjs.giveawaySystem(bot, db, interaction, {
-  slash: true,
-  args: args,
+    } catch {
+      await bot.senderror(interaction, e)
+    }
 
-  time: args[0],
-  winners: args[1],
-  prize: args[2],
-})
-
-    }}   
+  }
+}   

@@ -5,40 +5,47 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, Modal, MessageActionRow,  TextInputComponent } = require('discord.js')
+const { CommandInteraction, MessageEmbed, Modal, MessageActionRow, TextInputComponent } = require('discord.js')
 
 module.exports = {
-	name: 'bugreport',
-	description: 'Report a bug',
+  name: 'bugreport',
+  description: 'Report a bug',
   directory: "utility",
-	ownerOnly: false,
+  ownerOnly: false,
   modal: true,
-	userperm: [''],
-	botperm: [''],
+  userperm: [''],
+  botperm: [''],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args) => {
-const modal = new Modal()
-			.setCustomId('Bug')
-			.setTitle(`Comfi™ Bug Report`)
-		    .addComponents(
-			    new MessageActionRow().addComponents(
-              new TextInputComponent()
-                .setCustomId('title')
-                .setLabel(`Title for The bug`)
-                .setStyle("SHORT")
-             ),
-            new MessageActionRow().addComponents(
-			        new TextInputComponent()
-			        .setCustomId('description')
-			        .setLabel(`Sumbit Comfi's Bug Report Here`)
-			        .setStyle('PARAGRAPH')
-			    )
-)
-		await interaction.showModal(modal);
-    
-	}
+  run: async (bot, interaction, args) => {
+
+    try {
+
+      const modal = new Modal()
+        .setCustomId('Bug')
+        .setTitle(`Comfi™ Bug Report`)
+        .addComponents(
+          new MessageActionRow().addComponents(
+            new TextInputComponent()
+              .setCustomId('title')
+              .setLabel(`Title for The bug`)
+              .setStyle("SHORT")
+          ),
+          new MessageActionRow().addComponents(
+            new TextInputComponent()
+              .setCustomId('description')
+              .setLabel(`Sumbit Comfi's Bug Report Here`)
+              .setStyle('PARAGRAPH')
+          )
+        )
+      await interaction.showModal(modal);
+
+    } catch {
+      await bot.senderror(interaction, e)
+    }
+
+  }
 }

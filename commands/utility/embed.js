@@ -9,43 +9,28 @@ const { CommandInteraction } = require('discord.js')
 const simplydjs = require("simply-djs")
 
 module.exports = {
-	name: 'embed',
-	description: 'Embed creator.',
+  name: 'embed',
+  description: 'Embed creator.',
   ownerOnly: false,
   directory: "utility",
   userperm: [""],
   botperm: ["SEND_MESSAGES"],
-	
-	run: async (bot, interaction, args) => {
-		try {
 
-   simplydjs.embedCreate(interaction, {
-     credit: false,
-     embedColor: bot.color,
-     embedFoot: "Comfi™ Embed Creator"
-   })
-      
-		} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+  run: async (bot, interaction, args) => {
+    try {
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+      simplydjs.embedCreate(interaction, {
+        embed: {
+          title: "Embed Builder",
+          description: "Use the options from dropdown below to make an embed",
+          color: bot.color,
+          credit: false,
+          footer: 'Comfi™ Embed Builder'
+        }
+      })
 
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-		}
-	}
+    } catch (e) {
+      await bot.senderror(interaction, e)
+    }
+  }
 }

@@ -10,69 +10,54 @@ const simplydjs = require('simply-djs')
 const { CommandInteraction, MessageEmbed } = require('discord.js')
 
 module.exports = {
-	name: 'suggest',
-	description: 'Suggestion for server',
-	ownerOnly: false,
+  name: 'suggest',
+  description: 'Suggestion for server',
+  ownerOnly: false,
   directory: "utility",
-	options: [
-		{
-			type: 'STRING',
-			description: 'The Suggestion',
-			name: 'suggestion',
-			required: true
-		}
-	],
-	userperm: [''],
-	botperm: [''],
+  options: [
+    {
+      type: 'STRING',
+      description: 'The Suggestion',
+      name: 'suggestion',
+      required: true
+    }
+  ],
+  userperm: [''],
+  botperm: [''],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args) => {
-		try {
-			const guild = await guilds.findOne({ guildId: interaction.guild.id })
-			if (guild.suggestions) {
-				const suggestion = interaction.options.getString('suggestion')
-				let channel = guild.suggestions_channel
+  run: async (bot, interaction, args) => {
+    try {
+      const guild = await guilds.findOne({ guildId: interaction.guild.id })
+      if (guild.suggestions) {
+        const suggestion = interaction.options.getString('suggestion')
+        let channel = guild.suggestions_channel
 
-				if (!channel) return
+        if (!channel) return
 
-				simplydjs.suggestSystem(bot, interaction, suggestion, {
-					slash: true,
-					chid: `${channel}`,
-					embedColor: bot.color, // defaultL #075FFF
-					credit: false,
-					yesEmoji: `${bot.tick}`, // default: ☑️
-					yesColor: 'SECONDARY', // default: green
-					noEmoji: `${bot.crosss}`, // default: X
-					noColor: 'SECONDARY' // default: red
-				})
-			} else if (!guild.suggestions) {
-				        return await  bot.errorEmbed(bot, interaction, `Please Ask an Admin to set the suggestion channel first by using **/suggestion**`
-				)
-			}
-		} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-		}
-	}
+        simplydjs.suggestSystem(interaction, {
+          channelId: channel,
+          suggestion: suggestion,
+          embed: {
+            title: "Suggestion",
+            credit: false,
+            color: bot.color,
+            footer: {text: "Comfi™ Suggestion System"},
+          },
+          buttons: {
+            upvote: { style: "SECONDARY", emoji: bot.tick },
+            downvote: { style: "SECONDARY", emoji: bot.crosss }
+          }
+        })
+      } else if (!guild.suggestions) {
+        return await bot.errorEmbed(bot, interaction, `Please Ask an Admin to set the suggestion channel first by using **/suggestion**`
+        )
+      }
+    } catch (e) {
+      await bot.senderror(interaction, e)
+    }
+  }
 }

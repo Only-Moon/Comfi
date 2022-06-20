@@ -38,6 +38,7 @@ bot.on('guildMemberAdd', async member => {
     const terms = [
       { name: '{{user#mention}}', value: `<@${member.id}>` },
       { name: '{{user#tag}}', value: `${member.user.tag}` },
+      { name: '{{user#name}}', value: `${member.user.username}`},
       { name: '{{user#id}}', value: `${member.id}` },
       { name: '{{user#avatar}}', value: `${member.avatarURL({dynamic: true})}`},
       { name: '{{server#id}}', value: `${member.guild.id}` },
@@ -132,8 +133,8 @@ await member.roles
   } else return;
 
   if (guild.auto_nick.toLowerCase() === 'none') return;
-  let nick = `${guild.auto_nick}`
-  member.setNickname(`${nick}` + member.user.username).catch(() => { })
+  let nick = format(guild.auto_nick)
+  member.setNickname(`${nick}`).catch(() => { })
 
   } catch (e) {
 			let emed = new MessageEmbed()

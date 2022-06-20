@@ -59,13 +59,13 @@ module.exports = {
           },
           { name: '{{user#tag}}', value: `${interaction.user.tag || 'NONE'}` },
           { name: '{{user#id}}', value: `${interaction.user.id || 'NONE'}` },
-      { name: '{{user#avatar}}', value: `${interaction.member.avatarURL({dynamic: true})}`},
+          { name: '{{user#avatar}}', value: `${interaction.member.avatarURL({ dynamic: true })}` },
           { name: '{{server#id}}', value: `${interaction.guild.id}` },
           {
             name: '{{server#name}}',
             value: `${interaction.guild.name || 'NONE'}`
           },
-      { name: '{{server#icon}}', value: `${interaction.guild.iconURL({dynamic:true})}`},
+          { name: '{{server#icon}}', value: `${interaction.guild.iconURL({ dynamic: true })}` },
           {
             name: '{{server#membercount}}',
             value: `${interaction.guild.memberCount || 'NONE'}`
@@ -88,44 +88,44 @@ module.exports = {
 
       const auto = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Auto Nickname`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Auto Nickname`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/autonick`')
         .addFields({
           name: '» AutoNick',
           value: `\`\`\`\n${guild.auto_nick}\n\`\`\``
         })
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const anti = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Anti Scam`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Anti Scam`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/antiscam toggle, antiscam duration, antiscam disable`')
         .addFields({
           name: '» AutoScam Toggle',
           value: `\`\`\`\n${guild.anti_scam}\n\`\`\``, inline: true
         }, {
-          name: '» AutoScam Timeout Duration',
-          value: `\`\`\`\n${bot.ms(guild.anti_scam_time)}\n\`\`\``
-        })
+            name: '» AutoScam Timeout Duration',
+            value: `\`\`\`\n${bot.ms(guild.anti_scam_time)}\n\`\`\``
+          })
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const boost = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Boost Detector `,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Boost Detector `,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/boost message or /boost channel`'
         )
@@ -149,16 +149,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
         )
         .setImage(`${guild.boost_image}`)
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const bump = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Bump System`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Bump System`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/bump toggle or /bump channel`'
         )
@@ -173,16 +173,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const chatbot = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Chatbot`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Chatbot`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/chatbot toggle or /chatbot channel`'
         )
@@ -197,16 +197,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const confess = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Confess`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Confess`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/confession enable or /confession disable`'
         )
@@ -221,16 +221,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const leave = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Leave`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Leave`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/leave`')
         .addFields(
           {
@@ -260,16 +260,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
         )
         .setImage(guild.leave_image)
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const leveling = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Leveling`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Leveling`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/leveling`')
         .addFields(
           {
@@ -290,16 +290,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const logging = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Logging`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Logging`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/logging`')
         .addFields(
           {
@@ -312,16 +312,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const modlog = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Modlogs`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Modlogs`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/modlog enable or /modlog disable`'
         )
@@ -336,16 +336,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const mute = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Mute Role`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Mute Role`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/muterole enable or /muterole disable`'
         )
@@ -360,16 +360,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const nqn = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - NQN`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - NQN`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/nqn option`'
         )
@@ -380,16 +380,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const suggest = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings -Suggestion`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings -Suggestion`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/suggestion enable or /suggestion disable`'
         )
@@ -404,16 +404,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const ticket = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Ticket`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Ticket`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription(
           'You can change the settings by `/ticket category, /ticket role, /ticket disable`'
         )
@@ -424,7 +424,7 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           },
           {
             name: '» Ticket Category',
-            value: `\`\`\`\n${guild.ticket_category}\n\`\`\``
+            value: `\`\`\`\n<#${guild.ticket_category}>\n\`\`\``
           },
           {
             name: '» Ticket Support Role',
@@ -432,16 +432,16 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const verification = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Verification`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Verification`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/verification`')
         .addFields(
           {
@@ -462,9 +462,9 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           }
         )
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color);
 
       let role = [];
@@ -475,9 +475,9 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
 
       const welcome = new MessageEmbed()
         .setAuthor({
-name:          `${interaction.guild.name} - Settings - Welcome`,
-iconURL:          interaction.guild.iconURL({ dynamic: true })
-          })
+          name: `${interaction.guild.name} - Settings - Welcome`,
+          iconURL: interaction.guild.iconURL({ dynamic: true })
+        })
         .setDescription('You can change the settings by `/welcome`')
         .addFields(
           {
@@ -486,8 +486,8 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
           },
           {
             name: '» Welcome Channel',
-            value: `${guild.welcome_channel ? 
-`<#${guild.welcome_channel}` : "Not Found"}`
+            value: `${guild.welcome_channel ?
+              `<#${guild.welcome_channel}` : "Not Found"}`
           },
           {
             name: '» Welcome Dm Toogle',
@@ -512,9 +512,9 @@ iconURL:          interaction.guild.iconURL({ dynamic: true })
         )
         .setImage(guild.welcome_image)
         .setFooter({
-text:          `Requested by: ${interaction.user.tag}`,
-iconURL:          interaction.user.avatarURL({ dynamic: true })
-                   })
+          text: `Requested by: ${interaction.user.tag}`,
+          iconURL: interaction.user.avatarURL({ dynamic: true })
+        })
         .setColor(bot.color)
 
       const pages = [
@@ -528,43 +528,24 @@ iconURL:          interaction.user.avatarURL({ dynamic: true })
         logging,
         modlog,
         suggest,
+        ticket,
         verification,
         welcome
       ]
 
-      simplydjs.embedPages(bot, interaction, pages, {
-        firstEmoji: '884420649580363796',
-        backEmoji: '884421503205134356',
-        delEmoji: '891534962917007410',
-        forwardEmoji: '884421235965059113',
-        lastEmoji: '884420650549272586',
-        btncolor: 'SECONDARY',
-        delcolor: 'SECONDARY',
-        skipcolor: 'SECONDARY',
-        skipBtn: true,
-        pgCount: true
+      simplydjs.embedPages(interaction, pages, {
+        buttons: {
+          firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
+          nextBtn: { style: "SECONDARY", emoji: "884421235965059113" },
+          backBtn: { style: "SECONDARY", emoji: "884421503205134356" },
+          lastBtn: { style: "SECONDARY", emoji: "884420650549272586" },
+          deleteBtn: { style: "SECONDARY", emoji: "891534962917007410" }
+        },
+        skips: true,
+        count: true
       })
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+      await bot.senderror(interaction, e)
     }
   }
 }

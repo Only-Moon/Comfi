@@ -9,64 +9,41 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 const simplydjs = require("simply-djs")
 
 module.exports = {
-    name: "rps",
-    description: "Simple Rps Game",
-    ownerOnly: false,
+  name: "rps",
+  description: "Simple Rps Game",
+  ownerOnly: false,
   directory: "fun",
-    options: [
-        {
-            type: 'USER',
-            description: 'User to Compete with in rps',
-            name: 'user',
-            required: true,
+  options: [
+    {
+      type: 'USER',
+      description: 'User to Compete with in rps',
+      name: 'user',
+      required: true,
+    },
+  ],
+  userperm: [""],
+  botperm: [""],
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   * @param {String[]} args
+   */
+  run: async (bot, interaction, args) => {
+
+    try {
+
+      simplydjs.rps(interaction, {
+        embed: {
+          color: bot.color,
+          credit: false
         },
-    ],
-    userperm: [""],
-    botperm: [""],
-    /**
-     *
-     * @param {CommandInteraction} interaction
-     * @param {String[]} args
-     */
-    run: async (bot, interaction, args) => {
+        drawColor: bot.color,
+        winColor: bot.color,
+      })
 
-try {
-      
-simplydjs.rps(interaction, {    
-slash: true,    
-embedColor: bot.color,          
-timeoutEmbedColor: bot.color,           
-drawEmbedColor: bot.color,           
-winEmbedColor: bot.color,           
-embedFooter: "A Game of RPS",            
-rockColor: "", // default: SECONDARY            
-paperColor: "", // default: SECONDARY            
-scissorsColor: "",
-credit: false,
-})
+    } catch (e) {
+      await bot.senderror(interaction, e)
+    }
 
-} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-}
-  
-     }    
+  }
 }

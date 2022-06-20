@@ -7,7 +7,7 @@
 
 const { Interaction, MessageAttachment } = require("discord.js");
 const isUrl = new RegExp(
-"^(https?:\\/\\/)?" +
+  "^(https?:\\/\\/)?" +
   "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
   "((\\d{1,3}\\.){3}\\d{1,3}))" +
   "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
@@ -40,32 +40,36 @@ module.exports = {
   run: async (bot, interaction) => {
     const say = interaction.options.getString("msg")
 
-    await interaction.editReply({ content: "Sending..." }).catch(() => null);
-    await interaction.deleteReply().catch(() => null);
+    try {
 
-    if (isUrl.test(say)) {
+      await interaction.editReply({ content: "Sending..." }).catch(() => null);
+      await interaction.deleteReply().catch(() => null);
 
-      const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
+      if (isUrl.test(say)) {
 
-      await interaction.channel.send({ files: [attach] })
+        const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
 
-    } else {
-
-      if (interaction.member.permissions.has("ADMINISTRATOR")) {
-
-        await interaction.channel.send({ content: `${say}`, allowedMentions: { repliedUser: true } })
+        await interaction.channel.send({ files: [attach] })
 
       } else {
 
-        await interaction.channel.send({
-          content: `**${say}**\n- by ${interaction.member.displayName}`,
-          allowedMentions: {
-            repliedUser: false
-          }
-        })
+        if (interaction.member.permissions.has("ADMINISTRATOR")) {
 
+          await interaction.channel.send({ content: `${say}`, allowedMentions: { repliedUser: true } })
+
+        } else {
+
+          await interaction.channel.send({
+            content: `**${say}**\n- by ${interaction.member.displayName}`,
+            allowedMentions: {
+              repliedUser: false
+            }
+          })
+
+        }
       }
+    } catch {
+      await bot.senderror(interaction, e)
     }
-
   }
 }

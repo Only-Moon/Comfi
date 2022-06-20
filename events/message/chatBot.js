@@ -66,7 +66,7 @@ bot.on('messageCreate', async message => {
 				params.set('uid', message.author.id)
 
 				// Using await instead of .then
-				const jsonRes = await fetch(url).then(res => res.json()) // Parsing the JSON
+				const jsonRes = await fetch(url).then(res => res.json()).catch(() => {})// Parsing the JSON
         
 				const chatbotReply = jsonRes.reply
 					.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first

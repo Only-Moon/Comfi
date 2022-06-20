@@ -119,8 +119,8 @@ module.exports = {
 
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
-        if (guild?.boost.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Boost toogle is already setted as ${toggle} !**`
+        if (guild ?.boost.toString() === toggle) {
+          return await bot.errorEmbed(bot, interaction, `**Boost toogle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -129,7 +129,7 @@ module.exports = {
               boost: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Boost Detector has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Boost Detector has setted as ${toggle} !**`
           )
         }
       }
@@ -137,7 +137,7 @@ module.exports = {
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('option')
         if (guild.boost_embedtgl.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Boost Detector embed toggle is already setted as ${toggle}!**`
+          return await bot.errorEmbed(bot, interaction, `**Boost Detector embed toggle is already setted as ${toggle}!**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -146,7 +146,7 @@ module.exports = {
               boost_embedtgl: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Boost Detector  embed toggle has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Boost Detector  embed toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -154,7 +154,7 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.boost_channel === channel.id) {
-        return await  bot.errorEmbed(bot, interaction, `**${channel.name} already exists as boost channel !**`
+          return await bot.errorEmbed(bot, interaction, `**${channel.name} already exists as boost channel !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -163,7 +163,7 @@ module.exports = {
               boost_channel: channel.id
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in \`${
+          return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in \`${
             channel.name
             }\`!**`
           )
@@ -204,7 +204,7 @@ module.exports = {
               boost_image: img
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in ${img}!**. Used only when embed toggle is off`
+          return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in ${img}!**. Used only when embed toggle is off`
           )
         }
       }
@@ -231,26 +231,7 @@ module.exports = {
 
       }
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+  await bot.senderror(interaction, e)
     }
   }
 }

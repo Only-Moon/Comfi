@@ -35,23 +35,24 @@ bot.on('messageCreate', async message => {
 		let sup = new MessageButton()
 			.setStyle('LINK')
 			.setLabel('Join Support!')
-			.setURL('https://comfibot.tk/support')
+			.setURL(bot.support)
 			.setEmoji('883032991293653062')
 
 		let inv = new MessageButton()
 			.setStyle('LINK')
 			.setLabel('Invite Me!')
-			.setURL('https://comfibot.tk/invite')
+			.setURL(bot.dash + 'invite')
 			.setEmoji('883017868944502804')
 
 		let dash = new MessageButton()
 			.setStyle('LINK')
-			.setLabel('Check Website!')
-			.setURL('https://comfibot.tk/')
+			.setLabel('Check Dashboard!')
+			.setURL(bot.dash)
 			.setEmoji('883017884014637066')
 
 		let row = new MessageActionRow().addComponents(sup, inv, dash)
 
+    try {
     
 		await message
 			.reply({
@@ -59,12 +60,8 @@ bot.on('messageCreate', async message => {
 				components: [row],
 				allowedMentions: { repliedUser: false }
 			})
-			.catch((e) => {
-        bot.sendhook(
-          `Error Occured \n ${e.stack}`
-        , {
-          channel: bot.err_chnl
-        })
-      })
+    } catch {
+        await bot.senderror(message, e)
+    }
 	}
 })

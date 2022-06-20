@@ -158,17 +158,16 @@ module.exports = {
             pages.push(embed)
           })
 
-          simplydjs.embedPages(bot, interaction, pages, {
-            firstEmoji: '884420649580363796',
-            backEmoji: '884421503205134356',
-            delEmoji: '891534962917007410',
-            forwardEmoji: '884421235965059113',
-            lastEmoji: '884420650549272586',
-            btncolor: 'SECONDARY',
-            delcolor: 'SECONDARY',
-            skipcolor: 'SECONDARY',
-            skipBtn: true,
-            pgCount: true
+          simplydjs.embedPages(interaction, pages, {
+            buttons: {
+              firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
+              nextBtn: { style: "SECONDARY", emoji: "884421235965059113" },
+              backBtn: { style: "SECONDARY", emoji: "884421503205134356" },
+              lastBtn: { style: "SECONDARY", emoji: "884420650549272586" },
+              deleteBtn: { style: "SECONDARY", emoji: "891534962917007410" }
+            },
+            skips: true,
+            count: true
           })
 
         } else return interaction.editReply({ content: `${bot.error} **• An error occured**` })
@@ -192,41 +191,42 @@ module.exports = {
             emoss = bot
           }
 
-          const emos = emoss.emojis.cache.forEach(async (emo) => {
+          const emos = emoss.emojis.cache
+            .filter(e => e.name != "steal")
+            .forEach(async (emo) => {
 
-            if (!emo.name || !emo.id) {
-              return await bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
-              )
+              if (!emo.name || !emo.id) {
+                return await bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
+                )
 
 
-            } const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
-              emo.animated ? 'gif' : 'png'
-              }`
+              } const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
+                emo.animated ? 'gif' : 'png'
+                }`
 
-            let embed = new MessageEmbed()
-              .setColor(bot.color)
-              .setAuthor({
-                name: 'Comfi™ Emojis',
-                iconURL: bot.user.avatarURL({ dynamic: true })
-              })
-              .setImage(`${res}`)
-              .setFooter({text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({dynamic:  true})})
-              .setDescription(`${emo.name} ${emo.id}`)
+              let embed = new MessageEmbed()
+                .setColor(bot.color)
+                .setAuthor({
+                  name: 'Comfi™ Emojis',
+                  iconURL: bot.user.avatarURL({ dynamic: true })
+                })
+                .setImage(`${res}`)
+                .setFooter({ text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({ dynamic: true }) })
+                .setDescription(`${emo.name} ${emo.id}`)
 
-            pages.push(embed)
-          })
+              pages.push(embed)
+            })
 
-          simplydjs.embedPages(bot, interaction, pages, {
-            firstEmoji: '884420649580363796',
-            backEmoji: '884421503205134356',
-            delEmoji: '891534962917007410',
-            forwardEmoji: '884421235965059113',
-            lastEmoji: '884420650549272586',
-            btncolor: 'SECONDARY',
-            delcolor: 'SECONDARY',
-            skipcolor: 'SECONDARY',
-            skipBtn: true,
-            pgCount: true
+          simplydjs.embedPages(interaction, pages, {
+            buttons: {
+              firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
+              nextBtn: { style: "SECONDARY", emoji: "884421235965059113" },
+              backBtn: { style: "SECONDARY", emoji: "884421503205134356" },
+              lastBtn: { style: "SECONDARY", emoji: "884420650549272586" },
+              deleteBtn: { style: "SECONDARY", emoji: "891534962917007410" }
+            },
+            skips: true,
+            count: true
           })
 
         } else {
@@ -238,7 +238,7 @@ module.exports = {
             emoss = bot
           }
           const emos = emoss.emojis.cache
-            .filter(emoji => emoji.name.includes(name))
+            .filter(emoji => emoji.name.includes(name) && !emoji.name.includes("steal"))
             .forEach(emoji => emojis.push(emoji));
           if (emojis.length > 1) {
 
@@ -263,22 +263,21 @@ module.exports = {
                 })
                 .setImage(`${res}`)
                 .setDescription(`${emo.name} ${emo.id}`)
-              .setFooter({text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({dynamic:  true})})
+                .setFooter({ text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({ dynamic: true }) })
 
               pages.push(embed)
             })
 
-            simplydjs.embedPages(bot, interaction, pages, {
-              firstEmoji: '884420649580363796',
-              backEmoji: '884421503205134356',
-              delEmoji: '891534962917007410',
-              forwardEmoji: '884421235965059113',
-              lastEmoji: '884420650549272586',
-              btncolor: 'SECONDARY',
-              delcolor: 'SECONDARY',
-              skipcolor: 'SECONDARY',
-              skipBtn: true,
-              pgCount: true
+            simplydjs.embedPages(interaction, pages, {
+              buttons: {
+                firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
+                nextBtn: { style: "SECONDARY", emoji: "884421235965059113" },
+                backBtn: { style: "SECONDARY", emoji: "884421503205134356" },
+                lastBtn: { style: "SECONDARY", emoji: "884420650549272586" },
+                deleteBtn: { style: "SECONDARY", emoji: "891534962917007410" }
+              },
+              skips: true,
+              count: true
             })
 
           } else if (emojis.length === 1) {
@@ -302,7 +301,7 @@ module.exports = {
               })
               .setImage(`${img}`)
               .setDescription(`${emo.name} ${emo.id}`)
-              .setFooter({text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({dynamic:  true})});
+              .setFooter({ text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({ dynamic: true }) });
             const row = new MessageActionRow().addComponents(
               new MessageButton()
                 .setStyle('SECONDARY')
@@ -332,26 +331,7 @@ module.exports = {
         }
       }
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+      await bot.senderror(interaction, e)
     }
   }
 }

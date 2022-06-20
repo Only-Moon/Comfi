@@ -16,6 +16,6 @@ console.log('Loading Bot...')
 //require('dotenv').config()
 const Comfi = require('./utils/Comfi'),
   bot = new Comfi()
-
 module.exports = bot
+
 //---------[ PROCESS ENDED ]---------\\

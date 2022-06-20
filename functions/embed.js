@@ -965,7 +965,7 @@ async function embed(message, options = []) {
           {
             description: `${
               bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+              } Error, try again later \n Error: ${e} \n [Contact Support](${bot.support}) `,
             color: bot.color
           }
         ]

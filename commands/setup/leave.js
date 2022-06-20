@@ -143,7 +143,7 @@ module.exports = {
       if (sub === 'toggle') {
         let toggle = interaction.options.getString('option')
         if (guild.leave.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Leave toogle is already setted as ${toggle}!!**`
+          return await bot.errorEmbed(bot, interaction, `**Leave toogle is already setted as ${toggle}!!**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -152,7 +152,7 @@ module.exports = {
               leave: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leave has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Leave has setted as ${toggle} !**`
           )
         }
       }
@@ -160,7 +160,7 @@ module.exports = {
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('options')
         if (guild.leave_embedtgl.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Leave Embed toggle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Leave Embed toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -169,7 +169,7 @@ module.exports = {
               leave_embedtgl: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leave Embed toggle has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Leave Embed toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -177,7 +177,7 @@ module.exports = {
       if (sub === 'dm-toggle') {
         let toggle = interaction.options.getString('options')
         if (guild.leave_dmuser.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Leave dm toggle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Leave dm toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -186,7 +186,7 @@ module.exports = {
               leave_dmuser: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leave dm toggle has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Leave dm toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -194,7 +194,7 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.leave_channel === channel.id) {
-        return await  bot.errorEmbed(bot, interaction, `**${
+          return await bot.errorEmbed(bot, interaction, `**${
             channel.name
             } already exists as leave channel !**`
           )
@@ -205,7 +205,7 @@ module.exports = {
               leave_channel: channel.id
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leave Channel Has Been Set Successfully in \`${
+          return await bot.successEmbed(bot, interaction, `**Leave Channel Has Been Set Successfully in \`${
             channel.name
             }\`!**`
           )
@@ -246,7 +246,7 @@ module.exports = {
               leave_image: img
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leave Image Has Been Set Successfully in ${img}!**`
+          return await bot.successEmbed(bot, interaction, `**Leave Image Has Been Set Successfully in ${img}!**`
           )
         }
       }
@@ -274,26 +274,7 @@ module.exports = {
       }
 
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+      await bot.senderror(interaction, e)
     }
   }
 }

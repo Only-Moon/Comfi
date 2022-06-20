@@ -65,26 +65,7 @@ try {
   
       return await interaction.editReply({embeds: [ embed ], components:  [row]});
 } catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
+  await bot.senderror(interaction, e)
 }
     });
   }

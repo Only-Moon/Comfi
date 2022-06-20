@@ -1,8 +1,7 @@
 const simplydjs = require('simply-djs')
 const bot = require('../../index')
-let { Database } = require('quickmongo')
-let db = new Database(process.env.Mongoose)
 const guilds = require('../../models/guild')
+const { MessageEmbed } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -12,53 +11,57 @@ const guilds = require('../../models/guild')
 */
 
 bot.on('interactionCreate', async (interaction, args) => {
-	if (interaction.isButton()) {
-		// Suggestions
-		simplydjs.suggestBtn(interaction, db, {
-			yesEmoji: `${bot.tick}`,
-			yesColor: 'SECONDARY',
-			noEmoji: `${bot.crosss}`,
-			noColor: 'SECONDARY',
-			denyEmbColor: '#ED7A7A',
-			agreeEmbColor: '#6EE57F'
-		})
+  if (interaction.isButton()) {
+    // Suggestions
+    simplydjs.manageSug(interaction, {
+      deny: { color: bot.color }, accept: { color: bot.color }
+    })
 
-		// Ticket
-		const guild = await guilds.findOne({ guildId: interaction.guild.id })
-		if (guild.ticket) {
-			let support = guild.ticket_role
-			if (!support) return
+    // Ticket
+    const guild = await guilds.findOne({ guildId: interaction.guild.id })
+    if (guild.ticket) {
+      let support = guild.ticket_role
+      if (!support) return;
 
-			let cat = guild.ticket_category
-			if (!cat) return
+      let cat = guild.ticket_category
+      if (!cat) return;
 
-			let log = guild.mod_channel
-			if (!log) return
+      simplydjs.manageBtn(interaction, {
+        ticketSys: {
+          pingRole: support,
+          category: cat,
+          timed: false,
+          embed: {
+            title: "Ticket Created",
+            description: "Staff Team will be here in a while, be patient and tell the details",
+            color: bot.color,
+            credit: false,
+            footer: { text: "Comfi™ Ticket System" },
+          },
+          buttons: {
+            close: { style: "SECONDARY", emoji: "796196175627419678" },
+            reopen: { style: "SECONDARY", emoji: "855791964975530004" },
+            delete: { style: "SECONDARY", emoji: "796196175627419678" },
+            transcript: { style: "SECONDARY", emoji: "905055261021061150" }
+          }
+        }
+      }).then(log => {
 
-			simplydjs.clickBtn(interaction, {
-				embedDesc: 'Support Ticket',
-				embedColor: bot.color,
-				closeColor: 'SECONDARY',
-				credit: false,
-				closeEmoji: '775083085124468736',
-				delColor: 'SECONDARY',
-				delEmoji: '796196175627419678',
-				openColor: 'SECONDARY',
-				openEmoji: '855791964975530004',
-				trEmoji: '905055261021061150',
-				trColor: 'SECONDARY',
-				timeout: false,
-				cooldownMsg: `${
-					bot.error
-				} Close Old Ticket First Then Open New One Again`,
-				categoryID: `${cat}`,
-				role: `${support}`,
-				pingRole: `${support}`,
-				ticketname: 'ticket-{tag}',
-				logChannel: `${log}`,
+        const ch1 = interaction.guild.channels.cache.get(log.channelId)
 
-				db: db
-			})
-		}
-	}
+        if (guild.modlog) {
+          const embed = new MessageEmbed()
+            .setTitle('Ticket Deleted !')
+            .setDescription(`Ticket just got deleted by *<@${log.user.id}>* | Tag: ***${log.user.tag}***\n\nTicket Name: \`${ch1.name ? ch1.name : "NONE"}\` | Ticket ID: \`${ch1.id ? ch1.id : "NONE"}\`\nTicket Channel Topic: ${ch1.topic ? ch1.topic : "NONE"}`
+            )
+            .setTimestamp()
+            .setColor(bot.color)
+            .setFooter({ text: "Comfi™ Mod Logs" })
+          const channel = interaction.guild.channels.cache.get(guild.mod_channel)
+          if (channel) channel.send({ embeds: [embed] })
+          //else console.log(channel)
+        }
+      })
+    }
+  }
 })

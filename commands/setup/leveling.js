@@ -121,7 +121,7 @@ module.exports = {
         let toggle = interaction.options.getString('option')
         if (guild.leveling.toString() === toggle) {
 
-        return await  bot.errorEmbed(bot, interaction, `**Leveling toogle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Leveling toogle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -130,7 +130,7 @@ module.exports = {
               leveling: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leveling has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Leveling has setted as ${toggle} !**`
           )
         }
       }
@@ -138,7 +138,7 @@ module.exports = {
       if (sub === 'embed-toggle') {
         let toggle = interaction.options.getString('options')
         if (guild.leveling_embedtgl.toString() === toggle) {
-        return await  bot.errorEmbed(bot, interaction, `**Leveling Embed toggle is already setted as ${toggle} !**`
+          return await bot.errorEmbed(bot, interaction, `**Leveling Embed toggle is already setted as ${toggle} !**`
           )
         } else {
           await guilds.findOneAndUpdate(
@@ -147,7 +147,7 @@ module.exports = {
               leveling_embedtgl: toggle
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leveling Embed toggle has setted as ${toggle} !**`
+          return await bot.successEmbed(bot, interaction, `**Leveling Embed toggle has setted as ${toggle} !**`
           )
         }
       }
@@ -155,7 +155,7 @@ module.exports = {
       if (sub === 'channel') {
         let channel = interaction.options.getChannel('name')
         if (guild.leveling_channel === channel.id) {
-        return await  bot.errorEmbed(bot, interaction, `**${
+          return await bot.errorEmbed(bot, interaction, `**${
             channel.name
             } already exists as leveling channel !**`
           )
@@ -166,7 +166,7 @@ module.exports = {
               leveling_channel: channel.id
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leveling Channel Has Been Set Successfully in \`${
+          return await bot.successEmbed(bot, interaction, `**Leveling Channel Has Been Set Successfully in \`${
             channel.name
             }\` !**`
           )
@@ -207,7 +207,7 @@ module.exports = {
               leveling_image: img
             }
           )
-        return await bot.successEmbed(bot, interaction, `**Leveling Image Has Been Set Successfully in ${img}!**`
+          return await bot.successEmbed(bot, interaction, `**Leveling Image Has Been Set Successfully in ${img}!**`
           )
         }
       }
@@ -234,26 +234,7 @@ module.exports = {
       }
 
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+      await bot.senderror(interaction, e)
     }
   }
 }

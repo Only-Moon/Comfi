@@ -5,79 +5,89 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, MessageEmbed, Util, MessageActionRow, TextInputComponent, Modal } = require('discord.js')
+const { inspect } = require("util")
+const evalFunction = require("../../functions/evalFunction")
 
 module.exports = {
-	name: 'eval',
-	description:
-		"Evaluates the code you put in but it's only available for the my Developer and no one else!!!!!",
-	ownerOnly: true,
-	options: [
-		{
-			type: 'STRING',
-			description: 'Code to evaluate',
-			name: 'code',
-			required: true
-		}
-	],
-	userperm: [''],
-	botperm: [''],
+  name: 'eval',
+  description:
+    "Evaluates the code you put in but it's only available for the my Developer and no one else!!!!!",
+  ownerOnly: true,
+  modal: true,
+  userperm: [''],
+  botperm: [''],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
-	run: async (bot, interaction, args) => {
-		try {
-			if (
-				args
-					.join(' ')
-					.toLowerCase()
-					.includes('token')
-			) {
-				return interaction.editReply(
-					'Are you crazy ;-; You are going to give out your token public. I stopped it hopefully...'
-				)
-			}
+  run: async (bot, interaction, args) => {
+    const row = new MessageActionRow().addComponents(
+      new TextInputComponent().setCustomId('code').setLabel('Comment:').setStyle('PARAGRAPH').setPlaceholder('bot.user.username').setRequired(true).setMinLength(1)
+    )
+    const row2 = new MessageActionRow().addComponents(
+      new TextInputComponent().setCustomId('ephemeral').setStyle('PARAGRAPH').setLabel('Ephemeral Response (true/false)').setPlaceholder('true/false').setRequired(false).setValue('false').setMinLength(4).setMaxLength(5))
 
-			const toEval = args.join(' ')
-			await eval(toEval)
-			const evaluated = eval(toEval)
+    const modal = new Modal()
+      .setCustomId('codeModal')
+      .setTitle('Code to evaluate')
+      .addComponents(row, row2)
 
-			let embed = new MessageEmbed()
-				.setColor('#F4B3CA')
-				.setTimestamp()
-				.setFooter(bot.user.username)
-				.setTitle('Eval')
-				.addField(
-					'To Evaluate',
-					`\`\`\`js\n${args.join(' ')}\n\`\`\``
-				)
-				.addField('Evaluated:', `\`\`\`${evaluated || '??'}\`\`\``)
-				.addField('Type of:', `\`\`\`${typeof evaluated || '?'}\`\`\``)
+    await interaction.showModal(modal)
 
-			interaction.editReply({ embeds: [embed] })
-		} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+    const filter = (interaction) => interaction.customId === 'codeModal';
+    const data = await interaction.awaitModalSubmit({ filter, time: 5 * 60 * 1000 })
+    let code = data.fields.getTextInputValue('code')
+    let ephemeral = data.fields.getTextInputValue('ephemeral').toLowerCase() === true ? true : false
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+    try {
+      /**
+        const result = await eval(code);
 
-			interaction.followUp({
-				embeds: [
-					{
-						description: `${
-							bot.error
-						} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-						color: bot.color
-					}
-				]
-			})
-		}
-	}
+        let output = result;
+        if (typeof result !== "string") {
+            output = Util.splitMessage(inspect(result, {
+                depth: 0
+            }))[0]
+        }
+      */
+      let evaled;
+      if (code.includes('await')) evaled = inspect(eval(`(async () => { ${code} })()`));
+      if (!code.includes('await')) evaled = inspect(eval(code));
+      let secretValues = [process.env["TOKEN"], ];
+      await Promise.all(secretValues.map((value) => evaled = evaled.replaceAll(value, `❓`)));
+      const embed = new MessageEmbed()
+      .setColor(bot.color)
+      .setAuthor({name: "Eval"})
+
+      await evalFunction(interaction, {
+        users: [interaction.user],
+        ephemeral,
+        result: clean(evaled),
+        embed: embed
+      })
+
+      /**
+                  interaction.followUp({
+                      embeds: [
+                          new MessageEmbed()
+                          .setTitle("Evaluation successful!")
+                          .addField("__**Input**__", `**${code}**`)
+                          .addField("__**Output**__", `\`\`\`js\n${output}\`\`\` `)
+                          .setColor(bot.color)
+                          .setTimestamp()
+                      ]
+                  });
+      */
+
+    } catch (e) {
+      await bot.senderror(interaction, e)
+
+    }
+  }
+}
+function clean(value) {
+  if (typeof (value === 'string')) return value.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, `@` + String.fromCharCode(8203));
+  return value;
 }

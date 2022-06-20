@@ -2,6 +2,7 @@ const bot = require('../../index')
 const Discord = require('discord.js')
 const ClientSchema = require('../../models/Client')
 const guilds = require(`../../models/guild`)
+const fetch = require("node-fetch")
 
 /* 
 * Comfi Bot for Discord 
@@ -11,7 +12,10 @@ const guilds = require(`../../models/guild`)
 */
 
 bot.on('ready', async () => {
-	const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
+
+//await fetch("https://cozy-api.xx-mohit-xx.repl.co/json/reverse").then(res => console.log(res))
+  
+const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
 	if (!clientschem) {
 		await ClientSchema.create({ clientId: bot.user.id })
 	}

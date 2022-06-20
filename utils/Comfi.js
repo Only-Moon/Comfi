@@ -2,7 +2,8 @@ const Discord = require('discord.js'),
   mongoose = require('mongoose'),
   chalk = require('chalk'),
   fs = require('fs'),
-  guilds = require('../models/guild')
+  guilds = require('../models/guild'),
+  simplydjs = require("simply-djs")
 
 /* 
 * Comfi Bot for Discord 
@@ -46,6 +47,7 @@ class Comfi extends Discord.Client {
     this.ms = require('ms')
     this.owners = process.env['owner'] || ["753974636508741673"]
     this.err_chnl = process.env['error_channel']
+    this.support = process.env["support"] || this.dash + 'support'
     this.login(process.env.TOKEN)
     this.categories = fs.readdirSync('./commands/')
     this.dbs(process.env.Mongoose)
@@ -234,13 +236,43 @@ class Comfi extends Discord.Client {
     return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false } });
 
   };
-  async errorEmbed(bot, interaction, argument) {
-    const embed = new Discord.MessageEmbed()
 
+	/**
+	 * @param {Discord.Client} bot - Discord Client
+   * @param {Discord.CommandInteraction} interaction - Interaction
+   * @param {string} argument - the error
+   * @param {boolean} button - for showing support button
+  */
+
+  async errorEmbed(bot, interaction, argument, button) {
+    const embed = new Discord.MessageEmbed()
       .setDescription(`${bot.error} • ${argument}`)
       .setColor("#FE6666");
 
-    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true });
+    
+ if (!button) {
+
+    if (interaction.commandId) {
+      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true })
+    } else if (!interaction.commandId) {
+      interaction.channel.send({embeds: [embed]})
+    }  
+  } else {
+      const row = new Discord.MessageActionRow().addComponents(
+        new Discord.MessageButton()
+          .setStyle('LINK')
+          .setURL(this.support)
+          .setLabel('Contact Support') 
+          .setEmoji("984647916876619787")
+      )
+
+    if (interaction.commandId) {
+      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true , components: [row]})
+    } else if (!interaction.commandId) {
+      interaction.channel.send({embeds: [embed], components: [row]})
+    }
+   
+  }
   }
 
 	/**
@@ -257,9 +289,9 @@ class Comfi extends Discord.Client {
     const channel = interaction.guild.channels.cache.get(data.mod_channel);
 
     let auth;
-    if (interaction.customId) {
+    if (interaction.commandId) {
       auth = interaction.user.username
-    } else if (!interaction.customId) {
+    } else if (!interaction.commandId) {
       auth = interaction.author.username
     }
     const logsembed = new Discord.MessageEmbed()
@@ -306,6 +338,23 @@ class Comfi extends Discord.Client {
     if (channel) channel.send({ embeds: [logsembed] });
   }
 
+  /**
+  * @param {string} error
+  */
+  async senderror(interaction, error) {
+    let emed = new Discord.MessageEmbed()
+      .setTitle(`${this.error} • Error Occured`)
+      .setDescription(`\`\`\`${error.stack ? error.stack : error}\`\`\``)
+      .setColor(this.color)
+
+    this.sendhook(null, {
+      channel: this.err_chnl,
+      embed: emed
+    })
+
+    return await this.errorEmbed(this, interaction, `Error, try again later \n Error: ${error} \n [Contact Support](${this.support})`, true)
+  }
+
   dbs(s) {
     mongoose
       .connect(
@@ -317,6 +366,8 @@ class Comfi extends Discord.Client {
       )
       .then(() => this.logger.log('Mongodb connected!'))
       .catch(err => this.logger.error(`${err.stack}`))
+  
+simplydjs.connect(s, false)    
   }
 
   init() {

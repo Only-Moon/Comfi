@@ -55,7 +55,7 @@ module.exports = {
         .setColor(bot.color)
         .setThumbnail(`${poster}`)
         .setDescription(movie.plot.toString())
-        .setFooter({text: `Ratings: ${movie.rating}`})
+        .setFooter({ text: `Ratings: ${movie.rating}` })
         .addField('Country', movie.country, true)
         .addField('Languages', movie.languages, true)
         .addField('Type', movie.type, true)
@@ -69,26 +69,7 @@ module.exports = {
 
       await interaction.editReply({ embeds: [embed], components: [row] })
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e ? e.stack : e}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e ? e : "Not Found"} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+      await bot.senderror(interaction, e)
     }
   }
 }

@@ -3,7 +3,7 @@ const {
   MessageEmbed,
   MessageButton,
   MessageActionRow,
-  MessageAttachment, 
+  MessageAttachment,
   GuildMember
 } = require('discord.js')
 const axios = require('axios')
@@ -564,8 +564,8 @@ module.exports = {
         let roles, members, position
         if (member instanceof GuildMember) {
           roles = member.roles
-          .cache
-          .sort((a, b) => b.position - a.position)
+            .cache
+            .sort((a, b) => b.position - a.position)
             .map(role => role.toString())
             .filter(x => x.name !== "@everyone")
             .slice(0, -1)
@@ -761,26 +761,7 @@ module.exports = {
       }
 
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+  await bot.senderror(interaction, e)
     }
   }
 }

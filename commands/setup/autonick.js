@@ -15,10 +15,22 @@ module.exports = {
   directory: "setting",
   options: [
     {
-      name: 'nick',
-      description: 'nickname to set',
-      type: 'STRING',
-      required: true
+      name: "set",
+      description: "set name for auto nick",
+      type: "SUB_COMMAND",
+      options: [
+        {
+          name: 'nick',
+          description: 'nickname to set',
+          type: 'STRING',
+          required: true
+        },
+      ],
+    },
+    {
+      name: "help",
+      description: "help for autonick",
+      type: "SUB_COMMAND"
     }
   ],
   botperm: ['MANAGE_GUILD'],
@@ -28,41 +40,49 @@ module.exports = {
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
-    try {
-      const arg = interaction.options.getString("nick")
-      if (!args.length || args.length >= 32) {
-        return await bot.errorEmbed(bot, interaction, `Please supply a nickname! (FYI: Set the nickname as "none" if you want it to be disabled)`
-        )
-      } else {
-        await guilds.findOneAndUpdate(
-          { guildId: interaction.guild.id },
-          { auto_nick: arg }
-        )
 
-        return await bot.successEmbed(bot, interaction, `Auto nick has been set! Current value: **${args}**\n Use **none** as a value to disable it.`
-        )
+    const [sub] = args
+
+    try {
+      if (sub === "set") {
+
+        const arg = interaction.options.getString("nick")
+        if (!args.length || args.length >= 32) {
+          return await bot.errorEmbed(bot, interaction, `Please supply a nickname! (FYI: Set the nickname as "none" if you want it to be disabled)`
+          )
+        } else {
+          await guilds.findOneAndUpdate(
+            { guildId: interaction.guild.id },
+            { auto_nick: arg }
+          )
+
+          return await bot.successEmbed(bot, interaction, `Auto nick has been set! Current value: **${args}**\n Use **none** as a value to disable it.`
+          )
+        }
+      }
+      if (sub === "help") {
+
+        const embed = new MessageEmbed()
+          .setTitle(`Autonick System variables`, bot.user.displayAvatarURL())
+          .setDescription(`Need Help setting Autonick system?`)
+          .addFields(
+            {
+              name: "Commands",
+              value: `\`\`\`set - sets the name for autonick system\n\`\`\``
+            },
+            {
+              name: 'Tags',
+              value: `\`\`\`{{user#name}} - username of the user\n\`\`\``,
+              inline: true
+            }
+          )
+          .setColor(bot.color)
+          .setFooter(`Comfi™ Autonick System`);
+        await interaction.editReply({ embeds: [embed] })
+
       }
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+  await bot.senderror(interaction, e)
 
     }
   }

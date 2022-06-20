@@ -191,38 +191,19 @@ module.exports = {
         .join("");
       const from = interaction.options.getString("from")
       const key = process.env["UltraX"]
-  
+
       const result = await fetch(`https://api.ultrax-yt.com/v1/translate?from=${from}&to=${lang}&query=${text}&key=${key}`);
 
-if (!result.data || result.data.translation) return await  bot.errorEmbed(bot, interaction, `Something Went Wrong While Translating`)
-      
-       const embed = new MessageEmbed()
-          .setTitle("Comfi™ Translation")
-          .setDescription(`Translation: ${result.data.translation}`) 
-          .setColor(bot.color)
-      
-      await interaction.editReply({ embeds: [embed] })
-    } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
+      if (!result.data || result.data.translation) return await bot.errorEmbed(bot, interaction, `Something Went Wrong While Translating`)
+
+      const embed = new MessageEmbed()
+        .setTitle("Comfi™ Translation")
+        .setDescription(`Translation: ${result.data.translation}`)
         .setColor(bot.color)
 
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+      await interaction.editReply({ embeds: [embed] })
+    } catch (e) {
+      await bot.senderror(interaction, e)
     }
   }
 }
