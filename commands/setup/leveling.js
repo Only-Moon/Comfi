@@ -228,7 +228,7 @@ module.exports = {
             },
           )
           .setColor(bot.color)
-          .setFooter(`Comfi™ Leveling System`);
+          .setFooter({text: `Comfi™ Leveling System`});
         await interaction.editReply({ embeds: [embed] })
 
       }

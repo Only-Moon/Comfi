@@ -226,7 +226,7 @@ module.exports = {
             }
           )
           .setColor(bot.color)
-          .setFooter(`Comfi™ Boost Detector`);
+          .setFooter({text:`Comfi™ Boost Detector`});
         await interaction.editReply({ embeds: [embed] })
 
       }

@@ -7,8 +7,7 @@
 
 const bot = require("../../index")
 const fetch = require("node-fetch")
-const warnSchema = require('../../models/users')
-
+const guilds = require("../../models/guild")
 
 bot.on("interactionCreate", async (interaction) => {
 
@@ -44,8 +43,6 @@ bot.on("interactionCreate", async (interaction) => {
 
           )
 
-
-
           await interaction.respond(
 
             filtered.map(choice => ({
@@ -65,6 +62,47 @@ bot.on("interactionCreate", async (interaction) => {
 
 
         }
+      case 'dropdownrole':
+        const guild = await guilds.findOne({ guildId: interaction.guild.id })
+        
+const id = interaction.options.getString("id")
+
+        if (!id){
+
+          return interaction.respond([{
+
+            name: `Check dropdown id from \`/dropdown list\` command and provide here to remove"!`,
+
+            value: userInput
+
+          }])
+
+        }
+let filtered = [];
+        guild.dropdownRoles.forEach(choice => {
+              
+            filtered.push({
+              name: choice.id,
+
+              value: choice.id
+            })
+            })
+          await interaction.respond(
+
+            filtered.map(choice => ({
+
+              name: choice.name,
+
+              value: choice.value
+
+            })).slice(0, 25) // This is done due to discord only allowing 25 choices with autocomplete
+
+          ).catch(err => {
+
+            console.log(err.message)
+
+          })
+        
         break;
     }
 

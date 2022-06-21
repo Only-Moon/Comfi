@@ -1,6 +1,6 @@
 {
   "name": "comfi",
-  "version": "2.0.0",
+  "version": "2.6.5",
   "description": "Multipurpose Bot",
   "main": "index.js",
   "dependencies": {
@@ -53,7 +53,7 @@
   "license": "ISC",
   "private": true,
   "engines": {
-    "node": "~17.7.2",
+    "node": "~17.9.1",
     "npm": ">=8.12.1"
   },
   "funding": {

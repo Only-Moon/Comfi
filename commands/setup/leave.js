@@ -268,7 +268,7 @@ module.exports = {
             }
           )
           .setColor(bot.color)
-          .setFooter(`Comfi™ Leave System`);
+          .setFooter({text:`Comfi™ Leave System`});
         await interaction.editReply({ embeds: [embed] })
 
       }

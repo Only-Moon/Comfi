@@ -46,7 +46,8 @@ module.exports = {
           name: 'id',
           description: 'Id of the Dropdown role',
           type: 'STRING',
-          required: true
+          required: true,
+          autocomplete: true
         }
       ]
     }
@@ -342,14 +343,13 @@ try {
             { guildId: interaction.guild.id },
             {
               $push: {
-                dropdownRoles: [
+                dropdownRoles:
                   {
                     msgId: finalMessage.id,
                     chanId: channel.id,
                     roles: finalData.roles,
                     id: `${msgId}`
                   }
-                ]
               }
             }
           )

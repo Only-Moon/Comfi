@@ -324,7 +324,7 @@ module.exports = {
             }
           )
           .setColor(bot.color)
-          .setFooter(`Comfi™ Welcome System`);
+          .setFooter({ text: `Comfi™ Welcome System` });
         await interaction.editReply({ embeds: [embed] })
 
       }

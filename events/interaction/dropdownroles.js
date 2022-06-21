@@ -29,8 +29,9 @@ bot.on('interactionCreate', async interaction => {
         guild.dropdownRoles.forEach(async (dd) => {
           if (dd.msgId === interaction.message.id) {
             if (interaction.values[0] === 'place_holder') {
-              interaction.deferUpdate()
+              await interaction.deferUpdate()
             } else {
+
               dd.roles.forEach(async (r) => {
                 if (r.role === interaction.values[0]) {
                   const member = interaction.member
@@ -47,34 +48,34 @@ bot.on('interactionCreate', async interaction => {
                     setTimeout(async () => {
 
                       await interaction.member.roles.remove(r.role).catch(() => null)
-                      const embed = new MessageEmbed()
-                        .setDescription(
-                          `> ${bot.tick} • I have removed the <@&${
-                          r.role
-                          }> role from you!`
-                        )
-                        .setColor(bot.color)
-                      await interaction
-                        .reply({ embeds: [embed], ephemeral: true })
-                        .catch(() => null)
-                    }, 20000)
+                    }, 5000)
+                    const embed = new MessageEmbed()
+                      .setDescription(
+                        `> ${bot.tick} • I have removed the <@&${
+                        r.role
+                        }> role from you!`
+                      )
+                      .setColor(bot.color)
+                    await interaction
+                      .reply({ embeds: [embed], ephemeral: true })
+                      .catch(() => null)
+
                   } else {
 
                     setTimeout(async () => {
 
                       await interaction.member.roles.add(r.role).catch(() => null)
-                      const embed = new MessageEmbed()
-                        .setDescription(
-                          `> ${bot.tick} • I have given you the <@&${
-                          r.role
-                          }> role!`
-                        )
-                        .setColor(bot.color)
-                      await interaction
-                        .reply({ embeds: [embed], ephemeral: true })
-                        .catch(() => null)
-
-                    }, 20000)
+                    }, 5000)
+                    const embed = new MessageEmbed()
+                      .setDescription(
+                        `> ${bot.tick} • I have given you the <@&${
+                        r.role
+                        }> role!`
+                      )
+                      .setColor(bot.color)
+                    await interaction
+                      .reply({ embeds: [embed], ephemeral: true })
+                      .catch(() => null)
 
                   }
                 }
