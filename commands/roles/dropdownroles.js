@@ -78,42 +78,42 @@ try {
         .setDescription(
           `What should the embed title be? Say "skip" to have no title!`
         )
-        .setFooter(`Say "cancel" at any time to stop the process!`)
+        .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
       const step2 = new MessageEmbed()
         .setTitle(`Dropdown roles [2]`)
         .setDescription(
           `What should the embed description be? Say "roles" to make them set as the roles!`
         )
-        .setFooter(`Say "cancel" at any time to stop the process!`)
+        .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
       const step3 = new MessageEmbed()
         .setTitle(`Dropdown roles [3]`)
         .setDescription(
           `What should the embed color be? Say "default" to have the default colour!`
         )
-        .setFooter(`Say "cancel" at any time to stop the process!`)
+        .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
       const step4 = new MessageEmbed()
         .setTitle(`Dropdown roles [4]`)
         .setDescription(
           `What should the embed footer be? Say "skip" to have no footer!`
         )
-        .setFooter(`Say "cancel" at any time to stop the process!`)
+        .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
       const step5 = new MessageEmbed()
         .setTitle(`Dropdown roles [5]`)
         .setDescription(
           `Where should the dropdown message / prompt be sent? (channel id/name/mention) Say "bind" to have it sent in the current channel!`
         )
-        .setFooter(`Say "cancel" at any time to stop the process!`)
+        .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
       const step6 = new MessageEmbed()
         .setTitle(`Dropdown roles [6]`)
         .setDescription(
           `Please list your emojis and roles!  (E.G **<emoji>** **<role id/mention/name>** ) Say **done** once finshed!`
         )
-        .setFooter(`Say "cancel" at any time to stop the process!`)
+        .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
 
       let counter = 0

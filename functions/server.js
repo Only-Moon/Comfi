@@ -382,14 +382,14 @@ const guld = bot.guilds.cache.get(guild?.id)
             setNew: async ({ guild, newData }) => {
 
 const Time = bot.ms(newData) 
-if (!Time) return await {error: `Provide a valid time in d, h, m, s, ms format`} 
+if (!Time) return {error: `Provide a valid time in d, h, m, s, ms format`} 
 if (Time <= 10000) return {error: `Time cant be lesser than 10 seconds`} 
 if (Time > 2332800000) return {error: `Time can't be greater than 27 days !!`}
               await guilds.findOneAndUpdate( 
                 { guildId: guild.id 
                 }, 
                 { 
-              anti_scam_time: newData
+              anti_scam_time: Time
                 } 
               )
               return;

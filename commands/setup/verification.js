@@ -78,7 +78,7 @@ module.exports = {
 				case 0:
 					if (!['enable', 'disable'].includes(msg.content.toLowerCase())) {
 						collector.stop('1')
-						hoisterinteraction.delete().catch(() => {})
+						hoisterinteraction?.delete().catch(() => {})
 					}
 
 					if (msg.content.toLowerCase() === 'disable') {

@@ -276,10 +276,11 @@ class Comfi extends Discord.Client {
   }
 
 	/**
-	 * @param {Member} - Guild Member
+	 * @param {Discord.Member} Member - Guild Member
    * @param {string} Action - the mod action
-   * @param {tring
-} eason - the reason
+   * @param {string
+} Reason - the reason
+   * @param 
    * @param {Discord.CommandInteraction} interaction - Interaction
   */
   async modlog({ Member, Action, Reason, Mod }, interaction) {
@@ -339,12 +340,14 @@ class Comfi extends Discord.Client {
   }
 
   /**
+  * @param {Discord.CommandInteraction} interaction
   * @param {string} error
   */
   async senderror(interaction, error) {
     let emed = new Discord.MessageEmbed()
       .setTitle(`${this.error} • Error Occured`)
-      .setDescription(`\`\`\`${error.stack ? error.stack : error}\`\`\``)
+      .setDescription(`\`\`\`${error.stack ? error.stack.split("").slice(0, 3500).join("") : error}\`\`\``)
+      .addFields({name: `Command Name`, value: `${interaction.commandName}`,  inline: true})
       .setColor(this.color)
 
     this.sendhook(null, {

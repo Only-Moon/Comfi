@@ -42,7 +42,7 @@ module.exports = {
       } else {
         return interaction.editReply({ content: `${bot.crosss} • Please setup verification by doing /verification before using this command!` })
       }
-    } catch {
+    } catch (e) {
       await bot.senderror(interaction, e)
     }
   }

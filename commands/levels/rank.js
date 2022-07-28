@@ -9,6 +9,7 @@ const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord
 const guilds = require("../../models/guild")
 const users = require("../../models/users")
 const rankCard = require("../../functions/RankCard")
+const fetch = require("node-fetch")
 
 module.exports = {
   name: "rank",
@@ -41,28 +42,29 @@ module.exports = {
       const user = await users.findOne({ guildId: interaction.guild.id, userId: target.id })
 
       if (!user) {
-        return await  bot.errorEmbed(bot, interaction, `User haven't Leveled Up yet or User is a Bot`)
+        return await bot.errorEmbed(bot, interaction, `User haven't Leveled Up yet or User is a Bot`)
 
       } else {
 
         if (guild.leveling) {
 
           rankCard(bot, interaction, {
-            slash: true,
-            member: target,
-            level: user.level,
-            color: bot.color,
-            currentXP: user.xp,
-            neededXP: user.requiredXp,
-            background: "https://i.imgur.com/rkGiaIO.png"
-          })
+             slash: true,
+             member: target,
+             level: user.level,
+             color: bot.color,
+             currentXP: user.xp,
+             neededXP: user.requiredXp,
+             background: "https://i.imgur.com/rkGiaIO.png"
+           })
+         
         } else {
           interaction.editReply(`${bot.error} Leveling is Disabled In this guild`)
         }
       }
 
     } catch (e) {
-  await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e)
     }
 
   }

@@ -104,10 +104,10 @@ try {
 					if (emote) {
 						emote = emoote
 						type = 'emoji'
-						name = Name
+						name = Name || args[2].find(emo != emote)
 					} else {
 						emote = `${args.find(arg => isUrl.test(arg))}`
-						name = args.find(arg => arg != emote)
+						name = Name
 						type = 'url'
 					}
 					let emoji = { name: '' }

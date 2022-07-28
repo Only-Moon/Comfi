@@ -60,7 +60,7 @@ bot.on('messageCreate', async message => {
 				components: [row],
 				allowedMentions: { repliedUser: false }
 			})
-    } catch {
+    } catch (e) {
         await bot.senderror(message, e)
     }
 	}

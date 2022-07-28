@@ -31,8 +31,8 @@ module.exports = {
       type: 3,
       required: false
     }],
-  userperm: ['MANAGAE_NICKNAMES'],
-  botperm: ['MANAGAE_NICKNAMES'],
+  userperm: ['MANAGE_NICKNAMES'],
+  botperm: ['MANAGE_NICKNAMES'],
 	/**
 	 *
 	 * @param {Interaction} interaction

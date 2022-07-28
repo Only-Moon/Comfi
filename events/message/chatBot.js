@@ -33,7 +33,7 @@ bot.on('messageCreate', async message => {
 
 		if (!ch || ch === undefined) return
 
-		if (message.channel.id === ch) {
+		if (message.channel?.id === ch) {
 			try {
 				const ranges = [
 					'\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF

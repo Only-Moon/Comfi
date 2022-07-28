@@ -172,7 +172,7 @@ module.exports = {
             iconURL: bot.user.displayAvatarURL({ dynamic: true })
           })
           .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-          .addField('↠ Made with love by', '꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817', true)
+          .addField('↠ Made with love by', '[꒰⚘݄꒱₊_❝ moonbow  ᵕ̈ 🌸#5817](https://discord.com/users/7753974636508741673)', true)
           .addField('↠ You can find me on', `${bot.guilds.cache.size} guilds`, true)
           .addField(
             `↠ I am watching over`,

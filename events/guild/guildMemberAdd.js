@@ -67,7 +67,7 @@ bot.on('guildMemberAdd', async member => {
           const embed = new MessageEmbed()
             .setAuthor({ 
               name: 
-              em.embed.author?.text ? em.embed.author?.text : '',
+              em.embed?.author?.text ? em.embed?.author?.text : '',
           avatarURL:  em.embed.author?.icon_url
                 ? em.embed.author?.icon_url : '', url: em.embed.author?.url ? em.embed.author ?.url : ''
 					})
@@ -78,7 +78,7 @@ bot.on('guildMemberAdd', async member => {
             .setURL(em.embed.url || '')
             .setTimestamp(em.embed.timestamp ? new Date() : false)
             .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : '')
-            .setFooter({text: format(em.embed.footer.text || '')});
+            .setFooter({text: format(em.embed?.footer.text || '')});
           let cont = format(em.content);
           if
             (guild.welcome_dmuser) {

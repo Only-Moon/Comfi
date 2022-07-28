@@ -72,12 +72,7 @@ module.exports = {
 
         if (!emojis) {
           return await bot.errorEmbed(bot, interaction, `**Enter A Valid Emoji in** \`:emoji:\` **form not** \`<:emojiname:emojiid>\``
-          )
-            .then((msg) => {
-              setTimeout(() => {
-                if (msg.deletable) msg.delete()
-              }, bot.ms('30s'))
-            });
+          );
         }
 
         if (emojis.length === 1) {
@@ -326,7 +321,7 @@ module.exports = {
               }).catch(() => null)
           } else return await bot.errorEmbed(bot, interaction, ` **• Emoji not found !!**`
           ).then((msg) => {
-            setTimeout(() => { if (msg.deletable) msg.delete() }, bot.ms('30s'))
+            setTimeout(() => { if (msg?.deletable) msg.delete() }, bot.ms('30s'))
           });
         }
       }
