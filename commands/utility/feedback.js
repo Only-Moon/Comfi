@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 
 module.exports = {
   name: 'feedback',
@@ -14,7 +14,7 @@ module.exports = {
   directory: "utility",
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'The feedback',
       name: 'msg',
       required: true
@@ -43,7 +43,7 @@ module.exports = {
         return interaction.followUp({
           content: `${bot.error} Specify a **message**`
         })
-      const feedEmbed = new MessageEmbed()
+      const feedEmbed = new EmbedBuilder()
         .setTitle('Comfi™ Feedback')
         .setDescription(
           `**Author :**\n> ${member.user.username} \n**Message:**\n> ${query}`
@@ -52,7 +52,7 @@ module.exports = {
         .setThumbnail(member.user.avatarURL({ dynamic: true }))
         .setTimestamp()
         .setColor(bot.color)
-      interaction.followUp({
+     await interaction.followUp({
         content: 'Feedback has been sent to the support server!'
       })
       if (feedCh) {

@@ -8,10 +8,11 @@
 const bot = require("../../index")
 const fetch = require("node-fetch")
 const guilds = require("../../models/guild")
+const { InteractionType } = require('discord.js')
 
 bot.on("interactionCreate", async (interaction) => {
 
-  if (interaction.isAutocomplete()) {
+  if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
 
     const userInput = interaction.options.getFocused().toString();
 

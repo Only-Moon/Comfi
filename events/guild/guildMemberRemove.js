@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageAttachment } = require("discord.js")
+const { EmbedBuilder, AttachmentBuilder } = require("discord.js")
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 const users = require("../../models/users")
@@ -56,7 +56,7 @@ bot.on("guildMemberRemove", async (member) => {
 
         const emb = guild.leave_embed.map(async (em) => {
 
-          const embed = new MessageEmbed()
+          const embed =  new EmbedBuilder()
             .setAuthor({
               name: em.embed.author?.text ? em.embed.author?.text : '',
 avatarURL: em.embed.author?.icon_url
@@ -90,11 +90,11 @@ avatarURL: em.embed.author?.icon_url
         })
       } else {
         if (guild.leave_dmuser) {
-          let leave_image = new MessageAttachment(`${guild.leave_image}`)
+          let leave_image = new AttachmentBuilder(`${guild.leave_image}`)
           member.send({ content: `${format(guild.leave_message)}`, files: [leave_image], allowedMentions: { repliedUser: true } }).catch(() => { })
         } else {
 
-          const leave_image = new MessageAttachment(`${guild.leave_image}`)
+          const leave_image = new AttachmentBuilder(`${guild.leave_image}`)
 
           channel.send({ content: `${format(guild.leave_message)}`, files: [leave_image], allowedMentions: { repliedUser: true } }).catch(() => { })
         }

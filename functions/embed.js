@@ -7,10 +7,11 @@
 
 const Discord = require('discord.js')
 const {
-  MessageEmbed,
-  MessageActionRow,
-  MessageSelectMenu,
-  MessageButton
+  EmbedBuilder,
+  ActionRowBuilder,
+  SelectMenuBuilder,
+  ButtonBuilder,
+  ButtonStyle
 } = require('discord.js')
 const bot = require('../index')
 
@@ -38,14 +39,14 @@ async function embed(message, options = []) {
       interaction = message
     }
     try {
-      const done = new MessageButton()
+      const done = new ButtonBuilder()
         .setLabel('Done')
-        .setStyle('SUCCESS')
+        .setStyle(ButtonStyle.Danger)
         .setCustomId('setDone')
 
-      const reject = new MessageButton()
+      const reject = new ButtonBuilder()
         .setLabel('Cancel/Delete')
-        .setStyle('DANGER')
+        .setStyle(ButtonStyle.Danger)
         .setCustomId('setDelete')
 
       let name = [
@@ -99,17 +100,17 @@ async function embed(message, options = []) {
         menuOptions.push(dataopt)
       }
 
-      let slct = new MessageSelectMenu()
+      let slct = new SelectMenuBuilder()
         .setMaxValues(1)
         .setCustomId('embed-creator')
         .setPlaceholder('Embed Creation Options')
         .addOptions([menuOptions])
 
-      const row = new MessageActionRow().addComponents([done, reject])
+      const row = new ActionRowBuilder().addComponents([done, reject])
 
-      const row2 = new MessageActionRow().addComponents([slct])
+      const row2 = new ActionRowBuilder().addComponents([slct])
 
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle(options.embedTitle || 'Embed Creator')
         .setDescription(
           'Select any ***option*** from the Select Menu in this message and i will **collect all informations and create a embed** for you using that data.\n\nThis is a completed embed.'
@@ -133,7 +134,7 @@ async function embed(message, options = []) {
         })
       }
 
-      const emb = new MessageEmbed().setFooter(foot).setColor('#2F3136')
+      const emb = new EmbedBuilder().setFooter({text: `${foot}`}).setColor('#2F3136')
 
       message.channel
         .send({ content: '** **', embeds: [emb] })
@@ -177,20 +178,20 @@ async function embed(message, options = []) {
                 content: membed.content
               })
             } else if (button.values[0] === 'setTimestamp') {
-              let btn = new Discord.MessageButton()
+              let btn = new Discord.ButtonBuilder()
                 .setLabel('Yes')
                 .setCustomId('timestamp-yes')
-                .setStyle('SUCCESS')
+                .setStyle(ButtonStyle.Danger)
 
-              let btn2 = new Discord.MessageButton()
+              let btn2 = new Discord.ButtonBuilder()
                 .setLabel('No')
                 .setCustomId('timestamp-no')
-                .setStyle('DANGER')
+                .setStyle(ButtonStyle.Danger)
 
               button.reply({
                 content: 'Do you want a Timestamp in the embed ?',
                 ephemeral: true,
-                components: [new MessageActionRow().addComponents([btn, btn2])]
+                components: [new ActionRowBuilder().addComponents([btn, btn2])]
               })
 
               let filter = m =>
@@ -207,7 +208,7 @@ async function embed(message, options = []) {
                     ? membed.embeds[0].image.url
                     : ''
 
-                  let msg = new MessageEmbed()
+                  let msg = new EmbedBuilder()
                     .setTitle(membed.embeds[0].title || '')
                     .setDescription(membed.embeds[0].description || '')
                     .setColor(membed.embeds[0].color || '#36393F')
@@ -247,7 +248,7 @@ async function embed(message, options = []) {
                     ? membed.embeds[0].image.url
                     : ''
 
-                  let msg = new MessageEmbed()
+                  let msg = new EmbedBuilder()
                     .setTitle(membed.embeds[0].title || '')
                     .setDescription(membed.embeds[0].description || '')
                     .setColor(membed.embeds[0].color || '#36393F')
@@ -283,7 +284,7 @@ async function embed(message, options = []) {
                 }
               })
             } else if (button.values[0] === 'setAuthor') {
-              let autsel = new MessageSelectMenu()
+              let autsel = new SelectMenuBuilder()
                 .setMaxValues(1)
                 .setCustomId('author-selct')
                 .setPlaceholder('Author Options')
@@ -308,7 +309,7 @@ async function embed(message, options = []) {
               button.reply({
                 content: 'Select one from these "Author" options',
                 ephemeral: true,
-                components: [new MessageActionRow().addComponents([autsel])]
+                components: [new ActionRowBuilder().addComponents([autsel])]
               })
 
               let filter = m =>
@@ -341,7 +342,7 @@ async function embed(message, options = []) {
                       ? membed.embeds[0].image.url
                       : ''
 
-                    let msg = new MessageEmbed()
+                    let msg = new EmbedBuilder()
                       .setTitle(membed.embeds[0].title || '')
                       .setDescription(membed.embeds[0].description || '')
                       .setColor(membed.embeds[0].color || '#36393F')
@@ -406,7 +407,7 @@ async function embed(message, options = []) {
                         ephemeral: true
                       })
 
-                    let msg = new MessageEmbed()
+                    let msg = new EmbedBuilder()
                       .setTitle(membed.embeds[0].title || '')
                       .setDescription(membed.embeds[0].description || '')
                       .setColor(membed.embeds[0].color || '#36393F')
@@ -464,7 +465,7 @@ async function embed(message, options = []) {
                         'A URL should start with http protocol. Please give a valid URL.'
                       )
                     } else {
-                      let msg = new MessageEmbed()
+                      let msg = new EmbedBuilder()
                         .setTitle(membed.embeds[0].title || '')
                         .setDescription(membed.embeds[0].description || '')
                         .setColor(membed.embeds[0].color || '#36393F')
@@ -519,7 +520,7 @@ async function embed(message, options = []) {
                   ? membed.embeds[0].image.url
                   : ''
 
-                let msg = new MessageEmbed()
+                let msg = new EmbedBuilder()
                   .setTitle(membed.embeds[0].title || '')
                   .setDescription(membed.embeds[0].description || '')
                   .setColor(membed.embeds[0].color || '#36393F')
@@ -584,7 +585,7 @@ async function embed(message, options = []) {
                     ephemeral: true
                   })
 
-                let msg = new MessageEmbed()
+                let msg = new EmbedBuilder()
                   .setTitle(membed.embeds[0].title || '')
                   .setDescription(membed.embeds[0].description || '')
                   .setColor(membed.embeds[0].color || '#2F3136')
@@ -631,7 +632,7 @@ async function embed(message, options = []) {
                     ? membed.embeds[0].image.url
                     : ''
 
-                  let msg = new MessageEmbed()
+                  let msg = new EmbedBuilder()
                     .setTitle(membed.embeds[0].title || '')
                     .setDescription(membed.embeds[0].description || '')
                     .setColor(`${m.content}`)
@@ -692,7 +693,7 @@ async function embed(message, options = []) {
                   const url = membed.embeds[0].image
                     ? membed.embeds[0].image.url
                     : ''
-                  let msg = new MessageEmbed()
+                  let msg = new EmbedBuilder()
                     .setTitle(membed.embeds[0].title || '')
                     .setAuthor({
                       name: membed.embeds[0].author ?.name
@@ -752,7 +753,7 @@ async function embed(message, options = []) {
                     'This is not a image url. Please provide a image url or attachment.'
                   )
 
-                let msg = new MessageEmbed()
+                let msg = new EmbedBuilder()
                   .setTitle(membed.embeds[0].title || '')
                   .setDescription(membed.embeds[0].description || '')
                   .setColor(membed.embeds[0].color || '#2F3136')
@@ -801,7 +802,7 @@ async function embed(message, options = []) {
                 const url = membed.embeds[0].image
                   ? membed.embeds[0].image.url
                   : ''
-                let msg = new MessageEmbed()
+                let msg = new EmbedBuilder()
                   .setTitle(m.content)
                   .setURL(membed.embeds[0].url || '')
                   .setDescription(membed.embeds[0].description || '')
@@ -851,7 +852,7 @@ async function embed(message, options = []) {
                   ? membed.embeds[0].image.url
                   : ''
 
-                let msg = new MessageEmbed()
+                let msg = new EmbedBuilder()
                   .setTitle(membed.embeds[0].title || '')
                   .setURL(membed.embeds[0].url || '')
                   .setDescription(m.content)
@@ -900,7 +901,7 @@ async function embed(message, options = []) {
                   ? membed.embeds[0].image.url
                   : ''
 
-                let msg = new MessageEmbed()
+                let msg = new EmbedBuilder()
                   .setTitle(membed.embeds[0].title || '')
                   .setURL(membed.embeds[0].url || '')
                   .setTimestamp(membed.embeds[0].timestamp ? new Date() : false)
@@ -937,20 +938,20 @@ async function embed(message, options = []) {
           })
           collector.on('end', async (collected, reason) => {
             if (reason === 'time') {
-              const content = new MessageButton()
+              const content = new ButtonBuilder()
                 .setLabel('Timeout')
-                .setStyle('DANGER')
+                .setStyle(ButtonStyle.Danger)
                 .setCustomId('timeout|91817623842')
                 .setDisabled()
 
-              const row = new MessageActionRow().addComponents([content])
+              const row = new ActionRowBuilder().addComponents([content])
 
               e.edit({ embeds: [lel.embeds[0]], components: [row] })
             }
           })
         })
     } catch (e) {
-      let emed = new MessageEmbed()
+      let emed = new EmbedBuilder()
         .setTitle(`${bot.error} • Error Occured`)
         .setDescription(`\`\`\`${e.stack}\`\`\``)
         .setColor(bot.color)

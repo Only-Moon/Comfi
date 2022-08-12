@@ -7,8 +7,8 @@
 
 const {
 	CommandInteraction,
-	MessageActionRow,
-	MessageSelectMenu
+	ActionRowBuilder,
+	SelectMenuBuilder 
 } = require('discord.js')
 /**
  *
@@ -31,8 +31,8 @@ module.exports = async (interaction, pages) => {
 		})
 	})
 
-	const row = new MessageActionRow().addComponents([
-		new MessageSelectMenu()
+	const row = new ActionRowBuilder().addComponents([
+		new SelectMenuBuilder()
 			.setPlaceholder('Choose a page!')
 			.addOptions(dropdowns)
 			.setCustomId('queue_pagination')

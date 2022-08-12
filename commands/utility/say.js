@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { Interaction, MessageAttachment } = require("discord.js");
+const { CommandInteraction, AttachmentBuilder, ApplicationCommandOptionType } = require("discord.js");
 const isUrl = new RegExp(
   "^(https?:\\/\\/)?" +
   "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +
@@ -18,15 +18,15 @@ const isUrl = new RegExp(
 
 module.exports = {
   name: "say",
-  description: "Says What Said To say",
+  description: "Make Comfi say something",
   type: "CHAT_INPUT",
   ownerOnly: false,
   directory: "utility",
   options: [
     {
       name: "msg",
-      description: "What To Say - text or image",
-      type: "STRING",
+      description: "Make Comfi say a text",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -47,7 +47,7 @@ module.exports = {
 
       if (isUrl.test(say)) {
 
-        const attach = new MessageAttachment(say, 'Sent_Using_Comfi.png')
+        const attach = new AttachmentBuilder(say, {name: 'Sent_Using_Comfi.png'})
 
         await interaction.channel.send({ files: [attach] })
 
@@ -68,7 +68,7 @@ module.exports = {
 
         }
       }
-    } catch {
+    } catch (e) {
       await bot.senderror(interaction, e)
     }
   }

@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder } = require('discord.js')
 const moment = require("moment");
 require("moment-duration-format");
 
@@ -23,7 +23,7 @@ module.exports = {
 	 */
   run: async (bot, interaction, args) => {
     try {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor(bot.color)
         .setDescription(`<a:p_loading1:883233236757667870> • Pinging ...`)
       let msg = await interaction.editReply({ embeds: [embed], fetchReply: true })
@@ -40,7 +40,7 @@ module.exports = {
 
         const duration = moment.duration(bot.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
 
-        const pingEmbed = new MessageEmbed()
+        const pingEmbed = new EmbedBuilder()
           .setColor(bot.color)
           .setAuthor({ name: 'Pong! 🏓 ', iconURL: interaction.user.avatarURL({ dynamic: true }) })
           .addFields({

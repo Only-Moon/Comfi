@@ -1,9 +1,11 @@
 const bot = require('../../index')
 const {
   Permissions,
-  MessageEmbed,
-  MessageButton,
-  MessageActionRow,
+  EmbedBuilder,
+  InteractionType,
+  ButtonStyle,
+  ButtonBuilder,
+  ActionRowBuilder,
   Discord
 } = require('discord.js')
 const guilds = require('../../models/guild')
@@ -20,7 +22,7 @@ const Client = require('../../models/Client')
 bot.on('interactionCreate', async (interaction, args) => {
   // Slash Command Handling
   try {
-    if (interaction.isModalSubmit()) {
+    if (interaction.type  === InteractionType.ModalSubmit) {
 
       const cmd = bot.slashCommands.get(interaction.commandName)
 
@@ -45,7 +47,7 @@ bot.on('interactionCreate', async (interaction, args) => {
           '889149873893539900') || bot.channels.cache.get('863684464176922664')
         const owner = bot.users.cache.get("753974636508741673")
 
-        const reportEmbed = new MessageEmbed()
+        const reportEmbed = new EmbedBuilder()
           .setTitle(`Comfi™ Bug Report`)
           .setDescription(
             `**Author :**\n> ${member.user.username} \n**Report Title :**\n> ${title} \n**Report Description:**\n\`\`\`${desc}\`\`\``

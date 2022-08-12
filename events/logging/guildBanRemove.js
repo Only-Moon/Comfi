@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder, AuditLogEvent } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -12,11 +12,11 @@ const { MessageEmbed } = require("discord.js")
 bot.on("guildBanRemove", async (ban) => {
     const guild = await guilds.findOne({guildId: ban.guild.id})
     if(!guild.logging) return;
-    if(!ban.guild.me.permissions.has("VIEW_AUDIT_LOG")) return;
+    if(!ban.guild.members.me.permissions.has(bot.functions.fixPermissions("VIEW_AUDIT_LOG"))) return;
 
-    const AuditLogFetch = await ban.guild.fetchAuditLogs({limit: 1, type: "MEMBER_BAN_REMOVE"});
+    const AuditLogFetch = await ban.guild.fetchAuditLogs({limit: 1, type: AuditLogEvent.MemberBanRemove});
     const Entry = AuditLogFetch.entries.first();
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setTitle(`Unbanned User!`)
     .setColor("#FF5757")
     .setDescription(` > <a:stars_aesthetic:883033007836000308> • **Reason:** ${ban.reason ? ban.reason : "No reason"}\n > <a:stars_aesthetic:883033007836000308> • **Member:** <@${Entry.executor.id}>`)

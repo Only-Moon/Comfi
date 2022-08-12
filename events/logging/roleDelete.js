@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder, AuditLogEvent} = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -13,12 +13,12 @@ bot.on("roleDelete", async (role) => {
     const guild = await guilds.findOne({guildId: role.guild.id})
     if(!guild.logging) return;
     if(!role.guild) return;
-    if(!role.guild.me.permissions.has("VIEW_AUDIT_LOG")) return;
+    if(!role.guild.members.me.permissions.has(bot.functions.fixPermissions("VIEW_AUDIT_LOG"))) return;
     
 
-    const AuditLogFetch = await role.guild.fetchAuditLogs({limit: 1, type: "ROLE_DELETE"});
+    const AuditLogFetch = await role.guild.fetchAuditLogs({limit: 1, type: AuditLogEvent.RoleDelete});
     const Entry = AuditLogFetch.entries.first();
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setTitle(`Role Deleted!`)
     .setColor(bot.color)
     .setDescription(`> <a:stars_aesthetic:883033007836000308> • **Author:** ${Entry ? `<@${Entry.executor.id}>` : "No author"}`)

@@ -13,30 +13,29 @@ const Discord = require('discord.js'),
 */
 
 class Comfi extends Discord.Client {
-  constructor() {
-    super({
-      allowedMentions: {
-        parse: ['users', 'roles'],
-        repliedUser: false
-      },
-      intents: [
-        'GUILDS',
-        'GUILD_MEMBERS',
-        'GUILD_BANS',
-        'GUILD_MESSAGES',
-        'GUILD_EMOJIS_AND_STICKERS',
-        'GUILD_INVITES',
-        'GUILD_MESSAGE_TYPING'
-      ],
-      partials: [
-        'MESSAGE',
-        'CHANNEL',
-        'REACTION',
-        'GUILD_MEMBER',
-        'GUILD',
-        'USER'
-      ],
-      restRequestTimeout: 30000,
+	constructor() {
+		super({
+			allowedMentions: {
+				parse: ['users', 'roles'],
+				repliedUser: false
+			},
+			intents: [
+				'Guilds',
+				'GuildMembers',
+				'GuildBans',
+        'GuildInvites',
+				'GuildEmojisAndStickers',
+				'GuildMessages',
+				'GuildMessageTyping'
+			],
+			partials: [
+				'Message',
+				'Channel',
+				'GuildMember',
+				'Guild',
+				'User'
+			],
+			restRequestTimeout: 30000,		
     })
     this.logger = require('./Logger.js')
     this.color = process.env['color'] || '#F4B3CA'
@@ -49,6 +48,7 @@ class Comfi extends Discord.Client {
     this.err_chnl = process.env['error_channel']
     this.support = process.env["support"] || this.dash + 'support'
     this.login(process.env.TOKEN)
+    this.functions = require('../functions/function.js')
     this.categories = fs.readdirSync('./commands/')
     this.dbs(process.env.Mongoose)
     this.commands = new Discord.Collection()
@@ -182,18 +182,35 @@ class Comfi extends Discord.Client {
     let webhook = await channel_
       .fetchWebhooks()
       .then(x => x.find(x => x.name === name))
-    const emb = new Discord.MessageEmbed()
+        if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
+    
+    const emb = new Discord.EmbedBuilder()
+    
     if (embed) {
-      emb.setTitle(embed.title)
-      emb.setDescription(embed.description.split(" ").slice(0, 4000).join(" "))
+      emb.setTitle(embed.title ? embed.title : `${this.error} • Error Occured`)
+      emb.setDescription(embed.description ? embed.description.split(" ").slice(0, 4000).join(" ") : embed1.description) 
       emb.setColor(bot.color)
-    }
 
-    if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
-    return await webhook.send(embed ? { embeds: [emb] } : msg).then(e => {
+return await webhook.send({ embeds: [emb] }).then(e => {
       remove ? webhook.delete() : e
     })
+      
+    } else if (msg) {
+      emb.setTitle(`${this.error} • Error occured`)
+      emb.setDescription(msg ? msg.split(" ").slice(0, 4000).join(" ") : msg)
+      emb.setColor(this.color)
+
+return await webhook.send({ embeds: [emb] }).then(e => {
+      remove ? webhook.delete() : e
+    })
+      
+    }
   }
+  
+  /* 
+* @param {String} name - emoji name
+* @param {String} option - id or name
+*/
   async emoji(name, option) {
     let emojis = this.emojis.cache.find(x => x.name === name)
     if (!emojis) return `:${name}:`
@@ -211,6 +228,8 @@ class Comfi extends Discord.Client {
         .join('_')
     }
   }
+
+  
   async msToTime(duration) {
     const ms = Math.floor((duration % 1000) / 100),
       seconds = Math.floor((duration / 1000) % 60),
@@ -228,12 +247,13 @@ class Comfi extends Discord.Client {
     );
   }
 
+  
   async successEmbed(bot, interaction, argument) {
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.EmbedBuilder()
       .setDescription(`${bot.tick} • ${argument}`)
       .setColor(bot.color);
 
-    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false } });
+    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false } }).catch(()=>{});
 
   };
 
@@ -243,9 +263,8 @@ class Comfi extends Discord.Client {
    * @param {string} argument - the error
    * @param {boolean} button - for showing support button
   */
-
   async errorEmbed(bot, interaction, argument, button) {
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.EmbedBuilder()
       .setDescription(`${bot.error} • ${argument}`)
       .setColor("#FE6666");
 
@@ -253,23 +272,23 @@ class Comfi extends Discord.Client {
  if (!button) {
 
     if (interaction.commandId) {
-      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true })
+      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true }).catch(()=>{});
     } else if (!interaction.commandId) {
-      interaction.channel.send({embeds: [embed]})
+      interaction.channel.send({embeds: [embed]}).catch(()=>{});
     }  
   } else {
-      const row = new Discord.MessageActionRow().addComponents(
-        new Discord.MessageButton()
-          .setStyle('LINK')
+      const row = new  Discord.ActionRowBuilder().addComponents(
+        new Discord.ButtonBuilder()
+          .setStyle(Discord.ButtonStyle.Secondary)
           .setURL(this.support)
           .setLabel('Contact Support') 
           .setEmoji("984647916876619787")
       )
 
     if (interaction.commandId) {
-      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true , components: [row]})
+      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true , components: [row]}).catch(()=>{});
     } else if (!interaction.commandId) {
-      interaction.channel.send({embeds: [embed], components: [row]})
+      interaction.channel.send({embeds: [embed], components: [row]}).catch(()=>{});
     }
    
   }
@@ -295,7 +314,7 @@ class Comfi extends Discord.Client {
     } else if (!interaction.commandId) {
       auth = interaction.author.username
     }
-    const logsembed = new Discord.MessageEmbed()
+    const logsembed = new Discord.EmbedBuilder()
       .setColor(this.color)
       .addFields({
         name: "**Modlogs**",
@@ -344,15 +363,9 @@ class Comfi extends Discord.Client {
   * @param {string} error
   */
   async senderror(interaction, error) {
-    let emed = new Discord.MessageEmbed()
-      .setTitle(`${this.error} • Error Occured`)
-      .setDescription(`\`\`\`${error.stack ? error.stack.split("").slice(0, 3500).join("") : error}\`\`\``)
-      .addFields({name: `Command Name`, value: `${interaction.commandName}`,  inline: true})
-      .setColor(this.color)
-
-    this.sendhook(null, {
-      channel: this.err_chnl,
-      embed: emed
+  
+  this.sendhook(error.stack, {
+      channel: this.err_chnl
     })
 
     return await this.errorEmbed(this, interaction, `Error, try again later \n Error: ${error} \n [Contact Support](${this.support})`, true)

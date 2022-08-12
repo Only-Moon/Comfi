@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { MessageSelectMenu, MessageActionRow } = require('discord.js')
+const { SelectMenuBuilder, ActionRowBuilder } = require('discord.js')
 
 /* MENU CREATOR */
 
@@ -57,12 +57,12 @@ const create_mh = array => {
 		})
 	})
 
-	let chicken = new MessageSelectMenu()
+	let chicken = new SelectMenuBuilder()
 		.setCustomId(id)
 		.setPlaceholder('Choose the command category')
 		.addOptions(menus)
 
-	select_menu = new MessageActionRow().addComponents(chicken) //console.log(select_menu.components[0].options)
+	select_menu = new ActionRowBuilder().addComponents(chicken) //console.log(select_menu.components[0].options)
 
 	return {
 		smenu: [select_menu],

@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder, AuditLogEvent } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -12,12 +12,12 @@ const { MessageEmbed } = require("discord.js")
 bot.on("stickerCreate", async (sticker) => {
     const guild = await guilds.findOne({guildId: sticker.guild.id})
     if(!guild.logging) return;
-    if(!sticker.guild.me.permissions.has("VIEW_AUDIT_LOG")) return;
+    if(!sticker.guild.members.me.permissions.has(bot.functions.fixPermissions("VIEW_AUDIT_LOG"))) return;
 
-    const AuditLogFetch = await sticker.guild.fetchAuditLogs({limit: 1, type: "STICKER_CREATE"});
+    const AuditLogFetch = await sticker.guild.fetchAuditLogs({limit: 1, type: AuditLogEvent.StickerCreate});
     const Entry = AuditLogFetch.entries.first();
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setTitle(`Sticker Created!`)
     .setColor(bot.color)
     .setDescription(`> <a:stars_aesthetic:883033007836000308> • **Author:** <@${Entry.executor.id}>`)

@@ -1,9 +1,9 @@
 const bot = require('../../index')
 const {
   Permissions,
-  MessageEmbed,
-  MessageButton,
-  MessageActionRow,
+  EmbedBuilder,
+  ButtonBuilder,
+  InteractionType,
   Discord
 } = require('discord.js')
 const guilds = require('../../models/guild')
@@ -20,7 +20,7 @@ const Client = require('../../models/Client')
 bot.on('interactionCreate', async (interaction, args) => {
   // Slash Command Handling
 
-  if (interaction.isCommand()) {
+  if (interaction.type === InteractionType.ApplicationCommand) {
 
     const cmd = bot.slashCommands.get(interaction.commandName)
 
@@ -64,26 +64,15 @@ bot.on('interactionCreate', async (interaction, args) => {
         )
     }
 
-    const userp = new MessageEmbed()
-      .setDescription(
-        `${bot.error} You need \`${cmd.userperm ? cmd.userperm : []}\` Permissions`
-      )
-      .setColor('#FC7C7C')
-
-    const userperm = interaction.member.permissions.has(cmd.userperm)
+    const userperm = interaction.member.permissions.has(bot.functions.fixPermissions(cmd.userperm))
 
     if (!userperm) {
-      return interaction.followUp({ embeds: [userp] }).catch(() => null)
+        return await  bot.errorEmbed(bot, interaction, `You need \`${cmd.userperm ? cmd.userperm : []}\` permission's`)
     }
-    const botp = new MessageEmbed()
-      .setDescription(
-        `${bot.error} • I need \`${cmd.botperm ? cmd.botperm : []}\` Permissions`
-      )
-      .setColor('#FC7C7C')
-
-    const botperm = interaction.guild.me.permissions.has(cmd.botperm)
+    
+    const botperm = interaction.guild.members.me.permissions.has(bot.functions.fixPermissions(cmd.botperm))
     if (!botperm) {
-      return interaction.followUp({ embeds: [botp] }).catch(() => null)
+        return await  bot.errorEmbed(bot, interaction, `I need \`${cmd.botperm ? cmd.botperm : []} \` permission's`)
     }
     interaction.member = interaction.guild.members.cache.get(
       interaction.user.id
@@ -93,31 +82,11 @@ bot.on('interactionCreate', async (interaction, args) => {
 
     const clientSchema = await Client.findOne({ clientId: bot.user.id })
     if (clientSchema.blackListedUsers.includes(interaction.user.id)) {
-      const blkuser = new MessageEmbed()
-        .setDescription(
-          `${bot.error} You are blacklisted from using <@${
-          bot.user.id
-          }>'s commands`
-        )
-        .setColor('#FC7C7C')
-
-      return await interaction.editReply({ embeds: [blkuser] }).then((msg) => {
-        setTimeout(() => { if (!msg.deleted) msg.delete() }, bot.ms('60s'))
-      });
+        return await  bot.errorEmbed(bot, interaction, `You are blacklisted from using <@${bot.user.id}>'s commands`)
     }
 
     if (clientSchema.blackListedServers.includes(interaction.guild.id)) {
-      const blkguild = new MessageEmbed()
-        .setDescription(
-          `${bot.error} This guild is blacklisted from using <@${
-          bot.user.id
-          }>'s commands`
-        )
-        .setColor('#FC7C7C')
-
-      return await interaction.editReply({ embeds: [blkguild] }).then((msg) => {
-        setTimeout(() => { if (!msg.deleted) msg.delete() }, bot.ms('60s'))
-      });;
+        return await  bot.errorEmbed(bot, interaction, `You are blacklisted from using <@${bot.user.id}>'s commands`)
     }
 
     if (clientSchema.blackListedCmds.includes(cmd.name) && !owners.includes(interaction.user.id)) {
@@ -131,17 +100,7 @@ bot.on('interactionCreate', async (interaction, args) => {
     }
 
     if (!interaction.channel.viewable) {
-
-      const channel = new MessageEmbed()
-        .setDescription(
-          `${bot.error} • I can't see this channel`
-        )
-        .setColor('#FC7C7C')
-
-      return await interaction.editReply({ embeds: [channel] }).then((msg) => {
-        setTimeout(() => { if (!msg.deleted) msg.delete() }, bot.ms('30s'))
-      });
-
+        return await  bot.errorEmbed(bot, interaction, `I font have access to view messages of this channel`)
     }
 
     //if (cmd.premium) {}
@@ -164,15 +123,15 @@ bot.on('interactionCreate', async (interaction, args) => {
 
     const logsChannel = c1 ? c1 : c2;
 
-    const logsEmbed = new MessageEmbed()
+    const logsEmbed = new EmbedBuilder()
       .setDescription(
         ` > <a:tick:890113862706266112> • __Command:__ **${
         cmd.name
-        }**!\n > <a:tick:890113862706266112> • __Args :__ **${args.length === 0 ? args : "Not Found"}** \n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
+        }**!\n > <a:tick:890113862706266112> • __Args :__ **${args.length !== 0 ? args : "Not Found"}** \n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
         interaction.guild ? interaction.guild.name : 'dm'
         }**\n > <a:emoji_87:883033003574579260> • __Id:__ **${
         interaction.guild ? interaction.guild.id : 'dm'
-        }**\n ><a:wing_cs:883032991293653062> • __User:__ **${interaction.user ? interaction.user.username : "Not Found"}**\n ><a:wing_cs:883032991293653062> • __Id:__ **${interaction.user ? interaction.user.id : "Not Found"}**`
+        }**\n > <a:wing_cs:883032991293653062> • __User:__ **${interaction.user ? interaction.user.username : "Not Found"}**\n >  <a:wing_cs:883032991293653062> • __Id:__ **${interaction.user ? interaction.user.id : "Not Found"}**`
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)
@@ -197,35 +156,26 @@ bot.on('interactionCreate', async (interaction, args) => {
 
               if (time_left.toFixed(1) >= 3600) {
                 let hour = time_left.toFixed(1) / 3600
-                let hrs = new MessageEmbed()
-                  .setDescription(
-                    `${bot.error} Please wait ${parseInt(
+        return await  bot.errorEmbed(bot, interaction, ` Please wait ${parseInt(
                       hour
                     )} more hours before using \`${cmd.name}\`!`
                   )
-                  .setColor('#FF8080')
-                return interaction.followUp({ embeds: [hrs] }).catch(() => null)
+                  
               }
               if (time_left.toFixed(1) >= 60) {
                 let minute = time_left.toFixed(1) / 60
-                let min = new MessageEmbed()
-                  .setDescription(
-                    `${bot.error} Please wait ${parseInt(
+                        return await  bot.errorEmbed(bot, interaction, `Please wait ${parseInt(
                       minute
                     )} more minutes before using \`${cmd.name}\`!`
                   )
-                  .setColor('#FF8080')
-                return interaction.followUp({ embeds: [min] }).catch(() => null)
+                  
               }
               let seconds = time_left.toFixed(1)
-              let sec = new MessageEmbed()
-                .setDescription(
-                  `${bot.error} Please wait ${parseInt(
+        return await  bot.errorEmbed(bot, interaction, `lease wait ${parseInt(
                     seconds
                   )} more seconds before using \`${cmd.name}\`!`
                 )
-                .setColor('#FF8080')
-              return interaction.followUp({ embeds: [sec] }).catch(() => null)
+
             } else {
               await users.findOneAndUpdate(
                 {
@@ -267,7 +217,7 @@ bot.on('interactionCreate', async (interaction, args) => {
 
   // Context Menu Handling
 
-  if (interaction.isContextMenu()) {
+  if (interaction.isContextMenuCommand()) {
     await interaction.deferReply({ ephemeral: false })
 
     const command = bot.slashCommands.get(interaction.commandName)
@@ -276,15 +226,15 @@ bot.on('interactionCreate', async (interaction, args) => {
       '890580695192305696' || '782566659088842762'
     )
 
-    const logsEmbed = new MessageEmbed()
+    const logsEmbed = new EmbedBuilder()
       .setDescription(
-        ` > <a:tick:890113862706266112> • __Command:__ **${
-        command.name
-        }**!\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
+        ` > <a:tick:890113862706266112> • __Context Command:__ **${
+        cmd.name
+        }**!\n > <a:tick:890113862706266112> • __Args :__ **${args.length !== 0 ? args : "Not Found"}** \n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
         interaction.guild ? interaction.guild.name : 'dm'
         }**\n > <a:emoji_87:883033003574579260> • __Id:__ **${
         interaction.guild ? interaction.guild.id : 'dm'
-        }**`
+        }**\n > <a:wing_cs:883032991293653062> • __User:__ **${interaction.user ? interaction.user.username : "Not Found"}**\n >  <a:wing_cs:883032991293653062> • __Id:__ **${interaction.user ? interaction.user.id : "Not Found"}**`
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)

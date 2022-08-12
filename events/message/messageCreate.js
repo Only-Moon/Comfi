@@ -2,7 +2,7 @@ const bot = require('../../index')
 const simplydjs = require('simply-djs')
 const guilds = require('../../models/guild')
 const users = require('../../models/users')
-const { Collection, MessageEmbed } = require('discord.js')
+const { Collection, EmbedBuilder } = require('discord.js')
 const fetch = require("node-fetch")
 
 /* 
@@ -57,14 +57,13 @@ bot.on('messageCreate', async message => {
           "Content-Type": "application/json"
         },
         body: data
-      }).catch(() => {})
-      result = await result.json()
+      }).then(async res => await res.json()).catch(()=>{});
 
       if (guild.anti_scam && result.match) {
 
         await message.delete()
         const time = guild.anti_scam_time
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle(`Scam Link Detected !!`)
           .setColor(bot.color)
           .setDescription(`**${message.author.tag}** sent a scam link/said a bad word: ||${message.content.toLowerCase()}|| and has been timedout for ${time ? bot.ms(time) : "12 hours"}`)
@@ -81,7 +80,7 @@ bot.on('messageCreate', async message => {
         if (message.member.moderatable) {
           await message.member.timeout(time ? time : 43200000, "Sending Scam links").catch(() => null)
 
-          const embed2 = new MessageEmbed()
+          const embed2 = new EmbedBuilder()
             .setTitle(`Scam Link Detected !!`)
             .setDescription(`Dear ${message.author.tag}\nYou have received this because you have sent a not-allowed message.\nServer: **${message.guild.name}**\nMessage: ||${message.content.toLowerCase()}||\n\nYour timeout will be removed automatically in exactly **${time ? bot.ms(time) : "12 Hours"}**.`)
             .setColor(bot.color)

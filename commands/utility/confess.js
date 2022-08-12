@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Anonymous Confession',
       name: 'confession',
       required: true
@@ -41,10 +41,11 @@ module.exports = {
           .split('')
           .slice(0, 4000)
           .join('')
-        if (!confessionQuery)
-          return interaction.editReply(`${bot.error} • Please Confess Something.`)
-
-        const embed = new MessageEmbed()
+        if (!confessionQuery) {
+        return await  bot.errorEmbed(bot, interaction, `Please Confess Something.`)
+        }
+        
+        const embed = new EmbedBuilder()
 
           .setTitle('Anonymous Confession')
           .setDescription(`> ${confessionQuery}`)
@@ -55,7 +56,7 @@ module.exports = {
           .get(channel)
           .send({ embeds: [embed] })
       } else if (!guild.confession) {
-        interaction.editReply(
+        await interaction.editReply(
           `${bot.error} Confession Channel Not Found, Ask an Admin to set it.`
         )
       }

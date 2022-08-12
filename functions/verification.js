@@ -1,7 +1,7 @@
 const guilds = require('../models/guild')
 const {
 	Message,
-	MessageEmbed,
+	EmbedBuilder,
 	GuildMember,
 	MessageCollector
 } = require('discord.js')
@@ -47,7 +47,7 @@ module.exports = async (member, bot) => {
 		)
 		if (!channel) return
 		const word = getWord()
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setImage(
 				`https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`
 			)
@@ -164,7 +164,7 @@ async function reRun(member, bot) {
 		)
 		if (!channel) return
 		const word = getWord()
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setImage(
 				`https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`
 			)

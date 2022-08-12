@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow, Modal, TextInputComponent } = require('discord.js');
+const { CommandInteraction, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ModalBuilder, TextInputComponent } = require('discord.js');
 
 
 let ButtonNames = 'previous' | 'next' | 'search' | 'delete';
@@ -81,7 +81,7 @@ module.exports = async function evalFunction(interaction, options) {
 
     return buttons.reduce((buttons, button) => {
 
-      buttons.push(new MessageButton().setStyle(defaultStyles[button]).setEmoji(defaultEmojis[button]).setCustomId(button).setDisabled(status || checkPage(button)))
+      buttons.push(new ButtonBuilder().setStyle(defaultStyles[button]).setEmoji(defaultEmojis[button]).setCustomId(button).setDisabled(status || checkPage(button)))
 
       return buttons;
 
@@ -93,7 +93,7 @@ module.exports = async function evalFunction(interaction, options) {
   let components = (status) => [
 
 
-    new MessageActionRow().addComponents(...generateButtons(status)),
+    new ActionRowBuilder().addComponents(...generateButtons(status)),
 
   ];
 
@@ -111,7 +111,7 @@ module.exports = async function evalFunction(interaction, options) {
 
     );
 
-    let newEmbed = new MessageEmbed(oldEmbed.data);
+    let newEmbed = new EmbedBuilder(oldEmbed.data);
 
 
    // if (oldEmbed?.data.footer?.text) return [newEmbed.setFooter({ text: oldEmbed.data.footer.text, iconURL: oldEmbed.data.footer.icon_url })];
@@ -155,11 +155,11 @@ console.log(components()[0].components)
       if (id === 'search') {
 
 
-        await button.showModal(
+        await button.showModalBuilder(
 
-          new Modal({ title: `Page Selection`, custom_id: 'page-selection' }).addComponents(
+          new ModalBuilder({ title: `Page Selection`, custom_id: 'page-selection' }).addComponents(
 
-            new MessageActionRow().addComponents(
+            new ActionRowBuilder().addComponents(
 
               new TextInputComponent({
 
@@ -190,7 +190,7 @@ console.log(components()[0].components)
         );
 
 
-        return await button.awaitModalSubmit({ filter: (modal) => modal.customId === 'page-selection', time: 5 * 60 * 1000 }).then(async (modal) => {
+        return await button.awaitModalBuilderSubmit({ filter: (modal) => modal.customId === 'page-selection', time: 5 * 60 * 1000 }).then(async (modal) => {
 
 
           let pageValue = Number(modal.fields.getTextInputValue('page'));

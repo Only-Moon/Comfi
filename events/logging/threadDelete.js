@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder, AuditLogEvent  } = require('discord.js')
 
 /* 
 * Comfi Bot for Discord 
@@ -16,22 +16,27 @@ bot.on('threadDelete', async thread => {
 
 	try {
 		await thread.leave().catch(() => null)
-	} catch (e) {
-		bot.sendhook(`Error Occured \n ${e.stack}`,
-			{
-				channel: bot.err_chnl
-			})
-	}
+      } catch (e) {
+        let emed = new EmbedBuilder()
+          .setTitle(`${bot.error} • Error Occured`)
+          .setDescription(`\`\`\`${e.stack}\`\`\``)
+          .setColor(bot.color)
+
+        bot.sendhook(null, {
+          channel: bot.err_chnl,
+          embed: emed
+        })
+  }
 
 	if (!guild.logging) return;
 	if (!thread.guild.me.permissions.has('VIEW_AUDIT_LOG')) return;
 
 	const AuditLogFetch = await thread.guild.fetchAuditLogs({
 		limit: 1,
-		type: 'THREAD_DELETE'
+		type: AuditLogEvent.ThreadDelete
 	})
 	const Entry = AuditLogFetch.entries.first()
-	const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setTitle(`Thread Deleted!`)
 		.setColor(bot.color)
 		.setDescription(
