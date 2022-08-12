@@ -2,10 +2,11 @@ const bot = require('../../index')
 const { readdirSync } = require('fs')
 const prefix = '/'
 const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageButton,
-	MessageSelectMenuMenu
+EmbedBuilder,
+ButtonBuilder,
+ButtonStyle,
+ActionRowBuilder,
+SelectMenuBuilder
 } = require('discord.js')
 const data = require("../../models/Client")
 
@@ -18,6 +19,7 @@ const data = require("../../models/Client")
 
 bot.on('interactionCreate', async interaction => {
 	if (interaction.isSelectMenu()) {
+    try {
 		if (interaction.customId === 'help-menus') {
 			let { values } = interaction
 			let value = values[0]
@@ -63,7 +65,7 @@ bot.on('interactionCreate', async interaction => {
 			})
 
 			if (cots.includes(value.toLowerCase())) {
-				const combed = new MessageEmbed()
+				const combed = new EmbedBuilder()
 					.setTitle(
 						`__${value.charAt(0).toUpperCase() + value.slice(1)} Commands!__`
 					)
@@ -91,22 +93,7 @@ bot.on('interactionCreate', async interaction => {
 					.edit({
 						embeds: [combed]
 					})
-					.catch(e => {
-						bot.sendhook(`Error Occured \n ${e.stack}`,
-							{
-								channel: bot.err_chnl
-							})
-						interaction.followUp({
-							embeds: [
-								{
-									description: `${
-										bot.error
-									} Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-									color: bot.color
-								}
-							]
-						})
-					})
+
 			}
 		}
 
@@ -126,23 +113,23 @@ bot.on('interactionCreate', async interaction => {
 			})
 
 			const components = [
-				new MessageActionRow().addComponents(
-					new MessageSelectMenu()
+				new ActionRowBuilder().addComponents(
+					new SelectMenuBuilder()
 						.setCustomId('b-panel')
 						.setMaxValues(1)
 						.addOptions(options)
 				)
 			]
 
-			const button = new MessageActionRow().addComponents(
-				new MessageButton()
+			const button = new ActionRowBuilder().addComponents(
+				new ButtonBuilder()
 					.setCustomId('yes')
 					.setLabel('Yes')
-					.setStyle('SUCCESS'),
-				new MessageButton()
+					.setStyle(ButtonStyle.Secondary),
+				new ButtonBuilder()
 					.setCustomId('no')
 					.setLabel('No')
-					.setStyle('DANGER')
+					.setStyle(ButtonStyle.Primary)
 			)
 
 			if (data?.BlackListedUser?.includes(member.id)) {
@@ -199,5 +186,27 @@ bot.on('interactionCreate', async interaction => {
 					})
 			} else return
 		}
+      } catch (e) {
+        let emed = new EmbedBuilder()
+          .setTitle(`${bot.error} • Error Occured`)
+          .setDescription(`\`\`\`${e.stack}\`\`\``)
+          .setColor(bot.color)
+
+        bot.sendhook(null, {
+          channel: bot.err_chnl,
+          embed: emed
+        })
+
+        interaction.followUp({
+          embeds: [
+            {
+              description: `${
+                bot.error
+                } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
+              color: bot.color
+            }
+          ]
+        })
+}    
 	}
 })

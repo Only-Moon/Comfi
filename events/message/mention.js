@@ -1,5 +1,5 @@
 const bot = require('../../index')
-const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js')
+const { EmbedBuilder,ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js')
 
 /* 
 * Comfi Bot for Discord 
@@ -17,7 +17,7 @@ bot.on('messageCreate', async message => {
 	if (mentionRegex) {
 		let totalCommands = 0
 		bot.slashCommands.each(c => totalCommands++)
-		const ping = new MessageEmbed()
+		const ping = new EmbedBuilder()
 			.setDescription(
 				` > ɛiɜ • **Hello I'm ${
 					bot.user.username
@@ -32,25 +32,25 @@ bot.on('messageCreate', async message => {
 			.setFooter({text: `Requested by ${message.author.username}`})
 			.setTimestamp()
 
-		let sup = new MessageButton()
-			.setStyle('LINK')
+		let sup = new ButtonBuilder()
+			.setStyle(ButtonStyle.Link)
 			.setLabel('Join Support!')
 			.setURL(bot.support)
 			.setEmoji('883032991293653062')
 
-		let inv = new MessageButton()
-			.setStyle('LINK')
+		let inv = new ButtonBuilder()
+			.setStyle(ButtonStyle.Link)
 			.setLabel('Invite Me!')
 			.setURL(bot.dash + 'invite')
 			.setEmoji('883017868944502804')
 
-		let dash = new MessageButton()
-			.setStyle('LINK')
+		let dash = new ButtonBuilder()
+			.setStyle(ButtonStyle.Link)
 			.setLabel('Check Dashboard!')
 			.setURL(bot.dash)
 			.setEmoji('883017884014637066')
 
-		let row = new MessageActionRow().addComponents(sup, inv, dash)
+		let row = new ActionRowBuilder().addComponents(sup, inv, dash)
 
     try {
     

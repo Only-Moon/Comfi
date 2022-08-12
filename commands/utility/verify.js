@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, MessageCollector } = require("discord.js")
+const { CommandInteraction, EmbedBuilder, MessageCollector } = require("discord.js")
 const guilds = require("../../models/guild")
 
 module.exports = {
@@ -23,12 +23,12 @@ module.exports = {
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
     if (guild.verification) {
       if (interaction.member.roles.cache.has(guild.verification_role)) {
-        return interaction.editReply({ content: `${bot.crosss} • You are already verified in this server!` })
+        return await  bot.errorEmbed(bot, interaction, `You are already verified in this server!`)
       } else {
         await reRun(interaction.member, bot, interaction)
       }
     } else {
-      return await interaction.editReply({ content: `${bot.crosss} • Verification is disabled in this server!` })
+        return await  bot.errorEmbed(bot, interaction, `Verification is disabled in this server!`)
     }
   }
 }
@@ -68,7 +68,7 @@ async function reRun(member, bot, interaction) {
     const channel = interaction.channel
     if (!channel) return;
     const word = getWord()
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setImage(`https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`)
       .setColor(bot.color)
     const hoisterMsg = await channel.send({ content: `${format(guild.verification_message)}`, embeds: [embed] })

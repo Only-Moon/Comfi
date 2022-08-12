@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -17,7 +17,7 @@ bot.on("messageDelete", async (message) => {
     if(message.author.bot) return;
   
     if(message.author) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setTitle(`Message Deleted!`)
     .setColor(bot.color)
     .setDescription(` > <a:zzzghostheart:883017884014637066> • **Channel:** <#${message.channel.id}>\n > <a:zzzghostheart:883017884014637066> • **Author:** ${message ? `<@${message.author.id}>` : "No author found"}`)

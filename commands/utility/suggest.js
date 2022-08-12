@@ -7,7 +7,7 @@
 
 const guilds = require('../../models/guild')
 const simplydjs = require('simply-djs')
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js')
 
 module.exports = {
   name: 'suggest',
@@ -16,13 +16,13 @@ module.exports = {
   directory: "utility",
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'The Suggestion',
       name: 'suggestion',
       required: true
     }
   ],
-  userperm: [''],
+  userperm: ['MANAGE_GUILD'],
   botperm: [''],
 	/**
 	 *

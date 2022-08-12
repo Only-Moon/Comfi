@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageButton, MessageActionRow, MessageEmbed, MessageAttachment } = require('discord.js')
+const { CommandInteraction, ButtonBuilder, ActionRowBuilder, EmbedBuilder, AttachmentBuilder,  ApplicationCommandOptionType,  ButtonStyle } = require('discord.js')
 const r = require('link-checker-malicious')
 const fetch = require("axios")
 
@@ -16,7 +16,7 @@ module.exports = {
   directory: "utility",
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Url to take ss',
       name: 'url',
       required: true
@@ -62,15 +62,15 @@ module.exports = {
 
           const image = new MessageAttachment(buffer, 'screenshot.png')
 
-          const emb = new MessageEmbed()
+          const emb = new EmbedBuilder()
             .setColor(bot.color)
             .setAuthor({ name: `Comfi™ Screenshot System`, iconURL: bot.user.displayAvatarURL({ dynamic: true }) })
             .setImage(`attachment://screenshot.png`)
             .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({ dynamic: true })}` });
 
-          const row = new MessageActionRow().addComponents(
+          const row = new ActionRowBuilder().addComponents(
             new MessageButton()
-              .setStyle('LINK')
+              .setStyle(ButtonStyle.Link)
               .setURL(`${url}`)
               .setEmoji(`883017898984103986`)
               .setLabel('Go to Site !!'));

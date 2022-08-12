@@ -1,4 +1,4 @@
-const { Interaction, MessageEmbed } = require('discord.js')
+const { Interaction, EmbedBuilder } = require('discord.js')
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
 
@@ -49,7 +49,7 @@ bot.on('interactionCreate', async interaction => {
 
                       await interaction.member.roles.remove(r.role).catch(() => null)
                     }, 5000)
-                    const embed = new MessageEmbed()
+                    const embed = new  EmbedBuilder()
                       .setDescription(
                         `> ${bot.tick} • I have removed the <@&${
                         r.role
@@ -66,7 +66,7 @@ bot.on('interactionCreate', async interaction => {
 
                       await interaction.member.roles.add(r.role).catch(() => null)
                     }, 5000)
-                    const embed = new MessageEmbed()
+                    const embed = new  EmbedBuilder()
                       .setDescription(
                         `> ${bot.tick} • I have given you the <@&${
                         r.role

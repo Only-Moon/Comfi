@@ -7,7 +7,7 @@
 
 const bot = require('../index')
 const users = require(`../models/users`)
-const { MessageEmbed, Message } = require('discord.js')
+const { EmbedBuilder, Message } = require('discord.js')
 /**
  *
  * @param {Message} message
@@ -34,7 +34,7 @@ module.exports = async message => {
 						message.member.setNickname('').catch(() => null)
 					}
 
-					let embed = new MessageEmbed()
+					let embed = new EmbedBuilder()
 						.setTitle(`Afk Removed`)
 						.setDescription(
 							`Welcome back ${message.author.tag} \nGreat to see you!!`
@@ -45,13 +45,13 @@ module.exports = async message => {
 						.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
 						.then(msg => {
 							setTimeout(() => {
-								if (!msg.deleted) msg.delete()
+								msg.delete().catch(()=>{});
 							}, bot.ms('30s'))
 						})
 				} else {
 					message.delete().catch(() => null)
 
-					let afk = new MessageEmbed()
+					let afk = new EmbedBuilder()
 						.setTitle(`**User Afk**`)
 						.setDescription(
 							`${
@@ -66,7 +66,7 @@ module.exports = async message => {
 						.send({ embeds: [afk], allowedMentions: { repliedUser: false } })
 						.then(msg => {
 							setTimeout(() => {
-								if (!msg.deleted) msg.delete()
+								msg.delete().catch(()=>{});
 							}, bot.ms('30s'))
 						})
 				}

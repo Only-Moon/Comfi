@@ -7,7 +7,7 @@
 
 const {
   CommandInteraction,
-  MessageEmbed,
+  EmbedBuilder, ApplicationCommandOptionType,
 } = require('discord.js')
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
   options: [
     {
       name: 'user',
-      type: 'USER',
+      type: ApplicationCommandOptionType.User,
       description: 'tag to see their invs',
       required: false
     }
@@ -38,19 +38,20 @@ module.exports = {
       let userInv = invites.filter(u => u.inviter && u.inviter.id === user.id)
 
       if (userInv.size <= 0) {
-        return interaction.channel.send({
-          content: `${user} has \`0\` invites `
-        })
+        return await  bot.errorEmbed(bot, interaction, `${user} has \`0\` invites `
+        )
       }
 
       let invCodes = userInv.map(x => x.code).join('\n')
       let i = 0
       userInv.forEach(inv => (i += inv.uses))
 
-      const tackerEmbed = new MessageEmbed()
+      const tackerEmbed = new EmbedBuilder()
         .setDescription(`**_Invites  of :_** ${user} `)
-        .addField(`User Invites`, `${i}`)
-        .addField('Invite Codes:', `${invCodes}`)
+        .addFields(
+      {name: `User Invites`, value: `${i}`, inline: true},
+      {name: 'Invite Codes:', value: `${invCodes}`, inline: true}
+        )
         .setColor(bot.color)
 
       await interaction.followUp({ embeds: [tackerEmbed] })

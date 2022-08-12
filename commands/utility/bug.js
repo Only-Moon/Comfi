@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, Modal, MessageActionRow, TextInputComponent } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ModalBuilder, ActionRowBuilder, TextInputStyle, ApplicationCommandOptionType, TextInputBuilder } = require('discord.js')
 
 module.exports = {
   name: 'bugreport',
@@ -28,17 +28,17 @@ module.exports = {
         .setCustomId('Bug')
         .setTitle(`Comfi™ Bug Report`)
         .addComponents(
-          new MessageActionRow().addComponents(
-            new TextInputComponent()
+          new ActionRowBuilder().addComponents(
+            new TextInputBuilder()
               .setCustomId('title')
               .setLabel(`Title for The bug`)
-              .setStyle("SHORT")
+              .setStyle(TextInputStyle.Short)
           ),
-          new MessageActionRow().addComponents(
-            new TextInputComponent()
+          new ActionRowBuilder().addComponents(
+            new TextInputBuilder()
               .setCustomId('description')
               .setLabel(`Sumbit Comfi's Bug Report Here`)
-              .setStyle('PARAGRAPH')
+              .setStyle(TextInputStyle.Paragraph)
           )
         )
       await interaction.showModal(modal);

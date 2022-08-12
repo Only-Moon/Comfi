@@ -1,5 +1,5 @@
 const bot = require('../../index')
-const { MessageEmbed, MessageAttachment } = require('discord.js')
+const { EmbedBuilder, AttachmentBuilder } = require('discord.js')
 const guilds = require('../../models/guild')
 
 bot.on('messageCreate', async message => {
@@ -36,7 +36,7 @@ bot.on('messageCreate', async message => {
 
         const emb = guild.boost_embed.map(async (em) => {
 
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setAuthor({
               name: em.embed.author?.text ? format(em.embed.author?.text) : '',
             avatarURL: em.embed.author?.icon_url
@@ -56,7 +56,7 @@ bot.on('messageCreate', async message => {
           if (guild.boost_embedtgl) {
             await boostChannel.send({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
           } else {
-            let image = new MessageAttachment(`${guild.boost_image}`)
+            let image = new AttachmentBuilder(`${guild.boost_image}`)
             await boostChannel.send({ content: format(cont), files: [image], allowedMentions: { repliedUser: true } })
           }
         })

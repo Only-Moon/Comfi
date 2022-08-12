@@ -6,7 +6,7 @@
 */
 
 const sourcebin = require('sourcebin_js'),
-  { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js')
+ { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ApplicationCommandOptionType, ButtonStyle } = require('discord.js')
 
 module.exports = {
   name: 'sourcebin',
@@ -14,13 +14,13 @@ module.exports = {
   directory: "utility",
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'title',
       description: 'What is the title of your code?',
       required: true
     },
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'language',
       description: 'What is the language of your code?',
       required: true,
@@ -64,7 +64,7 @@ module.exports = {
       ]
     },
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'code',
       description: "What's the code?",
       required: true
@@ -93,20 +93,20 @@ module.exports = {
         ],
         { title: Title }
       )
-      .then(src => {
-        let embed = new MessageEmbed()
+      .then(async src => {
+        let embed = new EmbedBuilder()
           .setTitle(`Comfi™ Sourcebin`)
           .setColor(bot.color)
-          .setDescription(`Code:\n\`\`\`js\n${Content}\n\`\`\``)
+          .setDescription(`Code:\n\`\`\`js\n${Content ? Content.split("").slice(0, 4000).join("") : Content}\n\`\`\``)
 
-        const row = new MessageActionRow().addComponents(
-          new MessageButton()
-            .setStyle('LINK')
+        const row = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
             .setURL(`${src.url}`)
             .setLabel('Bin Url!')
         )
 
-        interaction.followUp({
+       await interaction.followUp({
           components: [row],
           embeds: [embed]
         })

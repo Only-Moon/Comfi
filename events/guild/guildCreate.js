@@ -1,9 +1,9 @@
 const bot = require('../../index')
 const {
-	MessageEmbed,
-	MessageButton,
-	MessageActionRow,
-	Permissions
+	EmbedBuilder,
+	ButtonBuilder, ButtonStyle,
+	ActionRowBuilder,
+	Permissions, ChannelType
 } = require('discord.js')
 const guilds = require(`../../models/guild`)
 
@@ -20,18 +20,18 @@ bot.on('guildCreate', async guild => {
 	{
 		let ch = guild.channels.cache.find(
 			channel =>
-				channel.type === 'GUILD_TEXT' &&
-				channel.permissionsFor(guild.me).has('SEND_MESSAGES')
+				channel.type === ChannelType.GuildText &&
+				channel.permissionsFor(guild.me).has(bot.functions.fixPermissions('SEND_MESSAGES'))
 		)
 
-		let button = new MessageButton()
-			.setStyle('LINK')
+		let button = new ButtonBuilder()
+			.setStyle(ButtonStyle.Link)
 			.setLabel('Support')
 			.setURL(`https://discord.gg/remYPHCVgW`)
 
-		const row = new MessageActionRow().addComponents(button)
+		const row = new ActionRowBuilder().addComponents(button)
 
-		let msg = new MessageEmbed()
+		let msg = new EmbedBuilder()
 			.setTitle(
 				'<a:pinkheart_cs:883033001599074364> Thanks for adding me! <a:pinkheart_cs:883033001599074364>'
 			)
@@ -39,9 +39,9 @@ bot.on('guildCreate', async guild => {
 			.setDescription(
 				`Hey, thanks for adding me to ${
 					guild.name
-				} :-<a:wing_cs:883032991293653062> \n My Prefix Is **/** \n\n To get started type **/help** Or **/help ping**`
+				} :-<a:wing_cs:883032991293653062> \n My Prefix Is **/** \n\n To get started type **/help** Or **/settings**`
 			)
-			.setFooter({text: 'Comfi™ v1.0.0'})
+			.setFooter({text: 'Comfi™ v3.0.0'})
 
     if (ch) {
 		ch.send({
@@ -56,8 +56,8 @@ bot.on('guildCreate', async guild => {
 		const Channel = guild.channels.cache
 			.find(
 				ch =>
-					ch.type == 'GUILD_TEXT' &&
-					ch.permissionsFor(ch.guild.me).has('CREATE_INSTANT_INVITE')
+					ch.type == ChannelType.GuildText &&
+					ch.permissionsFor(ch.guild.me).has(bot.functions.fixPermissions('CREATE_INSTANT_INVITE'))
 			)
 			.createInvite({
 				maxAge: 0,
@@ -70,7 +70,7 @@ bot.on('guildCreate', async guild => {
     let theowner = "Owner Not Found !!";
     await guild.fetchOwner().then(({ user }) => { theowner = user; }).catch(() => {})
         
-				const embed = new MessageEmbed()
+				const embed = new EmbedBuilder()
 					.setTitle('Someone invited me!')
 					.setDescription(
 						`**Guild Name:** ${guild.name} (${guild.id})\n **Owner Info:** \`\`\`${theowner ? `${theowner.tag} (${theowner.id})` : `${theowner} (${guild.ownerId})`}\`\`\` \n**Members:** ${
@@ -81,10 +81,10 @@ bot.on('guildCreate', async guild => {
 					.setColor(bot.color)
 					.setFooter({text: `I'm in ${bot.guilds.cache.size} Guilds Now!`})
 
-				const button = new MessageActionRow().addComponents(
-					new MessageButton()
+				const button = new ActionRowBuilder().addComponents(
+					new ButtonBuilder()
 						.setLabel('Join that Guild')
-						.setStyle('LINK')
+						.setStyle(ButtonStyle.Link)
 						.setURL(invite.url)
 				)
 

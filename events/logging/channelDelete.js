@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder, AuditLogEvent } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -120,11 +120,11 @@ bot.on("channelDelete", async (channel) => {
             logging: false,
             logging_channel: "NONE"
         })
-        } if(!channel.guild.me.permissions.has("VIEW_AUDIT_LOG")) return;
+        } if(!cchannel.guild.members.me.permissions.has(bot.functions.fixPermissions("VIEW_AUDIT_LOG"))) return;
 
-    const AuditLogFetch = await channel.guild.fetchAuditLogs({limit: 1, type: "CHANNEL_DELETE"});
+    const AuditLogFetch = await channel.guild.fetchAuditLogs({limit: 1, type: AuditLogEvent.ChannelDelete})
     const Entry = AuditLogFetch.entries.first();
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setTitle(`Channel Deleted!`)
     .setColor(bot.color)
     .setDescription(`> <a:stars_aesthetic:883033007836000308> • **Author:** <@${Entry.executor.id}>`)

@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder, AuditLogEvent } = require('discord.js')
 
 /* 
 * Comfi Bot for Discord 
@@ -18,22 +18,27 @@ bot.on('threadCreate', async thread => {
 		if (thread.joinable && !thread.joined) {
 			await thread.join().catch(() => null)
 		}
-	} catch (e) {
-		bot.sendhook(`Error Occured \n ${e.stack}`,
-			{
-				channel: bot.err_chnl
-			})
-	}
+      } catch (e) {
+        let emed = new EmbedBuilder()
+          .setTitle(`${bot.error} • Error Occured`)
+          .setDescription(`\`\`\`${e.stack}\`\`\``)
+          .setColor(bot.color)
+
+        bot.sendhook(null, {
+          channel: bot.err_chnl,
+          embed: emed
+        })
+  }
 
 	if (!guild.logging) return;
-	if (!thread.guild.me.permissions.has('VIEW_AUDIT_LOG')) return
+	if (!thread.guild.members.me.permissions.has(bot.functions.fixPermissions("VIEW_AUDIT_LOG"))) return;
 
 	const AuditLogFetch = await thread.guild.fetchAuditLogs({
 		limit: 1,
-		type: 'THREAD_CREATE'
+		type: AuditLogEvent.ThreadCreate
 	})
 	const Entry = AuditLogFetch.entries.first()
-	const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setTitle(`Thread Created!`)
 		.setColor(bot.color)
 		.setDescription(

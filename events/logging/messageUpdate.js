@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -15,7 +15,7 @@ bot.on("messageUpdate", async (oldMessage, newMessage) => {
   if (!newMessage.guild) return;
   if (newMessage) return;
   if (newMessage.author ? newMessage.author.bot : true) return;
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setTitle(`Message Edited!`)
     .setColor(bot.color)
     .setDescription(` > <a:zzzghostheart:883017884014637066> • **Channel:** <#${newMessage.channel.id}>\n > <a:zzzghostheart:883017884014637066> • **Author:** <@${newMessage.author.id}>`)

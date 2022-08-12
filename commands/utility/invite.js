@@ -7,9 +7,10 @@
 
 const {
   CommandInteraction,
-  MessageEmbed,
-  MessageButton,
-  MessageActionRow
+  EmbedBuilder,
+  ButtonBuilder,
+  ActionRowBuilder,
+  ButtonStyle
 } = require('discord.js')
 
 module.exports = {
@@ -29,26 +30,26 @@ module.exports = {
 
     try {
 
-      const embed = new MessageEmbed()
-        .setAuthor('Hello Dear!', interaction.user.avatarURL({ dynamic: true }))
+      const embed = new EmbedBuilder()
+        .setAuthor({name: 'Hello Dear!', iconURL: interaction.user.avatarURL({ dynamic: true })})
         .setTitle('Comfi Invite Link!')
         .setDescription(
-          "I'm a cool Discord Bot, ain't I? Use the buttons below to invite me to your server or join our support server!\n\nStay Safe"
+          "I'm am Aesthetic Multipurpose Discord Bot, ain't I? Use the buttons below to invite me to your server or join our support server!\n\nStay Safe"
         )
         .setThumbnail(bot.user.displayAvatarURL())
         .setColor(bot.color)
 
-      const yes = new MessageButton()
-        .setStyle('SUCCESS')
+      const yes = new ButtonBuilder()
+        .setStyle(ButtonStyle.Success)
         .setLabel('Sure!')
         .setCustomId('inviteyes')
 
-      const no = new MessageButton()
-        .setStyle('DANGER')
+      const no = new ButtonBuilder()
+        .setStyle(ButtonStyle.Danger)
         .setLabel('Nope!')
         .setCustomId('inviteno')
 
-      const row = new MessageActionRow().addComponents(yes).addComponents(no)
+      const row = new ActionRowBuilder().addComponents(yes).addComponents(no)
 
      await interaction
         .editReply({
@@ -58,7 +59,7 @@ module.exports = {
         })
         .catch(() => null)
 
-    } catch {
+    } catch (e) {
       await bot.senderror(interaction, e)
     }
 

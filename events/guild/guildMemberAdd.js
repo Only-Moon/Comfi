@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed, MessageAttachment } = require('discord.js')
+const { EmbedBuilder, AttachmentBuilder } = require('discord.js')
 
 /* 
 * Comfi Bot for Discord 
@@ -64,7 +64,7 @@ bot.on('guildMemberAdd', async member => {
 
         const emb = guild.welcome_embed.map(async (em) => {
 
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setAuthor({ 
               name: 
               em.embed?.author?.text ? em.embed?.author?.text : '',
@@ -99,7 +99,7 @@ bot.on('guildMemberAdd', async member => {
         })
       } else {
         if (guild.welcome_dmuser) {
-          let welcome_image = new MessageAttachment(`${guild.welcome_image}`)
+          let welcome_image = new AttachmentBuilder(`${guild.welcome_image}`)
 
           member
             .send({
@@ -136,18 +136,17 @@ await member.roles
   let nick = format(guild.auto_nick)
   member.setNickname(`${nick}`).catch(() => { })
 
-  } catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+      } catch (e) {
+        let emed = new EmbedBuilder()
+          .setTitle(`${bot.error} • Error Occured`)
+          .setDescription(`\`\`\`${e.stack}\`\`\``)
+          .setColor(bot.color)
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
-
-  }
+        bot.sendhook(null, {
+          channel: bot.err_chnl,
+          embed: emed
+        })
+      }
     
 })
 

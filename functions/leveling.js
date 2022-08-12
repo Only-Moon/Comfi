@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { Message, MessageAttachment, MessageEmbed, Channel } = require('discord.js')
+const { Message, AttachmentBuilder, EmbedBuilder } = require('discord.js')
 const bot = require('../index')
 const guilds = require(`../models/guild`)
 const users = require(`../models/users`)
@@ -13,7 +13,6 @@ const users = require(`../models/users`)
 /**
  *
  * @param {Message} message
- * @param {Channel} channel
  */
 module.exports = async (message, bot) => {
   const guild = await guilds.findOne({ guildId: message.guild.id })
@@ -109,8 +108,8 @@ if (guild.leveling_roles.length > 0) {
 
         const emb = guild.leveling_embed.map(async (em) => {
 
-          const embed = new MessageEmbed()
-            .setAuthor({
+          const embed = new EmbedBuilder()
+          .setAuthor({
               name: em.embed.author ?.text ? em.embed.author ?.text : '',
               iconURL: em.embed.author ?.icon_url
                 ? em.embed.author ?.icon_url : '', url: em.embed.author ?.url ? em.embed.author ?.url : ''
@@ -140,7 +139,7 @@ if (guild.leveling_roles.length > 0) {
           }
         })
       } else {
-        const image = new MessageAttachment(guild.leveling_image)
+        const image = new AttachmentBuilder(guild.leveling_image)
         if (!channel) {
           return message
             .reply({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
@@ -157,15 +156,15 @@ if (guild.leveling_roles.length > 0) {
       };
     } else return;
   } else return;
-} catch (e) {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
+      } catch (e) {
+        let emed = new EmbedBuilder()
+          .setTitle(`${bot.error} • Error Occured`)
+          .setDescription(`\`\`\`${e.stack}\`\`\``)
+          .setColor(bot.color)
 
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+        bot.sendhook(null, {
+          channel: bot.err_chnl,
+          embed: emed
+        })
 
 }}

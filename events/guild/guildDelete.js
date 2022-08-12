@@ -24,7 +24,7 @@ bot.on('guildDelete', async guild => {
 		})
 		.catch(() => {})
 
-	const embed = new discord.MessageEmbed()
+	const embed = new discord.EmbedBuilder()
 		.setTitle('I got kicked!')
 		.setDescription(
 			`**Guild Name:** ${guild.name} (${guild.id})\n **Owner Info** \`\`\`${

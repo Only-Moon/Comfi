@@ -1,6 +1,6 @@
 const bot = require(`../../index`)
 const guilds = require(`../../models/guild`)
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder} = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -14,7 +14,7 @@ bot.on("inviteCreate", async (invite) => {
     if(!guild.logging) return;
     if(!invite.guild) return;
     
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
     .setTitle(`Invite Created!`)
     .setColor(bot.color)
     .setDescription(` > <a:stars_aesthetic:883033007836000308> • **Channel:** ${invite.channel ? `<#${invite.channel.id}>` : "No channel found"}
