@@ -7,7 +7,7 @@
 
 const {
 	CommandInteraction,
-	MessageEmbed,
+ EmbedBuilder,
 	MessageCollector
 } = require('discord.js')
 const guilds = require('../../models/guild')
@@ -16,16 +16,15 @@ module.exports = {
 	name: 'verification',
 	description: 'Setup server verification system',
   directory: "setting",
-	type: 'CHAT_INPUT',
 	ownerOnly: false,
-	botperm: ['MANAGE_ROLES'],
-	userperm: ['ADMINISTRATOR'],
+	botperm: ['ManageGuild'],
+	userperm: ['ManageGuild'],
 	/**
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
 	run: async (bot, interaction, args) => {
-		const step1 = new MessageEmbed()
+		const step1 = new EmbedBuilder()
 			.setTitle(`Verfication [1]`, bot.user.displayAvatarURL())
 			.setDescription(
 				`Would you like to enable or disabled the feature? Types: \`disable\`,\`enable\``
@@ -33,19 +32,19 @@ module.exports = {
 			.setColor(bot.color)
 			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
-		const step2 = new MessageEmbed()
+		const step2 = new EmbedBuilder()
 			.setTitle(`Verification [2]`, bot.user.displayAvatarURL())
 			.setDescription(`What should the verification channel be?`)
 			.setColor(bot.color)
 			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
-		const step3 = new MessageEmbed()
+		const step3 = new EmbedBuilder()
 			.setTitle(`Verification [3]`, bot.user.displayAvatarURL())
 			.setDescription(`What is the verified role?`)
 			.setColor(bot.color)
 			.setFooter({text:`You can say "cancel" at any time to cancel the process`})
 
-		const step4 = new MessageEmbed()
+		const step4 = new EmbedBuilder()
 			.setTitle(`Verification [4]`, bot.user.displayAvatarURL())
 			.setDescription(
 				`What should the verfication message be?\n\`\`\`{{user#mention}} - the users id\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{server#id}} - the server id\n{{server#name}} - the server name\n{{server#membercount}} - the server membercount\n\`\`\``
@@ -157,23 +156,16 @@ module.exports = {
 
 		collector.on('end', async (collected, reason) => {
 			if (reason === '0') {
-				return interaction.channel.send({
-					content: `${bot.crosss} • Process has been stopped!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `Process has been stopped!`
+				)
 			}
 			if (reason === '1') {
-				return interaction.channel.send({
-					content: `${
-						bot.error
-					} • There was an error with your anwser, please make sure to follow the steps!`
-				})
+        return await  bot.errorEmbed(bot, interaction, `There was an error with your anwser, please make sure to follow the steps!`
+				)
 			}
 			if (reason === '3') {
-				return interaction.channel.send({
-					content: `${
-						bot.crosss
-					} • Verification Message  should not contain more than 1024 characters`
-				})
+        return await  bot.errorEmbed(bot, interaction, ` Verification Message  should not contain more than 1024 characters`
+				)
 			}
 			if (reason === '4') {
 				await guilds.findOneAndUpdate(
@@ -182,9 +174,8 @@ module.exports = {
 						verification: false
 					}
 				)
-				return interaction.channel.send({
-					content: `${bot.tick} • Verification have now been disabled!`
-				})
+        return await bot.successEmbed(bot, interaction, `Verification have now been disabled!`
+				)
 			}
 			if (reason === '2') {
 				await guilds.findOneAndUpdate(
@@ -196,9 +187,8 @@ module.exports = {
 						verification_role: finalData.role
 					}
 				)
-				return interaction.channel.send({
-					content: `${bot.tick} • Verification data has now been setup!`
-				})
+        return await bot.successEmbed(bot, interaction, `Verification data has now been setup!`
+				)
 			}
 		})
 	}

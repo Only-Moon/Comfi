@@ -6,7 +6,7 @@
 */
 
 const axios = require('axios');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "sauce",
@@ -14,8 +14,7 @@ module.exports = {
     ownerOnly: false,
     options: [
         {
-            type: 'STRING',
-            description: 'the image to trace anime',
+            type: ApplicationCommandOptionType.String,            description: 'the image to trace anime',
             name: 'image',
             required: true,
         },
@@ -64,12 +63,12 @@ const image = interaction.options.getString("image")
               .catch(async (err) => {
                         return await  bot.errorEmbed(bot, interaction, `Unable to trace this image`)
               })
-              const Embed = new MessageEmbed()
+              const Embed = new EmbedBuilder()
               .setTitle(`${animeDetails.title.english} | Founded`)
               .setDescription(        animeDetails.description.substring(0, 200) +
               ` **[[Read More](https://anilist.co/anime/${animeResult.anilist})]**`)
-              .addField(`Traced Image/Video`, `EP. ${animeResult.episode} [Video Clip](${animeResult.video}) | [Image](${animeResult.image})`, true)
-              .addField(`Status`, `${animeDetails.episodes} Episodes | ${animeDetails.status}`, true)
+              .addFields({name: `Traced Image/Video`, value: `EP. ${animeResult.episode} [Video Clip](${animeResult.video}) | [Image](${animeResult.image})`, inline: true},
+      {name: `Status`, value: `${animeDetails.episodes} Episodes | ${animeDetails.status}`, inline: true})
               .setImage(animeDetails.bannerImage)
               .setColor(animeDetails.coverImage.color
                 ? parseInt(animeDetails.coverImage.color.replace('#', '0x'))

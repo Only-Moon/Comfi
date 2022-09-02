@@ -54,12 +54,8 @@ module.exports = {
 								.catch(() => null)
 						})
 				} else {
-					return await interaction
-						.editReply({
-							content: `${
-								bot.crosss
-							} • Please setup leveling before using this command!`
-						})
+        return await  bot.errorEmbed(bot, interaction, `Please setup leveling before using this command!`
+						)
 						.catch(() => null)
 
 			}

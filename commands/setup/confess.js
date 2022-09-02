@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require("discord.js");
 const guilds = require('../../models/guild');
 
 module.exports = {
@@ -15,27 +15,27 @@ module.exports = {
   directory: "setting",
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand, 
       name: 'enable',
       description: 'Sets channel for Confession',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'channel for confession',
           name: 'channel',
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [ChannelType.GuildText],
         },
       ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'disable',
       description: 'Disables the confession channel',
     },
   ],
-  userperm: ["MANAGE_GUILD"],
-  botperm: ["MANAGE_GUILD"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /**
    *
    * @param {CommandInteraction} interaction

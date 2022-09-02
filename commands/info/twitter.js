@@ -6,7 +6,7 @@
 */
 
 const twitter = require('twitter-api.js');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "twitter",
@@ -14,7 +14,7 @@ module.exports = {
     ownerOnly: false,
     options: [
         {
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             description: 'Twitter username to search',
             name: 'username',
             required: true,
@@ -29,12 +29,13 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (bot, interaction, args) => {
-		let user = interaction.options.getString("username ")
+		let user = interaction.options.getString("username")
 
 		try {
 			const body = await twitter.users(user);
-			const tweet = new MessageEmbed()
+			const tweet = new EmbedBuilder()
 				.setColor(bot.color)
+        .setURL(body.url)
 				.setAuthor({ 
 name: 					`@${body.screen_name.toLowerCase()}`,
 					iconURL: body.verified

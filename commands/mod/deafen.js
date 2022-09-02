@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js')
 
 module.exports = {
 	name: 'deafan',
@@ -14,20 +14,20 @@ module.exports = {
   directory: "mod",
 	options: [
 		{
-			type: 'USER',
+			type: ApplicationCommandOptionType.User,
 			description: 'user to deafen',
 			name: 'user',
 			required: true
 		},
 		{
-			type: 'STRING',
+			type: ApplicationCommandOptionType.String,
 			description: 'reason to deafen',
 			name: 'reason',
 			required: true
 		}
 	],
-	userperm: ['DEAFEN_MEMBERS'],
-	botperm: ['DEAFEN_MEMBERS'],
+	userperm: ['DeafenMembers'],
+	botperm: ['DeafemMembers'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -49,7 +49,7 @@ module.exports = {
 			let reason = interaction.options.getString("reason")
 
 			await member.voice.setDeaf(true, reason)
-			interaction.editReply(`${bot.tick} • Deafened ${member.user.username} `)
+        return await bot.successEmbed(bot, interaction, `Successfully Deafened ${member.user.username} `)
 		} catch (e) {
   await bot.senderror(interaction, e)
 		}

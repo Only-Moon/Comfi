@@ -6,7 +6,7 @@
 */
 
 const urban = require('relevant-urban');
-const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
   name: "urbandictionary",
@@ -14,7 +14,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Word to Search',
       name: 'word',
       required: true,
@@ -36,19 +36,19 @@ module.exports = {
       if (!res) return interaction.editReply("No results found for this topic, sorry!");
       let { word, urbanURL, definition, example, thumbsUp, thumbsDown, author } = res;
 
-      let embed = new MessageEmbed()
+      let embed = new EmbedBuilder()
         .setColor(bot.color)
-        .setAuthor(`Word - ${word}`)
+        .setAuthor({name: `Word - ${word}`})
         .setThumbnail(image)
         .setDescription(`**Defintion:**\n*${definition || "No definition"}*\n\n**Example:**\n*${example || "No Example"}*`)
-        .addField('**Rating:**', `**\`Upvotes: ${thumbsUp} | Downvotes: ${thumbsDown}\`**`)
-        .addField("**Link**", `[link to ${word}](${urbanURL})`)
-        .addField("**Author:**", `${author || "unknown"}`)
+        .addFields({name: '**Rating:**', value: `**\`Upvotes: ${thumbsUp} | Downvotes: ${thumbsDown}\`**`, inline: true},
+      {name: "**Link**", value: `[link to ${word}](${urbanURL})`, inline: true},
+      {name: "**Author:**", value: `${author || "unknown"}`, inline: true })
         .setTimestamp();
 
-      const row = new MessageActionRow().addComponents(
-        new MessageButton()
-          .setStyle('LINK')
+      const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setStyle(ButtonStyle.Link)
           .setURL(`${urbanURL}`)
           .setLabel(`Link to ${word}`)
       )

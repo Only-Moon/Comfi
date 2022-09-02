@@ -6,13 +6,13 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { ContextMenuInteraction, MessageEmbed } = require('discord.js')
+const { ContextMenuInteraction, EmbedBuilder, ApplicationCommandType} = require('discord.js')
 const moment = require('moment')
 require('moment-duration-format')
 
 module.exports = {
 	name: 'userinfo',
-	type: 'USER',
+	type: ApplicationCommandType.User,
   description: "get user's info using context menu",
   directory: "context",
 	/**
@@ -41,8 +41,8 @@ module.exports = {
 			const createdate = moment(data.user.createdTimestamp).format(
 				'MMMM Do YYYY, H:mm:ss'
 			)
-			const embed = new MessageEmbed()
-				.setAuthor({name: user.tag})
+			const embed = new EmbedBuilder()
+				.setAuthor({name: `Information for `+user.tag})
 				.setThumbnail(user.displayAvatarURL({ dynamic: true }))
 
 				.setDescription(

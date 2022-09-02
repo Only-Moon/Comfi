@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 const guilds = require("../../models/guild")
 
 module.exports = {
@@ -15,23 +15,23 @@ module.exports = {
   directory: "setting",
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Test Boost Detector System',
       name: 'boost',
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Test Leave System',
       name: 'leave',
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Test Welcome System',
       name: 'welcome',
     },
   ],
-  userperm: ["MANAGE_GUILD"],
-  botperm: ["MANAGE_GUILD"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /**
    *
    * @param {CommandInteraction} interaction
@@ -48,27 +48,27 @@ module.exports = {
       if (sub === "boost") {
         if (guild.boost) {
           bot.emit("guildMemberUpdate", interaction.member)
-          interaction.editReply({ content: `${bot.tick} • Tested Boost Detector System!` })
+        return await bot.successEmbed(bot, interaction, `Tested Boost Detector System. Check <#${guilD.boost_channel}>`)
         } else {
-          interaction.editReply({ content: `${bot.crosss} • Boost Detector is Disabled` })
+        return await  bot.errorEmbed(bot, interaction, `Boost Detector is Disabled` )
         }
       }
 
       if (sub === "leave") {
         if (guild.leave) {
           bot.emit("guildMemberLeave", interaction.member)
-          interaction.editReply({ content: `${bot.tick} • Tested leave system!` })
+        return await bot.successEmbed(bot, interaction, `Tested leave system. Check <#${guild.leave_channel}>`)
         } else {
-          interaction.editReply({ content: `${bot.crosss} • Leave System is Disabled ` })
+        return await  bot.errorEmbed(bot, interaction, `Leave System is Disabled `)
         }
       }
 
       if (sub === "welcome") {
         if (guild.welcome) {
           bot.emit("guildMemberAdd", interaction.member)
-          interaction.editReply({ content: `${bot.tick} • Tested Welcome System!` })
+        return await bot.successEmbed(bot, interaction, `Tested Welcome System. Check <#${guild.welcome_channel}>`)
         } else {
-          interaction.editReply({ content: `${bot.crosss} • Welcomes System is Disabled ` })
+        return await  bot.errorEmbed(bot, interaction, `Welcome System is Disabled `)
         }
       }
     } catch {

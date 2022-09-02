@@ -6,7 +6,7 @@
 */
 
 const guilds = require('../../models/guild');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ChannelType, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
   name: "chatbot",
@@ -14,11 +14,11 @@ module.exports = {
   directory: "setting",
   ownerOnly: false,
   options: [{
-    type: 'SUB_COMMAND',
+    type: ApplicationCommandOptionType.Subcommand,
     description: 'Sets the chatbot toggle true/false',
     name: 'toggle',
     options: [{
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Toggle chatbot',
       name: 'option',
       required: true,
@@ -36,27 +36,27 @@ module.exports = {
     ],
   },
   {
-    type: 'SUB_COMMAND',
+    type: ApplicationCommandOptionType.Subcommand,
     description: 'Sets the channel for chatbot',
     name: 'channel',
     options: [
       {
-        type: 'CHANNEL',
+        type: ApplicationCommandOptionType.Channel,
         description: 'Channel for Chatbot',
         name: 'name',
         required: true,
-        channelTypes: ["GUILD_TEXT"],
+        channelTypes: [ChannelType.GuildText],
       },
     ],
   },
   {
-    type: 'SUB_COMMAND',
+    type: ApplicationCommandOptionType.Subcommand,
     description: 'Disables the chatbot system',
     name: 'disable',
   },
   ],
-  userperm: ["MANAGE_CHANNELS"],
-  botperm: ["MANAGE_CHANNELS"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /** 
 *
 * @param {CommandInteraction} interaction
@@ -90,8 +90,7 @@ module.exports = {
       }
       if (option === 'channel') {
         const channel = interaction.options.getChannel('name');
-        if (!channel)
-          return interaction.editReply(`${bot.error} **Specify the channel**`);
+        if (!channel) return await  bot.errorEmbed(bot, interaction, `**Specify the channel**`);
 
         if (guild.chat_channel === channel) {
 

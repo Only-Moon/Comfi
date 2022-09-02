@@ -51,7 +51,7 @@ if (guild.leveling_roles.length > 0) {
       setTimeout(async () => {
       guild.leveling_roles.map(async l => {
         if (l.level <= user3.level) {
-          await message.member.roles.add(l.id).catch(() => null)
+          await message.member?.roles.add(l.id).catch(() => null)
         }
       })
       }, bot.ms("30s"))

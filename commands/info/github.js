@@ -6,7 +6,7 @@
 */
 
 const fetch = require('node-fetch');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "github",
@@ -15,7 +15,7 @@ module.exports = {
     ownerOnly: false,
     options: [
         {
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             description: 'Github username',
             name: 'username',
             required: true,
@@ -32,7 +32,7 @@ module.exports = {
     
         const name = interaction.options.getString("username");
 		if (!name) {
-			return interaction.editReply(`${bot.error} • Please provide a valid user`);
+        return await  bot.errorEmbed(bot, interaction, `**Please provide a valid user**`);
 		}
 
 		const url = `https://api.github.com/users/${name}`;
@@ -40,15 +40,8 @@ module.exports = {
 		let response;
 		try {
 			response = await fetch(url).then(res => res.json());
-		}
-		catch (e) {
-			return interaction.editReply(
-        {content: `${bot.error} An error occured - [Contact Support](https://comfi.xx-mohit-xx.repl.co/discord) ! \nError: ${e}`
-        });
-		}
-
-		try {
-			const embed = new MessageEmbed()
+		
+			const embed = new EmbedBuilder()
 				.setColor(bot.color)
 				.setTitle(`${response.login} (${response.id})`)
 				.setDescription(response.bio ? response.bio : 'None')

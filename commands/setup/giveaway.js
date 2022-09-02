@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require("discord.js");
 const simplydjs = require("simply-djs");
 
 module.exports = {
@@ -16,25 +16,25 @@ module.exports = {
   options: [
     {
       name: 'time',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Time when to finish the giveaway',
       required: true,
     },
     {
       name: 'winners',
-      type: 'NUMBER',
+      type: ApplicationCommandOptionType.Number,
       description: 'Number of Winners for the giveaway',
       required: true,
     },
     {
       name: 'prize',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Prize given to the giveaway winner',
       required: true,
     },
     {
       name: "req-type",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       description: "Type of requirements for giveaway aka 'Role', 'Guild', 'None'",
       required: true,
       choices: [
@@ -54,20 +54,20 @@ module.exports = {
     },
     {
       name: "req-id",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       description: "role id or guild id for role or guild requirements",
       required: false
     },    
     {
       name: 'channel',
-      type: 'CHANNEL',
+      type: ApplicationCommandOptionType.Channel,
       description: 'Channel to start the giveaway',
       required: false,
-      channelTypes: ["GUILD_TEXT"],
+      channelTypes: [ChannelType.GuildText],
     }, 
   ],
-  userperm: ["MANAGE_GUILD"],
-  botperm: ["MANAGE_GUILD"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /**
    *
    * @param {CommandInteraction} interaction

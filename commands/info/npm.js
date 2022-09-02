@@ -5,7 +5,8 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ApplicationCommandOptionType 
+ } = require('discord.js')
 const fetch = require('node-fetch')
 
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 3,
+      type: ApplicationCommandOptionType.String,
       description: 'Package Name',
       name: 'name',
       required: true,
@@ -32,7 +33,7 @@ module.exports = {
 
   run: async (bot, interaction, args) => {
 		const npm = interaction.options.getString('name');
-		if (!npm) return interaction.editReply({ content: 'Please provide a valid package to search.', ephemeral: true });
+		if (!npm) return await  bot.errorEmbed(bot, interaction, `Please provide a valid package to search.`);
 
 		let response;
 
@@ -40,23 +41,15 @@ module.exports = {
 
 		response = await fetch('https://api.npms.io/v2/search?q=' + npm)
       .then(res => res.json())
-      .catch((e) => {
-			let emed = new MessageEmbed()
-				.setTitle(`${bot.error} • Error Occured`)
-				.setDescription(`\`\`\`${e.stack}\`\`\``)
-				.setColor(bot.color)
-
-			bot.sendhook(null, {
-				channel: bot.err_chnl,
-				embed: emed
-			})
+      .catch(async (e) => {
+	        return await  bot.errorEmbed(bot, interaction, `Couldn't Find this Package`)	
 		});
 
 		const pkg = response.results[0].package;
 
-		if (!pkg) return interaction.editReply({ content: 'Please provide a valid package to search.', ephemeral: true });     
+		if (!pkg) return await interaction.editReply({ content: 'Please provide a valid package to search.', ephemeral: true });     
 
-const embed = new MessageEmbed({ // Edit this embed to your liking such as the Color. Using objects happens to make your code more organized.
+const embed = new EmbedBuilder({ // Edit this embed to your liking such as the Color. Using objects happens to make your code more organized.
 				author: {
 					name: 'NPM',
 					icon_url: 'https://i.imgur.com/ErKf5Y0.png',
@@ -92,9 +85,9 @@ const embed = new MessageEmbed({ // Edit this embed to your liking such as the C
                                 })
 		
 
-				const row = new MessageActionRow().addComponents(
-					new MessageButton()
-						.setStyle(5)
+				const row = new ActionRowBuilder().addComponents(
+					new ButtonBuilder()
+						.setStyle(ButtonStyle.Link)
 						.setURL(`https://www.npmjs.com/package/${npm}`)          
           .setEmoji(`883017868944502804`)
 						.setLabel('Go to Package!!')	);

@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js")
+const { CommandInteraction, EmbedBuilder } = require("discord.js")
 const users = require(`../../models/users`)
 const guilds = require("../../models/guild")
 
@@ -24,11 +24,11 @@ module.exports = {
   run: async (bot, interaction, args) => {
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
     
-    const rep = await bot.emoji("reply")
-    const dot = await bot.emoji("bunny_cs")
-    const one = await bot.emoji("_1_HE")
-    const two = await bot.emoji("_2_HE")
-    const three = await bot.emoji("_3_HE")
+    const rep = bot.emoji("reply")
+    const dot = bot.emoji("bunny_cs")
+    const one = bot.emoji("_1_HE")
+    const two = bot.emoji("_2_HE")
+    const three = bot.emoji("_3_HE")
              
     if (guild.leveling) {
       let members = []
@@ -65,7 +65,7 @@ module.exports = {
           })
           msg.delete().catch(() => null)
           
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setAuthor({name:`${interaction.guild.name}'s ranking leaderboard! (Top 15)`, iconURL: interaction.guild.iconURL({ dynamic: true })})
             .setDescription(top10.slice(0, 15).join("\n"))
             .setFooter({text: `Requested by ${interaction.member.displayName}`, iconURL:  interaction.user.avatarURL({dynamic: true})})
@@ -74,7 +74,7 @@ module.exports = {
         }, 2000);
       })
     } else {
-      return interaction.editReply({ content: `${bot.crosss} • Server levels are not enabled!` })
+        return await  bot.errorEmbed(bot, interaction, `Server levels are not enabled!` )
     }
   }
 } 

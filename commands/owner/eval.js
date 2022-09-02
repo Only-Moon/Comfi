@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, Util, MessageActionRow, TextInputComponent, Modal } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ActionRowBuilder, TextInputBuilder, ModalBuilder, TextInputStyle, Util } = require('discord.js')
 const { inspect } = require("util")
 const evalFunction = require("../../functions/evalFunction")
 
@@ -23,13 +23,13 @@ module.exports = {
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
-    const row = new MessageActionRow().addComponents(
-      new TextInputComponent().setCustomId('code').setLabel('Comment:').setStyle('PARAGRAPH').setPlaceholder('bot.user.username').setRequired(true).setMinLength(1)
+    const row = new ActionRowBuilder().addComponents(
+      new TextInputBuilder().setCustomId('code').setLabel('Comment:').setStyle(TextInputStyle. Paragraph).setPlaceholder('bot.user.username').setRequired(true).setMinLength(1)
     )
-    const row2 = new MessageActionRow().addComponents(
-      new TextInputComponent().setCustomId('ephemeral').setStyle('PARAGRAPH').setLabel('Ephemeral Response (true/false)').setPlaceholder('true/false').setRequired(false).setValue('false').setMinLength(4).setMaxLength(5))
+    const row2 = new ActionRowBuilder().addComponents(
+      new TextInputBuilder().setCustomId('ephemeral').setStyle(TextInputStyle. Paragraph).setLabel('Ephemeral Response (true/false)').setPlaceholder('true/false').setRequired(false).setValue('false').setMinLength(4).setMaxLength(5))
 
-    const modal = new Modal()
+    const modal = new ModalBuilder()
       .setCustomId('codeModal')
       .setTitle('Code to evaluate')
       .addComponents(row, row2)
@@ -42,22 +42,16 @@ module.exports = {
     let ephemeral = data.fields.getTextInputValue('ephemeral').toLowerCase() === true ? true : false
 
     try {
-      /**
-        const result = await eval(code);
+     const result = await eval(code)
 
-        let output = result;
-        if (typeof result !== "string") {
-            output = Util.splitMessage(inspect(result, {
-                depth: 0
-            }))[0]
-        }
-      */
+     let output = result
+
       let evaled;
       if (code.includes('await')) evaled = inspect(eval(`(async () => { ${code} })()`));
       if (!code.includes('await')) evaled = inspect(eval(code));
       let secretValues = [process.env["TOKEN"], ];
       await Promise.all(secretValues.map((value) => evaled = evaled.replaceAll(value, `❓`)));
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
       .setColor(bot.color)
       .setAuthor({name: "Eval"})
 
@@ -67,19 +61,17 @@ module.exports = {
         result: clean(evaled),
         embed: embed
       })
-
-      /**
-                  interaction.followUp({
+    
+   await data.update({
                       embeds: [
-                          new MessageEmbed()
+                          new EmbedBuilder()
                           .setTitle("Evaluation successful!")
-                          .addField("__**Input**__", `**${code}**`)
-                          .addField("__**Output**__", `\`\`\`js\n${output}\`\`\` `)
+                          .addFields({name: "__**Input**__", value: `**${code}**`, inline: true },
+            {name: "__**Output**__", value: `\`\`\`js\n${output}\`\`\` `, inline: true })
                           .setColor(bot.color)
                           .setTimestamp()
                       ]
-                  });
-      */
+                  }).catch(()=>null)
 
     } catch (e) {
       await bot.senderror(interaction, e)

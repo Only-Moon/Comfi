@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { MessageEmbed, CommandInteraction } = require('discord.js');
+const { EmbedBuilder, CommandInteraction } = require('discord.js');
 const fetch = require('node-fetch')
 
 module.exports = {
@@ -16,7 +16,6 @@ module.exports = {
   userperm: [""],
   botperm: [""],
   /** 
-     * @param {Client} client 
      * @param {CommandInteraction} interaction 
      * @param {String[]} args 
      */
@@ -27,12 +26,12 @@ module.exports = {
       await fetch('http://meme-api.herokuapp.com/gimme/memes')
         .then(response => response.json())
         .then(async (r) => {
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setImage(`${r.url}`)
             .setTitle(`${r.title}`)
             .setURL(`${r.postLink}`)
             .setColor(bot.color)
-            .setFooter(`🔼 ${r.ups} | Author: ${r.author}`)
+            .setFooter({text: `🔼 ${r.ups} | Author: ${r.author}`})
 
           await interaction.editReply({ embeds: [embed] })
         })

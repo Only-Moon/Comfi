@@ -6,7 +6,7 @@
 */
 
 const guilds = require('../../models/guild');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
   name: "antiscam",
@@ -14,12 +14,12 @@ module.exports = {
   ownerOnly: false,
   directory: "setting",
   options: [{
-    type: 'SUB_COMMAND',
+    type: ApplicationCommandOptionType.Subcommand,
     description: 'Sets the antiscam toggle true/false',
     name: 'toggle',
     options: [{
-      type: 'STRING',
-      description: 'Toggle chatbot',
+      type: ApplicationCommandOptionType.String,
+      description: 'Toggle anti scam',
       name: 'option',
       required: true,
       choices: [
@@ -36,12 +36,12 @@ module.exports = {
     ],
   },
   {
-    type: 'SUB_COMMAND',
+    type: ApplicationCommandOptionType.Subcommand,
     description: 'Sets the duration for antiscam timeout',
     name: 'duration',
     options: [
       {
-        type: 'STRING',
+        type: ApplicationCommandOptionType.String,
         description: 'time for timeout, default 12hrs',
         name: 'time',
         required: true,
@@ -49,13 +49,13 @@ module.exports = {
     ],
   },
   {
-    type: 'SUB_COMMAND',
+    type: ApplicationCommandOptionType.Subcommand,
     description: 'Disables the antiscam system',
     name: 'disable',
   },
   ],
-  userperm: ["MANAGE_GUILD"],
-  botperm: ["MANAGE_GUILD"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /** 
 *
 * @param {CommandInteraction} interaction
@@ -72,7 +72,7 @@ module.exports = {
       if (option === 'toggle') {
         const toggle = interaction.options.getString('option')
 
-        if (guild.anti_scam.toString() === toggle) {
+if (guild.anti_scam.toString() === toggle) {
 
           return await bot.errorEmbed(bot, interaction, `Antiscam toggle is already setted as ${toggle}`)
         } else {

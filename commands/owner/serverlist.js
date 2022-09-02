@@ -5,8 +5,8 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
-const simplydjs = require("simply-djs")
+const { CommandInteraction, EmbedBuilder  } = require("discord.js");
+const { pagination } = require("../../functions/btnPage")
 
 module.exports = {
   name: "serverlist",
@@ -27,10 +27,10 @@ module.exports = {
 
     guilds.forEach(guild => {
 
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle(`Guilds for ${bot.user.username}`)
         .setColor(bot.color)
-        .setFooter(`Requested by ${interaction.user.tag}`)
+        .setFooter({text:`Requested by ${interaction.user.tag}`})
         .addFields(
           {
             name: "Guild Name 》",
@@ -52,17 +52,7 @@ module.exports = {
       pages.push(embed)
     })
 
-    simplydjs.embedPages(interaction, pages, {
-      buttons: {
-        firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
-        nextBtn: { style: "SECONDARY", emoji: "884421235965059113" },
-        backBtn: { style: "SECONDARY", emoji: "884421503205134356" },
-        lastBtn: { style: "SECONDARY", emoji: "884420650549272586" },
-        deleteBtn: { style: "SECONDARY", emoji: "891534962917007410" }
-      },
-      skips: true,
-      count: true
-    })
+await pagination(interaction, pages)
 
   }
 };

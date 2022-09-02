@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder,  ApplicationCommandOptionType, ChannelType } = require('discord.js')
 const guilds = require('../../models/guild')
 const embedCreate = require('../../functions/embed')
 
@@ -18,12 +18,12 @@ module.exports = {
     {
       name: 'toggle',
       description: 'Toggle the system on or off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'option',
           description: 'Options for welcome toggle',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
           choices: [
             {
@@ -41,10 +41,10 @@ module.exports = {
     {
       name: 'embed-toggle',
       description: 'Embed Toogle for welcome system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Options for welcome system embed toggle',
           name: 'options',
           required: true,
@@ -64,10 +64,10 @@ module.exports = {
     {
       name: 'dm-toggle',
       description: 'Dm Toogle for welcome system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Options for welcome dm toggle',
           name: 'options',
           required: true,
@@ -86,11 +86,11 @@ module.exports = {
     },
     {
       name: "joinrole",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       description: "Add role to user upon joining",
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Options to enable or disable joinrole',
           name: 'options',
           required: true,
@@ -109,43 +109,42 @@ module.exports = {
           name: "role",
           description: `Mention the roles to add to user upon joining`,
           required: true,
-          type: "ROLE"
+          type: ApplicationCommandOptionType.Role
         },
       ],
     },
     {
       name: 'channel',
       description: 'Channel for welcome system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'name',
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel for welcome detector',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText]
         }
       ]
     },
     {
       name: 'embed',
       description: 'Setup embed for welcome system',
-      type: 'SUB_COMMAND'
-    },
+      type: ApplicationCommandOptionType.Subcommand     },
     {
       name: 'content',
       description: 'Setup content when embedtoggle is off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'message',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Message for welcome system',
           required: true
         },
         {
           name: 'image',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.Attachment,
           description: 'Image url for welcome system',
           required: false
         }
@@ -154,11 +153,11 @@ module.exports = {
     {
       name: "help",
       description: "Variables for welcome system",
-      type: "SUB_COMMAND"
+      type: ApplicationCommandOptionType.Subcommand
     },
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -285,7 +284,7 @@ module.exports = {
 
       if (sub === 'content') {
         let msg = interaction.options.getString('message')
-        let img = interaction.options.getString('image')
+        let img = interaction.options.getString('image').url
 
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
@@ -295,7 +294,7 @@ module.exports = {
         )
         return await bot.successEmbed(bot, interaction, `**Welcome Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`)
 
-        if (img) {
+      if (img) {
           await guilds.findOneAndUpdate(
             { guildId: interaction.guild.id },
             {
@@ -304,11 +303,12 @@ module.exports = {
           )
           return await bot.successEmbed(bot, interaction, `**Welcome Image Has Been Set Successfully in ${img}!**`)
         }
+
       }
 
       if (sub === "help") {
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle(`Welcome System variables`, bot.user.displayAvatarURL())
           .setDescription(`Need Help setting Welcome system?`)
           .addFields(

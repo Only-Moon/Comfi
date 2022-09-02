@@ -57,7 +57,7 @@ bot.on('guildCreate', async guild => {
 			.find(
 				ch =>
 					ch.type == ChannelType.GuildText &&
-					ch.permissionsFor(ch.guild.me).has(bot.functions.fixPermissions('CREATE_INSTANT_INVITE'))
+					ch.permissionsFor(ch.guild.members.me).has(bot.functions.fixPermissions('CREATE_INSTANT_INVITE'))
 			)
 			.createInvite({
 				maxAge: 0,

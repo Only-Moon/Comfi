@@ -6,7 +6,7 @@
 */
 
 const guilds = require('../../models/guild');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require("discord.js");
 
 module.exports = {
   name: "suggestion",
@@ -15,27 +15,27 @@ module.exports = {
   directory: "setting",
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'enable',
       description: 'Sets channel Suggestions',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'channel for suggestion',
           name: 'channel',
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [ChannelType.GuildText],
         },
       ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'disable',
       description: 'Disables the suggestion channel',
     },
   ],
-  userperm: ["MANAGE_GUILD"],
-  botperm: ["MANAGE_GUILD"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /**
    *
    * @param {CommandInteraction} interaction

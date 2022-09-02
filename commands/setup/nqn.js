@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Toggle nqn',
       name: 'option',
       required: true,
@@ -31,8 +31,8 @@ module.exports = {
       ]
     }
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -41,14 +41,16 @@ module.exports = {
   run: async (bot, interaction, args) => {
     try {
       const toggle = interaction.options.getString('option')
+      const guild = await guilds.findOne({guildId:  interaction.guild.id})
+
+      if (guild.nqn === toggle)         return await  bot.errorEmbed(bot, interaction, `Nqn toggle for **${interaction.guild.name}** has already been set to **${toggle}**`)
       await guilds.findOneAndUpdate(
         { guildId: interaction.guild.id },
         {
           nqn: toggle
         }
       )
-      return interaction.editReply(
-        `Nqn for **${interaction.guild.name}** has been set to: **${toggle}**`
+        return await bot.successEmbed(bot, interaction, `Nqn for **${interaction.guild.name}** has been set to: **${toggle}**`
       )
     } catch (e) {
       await bot.senderror(interaction, e)

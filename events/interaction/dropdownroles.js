@@ -18,7 +18,7 @@ bot.on('interactionCreate', async interaction => {
     const guild = await guilds.findOne({ guildId: interaction.guild.id })
     if (guild.dropdownRoles.length > 0) {
       if (interaction.customId === 'dropdown_roles') {
-        if (!interaction.guild.me.permissions.has('MANAGE_ROLES'))
+        if (!interaction.guild.members.me.permissions.has('ManageRole'))
           return interaction
             .reply({
               content: `${

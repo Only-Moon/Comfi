@@ -6,9 +6,10 @@ EmbedBuilder,
 ButtonBuilder,
 ButtonStyle,
 ActionRowBuilder,
-SelectMenuBuilder
+SelectMenuBuilder,
+ComponentType
 } = require('discord.js')
-const data = require("../../models/Client")
+const datas = require("../../models/Client")
 
 /* 
 * Comfi Bot for Discord 
@@ -99,20 +100,23 @@ bot.on('interactionCreate', async interaction => {
 
 		if (interaction.customId === 'b-panel') {
 			await interaction.deferReply({ ephemeral: true })
+      const data = await datas.findOne({ clientId: bot.user.id})
 			const memberId = interaction.values[0]
-			const member = interaction.guild.members.cache.get(memberId)
+			const member = await bot.users.fetch(memberId)
+      var components = []
+      
+ if (!data.blackListedUsers) return interaction.followUp(`No data exists`)
+data.blackListedUsers.map(async b => {
+  
+				const members = await bot.users.fetch(b)
 
-			const options = data.BlackListedUser.map(b => {
-				const members = interaction.guild.members.cache.get(b)
-
-				return {
-					label: members.user.username,
-					value: members.user.id,
+			const options = {
+					label: members.username,
+					value: members.id,
 					description: 'No description'
 				}
-			})
 
-			const components = [
+			components = [
 				new ActionRowBuilder().addComponents(
 					new SelectMenuBuilder()
 						.setCustomId('b-panel')
@@ -120,7 +124,7 @@ bot.on('interactionCreate', async interaction => {
 						.addOptions(options)
 				)
 			]
-
+  })
 			const button = new ActionRowBuilder().addComponents(
 				new ButtonBuilder()
 					.setCustomId('yes')
@@ -132,7 +136,7 @@ bot.on('interactionCreate', async interaction => {
 					.setStyle(ButtonStyle.Primary)
 			)
 
-			if (data?.BlackListedUser?.includes(member.id)) {
+			if (data?.blackListedUsers?.includes(member.id)) {
 				const filter = i => {
 					i.deferUpdate()
 					return i.user.id === interaction.user.id
@@ -147,16 +151,16 @@ bot.on('interactionCreate', async interaction => {
 					.then(async i => {
 						const collector = i.channel.createMessageComponentCollector({
 							filter,
-							componentType: 'BUTTON',
+							componentType: ComponentType.Button, 
 							time: 10000
 						})
 
 						collector.on('collect', async i => {
 							if (i.customId === 'yes') {
-								const index = data.BlackListedUser.indexOf(member.id)
+								const index = data.blackListedUsers.indexOf(member.id)
 
 								if (index > -1) {
-									data.BlackListedUser.splice(index, 1)
+									data.blackListedUsers.splice(index, 1)
 								}
 								await data.save()
 								interaction.followUp({
@@ -184,29 +188,11 @@ bot.on('interactionCreate', async interaction => {
 							})
 						})
 					})
-			} else return
+			} else return interaction.followUp("User not found")
+
 		}
       } catch (e) {
-        let emed = new EmbedBuilder()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${e.stack}\`\`\``)
-          .setColor(bot.color)
-
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
-
-        interaction.followUp({
-          embeds: [
-            {
-              description: `${
-                bot.error
-                } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-              color: bot.color
-            }
-          ]
-        })
+    await bot.senderror(interaction, e)
 }    
 	}
 })

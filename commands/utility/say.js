@@ -19,7 +19,6 @@ const isUrl = new RegExp(
 module.exports = {
   name: "say",
   description: "Make Comfi say something",
-  type: "CHAT_INPUT",
   ownerOnly: false,
   directory: "utility",
   options: [

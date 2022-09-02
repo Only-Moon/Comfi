@@ -4,8 +4,31 @@
 * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
 * For more information, see README.md and LICENSE 
 */
+const guilds = require("../models/guild")
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, CommandInteraction, Message } = require("discord.js");
 
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+  /**
+  @param {Discord.CommandInteraction} interaction
+  */
+function color(interaction) {
+    var color
+    if (!(interaction instanceof CommandInteraction) && /^#[0-9A-F]{6}$/i.test(interaction)) {
+      color = interaction 
+      return color
+    } else if (interaction instanceof CommandInteraction || interaction instanceof Message)  {
+      let dbcolor;
+    const guild = guilds.findOne({guildId: interaction.guild.id}).then({}, (guild, err) => {
+      color = guild.color
+      return dbcolor
+    }) 
+      color = dbcolor
+      return color
+    } else {
+     color = '#F4B3CA'
+      return color
+    }
+  return color
+  }
 
 /**
  * @param {number} max - maximum number
@@ -112,10 +135,11 @@ function fixPermissions(arr = Array) {
     { name: "USE_APPLICATION_COMMANDS", value: "UseApplicationCommands" },
     { name: "MODERATE_MEMBERS", value: "ModerateMembers" }
   ]
-
+  
   for (let { name, value } of permissions)
-    if(perm.length === 0) perm = ""
-    else perm = perm.replace(new RegExp(name, 'igm'), value)
+    if (!perm || perm.length === 0) perm = ""
+  if (!perm.includes(name)) return;
+  else perm = perm.replace(new RegExp(name, 'igm'), value)
 
   return [perm];
 
@@ -305,7 +329,7 @@ function parse(str) {
 function fmtShort(ms) {
   const msAbs = Math.abs(ms);
   if (msAbs >= mn) {
-    return Math.round(ms / mn) + "mo";
+    return Math.round(ms / mn) + "mon";
   }
   if (msAbs >= w) {
     return Math.round(ms / w) + "w";
@@ -357,23 +381,6 @@ function fmtLong(ms) {
 function plural(ms, msAbs, nz, name) {
   const isPlural = msAbs >= nz * 1.5;
   return Math.round(ms / nz) + " " + name + (isPlural ? "s" : "");
-}
-
-/**
- * @param {Discord.Message} message - time in ms
-*/
-async function confirmation(message, author, validReactions, time = 60000) {
-  try {
-    for (const reaction of validReactions) await message.react(reaction);
-    const filter = (reaction, user) =>
-      validReactions.includes(reaction.emoji.name) && user.id === author.id;
-
-    return message
-      .awaitReactions({ filter, max: 1, time: time })
-      .then(collected => collected.first() && collected.first().emoji.name);
-  } catch (e) {
-    console.log(e);
-  }
 }
 
 /**
@@ -812,6 +819,7 @@ function convert(value, unit, unitValues) {
 }
 
 module.exports = {
+  color,
   rndint,
   timer,
   sleep,
@@ -823,7 +831,6 @@ module.exports = {
   format,
   fixFeatures,
   ms,
-  confirmation,
   selectRandom,
   getAllTextFromEmbed,
   clean,

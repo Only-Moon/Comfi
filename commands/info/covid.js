@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const fetch = require('node-fetch')
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
     {
       name: 'country',
       description: 'The country you want to track',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       required: true
     }
   ],
@@ -33,16 +33,6 @@ module.exports = {
     try {
       const country = interaction.options.getString("country")
 
-      const noArgs = new MessageEmbed()
-        .setTitle('Missing fields')
-        .setColor(0xff0000)
-        .setDescription(
-          'You are missing some fields (ex: /covid all || /covid India)'
-        )
-        .setTimestamp()
-
-      if (!country) return interaction.followUp(noArgs)
-
       if (country === 'all') {
         fetch(`https://covid19.mathdro.id/api`)
           .then(response => response.json())
@@ -51,11 +41,11 @@ module.exports = {
             let recovered = data.recovered.value.toLocaleString()
             let deaths = data.deaths.value.toLocaleString()
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle(`Worldwide COVID-19 Stats 🌎`)
-              .addField('Confirmed Cases', confirmed, true)
-              .addField('Recovered', recovered, true)
-              .addField('Deaths', deaths, true)
+              .addFields({name: 'Confirmed Cases', value: confirmed, inline: true},
+            {name: 'Recovered', value: recovered, inline: true}, 
+            {name: 'Deaths', value: deaths, inline: true})
               .setColor(bot.color);
 
             await interaction.followUp({ embeds: [embed] })
@@ -68,11 +58,11 @@ module.exports = {
             let recovered = data.recovered.value.toLocaleString()
             let deaths = data.deaths.value.toLocaleString()
 
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle(`COVID-19 Stats for **${country}**`)
-              .addField('Confirmed Cases', confirmed, true)
-              .addField('Recovered', recovered, true)
-              .addField('Deaths', deaths, true)
+              .addFields({name: 'Confirmed Cases', value: confirmed, inline: true},
+            {name: 'Recovered', value: recovered, inline: true}, 
+            {name: 'Deaths', value: deaths, inline: true})
               .setColor(bot.color);
 
             await interaction.followUp({ embeds: [embed] })

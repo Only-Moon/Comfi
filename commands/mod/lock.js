@@ -5,40 +5,40 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js')
 
 module.exports = {
   name: 'lockk',
   description: 'Locks and Unlocks a channel',
   directory: "mod",
   ownerOnly: false,
-  userperm: ['MANAGE_CHANNELS'],
-  botperm: ['MANAGE_CHANNELS'],
+  userperm: ['ManageChannels'],
+  botperm: ['ManageChannels'],
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Lock a channel to prevent raid',
       name: 'enable',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel to lock',
           name: 'channel',
           required: false,
-          channelTypes: ['GUILD_TEXT', 'GUILD_VOICE']
+          channelTypes: [ChannelType.GuildText, ChannelType.GuildVoice]
         }
       ]
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Unlocks a channel',
       name: 'disable',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel to Unlock',
           name: 'channel',
-          channelTypes: ['GUILD_TEXT', 'GUILD_VOICE'],
+          channelTypes: [ChannelType.GuildText,  ChannelType.GuildVoice],
           required: false
         }
       ]
@@ -64,10 +64,7 @@ module.exports = {
               ADD_REACTIONS: false
             })
           })
-          let embed = new MessageEmbed()
-            .setDescription(`${bot.tick} • **Successfully Locked ${channel}**`)
-            .setColor(bot.color)
-          await interaction.editReply({ embeds: [embed] }).catch(() => null)
+        return await bot.successEmbed(bot, interaction, `**Successfully Locked ${channel}**`)
 
         }, 20000)
 
@@ -88,10 +85,7 @@ module.exports = {
             })
           })
 
-          let embed = new MessageEmbed()
-            .setDescription(`${bot.tick} • **Successfully Unlocked ${channel}**`)
-            .setColor(bot.color)
-          interaction.editReply({ embeds: [embed] }).catch(() => null)
+        return await bot.successEmbed(bot, interaction, `**Successfully Unlocked ${channel}**`)
 
         }, 20000)
 

@@ -24,7 +24,7 @@ module.exports = {
 
     try {
 
-      const modal = new Modal()
+      const modal = new ModalBuilder()
         .setCustomId('Bug')
         .setTitle(`Comfi™ Bug Report`)
         .addComponents(
@@ -43,7 +43,7 @@ module.exports = {
         )
       await interaction.showModal(modal);
 
-    } catch {
+    } catch (e) {
       await bot.senderror(interaction, e)
     }
 

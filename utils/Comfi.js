@@ -37,11 +37,11 @@ class Comfi extends Discord.Client {
 			],
 			restRequestTimeout: 30000,		
     })
+    this.color = process.env["color"] || '#F4B3CA'
     this.logger = require('./Logger.js')
-    this.color = process.env['color'] || '#F4B3CA'
-    this.error = process.env['error'] || '<a:error:890107682013474846>'
-    this.tick = process.env['tick'] || '<a:tick:890113862706266112>'
-    this.crosss = process.env['cross'] || '<a:cross:890113459868553277>'
+    this.error = this.emoji(process.env.error ? process.env.error : "error_CS")
+    this.tick = this.emoji(process.env.tick ? process.env.tick : "tick_CS")
+    this.cross = this.emoji(process.env.cross ? process.env.cross : "cross_CS")
     this.dash = process.env['web']
     this.ms = require('ms')
     this.owners = process.env['owner'] || ["753974636508741673"]
@@ -49,6 +49,7 @@ class Comfi extends Discord.Client {
     this.support = process.env["support"] || this.dash + 'support'
     this.login(process.env.TOKEN)
     this.functions = require('../functions/function.js')
+    this.bcolor = this.functions.color
     this.categories = fs.readdirSync('./commands/')
     this.dbs(process.env.Mongoose)
     this.commands = new Discord.Collection()
@@ -58,6 +59,7 @@ class Comfi extends Discord.Client {
     this.init()
   }
 
+  
   async resolveUser(search) {
     if (!search || typeof search !== 'string') return null
     let user = null
@@ -77,6 +79,7 @@ class Comfi extends Discord.Client {
     if (!user) user = await this.users.fetch(search).catch(() => { })
     return user
   }
+
 	/**
 	 * @returns {Promise<GuildMember>|null}
 	 * @param {string} search
@@ -136,6 +139,7 @@ class Comfi extends Discord.Client {
     }
     return s
   }
+  
   async timestamp(time, form) {
     var minutes = Math.floor(time / 1000) % 60
     var hours = Math.floor(minutes / 60) % 24
@@ -187,7 +191,7 @@ class Comfi extends Discord.Client {
     const emb = new Discord.EmbedBuilder()
     
     if (embed) {
-      emb.setTitle(embed.title ? embed.title : `${this.error} • Error Occured`)
+      emb.setTitle(embed.title ? embed.title : `${this.emoji("error_CS")} • Error Occured`)
       emb.setDescription(embed.description ? embed.description.split(" ").slice(0, 4000).join(" ") : embed1.description) 
       emb.setColor(bot.color)
 
@@ -196,7 +200,7 @@ return await webhook.send({ embeds: [emb] }).then(e => {
     })
       
     } else if (msg) {
-      emb.setTitle(`${this.error} • Error occured`)
+      emb.setTitle(`${this.emoji("error_CS")} • Error occured`)
       emb.setDescription(msg ? msg.split(" ").slice(0, 4000).join(" ") : msg)
       emb.setColor(this.color)
 
@@ -211,7 +215,7 @@ return await webhook.send({ embeds: [emb] }).then(e => {
 * @param {String} name - emoji name
 * @param {String} option - id or name
 */
-  async emoji(name, option) {
+  emoji(name, option) {
     let emojis = this.emojis.cache.find(x => x.name === name)
     if (!emojis) return `:${name}:`
     if (option === 'id') {
@@ -250,11 +254,15 @@ return await webhook.send({ embeds: [emb] }).then(e => {
   
   async successEmbed(bot, interaction, argument) {
     const embed = new Discord.EmbedBuilder()
-      .setDescription(`${bot.tick} • ${argument}`)
+      .setDescription(`${this.emoji("tick_CS")} • ${argument}`)
       .setColor(bot.color);
 
-    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false } }).catch(()=>{});
-
+    if (interaction.commandId) {
+    return await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, fetchReply: true }).catch(()=>{});
+    } else if(!interaction.commandId) {
+      interaction.channel.send({embeds: [embed], allowedMentions: {repliedUser: 
+false }, fetchReply:  true}).catch(() => {})
+    }
   };
 
 	/**
@@ -265,28 +273,30 @@ return await webhook.send({ embeds: [emb] }).then(e => {
   */
   async errorEmbed(bot, interaction, argument, button) {
     const embed = new Discord.EmbedBuilder()
-      .setDescription(`${bot.error} • ${argument}`)
+      .setDescription(`${this.emoji("error_CS")} • ${argument}`)
       .setColor("#FE6666");
 
     
  if (!button) {
 
     if (interaction.commandId) {
-      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true }).catch(()=>{});
+      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true , fetchReply:  true }).catch(()=>{});
     } else if (!interaction.commandId) {
       interaction.channel.send({embeds: [embed]}).catch(()=>{});
     }  
   } else {
       const row = new  Discord.ActionRowBuilder().addComponents(
         new Discord.ButtonBuilder()
-          .setStyle(Discord.ButtonStyle.Secondary)
+          .setStyle(Discord.ButtonStyle.Link)
           .setURL(this.support)
           .setLabel('Contact Support') 
           .setEmoji("984647916876619787")
       )
 
     if (interaction.commandId) {
-      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true , components: [row]}).catch(()=>{});
+  
+      await interaction.editReply({ embeds: [embed], allowedMentions: { repliedUser: false }, ephemeral: true , components: [row], fetchReply: 
+true }).catch(()=>null)
     } else if (!interaction.commandId) {
       interaction.channel.send({embeds: [embed], components: [row]}).catch(()=>{});
     }
@@ -367,8 +377,9 @@ return await webhook.send({ embeds: [emb] }).then(e => {
   this.sendhook(error.stack, {
       channel: this.err_chnl
     })
-
+ if (interaction instanceof Discord.CommandInteraction) {
     return await this.errorEmbed(this, interaction, `Error, try again later \n Error: ${error} \n [Contact Support](${this.support})`, true)
+    }
   }
 
   dbs(s) {

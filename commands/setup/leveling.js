@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, MessageAttachment } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, AttachmentBuilder, ApplicationCommandOptionType,  ChannelType } = require('discord.js')
 const guilds = require('../../models/guild')
 const embedCreate = require('../../functions/embed')
 
@@ -18,12 +18,12 @@ module.exports = {
     {
       name: 'toggle',
       description: 'Toggle the system on or off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'option',
           description: 'Options for leveling toggle',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
           choices: [
             {
@@ -41,10 +41,10 @@ module.exports = {
     {
       name: 'embed-toggle',
       description: 'Embed Toogle for leveling system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Options for leveling system embed toggle',
           name: 'options',
           required: true,
@@ -64,36 +64,36 @@ module.exports = {
     {
       name: 'channel',
       description: 'Channel for leveling system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'name',
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel for leveling system',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText]
         }
       ]
     },
     {
       name: 'embed',
       description: 'Setup embed for leveling system',
-      type: 'SUB_COMMAND'
+      type: ApplicationCommandOptionType.Subcommand
     },
     {
       name: 'content',
       description: 'Setup content when embedtoggle is off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'message',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Message for leveling system',
           required: true
         },
         {
           name: 'image',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.Attachment,
           description: 'Image url for leveling system',
           required: false
         }
@@ -102,11 +102,11 @@ module.exports = {
     {
       name: "help",
       description: "Variables for leveling system",
-      type: "SUB_COMMAND"
+      type: ApplicationCommandOptionType.Subcommand 
     },
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -189,7 +189,7 @@ module.exports = {
 
       if (sub === 'content') {
         let msg = interaction.options.getString('message')
-        let img = interaction.options.getString('image')
+        let img = interaction.options.getString('image').url
 
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
@@ -220,11 +220,13 @@ module.exports = {
           .addFields(
             {
               name: "Commands",
-              value: `\`\`\`toggle - turn on/off the leveling system\nembed-toggle - make the leveling message show in embed or non embed text\nembed - make an embed for leveling system using the embed builder\ncontent - sets the non embed content for leveling system\n\`\`\``
+              value: `\`\`\`toggle - turn on/off the leveling system\nembed-toggle - make the leveling message show in embed or non embed text\nembed - make an embed for leveling system using the embed builder\ncontent - sets the non embed content for leveling system\n\`\`\``,
+              inline: true 
             },
             {
               name: "Commands",
-              value: `\`\`\`{{user#mention}} - the users id\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{level}} - the users new level\n{{xp}} - the users xp\n{{requiredxp}} - the new required xp amount\n\`\`\``
+              value: `\`\`\`{{user#mention}} - the users id\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{level}} - the users new level\n{{xp}} - the users xp\n{{requiredxp}} - the new required xp amount\n\`\`\``,
+              inline: true
             },
           )
           .setColor(bot.color)

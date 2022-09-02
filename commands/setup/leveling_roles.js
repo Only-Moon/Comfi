@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -16,18 +16,18 @@ module.exports = {
   options: [
     {
       name: 'add',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Add a role upon leveling',
       options: [
         {
           name: 'role',
-          type: 'ROLE',
+          type: ApplicationCommandOptionType.Role,
           description: 'Role to add upon leveling up',
           required: true
         },
         {
           name: 'level',
-          type: 'INTEGER',
+          type: ApplicationCommandOptionType.Integer,
           description: 'Level to add role upon leveling up',
           required: true
         }
@@ -35,18 +35,18 @@ module.exports = {
     },
     {
       name: 'remove',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Removes an auto role to leveling database',
       options: [
         {
           name: 'role',
-          type: 'ROLE',
+          type: ApplicationCommandOptionType.Role,
           description: 'Remove role from leveling database',
           required: true
         },
         {
           name: 'level',
-          type: 'INTEGER',
+          type: ApplicationCommandOptionType.Integer,
           description: 'Remove level from leveling database',
           required: true
         }
@@ -54,12 +54,12 @@ module.exports = {
     },
     {
       name: 'list',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Shows a list of leveling auto role system'
     }
   ],
-  botperm: ['MANAGE_GUILD'],
-  userperm: ['MANAGE_GUILD'],
+  botperm: ['ManageGuild'],
+  userperm: ['ManageGuild'],
 	/**
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
@@ -156,7 +156,7 @@ module.exports = {
           roles.push(`${role} • \`${r.level}\``)
         })
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setAuthor(`Automatic Level Roles`)
           .setDescription(roles.join('\n'))
           .setColor(bot.color)

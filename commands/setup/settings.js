@@ -5,10 +5,11 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder } = require('discord.js')
 const simplydjs = require('simply-djs')
 const guilds = require('../../models/guild')
 const users = require('../../models/users')
+const { pagination } = require('../../functions/btnPage')
 
 module.exports = {
   name: 'settings',
@@ -16,7 +17,7 @@ module.exports = {
   ownerOnly: false,
   directory: "setting",
   userperm: [''],
-  botperm: ['SEND_MESSAGES'],
+  botperm: ['SendMessages', 'UseApplicationCommands'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -86,7 +87,7 @@ module.exports = {
         return text
       }
 
-      const auto = new MessageEmbed()
+      const auto = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Auto Nickname`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -102,7 +103,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const anti = new MessageEmbed()
+      const anti = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Anti Scam`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -121,7 +122,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const boost = new MessageEmbed()
+      const boost = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Boost Detector `,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -154,7 +155,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const bump = new MessageEmbed()
+      const bump = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Bump System`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -178,7 +179,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const chatbot = new MessageEmbed()
+      const chatbot = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Chatbot`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -202,7 +203,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const confess = new MessageEmbed()
+      const confess = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Confess`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -226,7 +227,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const leave = new MessageEmbed()
+      const leave = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Leave`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -265,7 +266,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const leveling = new MessageEmbed()
+      const leveling = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Leveling`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -295,7 +296,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const logging = new MessageEmbed()
+      const logging = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Logging`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -317,7 +318,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const modlog = new MessageEmbed()
+      const modlog = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Modlogs`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -341,7 +342,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const mute = new MessageEmbed()
+      const mute = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Mute Role`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -365,7 +366,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const nqn = new MessageEmbed()
+      const nqn = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - NQN`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -385,7 +386,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const suggest = new MessageEmbed()
+      const suggest = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings -Suggestion`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -409,7 +410,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const ticket = new MessageEmbed()
+      const ticket = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Ticket`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -437,7 +438,7 @@ module.exports = {
         })
         .setColor(bot.color)
 
-      const verification = new MessageEmbed()
+      const verification = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Verification`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -473,7 +474,7 @@ module.exports = {
 
       })
 
-      const welcome = new MessageEmbed()
+      const welcome = new EmbedBuilder()
         .setAuthor({
           name: `${interaction.guild.name} - Settings - Welcome`,
           iconURL: interaction.guild.iconURL({ dynamic: true })
@@ -510,12 +511,15 @@ module.exports = {
             value: `\`\`\`\n${`Preview Below`}\n\`\`\``
           }
         )
-        .setImage(guild.welcome_image)
         .setFooter({
           text: `Requested by: ${interaction.user.tag}`,
           iconURL: interaction.user.avatarURL({ dynamic: true })
         })
         .setColor(bot.color)
+      if (guild.welcome_image) {
+        
+        welcome.setImage(guild.welcome_image)
+      }
 
       const pages = [
         anti,
@@ -532,7 +536,9 @@ module.exports = {
         verification,
         welcome
       ]
-
+      
+      await pagination(interaction, pages)
+/*
       simplydjs.embedPages(interaction, pages, {
         buttons: {
           firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
@@ -544,6 +550,7 @@ module.exports = {
         skips: true,
         count: true
       })
+      */
     } catch (e) {
       await bot.senderror(interaction, e)
     }

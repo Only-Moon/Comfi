@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const purge = require('discord-purger')
 
 module.exports = {
@@ -10,11 +10,11 @@ module.exports = {
         {
             name: "messages",
             description: "Purge messages in this channel.",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 }
@@ -23,16 +23,16 @@ module.exports = {
         {
             name: "bot-messages",
             description: "Purge all messages sent by bots in this channel",
-            type: `SUB_COMMAND`
+            type: ApplicationCommandOptionType.Subcommand
         },
         {
             name: "links",
             description: "Purge messages which contain links",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 }
@@ -41,11 +41,11 @@ module.exports = {
         {
             name: "emojis",
             description: "Purge messages which contain emojis",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 }
@@ -54,11 +54,11 @@ module.exports = {
         {
             name: "attachments",
             description: "Purge messages which contain attachments",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 }
@@ -67,17 +67,17 @@ module.exports = {
         {
             name: "user",
             description: "Purge messages of a specific user",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 },
                 {
                     name: "user",
-                    type: `USER`,
+                    type: ApplicationCommandOptionType.User,
                     description: "The user whose messages you want to purge",
                     required: true
                 }
@@ -86,17 +86,17 @@ module.exports = {
         {
             name: "match",
             description: "Purge messages which match specified content in the channel",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 },
                 {
                     name: "text",
-                    type: `STRING`,
+                    type: ApplicationCommandOptionType.String,
                     description: "The message content to match with.",
                     required: true
                 }
@@ -105,17 +105,17 @@ module.exports = {
         {
             name: "includes",
             description: "Purge messages which includes specified content in this channel",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 },
                 {
                     name: "text",
-                    type: `STRING`,
+                    type: ApplicationCommandOptionType.String,
                     description: "The text to search",
                     required: true
                 }
@@ -124,17 +124,17 @@ module.exports = {
         {
             name: "starts-with",
             description: "Purge all messages which starts with specified text in this channel",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 },
                 {
                     name: "text",
-                    type: `STRING`,
+                    type: ApplicationCommandOptionType.String,
                     description: "The text with which the messages start with.",
                     required: true
                 }
@@ -143,25 +143,25 @@ module.exports = {
         {
             name: "ends-with",
             description: "Purge all messages which ends with something",
-            type: `SUB_COMMAND`,
+            type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
                     name: "number",
-                    type: `INTEGER`,
+                    type: ApplicationCommandOptionType.Integer,
                     description: "Number of messages to purge",
                     required: true
                 },
                 {
                     name: "text",
-                    type: `STRING`,
+                    type: ApplicationCommandOptionType.String,
                     description: "The text with which the messages end with",
                     required: true
                 }
             ]
         },
     ],
-    botperm: "MANAGE_MESSAGES",
-    userperm: "MANAGE_MESSAGES",
+    botperm: ["ManageMessages"],
+    userperm: ["ManageMessages"],
     /**
      *
      * @param {CommandInteraction} interaction
@@ -169,13 +169,13 @@ module.exports = {
      */
 run: async (bot, interaction, args) => {
 
-try {
+   try {
 
-const purger = new purge({
+   const purger = new purge({
     handle: true,
     rejectEmoji: bot.error,
     acceptEmoji: bot.tick,
-});
+    });
 
         const s = interaction.options.getSubcommand();
   
@@ -183,9 +183,9 @@ const purger = new purge({
             user = interaction.options.getUser("user"),
             string = interaction.options.getString("text");
 
-if (s !== 'bot-messages' && messages <= 1) return await  bot.errorEmbed(bot, interaction, `You cant purge less than one message`)
+       if (s !== 'bot-messages' && messages <= 1) return await  bot.errorEmbed(bot, interaction, `You cant purge less than one message`)
 
-            if (messages > 99)         return await  bot.errorEmbed(bot, interaction, `You cannot purge more than 100 messages at once.`)
+        if (messages > 99)         return await  bot.errorEmbed(bot, interaction, `You cannot purge more than 100 messages at once.`)
 
         let sus;
         if (s === 'messages') sus = 'messages';
@@ -201,7 +201,7 @@ if (s !== 'bot-messages' && messages <= 1) return await  bot.errorEmbed(bot, int
         const num = messages - 1
 
         await interaction.editReply({content: `Purging ...`, fetchReply:  true}).then((msg) => {
-  setTimeout(() => { if(msg.deletable) msg.delete() }, bot.ms('5s'))
+  setTimeout(() => { msg.delete() }, bot.ms('5s'))
   });
 
   

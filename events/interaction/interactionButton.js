@@ -21,7 +21,7 @@ bot.on('interactionCreate', async (interaction, args) => {
         )
         .setColor('#A2FCAB')
 
-      const joindsc = new MessageButton()
+      const joindsc = new ButtonBuilder()
         .setStyle(ButtonStyle.Link)
         .setLabel('Join Our Support Server!')
         .setURL(bot.dash+'support')

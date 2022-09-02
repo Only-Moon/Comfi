@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
   name: "clever",
@@ -14,7 +14,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'USER',
+      type: ApplicationCommandOptionType.User,
       description: 'The user',
       name: 'user',
       required: false,
@@ -31,7 +31,7 @@ module.exports = {
 
       let rng = Math.floor(Math.random() * 101);
 
-      const cleverembed = new MessageEmbed()
+      const cleverembed = new EmbedBuilder()
 
         .setTitle("CLEVER Rate 💡")
 
@@ -41,7 +41,7 @@ module.exports = {
 
         .setThumbnail('https://www.poetry4kids.com/wp-content/uploads/2008/05/im-clever-whenever.png')
 
-        .setFooter(member.user.username, member.user.avatarURL())
+        .setFooter({text: member.user.username, iconURL: member.user.avatarURL({dynamic: true})})
 
         .setTimestamp()
 

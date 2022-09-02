@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -15,27 +15,27 @@ module.exports = {
   directory: "setting",
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'enable',
       description: 'Sets channel for logs',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'logs channel',
           name: 'name',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText]
         }
       ]
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'disable',
       description: 'Disables the logging system'
     }
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -53,9 +53,7 @@ module.exports = {
 
         let channel = interaction.options.getChannel('name')
 
-        if (channel === 'GUILD_VOICE')
-          return interaction.editReply(
-            `${bot.error} **Please Mention a Text Channel To Set!**`
+        if (channel === ChannelType.GuildVoice) return await  bot.errorEmbed(bot, interaction, `**Please Mention a Text Channel To Set!**`
           )
         finalData['channel'] = channel.id
         await guilds.findOneAndUpdate(
@@ -84,8 +82,7 @@ module.exports = {
           }
         )
 
-        interaction.editReply(
-          `${bot.tick} **Logging System Has Been Successfully Disabled in \`${
+        return await bot.successEmbed(bot, interaction, `**Logging System Has Been Successfully Disabled in \`${
           channel.name
           }\`**`
         )

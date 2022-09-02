@@ -1,4 +1,4 @@
-const { CommandInteraction, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ModalBuilder, TextInputComponent } = require('discord.js');
+const { CommandInteraction, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, ModalBuilder, TextInputComponent, ComponentType } = require('discord.js');
 
 
 let ButtonNames = 'previous' | 'next' | 'search' | 'delete';
@@ -23,26 +23,26 @@ module.exports = async function evalFunction(interaction, options) {
 
   let defaultStyles = {
 
-    previous: "SECONDARY",
+    previous: ButtonStyle.Secondary,
 
-    next: "SECONDARY ",
+    next: ButtonStyle.Secondary,
 
-    search: "PRIMARY",
+    search: ButtonStyle.Primary,
 
-    delete: "DANGER",
+    delete: ButtonStyle.Danger,
 
   };
 
 
   let defaultEmojis = {
 
-    previous: '950306098773118986',
+    previous: '884421503205134356',
 
-    next: '950306098643107860',
+    next: '884421235965059113',
 
-    search: '986719684638412890',
+    search: '883233237760086037',
 
-    delete: '950305604621180978',
+    delete: '891534962917007410',
 
   };
 
@@ -78,9 +78,8 @@ module.exports = async function evalFunction(interaction, options) {
     if (pages > 2) buttons = [...buttons, 'search'];
 
     if (!ephemeral) buttons = [...buttons, 'delete'];
-
     return buttons.reduce((buttons, button) => {
-
+      
       buttons.push(new ButtonBuilder().setStyle(defaultStyles[button]).setEmoji(defaultEmojis[button]).setCustomId(button).setDisabled(status || checkPage(button)))
 
       return buttons;
@@ -120,11 +119,10 @@ module.exports = async function evalFunction(interaction, options) {
 
   };
 
-console.log(components()[0].components)
   await interaction.followUp({ ephemeral, embeds: page(), components: components(), fetchReply: true }).then((fetch) => {
 
 
-    let collector = (fetch).createMessageComponentCollector({ componentType: "BUTTON" , time: 5 * 60 * 1000 });
+    let collector = (fetch).createMessageComponentCollector({ componentType: ComponentType.Button , time: 5 * 60 * 1000 });
 
 
     collector.on('end', async () => await interaction.editReply({ components: components(true) }).catch(() => null));
@@ -149,13 +147,13 @@ console.log(components()[0].components)
 
       if (id === 'next') p++ , firstIndex = firstIndex + 1000, lastIndex = lastIndex + 1000;
 
-      if (id === 'delete') return await interaction.deleteReply();
+      if (id === 'delete') return await button.delete();
 
 
       if (id === 'search') {
 
 
-        await button.showModalBuilder(
+        await button.showModal(
 
           new ModalBuilder({ title: `Page Selection`, custom_id: 'page-selection' }).addComponents(
 
@@ -190,7 +188,7 @@ console.log(components()[0].components)
         );
 
 
-        return await button.awaitModalBuilderSubmit({ filter: (modal) => modal.customId === 'page-selection', time: 5 * 60 * 1000 }).then(async (modal) => {
+        return await button.awaitModalSubmit({ filter: (modal) => modal.customId === 'page-selection', time: 5 * 60 * 1000 }).then(async (modal) => {
 
 
           let pageValue = Number(modal.fields.getTextInputValue('page'));
@@ -209,7 +207,7 @@ console.log(components()[0].components)
           lastIndex = p * 1000;
 
 
-          await interaction.editReply({ embeds: page(), components: components() });
+          await button.editReply({ embeds: page(), components: components() });
 
 
           if (modal.isFromMessage()) await modal.deferUpdate();
@@ -218,11 +216,11 @@ console.log(components()[0].components)
 
       };
 
-
-      await interaction.editReply({ embeds: page(), components: components() });
-
-
+      
       await button.deferUpdate();
+
+      await button.editReply({ embeds: page(), components: components() });
+
 
     });
 
