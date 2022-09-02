@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js")
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js")
 const guilds = require("../../models/guild")
 
 module.exports = {
@@ -16,13 +16,13 @@ module.exports = {
   options: [
     {
       name: "user",
-      type: "USER",
+      type: ApplicationCommandOptionType.User,
       description: "user/bot to verify",
       required: true,
     }
   ],
-  botperm: ["MANAGE_ROLES"],
-  userperm: ["ADMINISTRATOR"],
+  botperm: ["ManageGuild"],
+  userperm: ["ManageGuild"],
   /**
    * @param {CommandInteraction} interaction 
    * @param {String[]} args
@@ -34,13 +34,10 @@ module.exports = {
         const member = interaction.options.getMember('user')
 
         await member.roles.add(guild.verification_role)
-        const embed = new MessageEmbed()
-          .setDescription(` > ${bot.tick} • ${member} has been verified!`)
-          .setColor(bot.color)
-        interaction.editReply({ embeds: [embed] })
+        return await bot.successEmbed(bot, interaction, `${member} has been verified!`)
 
       } else {
-        return interaction.editReply({ content: `${bot.crosss} • Please setup verification by doing /verification before using this command!` })
+        return await  bot.errorEmbed(bot, interaction, `Please setup verification by doing /verification before using this command!` )
       }
     } catch (e) {
       await bot.senderror(interaction, e)

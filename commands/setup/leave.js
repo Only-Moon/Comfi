@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, MessageAttachment } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, AttachmentBuilder, ApplicationCommandOptionType, ChannelType } = require('discord.js')
 const guilds = require('../../models/guild')
 const embedCreate = require('../../functions/embed')
 
@@ -18,12 +18,12 @@ module.exports = {
     {
       name: 'toggle',
       description: 'Toggle the system on or off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'option',
           description: 'options for leave toggle',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
           choices: [
             {
@@ -41,10 +41,10 @@ module.exports = {
     {
       name: 'embed-toggle',
       description: 'Embed Toogle for leave system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'options for leave system embed toggle',
           name: 'options',
           required: true,
@@ -64,10 +64,10 @@ module.exports = {
     {
       name: 'dm-toggle',
       description: 'Dm Toogle for leave system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'options for leave dm toggle',
           name: 'options',
           required: true,
@@ -87,36 +87,36 @@ module.exports = {
     {
       name: 'channel',
       description: 'Channel for leave system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'name',
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'channel for leave message',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText]
         }
       ]
     },
     {
       name: 'embed',
       description: 'Setup embed for leave system',
-      type: 'SUB_COMMAND'
+      type: ApplicationCommandOptionType.Subcommand 
     },
     {
       name: 'content',
       description: 'setup content for leave system when embed toggle is off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'message',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'message for leave system',
           required: true
         },
         {
           name: 'image',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.Attachment,
           description: 'image url for leave system',
           required: false
         }
@@ -125,11 +125,11 @@ module.exports = {
     {
       name: "help",
       description: "Help for leave system",
-      type: "SUB_COMMAND"
+      type: ApplicationCommandOptionType.Subcommand
     },
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -228,7 +228,7 @@ module.exports = {
 
       if (sub === 'content') {
         let msg = interaction.options.getString('message')
-        let img = interaction.options.getString('image')
+        let img = interaction.options.getString('image').url
 
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
@@ -259,7 +259,8 @@ module.exports = {
           .addFields(
             {
               name: "Commands",
-              value: `\`\`\`toggle - turn on/off the leave system\nembed-toggle - make the leave message show in embed or non embed text\ndm-toggle - make the leave message send in user's dm\nchannel - sets the channel for leave system\nembed - make an embed for leave system using the embed builder\ncontent - sets the non embed content for leave system\n\`\`\``
+              value: `\`\`\`toggle - turn on/off the leave system\nembed-toggle - make the leave message show in embed or non embed text\ndm-toggle - make the leave message send in user's dm\nchannel - sets the channel for leave system\nembed - make an embed for leave system using the embed builder\ncontent - sets the non embed content for leave system\n\`\`\``,
+              inline: true
             },
             {
               name: 'Tags',

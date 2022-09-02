@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType,  ChannelType } = require('discord.js')
 
 module.exports = {
 	name: 'vc-move',
@@ -14,21 +14,21 @@ module.exports = {
 	ownerOnly: false,
 	options: [
 		{
-			type: 'USER',
+			type: ApplicationCommandOptionType.User,
 			description: 'User to move',
 			name: 'user',
 			required: true
 		},
 		{
-			type: 'CHANNEL',
+			type: ApplicationCommandOptionType.Channel,
 			description: 'channel to move user to',
 			name: 'channel',
 			required: true,
-			channelTypes: ['GUILD_VOICE']
+			channelTypes: [ChannelType.GuildVoice]
 		}
 	],
-	userperm: ['MOVE_MEMBERS'],
-	botperm: ['MOVE_MEMBERS'],
+	userperm: ['MoveMembers'],
+	botperm: ['MoveMembers'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -42,9 +42,7 @@ module.exports = {
 				r => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()
 			)
 
-		if (!member)
-			return interaction.editReply(
-				`${bot.error} • Unable to find the mentioned user in this guild.`
+		if (!member)  return await  bot.errorEmbed(bot, interaction, `Unable to find the mentioned user in this guild.`
 			)
 
 		let channel =
@@ -58,15 +56,12 @@ module.exports = {
 						.join(' ')
 						.toLocaleLowerCase()
 			)
-		if (!channel.type === 'GUILD_VOICE')
-			return interaction.editReply(
-				'Unable to locate the voice channel. Make sure to mention a voice channel not a text channel!'
+		if (channel.type !== ChannelType.GuildVoice) return await  bot.errorEmbed(bot, interaction, `Unable to locate the voice channel. Make sure to mention a voice channel not a text channel!`
 			)
 
 		try {
 			await member.setChannel(channel)
-			interaction.editReply(
-				`${bot.tick} • Moved ${member.user.username} to <#${channel.id}> !`
+        return await bot.successEmbed(bot, interaction, `Moved ${member.user.username} to <#${channel.id}> !`
 			)
 		} catch (e) {
   await bot.senderror(interaction, e)

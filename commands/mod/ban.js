@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder,  ApplicationCommandOptionType } = require('discord.js')
 const guilds = require('../../models/guild')
 const ms = require('ms')
 
@@ -17,19 +17,19 @@ module.exports = {
   options: [
     {
       name: 'permanent',
-      description: 'Permanently Ban Someone from your Server',
-      type: 'SUB_COMMAND',
+      description: 'Permanently Ban Someone from your server',
+        type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'user',
           description: 'User To Ban',
-          type: 'USER',
+          type: ApplicationCommandOptionType.User,
           required: true
         },
         {
           name: 'reason',
           description: 'Reason To Ban',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true
         }
       ]
@@ -37,22 +37,22 @@ module.exports = {
     {
       name: 'temporary',
       description: 'Temporary Ban a User',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'USER',
+          type: ApplicationCommandOptionType.User,
           description: 'User to tempmute',
           name: 'user',
           required: true
         },
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Time till tempban',
           name: 'time',
           required: true
         },
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Reason to tempban',
           name: 'reason',
           required: true
@@ -62,16 +62,15 @@ module.exports = {
     {
       name: 'hack',
       description: 'Hack/forceban a user without them knowing it',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand, 
       options: [
         {
-          type: 'USER',
-          description: 'user to hackban',
+          type: ApplicationCommandOptionType.User,         description: 'user to hackban',
           name: 'user',
           required: true
         },
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'reason to hackban',
           name: 'reason',
           required: true
@@ -81,19 +80,19 @@ module.exports = {
     {
       name: 'remove',
       description: 'Unban Someone',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'user',
           description: 'UserId To Unban',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true
         }
       ]
     }
   ],
-  userperm: ['BAN_MEMBERS'],
-  botperm: ['BAN_MEMBERS'],
+  userperm: ['BanMembers'],
+  botperm: ['BanMembers'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -137,17 +136,9 @@ module.exports = {
              for - ${reason || 'No Reason'}**`).catch(() => null)
 
         if (reason) {
-          var sembed = new MessageEmbed()
-            .setColor(bot.color)
-            .setDescription(
-              `*${bot.error} • *${banMember.username}** has been banned for ${reason}`)
-
-          await interaction.editReply({ embeds: [sembed] })
+        return await bot.successEmbed(bot, interaction, `**${banMember.username}** has been banned for ${reason}`)
         } else {
-          var sembed2 = new MessageEmbed()
-            .setColor(bot.color)
-            .setDescription(`**${banMember.user.username}** has been banned`)
-          await interaction.editReply({ embeds: [sembed2] })
+        return await bot.successEmbed(bot, interaction, `**${banMember.user.username}** has been banned`)
 
         }
         await bot.modlog({
@@ -165,15 +156,13 @@ module.exports = {
           interaction.guild.members.cache.get(args[0])
         const regex = interaction.options.getString('time')
         if (tbuser === interaction.member) {
-          return interaction.editReply(
-            `${bot.error} Really!! Are you going to ban yourself..`
+        return await  bot.errorEmbed(bot, interaction, `Really!! Are you going to ban yourself..`
           )
         }
 
         if (tbuser.roles.highest.comparePositionTo(interaction.guild.me.roles.highest) >= 0
         ) {
-          return interaction.editReply(
-            ` ${bot.error} • **Cannot bans User!**`
+        return await  bot.errorEmbed(bot, interaction, `**Cannot bans User!**`
           )
         }
 
@@ -184,21 +173,22 @@ module.exports = {
           return await bot.errorEmbed(bot, interaction, `**You cant ban that user due to the role hierarchy**`)
         }
         if (!reason) reason = 'No Reason Provided'
-        const tbuembed = new MessageEmbed()
+        const tbuembed = new EmbedBuilder()
           .setTitle(' You have been banned!')
           .setColor(bot.color)
-          .addField('Reason:', reason.toString())
-          .addField('Time (s)', regex.toString())
-          .addField('Moderator:', interaction.user.username)
+          .addField({name: 'Reason:', value: reason.toString(), inline: true},
+      {name: 'Time (s)', value: regex.toString(), inline: true},
+      {name: 'Moderator:', value: interaction.user.username, inline: true})
 
-        const tbembed = new MessageEmbed()
+        const tbembed = new EmbedBuilder()
           .setTitle('Action: Tempban')
-          .addField('User:', tbuser.toString())
           .setAuthor({ name: `${interaction.user.username}` })
           .setColor(bot.color)
-          .addField('Reason:', reason.toString())
-          .addField('Time (s)', regex.toString())
-          .addField('Moderator:', interaction.user.username)
+          .addField(
+            {name: 'User: ', value: tbuser.toString(), inline: true},
+            {name: 'Reason:', value: reason.toString(), inline: true},
+          {name: 'Time (s)', value: regex.toString(), inline: true},
+          {name: 'Moderator:', value: interaction.user.username, inline: true})
 
         await interaction.editReply({ embeds: [tbembed] })
 
@@ -230,9 +220,7 @@ module.exports = {
           interaction.options.getMember('user') ||
           interaction.guild.members.cache.get(args[0])
 
-        if (isNaN(target))
-          return interaction.editReply(
-            `${bot.error} • Please specify an ID or USERNAME`
+        if (isNaN(target)) return await  bot.errorEmbed(bot, interaction, `Please specify an ID or USERNAME`
           )
 
         if (target.user === interaction.user) {
@@ -259,14 +247,10 @@ module.exports = {
         await interaction.guild.members.ban(target, {
           reason: reason.length < 1 ? 'No reason supplied.' : reason
         })
-        const embed2 = new MessageEmbed()
-          .setColor(bot.color)
-          .setDescription(
-            `${bot.tick} • ${
+        return await bot.successEmbed(bot, interaction, `${
             target.user.id
             } **were successfully banned. User was not notified!**`
           )
-        await interaction.editReply({ embeds: [embed2] })
 
         await bot.modlog({
           Member: target,
@@ -281,11 +265,11 @@ module.exports = {
         const userId = interaction.options.getString('user')
 
         bot.users.fetch(userId).then(async (user) => {
-          await interaction.guild.members.unban(user.id).catch(() => {
-            return interaction.editReply(`${bot.error} • **User is Not Banned**`
+          await interaction.guild.members.unban(user.id).catch( async () => {
+        return await  bot.errorEmbed(bot, interaction, `**User is Not Banned**`
             )
           })
-          const ban = new MessageEmbed()
+          const ban = new EmbedBuilder()
             .setColor(bot.color)
             .setTimestamp()
             .addFields(

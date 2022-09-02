@@ -8,7 +8,7 @@
 const { readdirSync } = require('fs')
 const prefix = '/'
 const create_mh = require('../../functions/menu_help')
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 
 module.exports = {
   name: 'helpp',
@@ -17,7 +17,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'particular command',
       name: 'command',
       required: false
@@ -72,7 +72,7 @@ module.exports = {
           ccate.push(nome)
         })
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle('Comfi™ Help')
           .setDescription(
             `My Prefix For __**${
@@ -147,7 +147,7 @@ module.exports = {
           )
 
         if (cots.includes(args[0].toLowerCase())) {
-          const combed = new MessageEmbed()
+          const combed = new EmbedBuilder()
             .setTitle(
               `__${args[0].charAt(0).toUpperCase() +
               args[0].slice(1)} Commands!__`
@@ -178,17 +178,7 @@ module.exports = {
         }
 
         if (!command) {
-          const embed = new MessageEmbed()
-            .setTitle(
-              `Invalid command! Use \`${prefix}helpp\` for all of my commands!`
-            )
-            .setColor(bot.color)
-
-          return await interaction
-            .editReply({
-              embeds: [embed]
-            })
-            .catch(() => null)
+      return await  bot.errorEmbed(bot, interaction, `Invalid command! Use \`${prefix}helpp\` for all of my commands!`)
         }
 
         let subc = []
@@ -207,28 +197,32 @@ module.exports = {
           subc = `${subc.toString().replaceAll(',', '')}\n`
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle('Command Details:')
-          .addField(
-            'Command:',
-            command.name ? `\`${command.name}\`` : 'No name for this command.'
-          )
-          .addField(
-            'Sub Commands:',
-            subc ? subc : 'No Sub Command for this command'
-          )
-          .addField(
-            'Usage:',
-            command.usage
+          .addFields({
+            name: 'Command:',
+            value: command.name ? `\`${command.name}\`` : 'No name for this command.',
+            inline: true
+                     },
+                     {
+            name: 'Sub Commands:',
+           value: subc ? subc : 'No Sub Command for this command',
+            inline: true
+                     },
+                     {
+            name: 'Usage:',
+            value: command.usage
               ? `\`${prefix}${command.name} ${command.usage}\``
-              : `\`${prefix}${command.name}\``
-          )
-          .addField(
-            'Command Description:',
-            command.description
+              : `\`${prefix}${command.name}\``,
+            inline: true
+                     },
+                     {
+            name: 'Command Description:',
+            value: command.description
               ? command.description
-              : 'No description for this command.'
-          )
+              : 'No description for this command.',
+           inline: true
+                     })
 
           .setFooter({
             text: `Comfi™ Help`,

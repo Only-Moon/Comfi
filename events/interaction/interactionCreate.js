@@ -4,7 +4,8 @@ const {
   EmbedBuilder,
   ButtonBuilder,
   InteractionType,
-  Discord
+  Discord,
+  ApplicationCommandOptionType
 } = require('discord.js')
 const guilds = require('../../models/guild')
 const users = require('../../models/users')
@@ -46,9 +47,9 @@ bot.on('interactionCreate', async (interaction, args) => {
     const args = []
 
     for (let option of interaction.options.data) {
-      if (option.type === 'SUB_COMMAND') {
+      if (option.type === ApplicationCommandOptionType.Subcommand) {
         if (option.name) args.push(option.name)
-        option.options ?.forEach(x => {
+        option.options?.forEach(x => {
           if (x.value) args.push(x.value)
         })
 			} else if (option.value) args.push(option.value)
@@ -64,13 +65,13 @@ bot.on('interactionCreate', async (interaction, args) => {
         )
     }
 
-    const userperm = interaction.member.permissions.has(bot.functions.fixPermissions(cmd.userperm))
+    const userperm = interaction.member.permissions.has(cmd.userperm || [])
 
     if (!userperm) {
         return await  bot.errorEmbed(bot, interaction, `You need \`${cmd.userperm ? cmd.userperm : []}\` permission's`)
     }
     
-    const botperm = interaction.guild.members.me.permissions.has(bot.functions.fixPermissions(cmd.botperm))
+    const botperm = interaction.guild.members.me.permissions.has(cmd.botperm || [])
     if (!botperm) {
         return await  bot.errorEmbed(bot, interaction, `I need \`${cmd.botperm ? cmd.botperm : []} \` permission's`)
     }
@@ -100,7 +101,7 @@ bot.on('interactionCreate', async (interaction, args) => {
     }
 
     if (!interaction.channel.viewable) {
-        return await  bot.errorEmbed(bot, interaction, `I font have access to view messages of this channel`)
+        return await  bot.errorEmbed(bot, interaction, `I dont have access to view messages of this channel`)
     }
 
     //if (cmd.premium) {}

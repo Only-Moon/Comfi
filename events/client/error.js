@@ -43,10 +43,11 @@ if (reason.stack.includes("DiscordAPIError: Unknown Webhook")) return;
 if (reason.stack.includes("DiscordAPIError: Invalid Webhook Token")) return;  
   
 if (reason.stack.includes("DiscordAPIError: Missing Permissions")) return;  
-  
+
+  bot.logger.log(reason.stack)
   
 	const embed = new EmbedBuilder()
-		.setTitle(`${bot.error} • Unhandled Rejection`)
+		.setTitle(`${bot.emoji("error_CS")} • Unhandled Rejection`)
 		.setURL('https://nodejs.org/api/process.html#event-unhandledrejection')
 		.setDescription(`\`\`\`${reason.stack.split("").slice(0, 3500).join("")}\`\`\``)
 		.setTimestamp()
@@ -65,7 +66,7 @@ process.on('uncaughtException', (err, origin) => {
 	const channel = bot.channels.cache.find(c => c.id === bot.err_chnl)
 
 	const embed = new EmbedBuilder()
-		.setTitle(`${bot.error} • Uncaught Exception`)
+		.setTitle(`${bot.emoji("error_CS")} • Uncaught Exception`)
 		.setURL('https://nodejs.org/api/process.html#event-uncaughtexception')
 		.setDescription(`\`\`\`${err.stack.split("").slice(0, 3500).join("")}\`\`\``)
 		.setTimestamp()

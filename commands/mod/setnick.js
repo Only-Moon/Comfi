@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { Interaction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -16,23 +16,23 @@ module.exports = {
     {
       name: 'user',
       description: 'User to change nickname',
-      type: 6,
+      type: ApplicationCommandOptionType.User,
       required: true
     },
     {
       name: 'nickname',
       description: 'New nickname',
-      type: 3,
+      type: ApplicationCommandOptionType.String,
       required: true
     },
     {
       name: "reason",
       description: "Reason to change nickname",
-      type: 3,
+      type: ApplicationCommandOptionType.String ,
       required: false
     }],
-  userperm: ['MANAGE_NICKNAMES'],
-  botperm: ['MANAGE_NICKNAMES'],
+  userperm: ['ManageNicknames'],
+  botperm: ['ManageNicknames'],
 	/**
 	 *
 	 * @param {Interaction} interaction
@@ -45,11 +45,11 @@ module.exports = {
         interaction.guild.members.cache.get(args[0])
       const nickname = interaction.options.getString('nickname')
       const reason = interaction.options.getString("reason")
-      const embed = new MessageEmbed().setColor(bot.color)
+      const embed = new EmbedBuilder().setColor(bot.color)
 
       if (!member.manageable && member.user.id !== bot.user.id) {
         embed.setDescription(
-          `${bot.error} • I Cant Change ${usmber.toString()}'s Nickname`
+          `${bot.error} • I Cant Change ${member.toString()}'s Nickname`
         )
         return interaction.editReply({ embeds: [embed] })
       }
@@ -63,7 +63,7 @@ module.exports = {
         .setDescription(
           `${bot.tick} • ${usmber.toString()}'s Nickname Changed`
         )
-        .setFooter(`From ${oldNick} to ${nickname.value}`)
+        .setFooter({text:`From ${oldNick} to ${nickname.value}` })
 
       await interaction.editReply({ embeds: [embed] }).catch(() => null)
 

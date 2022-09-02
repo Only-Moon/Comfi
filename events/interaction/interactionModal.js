@@ -81,7 +81,7 @@ bot.on('interactionCreate', async (interaction, args) => {
 
           var result = "";
 
-          let row = interaction ?.message ?.components
+          let row = interaction?.message ?.components
 let solution = row[0] ?.components[0] ?.customId ?.slice(0, 5)
 let tries = row[0] ?.components[0] ?.customId ?.slice(5, 6)
 

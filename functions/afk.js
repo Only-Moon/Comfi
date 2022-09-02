@@ -16,6 +16,7 @@ const { EmbedBuilder, Message } = require('discord.js')
 module.exports = async message => {
 	if (message.author.bot) return
 	const member = message.mentions.members.first() || message.member
+      const color = bot.color
 	if (member) {
 		const user = await users.findOne({ userId: member.id })
 		if (user) {
@@ -39,7 +40,7 @@ module.exports = async message => {
 						.setDescription(
 							`Welcome back ${message.author.tag} \nGreat to see you!!`
 						)
-						.setColor(bot.color)
+						.setColor(color)
 
 					return message
 						.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
@@ -60,7 +61,7 @@ module.exports = async message => {
 								user.afk_reason
 							}** \nDuration: **<t:${Math.floor(user.afk_set / 1000)}:R>**`
 						)
-						.setColor(bot.color)
+						.setColor(color)
 
 					return message.channel
 						.send({ embeds: [afk], allowedMentions: { repliedUser: false } })

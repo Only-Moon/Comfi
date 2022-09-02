@@ -7,7 +7,7 @@
 
 const warnSchema = require('../../models/users');
 const uuid = require('uuid');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
   name: 'warn',
@@ -15,24 +15,24 @@ module.exports = {
     'Warn a user, get a list of a user, and remove the warned user!',
   ownerOnly: false,
   directory: "warn",
-  userPerm: ['KICK_MEMBERS', 'BAN_MEMBERS'],
-  botPerm: ['KICK_MEMBERS', 'BAN_MEMBERS'],
+  userPerm: ['ModerateMembers'],
+  botPerm: ['ModerateMembers'],
   options: [
     {
       name: 'add',
       description: 'Warn a user!',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'user',
           description: 'Provide a user to warn them!',
-          type: 'USER',
+          type: ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: 'reason',
           description: 'Provide a reason!',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -40,12 +40,12 @@ module.exports = {
     {
       name: 'list',
       description: 'Get a list of the warned user!',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'user',
           description: "Provide a user to get it's list",
-          type: 'USER',
+          type: ApplicationCommandOptionType.User,
           required: true,
         },
       ],
@@ -53,24 +53,24 @@ module.exports = {
     {
       name: 'remove',
       description: 'Remove a warned user!',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'user',
           description: 'Provide a user to remove the warning!',
-          type: 'USER',
+          type: ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: 'warnid',
           description: 'Provide a warnID to remove the warned user!',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: 'reason',
           description: 'Provide a us reason!',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: false,
         }
       ],
@@ -114,18 +114,19 @@ module.exports = {
           const warnCount = warnAddData ? warnAddData.warns.length + 1 : 1;
           const warnGrammar = warnCount === 1 ? '' : 's';
 
-          let warn = new MessageEmbed()
+          let warn = new EmbedBuilder()
             .setTitle(`__Warned__`)
             .setDescription(`You have been warned by ${interaction.user} \nReason: ${getReason}`)
             .setColor(bot.color);
           user.send({ embeds: [warn] })
             .catch(() => null)
-          let warnEmbed = new MessageEmbed()
+          
+          let warnEmbed = new EmbedBuilder()
             .setTitle("**__Warn Report__**")
             .setDescription(`${bot.tick} • Warned **${user.tag}** \n${bot.tick} • They now have **${warnCount}** warning${warnGrammar} \n${bot.tick} • Reason: ${getReason}`)
             .setColor(bot.color);
           await interaction.editReply({ embeds: [warnEmbed] }).then((msg) => {
-            setTimeout(() => { if (msg.deletable) msg.delete() }, bot.ms('30s'))
+            setTimeout(() => { msg.delete().catch(() => null) }, bot.ms('30s'))
           });
           const Member = interaction.guild.members.cache.get(user.id)
             
@@ -143,13 +144,10 @@ module.exports = {
           });
 
           if (!warnedResult || warnedResult.warns.length === 0)
-            return interaction.editReply({
-              content: `${bot.error} That user has no warning record!`,
-              ephemeral: true,
-            });
+        return await  bot.errorEmbed(bot, interaction, `That user has no warning record!`);
 
           let string = '';
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setColor(bot.color)
             .setDescription(string);
 
@@ -195,11 +193,7 @@ module.exports = {
               : 0;
             const warnedRemoveGrammar = warnedRemoveCount === 1 ? '' : 's';
 
-            let warnEmbed = new MessageEmbed()
-              .setTitle("**__Warn Report__**")
-              .setDescription(`Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
-              .setColor(bot.color)
-            await interaction.editReply({ embeds: [warnEmbed] })
+        return await bot.successEmbed(bot, interaction, `Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
             await bot.modlog({
               Member: getRemovedWarnedUser,
               Action: "warn remove",
@@ -207,10 +201,7 @@ module.exports = {
               Mod: warnedRemoveData.authorId ? warnedRemoveData.authorId : "Not Found"
             }, interaction)
           } else {
-            await interaction.editReply({
-              content: `${bot.error} That is not a valid Warn ID!`,
-              ephemeral: true,
-            });
+        return await  bot.errorEmbed(bot, interaction, `That is not a valid Warn ID!`);
           }
 
           break;

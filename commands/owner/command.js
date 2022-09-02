@@ -7,9 +7,10 @@
 
 const {
 	CommandInteraction,
-	MessageActionRow,
-	MessageSelectMenu,
-	MessageEmbed
+	ActionRowBuilder,
+	SelectMenuBuilder,
+	EmbedBuilder,
+  ApplicationCommandOptionType
 } = require('discord.js')
 const clients = require('../../models/Client')
 
@@ -19,26 +20,26 @@ module.exports = {
 	ownerOnly: true,
 	options: [
 		{
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'disable a command',
 			name: 'disable',
 			options: [
 				{
 					name: 'name',
-					type: 'STRING',
+					type: ApplicationCommandOptionType.String,
 					description: 'command name to disable',
 					required: true
 				}
 			]
 		},
 		{
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'enable a command',
 			name: 'enable',
 			options: [
 				{
 					name: 'name',
-					type: 'STRING',
+					type: ApplicationCommandOptionType.String,
 					description: 'name of command to enable',
 					required: true
 				}
@@ -64,43 +65,25 @@ module.exports = {
 				cmd => cmd.name.toLowerCase() === name.toLowerCase()
 			)
 			if (!validCommand) {
-				const embed = new MessageEmbed()
-					.setDescription(` >  ${bot.crosss} • Please supply a valid command!`)
-					.setColor(bot.color)
-
-				return await interaction.editReply({ embeds: [embed] })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid command!`)
 			}
 			client.blackListedCmds.push(validCommand.name)
 			await client.save()
 
-			const embed = new MessageEmbed()
-				.setDescription(
-					` >  ${bot.tick} • Command \`${
+        return await bot.successEmbed(bot, interaction, `Command \`${
 						validCommand.name
 					}\` has been disabled!`
 				)
-				.setColor(bot.color)
-
-			return await interaction.editReply({ embeds: [embed] })
 		} else if (choice === 'enable') {
 			const validCommand = bot.slashCommands.find(
 				cmd => cmd.name.toLowerCase() === name.toLowerCase()
 			)
 			if (!validCommand) {
-				const embed = new MessageEmbed()
-					.setDescription(` >  ${bot.crosss} • Please supply a valid command!`)
-					.setColor(bot.color)
-
-				return await interaction.editReply({ embeds: [embed] })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid command!`)
 			}
 			if (!client.blackListedCmds.includes(validCommand.name)) {
-				const embed = new MessageEmbed()
-					.setDescription(
-						` >  ${bot.crosss} • Please supply a valid disabled command!`
-					)
-					.setColor(bot.color)
-
-				return await interaction.editReply({ embeds: [embed] })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid disabled command!`
+)
 			} else if (client.blackListedCmds.includes(validCommand.name)) {
 				await clients.findOneAndUpdate(
           {
@@ -111,17 +94,9 @@ module.exports = {
           }
 )
 
-      
-				const embed = new MessageEmbed()
-					.setDescription(
-						` >  ${bot.tick} • Command \`${
+        return await bot.successEmbed(bot, interaction, `Command \`${
 							validCommand.name
-						}\` has been enabled!`
-					)
-					.setColor(bot.color)
-
-				return await interaction
-					.editReply({ embeds: [embed] })
+						}\` has been enabled!`)
 			}
 		}
 	}

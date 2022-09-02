@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js')
 const axios = require('axios')
 module.exports = {
   name: 'djsdocs',
@@ -14,11 +14,13 @@ module.exports = {
   options: [
     {
       name: 'query',
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Your query',
       required: true
     }
   ],
+  botperm: [""],
+  userperm: [""],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -34,13 +36,13 @@ module.exports = {
 
       axios
         .get(url)
-        .then(embed => {
+        .then(async embed => {
           const { data } = embed
 
           if (data && !data.error) {
-            interaction.followUp({ embeds: [data] })
+            await interaction.followUp({ embeds: [data] })
           } else {
-            interaction.followUp('Could not find that documentation')
+            await interaction.followUp('Could not find that documentation')
           }
         })
     } catch (e) {

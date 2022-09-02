@@ -8,9 +8,11 @@
 const imdb = require('imdb-api')
 const {
   CommandInteraction,
-  MessageEmbed,
-  MessageButton,
-  MessageActionRow
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ApplicationCommandOptionType,
+  ActionRowBuilder 
 } = require('discord.js')
 
 module.exports = {
@@ -21,7 +23,7 @@ module.exports = {
   directory: "info",
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Name to search',
       name: 'name',
       required: true
@@ -42,7 +44,7 @@ module.exports = {
       let movie = await imob.get({ name: `${name}` })
 
       if (!movie) {
-        return interaction.editReply(`${bot.error} • Movie not found`)
+        return await  bot.errorEmbed(bot, interaction, `{}**Movie not found**`)
       }
       let poster
       if (movie.poster == 'N/A') {
@@ -50,19 +52,19 @@ module.exports = {
       } else {
         poster = movie.poster
       }
-      let embed = new MessageEmbed()
+      let embed = new EmbedBuilder()
         .setTitle(movie.title.toString())
         .setColor(bot.color)
         .setThumbnail(`${poster}`)
         .setDescription(movie.plot.toString())
         .setFooter({ text: `Ratings: ${movie.rating}` })
-        .addField('Country', movie.country, true)
-        .addField('Languages', movie.languages, true)
-        .addField('Type', movie.type, true)
+        .addFields({name: 'Country', value: movie.country, inline: true},
+      {name: 'Languages', value: movie.languages, inline: true},
+                  {name: 'Type', value: movie.type, inline: true})
 
-      const row = new MessageActionRow().addComponents(
-        new MessageButton()
-          .setStyle('LINK')
+      const row = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setStyle(ButtonStyle.Link)
           .setURL(`${movie.imdburl}`)
           .setLabel('Imdb Url!')
       )

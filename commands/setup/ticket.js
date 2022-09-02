@@ -7,7 +7,7 @@
 
 const guilds = require('../../models/guild');
 const simplydjs = require("simply-djs")
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require("discord.js");
 
 module.exports = {
   name: "ticket",
@@ -16,26 +16,26 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Sets the category for ticket system',
       name: 'category',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Category id to open tickets',
-          channelTypes: ["GUILD_CATEGORY"],
+          channelTypes: [ChannelType.GuildText],
           name: 'id',
           required: true,
         },
       ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Sets the support role for ticket system',
       name: 'role',
       options: [
         {
-          type: 'ROLE',
+          type: ApplicationCommandOptionType.Role,
           description: 'Support role for tickets',
           name: 'role',
           required: true,
@@ -43,12 +43,12 @@ module.exports = {
       ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Sends the ticket panel',
       name: 'display',
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Subject of the ticket',
           name: 'subject',
           required: false,
@@ -56,13 +56,13 @@ module.exports = {
       ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Disables ticket system',
       name: 'disable',
     },
   ],
-  userperm: ["MANAGE_GUILD"],
-  botperm: ["MANAGE_GUILD"],
+  userperm: ["ManageGuild"],
+  botperm: ["ManageGuild"],
   /**
    *
    * @param {CommandInteraction} interaction
@@ -79,7 +79,7 @@ module.exports = {
 
         if (guild.ticket_category === Channel.id) {
 
-          return await bot.successEmbed(bot, interaction, `**Ticket Category is already set as ${Channel.id} !**`)
+          return await bot.errorEmbed(bot, interaction, `**Ticket Category is already set as ${Channel.id} !**`)
 
         } else {
           await guilds.findOneAndUpdate({ guildId: interaction.guild.id }, {
@@ -100,8 +100,7 @@ module.exports = {
             c => c.name.toLowerCase() === args.join(" ").toLocaleLowerCase()
           );
 
-        if (!role)
-          return interaction.editReply(`${bot.error} **Please Enter A Valid Role Name or ID!**`);
+        if (!role) return await  bot.errorEmbed(bot, interaction, `**Please Enter A Valid Role Name or ID!**`);
 
         if (guild.ticket_role === role.id) {
 
@@ -136,6 +135,8 @@ module.exports = {
 
       if (option === 'disable') {
 
+       if(!guild.ticket) return await  bot.errorEmbed(bot, interaction, `Ticket System is already disabled`)
+        
         await guilds.findOneAndUpdate({ guildId: interaction.guild.id }, {
           ticket: false,
         })

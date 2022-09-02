@@ -22,7 +22,7 @@ module.exports = async (interaction, pages) => {
 	let count = 0
 	let pos = 0
 	let dropdowns = []
-	pages.forEach(() => {
+	pages.forEach((page) => {
 		const newPos = pos++
 		dropdowns.push({
 			label: `#${newPos}`,
@@ -37,7 +37,7 @@ module.exports = async (interaction, pages) => {
 			.addOptions(dropdowns)
 			.setCustomId('queue_pagination')
 	])
-	interaction.followUp({ embeds: [pages[count]], components: [row] })
+	await interaction.followUp({ embeds: [pages[count]], components: [row] })
 
 	let m = await interaction.fetchReply()
 
@@ -63,7 +63,7 @@ module.exports = async (interaction, pages) => {
 
 	collector.on('end', async collected => {
 		if (collected.size === 0) {
-			const newPage = drop.values[0]
+			const newPage = collected.values[0]
 			m.edit({
 				embeds: pages[newPage],
 				components: []

@@ -13,8 +13,8 @@ module.exports = {
   directory: "mod",
 	description: 'A simple nuke command.',
 	ownerOnly: false,
-	userperm: ['MANAGE_GUILD'],
-	botperm: ['MANAGE_GUILD'],
+	userperm: ['ManageGuild'],
+	botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -42,7 +42,7 @@ module.exports = {
 						embeds: [NukeEmbed]
 					}).then(msg => {
 						setTimeout(() => {
-							if (!msg.deleted) msg.delete()
+							msg.delete()
 						}, bot.ms('60s'))
 					})
 				})

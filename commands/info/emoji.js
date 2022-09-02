@@ -7,9 +7,11 @@
 
 const {
   CommandInteraction,
-  MessageEmbed,
-  MessageButton,
-  MessageActionRow,
+  EmbedBuilder,
+  ButtonBuilder, 
+  ButtonStyle,
+  ActionRowBuilder,
+  ApplicationCommandOptionType,
   Util
 } = require('discord.js')
 const simplydjs = require('simply-djs')
@@ -23,10 +25,10 @@ module.exports = {
     {
       name: "enlarge",
       description: "enlarge one or more than one emotes",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Emojis to Enlarge',
           name: 'name',
           required: true
@@ -36,18 +38,18 @@ module.exports = {
     {
       name: "find",
       description: "find an emote from Comfi's emote list",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "emote",
           description: `enter a name to search emote or \`all\` to get list of all emotes`,
-          type: "STRING",
+          type: ApplicationCommandOptionType.String,
           required: true
         },
         {
           name: "guild",
           description: "search emote from a particular server using name or id",
-          type: "STRING",
+          type: ApplicationCommandOptionType.String,
           required: false
         }
       ],
@@ -92,7 +94,7 @@ module.exports = {
             emo.animated ? 'gif' : 'png'
             }`
 
-          let embed = new MessageEmbed()
+          let embed = new EmbedBuilder()
             .setColor(bot.color)
             .setAuthor({
               name: 'Comfi™ Enlarged Emoji',
@@ -101,18 +103,18 @@ module.exports = {
             .setImage(`${img}`)
             .setDescription(`${emo.name} ${emo.id}`)
 
-          const row = new MessageActionRow().addComponents(
-            new MessageButton()
-              .setStyle('SECONDARY')
+          const row = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+              .setStyle(ButtonStyle.Secondary)
               .setCustomId(`backEmoji`)
               .setEmoji('884420649580363796')
               .setDisabled(true),
-            new MessageButton()
-              .setStyle('LINK')
+            new ButtonBuilder()
+              .setStyle(ButtonStyle.Link)
               .setURL(`${res}`)
               .setLabel('Download!'),
-            new MessageButton()
-              .setStyle('SECONDARY')
+            new ButtonBuilder()
+              .setStyle(ButtonStyle.Secondary)
               .setCustomId('forwardEmoji')
               .setEmoji('884420650549272586')
               .setDisabled(true)
@@ -128,20 +130,19 @@ module.exports = {
 
           let pages = []
 
-          emojis.forEach(emoji => {
+          emojis.forEach(async emoji => {
             const emo = Util.parseEmoji(emoji)
 
             if (!emo.name || !emo.id) {
-              return interaction.editReply({
-                content: `${bot.error} • **Invalid emote argument**`
-              })
+        return await  bot.errorEmbed(bot, interaction, `**Invalid emote argument**`
+              )
             }
 
             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
               emo.animated ? 'gif' : 'png'
               }`
 
-            let embed = new MessageEmbed()
+            let embed = new EmbedBuilder()
               .setColor(bot.color)
               .setAuthor({
                 name: 'Enlarged Emoji',
@@ -165,7 +166,7 @@ module.exports = {
             count: true
           })
 
-        } else return interaction.editReply({ content: `${bot.error} **• An error occured**` })
+        } else return await  bot.errorEmbed(bot, interaction, ` **I can't Enlarge this Emote**` )
 
       }
       if (sub === "find") {
@@ -199,7 +200,7 @@ module.exports = {
                 emo.animated ? 'gif' : 'png'
                 }`
 
-              let embed = new MessageEmbed()
+              let embed = new EmbedBuilder()
                 .setColor(bot.color)
                 .setAuthor({
                   name: 'Comfi™ Emojis',
@@ -250,7 +251,7 @@ module.exports = {
                 emo.animated ? 'gif' : 'png'
                 }`
 
-              let embed = new MessageEmbed()
+              let embed = new EmbedBuilder()
                 .setColor(bot.color)
                 .setAuthor({
                   name: 'Comfi™ Emojis',
@@ -288,7 +289,7 @@ module.exports = {
               emo.animated ? 'gif' : 'png'
               }`
 
-            let embed = new MessageEmbed()
+            let embed = new EmbedBuilder()
               .setColor(bot.color)
               .setAuthor({
                 name: 'Comfi™ Emojis',
@@ -297,18 +298,18 @@ module.exports = {
               .setImage(`${img}`)
               .setDescription(`${emo.name} ${emo.id}`)
               .setFooter({ text: `This emoji is from ${emo.guild.name}`, iconURL: emo.guild.iconURL({ dynamic: true }) });
-            const row = new MessageActionRow().addComponents(
-              new MessageButton()
-                .setStyle('SECONDARY')
+            const row = new ActionRowBuilder().addComponents(
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Secondary)
                 .setCustomId(`backEmoji`)
                 .setEmoji('884420649580363796')
                 .setDisabled(true),
-              new MessageButton()
-                .setStyle('LINK')
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Link)
                 .setURL(`${res}`)
                 .setLabel('Download!'),
-              new MessageButton()
-                .setStyle('SECONDARY')
+              new ButtonBuilder()
+                .setStyle(ButtonStyle.Secondary)
                 .setCustomId('forwardEmoji')
                 .setEmoji('884420650549272586')
                 .setDisabled(true)
@@ -321,7 +322,7 @@ module.exports = {
               }).catch(() => null)
           } else return await bot.errorEmbed(bot, interaction, ` **• Emoji not found !!**`
           ).then((msg) => {
-            setTimeout(() => { if (msg?.deletable) msg.delete() }, bot.ms('30s'))
+            setTimeout(() => { msg.delete() }, bot.ms('30s'))
           });
         }
       }

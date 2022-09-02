@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 const simplydjs = require("simply-djs")
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
   directory: "fun",
   options: [
     {
-      type: 'USER',
+      type: ApplicationCommandOptionType.User,
       description: 'User to Compete with in rps',
       name: 'user',
       required: true,

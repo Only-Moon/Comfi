@@ -29,7 +29,7 @@ bot.on('messageCreate', async message => {
 			)
 			.setThumbnail(`${message.author.displayAvatarURL({ dynamic: true })}`)
 			.setColor(bot.color)
-			.setFooter({text: `Requested by ${message.author.username}`})
+			.setFooter({text: `Made by Moonbow#5817`})
 			.setTimestamp()
 
 		let sup = new ButtonBuilder()

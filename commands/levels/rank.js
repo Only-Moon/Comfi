@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 const guilds = require("../../models/guild")
 const users = require("../../models/users")
 const rankCard = require("../../functions/RankCard")
@@ -18,14 +18,14 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'USER',
+      type: ApplicationCommandOptionType.User,
       description: 'user to check rank for',
       name: 'user',
       required: false,
     },
   ],
   userperm: [""],
-  botperm: ["SEND_MESSAGES"],
+  botperm: ["UseApplicationCommands"],
   /**
    *
    * @param {CommandInteraction} interaction
@@ -55,11 +55,11 @@ module.exports = {
              color: bot.color,
              currentXP: user.xp,
              neededXP: user.requiredXp,
-             background: "https://i.imgur.com/rkGiaIO.png"
+             background: "https://i.imgur.com/rkGiaIO.jpg"
            })
          
         } else {
-          interaction.editReply(`${bot.error} Leveling is Disabled In this guild`)
+        return await bot.errorEmbed(bot, interaction, `Leveling is Disabled In this guild`)
         }
       }
 

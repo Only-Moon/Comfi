@@ -6,7 +6,7 @@
 */
 
 const PlayStore = require("google-play-scraper");
-const { CommandInteraction, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle,  ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
   name: "playstore",
@@ -14,7 +14,7 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'The application name',
       name: 'name',
       required: true,
@@ -22,7 +22,7 @@ module.exports = {
   ],
   directory: "info",
   userperm: [""],
-  botperm: ["SEND_MESSAGES"],
+  botperm: ["UseApplicationCommands"],
   /**
    *
    * @param {CommandInteraction} interaction
@@ -30,34 +30,29 @@ module.exports = {
    */
   run: async (bot, interaction, args) => {
 
-    PlayStore.search({
-      term: interaction.options.getString("name"),
+    const term = interaction.options.getString("name")
+    
+    const Data = PlayStore.search({
+      term: term,
       num: 1
-    }).then(async (Data) => {
-      let App;
-
+    }).then(async (Data) => { 
       try {
-        App = JSON.parse(JSON.stringify(Data[0]));
-
-      } catch (error) {
-        return interaction.editReply(`No Application Found: **"${args[0]}"**`);
-      }
-      try {
-        let embed = new MessageEmbed()
+        let App = Data[0]
+        let embed = new EmbedBuilder()
           .setColor(bot.color)
           .setThumbnail(App.icon)
           .setURL(App.url)
           .setTitle(`${App.title}`)
           .setDescription(App.summary)
-          .addField(`Price`, `${App.priceText}`)
-          .addField(`Developer`, `${App.developer}`)
-          .addField(`Score`, `${App.scoreText}`)
+          .addFields({name: `Price`, value: `${App.price === 0 ? "Free" : "$"+App.price}`, inline: true},
+        {name: `Developer`, value: `${App.developer}`, inline: true},
+      {name: `Score`, value: `${App.scoreText}`, inline: true })
           .setFooter({ text: `Requested By ${interaction.user.username}` })
           .setTimestamp();
 
-        const row = new MessageActionRow().addComponents(
-          new MessageButton()
-            .setStyle('LINK')
+        const row = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setStyle(ButtonStyle.Link)
             .setURL(`${App.url}`)
             .setLabel('Go to playstore !!')
         )
@@ -66,6 +61,8 @@ module.exports = {
       } catch (e) {
         await bot.senderror(interaction, e)
       }
-    });
+    }).catch(async() => {
+        return await  bot.errorEmbed(bot, interaction, `Can't Find App named ${term} in PlayStore`)
+             })
   }
 };

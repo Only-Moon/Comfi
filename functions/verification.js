@@ -75,7 +75,7 @@ module.exports = async (member, bot) => {
 
 		collector.on('end', async (collected, reason) => {
 			if (reason === 'time') {
-				hoisterMsg.delete().catch(() => {})
+				hoisterMsg?.delete().catch(() => {})
 				channel
 					.send({
 						content: `${bot.error} • **TIMED OUT** Please redo the captcha!`

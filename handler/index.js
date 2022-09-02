@@ -1,5 +1,6 @@
 const { glob } = require('glob')
 const { promisify } = require('util')
+const { ApplicationCommandType } = require("discord.js")
 
 /* 
 * Comfi Bot for Discord 
@@ -25,20 +26,20 @@ module.exports = async bot => {
 		if (!file?.name) return
 		bot.slashCommands.set(file.name, file)
 
-		if (['MESSAGE', 'USER'].includes(file.type)) delete file.description
+		if ([ApplicationCommandType.User, ApplicationCommandType.Message].includes(file.type)) delete file.description
 		arrayOfSlashCommands.push(file)
 	})
 
 	bot.on('ready', async () => {
 		let dev = process.env['DEV_MODE'] || "false" 
-
+    
 		if (dev === true.toString()) {
 			bot.guilds.cache.forEach(g => {
 				g.commands.set(arrayOfSlashCommands)
-			})
-
+    })
 			bot.logger.ready(`Loaded Guild commands...`)
-		} else if (dev === false.toString()) {
+		
+  } else if (dev === false.toString()) {
 			await bot.application.commands.set(arrayOfSlashCommands)
 
 			bot.logger.ready(`Loaded Global Commands...`)

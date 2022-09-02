@@ -7,9 +7,10 @@
 
 const {
   CommandInteraction,
-  MessageActionRow,
-  MessageSelectMenu,
-  MessageEmbed
+  ActionRowBuilder,
+  SelectMenuBuilder,
+  EmbedBuilder,
+  ApplicationCommandOptionType
 } = require('discord.js')
 const clients = require('../../models/Client')
 
@@ -19,26 +20,32 @@ module.exports = {
   ownerOnly: true,
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand ,
       description: 'user to blacklist',
       name: 'add-user',
       options: [
         {
           name: 'user',
-          type: 'USER',
+          type: ApplicationCommandOptionType.User,
           description: 'user to add to blacklist',
           required: true
+        },
+        {
+          name: "reason",
+          type: ApplicationCommandOptionType.String,
+          description: "Reason for blacklisting user",
+          required: false
         }
       ]
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'user to remove from blacklist',
       name: 'remove-user',
       options: [
         {
           name: 'user',
-          type: 'USER',
+          type:ApplicationCommandOptionType.User,
           description: 'user to blacklist',
           required: true
         }
@@ -47,29 +54,29 @@ module.exports = {
     {
       name: 'panel',
       description: 'panel of blacklisted users',
-      type: 'SUB_COMMAND'
+      type: ApplicationCommandOptionType.Subcommand 
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Add a guild to blacklist',
       name: 'add-guild',
       options: [
         {
           name: 'guild',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'guild to add to blacklist',
           required: true
-        }
-      ]
+        }, 
+        ],
     },
-    {
-      type: 'SUB_COMMAND',
+      {
+      type: ApplicationCommandOptionType.Subcommand, 
       description: 'remove a guild from blacklist',
       name: 'remove-guild',
       options: [
         {
           name: 'guild',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'guild to blacklist',
           required: true
         }
@@ -88,6 +95,7 @@ module.exports = {
     const [choice] = args
     const user = interaction.options.getUser('user')
     const guild = interaction.options.getString('guild')
+    const reason = interaction.options.getString("reason")
 
     const client = await clients.findOne({ clientId: bot.user.id })
     try {
@@ -95,12 +103,12 @@ module.exports = {
         const member = bot.users.cache.get(user.id)
         if (!client.blackListedUsers.includes(member.id)) {
           client.blackListedUsers.push(member.id)
+
           await client.save()
-          interaction.editReply(
-            'Successfully added member to the blacklist database.'
+        return await bot.successEmbed(bot, interaction, `Successfully added member to the blacklist database.`
           )
         } else {
-          interaction.editReply('Target member is already blacklis in database.')
+        return await  bot.errorEmbed(bot, interaction, `Target member is already blacklis in database.`)
         }
       } else if (choice === 'remove-user') {
         const member = bot.users.cache.get(user.id)
@@ -111,37 +119,32 @@ module.exports = {
             client.blackListedUsers.splice(index, 1)
           }
           await client.save()
-          interaction.editReply(
-            'Successfully removed member from the blacklist database.'
+        return await  bot.successEmbed(bot, interaction, `Successfully removed member from the blacklist database.`
           )
         } else {
-          interaction.editReply('Target member is not in blacklist database.')
+        return await  bot.errorEmbed(bot, interaction, `Target member is not in blacklist database.`)
         }
       } else if (choice === 'panel') {
-        if (!client ?.blackListedUsers.length)
-          return interaction.editReply(
-            'There is no blacklisted member in this server!'
+        if (!client ?.blackListedUsers.length) return await  bot.errorEmbed(bot, interaction, `There is no blacklisted member in this server!`
           )
-
         const options = client ?.blackListedUsers.forEach(async b => {
+          
           let mem;
-         mem = bot.users.cache.get(b)
-        
-console.log(mem)
+         mem = await bot.users.fetch(b)
           
         const opt = {
-          label: mem ? mem.user.username : 'No members',
-          value: mem ? mem.user.id : 'No members id',
-          description: 'No description'
+          label: mem ? mem.username : 'No members',
+          value: mem ? mem.id : 'No members id',
+          description: reason ? reason : 'No description'
         }
 
         const embeds = [
           
-          new MessageEmbed().setTitle('Please select a member below')
+          new EmbedBuilder().setTitle('Please select a member below').setColor(bot.color )
         ]
         const components = [
-          new MessageActionRow().addComponents(
-            new MessageSelectMenu()
+          new ActionRowBuilder().addComponents(
+            new SelectMenuBuilder()
               .setCustomId('b-panel')
               .setMaxValues(1)
               .addOptions(opt)
@@ -157,13 +160,12 @@ console.log(mem)
           if (!client ?.blackListedServers.includes(guild)) {
             client ?.blackListedServers.push(guild)
 				await client.save()
-            interaction.editReply(
-              'Successfully added guild to the blacklist database.'
+        return await  bot.successEmbed(bot, interaction, `Successfully added guild to the blacklist database.`
             )
           } else {
-            interaction.editReply('Target guild is already blacklis in database.')
+        return await  bot.errorEmbed(bot, interaction, `Target guild is already blacklis in database.`)
           }
-        } else return interaction.editReply(`${bot.error} • Invalid Guild`);
+        } else return await  bot.errorEmbed(bot, interaction, `Invalid Guild`);
       } else if (choice === 'remove-guild') {
 
         if (interaction.guilds.cache.get(guild)) {
@@ -175,35 +177,15 @@ console.log(mem)
               client ?.blackListedServers.splice(index, 1)
 				}
             await client.save()
-            interaction.editReply(
-              'Successfully removed guild from the blacklist database.'
+        return await  bot.successEmbed(bot, interaction, `Successfully removed guild from the blacklist database.`
             )
           } else {
-            interaction.editReply('Target guild is not in blacklist database.')
+        return await  bot.errorEmbed(bot, interaction, `Target guild is not in blacklist database.`)
           }
-        } else return interaction.editReply(`${bot.error} • Invalid Guild`);
+        } else return await  bot.errorEmbed(bot, interaction, `Invalid Guild`);
       }
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](https://comfibot.tk/discord) `,
-            color: bot.color
-          }
-        ]
-      })
+    await bot.senderror(interaction, e)
     }
   }
 }

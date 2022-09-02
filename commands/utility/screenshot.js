@@ -23,7 +23,7 @@ module.exports = {
     }
   ],
   userperm: [''],
-  botperm: ['SEND_MESSAGES'],
+  botperm: ['UseApplicationCommands'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -48,19 +48,25 @@ module.exports = {
           .editReply(`${bot.error} **• Provide a Valid Url**`)
           .catch(e => { })
       }
-      let m = await interaction.editReply({ content: `${bot.tick} **• Getting screenshot..**` }).then(async (msg) => {
+        const msg = await bot.successEmbed(bot, interaction, `**Getting screenshot **`+bot.emoji("p_loading2"))
 
-        const nsfw = r.is_nsfw(url)
+  setTimeout(async() => {
+     await msg.delete().catch(() => null)
+  }, bot.ms("29s"))   
+        interaction.channel.send(bot.tick)
+        const nsfw = r.isMalLink(url)
 
-        if (nsfw.toString() === "true" && !interaction.channel.nsfw) {
-          return interaction.editReply(`${bot.error} **• Nsfw Urls are not allowed in Non-NSFW Channel**`).catch(e => { })
+        if (nsfw.toString() === "true" && nsfw.type === "nsfw" && !interaction.channel.nsfw) {
+        return await  bot.errorEmbed(bot, interaction, `**• Nsfw Urls are not allowed in Non-NSFW Channel**`).catch(e => { })
         } else {
 
-          let res = await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=${key}`)
+          let res = await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=${key}`).catch(async(e) => {
+        return await bot.errorEmbed(bot, interaction, `I can't screenshot that url`)
+      })
 
           const buffer = new Buffer.from(res.data.screenshot.split(",")[1], "base64")
 
-          const image = new MessageAttachment(buffer, 'screenshot.png')
+          const image = new AttachmentBuilder(buffer, {name: 'screenshot.png'})
 
           const emb = new EmbedBuilder()
             .setColor(bot.color)
@@ -69,7 +75,7 @@ module.exports = {
             .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: `${interaction.user.displayAvatarURL({ dynamic: true })}` });
 
           const row = new ActionRowBuilder().addComponents(
-            new MessageButton()
+            new ButtonBuilder()
               .setStyle(ButtonStyle.Link)
               .setURL(`${url}`)
               .setEmoji(`883017898984103986`)
@@ -80,12 +86,8 @@ module.exports = {
             files: [image],
             components: [row]
           })
-          await msg.delete().catch(() => null)
+     
         }
-
-      }).catch(async (e) => {
-        return await bot.errorEmbed(bot, interaction, `I can't screenshot that url`)
-      })
 
     } catch (e) {
       await bot.senderror(interaction, e)

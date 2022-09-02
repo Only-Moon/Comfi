@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const fetch = require('axios')
 
 module.exports = {
@@ -15,26 +15,26 @@ module.exports = {
 	options: [
 		{
 			name: 'user',
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'Gets the global avatar for the user',
 			options: [
 				{
 					name: 'target',
 					description: 'The person that you want to get their avatar',
-					type: 'USER',
+					type: ApplicationCommandOptionType.User,
 					required: false
 				}
 			]
 		},
 		{
 			name: 'member',
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'Gets the member avatar per server',
 			options: [
 				{
 					name: 'target',
 					description: 'The person that you want to get their avatar',
-					type: 'USER',
+					type: ApplicationCommandOptionType.User,
 					required: false
 				}
 			]
@@ -55,7 +55,7 @@ module.exports = {
 
 			if (choice === 'user') {
 				if (!target) target = interaction.user
-				const avatarEmbed = new MessageEmbed()
+				const avatarEmbed = new EmbedBuilder()
 					.setTitle(`${target.tag}`)
 					.setImage(target.displayAvatarURL({ dynamic: true, size: 4096 }))
 					.setColor(bot.color)
@@ -80,13 +80,13 @@ module.exports = {
 					let url = `https://cdn.discordapp.com/guilds/${
 						interaction.guild.id
 					}/users/${target.id}/avatars/${res.data.avatar}.webp?size=4096`
-					const avatarEmbed = new MessageEmbed()
+					const avatarEmbed = new EmbedBuilder()
 						.setTitle(`${target.tag}`)
 						.setImage(url)
 						.setColor(bot.color)
 					await interaction.editReply({ embeds: [avatarEmbed] })
 				} else {
-					const avatarEmbed = new MessageEmbed()
+					const avatarEmbed = new EmbedBuilder()
 						.setTitle(`${target.tag}`)
 						.setImage(target.displayAvatarURL({ dynamic: true, size: 4096 }))
 						.setColor(target.displayHexColor)

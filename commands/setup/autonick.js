@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -17,12 +17,12 @@ module.exports = {
     {
       name: "set",
       description: "set name for auto nick",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'nick',
           description: 'nickname to set',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true
         },
       ],
@@ -30,11 +30,11 @@ module.exports = {
     {
       name: "help",
       description: "help for autonick",
-      type: "SUB_COMMAND"
+      type: ApplicationCommandOptionType.Subcommand 
     }
   ],
-  botperm: ['MANAGE_GUILD'],
-  userperm: ['MANAGE_GUILD'],
+  botperm: ['ManageGuild'],
+  userperm: ['ManageGuild'],
 	/**
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
@@ -62,7 +62,7 @@ module.exports = {
       }
       if (sub === "help") {
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle(`Autonick System variables`, bot.user.displayAvatarURL())
           .setDescription(`Need Help setting Autonick system?`)
           .addFields(
@@ -77,7 +77,7 @@ module.exports = {
             }
           )
           .setColor(bot.color)
-          .setFooter(`Comfi™ Autonick System`);
+          .setFooter({text:`Comfi™ Autonick System`});
         await interaction.editReply({ embeds: [embed] })
 
       }

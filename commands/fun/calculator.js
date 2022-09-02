@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction } = require("discord.js");
 const simplydjs = require("simply-djs")
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
   botperm: [""],
   /**
    *
-   * @param {CommandInteraction} interaction
+   * @param {import("discord.js").CommandInteraction} interaction
    * @param {String[]} args
    */
   run: async (bot, interaction, args) => {
@@ -29,6 +29,7 @@ module.exports = {
           credit: false
         }
       })
+      
     } catch (e) {
       await bot.senderror(interaction, e)
     }

@@ -5,8 +5,9 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
 const users = require(`../../models/users`)
+
 module.exports = {
 	name: 'afk',
 	description: 'Sets your afk in the server',
@@ -14,14 +15,14 @@ module.exports = {
 	ownerOnly: false,
 	options: [
 		{
-			type: 'STRING',
+			type: ApplicationCommandOptionType.String,
 			description: 'Reason for going AFK',
 			name: 'reason',
 			required: true
 		}
 	],
-	botperm: [],
-	userperm: [],
+	botperm: [""],
+	userperm: [""],
 	/**
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
@@ -45,14 +46,14 @@ module.exports = {
 					}
 				)
 
-				const embed = new MessageEmbed()
+				const embed = new EmbedBuilder()
 					.setDescription(`You have been set to afk\n**Reason :** ${reason}`)
 					.setColor(bot.color)
-					.setAuthor(
-						`${interaction.user.username}`,
-						interaction.user.avatarURL({ dynamic: true })
-					)
-					.setFooter('Type a message to remove your AFK')
+					.setAuthor({
+					name: `${interaction.user.username}`,
+						iconURL: interaction.user.avatarURL({ dynamic: true })
+            })
+					.setFooter({text: 'Type a message to remove your AFK'})
 
 				if (interaction.member.manageable)
 					interaction.member.setNickname(

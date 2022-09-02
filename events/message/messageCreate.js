@@ -48,7 +48,7 @@ bot.on('messageCreate', async message => {
 
       const data = JSON.stringify({
         message: message.content
-      })
+      }).catch(() => null)
 
       let result = await fetch(`https://ash-anti-fish.bitflow.dev/check`, {
         method: 'POST',
@@ -57,7 +57,7 @@ bot.on('messageCreate', async message => {
           "Content-Type": "application/json"
         },
         body: data
-      }).then(async res => await res.json()).catch(()=>{});
+      }).then(async res => await res.json()).catch(() => null);
 
       if (guild.anti_scam && result.match) {
 

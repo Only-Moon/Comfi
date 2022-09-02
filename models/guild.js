@@ -12,7 +12,7 @@ const schema = new Schema({
   guildId: String,
   premium: { type: Boolean, default: false },
   prefix: { type: String, default: 'Cr!' },
-  color: { type: String, default: "#DA004E" },
+  color: { type: String, default: process.env.color || '#F4B3CA'},
 
   // AutoNick
   auto_nick: { type: String, default: 'NONE' },

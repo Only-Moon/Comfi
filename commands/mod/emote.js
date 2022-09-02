@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, Util } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType, Util } = require('discord.js')
 const simplydjs = require('simply-djs')
 
 module.exports = {
@@ -16,17 +16,17 @@ module.exports = {
 	options: [
 		{
 			name: 'add',
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'Add emoji from other server using name or url',
 			options: [
 				{
-					type: 'STRING',
+					type: ApplicationCommandOptionType.String,
 					description: 'Server Emote or Url',
 					name: 'emoji',
 					required: true
 				},
 				{
-					type: 'STRING',
+					type: ApplicationCommandOptionType.String,
 					name: 'name',
 					description: 'Custom Name for Emoji',
 					required: false
@@ -35,11 +35,11 @@ module.exports = {
 		},
 		{
 			name: 'addmany',
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'Add Multiple Emotes From another server',
 			options: [
 				{
-					type: 'STRING',
+					type: ApplicationCommandOptionType.String,
 					description: 'Emotes from other server',
 					name: 'emote',
 					required: true
@@ -48,12 +48,12 @@ module.exports = {
 		},
 		{
 			name: 'stats',
-			type: 'SUB_COMMAND',
+			type: ApplicationCommandOptionType.Subcommand,
 			description: 'Shows a list of server emotes'
 		}
 	],
-	userperm: ['MANAGE_EMOJIS_AND_STICKERS'],
-	botperm: ['MANAGE_EMOJIS_AND_STICKERS'],
+	userperm: ['ManageEmojisandStickers'],
+	botperm: ['ManageEmojisandStickers'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -81,11 +81,10 @@ try {
 				maxLength = 500
 			}
 			if (interaction.guild.emojis.cache.size >= maxLength) {
-		return await interaction.editReply({
-					content: `${bot.error} • **Guild at max emoji cap ~ ${
+        return await  bot.errorEmbed(bot, interaction, `${bot.error} • **Guild at max emoji cap ~ ${
 						interaction.guild.emojis.cache.size
 					}/${maxLength}**`
-				})
+				)
 			} else {
 			
     const isUrl = new RegExp(
@@ -106,7 +105,7 @@ try {
 						type = 'emoji'
 						name = Name || args[2].find(emo != emote)
 					} else {
-						emote = `${args.find(arg => isUrl.test(arg))}`
+						emote = `${args?.find(arg => isUrl.test(arg))}`
 						name = Name
 						type = 'url'
 					}
@@ -118,11 +117,11 @@ try {
 							emoji.animated ? 'gif' : 'png'
 						}`
 					} else {
-						if (!name) return interaction.editReply('Please provide a name!')
+						if (!name) return await  bot.errorEmbed(bot, interaction, `Please provide a name!`)
 						Link = interaction.options.getString('emoji')
 					}
 
-if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote in :emoji: form`);
+if (!emoji) return await  bot.errorEmbed(bot, interaction, `Send an emote in :emoji: form. Discord default emotes doesn't work`);
           
 					await interaction.guild.emojis
 						.create(`${Link}`, `${`${name || emoji.name}`}`)
@@ -134,9 +133,7 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 
 		if (sub === 'addmany') {
 			const emojis = args.join(' ').match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi)
-			if (!emojis)
-				return interaction.editReply(
-					`${bot.error} | **Provde The emojis to add**`
+			if (!emojis) return await  bot.errorEmbed(bot, interaction, `**Provde The emojis to add**`
 				)
 			let maxLength
 			if (interaction.guild.premiumTier === 'NONE') {
@@ -152,11 +149,10 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 				maxLength = 500
 			}
 			if (interaction.guild.emojis.cache.size >= maxLength) {
-				interaction.editReply({
-					content: `${bot.error} • **Guild at max emoji cap ~ ${
+        return await  bot.errorEmbed(bot, interaction, `**Guild at max emoji cap ~ ${
 						interaction.guild.emojis.cache.size
 					}/${maxLength}**`
-				})
+				)
 			} else {
 			await interaction.deleteReply().catch(() => null)
 
@@ -226,7 +222,7 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 
 				let OverallEmoji = Number(Animated) + Number(EmojiCount)
 
-				let Embed1 = new MessageEmbed()
+				let Embed1 = new EmbedBuilder()
 					.setTitle(
 						`Animated Emojis in ${interaction.guild.name} ~ ${Animated}.`
 					)
@@ -234,7 +230,7 @@ if (!emoji) return await interaction.editReply(`${bot.error} • Send an emote i
 					.setDescription(`${EmojisAnimated}`)
 					.setColor(bot.color)
 
-				let Embed2 = new MessageEmbed()
+				let Embed2 = new EmbedBuilder()
 					.setTitle(
 						`Non-Animated Emojis in ${interaction.guild.name} ~ ${EmojiCount}.`
 					)

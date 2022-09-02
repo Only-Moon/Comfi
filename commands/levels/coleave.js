@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 const guilds = require('../../models/guild');
                                         
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     ownerOnly: false,
     options: [
       {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       name: 'toggle',
       required: true,
       description: 'Sets the toggle for coleave', 
@@ -42,17 +42,16 @@ module.exports = {
 
 try {
       
-    const toggle = interaction.options.getString('toggle') 				
+    const toggle = interaction.options.getString('toggle') 			
+      const guild = await guilds.findOne({guildId:  interaction.guild.id})	
+  if (guild.leavling_coleave === toggle) return await  bot.errorEmbed(bot, interaction, `Coleave Toggle for **${interaction.guild.name}** is already set as **${toggle}**`)
     await guilds.findOneAndUpdate({guildId: interaction.guild.id}, {
                  leveling_coleave: toggle
                 }) 				
-                            return interaction.editReply( 					
-                              `Coleave for **${ 	
+        return await bot.successEmbed(bot, interaction, `Coleave Toggle for **${ 	
 interaction.guild.name 	
 }** has been set to: **${toggle}**` 				
-                            ).catch( (err) => {
-   return interaction.editReply(`${bot.error} An error has occured. \nError: ${err} \n [Contact Support](https://comfibot.tk/discord)`)                           
-                            });
+                            )
 
     } catch (e) {
   await bot.senderror(interaction, e)

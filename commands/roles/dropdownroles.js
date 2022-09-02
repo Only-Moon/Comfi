@@ -7,11 +7,12 @@
 
 const {
   CommandInteraction,
-  MessageEmbed,
+  EmbedBuilder,
   MessageCollector,
-  MessageSelectMenu,
-  MessageActionRow,
-  Util
+  SelectMenuBuilder,
+  ActionRowBuilder,
+  Util,
+  ApplicationCommandOptionType
 } = require('discord.js')
 const guilds = require('../../models/guild')
 
@@ -30,22 +31,22 @@ module.exports = {
     {
       name: 'add',
       description: 'Add / Create a Dropdown Role',
-      type: 'SUB_COMMAND'
+      type: ApplicationCommandOptionType.Subcommand
     },
     {
       name: 'list',
       description: 'Shows Server Dropdown  Roles List',
-      type: 'SUB_COMMAND'
+      type: ApplicationCommandOptionType.Subcommand
     },
     {
       name: 'remove',
       description: 'Remove / delete Dropdown Roles',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'id',
           description: 'Id of the Dropdown role',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
           autocomplete: true
         }
@@ -73,42 +74,42 @@ try {
         roles: [],
         messageId: undefined
       }
-      const step1 = new MessageEmbed()
+      const step1 = new EmbedBuilder()
         .setTitle(`Dropdown roles [1]`)
         .setDescription(
           `What should the embed title be? Say "skip" to have no title!`
         )
         .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
-      const step2 = new MessageEmbed()
+      const step2 = new EmbedBuilder()
         .setTitle(`Dropdown roles [2]`)
         .setDescription(
           `What should the embed description be? Say "roles" to make them set as the roles!`
         )
         .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
-      const step3 = new MessageEmbed()
+      const step3 = new EmbedBuilder()
         .setTitle(`Dropdown roles [3]`)
         .setDescription(
           `What should the embed color be? Say "default" to have the default colour!`
         )
         .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
-      const step4 = new MessageEmbed()
+      const step4 = new EmbedBuilder()
         .setTitle(`Dropdown roles [4]`)
         .setDescription(
           `What should the embed footer be? Say "skip" to have no footer!`
         )
         .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
-      const step5 = new MessageEmbed()
+      const step5 = new EmbedBuilder()
         .setTitle(`Dropdown roles [5]`)
         .setDescription(
           `Where should the dropdown message / prompt be sent? (channel id/name/mention) Say "bind" to have it sent in the current channel!`
         )
         .setFooter({text: `Say "cancel" at any time to stop the process!`})
         .setColor(bot.color)
-      const step6 = new MessageEmbed()
+      const step6 = new EmbedBuilder()
         .setTitle(`Dropdown roles [6]`)
         .setDescription(
           `Please list your emojis and roles!  (E.G **<emoji>** **<role id/mention/name>** ) Say **done** once finshed!`
@@ -123,14 +124,13 @@ try {
         embeds: [steps[counter]]
       })
       const collector = new MessageCollector(interaction.channel)
-      collector.on('collect', msg => {
+      collector.on('collect', async msg => {
         if (msg.author.id !== interaction.user.id) return
         if (msg.content.toLowerCase() === 'cancel') {
           hoisterMessage.delete().catch(() => { })
           msg.delete().catch(() => { })
-          interaction.channel.send({
-            content: `${bot.tick} • Process has been stopped!`
-          })
+        return await  bot.errorEmbed(bot, interaction, `Process has been stopped!`
+          )
           collector.stop(stopreasons.REQ)
           return
         }
@@ -168,11 +168,7 @@ try {
               if (testHex(msg.content)) {
                 finalData['embed_color'] = msg.content
               } else {
-                interaction.channel.send({
-                  content: `${
-                    bot.crosss
-                    } • Please supply a valid hex code (E.G #FFFFFF or FFFFFF)`
-                })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid hex code (E.G #FFFFFF or FFFFFF)`)
                 collector.stop(stopreasons.ERR)
                 hoisterMessage.delete().catch(() => { })
               }
@@ -208,11 +204,8 @@ try {
                 )
             }
             if (!channel) {
-              interaction.channel.send({
-                content: `${
-                  bot.crosss
-                  } • Please supply a valid channel or use "bind" to bind it to the current channel!`
-              })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid channel or use "bind" to bind it to the current channel!`
+              )
               collector.stop(stopreasons.ERR)
               hoisterMessage.delete().catch(() => { })
             }
@@ -224,9 +217,8 @@ try {
           case 5:
             if (msg.content.toLowerCase() === 'done') {
               if (finalData.roles.length <= 0) {
-                interaction.channel.send({
-                  content: `${bot.crosss} • Please supply some dropdown roles!`
-                })
+        return await  bot.errorEmbed(bot, interaction, `Please supply some dropdown roles!`
+                )
                 collector.stop(stopreasons.ERR)
                 hoisterMessage.delete().catch(() => { })
                 return
@@ -240,9 +232,8 @@ try {
 
             const parsedEmoji = Util.parseEmoji(emoji)
             if (!parsedEmoji.id) {
-              interaction.channel.send({
-                content: `${bot.crosss} • Please supply a valid emoji!`
-              })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid emoji!`
+              )
               hoisterMessage.delete().catch(() => { })
               collector.stop(stopreasons.ERR)
             }
@@ -254,10 +245,8 @@ try {
                   r.name.toLowerCase() === roles.join(' ').toLowerCase()
               )
             if (!serverrole) {
-              interaction.channel
-                .send({
-                  content: `${bot.crosss} • Please supply a valid role!`
-                })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid role!`
+                )
                 .catch(() => null)
               hoisterMessage.delete().catch(() => { })
               collector.stop(stopreasons.ERR)
@@ -298,17 +287,17 @@ try {
             dropdownMenuItems.push({
               emoji: `${r.emoji}`,
               label: `${serverRoles.name}`,
-              value: `${serverRoles.id}`,
+              value: `${serverRoles?.id}`,
               description: `Click this to get the ${serverRoles.name} role!`
             })
           })
-          const row = new MessageActionRow().addComponents([
-            new MessageSelectMenu()
+          const row = new ActionRowBuilder().addComponents([
+            new SelectMenuBuilder()
               .setPlaceholder('Choose your roles...')
               .setCustomId('dropdown_roles')
               .addOptions(dropdownMenuItems)
           ])
-          const finalEmbed = new MessageEmbed().setColor(finalData.embed_color)
+          const finalEmbed = new EmbedBuilder().setColor(finalData.embed_color)
           if (finalData.embed_title !== 'skipped') {
             finalEmbed.setTitle(finalData.embed_title)
           }
@@ -326,17 +315,7 @@ try {
           )
           const finalMessage = await channel
             .send({ embeds: [finalEmbed], components: [row] })
-            .catch((e) => {
-              let emed = new MessageEmbed()
-                .setTitle(`${bot.error} • Error Occured`)
-                .setDescription(`\`\`\`${e.stack}\`\`\``)
-                .setColor(bot.color)
-
-              bot.sendhook(null, {
-                channel: bot.err_chnl,
-                embed: emed
-              })
-            })
+            
 
           const msgId = getId()
           await guilds.findOneAndUpdate(
@@ -353,7 +332,7 @@ try {
               }
             }
           )
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setColor(bot.color)
             .setDescription(
               ` > ${bot.tick} • **Created Dropdown roles!**\n\n > ${
@@ -372,9 +351,8 @@ try {
 
     if (sub === 'list') {
       if (guild.dropdownRoles.length <= 0) {
-        return interaction.editReply({
-          content: `${bot.crosss} • This server has no dropdown roles setup!`
-        })
+        return await  bot.errorEmbed(bot, interaction, `This server has no dropdown roles setup!`
+        )
       } else {
         let arr = []
         let pos = 0
@@ -387,7 +365,7 @@ try {
             }/${dd.chanId}/${dd.msgId})  `
           )
         })
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setDescription(arr.join('\n'))
           .setColor(bot.color)
 
@@ -399,17 +377,12 @@ try {
       let id = interaction.options.getString('id')
 
       if (guild.dropdownRoles.length <= 0) {
-        return interaction.editReply({
-          content: `${bot.crosss} • This server has no dropdown roles setup!`
-        })
+        return await  bot.errorEmbed(bot, interaction, `This server has no dropdown roles setup!`
+        )
       } else {
         if (!id.length) {
-          return interaction
-            .editReply({
-              content: `${
-                bot.crosss
-                } • Please supply a valid dropdown role's ID!`
-            })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid dropdown role's ID!`
+            )
             .catch(() => null)
         }
         let value
@@ -425,12 +398,8 @@ try {
         })
 
         if (!value) {
-          return interaction
-            .editReply({
-              content: `${
-                bot.crosss
-                } • Please supply a valid dropdown role's ID!`
-            })
+        return await  bot.errorEmbed(bot, interaction, `Please supply a valid dropdown role's ID!`
+            )
             .catch(() => null)
         }
         const channel = interaction.guild.channels.cache.find(
@@ -448,7 +417,7 @@ try {
         guild.dropdownRoles.splice(dropdown, 1)
         guild.save()
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setDescription(
             ` > ${
             bot.tick

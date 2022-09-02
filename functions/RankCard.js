@@ -60,7 +60,7 @@ async function rankCard(client, message, options = []) {
 		let BackgroundRadius = '20',
 			BackGroundImg =
 				options.background ||
-				'https://i.imgur.com/rkGiaIO.png?width=640&height=427',
+				'https://i.imgur.com/rkGiaIO.png',
 			AttachmentName = 'Comfi_leveling.png',
 			Username = noSymbols(name),
 			AvatarRoundRadius = '50',
@@ -185,7 +185,7 @@ async function rankCard(client, message, options = []) {
 		ctx.clip()
 		ctx.fillStyle = '#ffffff'
 		ctx.font = '45px "Poppins-Bold"'
-		ctx.fillText(message.guild.name, 75 + 450, 355)
+		ctx.fillText(noSymbols(message.guild.name), 75 + 450, 355)
 		ctx.globalAlpha = '0.2'
 		ctx.fillRect(390, 305, 660, 70)
 		ctx.restore()
@@ -231,15 +231,15 @@ async function rankCard(client, message, options = []) {
 		ctx.font = '40px "Poppins-Bold"'
 		ctx.fillText(textXPEdited, 730, 180)
 
-		const attachment = new Discord.MessageAttachment(
+		const attachment = new Discord.AttachmentBuilder(
 			canvas.toBuffer(),
 			AttachmentName
 		)
 
 		message.followUp({ files: [attachment], ephemeral: true })
 	} catch (err) {
-		console.log(`Error Occured. | rankCard | Error: ${err.stack}`)
-	}
+        return await  bot.errorEmbed(bot, message, `${err.stack}`)
+ }
 }
 
 module.exports = rankCard

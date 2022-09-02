@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord.js");
+const { CommandInteraction, EmbedBuilder, AttachmentBuilder, ApplicationCommandOptionType } = require("discord.js");
 const Meme = require("memer-api");
 const memer = new Meme(process.env.MEMER);
 
@@ -20,12 +20,12 @@ module.exports = {
     {
       name: "abandon",
       description: "Abandon image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "text",
           description: "Text You want to add in the image",
-          type: "STRING",
+          type: ApplicationCommandOptionType.String,
           required: true
         },
       ],
@@ -33,18 +33,18 @@ module.exports = {
     {
       name: "byemom",
       description: "byemom image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
         {
           name: "text",
           description: "The Text you want to add in the image",
-          type: "STRING",
+          type: ApplicationCommandOptionType.String,
           required: true
         },
       ],
@@ -52,12 +52,12 @@ module.exports = {
     {
       name: "cancer",
       description: "cancer image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
       ],
@@ -65,12 +65,12 @@ module.exports = {
     {
       name: "dab",
       description: "dab image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
       ],
@@ -78,17 +78,17 @@ module.exports = {
     {
       name: 'drake',
       description: 'the drake meme',
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'line_1',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'WHAT am i putting in fist line',
           required: true
         },
         {
           name: 'line_2',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'WHAT am i putting in the second line',
           required: true
         },
@@ -97,12 +97,12 @@ module.exports = {
     {
       name: "delete",
       description: "delete image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
       ],
@@ -110,12 +110,12 @@ module.exports = {
     {
       name: "disability",
       description: "disability image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
       ],
@@ -123,12 +123,12 @@ module.exports = {
     {
       name: "door",
       description: "door image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
       ],
@@ -136,12 +136,12 @@ module.exports = {
     {
       name: "egg",
       description: "egg image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "user1",
           description: "The user profile you want to use",
-          type: "USER",
+          type: ApplicationCommandOptionType.User,
           required: true
         },
       ],
@@ -149,12 +149,12 @@ module.exports = {
     {
       name: "emergencymeeting",
       description: "emergencymeeting image",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "text",
           description: "The Text you want to add in the image",
-          type: "STRING",
+          type: ApplicationCommandOptionType.String,
           required: true
 
         },
@@ -178,22 +178,22 @@ module.exports = {
       // Abandon image-----------------------------------------------------------------------------------------------        
       if (subcommand === `abandon`) {
         const text = interaction.options.getString('text');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         memer.abandon(text).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "abandon.png");
+          let attachment = new AttachmentBuilder(image, "abandon.png");
           //delete old message
 
           //send new Message
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://abandon.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -202,22 +202,22 @@ module.exports = {
       if (subcommand === `byemom`) {
         const user1 = interaction.options.getUser('user1');
         const text = interaction.options.getString('text');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
 
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.byemom(avatar, user1.username, text).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "byemom.png");
+          let attachment = new AttachmentBuilder(image, "byemom.png");
           //delete old message
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://byemom.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -227,20 +227,20 @@ module.exports = {
       //cancer image-----------------------------------------------------------------------------------------------------------------
       if (subcommand === `cancer`) {
         const user1 = interaction.options.getUser('user1');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.cancer(avatar).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "cancer.png");
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          let attachment = new AttachmentBuilder(image, "cancer.png");
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://cancer.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -249,20 +249,20 @@ module.exports = {
       // Dab Image-----------------------------------------------------------------------------------------------------------------
       if (subcommand === `dab`) {
         const user1 = interaction.options.getUser('user1');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.dab(avatar).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "dab.png");
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          let attachment = new AttachmentBuilder(image, "dab.png");
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://dab.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -272,20 +272,20 @@ module.exports = {
       //Delete Image---------------------------------------------------------------------------------------------------------------
       if (subcommand === `delete`) {
         const user1 = interaction.options.getUser('user1');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.delete(avatar).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "delete.png");
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          let attachment = new AttachmentBuilder(image, "delete.png");
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://delete.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -295,20 +295,20 @@ module.exports = {
       //Disability Image------------------------------------------------------------------------------------------------------------
       if (subcommand === `disability`) {
         const user1 = interaction.options.getUser('user1');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.disability(avatar).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "disability.png");
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          let attachment = new AttachmentBuilder(image, "disability.png");
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://disability.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -319,20 +319,20 @@ module.exports = {
       //Door Image------------------------------------------------------------------------------------------------------------
       if (subcommand === `door`) {
         const user1 = interaction.options.getUser('user1');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.door(avatar).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "door.png");
-          const genMeme = new MessageEmbed()
-            .setColor("#F4B3CA")
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+          let attachment = new AttachmentBuilder(image, "door.png");
+          const genMeme = new EmbedBuilder()
+            .setColor(bot.color)
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://door.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -348,7 +348,7 @@ module.exports = {
 
         const finalLink = 'https://luminabot.xyz/api/image/drake?yes=' + encodeURIComponent(text2) + '&no=' + encodeURIComponent(text1)
 
-        const attach = new MessageAttachment(finalLink, 'drake.png')
+        const attach = new AttachmentBuilder(finalLink, 'drake.png')
 
         interaction.followUp({ files: [attach] });
 
@@ -357,20 +357,20 @@ module.exports = {
       //egg Image------------------------------------------------------------------------------------------------------------
       if (subcommand === `egg`) {
         const user1 = interaction.options.getUser('user1');
-        let temp = new MessageEmbed()
-          .setColor("#F4B3CA")
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+        let temp = new EmbedBuilder()
+          .setColor(bot.color)
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
         let avatar = user1.displayAvatarURL({ format: "png" });
         memer.egg(avatar).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "egg.png");
-          const genMeme = new MessageEmbed()
+          let attachment = new AttachmentBuilder(image, "egg.png");
+          const genMeme = new EmbedBuilder()
             .setColor(bot.color)
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://egg.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })
@@ -382,21 +382,21 @@ module.exports = {
       if (subcommand === `emergencymeeting`) {
 
         const text = interaction.options.getString('text');
-        let temp = new MessageEmbed()
+        let temp = new EmbedBuilder()
           .setColor(bot.color)
-          .setAuthor("Getting Image Data..", "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif")
+          .setAuthor({name: "Getting Image Data..", iconURL: "https://images-ext-1.discordapp.net/external/ANU162U1fDdmQhim_BcbQ3lf4dLaIQl7p0HcqzD5wJA/https/cdn.discordapp.com/emojis/756773010123522058.gif"})
 
         await interaction.followUp({ embeds: [temp] });
 
         memer.emergencymeeting(text).then(image => {
           //make an attachment
-          let attachment = new MessageAttachment(image, "emergencymeeting.png");
+          let attachment = new AttachmentBuilder(image, "emergencymeeting.png");
           //delete old message
-          const genMeme = new MessageEmbed()
+          const genMeme = new EmbedBuilder()
             .setColor(bot.color)
-            .setAuthor(`${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setAuthor({name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setImage("attachment://emergencymeeting.png")
-            .setFooter("Generated with memer API")
+            .setFooter({text: "Generated with memer API"})
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
             .catch(e => console.log("Couldn't delete msg, this is for preventing a bug".gray))
         })

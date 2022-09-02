@@ -6,7 +6,7 @@
 */
 
 const { get } = require("request-promise-native");
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
   name: "search",
@@ -15,11 +15,11 @@ module.exports = {
   options: [
     {
       name: "anime",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       description: "Search for anime",
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'name of anime to search',
           name: 'name',
           required: true,
@@ -29,10 +29,10 @@ module.exports = {
     {
       name: "manga",
       description: "Search for manga",
-      type: "SUB_COMMAND",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: "STRING",
+          type: ApplicationCommandOptionType.String,
           description: "Name of manga to search",
           name: "name",
           required: true
@@ -74,7 +74,7 @@ module.exports = {
         if (!res) return await bot.errorEmbed(bot, interaction, `No results were found!`,
         );
 
-        const anime = res ?.data[0];
+        const anime = res?.data[0];
         if (!anime) return await bot.errorEmbed(bot, interaction, `No results were found!`,
         );
 
@@ -83,13 +83,23 @@ module.exports = {
         if (anime.attributes.nsfw && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, `**Nsfw searching not allowed in Non Nsfw Channel**`)
 
         const animeSearch = {
-          title: `${anime.attributes.titles.en_jp}`,
+          title: `Name: ${anime.attributes.titles.en}`,
           url: `${anime.links.self}`,
           thumbnail: {
             url: anime.attributes.posterImage.original,
           },
           description: anime.attributes.synopsis,
           fields: [
+            {
+              name: "🍣 Romanji",
+              value: anime.attributes.titles.en_jp,
+              inline: true
+            },
+            {
+              name: "🍲 Japanese Name",
+              value: anime.attributes.titles.ja_jp,
+              inline: true
+            },
             {
               name: "⏳ Status",
               value: anime.attributes.status,
@@ -161,7 +171,7 @@ module.exports = {
               inline: true,
             }
           ],
-          color: bot.color,
+          color: 0xF4B3CA,
         };
 
         return await interaction.editReply({
@@ -195,13 +205,23 @@ module.exports = {
         if (manga.attributes.ageRating === "R18" && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, `**Nsfw searching not allowed in Non Nsfw Channel**`)
 
         const mangaSearch = {
-          title: `${manga.attributes.titles.en_jp}`,
+          title: `${manga.attributes.titles.en}`,
           url: `${manga.links.self}`,
           thumbnail: {
             url: manga.attributes.posterImage.original,
           },
           description: manga.attributes.synopsis,
           fields: [
+            {
+              name: "🍣 Romanji",
+              value: anime.attributes.titles.en_jp,
+              inline: true
+            },
+            {
+              name: "🍲 Japanese Name",
+              value: anime.attributes.titles.ja_jp,
+              inline: true
+            },
             {
               name: "⏳ Status",
               value: manga.attributes.status,
@@ -273,7 +293,7 @@ module.exports = {
               inline: true,
             },
           ],
-          color: bot.color,
+          color: 0xF4B3CA,
         };
 
         return interaction.editReply({

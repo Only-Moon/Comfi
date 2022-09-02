@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js')
 const guilds = require('../../models/guild')
 
 module.exports = {
@@ -15,27 +15,27 @@ module.exports = {
   ownerOnly: false,
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'enable',
       description: 'Sets channel for Modlogs',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'modlogs channel',
           name: 'name',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText]
         }
       ]
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       name: 'disable',
       description: 'Disables the modlogs channel'
     }
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -65,8 +65,7 @@ module.exports = {
             mod_channel: finalData.channel
           }
         )
-        interaction.editReply(
-          `${bot.tick} **Modlog Channel Has Been Set Successfully in \`${
+        return await bot.successEmbed(bot, interaction, ` **Modlog Channel Has Been Set Successfully in \`${
           channel.name
           }\`!**`
         )
@@ -89,8 +88,7 @@ module.exports = {
           }
         )
 
-        interaction.editReply(
-          `${bot.tick} **Modlog Channel Has Been Successfully Disabled in \`${
+        return await bot.successEmbed(bot, interaction, `**Modlog Channel Has Been Successfully Disabled in \`${
           channel.name
           }\`**`
         )

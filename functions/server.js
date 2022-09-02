@@ -83,8 +83,8 @@ module.exports = async (bot) => {
       index: {
         card: {
           category: "Comfi - The Aesthetic Multipurpose Bot",
-          image: "https://cdn.discordapp.com/attachments/804978370050916362/936146613242576916/IMG_0359.jpg",
-          footer: '↠ Made with love by ꒰⚘݄꒱₊_❝ moonbow ᵕ̈ 🌸#5817',
+          image: "https://i.imgur.com/VvRV7jb.png",
+          footer: '↠ Made with love by <a href="https://discord.com/users/7753974636508741673"> ꒰⚘݄꒱₊_❝ moonbow ᵕ̈ 🌸#5817 </a>',
         },
         feeds: {
           description: "↠ Thanks for Checking My Dashboard",
@@ -137,6 +137,21 @@ module.exports = async (bot) => {
           id: "donate",
         }
         ]
+      },
+      custom_html: {
+        head: `<meta property="og:title" content="Dashboard For Comfi Bot">
+<meta name="theme-color" content="#F4B3CA">
+<meta property="og:site_name" content="Comfi Bot">
+<meta property="og:url" content=https://comfibot.tk>
+<meta property="og:description" content="Comfi Is An Advance Multipurpose Bot With a Lot of Moderation, Fun, Emoji and Utility Commands Fully Based On Slash. Developed by Moonbow">
+<meta property="og:type" content=website>
+<meta property="og:image" content=https://i.imgur.com/VvRV7jb.png>
+<meta property="og:image:type" content="image/png"> 
+<meta property="og:image:width" content="1920"> 
+<meta property="og:image:height" content="1080"> 
+
+  <meta name="twitter:card" content="summary_large_image">
+`
       },
       commands: [
         {

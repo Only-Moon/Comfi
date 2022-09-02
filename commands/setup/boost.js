@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed, } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType, ChannelType } = require('discord.js')
 const guilds = require('../../models/guild')
 const embedCreate = require('../../functions/embed')
 
@@ -18,12 +18,12 @@ module.exports = {
     {
       name: 'toggle',
       description: 'Toggle the system on or off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'option',
           description: 'Options for boost Detector toggle',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           required: true,
           choices: [
             {
@@ -41,10 +41,10 @@ module.exports = {
     {
       name: 'embed-toggle',
       description: 'Embed Toogle for boosy detector system',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Options for boost detector embed toggle',
           name: 'options',
           required: true,
@@ -64,36 +64,36 @@ module.exports = {
     {
       name: 'channel',
       description: 'Channel for boost detector',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'name',
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel for boost detector',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText]
         }
       ]
     },
     {
       name: 'embed',
       description: 'Setup embed for boost detector',
-      type: 'SUB_COMMAND'
+      type: ApplicationCommandOptionType.Subcommand 
     },
     {
       name: 'content',
       description: 'Setup content for boost detector when embed toggle is off',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'message',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'Message for boost detector',
           required: true
         },
         {
           name: 'image',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.Attachment,
           description: 'Image url for boost detector',
           required: false
         }
@@ -102,11 +102,11 @@ module.exports = {
     {
       name: "help",
       description: "Help for leave Boost Detector",
-      type: "SUB_COMMAND"
+      type: ApplicationCommandOptionType.Subcommand 
     },
   ],
-  userperm: ['MANAGE_GUILD'],
-  botperm: ['MANAGE_GUILD'],
+  userperm: ['ManageGuild'],
+  botperm: ['ManageGuild'],
 	/**
 	 *
 	 * @param {CommandInteraction} interaction
@@ -186,7 +186,7 @@ module.exports = {
 
       if (sub === 'content') {
         let msg = interaction.options.getString('message')
-        let img = interaction.options.getString('image')
+        let img = interaction.options.getString('image').url
 
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
@@ -217,7 +217,8 @@ module.exports = {
           .addFields(
             {
               name: "Commands",
-              value: `\`\`\`toggle - turn on/off the boost detector\nembed-toggle - make the boost message show in embed or non embed text\nembed - make an embed for boost detector using the embed builder\ncontent - sets the non embed content for boost detector\n\`\`\``
+              value: `\`\`\`toggle - turn on/off the boost detector\nembed-toggle - make the boost message show in embed or non embed text\nembed - make an embed for boost detector using the embed builder\ncontent - sets the non embed content for boost detector\n\`\`\``,
+            inline: true
             },
             {
               name: 'Tags',
