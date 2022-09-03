@@ -168,11 +168,11 @@ bot.on('interactionCreate', async (interaction, args) => {
       .setDescription(
         ` > <a:tick:890113862706266112> • __Command:__ **${
         cmd.name
-        }**!\n > <a:tick:890113862706266112> • __Args :__ **${args.length === 0 ? args : "Not Found"}** \n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
+        }**!\n > <a:tick:890113862706266112> • __Args :__ **${args.length !== 0 ? args : "Not Found"}** \n\n > <a:emoji_87:883033003574579260> • __Guild:__ **${
         interaction.guild ? interaction.guild.name : 'dm'
         }**\n > <a:emoji_87:883033003574579260> • __Id:__ **${
         interaction.guild ? interaction.guild.id : 'dm'
-        }**\n ><a:wing_cs:883032991293653062> • __User:__ **${interaction.user ? interaction.user.username : "Not Found"}**\n ><a:wing_cs:883032991293653062> • __Id:__ **${interaction.user ? interaction.user.id : "Not Found"}**`
+        }**\n > <a:wing_cs:883032991293653062> • __User:__ **${interaction.user ? interaction.user.username : "Not Found"}**\n >  <a:wing_cs:883032991293653062> • __Id:__ **${interaction.user ? interaction.user.id : "Not Found"}**`
       )
       .setThumbnail(`${interaction.user.displayAvatarURL({ dynamic: true })}`)
       .setColor(bot.color)

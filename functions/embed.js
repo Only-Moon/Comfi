@@ -950,26 +950,7 @@ async function embed(message, options = []) {
           })
         })
     } catch (e) {
-      let emed = new MessageEmbed()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](${bot.support}) `,
-            color: bot.color
-          }
-        ]
-      })
+    await bot.senderror(interaction, e)
     }
   })
 }

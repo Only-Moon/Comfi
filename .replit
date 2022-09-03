@@ -1,2 +1,3 @@
 language = "nodejs"
-run = "npx node --trace-deprecation index.js"
+run = ""
+entrypoint = "index.js"
