@@ -51,7 +51,7 @@ bot.on('messageCreate', async message => {
 
 				await message.channel.sendTyping().catch(() => null)
 
-				const url = new URL('https://simplyapi.js.org/chatbot'),
+				const url = new URL('https://simplyapi.js.org/api/chatbot'),
 					params = url.searchParams,
 					age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
 
