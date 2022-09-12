@@ -99,12 +99,11 @@ async function embed(message, options = []) {
 
         menuOptions.push(dataopt)
       }
-
       let slct = new SelectMenuBuilder()
         .setMaxValues(1)
         .setCustomId('embed-creator')
         .setPlaceholder('Embed Creation Options')
-        .addOptions([menuOptions])
+        .addOptions(menuOptions)
 
       const row = new ActionRowBuilder().addComponents([done, reject])
 
@@ -521,7 +520,7 @@ async function embed(message, options = []) {
                   : ''
 
                 let msg = new EmbedBuilder()
-                  .setTitle(membed.embeds[0].title || '')
+                  .setTitle(membed.embeds[0]?.title || '')
                   .setDescription(membed.embeds[0].description || '')
                   .setColor(membed.embeds[0].color || '#36393F')
                   .setFooter({ text: membed.embeds[0].footer.text || '' })
@@ -803,7 +802,7 @@ async function embed(message, options = []) {
                   ? membed.embeds[0].image.url
                   : ''
                 let msg = new EmbedBuilder()
-                  .setTitle(m.content)
+                  .setTitle(m?.content)
                   .setURL(membed.embeds[0].url || '')
                   .setDescription(membed.embeds[0].description || '')
                   .setAuthor({
@@ -951,26 +950,7 @@ async function embed(message, options = []) {
           })
         })
     } catch (e) {
-      let emed = new EmbedBuilder()
-        .setTitle(`${bot.error} • Error Occured`)
-        .setDescription(`\`\`\`${e.stack}\`\`\``)
-        .setColor(bot.color)
-
-      bot.sendhook(null, {
-        channel: bot.err_chnl,
-        embed: emed
-      })
-
-      interaction.followUp({
-        embeds: [
-          {
-            description: `${
-              bot.error
-              } Error, try again later \n Error: ${e} \n [Contact Support](${bot.support}) `,
-            color: bot.color
-          }
-        ]
-      })
+    await bot.senderror(message, e)
     }
   })
 }

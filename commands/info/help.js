@@ -39,12 +39,12 @@ module.exports = {
       if (!args[0]) {
         //categories to ignore
 
-        let ignored = ['owner', 'admin']
+        let ignored = ['owner', 'context']
 
         const emo = {
           anime: '<a:snowman_cs:883017868944502804>',
-          context: "<a:milk_cs:883017898984103986>",
-          emoji: '<a:apple_cs:883033005172605020>',
+          economy: "<:currencyy_Blossomii:883032993101406278>",
+          //emoji: '<a:apple_cs:883033005172605020>',
           fun: '<a:shootingstaw_cs:883017879065354290>',
           info: '<a:stars_cs:883033007836000308>',
           levels: '<a:bunny_cs:883033003574579260>',
@@ -95,6 +95,7 @@ module.exports = {
           .setColor(bot.color);
 
         let menus = create_mh(ccate)
+       
         await interaction.editReply({
           embeds: [embed],
           components: menus.smenu

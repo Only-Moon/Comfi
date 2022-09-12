@@ -155,6 +155,18 @@ module.exports = async (bot) => {
       },
       commands: [
         {
+          category: "Anime",
+          subTitle: "Anime Commands",
+          aliasesDisabled: true,
+          list: directory("anime")
+        },
+        {
+          category: "Economy",
+          subTitle: "Economy Commands",
+          aliasesDisabled: true,
+          list: directory("economy")
+        },
+        {
           category: `Fun`,
           subTitle: `Fun Commands`,
           aliasesDisabled: true,

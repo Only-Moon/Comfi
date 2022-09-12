@@ -42,9 +42,9 @@ module.exports = {
     let ephemeral = data.fields.getTextInputValue('ephemeral').toLowerCase() === true ? true : false
 
     try {
-     const result = await eval(code)
+   //  const result = await eval(code)
 
-     let output = result
+     //let output = result
 
       let evaled;
       if (code.includes('await')) evaled = inspect(eval(`(async () => { ${code} })()`));
@@ -67,7 +67,7 @@ module.exports = {
                           new EmbedBuilder()
                           .setTitle("Evaluation successful!")
                           .addFields({name: "__**Input**__", value: `**${code}**`, inline: true },
-            {name: "__**Output**__", value: `\`\`\`js\n${output}\`\`\` `, inline: true })
+            {name: "__**Output**__", value: `\`\`\`\"output"\`\`\` `, inline: true })
                           .setColor(bot.color)
                           .setTimestamp()
                       ]

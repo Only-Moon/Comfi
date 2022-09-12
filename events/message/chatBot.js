@@ -28,62 +28,65 @@ bot.on('messageCreate', async message => {
     .setDescription('Chat Bot is disabled by the Owner in this Server!')
     .setFooter({ text: `Requested by ${message.author.username}` })
 
-  if (guild ?.chatbot) {
-    let ch = guild ?.chat_channel
+  if (guild?.chatbot) {
+    let ch = guild?.chat_channel
 
 		if (!ch || ch === undefined) return
 
-    if (message.channel ?.id === ch) {
+    if (message.channel?.id === ch) {
       try {
-        const ranges = [
-          '\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
-          '\ud83d[\udc00-\ude4f]', // U+1F400 to U+1F64F
-          '\ud83d[\ude80-\udeff]' // U+1F680 to U+1F6FF
-        ]
+				const ranges = [
+					'\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
+					'\ud83d[\udc00-\ude4f]', // U+1F400 to U+1F64F
+					'\ud83d[\ude80-\udeff]' // U+1F680 to U+1F6FF
+				]
 
-        let input = message.cleanContent.replace(
-          new RegExp(ranges.join('|'), 'g'),
-          '.'
-        )
+				let input = message.cleanContent.replace(
+					new RegExp(ranges.join('|'), 'g'),
+					'.'
+				)
 
-        //Replacing Emojis
-        input = input.replace(/<a?:.+:\d+>/gm, '')
+				//Replacing Emojis
+				input = input.replace(/<a?:.+:\d+>/gm, '')
 
-        await message.channel.sendTyping().catch(() => null)
+				await message.channel.sendTyping().catch(() => null)
 
-        const url = new URL('https://api.affiliateplus.xyz/api/chatbot'),
-          params = url.searchParams,
-          age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
+				const url = new URL('https://simplyapi.js.org/api/chatbot'),
+					params = url.searchParams,
+					age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
 
-        params.set('message', input)
-        params.set('ownername', 'moonbow#5817')
-        params.set('botname', bot.user.username)
-        params.set('age', age)
-        params.set('birthyear', bot.user.createdAt.getFullYear())
-        params.set('birthdate', bot.user.createdAt.toLocaleDateString())
-        params.set('birthplace', 'Cozy Development')
-        params.set('location', message.guild.name)
-        params.set('user', message.author.id)
-        // Using await instead of .then 
-        const jsonRes = await fetch(url).then(res => res.json()) // Parsing the JSON
+				params.set('message', input)
+				params.set('developer', 'moonbow#5817')
+				params.set('name', bot.user.username)
+				params.set('age', age)
+				params.set('year', bot.user.createdAt.getFullYear())
+				params.set('bday', bot.user.createdAt.toLocaleDateString())
+				params.set('birthplace', 'Comfi Development')
+				params.set('gender', 'female')
+				params.set('uid', message.author.id)
 
-        const chatbotReply = jsonRes.reply
-          .replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
-          .replace(/@here/g, '`@here`')
+        console.log(message)
+				// Using await instead of .then
+				const jsonRes = await fetch(url).then(res => res.json()).catch(async (e) => {
+              await bot.senderror(message, e)
+        })// Parsing the JSON
 
-        if (chatbotReply === '') {
-          return message.reply({
-            content: 'Uh What ?',
-            allowedMentions: { repliedUser: false }
-          })
-        }
+				const chatbotReply = jsonRes.reply
+					.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
+					.replace(/@here/g, '`@here`')
 
-        await message
-          .reply({
-            content: chatbotReply,
-            allowedMentions: { repliedUser: false }
-          })
-          .catch(() => null)
+				if (chatbotReply === '') {
+					return message.reply({
+						content: 'Uh What ?',
+						allowedMentions: { repliedUser: false }
+					})
+				}
+				await message
+					.reply({
+						content: jsonRes.error ? jsonRes.error : chatbotReply,
+						allowedMentions: { repliedUser: false }
+					})
+					.catch(() => null)
       } catch (err) {
         if (err instanceof fetch.FetchError) {
           if (err.type === 'invalid-json') {
@@ -92,20 +95,12 @@ bot.on('messageCreate', async message => {
               .catch(() => null) //Catch errors that happen while fetching
           }
         } else  {
-        let emed = new EmbedBuilder()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${err.stack}\`\`\``)
-          .setColor(bot.color)
-
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
+    await bot.senderror(message, err)
 
     }
       }
     } else return;
-  } else if (!guild.chatbot && message.channel ?.id === guild.chat_channel) {
+  } else if (!guild.chatbot && message.channel?.id === guild.chat_channel) {
     return (
       message.delete(),
       message.author.send({ embeds: [disabled] }).catch(() => null)

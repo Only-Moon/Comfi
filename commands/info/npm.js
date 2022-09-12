@@ -60,7 +60,7 @@ const embed = new EmbedBuilder({ // Edit this embed to your liking such as the C
 				thumbnail: {
 					url: 'https://images-ext-1.discordapp.net/external/JsiJqfRfsvrh5IsOkIF_WmOd0_qSnf8lY9Wu9mRUJYI/https/images-ext-2.discordapp.net/external/ouvh4fn7V9pphARfI-8nQdcfnYgjHZdXWlEg2sNowyw/https/cdn.auth0.com/blog/npm-package-development/logo.png',
 				},
-				color: bot.color,
+				color: 0xF4B3CA,
 				description: pkg.description,
 				fields: [{
 					name: '❯ Author',
@@ -91,7 +91,6 @@ const embed = new EmbedBuilder({ // Edit this embed to your liking such as the C
 						.setURL(`https://www.npmjs.com/package/${npm}`)          
           .setEmoji(`883017868944502804`)
 						.setLabel('Go to Package!!')	);
-
       await interaction.editReply({ embeds: [embed], components: [row] })
     } catch (e) {
   await bot.senderror(interaction, e)
