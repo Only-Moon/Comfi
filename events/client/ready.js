@@ -36,26 +36,26 @@ bot.on('ready', async () => {
     )} MB / ${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB`
   })
   bot.logger.ready('-------------------------------------', 'ready')
-
-  let totalCommands = 0
-  bot.slashCommands.forEach(cmd => {
-    totalCommands++
-  })
-  const activites = [
-    { name: `/invite | ${bot.guilds.cache.size} servers!`, type: 'WATCHING' },
-    { name: `/infoo | ${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`, type: 'LISTENING' },
-    { name: `/settings | ${bot.ws.ping}ms`, type: 'LISTENING' },
-    { name: `/helpp | ${totalCommands} commands!`, type: 'PLAYING' }
-  ]
-  let activity = 0
-  bot.user.setPresence({ status: 'online', activity: activites[0] })
-  setInterval(() => {
-    if (activity === activity.length) return (activity = 0)
-    activity++
-    bot.user.setActivity(
-      activites[Math.floor(Math.random() * activites.length)]
-    )
-  }, 1000 * 30)
+  
+        let totalCommands = 0 
+         bot.slashCommands.forEach(cmd => { 
+                 totalCommands++ 
+         }) 
+         const activites = [ 
+                 { name: `/invite | ${bot.guilds.cache.size} servers!`, type: 'WATCHING' }, 
+                 { name: `/infoo | ${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`, type: 'LISTENING' }, 
+                 { name: `/emoji | ${bot.emojis.cache.size} emojis`, type: 'LISTENING' }, 
+                 { name: `/helpp | ${totalCommands} commands!`, type: 'PLAYING' } 
+         ] 
+         let activity = 0 
+         bot.user.setPresence({ status: 'online', activity: activites[0] }) 
+         setInterval(() => { 
+                 if (activity === activity.length) return (activity = 0) 
+                 activity++ 
+                 bot.user.setActivity( 
+                         activites[Math.floor(Math.random() * activites.length)] 
+                 ) 
+         }, 1000 * 60)
 
   require('../../functions/server')(bot)
 
@@ -66,15 +66,7 @@ bot.on('ready', async () => {
       try {
         bot.emit("guildCreate", guild)
       } catch (e) {
-        let emed = new EmbedBuilder()
-          .setTitle(`${bot.error} • Error Occured`)
-          .setDescription(`\`\`\`${e.stack}\`\`\``)
-          .setColor(bot.color)
-
-        bot.sendhook(null, {
-          channel: bot.err_chnl,
-          embed: emed
-        })
+            await bot.senderror(false, e)
       }
     } else if (guilD) return;
   })

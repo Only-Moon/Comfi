@@ -3,7 +3,9 @@ const Discord = require('discord.js'),
   chalk = require('chalk'),
   fs = require('fs'),
   guilds = require('../models/guild'),
-  simplydjs = require("simply-djs")
+  simplydjs = require("simply-djs"),
+  Economy = require("../functions/eco.js") 
+  bot = require("../index")
 
 /* 
 * Comfi Bot for Discord 
@@ -35,13 +37,10 @@ class Comfi extends Discord.Client {
 				'Guild',
 				'User'
 			],
-			restRequestTimeout: 30000,		
+			restRequestTimeout: 30000
     })
-    this.color = process.env["color"] || '#F4B3CA'
+    this.color = process.env["color"] || "#F4B3CA"
     this.logger = require('./Logger.js')
-    this.error = this.emoji(process.env.error ? process.env.error : "error_CS")
-    this.tick = this.emoji(process.env.tick ? process.env.tick : "tick_CS")
-    this.cross = this.emoji(process.env.cross ? process.env.cross : "cross_CS")
     this.dash = process.env['web']
     this.ms = require('ms')
     this.owners = process.env['owner'] || ["753974636508741673"]
@@ -49,8 +48,10 @@ class Comfi extends Discord.Client {
     this.support = process.env["support"] || this.dash + 'support'
     this.login(process.env.TOKEN)
     this.functions = require('../functions/function.js')
+    this.btnPage = require('../functions/btnPage.js')
     this.bcolor = this.functions.color
     this.categories = fs.readdirSync('./commands/')
+    this.eco = new Economy(this, process.env.Mongoose, {global:true})
     this.dbs(process.env.Mongoose)
     this.commands = new Discord.Collection()
     this.aliases = new Discord.Collection()
@@ -59,6 +60,23 @@ class Comfi extends Discord.Client {
     this.init()
   }
 
+   slice(limit) {
+
+let pos = 0
+
+function returnNextBatch (currPos, startPos, step) {
+    return Number(startPos + (currPos * step))
+}
+let loop, loop1; 
+     for (const i = 8; pos < i; pos++) {
+const a = returnNextBatch(pos, 0, limit)
+const b = returnNextBatch(pos, limit, limit)
+     loop = a, loop1 = b
+    }
+  console.log(loop) 
+  console.log(loop1)
+  return loop, loop1
+}
   
   async resolveUser(search) {
     if (!search || typeof search !== 'string') return null
@@ -168,48 +186,6 @@ class Comfi extends Discord.Client {
       return '<t:' + datum.getTime() / 1000 + `>`
     }
   }
-
-  async sendhook(
-    msg,
-    {
-      remove = false,
-      channel,
-      embed = null,
-      name = 'COMFI HOOK',
-      avatar = 'https://i.imgur.com/At2XO1M.png',
-      bot = this
-    }
-  ) {
-    if (!channel || typeof channel !== 'string')
-      throw new SyntaxError('Invaild Channel')
-    const channel_ = await bot.resolveChannel(channel)
-    let webhook = await channel_
-      .fetchWebhooks()
-      .then(x => x.find(x => x.name === name))
-        if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
-    
-    const emb = new Discord.EmbedBuilder()
-    
-    if (embed) {
-      emb.setTitle(embed.title ? embed.title : `${this.emoji("error_CS")} • Error Occured`)
-      emb.setDescription(embed.description ? embed.description.split(" ").slice(0, 4000).join(" ") : embed1.description) 
-      emb.setColor(bot.color)
-
-return await webhook.send({ embeds: [emb] }).then(e => {
-      remove ? webhook.delete() : e
-    })
-      
-    } else if (msg) {
-      emb.setTitle(`${this.emoji("error_CS")} • Error occured`)
-      emb.setDescription(msg ? msg.split(" ").slice(0, 4000).join(" ") : msg)
-      emb.setColor(this.color)
-
-return await webhook.send({ embeds: [emb] }).then(e => {
-      remove ? webhook.delete() : e
-    })
-      
-    }
-  }
   
   /* 
 * @param {String} name - emoji name
@@ -217,20 +193,21 @@ return await webhook.send({ embeds: [emb] }).then(e => {
 */
   emoji(name, option) {
     let emojis = this.emojis.cache.find(x => x.name === name)
-    if (!emojis) return `:${name}:`
     if (option === 'id') {
       return emojis.id
     }
     if (option === 'name') {
       return emojis.name
     }
-    if (emojis) {
-      return name
-        .split(new RegExp(name, 'g'))
-        .join(emojis.toString())
-        .split(' ')
-        .join('_')
-    }
+    if (!emojis) {
+      return `:${name}:`
+    } else {
+      return name 
+       .split(new RegExp(name, 'g')) 
+       .join(emojis.toString()) 
+       .split(' ') 
+       .join('_')
+    } 
   }
 
   
@@ -251,6 +228,48 @@ return await webhook.send({ embeds: [emb] }).then(e => {
     );
   }
 
+  async sendhook(
+    msg,
+    {
+      remove = false,
+      channel,
+      id,
+      embed = null,
+      name = 'COMFI HOOK',
+      avatar = 'https://i.imgur.com/At2XO1M.png',
+      bot = this
+    }
+  ) {
+    if (!channel || typeof channel !== 'string')
+      throw new SyntaxError('Invaild Channel')
+    const channel_ = await bot.resolveChannel(channel)
+    let webhook = await channel_
+      .fetchWebhooks()
+      .then(x => x.find(x => x.name === name))
+        if (!webhook) webhook = await channel_.createWebhook(name, { avatar })
+    
+    const emb = new Discord.EmbedBuilder()
+    
+    if (embed) {
+      emb.setTitle(embed.title ? embed.title : `${this.emoji("error_CS")} • Error Occured. Id: ${id}`)
+      emb.setDescription(embed.description ? `\`\`\`js${embed.description.split(" ").slice(0, 4000).join(" ")}\`\`\`` : `\`\`\`js${embed.description}\`\`\``)
+      emb.setColor(bot.color)
+
+return await webhook.send({ embeds: [emb] }).then(e => {
+      remove ? webhook.delete() : e
+    })
+      
+    } else if (msg) {
+      emb.setTitle(`${this.emoji("error_CS")} • Error occured. Id: ${id}`)
+      emb.setDescription(msg ? msg.split(" ").slice(0, 4000).join(" ") : msg)
+      emb.setColor(this.color)
+
+return await webhook.send({ embeds: [emb] }).then(e => {
+      remove ? webhook.delete() : e
+    })
+      
+    }
+      }
   
   async successEmbed(bot, interaction, argument) {
     const embed = new Discord.EmbedBuilder()
@@ -273,7 +292,8 @@ false }, fetchReply:  true}).catch(() => {})
   */
   async errorEmbed(bot, interaction, argument, button) {
     const embed = new Discord.EmbedBuilder()
-      .setDescription(`${this.emoji("error_CS")} • ${argument}`)
+      .setTitle(`${this.emoji("error_CS")} • Unknown Error Occured`)
+      .setDescription(`${argument}`)
       .setColor("#FE6666");
 
     
@@ -289,7 +309,7 @@ false }, fetchReply:  true}).catch(() => {})
         new Discord.ButtonBuilder()
           .setStyle(Discord.ButtonStyle.Link)
           .setURL(this.support)
-          .setLabel('Contact Support') 
+          .setLabel('Contact Developer') 
           .setEmoji("984647916876619787")
       )
 
@@ -302,6 +322,30 @@ true }).catch(()=>null)
     }
    
   }
+  }
+
+  /**
+  * @param {Discord.CommandInteraction} interaction
+  * @param {string} error
+  */
+  async senderror(interaction, error) {
+  
+  this.sendhook(error.stack, {
+      channel: this.err_chnl,
+      id: this.getWord()
+    })
+ if (interaction instanceof Discord.CommandInteraction) {
+    return await this.errorEmbed(this, interaction, `> Try again after a while\n> Contact developers if error still exists\n> Error Id: ${this.getWord()}`, true)
+    }
+  }
+
+ getWord() {
+	let chars = '1234567890QWERTYUIOPASDFGHJKLZXCVBNMqweryuiopasdfghjklzxcvbnm'
+	let str = ''
+	for (let i = 0; i < 6; i++) {
+		str += chars[Math.floor(Math.random() * chars.length)]
+	}
+	return str
   }
 
 	/**
@@ -367,21 +411,7 @@ true }).catch(()=>null)
 
     if (channel) channel.send({ embeds: [logsembed] });
   }
-
-  /**
-  * @param {Discord.CommandInteraction} interaction
-  * @param {string} error
-  */
-  async senderror(interaction, error) {
   
-  this.sendhook(error.stack, {
-      channel: this.err_chnl
-    })
- if (interaction instanceof Discord.CommandInteraction) {
-    return await this.errorEmbed(this, interaction, `Error, try again later \n Error: ${error} \n [Contact Support](${this.support})`, true)
-    }
-  }
-
   dbs(s) {
     mongoose
       .connect(
@@ -394,11 +424,17 @@ true }).catch(()=>null)
       .then(() => this.logger.log('Mongodb connected!'))
       .catch(err => this.logger.error(`${err.stack}`))
   
-simplydjs.connect(s, false)    
+simplydjs.connect(s, false)     
   }
-
+  
   init() {
     require('../handler/index')(this)
+    this.once("ready", () => {
+    this.error = this.emoji(process.env.error ? process.env.error : "error_CS")
+    this.tick = this.emoji(process.env.tick ? process.env.tick : "tick_CS")
+    this.cross = this.emoji(process.env.cross ? process.env.cross : "cross_CS")
+    this.currency = this.emoji(process.env.currency ? process.env.currency : "currencyy_Blossomii")
+    })
   }
 }
 

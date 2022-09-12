@@ -19,6 +19,7 @@ module.exports = {
             required: true,
         },
     ],
+    directory: "anime",
     userperm: [""],
     botperm: [""],
     /**

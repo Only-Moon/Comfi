@@ -12,6 +12,7 @@ module.exports = {
   name: "search",
   description: "Search for anime or manga",
   ownerOnly: false,
+  directory: "anime",
   options: [
     {
       name: "anime",

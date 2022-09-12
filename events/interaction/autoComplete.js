@@ -16,12 +16,8 @@ bot.on("interactionCreate", async (interaction) => {
 
     const userInput = interaction.options.getFocused().toString();
 
-    switch (interaction.commandName) {
-
-      case 'npm':
-
-        const text = interaction.options.getString('npm') // This takes the string value from the slash option in the npm command
-
+  if (interaction.commandName === "npm") {
+        const text = interaction.options.getString('name') // This takes the string value from the slash option in the npm command
         let url = await fetch(`https://api.npms.io/v2/search?q=${text}`).then(response => response.json());
 
 
@@ -34,7 +30,7 @@ bot.on("interactionCreate", async (interaction) => {
 
             value: userInput
 
-          }])
+          }]).catch(() => null)
 
         } else {
 
@@ -63,7 +59,8 @@ bot.on("interactionCreate", async (interaction) => {
 
 
         }
-      case 'dropdownrole':
+    
+  } else if (interaction.commandName === 'dropdownrole') {
         const guild = await guilds.findOne({ guildId: interaction.guild.id })
         
 const id = interaction.options.getString("id")
@@ -76,7 +73,7 @@ const id = interaction.options.getString("id")
 
             value: userInput
 
-          }])
+          }]).catch(() => null)
 
         }
 let filtered = [];
@@ -104,7 +101,6 @@ let filtered = [];
 
           })
         
-        break;
     }
 
   }

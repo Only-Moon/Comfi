@@ -51,7 +51,7 @@ module.exports = {
         }
       })
 
-     await interaction.editReply({ content: `${bot.tick} • Generating leaderboard `}).then((msg) => {
+    await bot.successEmbed(bot, interaction, ` Generating leaderboard `).then((msg) => {
         setTimeout(() => {
           let top10 = []
           let pos = 1
@@ -63,11 +63,12 @@ module.exports = {
             top10.push(`**${emojis[i] || dot} #${pos++})** \`\`\`${mem.user.username}\`\`\` \n${rep}**Level: ** \`\`\`${m.level}\`\`\`\n${rep}**Xp: ** \`\`\`${shortener(m.xp)}/${shortener(m.requiredXp)}\`\`\``)
     
           })
-          msg.delete().catch(() => null)
+          msg.delete().catch(() => null)  
+console.log(bot.slice(15))
           
           const embed = new EmbedBuilder()
             .setAuthor({name:`${interaction.guild.name}'s ranking leaderboard! (Top 15)`, iconURL: interaction.guild.iconURL({ dynamic: true })})
-            .setDescription(top10.slice(0, 15).join("\n"))
+            .setDescription(top10.slice(bot.slice).join("\n"))
             .setFooter({text: `Requested by ${interaction.member.displayName}`, iconURL:  interaction.user.avatarURL({dynamic: true})})
             .setColor(bot.color);
           return msg.channel.send({ embeds: [embed] })
@@ -85,4 +86,4 @@ module.exports = {
     let result = parseFloat((count / Math.pow(1000, i)).toFixed(2))
     result += `${COUNT_ABBRS[i]}`
     return result
-  }
+      }
