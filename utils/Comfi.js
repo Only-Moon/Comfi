@@ -37,6 +37,7 @@ class Comfi extends Discord.Client {
         'USER'
       ],
       restRequestTimeout: 30000,
+      presence: {status: "idle", activities: [{ name: `/help | ${this.emojis.cache.size} emojis!`, type: 'WATCHING' }]}
     })
     this.logger = require('./Logger.js')
     this.color = process.env['color'] || '#F4B3CA'
@@ -329,7 +330,7 @@ class Comfi extends Discord.Client {
         })
       .setThumbnail(Member.displayAvatarURL({ dynamic: true }))
       .setAuthor({
-        name: `${interaction.guild ?.name} • Modlogs`, iconURL: `${interaction.guild.iconURL() ? interaction.guild.iconURL() : this.user.displayAvatarURL({
+        name: `${interaction.guild?.name} • Modlogs`, iconURL: `${interaction.guild.iconURL() ? interaction.guild.iconURL() : this.user.displayAvatarURL({
           dynamic:
             true
         })}`

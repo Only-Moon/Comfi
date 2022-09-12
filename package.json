@@ -6,7 +6,7 @@
   "dependencies": {
     "anilist-node": "^1.12.1",
     "axios": "^0.21.4",
-    "canvas": "^2.9.3",
+    "canvas": "^2.10.0",
     "chalk": "^4.1.2",
     "dbd-dark-dashboard": "^1.6.591",
     "discord-dashboard": "^2.3.41",
