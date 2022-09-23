@@ -1,19 +1,21 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { CommandInteraction, EmbedBuilder, AttachmentBuilder, ApplicationCommandOptionType, ChannelType } = require('discord.js')
-const guilds = require('../../models/guild')
-const embedCreate = require('../../functions/embed')
+const {
+  CommandInteraction, EmbedBuilder, AttachmentBuilder, ApplicationCommandOptionType, ChannelType,
+} = require('discord.js');
+const guilds = require('../../models/guild');
+const embedCreate = require('../../functions/embed');
 
 module.exports = {
   name: 'leave',
   description: 'Setup Leave System',
   ownerOnly: false,
-  directory: "setting",
+  directory: 'setting',
   options: [
     {
       name: 'toggle',
@@ -28,15 +30,15 @@ module.exports = {
           choices: [
             {
               name: 'true/on',
-              value: 'true'
+              value: 'true',
             },
             {
               name: 'false/off',
-              value: 'false'
-            }
-          ]
-        }
-      ]
+              value: 'false',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'embed-toggle',
@@ -51,15 +53,15 @@ module.exports = {
           choices: [
             {
               name: 'true/on',
-              value: 'true'
+              value: 'true',
             },
             {
               name: 'false/off',
-              value: 'false'
-            }
-          ]
-        }
-      ]
+              value: 'false',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'dm-toggle',
@@ -74,15 +76,15 @@ module.exports = {
           choices: [
             {
               name: 'true/on',
-              value: 'true'
+              value: 'true',
             },
             {
               name: 'false/off',
-              value: 'false'
-            }
-          ]
-        }
-      ]
+              value: 'false',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'channel',
@@ -94,14 +96,14 @@ module.exports = {
           type: ApplicationCommandOptionType.Channel,
           description: 'channel for leave message',
           required: true,
-          channelTypes: [ChannelType.GuildText]
-        }
-      ]
+          channelTypes: [ChannelType.GuildText],
+        },
+      ],
     },
     {
       name: 'embed',
       description: 'Setup embed for leave system',
-      type: ApplicationCommandOptionType.Subcommand 
+      type: ApplicationCommandOptionType.Subcommand,
     },
     {
       name: 'content',
@@ -112,170 +114,153 @@ module.exports = {
           name: 'message',
           type: ApplicationCommandOptionType.String,
           description: 'message for leave system',
-          required: true
+          required: true,
         },
         {
           name: 'image',
           type: ApplicationCommandOptionType.Attachment,
           description: 'image url for leave system',
-          required: false
-        }
-      ]
+          required: false,
+        },
+      ],
     },
     {
-      name: "help",
-      description: "Help for leave system",
-      type: ApplicationCommandOptionType.Subcommand
+      name: 'help',
+      description: 'Help for leave system',
+      type: ApplicationCommandOptionType.Subcommand,
     },
   ],
   userperm: ['ManageGuild'],
   botperm: ['ManageGuild'],
-	/**
+  /**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
-    let [sub] = args
+    const [sub] = args;
     try {
-      const guild = await guilds.findOne({ guildId: interaction.guild.id })
+      const guild = await guilds.findOne({ guildId: interaction.guild.id });
 
       if (sub === 'toggle') {
-        let toggle = interaction.options.getString('option')
+        const toggle = interaction.options.getString('option');
         if (guild.leave.toString() === toggle) {
-          return await bot.errorEmbed(bot, interaction, `**Leave toogle is already setted as ${toggle}!!**`
-          )
-        } else {
-          await guilds.findOneAndUpdate(
-            { guildId: interaction.guild.id },
-            {
-              leave: toggle
-            }
-          )
-          return await bot.successEmbed(bot, interaction, `**Leave has setted as ${toggle} !**`
-          )
+          return await bot.errorEmbed(bot, interaction, `**Leave toogle is already setted as ${toggle}!!**`);
         }
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            leave: toggle,
+          },
+        );
+        return await bot.successEmbed(bot, interaction, `**Leave has setted as ${toggle} !**`);
       }
 
       if (sub === 'embed-toggle') {
-        let toggle = interaction.options.getString('options')
+        const toggle = interaction.options.getString('options');
         if (guild.leave_embedtgl.toString() === toggle) {
-          return await bot.errorEmbed(bot, interaction, `**Leave Embed toggle is already setted as ${toggle} !**`
-          )
-        } else {
-          await guilds.findOneAndUpdate(
-            { guildId: interaction.guild.id },
-            {
-              leave_embedtgl: toggle
-            }
-          )
-          return await bot.successEmbed(bot, interaction, `**Leave Embed toggle has setted as ${toggle} !**`
-          )
+          return await bot.errorEmbed(bot, interaction, `**Leave Embed toggle is already setted as ${toggle} !**`);
         }
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            leave_embedtgl: toggle,
+          },
+        );
+        return await bot.successEmbed(bot, interaction, `**Leave Embed toggle has setted as ${toggle} !**`);
       }
 
       if (sub === 'dm-toggle') {
-        let toggle = interaction.options.getString('options')
+        const toggle = interaction.options.getString('options');
         if (guild.leave_dmuser.toString() === toggle) {
-          return await bot.errorEmbed(bot, interaction, `**Leave dm toggle is already setted as ${toggle} !**`
-          )
-        } else {
-          await guilds.findOneAndUpdate(
-            { guildId: interaction.guild.id },
-            {
-              leave_dmuser: toggle
-            }
-          )
-          return await bot.successEmbed(bot, interaction, `**Leave dm toggle has setted as ${toggle} !**`
-          )
+          return await bot.errorEmbed(bot, interaction, `**Leave dm toggle is already setted as ${toggle} !**`);
         }
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            leave_dmuser: toggle,
+          },
+        );
+        return await bot.successEmbed(bot, interaction, `**Leave dm toggle has setted as ${toggle} !**`);
       }
 
       if (sub === 'channel') {
-        let channel = interaction.options.getChannel('name')
+        const channel = interaction.options.getChannel('name');
         if (guild.leave_channel === channel.id) {
           return await bot.errorEmbed(bot, interaction, `**${
             channel.name
-            } already exists as leave channel !**`
-          )
-        } else {
-          await guilds.findOneAndUpdate(
-            { guildId: interaction.guild.id },
-            {
-              leave_channel: channel.id
-            }
-          )
-          return await bot.successEmbed(bot, interaction, `**Leave Channel Has Been Set Successfully in \`${
-            channel.name
-            }\`!**`
-          )
+          } already exists as leave channel !**`);
         }
+        await guilds.findOneAndUpdate(
+          { guildId: interaction.guild.id },
+          {
+            leave_channel: channel.id,
+          },
+        );
+        return await bot.successEmbed(bot, interaction, `**Leave Channel Has Been Set Successfully in \`${
+          channel.name
+        }\`!**`);
       }
 
       if (sub === 'embed') {
         embedCreate(interaction, {
           name: "Leave System's",
-          footer: 'Leave Embed Creator'
-        }).then(async em => {
+          footer: 'Leave Embed Creator',
+        }).then(async (em) => {
           await guilds.findOneAndUpdate(
             { guildId: interaction.guild.id },
             {
-              leave_embed: em
-            }
-          )
-        })
+              leave_embed: em,
+            },
+          );
+        });
       }
 
       if (sub === 'content') {
-        let msg = interaction.options.getString('message')
-        let img = interaction.options.getString('image').url
+        const msg = interaction.options.getString('message');
+        const img = interaction.options.getString('image').url;
 
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
           {
-            leave_message: msg
-          }
-        )
-        return await bot.successEmbed(bot, interaction, `**Leave Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`
-        )
+            leave_message: msg,
+          },
+        );
+        return await bot.successEmbed(bot, interaction, `**Leave Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`);
 
         if (img) {
           await guilds.findOneAndUpdate(
             { guildId: interaction.guild.id },
             {
-              leave_image: img
-            }
-          )
-          return await bot.successEmbed(bot, interaction, `**Leave Image Has Been Set Successfully in ${img}!**`
-          )
+              leave_image: img,
+            },
+          );
+          return await bot.successEmbed(bot, interaction, `**Leave Image Has Been Set Successfully in ${img}!**`);
         }
       }
 
-      if (sub === "help") {
-
+      if (sub === 'help') {
         const embed = new MessageEmbed()
-          .setTitle(`Leave System variables`, bot.user.displayAvatarURL())
-          .setDescription(`Need Help setting Leave system?`)
+          .setTitle('Leave System variables', bot.user.displayAvatarURL())
+          .setDescription('Need Help setting Leave system?')
           .addFields(
             {
-              name: "Commands",
-              value: `\`\`\`toggle - turn on/off the leave system\nembed-toggle - make the leave message show in embed or non embed text\ndm-toggle - make the leave message send in user's dm\nchannel - sets the channel for leave system\nembed - make an embed for leave system using the embed builder\ncontent - sets the non embed content for leave system\n\`\`\``,
-              inline: true
+              name: 'Commands',
+              value: '```toggle - turn on/off the leave system\nembed-toggle - make the leave message show in embed or non embed text\ndm-toggle - make the leave message send in user\'s dm\nchannel - sets the channel for leave system\nembed - make an embed for leave system using the embed builder\ncontent - sets the non embed content for leave system\n```',
+              inline: true,
             },
             {
               name: 'Tags',
-              value: `\`\`\`{{user#mention}} - mentions the user\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{server#membercount}} - the servers membercount\n{{server#humancount}} - humans / non bot members count of the server \n{{server#name}} - the servers name\n{{server#id}} - the servers id\n\`\`\``,
-              inline: true
-            }
+              value: '```{{user#mention}} - mentions the user\n{{user#tag}} - the users tag\n{{user#id}} - the users id\n{{server#membercount}} - the servers membercount\n{{server#humancount}} - humans / non bot members count of the server \n{{server#name}} - the servers name\n{{server#id}} - the servers id\n```',
+              inline: true,
+            },
           )
           .setColor(bot.color)
-          .setFooter({text:`Comfi™ Leave System`});
-        await interaction.editReply({ embeds: [embed] })
-
+          .setFooter({ text: 'Comfi™ Leave System' });
+        await interaction.editReply({ embeds: [embed] });
       }
-
     } catch (e) {
-      await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};

@@ -1,108 +1,123 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const bot = require("../../index")
-const fetch = require("node-fetch")
-const guilds = require("../../models/guild")
-const { InteractionType } = require('discord.js')
+const fetch = require('node-fetch');
+const { InteractionType } = require('discord.js');
+const bot = require('../../index');
+const guilds = require('../../models/guild');
 
-bot.on("interactionCreate", async (interaction) => {
-
+bot.on('interactionCreate', async (interaction) => {
   if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
-
     const userInput = interaction.options.getFocused().toString();
 
-  if (interaction.commandName === "npm") {
-        const text = interaction.options.getString('name') // This takes the string value from the slash option in the npm command
-        let url = await fetch(`https://api.npms.io/v2/search?q=${text}`).then(response => response.json());
+    if (interaction.commandName === 'npm') {
+      const text = interaction.options.getString('name'); // This takes the string value from the slash option in the npm command
+      const url = await fetch(`https://api.npms.io/v2/search?q=${text}`).then((response) => response.json());
 
+      if (!text) {
+        return interaction.respond([{
 
+          name: 'Type the name of an npm package for more options to show!',
 
-        if (!text) {
+          value: userInput,
 
-          return interaction.respond([{
+        }]).catch(() => null);
+      }
 
-            name: 'Type the name of an npm package for more options to show!',
+      const filtered = url.results.filter((x) => x.package.name.includes(text));
 
-            value: userInput
+      await interaction.respond(
 
-          }]).catch(() => null)
+        filtered.map((choice) => ({
 
-        } else {
+          name: choice.package.name,
 
-          const filtered = url.results.filter(x =>
+          value: choice.package.name,
 
-            x.package.name.includes(text)
+        })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
-          )
+      ).catch((err) => {
+        console.log(err.message);
+      });
+    } else if (interaction.commandName === 'dropdownrole') {
+      const guild = await guilds.findOne({ guildId: interaction.guild.id });
 
-          await interaction.respond(
+      const id = interaction.options.getString('id');
 
-            filtered.map(choice => ({
+      if (!id) {
+        return interaction.respond([{
 
-              name: choice.package.name,
+          name: 'Check dropdown id from `/dropdown list` command and provide here to remove"!',
 
-              value: choice.package.name
+          value: userInput,
 
-            })).slice(0, 25) // This is done due to discord only allowing 25 choices with autocomplete
+        }]).catch(() => null);
+      }
+      const filtered = [];
+      guild.dropdownRoles.forEach((choice) => {
+        filtered.push({
+          name: choice.id,
 
-          ).catch(err => {
+          value: choice.id,
+        });
+      });
+      await interaction.respond(
 
-            console.log(err.message)
+        filtered.map((choice) => ({
 
-          })
+          name: choice.name,
 
+          value: choice.value,
 
+        })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
-        }
-    
-  } else if (interaction.commandName === 'dropdownrole') {
-        const guild = await guilds.findOne({ guildId: interaction.guild.id })
-        
-const id = interaction.options.getString("id")
+      ).catch((err) => {
+        console.log(err.message);
+      });
+    } else if (interaction.commandName === 'job') {
+      const data = await bot.eco.SetJob({
+        UserID:
+interaction.user.id,
+        Job: 'none',
+      });
 
-        if (!id){
+      const id = interaction.options.getString('job');
 
-          return interaction.respond([{
+      if (!id) {
+        return interaction.respond([{
 
-            name: `Check dropdown id from \`/dropdown list\` command and provide here to remove"!`,
+          name: 'Check job name from `/job list` command and provide here to add or remove"!',
 
-            value: userInput
+          value: userInput,
 
-          }]).catch(() => null)
+        }]).catch(() => null);
+      }
+      const filtered = [];
 
-        }
-let filtered = [];
-        guild.dropdownRoles.forEach(choice => {
-              
-            filtered.push({
-              name: choice.id,
+      data.value.forEach((item) => {
+        filtered.push({
+          name: item.Name,
+          value: item.Name,
+        });
+      });
 
-              value: choice.id
-            })
-            })
-          await interaction.respond(
+      await interaction.respond(
 
-            filtered.map(choice => ({
+        filtered.map((choice) => ({
 
-              name: choice.name,
+          name: choice.name,
 
-              value: choice.value
+          value: choice.value,
 
-            })).slice(0, 25) // This is done due to discord only allowing 25 choices with autocomplete
+        })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
-          ).catch(err => {
-
-            console.log(err.message)
-
-          })
-        
+      ).catch((err) => {
+        console.log(err.message);
+      });
     }
-
   }
-
-})
+});

@@ -1,23 +1,23 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { get } = require("request-promise-native");
-const { CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
+const { get } = require('request-promise-native');
+const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
-  name: "search",
-  description: "Search for anime or manga",
+  name: 'search',
+  description: 'Search for anime or manga',
   ownerOnly: false,
-  directory: "anime",
+  directory: 'anime',
   options: [
     {
-      name: "anime",
+      name: 'anime',
       type: ApplicationCommandOptionType.Subcommand,
-      description: "Search for anime",
+      description: 'Search for anime',
       options: [
         {
           type: ApplicationCommandOptionType.String,
@@ -25,24 +25,24 @@ module.exports = {
           name: 'name',
           required: true,
         },
-      ]
+      ],
     },
     {
-      name: "manga",
-      description: "Search for manga",
+      name: 'manga',
+      description: 'Search for manga',
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           type: ApplicationCommandOptionType.String,
-          description: "Name of manga to search",
-          name: "name",
-          required: true
-        }
-      ]
-    }
+          description: 'Name of manga to search',
+          name: 'name',
+          required: true,
+        },
+      ],
+    },
   ],
-  userperm: [""],
-  botperm: [""],
+  userperm: [''],
+  botperm: [''],
   /**
    *
    * @param {CommandInteraction} interaction
@@ -50,38 +50,32 @@ module.exports = {
    */
   run: async (bot, interaction, args) => {
     try {
+      const query = interaction.options.getString('name');
 
-      const query = interaction.options.getString("name");
-
-      const [sub] = args
-      if (sub === "anime") {
-
-        let option = {
+      const [sub] = args;
+      if (sub === 'anime') {
+        const option = {
           url: `https://kitsu.io/api/edge/anime?filter[text]-${query}`,
-          method: "GET",
+          method: 'GET',
           headers: {
-            "Content-type": "application/vnd.api+json",
-            Accept: "application/vnd.api+json",
+            'Content-type': 'application/vnd.api+json',
+            Accept: 'application/vnd.api+json',
           },
           json: true,
         };
 
-        const res = await get(option).catch(() => {
-          return interaction.editReply({
-            content: "No results were found!",
-          });
-        });
+        const res = await get(option).catch(() => interaction.editReply({
+          content: 'No results were found!',
+        }));
 
-        if (!res) return await bot.errorEmbed(bot, interaction, `No results were found!`,
-        );
+        if (!res) { return await bot.errorEmbed(bot, interaction, 'No results were found!'); }
 
         const anime = res?.data[0];
-        if (!anime) return await bot.errorEmbed(bot, interaction, `No results were found!`,
-        );
+        if (!anime) { return await bot.errorEmbed(bot, interaction, 'No results were found!'); }
 
-        if (anime.attributes.ageRating === "R18" && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, `**Nsfw searching not allowed in Non Nsfw Channel**`)
+        if (anime.attributes.ageRating === 'R18' && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, '**Nsfw searching not allowed in Non Nsfw Channel**');
 
-        if (anime.attributes.nsfw && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, `**Nsfw searching not allowed in Non Nsfw Channel**`)
+        if (anime.attributes.nsfw && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, '**Nsfw searching not allowed in Non Nsfw Channel**');
 
         const animeSearch = {
           title: `Name: ${anime.attributes.titles.en}`,
@@ -92,85 +86,85 @@ module.exports = {
           description: anime.attributes.synopsis,
           fields: [
             {
-              name: "🍣 Romanji",
+              name: '🍣 Romanji',
               value: anime.attributes.titles.en_jp,
-              inline: true
+              inline: true,
             },
             {
-              name: "🍲 Japanese Name",
+              name: '🍲 Japanese Name',
               value: anime.attributes.titles.ja_jp,
-              inline: true
+              inline: true,
             },
             {
-              name: "⏳ Status",
+              name: '⏳ Status',
               value: anime.attributes.status,
               inline: true,
             },
             {
-              name: "🗂 Type",
+              name: '🗂 Type',
               value: anime.attributes.showType,
               inline: true,
             },
             {
-              name: "🗓️ Aired",
+              name: '🗓️ Aired',
               value:
                 anime.attributes.startDate && anime.attributes.endDate
                   ? anime.attributes.startDate == anime.attributes.endDate
                     ? `**${anime.attributes.startDate}**`
                     : `From **${
-                    anime.attributes.startDate
-                      ? anime.attributes.startDate
-                      : "N/A"
+                      anime.attributes.startDate
+                        ? anime.attributes.startDate
+                        : 'N/A'
                     }** to **${
-                    anime.attributes.endDate
-                      ? anime.attributes.endDate
-                      : "N/A"
+                      anime.attributes.endDate
+                        ? anime.attributes.endDate
+                        : 'N/A'
                     }**`
                   : `From **${
-                  anime.attributes.startDate
-                    ? anime.attributes.startDate
-                    : "N/A"
+                    anime.attributes.startDate
+                      ? anime.attributes.startDate
+                      : 'N/A'
                   }** to **${
-                  anime.attributes.endDate ? anime.attributes.endDate : "N/A"
+                    anime.attributes.endDate ? anime.attributes.endDate : 'N/A'
                   }**`,
               inline: false,
             },
             {
-              name: "💽 Total Episodes",
+              name: '💽 Total Episodes',
               value: `${
                 anime.attributes.episodeCount
                   ? anime.attributes.episodeCount
-                  : "N/A"
-                }`,
+                  : 'N/A'
+              }`,
               inline: true,
             },
             {
-              name: "⏱ Duration",
+              name: '⏱ Duration',
               value: `${
                 anime.attributes.episodeLength
                   ? anime.attributes.episodeLength
-                  : "N/A"
-                } Min`,
+                  : 'N/A'
+              } Min`,
               inline: true,
             },
             {
-              name: "⭐ Average Rating",
+              name: '⭐ Average Rating',
               value: `${
                 anime.attributes.averageRating
                   ? anime.attributes.averageRating
-                  : "N/A"
-                }`,
+                  : 'N/A'
+              }`,
               inline: true,
             },
             {
-              name: "🏆 Rank",
+              name: '🏆 Rank',
               value: `${
                 anime.attributes.ratingRank
-                  ? "**TOP " + anime.attributes.ratingRank + "**"
-                  : "N/A"
-                }`,
+                  ? `**TOP ${anime.attributes.ratingRank}**`
+                  : 'N/A'
+              }`,
               inline: true,
-            }
+            },
           ],
           color: 0xF4B3CA,
         };
@@ -180,30 +174,27 @@ module.exports = {
         });
       }
 
-      if (sub === "manga") {
-
+      if (sub === 'manga') {
         const option = {
           url: `https://kitsu.io/api/edge/manga?filter[text]-${query}`,
-          method: "GET",
+          method: 'GET',
           headers: {
-            "Content-type": "application/vnd.api+json",
-            Accept: "application/vnd.api+json",
+            'Content-type': 'application/vnd.api+json',
+            Accept: 'application/vnd.api+json',
           },
           json: true,
         };
 
-        const res = await get(option).catch(() => {
-          return interaction.editReply({
-            content: "No results were found!",
-          });
-        });
+        const res = await get(option).catch(() => interaction.editReply({
+          content: 'No results were found!',
+        }));
 
-        if (!res) return await bot.errorEmbed(bot, interaction, `No results were found!`);
+        if (!res) return await bot.errorEmbed(bot, interaction, 'No results were found!');
 
         const manga = res.data[0];
-        if (!manga) return await bot.errorEmbed(bot, interaction, `No results were found!`);
+        if (!manga) return await bot.errorEmbed(bot, interaction, 'No results were found!');
 
-        if (manga.attributes.ageRating === "R18" && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, `**Nsfw searching not allowed in Non Nsfw Channel**`)
+        if (manga.attributes.ageRating === 'R18' && !interaction.channel.nsfw) return await bot.errorEmbed(bot, interaction, '**Nsfw searching not allowed in Non Nsfw Channel**');
 
         const mangaSearch = {
           title: `${manga.attributes.titles.en}`,
@@ -214,83 +205,83 @@ module.exports = {
           description: manga.attributes.synopsis,
           fields: [
             {
-              name: "🍣 Romanji",
+              name: '🍣 Romanji',
               value: anime.attributes.titles.en_jp,
-              inline: true
+              inline: true,
             },
             {
-              name: "🍲 Japanese Name",
+              name: '🍲 Japanese Name',
               value: anime.attributes.titles.ja_jp,
-              inline: true
+              inline: true,
             },
             {
-              name: "⏳ Status",
+              name: '⏳ Status',
               value: manga.attributes.status,
               inline: true,
             },
             {
-              name: "🗂 Type",
+              name: '🗂 Type',
               value: manga.type,
               inline: true,
             },
             {
-              name: "🗓️ Aired",
+              name: '🗓️ Aired',
               value:
                 manga.attributes.startDate && manga.attributes.endDate
                   ? manga.attributes.startDate == manga.attributes.endDate
                     ? `**${manga.attributes.startDate}**`
                     : `From **${
-                    manga.attributes.startDate
-                      ? manga.attributes.startDate
-                      : "N/A"
+                      manga.attributes.startDate
+                        ? manga.attributes.startDate
+                        : 'N/A'
                     }** to **${
-                    manga.attributes.endDate
-                      ? manga.attributes.endDate
-                      : "N/A"
+                      manga.attributes.endDate
+                        ? manga.attributes.endDate
+                        : 'N/A'
                     }**`
                   : `From **${
-                  manga.attributes.startDate
-                    ? manga.attributes.startDate
-                    : "N/A"
+                    manga.attributes.startDate
+                      ? manga.attributes.startDate
+                      : 'N/A'
                   }** to **${
-                  manga.attributes.endDate ? manga.attributes.endDate : "N/A"
+                    manga.attributes.endDate ? manga.attributes.endDate : 'N/A'
                   }**`,
               inline: false,
             },
             {
-              name: "📰 Chapters",
+              name: '📰 Chapters',
               value: `${
                 manga.attributes.chapterCount
                   ? manga.attributes.chapterCount
-                  : "N/A"
-                }`,
+                  : 'N/A'
+              }`,
               inline: true,
             },
             {
-              name: "📚 Volumes",
+              name: '📚 Volumes',
               value: `${
                 manga.attributes.volumeCount
                   ? manga.attributes.volumeCount
-                  : "N/A"
-                }`,
+                  : 'N/A'
+              }`,
               inline: true,
             },
             {
-              name: "⭐ Average Rating",
+              name: '⭐ Average Rating',
               value: `${
                 manga.attributes.averageRating
                   ? manga.attributes.averageRating
-                  : "N/A"
-                }`,
+                  : 'N/A'
+              }`,
               inline: true,
             },
             {
-              name: "🏆 Rank",
+              name: '🏆 Rank',
               value: `${
                 manga.attributes.ratingRank
-                  ? "**TOP " + manga.attributes.ratingRank + "**"
-                  : "N/A"
-                }`,
+                  ? `**TOP ${manga.attributes.ratingRank}**`
+                  : 'N/A'
+              }`,
               inline: true,
             },
           ],
@@ -300,11 +291,9 @@ module.exports = {
         return interaction.editReply({
           embeds: [mangaSearch],
         });
-
       }
-
     } catch (e) {
-      await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
   },
 };

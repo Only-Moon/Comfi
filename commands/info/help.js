@@ -1,32 +1,33 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { readdirSync } = require('fs')
-const prefix = '/'
-const create_mh = require('../../functions/menu_help')
-const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js')
+const { readdirSync } = require('fs');
+
+const prefix = '/';
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
+const create_mh = require('../../functions/menu_help');
 
 module.exports = {
   name: 'helpp',
   description: 'Show all the Available bot Commands in Menu Form',
-  directory: "info",
+  directory: 'info',
   ownerOnly: false,
   options: [
     {
       type: ApplicationCommandOptionType.String,
       description: 'particular command',
       name: 'command',
-      required: false
-    }
+      required: false,
+    },
   ],
   userperm: [''],
   botperm: [''],
 
-	/**
+  /**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
@@ -34,218 +35,219 @@ module.exports = {
 
   run: async (bot, interaction, args) => {
     try {
-      let categories = []
-      let cots = []
+      const categories = [];
+      const cots = [];
       if (!args[0]) {
-        //categories to ignore
+        // categories to ignore
 
-        let ignored = ['owner', 'context']
+        const ignored = ['owner', 'context'];
 
         const emo = {
           anime: '<a:snowman_cs:883017868944502804>',
-          economy: "<:currencyy_Blossomii:883032993101406278>",
-          //emoji: '<a:apple_cs:883033005172605020>',
+          economy: '<:currencyy_Blossomii:883032993101406278>',
+          // emoji: '<a:apple_cs:883033005172605020>',
           fun: '<a:shootingstaw_cs:883017879065354290>',
           info: '<a:stars_cs:883033007836000308>',
           levels: '<a:bunny_cs:883033003574579260>',
           mod: '<a:pinkheart_cs:883033001599074364>',
-          //music: "<a:music_cs:883032989901156422>",
+          // music: "<a:music_cs:883032989901156422>",
           roles: '<a:cake2_cs:883017860488765460>',
           setup: '<a:starburst_cs:883017855187157003>',
-          utility: '<a:ghost_cs:883017884014637066>'
-        }
+          utility: '<a:ghost_cs:883017884014637066>',
+        };
 
-        let ccate = []
-        readdirSync('./commands/').forEach(dir => {
-          if (ignored.includes(dir.toLowerCase())) return
-          const name = `${emo[dir.toLowerCase()]} ${dir.toUpperCase()}`
-          let nome = dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase()
-          let cats = new Object()
+        const ccate = [];
+        readdirSync('./commands/').forEach((dir) => {
+          if (ignored.includes(dir.toLowerCase())) return;
+          const name = `${emo[dir.toLowerCase()]} ${dir.toUpperCase()}`;
+          const nome = dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase();
+          let cats = new Object();
 
           cats = {
-            name: name,
+            name,
             value: `\`/helpp ${dir.toLowerCase()}\``,
-            inline: true
-          }
+            inline: true,
+          };
 
-          categories.push(cats)
-          ccate.push(nome)
-        })
+          categories.push(cats);
+          ccate.push(nome);
+        });
 
         const embed = new EmbedBuilder()
           .setTitle('Comfi™ Help')
           .setDescription(
             `My Prefix For __**${
-            interaction.guild.name
-            }**__ Is  __**${prefix}**__\n\nVisit https://comfibot.tk/commands To Get List Of All My Commands`
+              interaction.guild.name
+            }**__ Is  __**${prefix}**__\n\nVisit https://comfibot.tk/commands To Get List Of All My Commands`,
           )
           .addFields(categories)
           .setFooter({
             text: `Requested by ${interaction.member.displayName}`,
             iconURL: interaction.user.avatarURL({
-              dynamic: true
-            })
+              dynamic: true,
+            }),
           })
           .setTimestamp()
           .setThumbnail(
             bot.user.displayAvatarURL({
-              dynamic: true
-            })
+              dynamic: true,
+            }),
           )
           .setColor(bot.color);
 
-        let menus = create_mh(ccate)
-       
+        const menus = create_mh(ccate);
+
         await interaction.editReply({
           embeds: [embed],
-          components: menus.smenu
-        })
+          components: menus.smenu,
+        });
       } else {
-        let catts = []
-        readdirSync('./commands/').forEach(dir => {
-          if (dir.toLowerCase() !== args[0].toLowerCase()) return
-          const commands = readdirSync(`./commands/${dir}/`).filter(file =>
-            file.endsWith('.js')
-          )
-          const cmds = commands.map(command => {
-            let file = require(`../../commands/${dir}/${command}`)
-            if (!file.name) return 'No command name.'
+        const catts = [];
+        readdirSync('./commands/').forEach((dir) => {
+          if (dir.toLowerCase() !== args[0].toLowerCase()) return;
+          const commands = readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
+          const cmds = commands.map((command) => {
+            const file = require(`../../commands/${dir}/${command}`);
+            if (!file.name) return 'No command name.';
 
-            let name = file.name.replace('.js', '')
+            const name = file.name.replace('.js', '');
 
             if (bot.slashCommands.get(name).hidden) return;
-            let des = bot.slashCommands.get(name).description
-            let emo = bot.slashCommands.get(name).emoji
-            let emoe = emo ? `${emo} - ` : ''
+            const des = bot.slashCommands.get(name).description;
+            const emo = bot.slashCommands.get(name).emoji;
+            const emoe = emo ? `${emo} - ` : '';
 
-            let obj = {
+            const obj = {
               cname: `${emoe}\`${name}\``,
-              des
-            }
+              des,
+            };
 
-            return obj
-          })
+            return obj;
+          });
 
-          let dota = new Object()
-          cmds.map(co => {
-            if (co == undefined) return
+          let dota = new Object();
+          cmds.map((co) => {
+            if (co == undefined) return;
             dota = {
               name: `${cmds.length === 0 ? 'In progress.' : co.cname}`,
               value: co.des ? co.des : 'No Description',
-              inline: true
-            }
+              inline: true,
+            };
 
-            catts.push(dota)
-          })
+            catts.push(dota);
+          });
 
-          cots.push(dir.toLowerCase())
-        })
+          cots.push(dir.toLowerCase());
+        });
 
-        const command =
-          bot.slashCommands.get(args[0].toLowerCase()) ||
-          bot.slashCommands.find(
-            c => c.aliases && c.aliases.includes(args[0].toLowerCase())
-          )
+        const command = bot.slashCommands.get(args[0].toLowerCase())
+          || bot.slashCommands.find(
+            (c) => c.aliases && c.aliases.includes(args[0].toLowerCase()),
+          );
 
         if (cots.includes(args[0].toLowerCase())) {
           const combed = new EmbedBuilder()
             .setTitle(
-              `__${args[0].charAt(0).toUpperCase() +
-              args[0].slice(1)} Commands!__`
+              `__${args[0].charAt(0).toUpperCase()
+              + args[0].slice(1)} Commands!__`,
             )
             .setDescription(
-              `Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`
+              `Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`,
             )
             .addFields(catts)
             .setFooter({
-              text: `Comfi™ Help`,
+              text: 'Comfi™ Help',
               iconURL: interaction.user.avatarURL({
-                dynamic: true
-              })
+                dynamic: true,
+              }),
             })
             .setTimestamp()
             .setThumbnail(
               bot.user.displayAvatarURL({
-                dynamic: true
-              })
+                dynamic: true,
+              }),
             )
             .setColor(bot.color);
 
           return await interaction
             .editReply({
-              embeds: [combed]
+              embeds: [combed],
             })
-            .catch(() => null)
+            .catch(() => null);
         }
 
         if (!command) {
-      return await  bot.errorEmbed(bot, interaction, `Invalid command! Use \`${prefix}helpp\` for all of my commands!`)
+          return await bot.errorEmbed(bot, interaction, `Invalid command! Use \`${prefix}helpp\` for all of my commands!`);
         }
 
-        let subc = []
+        let subc = [];
+        const rep = bot.emoji('reply');
+        const dot = bot.emoji('bunny_cs');
 
         if (command.options) {
-          command.options.forEach(sub => {
-            if (sub.type === 'SUB_COMMAND') {
-              subc.push(`- **${sub.name}** \n \`${sub.description}\`\n`)
+          command.options.forEach((sub) => {
+            if (sub.type === ApplicationCommandOptionType.Subcommand) {
+              subc.push(`${dot} **${sub.name}** \n${rep}\`${sub.description}\`\n`);
             }
-          })
+          });
         }
 
         if (subc.length < 1 || subc === []) {
-          subc = ''
+          subc = '';
         } else if (subc.length > 1) {
-          subc = `${subc.toString().replaceAll(',', '')}\n`
+          subc = `${subc.toString().replaceAll(',', '')}\n`;
         }
 
         const embed = new EmbedBuilder()
           .setTitle('Command Details:')
-          .addFields({
-            name: 'Command:',
-            value: command.name ? `\`${command.name}\`` : 'No name for this command.',
-            inline: true
-                     },
-                     {
-            name: 'Sub Commands:',
-           value: subc ? subc : 'No Sub Command for this command',
-            inline: true
-                     },
-                     {
-            name: 'Usage:',
-            value: command.usage
-              ? `\`${prefix}${command.name} ${command.usage}\``
-              : `\`${prefix}${command.name}\``,
-            inline: true
-                     },
-                     {
-            name: 'Command Description:',
-            value: command.description
-              ? command.description
-              : 'No description for this command.',
-           inline: true
-                     })
+          .addFields(
+            {
+              name: 'Command:',
+              value: command.name ? `\`${command.name}\`` : 'No name for this command.',
+              inline: true,
+            },
+            {
+              name: 'Sub Commands:',
+              value: subc || 'No Sub Command for this command',
+              inline: true,
+            },
+            {
+              name: 'Usage:',
+              value: command.usage
+                ? `\`${prefix}${command.name} ${command.usage}\``
+                : `\`${prefix}${command.name}\``,
+              inline: true,
+            },
+            {
+              name: 'Command Description:',
+              value: command.description
+                ? command.description
+                : 'No description for this command.',
+              inline: true,
+            },
+          )
 
           .setFooter({
-            text: `Comfi™ Help`,
+            text: 'Comfi™ Help',
             iconURL: interaction.user.avatarURL({
-              dynamic: true
-            })
+              dynamic: true,
+            }),
           })
           .setTimestamp()
           .setThumbnail(
             bot.user.displayAvatarURL({
-              dynamic: true
-            })
+              dynamic: true,
+            }),
           )
-          .setColor(bot.color)
+          .setColor(bot.color);
 
         return await interaction
           .editReply({
-            embeds: [embed]
-          })
+            embeds: [embed],
+          });
       }
     } catch (e) {
-      await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};
