@@ -1,16 +1,16 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
-const { ApplicationCommandOptionType, ChannelType, ButtonStyle } = require('discord.js')
-const simplydjs = require('simply-djs')
+const { ApplicationCommandOptionType, ChannelType, ButtonStyle } = require('discord.js');
+const simplydjs = require('simply-djs');
 
 module.exports = {
   name: 'buttonrole',
   description: 'Reaction Roles With Buttons',
-  directory: "role",
+  directory: 'role',
   ownerOnly: false,
   options: [
     {
@@ -23,25 +23,25 @@ module.exports = {
           type: ApplicationCommandOptionType.Channel,
           description: 'channel of that message',
           required: true,
-          channelTypes: [ChannelType.GuildText]
+          channelTypes: [ChannelType.GuildText],
         },
         {
           name: 'message',
           type: ApplicationCommandOptionType.String,
           description: 'the message id',
-          required: true
+          required: true,
         },
         {
           name: 'role',
           type: ApplicationCommandOptionType.Role,
           description: 'Role to Add',
-          required: true
+          required: true,
         },
         {
           name: 'label',
           type: ApplicationCommandOptionType.String,
           description: 'name of the button ?',
-          required: false
+          required: false,
         },
         {
           name: 'style',
@@ -51,29 +51,29 @@ module.exports = {
           choices: [
             {
               name: 'Blue',
-              value: `${ButtonStyle.Primary}`
+              value: `${ButtonStyle.Primary}`,
             },
             {
               name: 'Grey',
-              value: `${ButtonStyle.Secondary}` 
+              value: `${ButtonStyle.Secondary}`,
             },
             {
               name: 'Green',
-              value: `${ButtonStyle.Success}`
+              value: `${ButtonStyle.Success}`,
             },
             {
               name: 'Red',
-              value: `${ButtonStyle.Danger}`
-            }
-          ]
+              value: `${ButtonStyle.Danger}`,
+            },
+          ],
         },
         {
           name: 'emoji',
           type: ApplicationCommandOptionType.String,
           description: 'emoji for the button',
-          required: false
-        }
-      ]
+          required: false,
+        },
+      ],
     },
     {
       name: 'remove',
@@ -85,42 +85,42 @@ module.exports = {
           type: ApplicationCommandOptionType.Channel,
           description: 'channel of that message',
           required: true,
-          channelTypes: [ChannelType.GuildText]
+          channelTypes: [ChannelType.GuildText],
         },
         {
           name: 'message',
           type: ApplicationCommandOptionType.String,
           description: 'the message id',
-          required: true
+          required: true,
         },
         {
           name: 'role',
           type: ApplicationCommandOptionType.Role,
           description: 'Role to remove',
-          required: true
-        }
-      ]
-    }
+          required: true,
+        },
+      ],
+    },
   ],
   userperm: ['MANAGE_GUILD'],
   botperm: ['MANAGE_GUILD'],
   run: async (bot, interaction, args) => {
-    let [options] = args
+    const [options] = args;
 
     try {
       if (options === 'add') {
         simplydjs.betterBtnRole(bot, interaction, {
-          type: 'add'
-        })
+          type: 'add',
+        });
       }
 
       if (options === 'remove') {
         simplydjs.betterBtnRole(bot, interaction, {
-          type: 'remove'
-        })
+          type: 'remove',
+        });
       }
     } catch (e) {
-  await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};

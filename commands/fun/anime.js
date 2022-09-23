@@ -1,16 +1,16 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { ApplicationCommandOptionType } = require("discord.js")
+const { ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
   name: 'anime',
   description: 'Get Anime Actions',
-  directory: "fun",
+  directory: 'fun',
   options: [
     {
       name: 'category',
@@ -20,131 +20,130 @@ module.exports = {
       choices: [
         {
           name: 'cuddle',
-          value: 'cuddle'
+          value: 'cuddle',
         },
         {
           name: 'hug',
-          value: 'hug'
+          value: 'hug',
         },
         {
           name: 'kiss',
-          value: 'kiss'
+          value: 'kiss',
         },
         {
           name: 'smile',
-          value: 'smile'
+          value: 'smile',
         },
         {
           name: 'wave',
-          value: 'wave'
+          value: 'wave',
         },
         {
           name: 'handhold',
-          value: 'handhold'
+          value: 'handhold',
         },
         {
           name: 'wink',
-          value: 'wink'
+          value: 'wink',
         },
         {
           name: 'poke',
-          value: 'poke'
+          value: 'poke',
         },
         {
           name: 'dance',
-          value: 'dance'
+          value: 'dance',
         },
         {
           name: 'cringe',
-          value: 'cringe'
+          value: 'cringe',
         },
         {
           name: 'kill',
-          value: 'kill'
+          value: 'kill',
         },
         {
           name: 'slap',
-          value: 'slap'
+          value: 'slap',
         },
         {
           name: 'bite',
-          value: 'bite'
+          value: 'bite',
         },
         {
           name: 'highfive',
-          value: 'highfive'
+          value: 'highfive',
         },
         {
           name: 'blush',
-          value: 'blush'
+          value: 'blush',
         },
         {
           name: 'pat',
-          value: 'pat'
+          value: 'pat',
         },
         {
           name: 'smug',
-          value: 'smug'
+          value: 'smug',
         },
         {
           name: 'bonk',
-          value: 'bonk'
+          value: 'bonk',
         },
         {
           name: 'cry',
-          value: 'cry'
+          value: 'cry',
         },
         {
           name: 'bully',
-          value: 'bully'
+          value: 'bully',
         },
         {
           name: 'yeet',
-          value: 'yeet'
+          value: 'yeet',
         },
         {
           name: 'happy',
-          value: 'happy'
+          value: 'happy',
         },
         {
           name: 'kick',
-          value: 'kick'
-        }
-      ]
+          value: 'kick',
+        },
+      ],
     },
     {
-      name: "user",
+      name: 'user',
       type: ApplicationCommandOptionType.User,
-      description: "user to send anime gif",
-      required: true
+      description: 'user to send anime gif',
+      required: true,
     },
   ],
   userperm: [''],
   botperm: [''],
 
-	/**
+  /**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
     try {
+      const user = interaction.options.getUser('user');
 
-      let user = interaction.options.getUser("user")
+      const arg = interaction.options.getString('category');
 
-      let arg = interaction.options.getString("category")
-
-      const Slash = require("../../functions/anime")
+      const Slash = require('../../functions/anime');
       const slash = new Slash({
         type: args,
-        interaction: interaction,
-        embedFooter: {text: `Requested by ${interaction.member.displayName}`},
+        interaction,
+        embedFooter: { text: `Requested by ${interaction.member.displayName}` },
         embedTitle: `${interaction.user.username} ${arg}ed ${user.username}`,
-        embedColor: bot.color
-      })
-      slash.anime()
+        embedColor: bot.color,
+      });
+      slash.anime();
     } catch (e) {
-  await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};

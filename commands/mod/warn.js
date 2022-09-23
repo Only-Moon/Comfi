@@ -1,20 +1,20 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const warnSchema = require('../../models/users');
 const uuid = require('uuid');
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
+const warnSchema = require('../../models/users');
 
 module.exports = {
   name: 'warn',
   description:
     'Warn a user, get a list of a user, and remove the warned user!',
   ownerOnly: false,
-  directory: "warn",
+  directory: 'warn',
   userPerm: ['ModerateMembers'],
   botPerm: ['ModerateMembers'],
   options: [
@@ -72,7 +72,7 @@ module.exports = {
           description: 'Provide a us reason!',
           type: ApplicationCommandOptionType.String,
           required: false,
-        }
+        },
       ],
     },
   ],
@@ -82,7 +82,7 @@ module.exports = {
 
     const user = interaction.options.getUser('user');
     const getWarnId = interaction.options.getString('warnid');
-    const reason = interaction.options.getString("reason")
+    const reason = interaction.options.getString('reason');
     try {
       switch (subCommandName) {
         case 'add':
@@ -114,27 +114,27 @@ module.exports = {
           const warnCount = warnAddData ? warnAddData.warns.length + 1 : 1;
           const warnGrammar = warnCount === 1 ? '' : 's';
 
-          let warn = new EmbedBuilder()
-            .setTitle(`__Warned__`)
+          const warn = new EmbedBuilder()
+            .setTitle('__Warned__')
             .setDescription(`You have been warned by ${interaction.user} \nReason: ${getReason}`)
             .setColor(bot.color);
           user.send({ embeds: [warn] })
-            .catch(() => null)
-          
-          let warnEmbed = new EmbedBuilder()
-            .setTitle("**__Warn Report__**")
+            .catch(() => null);
+
+          const warnEmbed = new EmbedBuilder()
+            .setTitle('**__Warn Report__**')
             .setDescription(`${bot.tick} • Warned **${user.tag}** \n${bot.tick} • They now have **${warnCount}** warning${warnGrammar} \n${bot.tick} • Reason: ${getReason}`)
             .setColor(bot.color);
           await interaction.editReply({ embeds: [warnEmbed] }).then((msg) => {
-            setTimeout(() => { msg.delete().catch(() => null) }, bot.ms('30s'))
+            setTimeout(() => { msg.delete().catch(() => null); }, bot.ms('30s'));
           });
-          const Member = interaction.guild.members.cache.get(user.id)
-            
+          const Member = interaction.guild.members.cache.get(user.id);
+
           await bot.modlog({
-            Member: Member,
-            Action: "warn",
-            Reason: getReason.length < 1 ? 'No reason supplied.' : getReason
-          }, interaction)
+            Member,
+            Action: 'warn',
+            Reason: getReason.length < 1 ? 'No reason supplied.' : getReason,
+          }, interaction);
           break;
 
         case 'list':
@@ -143,8 +143,7 @@ module.exports = {
             userId: user.id,
           });
 
-          if (!warnedResult || warnedResult.warns.length === 0)
-        return await  bot.errorEmbed(bot, interaction, `That user has no warning record!`);
+          if (!warnedResult || warnedResult.warns.length === 0) return await bot.errorEmbed(bot, interaction, 'That user has no warning record!');
 
           let string = '';
           const embed = new EmbedBuilder()
@@ -155,16 +154,18 @@ module.exports = {
             (user) => user.id === warnedResult.userId,
           );
           for (const warning of warnedResult.warns) {
-            const { authorId, timestamp, warnId, reason } = warning;
+            const {
+              authorId, timestamp, warnId, reason,
+            } = warning;
             const getModeratorUser = interaction.guild.members.cache.find(
               (user) => user.id === authorId,
             );
             string += embed
               .addFields({
-                name: `ID: ${warnId} • Moderator: ${getModeratorUser ?.user.tag}`,
-                value: `> <a:pinkheart_cs:883033001599074364> • **Reason:** ${reason} \n> <a:pinkheart_cs:883033001599074364> • **Date:** <t:${timestamp}>`
+                name: `ID: ${warnId} • Moderator: ${getModeratorUser?.user.tag}`,
+                value: `> <a:pinkheart_cs:883033001599074364> • **Reason:** ${reason} \n> <a:pinkheart_cs:883033001599074364> • **Date:** <t:${timestamp}>`,
               })
-              .setTitle(`${getWarnedUser.user.username}'s Warning Lists!`)
+              .setTitle(`${getWarnedUser.user.username}'s Warning Lists!`);
           }
 
           await interaction.editReply({ embeds: [embed] });
@@ -193,21 +194,20 @@ module.exports = {
               : 0;
             const warnedRemoveGrammar = warnedRemoveCount === 1 ? '' : 's';
 
-        return await bot.successEmbed(bot, interaction, `Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`)
+            return await bot.successEmbed(bot, interaction, `Successfully deleted **${getRemovedWarnedUser.user.tag}** warning, they now have **${warnedRemoveCount}** warning${warnedRemoveGrammar}!`);
             await bot.modlog({
               Member: getRemovedWarnedUser,
-              Action: "warn remove",
-              Reason: reason ?.length < 1 ? 'No reason supplied.' : reason,
-              Mod: warnedRemoveData.authorId ? warnedRemoveData.authorId : "Not Found"
-            }, interaction)
-          } else {
-        return await  bot.errorEmbed(bot, interaction, `That is not a valid Warn ID!`);
+              Action: 'warn remove',
+              Reason: reason?.length < 1 ? 'No reason supplied.' : reason,
+              Mod: warnedRemoveData.authorId ? warnedRemoveData.authorId : 'Not Found',
+            }, interaction);
           }
+          return await bot.errorEmbed(bot, interaction, 'That is not a valid Warn ID!');
 
           break;
       }
     } catch (e) {
-      await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
+  },
 };

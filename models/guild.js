@@ -1,10 +1,10 @@
-const { model, Schema } = require('mongoose')
+const { model, Schema } = require('mongoose');
 
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
 const schema = new Schema({
@@ -12,7 +12,7 @@ const schema = new Schema({
   guildId: String,
   premium: { type: Boolean, default: false },
   prefix: { type: String, default: 'Cr!' },
-  color: { type: String, default: process.env.color || '#F4B3CA'},
+  color: { type: String, default: process.env.color || '#F4B3CA' },
 
   // AutoNick
   auto_nick: { type: String, default: 'NONE' },
@@ -29,7 +29,7 @@ const schema = new Schema({
   confession: { type: Boolean, default: false },
   confess_channel: { type: String, default: 'NONE' },
 
-  //NQN
+  // NQN
   nqn: { type: Boolean, default: false },
 
   // Tickets
@@ -43,9 +43,9 @@ const schema = new Schema({
   leveling_channel: { type: String, default: 'NONE' },
   leveling_message: {
     type: String,
-    default: 'Congrats {{user#mention}} on reaching level {{level}}'
+    default: 'Congrats {{user#mention}} on reaching level {{level}}',
   },
-  leveling_image: { type: String, default: "https://i.imgur.com/InltiPs.png" },
+  leveling_image: { type: String, default: 'https://i.imgur.com/InltiPs.png' },
   leveling_embedtgl: { type: Boolean, default: true },
   leveling_embed: { type: Array, default: [] },
   leveling_roles: { type: Array, default: [] },
@@ -65,7 +65,7 @@ const schema = new Schema({
   verification_role: { type: String, default: 'NONE' },
   verification_message: {
     type: String,
-    default: 'Please type the words below to gain access to the server.'
+    default: 'Please type the words below to gain access to the server.',
   },
 
   // Membercount
@@ -101,7 +101,7 @@ const schema = new Schema({
   boost_message: {
     type: String,
     default:
-      '{{user#mention}} just boosted {server}. Now We Have {{boost#count}} boosts'
+      '{{user#mention}} just boosted {server}. Now We Have {{boost#count}} boosts',
   },
   boost_image: { type: String, default: 'https://i.imgur.com/wTKiUY8.png' },
   boost_embedtgl: { type: Boolean, default: false },
@@ -119,7 +119,7 @@ const schema = new Schema({
   muted_role: { type: Array, default: [] },
 
   // Dropdown roles
-  dropdownRoles: { type: Array, default: [] }
-})
+  dropdownRoles: { type: Array, default: [] },
+});
 
-module.exports = model('Guilds', schema)
+module.exports = model('Guilds', schema);

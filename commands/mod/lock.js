@@ -1,16 +1,16 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js');
 
 module.exports = {
   name: 'lockk',
   description: 'Locks and Unlocks a channel',
-  directory: "mod",
+  directory: 'mod',
   ownerOnly: false,
   userperm: ['ManageChannels'],
   botperm: ['ManageChannels'],
@@ -25,9 +25,9 @@ module.exports = {
           description: 'Channel to lock',
           name: 'channel',
           required: false,
-          channelTypes: [ChannelType.GuildText, ChannelType.GuildVoice]
-        }
-      ]
+          channelTypes: [ChannelType.GuildText, ChannelType.GuildVoice],
+        },
+      ],
     },
     {
       type: ApplicationCommandOptionType.Subcommand,
@@ -38,60 +38,53 @@ module.exports = {
           type: ApplicationCommandOptionType.Channel,
           description: 'Channel to Unlock',
           name: 'channel',
-          channelTypes: [ChannelType.GuildText,  ChannelType.GuildVoice],
-          required: false
-        }
-      ]
-    }
+          channelTypes: [ChannelType.GuildText, ChannelType.GuildVoice],
+          required: false,
+        },
+      ],
+    },
   ],
-	/**
+  /**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
-    let channel = interaction.channel || interaction.options.getUser('channel')
+    const channel = interaction.channel || interaction.options.getUser('channel');
 
-    let [sub] = args
+    const [sub] = args;
 
     if (sub === 'enable') {
       try {
-
         setTimeout(async () => {
-          interaction.guild.roles.cache.forEach(async role => {
+          interaction.guild.roles.cache.forEach(async (role) => {
             await channel.permissionOverwrites.create(role, {
               SEND_MESSAGES: false,
-              ADD_REACTIONS: false
-            })
-          })
-        return await bot.successEmbed(bot, interaction, `**Successfully Locked ${channel}**`)
-
-        }, 20000)
-
+              ADD_REACTIONS: false,
+            });
+          });
+          return await bot.successEmbed(bot, interaction, `**Successfully Locked ${channel}**`);
+        }, 20000);
       } catch (e) {
-        await bot.senderror(interaction, e)
+        await bot.senderror(interaction, e);
       }
     }
 
     if (sub === 'disable') {
       try {
-
         setTimeout(async () => {
-
-          interaction.guild.roles.cache.forEach(async role => {
+          interaction.guild.roles.cache.forEach(async (role) => {
             await channel.permissionOverwrites.create(role, {
               SEND_MESSAGES: true,
-              ADD_REACTIONS: true
-            })
-          })
+              ADD_REACTIONS: true,
+            });
+          });
 
-        return await bot.successEmbed(bot, interaction, `**Successfully Unlocked ${channel}**`)
-
-        }, 20000)
-
+          return await bot.successEmbed(bot, interaction, `**Successfully Unlocked ${channel}**`);
+        }, 20000);
       } catch (e) {
-        await bot.senderror(interaction, e)
+        await bot.senderror(interaction, e);
       }
     }
-  }
-}
+  },
+};
