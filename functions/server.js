@@ -2,6 +2,7 @@ const guilds = require('../models/guild')
 const { permissions, MessageEmbed }
  = require ("discord.js")
 const fs = require("fs")
+const image = "https://i.imgur.com/SQ9pFmz.png"
 
 
 /* 
@@ -83,7 +84,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == file)
       index: {
         card: {
           category: "Comfi - The Aesthetic Multipurpose Bot",
-          image: "https://i.imgur.com/VvRV7jb.png",
+          image: image,
           footer: '↠ Made with love by <a href="https://discord.com/users/7753974636508741673"> ꒰⚘݄꒱₊_❝ moonbow ᵕ̈ 🌸#5817 </a>',
         },
         feeds: {
@@ -145,7 +146,7 @@ bot.slashCommands.filter((cmd) => cmd.directory == file)
 <meta property="og:url" content=https://comfibot.tk>
 <meta property="og:description" content="Comfi Is An Advance Multipurpose Bot With a Lot of Moderation, Fun, Emoji and Utility Commands Fully Based On Slash. Developed by Moonbow">
 <meta property="og:type" content=website>
-<meta property="og:image" content=https://i.imgur.com/VvRV7jb.png>
+<meta property="og:image" content=${image}>
 <meta property="og:image:type" content="image/png"> 
 <meta property="og:image:width" content="1920"> 
 <meta property="og:image:height" content="1080"> 
