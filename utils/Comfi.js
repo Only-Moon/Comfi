@@ -26,7 +26,8 @@ class Comfi extends Discord.Client {
         'GUILD_MESSAGES',
         'GUILD_EMOJIS_AND_STICKERS',
         'GUILD_INVITES',
-        'GUILD_MESSAGE_TYPING'
+        'GUILD_MESSAGE_TYPING',
+        'MESSAGE_CONTENT'
       ],
       partials: [
         'MESSAGE',
@@ -375,6 +376,21 @@ simplydjs.connect(s, false)
 
   init() {
     require('../handler/index')(this)
+
+setInterval(() => {
+  if (!this.isReady()) {
+    require("https").get(`https://comfi-bot.xx-mohit-xx.repl.co`, () => process.kill(1));
+  }
+}, 10000); 
+
+        
+      setTimeout(() => {
+    if(!this || !this.user) {
+        console.log("Client not available, killing process")
+        process.kill(1)
+    }
+}, 3 * 1000 * 60)
+      
   }
 }
 

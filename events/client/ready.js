@@ -12,7 +12,7 @@ const fetch = require("node-fetch")
 */
 
 bot.on('ready', async () => {
-
+    
 //await fetch("https://cozy-api.xx-mohit-xx.repl.co/json/reverse").then(res => console.log(res))
   
 const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })

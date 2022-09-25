@@ -15,6 +15,7 @@ bot
 	.on('reconnecting', e => bot.logger.log(`Bot is reconnecting \n` + e))
 	.on('error', e => bot.logger.error(`error \n` + e))
 	.on('rateLimit', err => {
+    if (err.timeout > 1000) process.kill(1)
 			let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)
 				.setDescription(`Timeout: ${err.timeout}\n Limit: ${bot.ms(err.limit)}\n Method: ${err.method}\nPath: ${err.path}\nRoute: ${err.route}\nGlobal: ${err.global}`)
@@ -29,6 +30,11 @@ bot
 	.on('warn', info => bot.logger.warn(`info \n` + info))
  .on('debug', info => {
    hook.send({content: info})
+
+   if (info.startsWith("Hit a 429")) {
+   console.log("Client Not Login, Process Kill")
+  process.kill(1)
+   }
  })
 
 process.on('unhandledRejection', (reason, promise) => {
