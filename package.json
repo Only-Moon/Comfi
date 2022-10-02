@@ -22,7 +22,7 @@
     "memer-api": "^4.0.2",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
-    "mongoose": "^6.6.1",
+    "mongoose": "^6.6.2",
     "ms": "^2.1.3",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.20",
