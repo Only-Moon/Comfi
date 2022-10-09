@@ -376,21 +376,6 @@ simplydjs.connect(s, false)
 
   init() {
     require('../handler/index')(this)
-
-setInterval(() => {
-  if (!this.isReady()) {
-    require("https").get(`https://comfi-bot.xx-mohit-xx.repl.co`, () => process.kill(1));
-  }
-}, 10000); 
-    
-      setTimeout(() => {
-    if(!this || !this.user) {
-        console.log("Client not available, killing process")
-        process.kill(1)
-    } else {
-        console.log("The client has logged successfully")
-    }
-}, 15000)
       
   }
 }

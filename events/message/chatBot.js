@@ -56,7 +56,7 @@ bot.on('messageCreate', async message => {
 					age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
 
 				params.set('message', input)
-				params.set('developer', 'moonbow#5817')
+				params.set('developer', 'Moonbow')
 				params.set('name', bot.user.username)
 				params.set('age', age)
 				params.set('year', bot.user.createdAt.getFullYear())
@@ -67,7 +67,11 @@ bot.on('messageCreate', async message => {
 
 				// Using await instead of .then
 				const jsonRes = await fetch(url).then(res => res.json()).catch(() => {})// Parsing the JSON
-        
+
+               if (jsonRes.error && jsonRes.error=== 'No Message Specified') {
+               return await  bot.errorEmbed(bot, message, `Sorry there's some issue with my chatbot. Kindly disable it untill further update from my Developer`);
+               }
+                
 				const chatbotReply = jsonRes.reply
 					.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
 					.replace(/@here/g, '`@here`')
