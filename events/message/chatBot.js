@@ -51,28 +51,23 @@ bot.on('messageCreate', async message => {
 
 				await message.channel.sendTyping().catch(() => null)
 
-				const url = new URL('https://simplyapi.js.org/api/chatbot'),
-					params = url.searchParams,
-					age = new Date().getFullYear() - bot.user.createdAt.getFullYear()
+        const url = new URL('http://api.brainshop.ai/get');
+        const params = url.searchParams;
 
-				params.set('message', input)
-				params.set('developer', 'Moonbow')
-				params.set('name', bot.user.username)
-				params.set('age', age)
-				params.set('year', bot.user.createdAt.getFullYear())
-				params.set('bday', bot.user.createdAt.toLocaleDateString())
-				params.set('birthplace', 'Comfi Development')
-				params.set('gender', 'female')
-				params.set('uid', message.author.id)
+        params.set('bid', "169792")
+        params.set("key", "XkKMsSEdU5rsUTrw")
+        params.set('uid', `[${message.author.id}`)
+        params.set('msg', input);
 
-				// Using await instead of .then
-				const jsonRes = await fetch(url).then(res => res.json()).catch(() => {})// Parsing the JSON
-
-               if (jsonRes.error && jsonRes.error=== 'No Message Specified') {
-               return await  bot.errorEmbed(bot, message, `Sorry there's some issue with my chatbot. Kindly disable it untill further update from my Developer`);
-               }
-                
-				const chatbotReply = jsonRes.reply
+        // Using await instead of .then
+        const jsonRes = await fetch(url).then((res) => res.json()).then(data => data).catch(async (e) => {
+          await bot.senderror(message, e);
+        });
+       if (jsonRes.status && jsonRes.status.code === "400") {
+   return await bot.errorEmbed(bot, message, `Sorry there's some issue with my chatbot. Kindly report it to my Developer and Disable it untill further update from my Developer`);
+        }
+          
+        const chatbotReply = jsonRes.cnt
 					.replace(/@everyone/g, '`@everyone`') //RegExp with g Flag will replace every @everyone instead of just the first
 					.replace(/@here/g, '`@here`')
 

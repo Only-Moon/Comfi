@@ -29,12 +29,12 @@ bot
   
 	.on('warn', info => bot.logger.warn(`info \n` + info))
  .on('debug', info => {
-   hook.send({content: info})
 
    if (info.startsWith("Hit a 429")) {
-   console.log("Client Not Login, Process Kill")
+   console.log("Client Not Debuging, Process Kill")
   process.kill(1)
    }
+     bot.logger.debug(info)
  })
 
 process.on('unhandledRejection', (reason, promise) => {

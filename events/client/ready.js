@@ -56,7 +56,7 @@ const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
                  bot.user.setActivity( 
                          activites[Math.floor(Math.random() * activites.length)] 
                  ) 
-         }, 1000 * 60)
+         }, 1000 * 90)
 
 require('../../functions/server')(bot)
 
