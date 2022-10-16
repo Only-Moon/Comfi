@@ -77,7 +77,7 @@ module.exports = {
           .setDescription(
             `My Prefix For __**${
             interaction.guild.name
-            }**__ Is  __**${prefix}**__\n\nVisit https://comfibot.tk/commands To Get List Of All My Commands`
+            }**__ Is  __**${prefix}**__\n\nVisit ${bot.dash}commands To Get List Of All My Commands`
           )
           .addFields(categories)
           .setFooter({

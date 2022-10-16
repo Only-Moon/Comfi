@@ -60,7 +60,7 @@ bot.on('messageCreate', async message => {
         params.set('msg', input);
 
         // Using await instead of .then
-        const jsonRes = await fetch(url).then((res) => res.json()).then(data => data).catch(async (e) => {
+let jsonRes = await fetch(url).then(res => res.json()).then(data => data).catch(async (e) => {
           await bot.senderror(message, e);
         });
        if (jsonRes.status && jsonRes.status.code === "400") {

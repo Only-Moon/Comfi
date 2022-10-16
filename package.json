@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "acorn": "^8.8.0",
-    "anilist-node": "^1.12.1",
+    "anilist-node": "^1.13.0",
     "axios": "^0.21.4",
     "canvas": "^2.10.1",
     "chalk": "^4.1.2",

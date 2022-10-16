@@ -1,5 +1,5 @@
 <div align="center"> 
-<a href="https://comfibot.tk/invite">
+<a href="https://comfibot.ml/invite">
 <img src="https://i.imgur.com/At2XO1M.png" width="100"> 
 <h1>Comfi</h1> 
 <img src="https://img.shields.io/badge/discord.js-v13-7354F6?logo=discord&logoColor=white&style=flat-square"> 
@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/uptimerobot/ratio/7/m789124615-03e67c33f3ffeade6f2b8d05?logo=google-cloud&logoColor=white&style=flat-square"> 
 <a href="https://cla-assistant.io/Xx-Mohit-xX/Comfi"><img src="https://cla-assistant.io/readme/badge/Xx-Mohit-xX/Comfi" alt="CLA assistant" /></a>
 <br>
-<a href="https://comfibot.tk/"><img src="https://discord.c99.nl/widget/theme-1/873473703470563378.png"> </a> 
+<a href="https://comfibot.ml/"><img src="https://discord.c99.nl/widget/theme-1/873473703470563378.png"> </a> 
 <br>
 <br>
 </div>
@@ -24,10 +24,10 @@ Comfi requires some permissions before joining the server. to make sure it can w
 - **Commands** - for creating `Slash Command` within the server will make it easier to use. 
 
 ### Ready 
-[Invite Server](https://comfibot.tk/support)
+[Invite Server](https://comfibot.ml/support)
 
 # Documents 
-If you want to learn more about Comfi such as commands, functions, etc., you can visit or study [Document](https://comfibot.tk/) of Comfi website.
+If you want to learn more about Comfi such as commands, functions, etc., you can visit or study [Document](https://comfibot.ml/) of Comfi website.
 
 ## Self hosting
 - This discord bot uses [Mongodb](htttps://www.mongodb.com/) for its databases.
@@ -56,5 +56,5 @@ If you encounter any problems from your current job You can let us know through 
 <br> 
  <h1>🏩 Contact us | Support</h1> 
  <p> 
- <a href="https://comfibot.tk/discord"><img src="http://invidget.switchblade.xyz/HNfhvCeR6d" /></a> 
+ <a href="https://comfibot.ml/discord"><img src="http://invidget.switchblade.xyz/HNfhvCeR6d" /></a> 
  </p>
