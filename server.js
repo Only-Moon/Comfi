@@ -1331,13 +1331,9 @@ module.exports = async (bot) => {
           : `${prefix}${command.name}`,
         commandDescription: command.description
           ? command.description
-          : 'No description for this command.',
-        commandAlias: command.aliases
-          ? `${command.aliases.join(', ')}`
-          : 'No aliases.',
+          : 'No description for this command.',   
       })
   })    
-      //console.log(name)
       
     return name;
   }
