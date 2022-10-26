@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "chalk": "^5.0.1",
+    "connect-mongo": "^4.6.0",
     "dbd-dark-dashboard": "^1.6.592",
     "discord-dashboard": "^2.3.44",
     "discord.js": "^14.4.0",

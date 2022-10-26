@@ -7,7 +7,6 @@
 * For more information, see README.md and LICENSE
 */
 
-console.clear();
 console.log('Loading Bot...');
 
 // -----[ DEFINING DEPENDENCIES ]-----\\
