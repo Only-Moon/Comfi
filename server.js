@@ -1,6 +1,7 @@
 const { EmbedBuilder, ChannelType } = require('discord.js');
-const guilds = require('../models/guild');
-const clients = require('../models/Client');
+const guilds = require('./models/guild');
+const clients = require('./models/Client');
+const image = "https://i.imgur.com/SQ9pFmz.png"
 
 /*
  * Comfi Bot for Discord
@@ -25,7 +26,7 @@ module.exports = async (bot) => {
     client.commands
       .filter((cmd) => cmd.directory == file)
       .map((command) => name.push({
-        commandName: `/${command.name}`,
+        commandName: `${command.name}`,
         commandUsage: command.usage
           ? `${prefix}${command.name} ${command.usage}`
           : `${prefix}${command.name}`,
@@ -78,7 +79,7 @@ module.exports = async (bot) => {
       index: {
         card: {
           category: 'Comfi - The Aesthetic Multipurpose Bot',
-          image: 'https://i.imgur.com/VvRV7jb.png',
+          image: image,
           footer:
             '↠ Made with love by <a href="https://discord.com/users/7753974636508741673"> ꒰⚘݄꒱₊_❝ moonbow ᵕ̈ 🌸#5817 </a>',
         },

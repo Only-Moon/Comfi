@@ -32,7 +32,7 @@ class Comfi extends Discord.Client {
     this.dash = process.env.web;
     this.err_chnl = process.env.error_channel;
     this.support = process.env.support || `${this.dash}support`;
-    this.login(process.env.TOKEN).then(console.log);
+    this.login(process.env.dev === "true" ? process.env.TOKEN_dev : process.env.TOKEN_prod ).then(console.log("Bot is ready"));
     this.dbs(process.env.Mongoose);
     this.init();
   }
@@ -49,7 +49,7 @@ class Comfi extends Discord.Client {
 
   init() {
     this.once('ready', () => {
-    console.log("Dashboard is ready")
+    console.log("Dashboard is ready on " + this.user.username)
       require('../server')(this);
     });
   }
