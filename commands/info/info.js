@@ -364,6 +364,7 @@ module.exports = {
               inline: true,
             },
           );
+          console.log(role.members.size)
         return await interaction.editReply({ embeds: [embed] });
       }
 

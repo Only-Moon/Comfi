@@ -34,6 +34,12 @@ bot.on('interactionCreate', async (interaction, args) => {
           .slice(0, 100)
           .join('');
 
+        const id = interaction.fields
+          .getTextInputValue('error')
+          .split('')
+          .slice(0, 100)
+          .join('');
+
         const desc = interaction.fields
           .getTextInputValue('description')
           .split('')
@@ -49,7 +55,7 @@ bot.on('interactionCreate', async (interaction, args) => {
         const reportEmbed = new EmbedBuilder()
           .setTitle('Comfi™ Bug Report')
           .setDescription(
-            `**Author :**\n> ${member.user.username} \n**Report Title :**\n> ${title} \n**Report Description:**\n\`\`\`${desc}\`\`\``,
+            `**Author :**\n> ${member.user.username} \n**Report Title :**\n> ${title} \n**Report Id: **\n> ${id}\n**Report Description:**\n\`\`\`${desc}\`\`\``,
           )
           .setFooter({ text: `Sent From ${member.guild.id}` })
           .setThumbnail(member.user.avatarURL({ dynamic: true }))

@@ -36,12 +36,23 @@ module.exports = {
           ),
           new ActionRowBuilder().addComponents(
             new TextInputBuilder()
+              .setCustomId('error')
+              .setLabel('Please enter the error id')
+              .setStyle(TextInputStyle.Short)
+
+              .setRequired(false)
+              .setMinLength(6)
+              .setMaxLength(6),
+          ),
+          new ActionRowBuilder().addComponents(
+            new TextInputBuilder()
               .setCustomId('description')
               .setLabel('Sumbit Comfi\'s Bug Report Here')
               .setStyle(TextInputStyle.Paragraph),
           ),
         );
-      await interaction.showModal(modal);
+
+      interaction.showModal(modal);
     } catch (e) {
       await bot.senderror(interaction, e);
     }

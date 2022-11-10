@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "npx node --trace-warnings index.js"
+run = "npx node shard/Cluster.js"

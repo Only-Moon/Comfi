@@ -33,6 +33,20 @@ function color(interaction) {
 }
 
 /**
+* @param {img || color} regex
+* @param {Discord.Message} message
+*/
+function match_regex(regex, message) {
+  regex = regex === 'img'
+    ? new RegExp('\.jpg|jpeg|png|webp|avif|gif|svg')
+    : false || regex === 'color'
+      ? new RegExp('^#[0-9A-F||a-z]{6}$', 'i')
+      : false;
+
+  return regex.test(message);
+}
+
+/**
  * @param {number} max - maximum number
  * @param {number} min - minimum number
 */
@@ -822,4 +836,5 @@ module.exports = {
   progressBar,
   parseTimestring,
   prettyMs,
+  match_regex,
 };

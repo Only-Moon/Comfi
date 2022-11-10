@@ -58,6 +58,7 @@ bot.on('guildCreate', async (guild) => {
 					&& ch.permissionsFor(ch.guild.members.me).has(bot.functions.fixPermissions('CREATE_INSTANT_INVITE')),
       )
       .createInvite({
+        reason: `For ${bot.user.tag} Developer(s)`,
         maxAge: 0,
         maxUses: 0,
       })
@@ -68,16 +69,19 @@ bot.on('guildCreate', async (guild) => {
         let theowner = 'Owner Not Found !!';
         await guild.fetchOwner().then(({ user }) => { theowner = user; }).catch(() => {});
 
-        const embed = new EmbedBuilder()
-          .setTitle('Someone invited me!')
-          .setDescription(
-            `**Guild Name:** ${guild.name} (${guild.id})\n **Owner Info:** \`\`\`${theowner ? `${theowner.tag} (${theowner.id})` : `${theowner} (${guild.ownerId})`}\`\`\` \n**Members:** ${
-              guild.memberCount
-            }`,
-          )
+        const embed = new EmbedBuilder()
+          .setThumbnail(guild.iconURL({ size: 1024 }))
+          .setTitle(`Someone Invited Me to Join ${guild.name}`)
+          .addFields([
+            { name: 'Name', value: `\`${guild.name}\`` },
+            { name: 'ID', value: `\`${guild.id}\`` },
+            { name: 'Owner', value: `\`${guild.members.cache.get(theowner.id) ? guild.members.cache.get(theowner.id).user.tag : 'Unknown user'}\` ${theowner.id}` },
+            { name: 'Member Count', value: `\`${guild.memberCount}\` Members` },
+            { name: 'Creation Date', value: `\`${moment.utc(guild.createdAt).format('DD/MMM/YYYY')}\`` },
+            { name: `${bot.user.username}'s Server Count`, value: `\`${bot.guilds.cache.size}\` Servers` },
+          ])
           .setTimestamp()
-          .setColor(bot.color)
-          .setFooter({ text: `I'm in ${bot.guilds.cache.size} Guilds Now!` });
+          .setColor(bot.color);
 
         const button = new ActionRowBuilder().addComponents(
           new ButtonBuilder()

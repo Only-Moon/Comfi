@@ -49,29 +49,24 @@ bot.on('messageCreate', async (message) => {
 
         await message.channel.sendTyping().catch(() => null);
 
-        const url = new URL('https://simplyapi.js.org/api/chatbot');
+        const url = new URL('http://api.brainshop.ai/get');
         const params = url.searchParams;
-        const age = new Date().getFullYear() - bot.user.createdAt.getFullYear();
 
-        params.set('message', input);
-        params.set('developer', 'moonbow#5817');
-        params.set('name', bot.user.username);
-        params.set('age', age);
-        params.set('year', bot.user.createdAt.getFullYear());
-        params.set('bday', bot.user.createdAt.toLocaleDateString());
-        params.set('birthplace', 'Comfi Development');
-        params.set('gender', 'female');
-        params.set('uid', message.author.id);
-
-        console.log(input, url);
+        params.set('bid', '169792');
+        params.set('key', 'XkKMsSEdU5rsUTrw');
+        params.set('uid', `[${message.author.id}`);
+        params.set('msg', input);
 
         // Using await instead of .then
-        const jsonRes = await fetch(url).then((res) => res.json()).catch(async (e) => {
+        const jsonRes = await fetch(url).then((res) => res.json()).then((data) => data).catch(async (e) => {
           await bot.senderror(message, e);
-        });// Parsing the JSON
-        console.log(jsonRes);
-        const chatbotReply = jsonRes.reply
-          .replace(/@everyone/g, '`@everyone`') // RegExp with g Flag will replace every @everyone instead of just the first
+        });
+        if (jsonRes.status && jsonRes.status.code === '400') {
+          return await bot.errorEmbed(bot, message, 'Sorry there\'s some issue with my chatbot. Kindly report it to my Developer and Disable it untill further update from my Developer');
+        }
+
+        const chatbotReply = jsonRes.cnt
+          .replace(/@everyone/g, '`@everyone`')
           .replace(/@here/g, '`@here`');
 
         if (chatbotReply === '') {
@@ -80,9 +75,10 @@ bot.on('messageCreate', async (message) => {
             allowedMentions: { repliedUser: false },
           });
         }
+
         await message
           .reply({
-            content: jsonRes.error ? jsonRes.error : chatbotReply,
+            content: chatbotReply,
             allowedMentions: { repliedUser: false },
           })
           .catch(() => null);

@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const simplydjs = require('simply-djs');
+const Cluster = require('discord-hybrid-sharding');
 const guilds = require('../models/guild');
 const Economy = require('../functions/eco');
 const bot = require('../index');
@@ -16,6 +17,7 @@ const bot = require('../index');
 class Comfi extends Discord.Client {
   constructor() {
     super({
+      failIfNotExists: true,
       allowedMentions: {
         parse: ['users', 'roles'],
         repliedUser: false,
@@ -32,7 +34,10 @@ class Comfi extends Discord.Client {
       ],
       partials: ['Message', 'Channel', 'GuildMember', 'Guild', 'User'],
       restRequestTimeout: 30000,
+      shards: Cluster.data.SHARD_LIST,
+      shardCount: Cluster.data.TOTAL_SHARDS,
     });
+
     this.color = process.env.color || '#F4B3CA';
     this.logger = require('./Logger');
     this.dash = process.env.web;
@@ -40,106 +45,24 @@ class Comfi extends Discord.Client {
     this.owners = process.env.owner || ['753974636508741673'];
     this.err_chnl = process.env.error_channel;
     this.support = process.env.support || `${this.dash}support`;
-    this.login(process.env.TOKEN);
+    if (!this.token) this.token = process.env.TOKEN;
+    this.cluster = new Cluster.Client(this);
     this.functions = require('../functions/function');
     this.btnPage = require('../functions/btnPage').pagination;
     this.bcolor = this.functions.color;
     this.categories = fs.readdirSync('./commands/');
+
     this.eco = new Economy(this, process.env.Mongoose, { global: true });
     this.dbs(process.env.Mongoose);
-    this.commands = new Discord.Collection();
-    this.aliases = new Discord.Collection();
+
     this.slashCommands = new Discord.Collection();
     this.timeout = new Discord.Collection();
+
     this.init();
   }
 
-  rslice(limit) {
-    let pos = 0;
-
-    function returnNextBatch(currPos, startPos, step) {
-      return Number(startPos + currPos * step);
-    }
-    let loop; let
-      loop1;
-    for (const i = 8; pos < i; pos++) {
-      const a = returnNextBatch(pos, 0, limit);
-      const b = returnNextBatch(pos, limit, limit);
-      (loop = a), (loop1 = b);
-    }
-    return loop, loop1;
-  }
-
-  async resolveUser(search) {
-    if (!search || typeof search !== 'string') return null;
-    let user = null;
-    search = search.split(' ').join('');
-    if (search.match(/^<@!?(\d+)>$/)) {
-      user = await this.users
-        .fetch(search.match(/^<@!?(\d+)>$/)[1])
-        .catch(() => {});
-    }
-    if (search.match(/^!?(\w+)#(\d+)$/) && !user) {
-      user = this.users.cache.find(
-        (u) => u.username === search.match(/^!?(\w+)#(\d+)$/)[0]
-          && u.discriminator === search.match(/^!?(\w+)#(\d+)$/)[1],
-      );
-    }
-    if (search.match(/.{2,32}/) && !user) user = this.users.cache.find((u) => u.username === search);
-    if (!user) user = await this.users.fetch(search).catch(() => {});
-    return user;
-  }
-
-  /**
-   * @returns {Promise<GuildMember>|null}
-   * @param {string} search
-   * @param {Guild} guild
-   */
-  async resolveMember(search, guild) {
-    if (!search || typeof search !== 'string') return null;
-    search = search.split(' ').join('');
-    const user = await this.resolveUser(search);
-    if (!user) return null;
-    try {
-      return await guild.members.fetch(user);
-    } catch (e) {
-      null;
-    }
-  }
-
-  /**
-   * @returns {Role|null}
-   * @param {string} search
-   * @param {Guild} guild
-   */
-  resolveRole(search, guild) {
-    if (!search || typeof search !== 'string') return null;
-    search = search.split(' ').join('');
-    let role = null;
-    if (search.match(/^<@&!?(\d+)>$/)) role = guild.roles.cache.get(search.match(/^<@&!?(\d+)>$/)[1]);
-    if (!role) role = guild.roles.cache.find((r) => r.name === search);
-    if (!role) role = guild.roles.cache.get(search);
-    return role;
-  }
-
-  /**
-   * @returns {Channel|null}
-   * @param {string} search
-   */
-  resolveChannel(search) {
-    if (!search) return null;
-    let channel = null;
-    channel = this.channels.cache.get(
-      search
-        .replace('<', '')
-        .replace('#', '')
-        .replace('>', '')
-        .split(' ')
-        .join(''),
-    );
-    if (!channel) channel = this.channels.cache.find((c) => c.name === search);
-    if (!channel) channel = this.channels.cache.get(search);
-    return channel;
+  connect() {
+    return super.login(this.token);
   }
 
   async getRandomString(length) {
@@ -239,7 +162,7 @@ class Comfi extends Discord.Client {
     },
   ) {
     if (!channel || typeof channel !== 'string') throw new SyntaxError('Invaild Channel');
-    const channel_ = await bot.resolveChannel(channel);
+    const channel_ = await bot.channels.cache.get(channel);
     let webhook = await channel_
       .fetchWebhooks()
       .then((x) => x.find((x) => x.name === name));
@@ -253,14 +176,7 @@ class Comfi extends Discord.Client {
           ? embed.title
           : `${this.emoji('error_CS')} • Error Occured. Id: ${id}`,
       );
-      emb.setDescription(
-        embed.description
-          ? `\`\`\`js${embed.description
-            .split(' ')
-            .slice(0, 4000)
-            .join(' ')}\`\`\``
-          : `\`\`\`js${embed.description}\`\`\``,
-      );
+      emb.setDescription(`\`\`\`js${embed.description.split('').slice(0, 4000).join('')}\`\`\``);
       emb.setColor(bot.color);
 
       return await webhook.send({ embeds: [emb] }).then((e) => {
@@ -268,7 +184,7 @@ class Comfi extends Discord.Client {
       });
     } if (msg) {
       emb.setTitle(`${this.emoji('error_CS')} • Error occured. Id: ${id}`);
-      emb.setDescription(msg ? msg.split(' ').slice(0, 4000).join(' ') : msg);
+      emb.setDescription(`\`\`\`js${msg.split('').slice(0, 3500).join('')}\`\`\``);
       emb.setColor(this.color);
 
       return await webhook.send({ embeds: [emb] }).then((e) => {
@@ -301,29 +217,46 @@ class Comfi extends Discord.Client {
     }
   }
 
+  async errorEmbed(bot, interaction, argument, img) {
+    const embed = new Discord.EmbedBuilder()
+      .setDescription(`${this.emoji('cross_CS')} • ${argument}`)
+      .setColor(bot.color);
+    if (img && bot.functions.match_regex('img', img)) {
+      embed.setImage(img);
+    }
+
+    if (interaction.commandId) {
+      return await interaction
+        .editReply({
+          embeds: [embed],
+          allowedMentions: { repliedUser: false },
+          fetchReply: true,
+        })
+        .catch(() => {});
+    } if (!interaction.commandId) {
+      interaction.channel
+        .send({
+          embeds: [embed],
+          allowedMentions: { repliedUser: false },
+          fetchReply: true,
+        })
+        .catch(() => {});
+    }
+  }
+
   /**
    * @param {Discord.Client} bot - Discord Client
    * @param {Discord.CommandInteraction} interaction - Interaction
    * @param {string} argument - the error
    * @param {boolean} button - for showing support button
    */
-  async errorEmbed(bot, interaction, argument, button, img, del = false) {
-    const pattern = new RegExp(
-      '^(https?:\\/\\/)?'
-        + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'
-        + '((\\d{1,3}\\.){3}\\d{1,3}))'
-        + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'
-        + '(\\?[;&a-z\\d%_.~+=-]*)?'
-        + '(\\#[-a-z\\d_]*)?$',
-      'i',
-    );
+  async failEmbed(bot, interaction, argument, button) {
     const embed = new Discord.EmbedBuilder()
       .setTitle(`${this.emoji('error_CS')} • Unknown Error Occured`)
       .setDescription(`${argument}`)
       .setColor('#FE6666');
-    if (img && pattern.test(img)) embed.setImage(img);
 
-    if (!button) {
+    if (button === false) {
       if (interaction.commandId) {
         await interaction
           .editReply({
@@ -374,7 +307,7 @@ class Comfi extends Discord.Client {
       id,
     });
     if (interaction instanceof Discord.CommandInteraction) {
-      return await this.errorEmbed(
+      return await this.failEmbed(
         this,
         interaction,
         `> Try again after a while\n> Contact developers if error still exists\n> Error Id: ${id}`,
@@ -472,16 +405,29 @@ class Comfi extends Discord.Client {
     mongoose
       .connect(s, {
         useNewUrlParser: true,
+        autoIndex: false,
+        connectTimeoutMS: 10000,
+        family: 4,
         useUnifiedTopology: true,
-      })
-      .then(() => this.logger.log('Mongodb connected!'))
-      .catch((err) => this.logger.error(`${err.stack}`));
+      });
+    mongoose.Promise = global.Promise;
+    mongoose.connection.on('connected', () => {
+      this.logger.ready('[DB] DATABASE CONNECTED');
+    });
+    mongoose.connection.on('err', (err) => {
+      this.logger.error(`Mongoose connection error: \n ${err.stack}`);
+    });
+    mongoose.connection.on('disconnected', () => {
+      this.logger.error('Mongoose disconnected');
+    });
 
     simplydjs.connect(s, false);
   }
 
   init() {
     require('../handler/index')(this);
+
+    // setting emojis to client
     this.once('ready', () => {
       this.error = this.emoji(
         process.env.error ? process.env.error : 'error_CS',

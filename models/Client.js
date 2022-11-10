@@ -13,6 +13,9 @@ const schema = new Schema({
   blackListedUsers: { type: Array, default: [] },
   blackListedServers: { type: Array, default: [] },
   commands: { type: Array, default: [] },
+  news: { type: String, default: null },
+  news_read: { type: Boolean, default: false },
+  news_lastUpdated: { type: Date, default: null },
 });
 
 module.exports = model('Client', schema);
