@@ -7,9 +7,6 @@
 * For more information, see README.md and LICENSE
 */
 
-console.clear();
-console.log('Loading Bot...');
-
 // -----[ DEFINING DEPENDENCIES ]-----\\
 
 // Uncomment this if you need
@@ -17,6 +14,8 @@ console.log('Loading Bot...');
 const Comfi = require('./utils/Comfi');
 
 const bot = new Comfi();
+
+bot.connect();
 
 module.exports = bot;
 

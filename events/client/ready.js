@@ -14,17 +14,19 @@ const guilds = require('../../models/guild');
 
 bot.on('ready', async () => {
   const clientschem = await ClientSchema.findOne({ clientId: bot.user.id });
+
   if (!clientschem) {
     await ClientSchema.create({ clientId: bot.user.id });
   }
 
+  const guild = await bot.cluster
+    .broadcastEval((c) => c.guilds.cache.size)
+    .then((results) => results.reduce((prev, val) => prev + val, 0));
+
   bot.logger.table({
     'Bot User:': `${bot.user.tag}`,
-    'Guild(s):': `${bot.guilds.cache.size} Servers`,
-    'Watching:': `${bot.guilds.cache.reduce(
-      (a, b) => a + b.memberCount,
-      0,
-    )} Members`,
+    'Guild(s):': `${guild} Servers`,
+    'Watching:': `${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Members`,
     'Emoji(s):': `${bot.emojis.cache.size} emotes`,
     'Commands:': `${bot.slashCommands.size}`,
     'Discord.js:': `v${Discord.version}`,
@@ -41,10 +43,10 @@ bot.on('ready', async () => {
     totalCommands++;
   });
   const activites = [
-    { name: `/invite | ${bot.guilds.cache.size} servers!`, type: 'WATCHING' },
-    { name: `/infoo | ${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`, type: 'LISTENING' },
-    { name: `/emoji | ${bot.emojis.cache.size} emojis`, type: 'LISTENING' },
-    { name: `/helpp | ${totalCommands} commands!`, type: 'PLAYING' },
+    { name: `/invite | ${guild} servers!`, type: Discord.ActivityType.Watching },
+    { name: `/infoo | ${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`, type: Discord.ActivityType.Listening },
+    { name: `/emoji | ${bot.emojis.cache.size} emojis`, type: Discord.ActivityType.Listening },
+    { name: `/helpp | ${totalCommands} commands!`, type: Discord.ActivityType.Playing1 },
   ];
   let activity = 0;
   bot.user.setPresence({ status: 'online', activity: activites[0] });
@@ -55,8 +57,6 @@ bot.on('ready', async () => {
       activites[Math.floor(Math.random() * activites.length)],
     );
   }, 1000 * 60);
-
-  require('../../functions/server')(bot);
 
   bot.guilds.cache.forEach(async (guild) => {
     const guilD = await guilds.findOne({ guildId: guild?.id });

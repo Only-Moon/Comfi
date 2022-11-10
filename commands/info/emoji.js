@@ -70,7 +70,7 @@ module.exports = {
         const emojis = args.join(' ').match(/<?(a)?:?(\w{2,32}):(\d{17,19})>?/gi);
 
         if (!emojis) {
-          return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji in** `:emoji:` **form not** `<:emojiname:emojiid>`', true, 'https://i.imgur.com/rxfYEkA.png');
+          return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji in** `:emoji:` **form not** `<:emojiname:emojiid>`', 'https://i.imgur.com/rxfYEkA.png');
         }
 
         if (emojis.length === 1) {
@@ -79,7 +79,7 @@ module.exports = {
           const emo = parseEmoji(emote);
 
           if (!emo.name || !emo.id) {
-            return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji in** `:emoji:` **form not** `<:emojiname:emojiid>`', true, 'https://i.imgur.com/rxfYEkA.png');
+            return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji in** `:emoji:` **form not** `<:emojiname:emojiid>`', 'https://i.imgur.com/rxfYEkA.png');
           }
 
           const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
@@ -130,7 +130,7 @@ module.exports = {
             const emo = parseEmoji(emoji);
 
             if (!emo.name || !emo.id) {
-              return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji in** `:emoji:` **form not** `<:emojiname:emojiid>`', true, 'https://i.imgur.com/rxfYEkA.png');
+              return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji in** `:emoji:` **form not** `<:emojiname:emojiid>`', 'https://i.imgur.com/rxfYEkA.png');
             }
 
             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
@@ -152,6 +152,7 @@ module.exports = {
           await bot.btnPage(interaction, pages);
         } else return await bot.errorEmbed(bot, interaction, ' **Can\'t find an Emote to Enlarge**');
       }
+
       if (sub === 'find') {
         const name = interaction.options.getString('emote');
         const guildd = interaction.options.getString('guild');
@@ -172,7 +173,7 @@ module.exports = {
             .filter((e) => e.name != 'steal')
             .forEach(async (emo) => {
               if (!emo.name || !emo.id) {
-                return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji Name', true, 'https://i.imgur.com/vQSaRJp.png');
+                return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji Name', 'https://i.imgur.com/vQSaRJp.png');
               } const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
                 emo.animated ? 'gif' : 'png'
               }`;
@@ -207,7 +208,7 @@ module.exports = {
 
             emojis.forEach(async (emo) => {
               if (!emo.name || !emo.id) {
-                return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji Name', true, 'https://i.imgur.com/vQSaRJp.png');
+                return await bot.errorEmbed(bot, interaction, '**Enter A Valid Emoji Name', 'https://i.imgur.com/vQSaRJp.png');
               }
 
               const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
@@ -231,7 +232,7 @@ module.exports = {
           } else if (emojis.length === 1) {
             const emo = emojis[0];
             if (!emo.name || !emo.id) {
-              return await bot.errorEmbed(bot, interaction, 'Provide a Valid Emoji Name', true, 'https://i.imgur.com/vQSaRJp.png');
+              return await bot.errorEmbed(bot, interaction, 'Provide a Valid Emoji Name', 'https://i.imgur.com/vQSaRJp.png');
             }
             const res = `https://cdn.discordapp.com/emojis/${emo.id}.${
               emo.animated ? 'gif' : 'png'

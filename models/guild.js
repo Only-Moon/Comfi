@@ -1,11 +1,16 @@
 const { model, Schema } = require('mongoose');
+const {
+  MessageEmbedAuthor,
+  MessageEmbedFooter,
+  ColorResolvable,
+} = require('discord.js');
 
 /*
-* Comfi Bot for Discord
-* Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-* For more information, see README.md and LICENSE
-*/
+ * Comfi Bot for Discord
+ * Copyright (C) 2021 Xx-Mohit-xX
+ * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+ * For more information, see README.md and LICENSE
+ */
 
 const schema = new Schema({
   // General
@@ -120,6 +125,25 @@ const schema = new Schema({
 
   // Dropdown roles
   dropdownRoles: { type: Array, default: [] },
+
+  // embed builder
+  embeds: {
+    type: Array,
+    default: [
+      {
+        name: undefined,
+        author: { name: undefined, iconURL: undefined },
+        color: undefined,
+        description: undefined,
+        footer: { text: undefined, iconURL: undefined },
+        image: undefined,
+        timestamp: undefined,
+        thumbnail: undefined,
+        title: undefined,
+      },
+    ],
+  },
+  embeds_count: { type: Number, default: 0 },
 });
 
 module.exports = model('Guilds', schema);

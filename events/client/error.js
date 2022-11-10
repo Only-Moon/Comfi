@@ -33,7 +33,8 @@ bot
 
   .on('warn', (info) => bot.logger.warn(`info \n${info}`))
   .on('debug', (info) => {
-    hook.send({ content: info });
+  //  hook.send({ content: info });
+    bot.logger.debug(info);
   });
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -67,7 +68,7 @@ process.on('unhandledRejection', (reason, promise) => {
   }
 });
 
-process.on('uncaughtException', (err, origin) => {
+process.on('UncaughtException', (err, origin) => {
   const channel = bot.channels.cache.find((c) => c.id === bot.err_chnl);
 
   const embed = new EmbedBuilder()

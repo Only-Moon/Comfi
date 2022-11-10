@@ -1,6 +1,7 @@
 const { glob } = require('glob');
 const { promisify } = require('util');
-const { ApplicationCommandType } = require('discord.js');
+const { ApplicationCommandType, Routes } = require('discord.js');
+const { REST } = require('@discordjs/rest');
 const Client = require('../models/Client');
 
 /*
@@ -11,6 +12,7 @@ const Client = require('../models/Client');
 */
 
 const globPromise = promisify(glob);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 module.exports = async (bot) => {
   // Events
@@ -21,37 +23,70 @@ module.exports = async (bot) => {
 
   const slashCommands = await globPromise(`${process.cwd()}/commands/*/*.js`);
   const arrayOfSlashCommands = [];
+  const data = [];
 
-  const data = slashCommands.map((value) => {
+  slashCommands.map((value) => {
     const file = require(value);
     if (!file?.name) return;
     bot.slashCommands.set(file.name, file);
 
     if ([ApplicationCommandType.User, ApplicationCommandType.Message].includes(file.type)) delete file.description;
 
-    arrayOfSlashCommands.push(file);
-    return file;
+    arrayOfSlashCommands.push({
+      name: file.name,
+      description: file.description,
+      type: file.type ? file.type : ApplicationCommandType.ChatInput,
+      options: file.options ? file.options : null,
+
+      default_member_permissions: null,
+    });
+
+    data.push({
+      name: file.name,
+      description: file.description,
+      directory: file.directory,
+    });
   });
 
-  bot.on('ready', async () => {
-    const client = await Client.findOne({ clientId: bot.user.id });
-
-    if (client.commands.find((cmd) => cmd?.name !== data.name)) {
-      client.commands.push(data);
-      await client.save();
-    }
-
+  (async () => {
     const dev = process.env.DEV_MODE || 'false';
 
-    if (dev === true.toString()) {
-      bot.guilds.cache.forEach((g) => {
-        g.commands.set(arrayOfSlashCommands);
-      });
-      bot.logger.ready('Loaded Guild commands...');
-    } else if (dev === false.toString()) {
-      await bot.application.commands.set(arrayOfSlashCommands);
+    try {
+      bot.logger.cmd('Started refreshing (/) commands');
 
-      bot.logger.ready('Loaded Global Commands...');
+      if (dev === true.toString()) {
+        await rest.put(Routes.applicationGuildCommands(process.env.clientID, '758949191497809932'), {
+          body: arrayOfSlashCommands,
+        });
+
+        bot.logger.cmd('Successfully reloaded guild (/) commands');
+      } else if (dev === false.toString()) {
+        await rest.put(Routes.applicationCommands(process.env.clientID), {
+          body: arrayOfSlashCommands,
+        });
+        bot.logger.cmd(
+          'Successfully reloaded application (/) commands.',
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+
+  bot.on('ready', async () => {
+    const client = await Client.findOne({ clientId: bot.user.id });
+
+    if (!client.commands || client.commands.length === 0) {
+      client.commands.push(data);
+      await client.save();
+    }
+
+    if (client.commands[0].find((cmd) => cmd?.name !== data.name)) {
+      await Client.findOneAndUpdate(
+        { clientId: bot.user.id },
+        { $push: [{ commands: { name: data.name, description: data.description, directory: data.directory } }] },
+      );
+      bot.logger.cmd('Successfully reloaded application (/) commands database.');
     }
   });
 };

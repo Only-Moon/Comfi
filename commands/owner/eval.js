@@ -25,34 +25,33 @@ module.exports = {
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
-    const row = new ActionRowBuilder().addComponents(
-      new TextInputBuilder().setCustomId('code').setLabel('Comment:').setStyle(TextInputStyle.Paragraph)
-        .setPlaceholder('bot.user.username')
-        .setRequired(true)
-        .setMinLength(1),
-    );
-    const row2 = new ActionRowBuilder().addComponents(
-      new TextInputBuilder().setCustomId('ephemeral').setStyle(TextInputStyle.Paragraph).setLabel('Ephemeral Response (true/false)')
-        .setPlaceholder('true/false')
-        .setRequired(false)
-        .setValue('false')
-        .setMinLength(4)
-        .setMaxLength(5),
-    );
-
-    const modal = new ModalBuilder()
-      .setCustomId('codeModal')
-      .setTitle('Code to evaluate')
-      .addComponents(row, row2);
-
-    await interaction.showModal(modal);
-
-    const filter = (interaction) => interaction.customId === 'codeModal';
-    const data = await interaction.awaitModalSubmit({ filter, time: 5 * 60 * 1000 });
-    const code = data.fields.getTextInputValue('code');
-    const ephemeral = data.fields.getTextInputValue('ephemeral').toLowerCase() === true;
-
     try {
+      const row = new ActionRowBuilder().addComponents(
+        new TextInputBuilder().setCustomId('code').setLabel('Comment:').setStyle(TextInputStyle.Paragraph)
+          .setPlaceholder('bot.user.username')
+          .setRequired(true)
+          .setMinLength(1),
+      );
+      const row2 = new ActionRowBuilder().addComponents(
+        new TextInputBuilder().setCustomId('ephemeral').setStyle(TextInputStyle.Paragraph).setLabel('Ephemeral Response (true/false)')
+          .setPlaceholder('true/false')
+          .setRequired(false)
+          .setValue('false')
+          .setMinLength(4)
+          .setMaxLength(5),
+      );
+
+      const modal = new ModalBuilder()
+        .setCustomId('codeModal')
+        .setTitle('Code to evaluate')
+        .addComponents(row, row2);
+
+      await interaction.showModal(modal);
+
+      const filter = (interaction) => interaction.customId === 'codeModal';
+      const data = await interaction.awaitModalSubmit({ filter, time: 5 * 60 * 1000 });
+      const code = data.fields.getTextInputValue('code');
+      const ephemeral = data.fields.getTextInputValue('ephemeral').toLowerCase() === true;
       //  const result = await eval(code)
 
       // let output = result
