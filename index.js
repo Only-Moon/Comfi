@@ -19,16 +19,11 @@ const Comfi = require('./utils/Comfi'),
 module.exports = bot
 
 setInterval(() => {
-  if (!bot.isReady()) {
-    require("https").get(`https://comfi-bot.xx-mohit-xx.repl.co`, () => process.kill(1));
-  }
-}, 10000)
-
-setInterval(() => {
     if(!bot || !bot.user) {
         console.log("Client not available, killing process")
         process.kill(1)
     }
-}, 20000)        
+}, 10000)        
+
 
 //---------[ PROCESS ENDED ]---------\\

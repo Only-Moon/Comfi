@@ -166,7 +166,7 @@ console.log(mem)
         } else return interaction.editReply(`${bot.error} • Invalid Guild`);
       } else if (choice === 'remove-guild') {
 
-        if (interaction.guilds.cache.get(guild)) {
+        if (bot.guilds.cache.get(guild)) {
 
           if (client ?.blackListedServers.includes(guild)) {
             const index = client ?.blackListedServers.indexOf(guild)

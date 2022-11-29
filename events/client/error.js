@@ -14,9 +14,13 @@ bot
 	.on('disconnect', e => bot.logger.log(`disconnect \n` + e))
 	.on('reconnecting', e => bot.logger.log(`Bot is reconnecting \n` + e))
 	.on('error', e => bot.logger.error(`error \n` + e))
+    .on('rateLimited', e => { 
+        bot.logger.error(`rateLimited \n` + e)
+        process.kill(process.pid, 'SIGUSR1')
+    })
 	.on('rateLimit', err => {
-    if (err.timeout > 1000) process.kill(1)
-			let emed = new MessageEmbed()
+    if (err.timeout > 1000) process.kill(1);
+		let emed = new MessageEmbed()
 				.setTitle(`${bot.error} • Error Occured`)
 				.setDescription(`Timeout: ${err.timeout}\n Limit: ${bot.ms(err.limit)}\n Method: ${err.method}\nPath: ${err.path}\nRoute: ${err.route}\nGlobal: ${err.global}`)
 				.setColor(bot.color)

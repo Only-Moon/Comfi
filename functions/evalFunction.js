@@ -25,7 +25,7 @@ module.exports = async function evalFunction(interaction, options) {
 
     previous: "SECONDARY",
 
-    next: "SECONDARY ",
+    next: "SECONDARY",
 
     search: "PRIMARY",
 
@@ -36,13 +36,13 @@ module.exports = async function evalFunction(interaction, options) {
 
   let defaultEmojis = {
 
-    previous: '950306098773118986',
+    previous: '884420649580363796',
 
-    next: '950306098643107860',
+    next: '884420650549272586',
 
-    search: '986719684638412890',
+    search: '852938667945230377',
 
-    delete: '950305604621180978',
+    delete: '891534962917007410',
 
   };
 
@@ -120,7 +120,6 @@ module.exports = async function evalFunction(interaction, options) {
 
   };
 
-console.log(components()[0].components)
   await interaction.followUp({ ephemeral, embeds: page(), components: components(), fetchReply: true }).then((fetch) => {
 
 

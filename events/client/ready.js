@@ -13,7 +13,14 @@ const fetch = require("node-fetch")
 
 bot.on('ready', async () => {
     
-//await fetch("https://cozy-api.xx-mohit-xx.repl.co/json/reverse").then(res => console.log(res))
+const { get } = require("https");
+
+get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
+  if (statusCode == 429) {
+    process.kill(1);
+    console.log(`Discord API rate limit exceeded. Restarting Bot.`);
+  }
+});
   
 const clientschem = await ClientSchema.findOne({ clientId: bot.user.id })
 	if (!clientschem) {
