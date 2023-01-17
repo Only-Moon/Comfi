@@ -19,6 +19,17 @@ module.exports = {
         { name: 'Hard', value: 'hard' },
       ],
     },
+    {
+      type: ApplicationCommandOptionType.String,
+      description: 'modes to play (default: single)',
+      name: "mode",
+      required: false,
+      choices: [
+        { name: "Single", value: 'single' },
+
+        { name: 'Multiple', value: 'multiple' },
+      ],
+    },
   ],
   directory: 'fun',
   userperm: [''],
@@ -29,17 +40,20 @@ module.exports = {
      * @param {String[]} args
      */
   run: async (bot, interaction, args) => {
-    new Trivia({
+    
+    const Game = new Trivia({
 
       message: interaction,
 
-      slash_command: true,
+      isSlashGame: true,
+
+      mode: interaction.options.getString("mode") || "single",
 
       embed: {
 
         title: 'Trivia',
 
-        description: 'You have {time} seconds to respond!',
+        description: `You have 60 seconds to respond!`,
 
         color: bot.color,
 
@@ -51,8 +65,22 @@ module.exports = {
 
       loseMessage: 'Your answer was Incorrect! The correct answer was **{answer}**',
 
-      othersMessage: 'You are not allowed to use buttons for this message!',
+      errMessage: 'Unable to fetch questions! Please try again later',
+      
+      playerOnlyMessage: `Only {player} can use these buttons`
 
-    }).startGame();
-  },
-};
+    })
+      
+    Game.startGame();
+
+    Game.on("gameOver", async result => {
+    
+    if (result.result === "lose") {
+        return await bot.successEmbed(bot, interaction, `Game Over. You ${result.result}. The correct answer was ${result.question.answer}`)
+         } else {
+                return await bot.successEmbed(bot, interaction, `Game Over. You ${result.result}`)
+         }
+    })
+         
+  }
+}

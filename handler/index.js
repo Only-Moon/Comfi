@@ -48,24 +48,26 @@ module.exports = async (bot) => {
     });
   });
 
-  (async () => {
     const dev = process.env.DEV_MODE || 'false';
+    
+  (async () => {
 
     try {
       bot.logger.cmd('Started refreshing (/) commands');
-
-      if (dev === true.toString()) {
+        
+      if (dev === `true`) {
         await rest.put(Routes.applicationGuildCommands(process.env.clientID, '758949191497809932'), {
           body: arrayOfSlashCommands,
         });
 
-        bot.logger.cmd('Successfully reloaded guild (/) commands');
-      } else if (dev === false.toString()) {
+        bot.logger.cmd('Successfully reloaded Guild (/) commands');
+      } else if (dev === `false`) {
+          console.log("he")
         await rest.put(Routes.applicationCommands(process.env.clientID), {
           body: arrayOfSlashCommands,
         });
         bot.logger.cmd(
-          'Successfully reloaded application (/) commands.',
+          'Successfully reloaded Application (/) commands.',
         );
       }
     } catch (error) {

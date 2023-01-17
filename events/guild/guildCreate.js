@@ -2,7 +2,7 @@ const {
   EmbedBuilder,
   ButtonBuilder, ButtonStyle,
   ActionRowBuilder,
-  Permissions, ChannelType,
+  Permissions,
 } = require('discord.js');
 const bot = require('../../index');
 const guilds = require('../../models/guild');
@@ -52,17 +52,6 @@ bot.on('guildCreate', async (guild) => {
   {
     const channelId = '881789380073783301';
 
-    const Channel = guild.channels.cache
-      .find(
-        (ch) => ch.type == ChannelType.GuildText
-					&& ch.permissionsFor(ch.guild.members.me).has(bot.functions.fixPermissions('CREATE_INSTANT_INVITE')),
-      )
-      .createInvite({
-        reason: `For ${bot.user.tag} Developer(s)`,
-        maxAge: 0,
-        maxUses: 0,
-      })
-      .then(async (invite) => {
         const channel = bot.channels.cache.get(channelId);
         if (!channel) return;
 
@@ -83,19 +72,10 @@ bot.on('guildCreate', async (guild) => {
           .setTimestamp()
           .setColor(bot.color);
 
-        const button = new ActionRowBuilder().addComponents(
-          new ButtonBuilder()
-            .setLabel('Join that Guild')
-            .setStyle(ButtonStyle.Link)
-            .setURL(invite.url),
-        );
-
         if (channel) {
           channel.send({
             embeds: [embed],
-            components: [button],
           });
         }
-      });
   }
 });

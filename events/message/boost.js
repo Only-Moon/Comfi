@@ -1,4 +1,4 @@
-const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const { EmbedBuilder, AttachmentBuilder, ChannelType } = require('discord.js');
 const bot = require('../../index');
 const guilds = require('../../models/guild');
 
@@ -25,31 +25,28 @@ bot.on('messageCreate', async (message) => {
   }
 
   if (guild?.boost) {
-    if (message.author.bot || message.channel.type == 'DM') return;
-    const messageTypes = ['USER_PREMIUM_GUILD_SUBSCRIPTION', 'USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1', 'USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2', 'USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3'];
+    if (message.author.bot || message.channel.type == ChannelType.Dm) return;
+    const messageTypes = ['UserPremiumGuildSubscription', 'UserPremiumGuildSubscriptionTier1', 'UserPremiumGuildSubscriptionTier2', 'UserPremiumGuildSubscriptionTier3'];
 
     if (messageTypes.includes(message.type)) {
       const boostChannel = message.guild.channels.cache.get(guild.boost_channel);
       if (!boostChannel) return;
 
       const emb = guild.boost_embed.map(async (em) => {
-        const embed = new EmbedBuilder()
-          .setAuthor({
-            name: em.embed.author?.text ? format(em.embed.author?.text) : null,
-            avatarURL: em.embed.author?.icon_url
-              ? em.embed.author?.icon_url : null,
-            url: em.embed.author?.url ? em.embed.author?.url : null,
-          })
-          .setTitle(format(em.embed.title || null))
-          .setDescription(format(em.embed.description || null))
-          .setColor(em.embed.color || bot.color)
-          .setImage(em.embed.image ? em.embed.image.url : 'https://i.imgur.com/wTKiUY8.png')
-          .setURL(em.embed.url || null)
-          .setTimestamp(em.embed.timestamp ? new Date() : null)
-          .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : null)
-          .setFooter({ text: format(em.embed.footer.text || null) });
-
-        const cont = format(em.content);
+            const embed = new EmbedBuilder()      
+              .setAuthor({
+                name:
+              em.embed ? em.embed.author.text : em.author?.name,
+                avatarURL: em.embed ? em.author.icon_url : em.author?.icon_url,
+              })
+              .setTitle(format(em.embed ? em.embed.title : em.title))
+              .setDescription(format(em.embed ? em.embed : em.description))
+              .setColor(em.embed ? em.embed.color : (em.color ? em.color : bot.color))
+              .setImage(em.embed ? em.embed.image : (em.image ? em.image : 'https://i.imgur.com/8MggL9S.png'))
+              .setTimestamp(em.embed ? em.embed.timestamp : (em.timestamp ? new Date() : null))
+              .setThumbnail(em.embed ? em.embed.thumbnail : em.thumbnail)
+              .setFooter({ text: format(em.embed ? em.embed.footer.text : (em.footer ? em.footer.text : null) ), avatarURL:  em.embed ? em.embed.footer.icon_url : (em.footer ? em.footer.icon_url : null) });
+            const cont = format(em.embed ? em.embed.content : null);
 
         if (guild.boost_embedtgl) {
           await boostChannel.send({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } });

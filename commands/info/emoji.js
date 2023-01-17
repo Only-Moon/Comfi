@@ -201,7 +201,7 @@ module.exports = {
           }
 
           const emos = emoss.emojis.cache
-            .filter((emoji) => emoji.name.includes(name) && !emoji.name.includes('steal'))
+            .filter((emoji) => emoji.name.includes(name) && !emoji.name.includes('steal') && !emoji.name.includes("dns") && !emoji.name.includes("nosteal") && !emoji.name.includes("donotsteal"))
             .forEach((emoji) => emojis.push(emoji));
           if (emojis.length > 1) {
             const pages = [];

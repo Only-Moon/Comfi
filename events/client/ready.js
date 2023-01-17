@@ -19,13 +19,9 @@ bot.on('ready', async () => {
     await ClientSchema.create({ clientId: bot.user.id });
   }
 
-  const guild = await bot.cluster
-    .broadcastEval((c) => c.guilds.cache.size)
-    .then((results) => results.reduce((prev, val) => prev + val, 0));
-
   bot.logger.table({
     'Bot User:': `${bot.user.tag}`,
-    'Guild(s):': `${guild} Servers`,
+    'Guild(s):': `${bot.guilds.cache.size} Servers`,
     'Watching:': `${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Members`,
     'Emoji(s):': `${bot.emojis.cache.size} emotes`,
     'Commands:': `${bot.slashCommands.size}`,
@@ -43,7 +39,7 @@ bot.on('ready', async () => {
     totalCommands++;
   });
   const activites = [
-    { name: `/invite | ${guild} servers!`, type: Discord.ActivityType.Watching },
+    { name: `/invite | ${bot.guilds.cache.size} servers!`, type: Discord.ActivityType.Watching },
     { name: `/infoo | ${bot.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`, type: Discord.ActivityType.Listening },
     { name: `/emoji | ${bot.emojis.cache.size} emojis`, type: Discord.ActivityType.Listening },
     { name: `/helpp | ${totalCommands} commands!`, type: Discord.ActivityType.Playing1 },

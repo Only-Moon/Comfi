@@ -22,8 +22,11 @@ bot.on('interactionCreate', async (interaction, args) => {
   // Slash Command Handling
 
   if (interaction.type === InteractionType.ApplicationCommand) {
+      
     const cmd = bot.slashCommands.get(interaction.commandName);
 
+bot.statcord.postCommand(cmd.name, interaction.user.id, bot)
+      
     if (!cmd.modal) {
       await interaction.deferReply({ ephemeral: cmd.ephemeral ? cmd.ephemeral : false }).catch(() => { });
     }

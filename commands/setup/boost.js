@@ -81,6 +81,15 @@ module.exports = {
       name: 'embed',
       description: 'Setup embed for boost detector',
       type: ApplicationCommandOptionType.Subcommand,
+            options: [
+                {
+                    name: "name",
+                    type: ApplicationCommandOptionType.String,
+                    description: "Give me an embed name to set",
+                    required: true,
+                    autocomplete: true
+                },
+                ],
     },
     {
       name: 'content',
@@ -164,17 +173,31 @@ module.exports = {
       }
 
       if (sub === 'embed') {
-        embedCreate(interaction, {
-          name: "Boost Detector's",
-          footer: 'Boost Detector Embed Creator',
-        }).then(async (em) => {
-          await guilds.findOneAndUpdate(
-            { guildId: interaction.guild.id },
-            {
-              boost_embed: em,
-            },
-          );
-        });
+
+          const name = interaction.options.getString('name');
+ 
+                 const embed = guild.embeds.find((embed) => embed.name === name);
+
+            if (!embed)
+                return await bot.errorEmbed(
+                    bot,
+                    interaction,
+                    `No embed found with name: ${name}`
+                );
+
+            const embed_new = EmbedBuilder.from(embed);
+
+     await guilds.findOneAndUpdate(
+          {
+              guildId: interaction.guild.id,
+          
+          }, {
+              boost_embed: embed_new,
+          })
+
+   await bot.successEmbed(bot, interaction, `**${name} has been setted as Boost embed!**`);
+          
+ 
       }
 
       if (sub === 'content') {

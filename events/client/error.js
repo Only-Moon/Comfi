@@ -68,7 +68,7 @@ process.on('unhandledRejection', (reason, promise) => {
   }
 });
 
-process.on('UncaughtException', (err, origin) => {
+process.on('uncaughtException', (err, origin) => {
   const channel = bot.channels.cache.find((c) => c.id === bot.err_chnl);
 
   const embed = new EmbedBuilder()
@@ -108,3 +108,8 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
     bot.logger.error(`${err.stack}`);
   }
 });
+/*
+    process.on('multipleResolves', (type, promise, reason) => { 
+         console.log(type, promise, reason); 
+     });
+*/

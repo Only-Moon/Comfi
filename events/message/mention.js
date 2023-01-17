@@ -12,7 +12,7 @@ const bot = require('../../index');
 
 bot.on('messageCreate', async (message) => {
   if (message.author.bot) return;
-
+try {
   const mentionRegex = message.content.match(
     new RegExp(`^<@!?(${bot.user.id})>`, 'gi'),
   );
@@ -54,15 +54,14 @@ bot.on('messageCreate', async (message) => {
 
     const row = new ActionRowBuilder().addComponents(sup, inv, dash);
 
-    try {
       await message
         .reply({
           embeds: [ping],
           components: [row],
           allowedMentions: { repliedUser: false },
-        });
+        }).catch(() => null);
+  }
     } catch (e) {
       await bot.senderror(message, e);
     }
-  }
 });

@@ -33,7 +33,8 @@ exports.log = (content, type = 'log') => {
       break;
     case 'error':
       log.error(content);
-      console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
+      console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())}`);
+      console.log(content)
       break;
     case 'debug':
       log.debug(content);

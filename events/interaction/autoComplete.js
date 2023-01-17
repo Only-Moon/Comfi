@@ -13,6 +13,7 @@ const guilds = require('../../models/guild');
 bot.on('interactionCreate', async (interaction) => {
   if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
     const userInput = interaction.options.getFocused().toString();
+      const guild = await guilds.findOne({ guildId: interaction.guild.id });
 
     if (interaction.commandName === 'npm') {
       const text = interaction.options.getString('name'); // This takes the string value from the slash option in the npm command
@@ -43,8 +44,8 @@ bot.on('interactionCreate', async (interaction) => {
       ).catch((err) => {
         console.log(err.message);
       });
-    } else if (interaction.commandName === 'dropdownrole') {
-      const guild = await guilds.findOne({ guildId: interaction.guild.id });
+    } 
+      if (interaction.commandName === 'dropdownrole') {
 
       const id = interaction.options.getString('id');
 
@@ -78,7 +79,8 @@ bot.on('interactionCreate', async (interaction) => {
       ).catch((err) => {
         console.log(err.message);
       });
-    } else if (interaction.commandName === 'job') {
+    } 
+      if (interaction.commandName === 'job') {
       const data = await bot.eco.SetJob({
         UserID:
 interaction.user.id,
@@ -118,6 +120,38 @@ interaction.user.id,
       ).catch((err) => {
         console.log(err.message);
       });
-    }
+    } 
+    const cmdArray = ["embed", "boost", "welcome", "leave", "leveling" ]
+      if (cmdArray.includes(interaction.commandName)) {
+
+              const id = interaction.options.getString('name');
+
+      if (!id) {
+        return interaction.respond([{
+
+          name: 'Check list of embeds using `/embed list` and then enter the name here"!',
+
+          value: userInput,
+
+        }]).catch(() => null);
+      }
+
+      await interaction.respond(
+
+    guild.embeds.map((embed) => ({
+
+          name: embed.name.replace(/(\w)(\w*)/g,
+        function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();}),
+
+          value: embed.name.replace(/(\w)(\w*)/g,
+        function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();}),
+
+        })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
+
+      ).catch((err) => {
+        console.log(err.message);
+      });
+   
+    }     
   }
 });
