@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "npx node shard/Cluster.js"
+run = "npx node --trace-deprecation index.js"

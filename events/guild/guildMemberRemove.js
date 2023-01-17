@@ -52,22 +52,20 @@ bot.on('guildMemberRemove', async (member) => {
     if (channel) {
       if (guild.leave_embedtgl) {
         const emb = guild.leave_embed.map(async (em) => {
-          const embed = new EmbedBuilder()
-            .setAuthor({
-              name: em.embed.author?.text ? em.embed.author?.text : null,
-              avatarURL: em.embed.author?.icon_url
-                ? em.embed.author?.icon_url : null,
-              url: em.embed.author?.url ? em.embed.author?.url : null,
-            })
-            .setTitle(format(em.embed.title || null))
-            .setDescription(format(em.embed.description || null))
-            .setColor(em.embed.color || '#36393F')
-            .setImage(em.embed.image ? em.embed.image.url : 'https://i.imgur.com/wyFi8zu.png')
-            .setURL(em.embed.url || null)
-            .setTimestamp(em.embed.timestamp ? new Date() : null)
-            .setThumbnail(em.embed.thumbnail ? em.embed.thumbnail : null)
-            .setFooter({ text: format(em.embed.footer.text || null) });
-          const cont = format(em.content);
+            const embed = new EmbedBuilder()      
+              .setAuthor({
+                name:
+              em.embed ? em.embed.author.text : em.author?.name,
+                avatarURL: em.embed ? em.author.icon_url : em.author?.icon_url,
+              })
+              .setTitle(format(em.embed ? em.embed.title : em.title))
+              .setDescription(format(em.embed ? em.embed : em.description))
+              .setColor(em.embed ? em.embed.color : (em.color ? em.color : bot.color))
+              .setImage(em.embed ? em.embed.image : (em.image ? em.image : 'https://i.imgur.com/8MggL9S.png'))
+              .setTimestamp(em.embed ? em.embed.timestamp : (em.timestamp ? new Date() : null))
+              .setThumbnail(em.embed ? em.embed.thumbnail : em.thumbnail)
+              .setFooter({ text: format(em.embed ? em.embed.footer.text : (em.footer ? em.footer.text : null) ), avatarURL:  em.embed ? em.embed.footer.icon_url : (em.footer ? em.footer.icon_url : null) });
+            const cont = format(em.embed ? em.embed.content : null);
           if
           (guild.leave_dmuser) {
             await member.send({

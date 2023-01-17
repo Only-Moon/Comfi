@@ -20,7 +20,7 @@ const datas = require('../../models/Client');
 */
 
 bot.on('interactionCreate', async (interaction) => {
-  if (interaction.isSelectMenu()) {
+  if (interaction.isStringSelectMenu()) {
     try {
       if (interaction.customId === 'help-menus') {
         const { values } = interaction;

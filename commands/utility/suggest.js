@@ -5,8 +5,8 @@
 * For more information, see README.md and LICENSE
 */
 
-const simplydjs = require('simply-djs');
-const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js');
+const simplydjs = require("simply-djs");
+const { CommandInteraction, ApplicationCommandOptionType, ButtonStyle } = require('discord.js');
 const guilds = require('../../models/guild');
 
 module.exports = {
@@ -48,8 +48,8 @@ module.exports = {
             footer: { text: 'Comfi™ Suggestion System' },
           },
           buttons: {
-            upvote: { style: 'SECONDARY', emoji: bot.tick },
-            downvote: { style: 'SECONDARY', emoji: bot.crosss },
+            upvote: { style: ButtonStyle.Secondary, emoji: bot.tick },
+            downvote: { style: ButtonStyle.Secondary, emoji: bot.crosss },
           },
         });
       } else if (!guild.suggestions) {

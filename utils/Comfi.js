@@ -2,10 +2,10 @@ const Discord = require('discord.js');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const simplydjs = require('simply-djs');
-const Cluster = require('discord-hybrid-sharding');
 const guilds = require('../models/guild');
 const Economy = require('../functions/eco');
 const bot = require('../index');
+const Statcord = require("statcord.js"); 
 
 /*
  * Comfi Bot for Discord
@@ -33,9 +33,7 @@ class Comfi extends Discord.Client {
         'MessageContent',
       ],
       partials: ['Message', 'Channel', 'GuildMember', 'Guild', 'User'],
-      restRequestTimeout: 30000,
-      shards: Cluster.data.SHARD_LIST,
-      shardCount: Cluster.data.TOTAL_SHARDS,
+      restRequestTimeout: 30000
     });
 
     this.color = process.env.color || '#F4B3CA';
@@ -46,18 +44,16 @@ class Comfi extends Discord.Client {
     this.err_chnl = process.env.error_channel;
     this.support = process.env.support || `${this.dash}support`;
     if (!this.token) this.token = process.env.TOKEN;
-    this.cluster = new Cluster.Client(this);
     this.functions = require('../functions/function');
     this.btnPage = require('../functions/btnPage').pagination;
     this.bcolor = this.functions.color;
     this.categories = fs.readdirSync('./commands/');
-
-    this.eco = new Economy(this, process.env.Mongoose, { global: true });
+    this.eco = new Economy(this, { global: true });
     this.dbs(process.env.Mongoose);
-
     this.slashCommands = new Discord.Collection();
     this.timeout = new Discord.Collection();
 
+    this.statcord = this.Statcord()
     this.init();
   }
 
@@ -402,6 +398,7 @@ class Comfi extends Discord.Client {
   }
 
   dbs(s) {
+    mongoose.set('strictQuery', false)
     mongoose
       .connect(s, {
         useNewUrlParser: true,
@@ -426,7 +423,7 @@ class Comfi extends Discord.Client {
 
   init() {
     require('../handler/index')(this);
-
+          
     // setting emojis to client
     this.once('ready', () => {
       this.error = this.emoji(
@@ -439,8 +436,38 @@ class Comfi extends Discord.Client {
       this.currency = this.emoji(
         process.env.currency ? process.env.currency : 'currencyy_Blossomii',
       );
-    });
+    })
   }
+    
+  Statcord() {
+
+  const statcord = new Statcord.Client({ 
+    client: this, 
+    key: process.env.statcord //statcord.com-APIKEY
+    });
+      
+    this.once("ready", () => { 
+
+if (process.env.DEV_MODE.toString() === 'false') {
+        // post data to statcord
+   statcord.autopost()
+} 
+              }) 
+
+   statcord.on("autopost-start", () => {
+    // Emitted when statcord autopost starts 
+    console.log("Started autopost");
+  }); 
+      
+      statcord.on("post", status => {
+          // status = false if the post was successful 
+          // status = "Error message" or status = Error if there was an error 
+          if (!status) console.log("Successful post"); 
+          else console.error(status); 
+      });
+      return statcord
+} 
+    
 }
 
 module.exports = Comfi;

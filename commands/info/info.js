@@ -363,8 +363,13 @@ module.exports = {
               value: `${role.mentionable}`,
               inline: true,
             },
+              {
+                  name: '↝Members',
+                  value: `${role.members.size}`,
+                  inline: true,   
+              },
           );
-          console.log(role.members.size)
+          
         return await interaction.editReply({ embeds: [embed] });
       }
 
