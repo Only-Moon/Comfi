@@ -151,9 +151,7 @@ function fixPermissions(arr = Array) {
     { name: 'MODERATE_MEMBERS', value: 'ModerateMembers' },
   ];
 
-  for (const { name, value } of permissions) if (!perm || perm.length === 0) perm = '';
-  if (!perm.includes(name)) return;
-  perm = perm.replace(new RegExp(name, 'igm'), value);
+  for (const { name, value } of permissions) perm = perm.replace(new RegExp(name, 'igm'), value);
 
   return [perm];
 }

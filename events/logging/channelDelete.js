@@ -120,7 +120,7 @@ bot.on('channelDelete', async (channel) => {
         logging: false,
         logging_channel: 'NONE',
       });
-    } if (!cchannel.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+    } if (!channel.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
     const AuditLogFetch = await channel.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.ChannelDelete });
     const Entry = AuditLogFetch.entries.first();

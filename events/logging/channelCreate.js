@@ -13,7 +13,7 @@ bot.on('channelCreate', async (channel) => {
   const guild = await guilds.findOne({ guildId: channel.guild.id });
   if (!guild?.logging) return;
   if (!channel.guild) return;
-  if (!channel.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!channel.guild.members.me.permissions.has("RemoveAuditLogs")) return;
 
   const AuditLogFetch = await channel.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.ChannelCreate });
   const Entry = AuditLogFetch.entries.first();
