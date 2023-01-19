@@ -456,13 +456,13 @@ if (process.env.DEV_MODE.toString() === 'false') {
 
    statcord.on("autopost-start", () => {
     // Emitted when statcord autopost starts 
-    console.log("Started autopost");
+   // console.log("Started autopost");
   }); 
       
       statcord.on("post", status => {
           // status = false if the post was successful 
           // status = "Error message" or status = Error if there was an error 
-          if (!status) console.log("Successful post"); 
+          if (!status) return;
           else console.error(status); 
       });
       return statcord
