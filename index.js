@@ -16,6 +16,7 @@ const Comfi = require('./utils/Comfi');
 const bot = new Comfi();
 
 bot.connect();
+bot.setMaxListeners(0)
 
 module.exports = bot;
 
