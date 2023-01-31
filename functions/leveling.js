@@ -105,7 +105,7 @@ module.exports = async (message, bot) => {
                         const embed = new EmbedBuilder()      
               .setAuthor({
                 name:
-              em.embed ? em.embed.author.text : em.author?.name,
+              em.embed ? em.embed.author.name : em.author?.name,
                 avatarURL: em.embed ? em.author.icon_url : em.author?.icon_url,
               })
               .setTitle(format(em.embed ? em.embed.title : em.title))

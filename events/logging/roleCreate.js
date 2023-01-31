@@ -11,6 +11,7 @@ const guilds = require('../../models/guild');
 
 bot.on('roleCreate', async (role) => {
   const guild = await guilds.findOne({ guildId: role.guild.id });
+  if (!guild) return;
   if (!guild.logging) return;
   if (!role.guild) return;
   if (!role.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;

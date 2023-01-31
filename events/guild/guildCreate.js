@@ -3,6 +3,7 @@ const {
   ButtonBuilder, ButtonStyle,
   ActionRowBuilder,
   Permissions,
+  ChannelType
 } = require('discord.js');
 const bot = require('../../index');
 const guilds = require('../../models/guild');
