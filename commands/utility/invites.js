@@ -1,61 +1,60 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
 const {
   CommandInteraction,
-  MessageEmbed,
-} = require('discord.js')
+  EmbedBuilder, ApplicationCommandOptionType,
+} = require('discord.js');
 
 module.exports = {
   name: 'invites',
   description: 'Get the number of people that joined via your invites',
   ownerOnly: false,
-  directory: "utility",
+  directory: 'utility',
   options: [
     {
       name: 'user',
-      type: 'USER',
+      type: ApplicationCommandOptionType.User,
       description: 'tag to see their invs',
-      required: false
-    }
+      required: false,
+    },
   ],
   userperm: [''],
   botperm: ['SEND_MESSAGES'],
-	/**
+  /**
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
     try {
-      const user =
-        interaction.guild.members.cache.get(args[0]) || interaction.member
+      const user = interaction.guild.members.cache.get(args[0]) || interaction.member;
 
-      let invites = await interaction.guild.invites.fetch()
-      let userInv = invites.filter(u => u.inviter && u.inviter.id === user.id)
+      const invites = await interaction.guild.invites.fetch();
+      const userInv = invites.filter((u) => u.inviter && u.inviter.id === user.id);
 
       if (userInv.size <= 0) {
-        return interaction.channel.send({
-          content: `${user} has \`0\` invites `
-        })
+        return await bot.errorEmbed(bot, interaction, `${user} has \`0\` invites `);
       }
 
-      let invCodes = userInv.map(x => x.code).join('\n')
-      let i = 0
-      userInv.forEach(inv => (i += inv.uses))
+      const invCodes = userInv.map((x) => x.code).join('\n');
+      let i = 0;
+      userInv.forEach((inv) => (i += inv.uses));
 
-      const tackerEmbed = new MessageEmbed()
+      const tackerEmbed = new EmbedBuilder()
         .setDescription(`**_Invites  of :_** ${user} `)
-        .addField(`User Invites`, `${i}`)
-        .addField('Invite Codes:', `${invCodes}`)
-        .setColor(bot.color)
+        .addFields(
+          { name: 'User Invites', value: `${i}`, inline: true },
+          { name: 'Invite Codes:', value: `${invCodes}`, inline: true },
+        )
+        .setColor(bot.color);
 
-      await interaction.followUp({ embeds: [tackerEmbed] })
+      await interaction.followUp({ embeds: [tackerEmbed] });
     } catch (e) {
-      await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};

@@ -1,103 +1,90 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js');
 
 module.exports = {
   name: 'lockk',
   description: 'Locks and Unlocks a channel',
-  directory: "mod",
+  directory: 'mod',
   ownerOnly: false,
-  userperm: ['MANAGE_CHANNELS'],
-  botperm: ['MANAGE_CHANNELS'],
+  userperm: ['ManageChannels'],
+  botperm: ['ManageChannels'],
   options: [
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Lock a channel to prevent raid',
       name: 'enable',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel to lock',
           name: 'channel',
           required: false,
-          channelTypes: ['GUILD_TEXT', 'GUILD_VOICE']
-        }
-      ]
+          channelTypes: [ChannelType.GuildText, ChannelType.GuildVoice],
+        },
+      ],
     },
     {
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       description: 'Unlocks a channel',
       name: 'disable',
       options: [
         {
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'Channel to Unlock',
           name: 'channel',
-          channelTypes: ['GUILD_TEXT', 'GUILD_VOICE'],
-          required: false
-        }
-      ]
-    }
+          channelTypes: [ChannelType.GuildText, ChannelType.GuildVoice],
+          required: false,
+        },
+      ],
+    },
   ],
-	/**
+  /**
 	 *
 	 * @param {CommandInteraction} interaction
 	 * @param {String[]} args
 	 */
   run: async (bot, interaction, args) => {
-    let channel = interaction.channel || interaction.options.getUser('channel')
+    const channel = interaction.channel || interaction.options.getUser('channel');
 
-    let [sub] = args
+    const [sub] = args;
 
     if (sub === 'enable') {
       try {
-
         setTimeout(async () => {
-          interaction.guild.roles.cache.forEach(async role => {
+          interaction.guild.roles.cache.forEach(async (role) => {
             await channel.permissionOverwrites.create(role, {
               SEND_MESSAGES: false,
-              ADD_REACTIONS: false
-            })
-          })
-          let embed = new MessageEmbed()
-            .setDescription(`${bot.tick} • **Successfully Locked ${channel}**`)
-            .setColor(bot.color)
-          await interaction.editReply({ embeds: [embed] }).catch(() => null)
-
-        }, 20000)
-
+              ADD_REACTIONS: false,
+            });
+          });
+          return await bot.successEmbed(bot, interaction, `**Successfully Locked ${channel}**`);
+        }, 20000);
       } catch (e) {
-        await bot.senderror(interaction, e)
+        await bot.senderror(interaction, e);
       }
     }
 
     if (sub === 'disable') {
       try {
-
         setTimeout(async () => {
-
-          interaction.guild.roles.cache.forEach(async role => {
+          interaction.guild.roles.cache.forEach(async (role) => {
             await channel.permissionOverwrites.create(role, {
               SEND_MESSAGES: true,
-              ADD_REACTIONS: true
-            })
-          })
+              ADD_REACTIONS: true,
+            });
+          });
 
-          let embed = new MessageEmbed()
-            .setDescription(`${bot.tick} • **Successfully Unlocked ${channel}**`)
-            .setColor(bot.color)
-          interaction.editReply({ embeds: [embed] }).catch(() => null)
-
-        }, 20000)
-
+          return await bot.successEmbed(bot, interaction, `**Successfully Unlocked ${channel}**`);
+        }, 20000);
       } catch (e) {
-        await bot.senderror(interaction, e)
+        await bot.senderror(interaction, e);
       }
     }
-  }
-}
+  },
+};

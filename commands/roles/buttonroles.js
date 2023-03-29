@@ -1,126 +1,126 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
-
-const simplydjs = require('simply-djs')
+const { ApplicationCommandOptionType, ChannelType, ButtonStyle } = require('discord.js');
+const simplydjs = require('simply-djs');
 
 module.exports = {
   name: 'buttonrole',
   description: 'Reaction Roles With Buttons',
-  directory: "role",
+  directory: 'role',
   ownerOnly: false,
   options: [
     {
       name: 'add',
       description: 'Add Reaction Role to Bot msg only',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'channel',
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'channel of that message',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText],
         },
         {
           name: 'message',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'the message id',
-          required: true
+          required: true,
         },
         {
           name: 'role',
-          type: 'ROLE',
+          type: ApplicationCommandOptionType.Role,
           description: 'Role to Add',
-          required: true
+          required: true,
         },
         {
           name: 'label',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'name of the button ?',
-          required: false
+          required: false,
         },
         {
           name: 'style',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'color of the button',
           required: false,
           choices: [
             {
               name: 'Blue',
-              value: 'PRIMARY'
+              value: `${ButtonStyle.Primary}`,
             },
             {
               name: 'Grey',
-              value: 'SECONDARY'
+              value: `${ButtonStyle.Secondary}`,
             },
             {
               name: 'Green',
-              value: 'SUCCESS'
+              value: `${ButtonStyle.Success}`,
             },
             {
               name: 'Red',
-              value: 'DANGER'
-            }
-          ]
+              value: `${ButtonStyle.Danger}`,
+            },
+          ],
         },
         {
           name: 'emoji',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'emoji for the button',
-          required: false
-        }
-      ]
+          required: false,
+        },
+      ],
     },
     {
       name: 'remove',
       description: 'Removes roles from a bot message',
-      type: 'SUB_COMMAND',
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: 'channel',
-          type: 'CHANNEL',
+          type: ApplicationCommandOptionType.Channel,
           description: 'channel of that message',
           required: true,
-          channelTypes: ['GUILD_TEXT']
+          channelTypes: [ChannelType.GuildText],
         },
         {
           name: 'message',
-          type: 'STRING',
+          type: ApplicationCommandOptionType.String,
           description: 'the message id',
-          required: true
+          required: true,
         },
         {
           name: 'role',
-          type: 'ROLE',
+          type: ApplicationCommandOptionType.Role,
           description: 'Role to remove',
-          required: true
-        }
-      ]
-    }
+          required: true,
+        },
+      ],
+    },
   ],
-  userperm: [''],
-  botperm: [''],
+  userperm: ['MANAGE_GUILD'],
+  botperm: ['MANAGE_GUILD'],
   run: async (bot, interaction, args) => {
-    let [options] = args
+    const [options] = args;
 
     try {
       if (options === 'add') {
         simplydjs.betterBtnRole(bot, interaction, {
-          type: 'add'
-        })
+          type: 'add',
+        });
       }
 
       if (options === 'remove') {
         simplydjs.betterBtnRole(bot, interaction, {
-          type: 'remove'
-        })
+          type: 'remove',
+        });
       }
     } catch (e) {
-  await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};

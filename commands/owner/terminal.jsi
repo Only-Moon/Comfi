@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE 
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js');
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 const child = require("child_process")
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
     ownerOnly: true,
     options: [
         {
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             description: 'Type a command',
             name: 'command',
             required: true,

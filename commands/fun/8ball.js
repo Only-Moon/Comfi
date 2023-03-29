@@ -1,28 +1,28 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { Client, CommandInteraction, MessageEmbed } = require('discord.js')
+const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
   name: '8ball',
   description: 'You ask and i answer',
   ownerOnly: false,
-  directory: "fun",
+  directory: 'fun',
   options: [
     {
-      type: 'STRING',
+      type: ApplicationCommandOptionType.String,
       description: 'Your question',
       name: 'question',
-      required: true
-    }
+      required: true,
+    },
   ],
   userperm: [''],
   botperm: [''],
-	/**
+  /**
 	 * @param {Message} message
 	 * @param {String[]} args
 	 */
@@ -51,33 +51,31 @@ module.exports = {
       'Possibly.',
       'Never, ever, ever.',
       'There is a small chance.',
-      'Yes!'
-    ]
+      'Yes!',
+    ];
 
     try {
-      const member =
-        interaction.guild.members.cache.get(args[0]) || interaction.member
+      const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
 
-      let yq = args.join(' ')
-      let q = args.join(' ')
+      const yq = args.join(' ');
+      const q = args.join(' ');
       if (!yq) {
-        return
-      } else {
-        const embed = new MessageEmbed()
-          .setAuthor({
-            name: `${member.user.tag} Asked me`,
-            iconURL: member.user.avatarURL({ dynamic: true })
-          })
-          .setDescription(
-            `**Question:** \n ${yq} \n**My Answer:** \n ${
-            answers[Math.floor(Math.random() * answers.length)]
-            }`
-          )
-          .setColor(bot.color)
-        interaction.followUp({ embeds: [embed] }).catch(() => null)
+        return;
       }
+      const embed = new EmbedBuilder()
+        .setAuthor({
+          name: `${member.user.tag} Asked me`,
+          iconURL: member.user.avatarURL({ dynamic: true }),
+        })
+        .setDescription(
+          `**Question:** \n ${yq} \n**My Answer:** \n ${
+            answers[Math.floor(Math.random() * answers.length)]
+          }`,
+        )
+        .setColor(bot.color);
+      await interaction.followUp({ embeds: [embed] }).catch(() => null);
     } catch (e) {
-  await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
-  }
-}
+  },
+};

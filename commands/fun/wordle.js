@@ -1,18 +1,20 @@
-/* 
-* Comfi Bot for Discord 
+/*
+* Comfi Bot for Discord
 * Copyright (C) 2021 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
-* For more information, see README.md and LICENSE 
+* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+* For more information, see README.md and LICENSE
 */
 
-const { MessageActionRow, Modal, TextInputComponent, MessageButton, MessageEmbed, CommandInteraction } = require("discord.js")
+const {
+  ActionRowBuilder, ModalBuilder, TextInputStyle, ButtonStyle, TextInputBuilder, ButtonBuilder, EmbedBuilder, CommandInteraction,
+} = require('discord.js');
 
 module.exports = {
   name: 'wordle',
   description: 'Play a game of wordle',
   ownerOnly: false,
-  userperm: [""],
-  botperm: [""],
+  userperm: [''],
+  botperm: [''],
   /**
    *
    * @param {CommandInteraction} interaction
@@ -20,69 +22,66 @@ module.exports = {
    */
   run: async (bot, interaction, args) => {
     try {
-      let errEmbed = new MessageEmbed()
-        .setColor("#6F8FAF")
-      //return interaction.reply({ content: 'This command has been disabled. For more info join the support server', ephemeral: true })
       const gamedesc = [
-        `⬛⬛⬛⬛⬛ - Empty`,
-        `⬛⬛⬛⬛⬛ - Empty`,
-        `⬛⬛⬛⬛⬛ - Empty`,
-        `⬛⬛⬛⬛⬛ - Empty`,
-        `⬛⬛⬛⬛⬛ - Empty`,
-        `⬛⬛⬛⬛⬛ - Empty`
-      ]
+        '⬛⬛⬛⬛⬛ - Empty',
+        '⬛⬛⬛⬛⬛ - Empty',
+        '⬛⬛⬛⬛⬛ - Empty',
+        '⬛⬛⬛⬛⬛ - Empty',
+        '⬛⬛⬛⬛⬛ - Empty',
+        '⬛⬛⬛⬛⬛ - Empty',
+      ];
 
-      const modal = new Modal()
+      const modal = new ModalBuilder()
         .setCustomId('wordle')
         .setTitle('Wordle');
 
-      const word = new TextInputComponent()
+      const word = new TextInputBuilder()
         .setCustomId('wordleWord')
         .setLabel("What's your word?")
-        .setStyle('SHORT')
+        .setStyle(TextInputStyle.Short)
         .setMinLength(5)
         .setMaxLength(5)
         .setRequired(true);
 
-      const firstActionRow = new MessageActionRow().addComponents(word);
+      const firstActionRow = new ActionRowBuilder().addComponents(word);
 
       modal.addComponents(firstActionRow);
 
-      let words = ["books", "apple", "color", "ready", "house", "table", "light", "sugar", "goals", "sweat", "water", "drink", "sport", "fluid", "foray", "elite", "plant", "spawn"]
-      let solution = words[Math.floor(Math.random() * words.length)];
+      const words = ['books', 'apple', 'color', 'ready', 'house', 'table', 'light', 'sugar', 'goals', 'sweat', 'water', 'drink', 'sport', 'fluid', 'foray', 'elite', 'plant', 'spawn'];
+      const solution = words[Math.floor(Math.random() * words.length)];
 
-      const row = new MessageActionRow()
+      const row = new ActionRowBuilder()
         .addComponents(
-          new MessageButton()
+          new ButtonBuilder()
             .setCustomId(`${solution}0`)
             .setLabel('Guess')
-            .setStyle('PRIMARY'),
+            .setStyle(ButtonStyle.Primary),
         );
 
-      let game = new MessageEmbed()
-        .setTitle(`Comfi™ | Wordle`)
+      const game = new EmbedBuilder()
+        .setTitle('Comfi™ | Wordle')
         .setDescription(gamedesc.join('\n'))
-        .setFooter({ text: `You Have 6 Tries To Guess The Word` })
-        .setColor(bot.color)
+        .setFooter({ text: 'You Have 6 Tries To Guess The Word' })
+        .setColor(bot.color);
 
-      await interaction.editReply({ embeds: [game], components: [row] })
-      const filter = i => i.customId.slice(0, 5) === solution && i.user.id === interaction.user.id;
+      await interaction.editReply({ embeds: [game], components: [row] });
+      const filter = (i) => i.customId.slice(0, 5) === solution && i.user.id === interaction.user.id;
       const collector = interaction.channel.createMessageComponentCollector({ time: 120000, filter });
 
-      collector.on('collect', async i => {
-        if (i.user.id !== interaction.user.id) return i.reply({ content: 'This is not for you.', ephemeral: true })
+      collector.on('collect', async (i) => {
+        if (i.user.id !== interaction.user.id) return i.reply({ content: 'This is not for you.', ephemeral: true });
         if (i.customId.slice(0, 5) === solution) {
           await i.showModal(modal);
         }
       });
 
       collector.on('end', async (i, reason) => {
-        if (reason === "time") {
-          await interaction.editReply({ content: `Times Up! The Correct Word Was **\`${solution}\`**`, components: [] })
+        if (reason === 'time') {
+          await interaction.editReply({ content: `Times Up! The Correct Word Was **\`${solution}\`**`, components: [] });
         }
       });
     } catch (e) {
-      await bot.senderror(interaction, e)
+      await bot.senderror(interaction, e);
     }
   },
 };
