@@ -1,6 +1,6 @@
 const simplydjs = require('simply-djs');
 const { Collection, EmbedBuilder } = require('discord.js');
-const fetch = require('node-fetch');
+
 const bot = require('../../index');
 const guilds = require('../../models/guild');
 const users = require('../../models/users');

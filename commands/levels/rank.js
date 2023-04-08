@@ -6,7 +6,7 @@
 */
 
 const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js');
-const fetch = require('node-fetch');
+
 const guilds = require('../../models/guild');
 const users = require('../../models/users');
 const rankCard = require('../../functions/RankCard');

@@ -1,9 +1,3 @@
 run = "npx node --trace-deprecation index.js"
 entrypoint = "index.js"
 language = "nodejs"
-
-[auth]
-pageEnabled = false
-buttonEnabled = false
-
-run = "npx node --trace-deprecation index.js"

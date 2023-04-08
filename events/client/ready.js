@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const fetch = require('node-fetch');
+
 const bot = require('../../index');
 const ClientSchema = require('../../models/Client');
 

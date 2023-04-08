@@ -6,7 +6,7 @@
 */
 
 const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
-const fetch = require('node-fetch');
+
 
 module.exports = {
   name: 'covid',

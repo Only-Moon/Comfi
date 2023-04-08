@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE
 */
 
-const fetch = require('node-fetch');
+
 const { CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {

@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE
 */
 
-const fetch = require('node-fetch');
+
 const { InteractionType } = require('discord.js');
 const bot = require('../../index');
 const guilds = require('../../models/guild');
