@@ -6,13 +6,13 @@ const Client = require('../models/Client');
 
 /*
 * Comfi Bot for Discord
-* Copyright (C) 2021 Xx-Mohit-xX
+* Copyright (C) 2023 Xx-Mohit-xX
 * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 * For more information, see README.md and LICENSE
 */
 
 const globPromise = promisify(glob);
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 module.exports = async (bot) => {
   // Events
@@ -33,12 +33,12 @@ module.exports = async (bot) => {
     if ([ApplicationCommandType.User, ApplicationCommandType.Message].includes(file.type)) delete file.description;
 
     arrayOfSlashCommands.push({
-      name: file.name,
-      description: file.description,
-      type: file.type ? file.type : ApplicationCommandType.ChatInput,
-      options: file.options ? file.options : null,
+      name: file.name,
+      description: file.description,
+      type: file.type ? file.type : ApplicationCommandType.ChatInput,
+      options: file.options ? file.options : null,
 
-      default_member_permissions: null,
+      default_member_permissions: null,
     });
 
     data.push({
@@ -52,8 +52,8 @@ module.exports = async (bot) => {
     
   (async () => {
 
-    try {
-      bot.logger.cmd('Started refreshing (/) commands');
+    try {
+      bot.logger.cmd('Started refreshing (/) commands');
         
       if (dev === `true`) {
         await rest.put(Routes.applicationGuildCommands(process.env.clientID, '758949191497809932'), {
@@ -63,11 +63,11 @@ module.exports = async (bot) => {
         bot.logger.cmd('Successfully reloaded Guild (/) commands');
       } else if (dev === `false`) {
           console.log("he")
-        await rest.put(Routes.applicationCommands(process.env.clientID), {
-          body: arrayOfSlashCommands,
+        await rest.put(Routes.applicationCommands(process.env.clientID), {
+          body: arrayOfSlashCommands,
         });
         bot.logger.cmd(
-          'Successfully reloaded Application (/) commands.',
+          'Successfully reloaded Application (/) commands.',
         );
       }
     } catch (error) {
@@ -76,19 +76,19 @@ module.exports = async (bot) => {
   })();
 
   bot.on('ready', async () => {
-    const client = await Client.findOne({ clientId: bot.user.id });
+    const client = await Client.findOne({ clientId: bot.user.id });
 
     if (!client.commands || client.commands.length === 0) {
       client.commands.push(data);
-      await client.save();
+      await client.save();
     }
 
-    if (client.commands[0].find((cmd) => cmd?.name !== data.name)) {
+    if (client.commands[0].find((cmd) => cmd?.name !== data.name)) {
       await Client.findOneAndUpdate(
         { clientId: bot.user.id },
         { $push: [{ commands: { name: data.name, description: data.description, directory: data.directory } }] },
       );
-      bot.logger.cmd('Successfully reloaded application (/) commands database.');
+      bot.logger.cmd('Successfully reloaded application (/) commands database.');
     }
   });
 };

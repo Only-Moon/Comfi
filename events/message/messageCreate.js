@@ -1,13 +1,13 @@
 const simplydjs = require('simply-djs');
 const { Collection, EmbedBuilder } = require('discord.js');
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const bot = require('../../index');
 const guilds = require('../../models/guild');
 const users = require('../../models/users');
 
 /*
 * Comfi Bot for Discord
-* Copyright (C) 2021 Xx-Mohit-xX
+* Copyright (C) 2023 Xx-Mohit-xX
 * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 * For more information, see README.md and LICENSE
 */

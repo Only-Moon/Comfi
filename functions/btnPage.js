@@ -1,57 +1,57 @@
-module.exports = {
+module.exports = {
   pagination,
 };
 
-const {
+const {
   ChatInputCommandInteraction,
   EmbedBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   ComponentType,
-} = require('discord.js');
+} = require('discord.js');
 /**
-  *
-  * @param {ChatInputCommandInteraction} interaction
-  * @param {EmbedBuilder[]} embeds
-  * @returns
-  */
-async function pagination(interaction, embeds) {
-  if (interaction.deferred == false) {
-    await interaction.deferReply();
+  *
+  * @param {ChatInputCommandInteraction} interaction
+  * @param {EmbedBuilder[]} embeds
+  * @returns
+  */
+async function pagination(interaction, embeds) {
+  if (interaction.deferred == false) {
+    await interaction.deferReply();
   }
 
-  const but1 = new ButtonBuilder()
+  const but1 = new ButtonBuilder()
     .setStyle(ButtonStyle.Secondary)
     .setCustomId('first')
     .setEmoji('884420649580363796')
     .setDisabled(false);
 
-  const but2 = new ButtonBuilder()
+  const but2 = new ButtonBuilder()
     .setStyle(ButtonStyle.Secondary)
     .setCustomId('previous')
     .setEmoji('884421503205134356')
     .setDisabled(false);
 
-  const but3 = new ButtonBuilder()
+  const but3 = new ButtonBuilder()
     .setStyle(ButtonStyle.Secondary)
     .setCustomId('delete')
     .setEmoji('891534962917007410')
     .setDisabled(false);
 
-  const but4 = new ButtonBuilder()
+  const but4 = new ButtonBuilder()
     .setStyle(ButtonStyle.Secondary)
     .setCustomId('next')
     .setEmoji('884421235965059113')
     .setDisabled(false);
 
-  const but5 = new ButtonBuilder()
+  const but5 = new ButtonBuilder()
     .setStyle(ButtonStyle.Secondary)
     .setCustomId('last')
     .setEmoji('884420650549272586')
     .setDisabled(false);
 
-  const row = new ActionRowBuilder().addComponents(
+  const row = new ActionRowBuilder().addComponents(
     but1.setDisabled(false),
     but2.setDisabled(false),
     but3.setDisabled(false),
@@ -59,11 +59,11 @@ async function pagination(interaction, embeds) {
     but5.setDisabled(false),
   );
 
-  if (embeds.length == 1) {
-    return interaction.editReply({
-      embeds: [embeds[0]],
-      components: [
-        new ActionRowBuilder().addComponents(
+  if (embeds.length == 1) {
+    return interaction.editReply({
+      embeds: [embeds[0]],
+      components: [
+        new ActionRowBuilder().addComponents(
           [
             but1.setDisabled(true),
             but2.setDisabled(true),
@@ -76,15 +76,15 @@ async function pagination(interaction, embeds) {
     });
   }
 
-  embeds = embeds.map((embed, index) => embed.setFooter({
-    text: `Page: ${index + 1}/${embeds.length}`,
-    iconURL: interaction.guild.iconURL(),
+  embeds = embeds.map((embed, index) => embed.setFooter({
+    text: `Page: ${index + 1}/${embeds.length}`,
+    iconURL: interaction.guild.iconURL(),
   }));
 
-  const sendMsg = await interaction.editReply({
-    embeds: [embeds[0]],
-    components: [
-      new ActionRowBuilder().addComponents(
+  const sendMsg = await interaction.editReply({
+    embeds: [embeds[0]],
+    components: [
+      new ActionRowBuilder().addComponents(
         but1.setDisabled(true),
         but2.setDisabled(true),
         but3.setDisabled(false),
@@ -94,27 +94,27 @@ async function pagination(interaction, embeds) {
     ],
   });
 
-  const filter = (m) => m.member.id === interaction.member.id;
+  const filter = (m) => m.member.id === interaction.member.id;
 
-  const collector = sendMsg.createMessageComponentCollector({
+  const collector = sendMsg.createMessageComponentCollector({
     filter,
-    time: 60000,
-    componentType: ComponentType.Button,
+    time: 60000,
+    componentType: ComponentType.Button,
   });
 
-  let curPage = 0;
+  let curPage = 0;
 
-  collector.on('collect', async (b) => {
-    await b.deferUpdate().catch((e) => null);
+  collector.on('collect', async (b) => {
+    await b.deferUpdate().catch((e) => null);
 
-    switch (b.customId) {
-      case 'next': {
+    switch (b.customId) {
+      case 'next': {
         curPage++;
-        if (curPage !== embeds.length - 1) {
-          await sendMsg.edit({
-            embeds: [embeds[curPage]],
-            components: [
-              new ActionRowBuilder().addComponents(
+        if (curPage !== embeds.length - 1) {
+          await sendMsg.edit({
+            embeds: [embeds[curPage]],
+            components: [
+              new ActionRowBuilder().addComponents(
                 but1.setDisabled(false),
                 but2.setDisabled(false),
                 but3.setDisabled(false),
@@ -123,11 +123,11 @@ async function pagination(interaction, embeds) {
               ),
             ],
           });
-        } else {
-          await sendMsg.edit({
-            embeds: [embeds[curPage]],
-            components: [
-              new ActionRowBuilder().addComponents(
+        } else {
+          await sendMsg.edit({
+            embeds: [embeds[curPage]],
+            components: [
+              new ActionRowBuilder().addComponents(
                 but1.setDisabled(false),
                 but2.setDisabled(false),
                 but3.setDisabled(false),
@@ -140,13 +140,13 @@ async function pagination(interaction, embeds) {
       }
         break;
 
-      case 'previous': {
+      case 'previous': {
         curPage--;
-        if (curPage !== 0) {
-          return sendMsg.edit({
-            embeds: [embeds[curPage]],
-            components: [
-              new ActionRowBuilder().addComponents(
+        if (curPage !== 0) {
+          return sendMsg.edit({
+            embeds: [embeds[curPage]],
+            components: [
+              new ActionRowBuilder().addComponents(
                 but1.setDisabled(false),
                 but2.setDisabled(false),
                 but3.setDisabled(false),
@@ -157,9 +157,9 @@ async function pagination(interaction, embeds) {
           });
         }
         sendMsg.edit({
-          embeds: [embeds[curPage]],
-          components: [
-            new ActionRowBuilder().addComponents(
+          embeds: [embeds[curPage]],
+          components: [
+            new ActionRowBuilder().addComponents(
               but1.setDisabled(true),
               but2.setDisabled(true),
               but3.setDisabled(false),
@@ -172,12 +172,12 @@ async function pagination(interaction, embeds) {
 
         break;
 
-      case 'first': {
-        curPage = 0;
-        await sendMsg.edit({
-          embeds: [embeds[curPage]],
-          components: [
-            new ActionRowBuilder().addComponents(
+      case 'first': {
+        curPage = 0;
+        await sendMsg.edit({
+          embeds: [embeds[curPage]],
+          components: [
+            new ActionRowBuilder().addComponents(
               but1.setDisabled(true),
               but2.setDisabled(true),
               but3.setDisabled(false),
@@ -190,12 +190,12 @@ async function pagination(interaction, embeds) {
 
         break;
 
-      case 'last': {
-        curPage = embeds.length - 1;
-        await sendMsg.edit({
-          embeds: [embeds[curPage]],
-          components: [
-            new ActionRowBuilder().addComponents(
+      case 'last': {
+        curPage = embeds.length - 1;
+        await sendMsg.edit({
+          embeds: [embeds[curPage]],
+          components: [
+            new ActionRowBuilder().addComponents(
               but1.setDisabled(false),
               but2.setDisabled(false),
               but3.setDisabled(false),
@@ -208,23 +208,23 @@ async function pagination(interaction, embeds) {
 
         break;
 
-      case 'delete': {
-        row.components.forEach((btn) => btn.setDisabled(true));
+      case 'delete': {
+        row.components.forEach((btn) => btn.setDisabled(true));
 
-        await sendMsg.edit({
-          embeds: [embeds[curPage]],
-          components: [row],
+        await sendMsg.edit({
+          embeds: [embeds[curPage]],
+          components: [row],
         });
       }
     }
 
-    collector.on('end', async () => {
-      row.components.forEach((btn) => btn.setDisabled(true));
+    collector.on('end', async () => {
+      row.components.forEach((btn) => btn.setDisabled(true));
 
-      if (sendMsg.editable) {
-        await sendMsg.edit({
-          embeds: [embeds[curPage]],
-          components: [row],
+      if (sendMsg.editable) {
+        await sendMsg.edit({
+          embeds: [embeds[curPage]],
+          components: [row],
         });
       }
     });

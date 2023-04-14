@@ -10,7 +10,7 @@ const guilds = require('../../models/guild');
 
 /*
 * Comfi Bot for Discord
-* Copyright (C) 2021 Xx-Mohit-xX
+* Copyright (C) 2023 Xx-Mohit-xX
 * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 * For more information, see README.md and LICENSE
 */
@@ -59,16 +59,16 @@ bot.on('guildCreate', async (guild) => {
         let theowner = 'Owner Not Found !!';
         await guild.fetchOwner().then(({ user }) => { theowner = user; }).catch(() => {});
 
-        const embed = new EmbedBuilder()
-          .setThumbnail(guild.iconURL({ size: 1024 }))
+        const embed = new EmbedBuilder()
+          .setThumbnail(guild.iconURL({ size: 1024 }))
           .setTitle(`Someone Invited Me to Join ${guild.name}`)
           .addFields([
-            { name: 'Name', value: `\`${guild.name}\`` },
-            { name: 'ID', value: `\`${guild.id}\`` },
-            { name: 'Owner', value: `\`${guild.members.cache.get(theowner.id) ? guild.members.cache.get(theowner.id).user.tag : 'Unknown user'}\` ${theowner.id}` },
-            { name: 'Member Count', value: `\`${guild.memberCount}\` Members` },
-            { name: 'Creation Date', value: `\`${moment.utc(guild.createdAt).format('DD/MMM/YYYY')}\`` },
-            { name: `${bot.user.username}'s Server Count`, value: `\`${bot.guilds.cache.size}\` Servers` },
+            { name: 'Name', value: `\`${guild.name}\`` },
+            { name: 'ID', value: `\`${guild.id}\`` },
+            { name: 'Owner', value: `\`${guild.members.cache.get(theowner.id) ? guild.members.cache.get(theowner.id).user.tag : 'Unknown user'}\` ${theowner.id}` },
+            { name: 'Member Count', value: `\`${guild.memberCount}\` Members` },
+            { name: 'Creation Date', value: `\`${moment.utc(guild.createdAt).format('DD/MMM/YYYY')}\`` },
+            { name: `${bot.user.username}'s Server Count`, value: `\`${bot.guilds.cache.size}\` Servers` },
           ])
           .setTimestamp()
           .setColor(bot.color);

@@ -17,7 +17,7 @@ module.exports = {
     try {
       const client = await clients.findOne({ clientId: bot.user.id });
 
-      if (client.news_read === false) {
+      if (client.news_read === false) {
         const embed = new EmbedBuilder()
           .setTitle('Comfi™ Updates')
           .setDescription(client.news)
