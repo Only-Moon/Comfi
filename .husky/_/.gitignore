@@ -1,11 +1,1 @@
-node_modules
-.env
-replit-nix
-package-lock.json
-roll-????.??.??.log
-playground-1.mongodb.js
-.replit
-.env.example
-.vscode/settings.json
-.vscode/.editorconfig
-.env.example
+*
