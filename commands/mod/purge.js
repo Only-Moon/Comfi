@@ -181,7 +181,7 @@ module.exports = {
       const user = interaction.options.getUser('user');
       const string = interaction.options.getString('text');
 
-      if (s !== 'bot-messages' && messages <= 1) return await bot.errorEmbed(bot, interaction, 'You cant purge less than one message');
+      if (s !== 'bot-messages' && messages < 1) return await bot.errorEmbed(bot, interaction, 'You cant purge less than one message');
 
       if (messages > 99) return await bot.errorEmbed(bot, interaction, 'You cannot purge more than 100 messages at once.');
 
@@ -199,7 +199,7 @@ module.exports = {
       const num = messages - 1;
 
       await interaction.editReply({ content: 'Purging ...', fetchReply: true }).then((msg) => {
-        setTimeout(() => { msg.delete(); }, bot.ms('5s'));
+        setTimeout(() => { msg.delete().catch(()=> {}); }, bot.ms('5s'));
       });
 
       const pur = await purger.purge(sus, interaction, interaction.channel, num, user || string);

@@ -62,7 +62,7 @@ module.exports = async (bot) => {
 
         bot.logger.cmd('Successfully reloaded Guild (/) commands');
       } else if (dev === `false`) {
-          console.log("he")
+          
         await rest.put(Routes.applicationCommands(process.env.clientID), {
           body: arrayOfSlashCommands,
         });

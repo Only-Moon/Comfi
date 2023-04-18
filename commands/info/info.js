@@ -398,15 +398,13 @@ module.exports = {
             {
               name: '↣ Channels',
               value:
-                `\n└➤ **Text**: ${channel.filter((c) => c.type === ChannelType.GuildText).size}\n└➤ **Voice**: ${channel.filter((c) => c.type === ChannelType.GuildVoice).size}\n└➤ **Threads**: ${channel.filter((c) => c.isThread && c.type === ChannelType.GuildNewsThread && ChannelType.GuildPrivateThread && ChannelType.GuildPublicThread).size}\n└➤ **Categories**: ${channel.filter((c) => c.type === ChannelType.GuildCategory).size}\n└➤ **Stages**: ${channel.filter((c) => c.type === ChannelType.GuildStageVoice).size}\n\n└➤ **Total**: ${channel.size}`,
+                `\n└➤ **Text**: ${channel.filter((c) => c.type === ChannelType.GuildText).size}\n└➤ **Voice**: ${channel.filter((c) => c.type === ChannelType.GuildVoice).size}\n└➤ **Threads**: ${channel.filter((c) => c.isThread && c.type === ChannelType.AnnouncementThread && ChannelType.PrivateThread && ChannelType.PublicThread).size}\n└➤ **Categories**: ${channel.filter((c) => c.type === ChannelType.GuildCategory).size}\n└➤ **Stages**: ${channel.filter((c) => c.type === ChannelType.GuildStageVoice).size}\n\n└➤ **Total**: ${channel.size}`,
               inline: true,
             },
             {
               name: '↣ Emojis & Stickers',
               value:
-                `\n└➤ **Animated**: ${emoji.filter((e) => e.animated).size}\n└➤ **Normal**: ${emoji.filter((e) => !e.animated).size}\n└➤ **Stickers**: ${sticker.size}\n\n└➤ **Total**: ${sticker.size + emoji.size}
- 
- `,
+                `\n└➤ **Animated**: ${emoji.filter((e) => e.animated).size}\n└➤ **Normal**: ${emoji.filter((e) => !e.animated).size}\n└➤ **Stickers**: ${sticker.size}\n\n└➤ **Total**: ${sticker.size + emoji.size}`,
               inline: true,
             },
             {
