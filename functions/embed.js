@@ -395,7 +395,7 @@ async function embed(message, options = []) {
 
                     const isthumb = m.content.match(
                       /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim,
-                    ) != null
+                    ) !== null
                       || m.attachments.first()?.url
                       || '';
                     if (!isthumb) {
@@ -570,7 +570,7 @@ async function embed(message, options = []) {
 
                 const isthumb = m.content.match(
                   /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim,
-                ) != null
+                ) !== null
                   || m.attachments.first().url
                   || '';
                 if (!isthumb) {
@@ -738,7 +738,7 @@ async function embed(message, options = []) {
               titleclr.on('collect', async (m) => {
                 const isthumb = m.content.match(
                   /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim,
-                ) != null
+                ) !== null
                   || m.attachments.first().url
                   || '';
                 if (!isthumb) {
