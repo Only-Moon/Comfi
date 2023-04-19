@@ -55,7 +55,7 @@ async function rankCard(client, message, options = []) {
     const ctx = canvas.getContext('2d');
 
     const name = member.tag;
-    const noSymbols = (string) => string.replace(/[\u007f-\uffff]/g, '');
+    const noSymbols = (string) => string.replace(/[\u007f-\uffff]/gu, '');
 
     const BackgroundRadius = '20';
     const BackGroundImg =				options.background
