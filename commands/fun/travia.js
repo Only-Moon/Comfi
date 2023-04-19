@@ -53,7 +53,7 @@ module.exports = {
 
         title: 'Trivia',
 
-        description: `You have 60 seconds to respond!`,
+        description: "You have 60 seconds to respond!",
 
         color: bot.color,
 
@@ -67,7 +67,7 @@ module.exports = {
 
       errMessage: 'Unable to fetch questions! Please try again later',
       
-      playerOnlyMessage: `Only {player} can use these buttons`
+      playerOnlyMessage: "Only {player} can use these buttons"
 
     })
       
