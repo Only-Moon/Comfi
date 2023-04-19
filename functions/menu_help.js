@@ -21,7 +21,7 @@ const create_mh = (array) => {
     );
   }
 
-  if (array.length < 0) throw new Error('The array has to have atleast one thing to select!');
+  if (array.length === 0) throw new Error('The array has to have atleast one thing to select!');
 
   let select_menu;
   const id = 'help-menus';
