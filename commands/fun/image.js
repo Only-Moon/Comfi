@@ -195,7 +195,7 @@ module.exports = {
             .setImage('attachment://abandon.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
       // BYE MOM----------------------------------------------------------------------------------------------------------
@@ -219,7 +219,7 @@ module.exports = {
             .setImage('attachment://byemom.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
 
@@ -241,7 +241,7 @@ module.exports = {
             .setImage('attachment://cancer.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
       // Dab Image-----------------------------------------------------------------------------------------------------------------
@@ -262,7 +262,7 @@ module.exports = {
             .setImage('attachment://dab.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
 
@@ -284,7 +284,7 @@ module.exports = {
             .setImage('attachment://delete.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
 
@@ -306,7 +306,7 @@ module.exports = {
             .setImage('attachment://disability.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
       // Door Image------------------------------------------------------------------------------------------------------------
@@ -327,7 +327,7 @@ module.exports = {
             .setImage('attachment://door.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
 
@@ -361,7 +361,7 @@ module.exports = {
             .setImage('attachment://egg.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
 
@@ -384,7 +384,7 @@ module.exports = {
             .setImage('attachment://emergencymeeting.png')
             .setFooter({ text: 'Generated with memer API' });
           interaction.editReply({ embeds: [genMeme], files: [attachment] })
-            .catch((e) => console.log("Couldn't delete msg, this is for preventing a bug".gray));
+            .catch((e) => {});
         });
       }
     } catch (e) {

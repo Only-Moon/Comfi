@@ -23,41 +23,39 @@ exports.log = (content, type = 'log') => {
   switch (type) {
     case 'log':
       log.info(content);
-      console.log(`${chalk.bgGreen(type.toUpperCase())} ${content} `);
+      
       break;
     case 'warn':
       log.warn(content);
-      console.log(
-        `${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `,
-      );
+      
       break;
     case 'error':
       log.error(content);
-      console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())}`);
-      console.log(content)
+      
+      
       break;
     case 'debug':
       log.debug(content);
-      console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
+      
       break;
     case 'cmd':
       log.info(content);
-      console.log(`${chalk.black.bgWhite(type.toUpperCase())} ${content}`);
+      
       break;
     case 'ready':
       log.info(content);
-      console.log(`${chalk.black.bgBlue(type.toUpperCase())} ${content}`);
+      
       break;
     case 'table':
       log.info(content);
-      console.log(`${timestamp} ${chalk.bgGreen(type.toUpperCase())}`);
+      
       console.table(content);
       break;
     case 'limit':
       log.error(content);
 
-      console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())}`);
-      console.log(content);
+      
+      
       break;
     default:
       break;
