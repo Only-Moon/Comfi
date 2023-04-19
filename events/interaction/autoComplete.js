@@ -42,7 +42,7 @@ bot.on('interactionCreate', async (interaction) => {
         })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
       ).catch((err) => {
-        console.log(err.message);
+        
       });
     } 
       if (interaction.commandName === 'dropdownrole') {
@@ -77,7 +77,7 @@ bot.on('interactionCreate', async (interaction) => {
         })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
       ).catch((err) => {
-        console.log(err.message);
+        
       });
     } 
       if (interaction.commandName === 'job') {
@@ -118,7 +118,7 @@ interaction.user.id,
         })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
       ).catch((err) => {
-        console.log(err.message);
+        
       });
     } 
     const cmdArray = ["embed", "boost", "welcome", "leave", "leveling" ]
@@ -149,7 +149,7 @@ interaction.user.id,
         })).slice(0, 25), // This is done due to discord only allowing 25 choices with autocomplete
 
       ).catch((err) => {
-        console.log(err.message);
+        
       });
    
     }     

@@ -95,7 +95,7 @@ async function rankCard(client, message, options = []) {
     ctx.clip();
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, 1080, 400);
-    console.log(BackGroundImg);
+    
     const background = await Canvas.loadImage(BackGroundImg);
     ctx.globalAlpha = 0.7;
     ctx.drawImage(background, 0, 0, 1080, 400);
