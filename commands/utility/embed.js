@@ -722,7 +722,7 @@ module.exports = {
 
             const embed_new = EmbedBuilder.from(embed);
 
-            if (!embed.description) return await bot.errorEmbed(bot, interaction, `Have a description for the embed before trying to display it`)
+            if (!embed.description) return await bot.errorEmbed(bot, interaction, "Have a description for the embed before trying to display it")
 
             await interaction.editReply({ embeds: [embed_new] });
         }

@@ -55,13 +55,13 @@ module.exports = async (bot) => {
     try {
       bot.logger.cmd('Started refreshing (/) commands');
         
-      if (dev === `true`) {
+      if (dev === "true") {
         await rest.put(Routes.applicationGuildCommands(process.env.clientID, '758949191497809932'), {
           body: arrayOfSlashCommands,
         });
 
         bot.logger.cmd('Successfully reloaded Guild (/) commands');
-      } else if (dev === `false`) {
+      } else if (dev === "false") {
           
         await rest.put(Routes.applicationCommands(process.env.clientID), {
           body: arrayOfSlashCommands,
