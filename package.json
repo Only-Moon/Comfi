@@ -62,7 +62,9 @@
     "node": ">=17.9.1",
     "npm": ">=8.12.1"
   },
-  "engines.node": "18",
+  "engines": {
+     "node": "18"
+  },
   "funding": {
     "type": "paypal",
     "url": "https://paypal.me/mohitk81?country.x=IN&locale.x=en_GB"
