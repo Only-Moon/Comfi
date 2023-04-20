@@ -59,11 +59,8 @@
   "license": "ISC",
   "private": true,
   "engines": {
-    "node": ">=17.9.1",
-    "npm": ">=8.12.1"
-  },
-  "engines": {
-     "node": "18"
+    "node": "^18",
+    "npm": "^8.12.1"
   },
   "funding": {
     "type": "paypal",
