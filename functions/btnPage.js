@@ -18,7 +18,7 @@ const {
   */
 async function pagination(interaction, embeds) {
   if (interaction.deferred == false) {
-    await interaction.deferReply();
+    await interaction.deferReply().catch(() => {});
   }
 
   const but1 = new ButtonBuilder()

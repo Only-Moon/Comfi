@@ -74,7 +74,7 @@ module.exports = {
 
         msg.edit({ embeds: [pingEmbed] }).catch(() => null);
       }, bot.ms('5s'));
-    } catch {
+    } catch (e) {
       await bot.senderror(interaction, e);
     }
   },
