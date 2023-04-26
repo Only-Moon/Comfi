@@ -18,7 +18,7 @@
     "google-play-scraper": "^9.1.1",
     "imdb-api": "^4.4.1",
     "link-checker-malicious": "^1.5.0",
-    "mal-scraper": "^1.5.0",
+    "mal-scraper": "^2.12.1",
     "memer-api": "^4.0.2",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
@@ -28,7 +28,7 @@
     "nodemon": "^2.0.20",
     "relevant-urban": "^2.0.0",
     "request": "^2.88.2",
-    "request-promise-native": "^1.0.9",
+    "request-promise-native": "^0.0.0",
     "simple-node-logger": "^21.8.12",
     "simply-djs": "git+https://github.com/Xx-Mohit-xX/simply-djs.git#djs-v14",
     "sourcebin_js": "0.0.3-ignore",
@@ -42,6 +42,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
+    "komit": "^1.0.5",
     "node": "^17.9.1",
     "npm": "^9.3.0",
     "prettier": "^2.8.3",
@@ -53,15 +54,17 @@
     "start": "node --trace-deprecation index.js",
     "stop": "kill 1",
     "prepare": "husky install",
-    "lint": "eslint --fix ."
+    "lint": "eslint --fix .",
+    "postinstall": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "komit $HUSKY_GIT_PARAMS"
+    }
   },
   "author": "Xx-Mohit-xX",
   "license": "ISC",
   "private": true,
-  "engines": {
-    "node": ">=16.18.1",
-    "npm": "^8.12.1"
-  },
   "funding": {
     "type": "paypal",
     "url": "https://paypal.me/mohitk81?country.x=IN&locale.x=en_GB"
