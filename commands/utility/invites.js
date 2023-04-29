@@ -31,7 +31,7 @@ module.exports = {
 	 */
   run: async (bot, interaction, args) => {
     try {
-      const user = interaction.guild.members.members.cache.get(args[0]) || interaction.member;
+      const user = interaction.guild.members.cache.get(args[0]) || interaction.member;
 
       const invites = await interaction.guild.invites.fetch();
       const userInv = invites.filter((u) => u.inviter && u.inviter.id === user.id);

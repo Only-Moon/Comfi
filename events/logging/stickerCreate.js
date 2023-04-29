@@ -12,7 +12,7 @@ const guilds = require('../../models/guild');
 bot.on('stickerCreate', async (sticker) => {
   const guild = await guilds.findOne({ guildId: sticker.guild.id });
   if (!guild.logging) return;
-  if (!sticker.guild.members.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!sticker.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
   const AuditLogFetch = await sticker.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.StickerCreate });
   const Entry = AuditLogFetch.entries.first();

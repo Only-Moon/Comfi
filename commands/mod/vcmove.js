@@ -38,8 +38,8 @@ module.exports = {
 	 */
   run: async (bot, interaction, args) => {
     const member =			interaction.options.getMember('user')
-			|| interaction.guild.members.members.cache.get(args[0])
-			|| interaction.guild.members.members.cache.find(
+			|| interaction.guild.members.cache.get(args[0])
+			|| interaction.guild.members.cache.find(
 			  (r) => r.user.username.toLowerCase() === args[0].toLocaleLowerCase(),
 			);
 

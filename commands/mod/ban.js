@@ -110,7 +110,7 @@ module.exports = {
         const reason = interaction.options.getString('reason')
           || `Banned by ${interaction.member.username}`;
 
-        const banMember = interaction.guild.members.members.cache.get(args[0]) || bot.users.cache.get(args[0]) || user;
+        const banMember = interaction.guild.members.cache.get(args[0]) || bot.users.cache.get(args[0]) || user;
         if (!banMember) {
           return await bot.errorEmbed(bot, interaction, '**User Is Not In The Guild**');
         }
@@ -125,7 +125,7 @@ module.exports = {
           return await bot.errorEmbed(bot, interaction, '**Cannot Ban This User due to role hierarchy !**');
         }
 
-        await interaction.guild.members.members.ban(banMember, {
+        await interaction.guild.members.ban(banMember, {
           reason: reason.length < 1 ? 'No reason supplied.' : reason,
         });
         await banMember.send(
@@ -149,7 +149,7 @@ module.exports = {
         const reason = interaction.options.getString('reason');
 
         const tbuser = interaction.options.getMember('user')
-          || interaction.guild.members.members.cache.get(args[0]);
+          || interaction.guild.members.cache.get(args[0]);
         const regex = interaction.options.getString('time');
         if (tbuser === interaction.member) {
           return await bot.errorEmbed(bot, interaction, 'Really!! Are you going to ban yourself..');
@@ -197,11 +197,11 @@ module.exports = {
 
         await tbuser.send({ embeds: [tbuembed] }).catch(() => null);
 
-        await interaction.guild.members.members
+        await interaction.guild.members
           .ban(tbuser, { reason: `${reason}` })
           .then(() => {
             setTimeout(() => {
-              interaction.guild.members.members.unban(tbuser.id);
+              interaction.guild.members.unban(tbuser.id);
               interaction.channel.send({
                 content: `${bot.tick} • <@${
                   tbuser.id
@@ -214,7 +214,7 @@ module.exports = {
 
       if (sub === 'hack') {
         const target = interaction.options.getMember('user')
-          || interaction.guild.members.members.cache.get(args[0]);
+          || interaction.guild.members.cache.get(args[0]);
 
         if (isNaN(target)) {
           return await bot.errorEmbed(bot, interaction, 'Please specify an ID or USERNAME');
@@ -240,7 +240,7 @@ module.exports = {
           return await bot.errorEmbed(bot, interaction, '**You cant ban that user due to the role hierarchy*j');
         }
 
-        await interaction.guild.members.members.ban(target, {
+        await interaction.guild.members.ban(target, {
           reason: reason.length < 1 ? 'No reason supplied.' : reason,
         });
         return await bot.successEmbed(bot, interaction, `${
@@ -258,7 +258,7 @@ module.exports = {
         const userId = interaction.options.getString('user');
 
         bot.users.fetch(userId).then(async (user) => {
-          await interaction.guild.members.members.unban(user.id).catch(async () => await bot.errorEmbed(bot, interaction, '**User is Not Banned**'));
+          await interaction.guild.members.unban(user.id).catch(async () => await bot.errorEmbed(bot, interaction, '**User is Not Banned**'));
           const ban = new EmbedBuilder()
             .setColor(bot.color)
             .setTimestamp()

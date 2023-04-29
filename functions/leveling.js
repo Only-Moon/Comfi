@@ -22,7 +22,7 @@ module.exports = async (message, bot) => {
     guildId: message.guild.id,
   });
 
-  if (!message.member) message.member = await message.guild.members.members.fetch(message.author.id);
+  if (!message.member) message.member = await message.guild.members.fetch(message.author.id);
 
   try {
     if (guild.leveling) {

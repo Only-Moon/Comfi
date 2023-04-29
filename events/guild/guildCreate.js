@@ -65,7 +65,7 @@ bot.on('guildCreate', async (guild) => {
           .addFields([
             { name: 'Name', value: `\`${guild.name}\`` },
             { name: 'ID', value: `\`${guild.id}\`` },
-            { name: 'Owner', value: `\`${guild.members.members.cache.get(theowner.id) ? guild.members.members.cache.get(theowner.id).user.tag : 'Unknown user'}\` ${theowner.id}` },
+            { name: 'Owner', value: `\`${guild.members.cache.get(theowner.id) ? guild.members.cache.get(theowner.id).user.tag : 'Unknown user'}\` ${theowner.id}` },
             { name: 'Member Count', value: `\`${guild.members.memberCount}\` Members` },
             { name: 'Creation Date', value: `\`${moment.utc(guild.createdAt).format('DD/MMM/YYYY')}\`` },
             { name: `${bot.user.username}'s Server Count`, value: `\`${bot.guilds.cache.size}\` Servers` },

@@ -251,7 +251,7 @@ module.exports = {
       }
 
       if (subcommand === 'membercount') {
-        const memb = await interaction.guild.members.members.fetch();
+        const memb = await interaction.guild.members.fetch();
         const member = memb.filter((x) => x.user.bot === false).size;
         const bot = memb.filter((x) => x.user.bot === true).size;
 
@@ -374,7 +374,7 @@ module.exports = {
       }
 
       if (subcommand === 'server') {
-        const member = await interaction.guild.members.members.fetch();
+        const member = await interaction.guild.members.fetch();
         const channel = await interaction.guild.channels.fetch();
         const emoji = await interaction.guild.emojis.fetch();
         const sticker = await interaction.guild.stickers.fetch();
@@ -513,7 +513,7 @@ module.exports = {
         let user = interaction.options.getUser('user', false);
         if (!user) user = interaction.user;
 
-        const member = interaction.guild.members.members.cache.get(user.id);
+        const member = interaction.guild.members.cache.get(user.id);
 
         let flags = user.flags.toArray().join('\n');
 
@@ -595,7 +595,7 @@ module.exports = {
             .filter((x) => x.name !== '@everyone')
             .slice(0, -1);
 
-          members = (await interaction.guild.members.members.fetch({
+          members = (await interaction.guild.members.fetch({
             time: 9999999,
             withPresences: true,
           }))

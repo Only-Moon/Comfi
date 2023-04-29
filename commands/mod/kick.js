@@ -44,7 +44,7 @@ module.exports = {
       const reason =				options.find((e) => e.name === 'reason')
 				|| `Kicked by ${interaction.member.displayName}`;
 
-      const kickMember = interaction.guild.members.members.cache.get(args[0]) || user;
+      const kickMember = interaction.guild.members.cache.get(args[0]) || user;
 
       const userRank = kickMember.roles.highest.rawPosition;
       const memberRank = interaction.member.roles.highest.rawPosition;

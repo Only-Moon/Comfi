@@ -74,7 +74,7 @@ module.exports = {
     try {
       if (sub === 'add') {
         const member = interaction.options.getMember('user')
-          || interaction.guild.members.members.cache.get(args[0]);
+          || interaction.guild.members.cache.get(args[0]);
         const time = interaction.options.getString('time');
 
         if (member.id === interaction.member.id) {
@@ -148,11 +148,11 @@ module.exports = {
 
       if (sub === 'remove') {
         const member = interaction.options.getMember('user')
-          || interaction.guild.members.members.cache.get(args[0])
-          || interaction.guild.members.members.cache.find(
+          || interaction.guild.members.cache.get(args[0])
+          || interaction.guild.members.cache.find(
             (r) => r.user.username.toLowerCase() === args[0].toLocaleLowerCase(),
           )
-          || interaction.guild.members.members.cache.find(
+          || interaction.guild.members.cache.find(
             (ro) => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase(),
           );
         const reason = interaction.options.getString('reason');

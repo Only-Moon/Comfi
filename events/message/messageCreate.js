@@ -72,7 +72,7 @@ bot.on('messageCreate', async (message) => {
         });
 
         // Timeout the User for 12h
-        const member = message.guild.members.members.cache.get(message.author);
+        const member = message.guild.members.cache.get(message.author);
 
         if (message.member.moderatable) {
           await message.member.timeout(time || 43200000, 'Sending Scam links').catch(() => null);

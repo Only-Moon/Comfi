@@ -41,7 +41,7 @@ module.exports = {
     try {
       // now extract values
       const member = interaction.options.getMember('user')
-        || interaction.guild.members.members.cache.get(args[0]);
+        || interaction.guild.members.cache.get(args[0]);
       const nickname = interaction.options.getString('nickname');
       const reason = interaction.options.getString('reason');
       const embed = new EmbedBuilder().setColor(bot.color);

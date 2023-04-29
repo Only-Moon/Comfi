@@ -31,7 +31,7 @@ bot.on('threadCreate', async (thread) => {
   }
 
   if (!guild.logging) return;
-  if (!thread.guild.members.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!thread.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
   const AuditLogFetch = await thread.guild.fetchAuditLogs({
     limit: 1,

@@ -36,7 +36,7 @@ module.exports = {
         const top10 = [];
         let pos = 1;
 
-        const mem = interaction.guild.members.members.cache.find((x) => x.id === value.userID);
+        const mem = interaction.guild.members.cache.find((x) => x.id === value.userID);
 
         const emojis = [`${one}`, `${two}`, `${three}`];
         if (mem instanceof GuildMember) {

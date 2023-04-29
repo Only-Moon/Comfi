@@ -12,7 +12,7 @@ const guilds = require('../../models/guild');
 bot.on('guildBanAdd', async (ban) => {
   const guild = await guilds.findOne({ guildId: ban.guild.id });
   if (!guild.logging) return;
-  if (!guild.members.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
   const AuditLogFetch = await ban.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.MemberBanAdd });
   const Entry = AuditLogFetch.entries.first();

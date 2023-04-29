@@ -34,7 +34,7 @@ module.exports = {
       guildId: interaction.guild.id,
     });
     try {
-      const members = (await interaction.guild.members.members.fetch({
+      const members = (await interaction.guild.members.fetch({
         time: 9999999,
         withPresences: true,
       }))
