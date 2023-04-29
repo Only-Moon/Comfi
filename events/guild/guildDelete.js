@@ -31,7 +31,7 @@ bot.on('guildDelete', async (guild) => {
         theowner
           ? `${theowner.tag} (${theowner.id})`
           : `${theowner} (${guild.ownerId})`
-      }\`\`\` \n**Members:** ${guild.memberCount}`,
+      }\`\`\` \n**Members:** ${guild.members.memberCount}`,
     )
     .setTimestamp()
     .setColor(bot.color)

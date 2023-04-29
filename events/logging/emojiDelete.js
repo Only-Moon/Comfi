@@ -12,7 +12,7 @@ const guilds = require('../../models/guild');
 bot.on('emojiDelete', async (emoji) => {
   const guild = await guilds.findOne({ guildId: emoji.guild.id });
   if (!guild.logging) return;
-  if (!emoji.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!emoji.guild.members.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
   const AuditLogFetch = await emoji.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.EmojiDelete });
   const Entry = AuditLogFetch.entries.first();

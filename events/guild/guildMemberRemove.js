@@ -23,7 +23,7 @@ bot.on('guildMemberRemove', async (member) => {
       { name: '{{server#id}}', value: `${member.guild.id}` },
       { name: '{{server#name}}', value: `${member.guild.name}` },
       { name: '{{server#icon}}', value: `${member.guild.iconURL({ dynamic: true })}` },
-      { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
+      { name: '{{server#membercount}}', value: `${member.guild.members.memberCount}` },
     ];
 
     for (const { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);

@@ -22,7 +22,7 @@ module.exports = {
   run: async (bot, interaction, args) => {
     try {
       const user = await bot.users.fetch(interaction.targetId);
-      const data = interaction.guild.members.cache.get(user.id);
+      const data = interaction.guild.members.members.cache.get(user.id);
       const roles = data.roles.cache
         .map((x) => x)
         .filter((z) => z.name !== '@everyone');

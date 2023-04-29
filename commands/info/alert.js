@@ -18,6 +18,8 @@ module.exports = {
       const client = await clients.findOne({ clientId: bot.user.id });
 
       if (client.news_read === false) {
+        //TODO: Add embed color
+        //TODO: Check for last updated not news_read
         const embed = new EmbedBuilder()
           .setTitle('Comfi™ Updates')
           .setDescription(client.news)

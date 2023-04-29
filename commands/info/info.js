@@ -251,7 +251,7 @@ module.exports = {
       }
 
       if (subcommand === 'membercount') {
-        const memb = await interaction.guild.members.fetch();
+        const memb = await interaction.guild.members.members.fetch();
         const member = memb.filter((x) => x.user.bot === false).size;
         const bot = memb.filter((x) => x.user.bot === true).size;
 
@@ -261,7 +261,7 @@ module.exports = {
             interaction.guild.iconURL(),
           )
           .setDescription(
-            `✗Bot Count: ${memb.filter((a) => a.user.bot).size}\n✗Human Count: ${memb.filter((a) => !a.user.bot).size.toString()} \n✗Total Member Count: ${interaction.guild.memberCount}`,
+            `✗Bot Count: ${memb.filter((a) => a.user.bot).size}\n✗Human Count: ${memb.filter((a) => !a.user.bot).size.toString()} \n✗Total Member Count: ${interaction.guild.members.memberCount}`,
           )
           .setColor(bot.color);
 
@@ -374,7 +374,7 @@ module.exports = {
       }
 
       if (subcommand === 'server') {
-        const member = await interaction.guild.members.fetch();
+        const member = await interaction.guild.members.members.fetch();
         const channel = await interaction.guild.channels.fetch();
         const emoji = await interaction.guild.emojis.fetch();
         const sticker = await interaction.guild.stickers.fetch();
@@ -392,7 +392,7 @@ module.exports = {
             },
             {
               name: '↣ Users',
-              value: `\n└➤ **Members**: ${member.filter((m) => !m.user.bot).size}\n└➤ **Bots**: ${member.filter((m) => m.user.bot).size}\n\n└➤ **Total**: ${interaction.guild.memberCount}`,
+              value: `\n└➤ **Members**: ${member.filter((m) => !m.user.bot).size}\n└➤ **Bots**: ${member.filter((m) => m.user.bot).size}\n\n└➤ **Total**: ${interaction.guild.members.memberCount}`,
               inline: true,
             },
             {
@@ -513,7 +513,7 @@ module.exports = {
         let user = interaction.options.getUser('user', false);
         if (!user) user = interaction.user;
 
-        const member = interaction.guild.members.cache.get(user.id);
+        const member = interaction.guild.members.members.cache.get(user.id);
 
         let flags = user.flags.toArray().join('\n');
 
@@ -595,7 +595,7 @@ module.exports = {
             .filter((x) => x.name !== '@everyone')
             .slice(0, -1);
 
-          members = (await interaction.guild.members.fetch({
+          members = (await interaction.guild.members.members.fetch({
             time: 9999999,
             withPresences: true,
           }))

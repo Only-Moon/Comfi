@@ -14,7 +14,7 @@ bot.on('guildMemberAdd', async (member) => {
     const guild = await guilds.findOne({ guildId: member.guild.id });
     require('../../functions/verification')(member, bot);
 
-    const members = (await member.guild.members.fetch({
+    const members = (await member.guild.members.members.fetch({
       time: 9999999,
       withPresences: true,
     }))
@@ -42,8 +42,8 @@ bot.on('guildMemberAdd', async (member) => {
         { name: '{{server#id}}', value: `${member.guild.id}` },
         { name: '{{server#name}}', value: `${member.guild.name}` },
         { name: '{{server#icon}}', value: `${member.guild.iconURL({ dynamic: true })}` },
-        { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
-        { name: '{{server#humancount}}', value: `${member.guild.members.cache.filter((member) => !member.user.bot)}` },
+        { name: '{{server#membercount}}', value: `${member.guild.members.memberCount}` },
+        { name: '{{server#humancount}}', value: `${member.guild.members.members.cache.filter((member) => !member.user.bot)}` },
         { name: '{{join#position}}', value: `${getOrdinal(posi)}` },
       ];
 

@@ -55,7 +55,7 @@ module.exports = {
     ];
 
     try {
-      const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
+      const member = interaction.guild.members.members.cache.get(args[0]) || interaction.member;
 
       const yq = args.join(' ');
       const q = args.join(' ');

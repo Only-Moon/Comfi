@@ -29,7 +29,7 @@ module.exports = {
 	 */
   run: async (bot, interaction, args) => {
     try {
-      const member = interaction.guild.members.cache.get(args[0]) || interaction.member;
+      const member = interaction.guild.members.members.cache.get(args[0]) || interaction.member;
       const feedCh = bot.channels.cache.get('881789379809513500');
       const query = interaction.options
         .getString('msg')

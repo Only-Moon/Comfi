@@ -34,7 +34,7 @@ module.exports = {
       guildId: interaction.guild.id,
     });
     try {
-      const members = (await interaction.guild.members.fetch({
+      const members = (await interaction.guild.members.members.fetch({
         time: 9999999,
         withPresences: true,
       }))
@@ -68,7 +68,7 @@ module.exports = {
           { name: '{{server#icon}}', value: `${interaction.guild.iconURL({ dynamic: true })}` },
           {
             name: '{{server#membercount}}',
-            value: `${interaction.guild.memberCount || 'NONE'}`,
+            value: `${interaction.guild.members.memberCount || 'NONE'}`,
           },
           {
             name: '{{boost#count}}',

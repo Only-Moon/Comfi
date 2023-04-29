@@ -30,7 +30,7 @@ module.exports = async (member, bot) => {
       { name: '{{user#id}}', value: `${member.id}` },
       { name: '{{server#id}}', value: `${member.guild.id}` },
       { name: '{{server#name}}', value: `${member.guild.name}` },
-      { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
+      { name: '{{server#membercount}}', value: `${member.guild.members.memberCount}` },
     ];
 
     for (const { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);
@@ -144,7 +144,7 @@ async function reRun(member, bot) {
       { name: '{{user#id}}', value: `${member.id}` },
       { name: '{{server#id}}', value: `${member.guild.id}` },
       { name: '{{server#name}}', value: `${member.guild.name}` },
-      { name: '{{server#membercount}}', value: `${member.guild.memberCount}` },
+      { name: '{{server#membercount}}', value: `${member.guild.members.memberCount}` },
     ];
 
     for (const { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);

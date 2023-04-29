@@ -55,7 +55,7 @@ bot.statcord.postCommand(cmd.name, interaction.user.id, bot)
       } else if (option.value) args.push(option.value);
     }
 
-    interaction.member = interaction.guild.members.cache.get(
+    interaction.member = interaction.guild.members.members.cache.get(
       interaction.user.id,
     );
 
@@ -71,11 +71,11 @@ bot.statcord.postCommand(cmd.name, interaction.user.id, bot)
       return await bot.errorEmbed(bot, interaction, `You need \`${cmd.userperm ? cmd.userperm : []}\` permission's`);
     }
 
-    const botperm = interaction.guild.members.me.permissions.has(cmd.botperm || []);
+    const botperm = interaction.guild.members.members.me.permissions.has(cmd.botperm || []);
     if (!botperm) {
       return await bot.errorEmbed(bot, interaction, `I need \`${cmd.botperm ? cmd.botperm : []} \` permission's`);
     }
-    interaction.member = interaction.guild.members.cache.get(
+    interaction.member = interaction.guild.members.members.cache.get(
       interaction.user.id,
     );
 

@@ -13,6 +13,7 @@ module.exports = {
      * @param {String[]} args
      */
   run: async (bot, interaction, args) => {
+    //TODO: Fix work throwing timeout  as 1958 days when working but fine with timeout
     const data = await bot.eco.Work({ UserID: interaction.user.id });
     const embed = new EmbedBuilder();
     if (data.status === 'error') {

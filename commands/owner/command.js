@@ -8,7 +8,7 @@
 const {
   CommandInteraction,
   ActionRowBuilder,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   EmbedBuilder,
   ApplicationCommandOptionType,
 } = require('discord.js');

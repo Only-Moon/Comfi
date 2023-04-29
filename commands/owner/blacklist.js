@@ -8,7 +8,7 @@
 const {
   CommandInteraction,
   ActionRowBuilder,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   EmbedBuilder,
   ApplicationCommandOptionType,
 } = require('discord.js');
@@ -140,7 +140,7 @@ module.exports = {
           ];
           const components = [
             new ActionRowBuilder().addComponents(
-              new SelectMenuBuilder()
+              new StringSelectMenuBuilder()
                 .setCustomId('b-panel')
                 .setMaxValues(1)
                 .addOptions(opt),

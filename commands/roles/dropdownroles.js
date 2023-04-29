@@ -9,7 +9,7 @@ const {
   CommandInteraction,
   EmbedBuilder,
   MessageCollector,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   parseEmoji,
   ApplicationCommandOptionType,
@@ -281,7 +281,7 @@ module.exports = {
               });
             });
             const row = new ActionRowBuilder().addComponents([
-              new SelectMenuBuilder()
+              new StringSelectMenuBuilder()
                 .setPlaceholder('Choose your roles...')
                 .setCustomId('dropdown_roles')
                 .addOptions(dropdownMenuItems),

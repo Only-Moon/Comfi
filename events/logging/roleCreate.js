@@ -14,7 +14,7 @@ bot.on('roleCreate', async (role) => {
   if (!guild) return;
   if (!guild.logging) return;
   if (!role.guild) return;
-  if (!role.guild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!role.guild.members.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
   const AuditLogFetch = await role.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.RoleCreate });
   const Entry = AuditLogFetch.entries.first();

@@ -29,7 +29,7 @@ bot.on('threadDelete', async (thread) => {
   }
 
   if (!guild.logging) return;
-  if (!thread.guild.me.permissions.has('VIEW_AUDIT_LOG')) return;
+  if (!thread.guild.members.me.permissions.has('VIEW_AUDIT_LOG')) return;
 
   const AuditLogFetch = await thread.guild.fetchAuditLogs({
     limit: 1,

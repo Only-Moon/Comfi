@@ -29,7 +29,7 @@ module.exports = {
         await interaction
           .editReply({ content: `${bot.cross} • Resetting all user levels.` })
           .then(async (msg) => {
-            const mem = await interaction.guild.members.fetch();
+            const mem = await interaction.guild.members.members.fetch();
             mem.forEach(async (m) => {
               const user = await users.findOne({
                 userId: m.id,

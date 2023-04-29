@@ -74,7 +74,7 @@ module.exports = {
     try {
       if (sub === 'add') {
         const member = interaction.options.getMember('user')
-          || interaction.guild.members.cache.get(args[0]);
+          || interaction.guild.members.members.cache.get(args[0]);
         const time = interaction.options.getString('time');
 
         if (member.id === interaction.member.id) {
@@ -82,7 +82,7 @@ module.exports = {
         }
         if (
           member.roles.highest.comparePositionTo(
-            interaction.guild.me.roles.highest,
+            interaction.guild.members.me.roles.highest,
           ) >= 0
         ) {
           return await bot.errorEmbed(bot, interaction, '**Cannot Timeout This User. They have a role in highest postion then me!**');
@@ -148,11 +148,11 @@ module.exports = {
 
       if (sub === 'remove') {
         const member = interaction.options.getMember('user')
-          || interaction.guild.members.cache.get(args[0])
-          || interaction.guild.members.cache.find(
+          || interaction.guild.members.members.cache.get(args[0])
+          || interaction.guild.members.members.cache.find(
             (r) => r.user.username.toLowerCase() === args[0].toLocaleLowerCase(),
           )
-          || interaction.guild.members.cache.find(
+          || interaction.guild.members.members.cache.find(
             (ro) => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase(),
           );
         const reason = interaction.options.getString('reason');

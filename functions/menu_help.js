@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE
 */
 
-const { SelectMenuBuilder, ActionRowBuilder } = require('discord.js');
+const { StringSelectMenuBuilder, ActionRowBuilder } = require('discord.js');
 
 /* MENU CREATOR */
 
@@ -56,7 +56,7 @@ const create_mh = (array) => {
     });
   });
 
-  const chicken = new SelectMenuBuilder()
+  const chicken = new StringSelectMenuBuilder()
     .setCustomId(id)
     .setPlaceholder('Choose the command category')
     .addOptions(menus);

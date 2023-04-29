@@ -12,7 +12,7 @@ const guilds = require('../../models/guild');
 bot.on('stickerDelete', async (sticker) => {
   const guild = await guilds.findOne({ guildId: sticker.guild.id });
   if (!guild.logging) return;
-  if (!sticker.gguild.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
+  if (!sticker.gguild.members.members.me.permissions.has(bot.functions.fixPermissions('VIEW_AUDIT_LOG'))) return;
 
   const AuditLogFetch = await sticker.guild.fetchAuditLogs({ limit: 1, type: AuditLogEvent.StickerDelete });
   const Entry = AuditLogFetch.entries.first();

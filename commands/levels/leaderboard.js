@@ -33,7 +33,7 @@ module.exports = {
 
     if (guild.leveling) {
       const members = [];
-      const memb = await interaction.guild.members.fetch();
+      const memb = await interaction.guild.members.members.fetch();
       memb.forEach(async (m) => {
         const user = await users.findOne({
           guildId: interaction.guild.id,
@@ -57,7 +57,7 @@ module.exports = {
           const top10 = [];
           let pos = 1;
           members.sort((a, b) => b.level - a.level).map((m, i) => {
-            const mem = interaction.guild.members.cache.find((x) => x.id === m.user);
+            const mem = interaction.guild.members.members.cache.find((x) => x.id === m.user);
 
             const emojis = [`${one}`, `${two}`, `${three}`];
 

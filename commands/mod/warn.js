@@ -128,7 +128,7 @@ module.exports = {
           await interaction.editReply({ embeds: [warnEmbed] }).then((msg) => {
             setTimeout(() => { msg.delete().catch(() => null); }, bot.ms('30s'));
           });
-          const Member = interaction.guild.members.cache.get(user.id);
+          const Member = interaction.guild.members.members.cache.get(user.id);
 
           await bot.modlog({
             Member,
@@ -150,14 +150,14 @@ module.exports = {
             .setColor(bot.color)
             .setDescription(string);
 
-          const getWarnedUser = interaction.guild.members.cache.find(
+          const getWarnedUser = interaction.guild.members.members.cache.find(
             (user) => user.id === warnedResult.userId,
           );
           for (const warning of warnedResult.warns) {
             const {
               authorId, timestamp, warnId, reason,
             } = warning;
-            const getModeratorUser = interaction.guild.members.cache.find(
+            const getModeratorUser = interaction.guild.members.members.cache.find(
               (user) => user.id === authorId,
             );
             string += embed
@@ -185,7 +185,7 @@ module.exports = {
               },
             );
 
-            const getRemovedWarnedUser = interaction.guild.members.cache.find(
+            const getRemovedWarnedUser = interaction.guild.members.members.cache.find(
               (user) => user.id === warnedRemoveData.userId,
             );
 

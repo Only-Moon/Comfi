@@ -10,13 +10,11 @@ const bot = require('../../index.js');
 
 const hook = new WebhookClient({ url: process.env.debughook });
 
-setTimeout(() => {
-  if (!bot || !bot.user) {
-    process.kill(1).catch(() => null);
-  }
-}, 3 * 1000 * 60);
-
 bot
+  .on('debug', (info) => {
+    bot.logger.debug(info);
+    hook.send({ content: info });
+    })
   .on('disconnect', (e) => bot.logger.log(`disconnect \n${e}`))
   .on('reconnecting', (e) => bot.logger.log(`Bot is reconnecting \n${e}`))
   .rest.on('rateLimit', (err) => {
@@ -32,10 +30,6 @@ bot
   })
 
   .on('warn', (info) => bot.logger.warn(`info \n${info}`))
-  .on('debug', (info) => {
-  //  hook.send({ content: info });
-    bot.logger.debug(info);
-  });
 
 process.on('unhandledRejection', (reason, promise) => {
   const channel = bot.channels.cache.find((c) => c.id === bot.err_chnl);
@@ -110,6 +104,6 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
 });
 /*
     process.on('multipleResolves', (type, promise, reason) => { 
-         console.log(type, promise, reason); 
-     });
+        console.log(type, promise, reason); 
+    });
 */

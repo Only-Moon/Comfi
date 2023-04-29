@@ -7,7 +7,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
   ActionRowBuilder,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ComponentType,
 } = require('discord.js');
 const datas = require('../../models/Client');
@@ -117,7 +117,7 @@ bot.on('interactionCreate', async (interaction) => {
 
           components = [
             new ActionRowBuilder().addComponents(
-              new SelectMenuBuilder()
+              new StringSelectMenuBuilder()
                 .setCustomId('b-panel')
                 .setMaxValues(1)
                 .addOptions(options),

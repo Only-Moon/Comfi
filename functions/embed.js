@@ -9,7 +9,7 @@ const Discord = require('discord.js');
 const {
   EmbedBuilder,
   ActionRowBuilder,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ButtonBuilder,
   ButtonStyle,
   ComponentType,
@@ -100,7 +100,7 @@ async function embed(message, options = []) {
 
         menuOptions.push(dataopt);
       }
-      const slct = new SelectMenuBuilder()
+      const slct = new StringSelectMenuBuilder()
         .setMaxValues(1)
         .setCustomId('embed-creator')
         .setPlaceholder('Embed Creation Options')
@@ -284,7 +284,7 @@ async function embed(message, options = []) {
                 }
               });
             } else if (button.values[0] === 'setAuthor') {
-              const autsel = new SelectMenuBuilder()
+              const autsel = new StringSelectMenuBuilder()
                 .setMaxValues(1)
                 .setCustomId('author-selct')
                 .setPlaceholder('Author Options')

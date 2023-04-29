@@ -42,7 +42,7 @@ module.exports = {
           },
           {
             name: 'Member Count 》',
-            value: `${guild.memberCount}`,
+            value: `${guild.members.memberCount}`,
             inline: true,
           },
         );

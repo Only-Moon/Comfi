@@ -72,7 +72,7 @@ module.exports = {
 
     if (sub === 'sell') {
       data = await bot.eco.SellItem({ UserID: interaction.user.id, Item: item });
-
+//TODO : FIX returning empty embed
       if (data.status === 'error') {
         embed.setTitle(data.value);
         embed.setDescription(data.description);
