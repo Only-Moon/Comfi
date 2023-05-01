@@ -5,6 +5,7 @@ const {
   Permissions,
   ChannelType
 } = require('discord.js');
+const moment = require("moment")
 const bot = require('../../index');
 const guilds = require('../../models/guild');
 

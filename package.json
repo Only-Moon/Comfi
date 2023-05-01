@@ -14,7 +14,7 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "git": "^0.1.5",
-    "glob": "^7.2.3",
+    "glob": "^10.2.2",
     "google-play-scraper": "^9.1.1",
     "imdb-api": "^4.4.1",
     "link-checker-malicious": "^1.5.0",
@@ -30,7 +30,7 @@
     "request": "^2.88.2",
     "request-promise-native": "^0.0.0",
     "simple-node-logger": "^21.8.12",
-    "simply-djs": "git+https://github.com/Xx-Mohit-xX/simply-djs.git#djs-v14",
+    "simply-djs": "^3.0.2",
     "sourcebin_js": "0.0.3-ignore",
     "statcord.js": "^3.4.3",
     "twitter-api.js": "0.0.12",
@@ -51,7 +51,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --delay 10 index.js",
-    "start": "node --trace-deprecation index.js",
+    "start": "node --trace-deprecation --trace-warnings index.js",
     "stop": "kill 1",
     "prepare": "husky install",
     "lint": "eslint --fix .",
@@ -64,7 +64,6 @@
   },
   "author": "Xx-Mohit-xX",
   "license": "ISC",
-  "private": true,
   "funding": {
     "type": "paypal",
     "url": "https://paypal.me/mohitk81?country.x=IN&locale.x=en_GB"

@@ -44,12 +44,12 @@ process.on('unhandledRejection', (reason, promise) => {
 
   if (reason.stack.includes('DiscordAPIError: Missing Permissions')) return;
 
-  bot.logger.log(reason.stack);
+  bot.logger.log(reason.stack ? reason.stack : reason);
 
   const embed = new EmbedBuilder()
     .setTitle(`${bot.emoji('error_CS')} • Unhandled Rejection`)
     .setURL('https://nodejs.org/api/process.html#event-unhandledrejection')
-    .setDescription(`\`\`\`${reason.stack.split('').slice(0, 3500).join('')}\`\`\``)
+    .setDescription(`\`\`\`${reason.stack ? reason.stack.split('').slice(0, 3500).join('') : reason}\`\`\``)
     .setTimestamp()
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
     .setFooter({ text: 'Imagine a bot without anti-crash' })
@@ -58,7 +58,7 @@ process.on('unhandledRejection', (reason, promise) => {
   if (channel) {
     channel.send({ embeds: [embed] });
   } else if (!channel) {
-    bot.logger.error(`${reason.stack}`);
+    bot.logger.error(`${reason.stack ? reason.stack : reason}`);
   }
 });
 
@@ -68,7 +68,7 @@ process.on('uncaughtException', (err, origin) => {
   const embed = new EmbedBuilder()
     .setTitle(`${bot.emoji('error_CS')} • Uncaught Exception`)
     .setURL('https://nodejs.org/api/process.html#event-uncaughtexception')
-    .setDescription(`\`\`\`${err.stack.split('').slice(0, 3500).join('')}\`\`\``)
+    .setDescription(`\`\`\`${err.stack ? err.stack.split('').slice(0, 3500).join('') : err}\`\`\``)
     .setTimestamp()
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
     .setFooter({ text: 'Imagine a bot without anti-crash' })
@@ -90,7 +90,7 @@ process.on('uncaughtExceptionMonitor', (err, origin) => {
       'https://nodejs.org/api/process.html#event-uncaughtexceptionmonitor',
     )
     .addFields({ name: 'Origin', value: origin.toString(), inline: true })
-    .setDescription(`\`\`\`${err.stack.split('').slice(0, 3500).join('')}\`\`\``)
+    .setDescription(`\`\`\`${err.stack ? err.stack.split('').slice(0, 3500).join('') : err}\`\`\``)
     .setImage('https://giffiles.alphacoders.com/354/35481.gif')
     .setTimestamp()
     .setFooter({ text: 'Imagine a bot without anti-crash' })
