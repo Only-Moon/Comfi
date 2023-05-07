@@ -14,6 +14,11 @@ const { platform } = require('os');
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
+/**
+ * Function to check for windows os
+ * @param value the string of diffrent file locations
+ * @returns the file location in win format
+ */
 function load (value) {
   if (process.platform === "win32") return require(`${process.cwd()}/${value}`);
   else return require(value);
@@ -56,10 +61,9 @@ module.exports = async (bot) => {
     const dev = process.env.DEV_MODE || 'false';
     
   (async () => {
-console.log("yes")
     try {
       bot.logger.cmd('Started refreshing (/) commands');
-        console.log("yes-try")
+      
       if (dev === "true") {
         await rest.put(Routes.applicationGuildCommands(process.env.clientID, '758949191497809932'), {
           body: arrayOfSlashCommands,
