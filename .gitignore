@@ -8,3 +8,4 @@ playground-1.mongodb.js
 .env.example
 .vscode/settings.json
 .vscode/.editorconfig
+.env-comfi.example

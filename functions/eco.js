@@ -1352,7 +1352,7 @@ class SimplyEco {
         description: `You got ${this.currency} ${AMT} for Working as: ${
           UserData.job
         }. You can Work again in ${_msToTime(work)}`,
-      };
+      }; //TODO: FIX time conversion
     });
   }
 }

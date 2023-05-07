@@ -74,17 +74,21 @@ module.exports = {
       data = await bot.eco.SellItem({ UserID: interaction.user.id, Item: item });
 //TODO : FIX returning empty embed
       if (data.status === 'error') {
+
         embed.setTitle(data.value);
         embed.setDescription(data.description);
         embed.setColor(bot.color);
         embed.setFooter({ text: 'Comfi™ Economy System' });
         await interaction.editReply({ embeds: [embed] });
+
       } else if (data.status === 'success') {
+
         embed.setTitle(data.value);
         embed.setDescription(data.description);
         embed.setColor(bot.color);
         embed.setFooter({ text: 'Comfi™ Economy System' });
         await interaction.editReply({ embeds: [embed] });
+        
       }
     }
 

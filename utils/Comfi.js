@@ -17,6 +17,17 @@ const Statcord = require('statcord.js')
 class Comfi extends Discord.Client {
 	constructor() {
 		super({
+				sweepers: {
+					...Discord.Options.DefaultSweeperSettings,
+					messages: {
+						interval: 3600, // Every hour...
+						lifetime: 1800,    // Remove messages older than 30 minutes.
+					},
+					users: {
+						interval: 3600, // Every hour...
+						filter: user => user.bot && user.id !== client.user.id, // Remove all bots.
+					},
+				},
 			failIfNotExists: true,
 			allowedMentions: {
 				parse: ['users', 'roles'],
@@ -36,7 +47,7 @@ class Comfi extends Discord.Client {
 			restRequestTimeout: 30000
 		})
 
-		this.color = process.env.color || '#F4B3CA'
+		this.color = process.env.color_name || 0xF4B3CA
 		this.logger = require('./Logger')
 		this.dash = process.env.web
 		this.ms = require('ms')
@@ -388,7 +399,7 @@ class Comfi extends Discord.Client {
 						? interaction.guild.iconURL()
 						: this.user.displayAvatarURL({
 								dynamic: true
-						  })
+						})
 				}`
 			})
 			.setFooter({ text: 'Comfi™ Modlogs' })
@@ -446,12 +457,12 @@ class Comfi extends Discord.Client {
 				statcord.autopost()
 			}
 		})
-
+setInterval(() => {
 		statcord.on('autopost-start', () => {
 			// Emitted when statcord autopost starts
 			// console.log("Started autopost");
 		})
-
+	}, this.ms("6h"))
 		statcord.on('post', (status) => {
 			// status = false if the post was successful
 			// status = "Error message" or status = Error if there was an error

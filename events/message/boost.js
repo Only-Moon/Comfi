@@ -36,17 +36,17 @@ bot.on('messageCreate', async (message) => {
             const embed = new EmbedBuilder()      
               .setAuthor({
                 name:
-              em.embed ? em.embed.author.text : em.author?.name,
+              em.embed ? em.embed?.author.text : em.author?.name,
                 avatarURL: em.embed ? em.author.icon_url : em.author?.icon_url,
               })
-              .setTitle(format(em.embed ? em.embed.title : em.title))
+              .setTitle(format(em.embed ? em.embed?.title : em.title))
               .setDescription(format(em.embed ? em.embed : em.description))
-              .setColor(em.embed ? em.embed.color : (em.color ? em.color : bot.color))
-              .setImage(em.embed ? em.embed.image : (em.image ? em.image : 'https://i.imgur.com/8MggL9S.png'))
-              .setTimestamp(em.embed ? em.embed.timestamp : (em.timestamp ? new Date() : null))
-              .setThumbnail(em.embed ? em.embed.thumbnail : em.thumbnail)
-              .setFooter({ text: format(em.embed ? em.embed.footer.text : (em.footer ? em.footer.text : null) ), avatarURL:  em.embed ? em.embed.footer.icon_url : (em.footer ? em.footer.icon_url : null) });
-            const cont = format(em.embed ? em.embed.content : null);
+              .setColor(em.embed ? em.embed?.color : (em.color ? em.color : bot.color))
+              .setImage(em.embed ? em.embed?.image : (em.image ? em.image : 'https://i.imgur.com/8MggL9S.png'))
+              .setTimestamp(em.embed ? em.embed?.timestamp : (em.timestamp ? new Date() : null))
+              .setThumbnail(em.embed ? em.embed?.thumbnail : em.thumbnail)
+              .setFooter({ text: format(em.embed ? em.embed?.footer.text : (em.footer ? em.footer.text : null) ), avatarURL:  em.embed ? em.embed?.footer.icon_url : (em.footer ? em.footer.icon_url : null) });
+            const cont = format(em.embed ? em.embed?.content : null);
 
         if (guild.boost_embedtgl) {
           await boostChannel.send({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } });

@@ -202,8 +202,9 @@ module.exports = {
 
       if (sub === 'content') {
         const msg = interaction.options.getString('message');
-        const img = interaction.options.getString('image').url;
+        const img = interaction.options.getString('image');
 
+        if (msg) {
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
           {
@@ -211,12 +212,13 @@ module.exports = {
           },
         );
         return await bot.successEmbed(bot, interaction, `**Boost Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!`);
-
+        }
+        
         if (img) {
           await guilds.findOneAndUpdate(
             { guildId: interaction.guild.id },
             {
-              boost_image: img,
+              boost_image: img.url,
             },
           );
           return await bot.successEmbed(bot, interaction, `**Boost Channel Has Been Set Successfully in ${img}!**. Used only when embed toggle is off`);

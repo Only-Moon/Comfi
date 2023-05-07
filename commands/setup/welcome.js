@@ -289,8 +289,8 @@ module.exports = {
 
       if (sub === 'content') {
         const msg = interaction.options.getString('message');
-        const img = interaction.options.getString('image').url;
-
+        const img = interaction.options.getString('image');
+        if (msg) {
         await guilds.findOneAndUpdate(
           { guildId: interaction.guild.id },
           {
@@ -298,12 +298,12 @@ module.exports = {
           },
         );
         return await bot.successEmbed(bot, interaction, `**Welcome Content Has Been Set Successfully as \`${msg}\`!**. Used if embed toggle is off!!`);
-
+        }
         if (img) {
           await guilds.findOneAndUpdate(
             { guildId: interaction.guild.id },
             {
-              welcome_image: img,
+              welcome_image: img.url,
             },
           );
           return await bot.successEmbed(bot, interaction, `**Welcome Image Has Been Set Successfully in ${img}!**`);
