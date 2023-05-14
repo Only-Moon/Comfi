@@ -12,8 +12,8 @@ const hook = new WebhookClient({ url: process.env.debughook });
 
 bot
   .on('debug', (info) => {
-    bot.logger.debug(info);
-    hook.send({ content: info });
+    //bot.logger.debug(info);
+    //hook.send({ content: info });
     })
   .on('disconnect', (e) => bot.logger.log(`disconnect \n${e}`))
   .on('reconnecting', (e) => bot.logger.log(`Bot is reconnecting \n${e}`))

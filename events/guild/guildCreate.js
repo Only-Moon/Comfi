@@ -22,7 +22,7 @@ bot.on('guildCreate', async (guild) => {
   {
     const ch = guild.channels.cache.find(
       (channel) => channel.type === ChannelType.GuildText
-				&& channel.permissionsFor(guild.members.me).has(bot.functions.fixPermissions('SEND_MESSAGES')),
+				&& channel.permissionsFor(guild.members.me).has("SendMessages"),
     );
 
     const button = new ButtonBuilder()
