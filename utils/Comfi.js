@@ -25,7 +25,7 @@ class Comfi extends Discord.Client {
 					},
 					users: {
 						interval: 3600, // Every hour...
-						filter: user => user ? user?.bot : true && user?.id !== this?.user?.id, // Remove all bots.
+						filter: () => user => user?.bot && user.id !== user?.client.user?.id, // Remove all bots.
 					},
 				},
 			failIfNotExists: true,
