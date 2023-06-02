@@ -21,7 +21,7 @@ const bot = require('../index');
  */
 
 /**
- --- options ---
+  --- options ---
 
 embedTitle => String
 embedColor => String

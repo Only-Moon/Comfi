@@ -47,7 +47,7 @@ class Comfi extends Discord.Client {
 			restRequestTimeout: 30000
 		})
 
-		this.color = process.env.color_name || 0xF4B3CA
+		this.color = parseInt(process.env.color_name) || 0xF4B3CA
 		this.logger = require('./Logger')
 		this.dash = process.env.web
 		this.ms = require('ms')

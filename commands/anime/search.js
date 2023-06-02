@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE
 */
 
-const { get } = require('request-promise-native');
+const get = require('axios');
 const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
