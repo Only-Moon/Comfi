@@ -15,7 +15,7 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "git": "^0.1.5",
-    "glob": "^10.2.2",
+    "glob": "^10.2.7",
     "google-play-scraper": "^9.1.1",
     "imdb-api": "^4.4.1",
     "link-checker-malicious": "^1.5.0",
