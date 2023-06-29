@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE
 */
 
-const { CommandInteraction, ApplicationCommandOptionType } = require('discord.js');
+const { CommandInteraction, ApplicationCommandOptionType, ButtonStyle } = require('discord.js');
 const simplydjs = require('simply-djs');
 
 module.exports = {
@@ -30,13 +30,25 @@ module.exports = {
    */
   run: async (bot, interaction, args) => {
     try {
+
+      let embed = {
+        color: bot.color
+      }
+
       simplydjs.rps(interaction, {
         embed: {
-          color: bot.color,
-          credit: false,
+          game: embed,
+          request: embed,
+          win: embed,
+          draw: embed,
+          timeout: embed,
+          decline: embed
         },
-        drawColor: bot.color,
-        winColor: bot.color,
+        buttons: {
+          rock: { style: ButtonStyle.Primary },
+          paper: { style: ButtonStyle.Success },
+          scissor: { style: ButtonStyle.Danger }
+        },
       });
     } catch (e) {
       await bot.senderror(interaction, e);

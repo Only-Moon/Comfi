@@ -26,7 +26,6 @@ module.exports = {
         embed: {
           color: bot.color,
           footer: 'Comfi™ Calculator',
-          credit: false,
         },
       });
     } catch (e) {
