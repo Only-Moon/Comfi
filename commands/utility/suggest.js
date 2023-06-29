@@ -38,19 +38,24 @@ module.exports = {
 
         if (!channel) return;
 
-        simplydjs.suggestSystem(interaction, {
+        simplydjs.suggest(interaction, {
           channelId: channel,
           suggestion,
           embed: {
             title: 'Suggestion',
-            credit: false,
             color: bot.color,
             footer: { text: 'Comfi™ Suggestion System' },
           },
           buttons: {
             upvote: { style: ButtonStyle.Secondary, emoji: bot.tick },
             downvote: { style: ButtonStyle.Secondary, emoji: bot.crosss },
+            votedInfo: { style: ButtonStyle.Secondary }
           },
+          progress: { // TODO: Update these emojis
+            up: '🟩',
+            down: '🟥',
+            blank: '⬛'
+          }
         });
       } else if (!guild.suggestions) {
         return await bot.errorEmbed(bot, interaction, 'Please Ask an Admin to set the suggestion channel first by using **/suggestion**');

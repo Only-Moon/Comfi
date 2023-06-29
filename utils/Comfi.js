@@ -226,7 +226,7 @@ class Comfi extends Discord.Client {
 	async errorEmbed(bot, interaction, argument, img) {
 		const embed = new Discord.EmbedBuilder()
 			.setDescription(`${this.emoji('cross_CS')} • ${argument}`)
-			.setColor(bot.color)
+			.setColor(0xFE6666)
 		if (img && bot.functions.match_regex('img', img)) {
 			embed.setImage(img)
 		}
@@ -261,7 +261,7 @@ class Comfi extends Discord.Client {
 		const embed = new Discord.EmbedBuilder()
 			.setTitle(`${this.emoji('error_CS')} • Unknown Error Occured`)
 			.setDescription(`${argument}`)
-			.setColor('#FE6666')
+			.setColor(0xFE6666)
 
 		if (button === false) {
 			if (interaction.commandId) {

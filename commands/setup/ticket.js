@@ -6,7 +6,7 @@
 */
 
 const simplydjs = require('simply-djs');
-const { CommandInteraction, ApplicationCommandOptionType, ChannelType } = require('discord.js');
+const { CommandInteraction, ApplicationCommandOptionType, ChannelType, ButtonStyle } = require('discord.js');
 const guilds = require('../../models/guild');
 
 module.exports = {
@@ -23,9 +23,22 @@ module.exports = {
         {
           type: ApplicationCommandOptionType.Channel,
           description: 'Category id to open tickets',
-          channelTypes: [ChannelType.GuildText],
+          channelTypes: [ChannelType.GuildCategory],
           name: 'id',
           required: true,
+        },
+      ],
+    },
+    {
+      type: ApplicationCommandOptionType.Subcommand,
+      description: 'Sets the name for ticket channel (eg: support-{username}/staff-app-{username}).',
+      name: 'name',
+      options: [
+        {
+          type: ApplicationCommandOptionType.String,
+          description: 'give to use',
+          name: 'name',
+          required: false,
         },
       ],
     },
@@ -87,6 +100,20 @@ module.exports = {
         return await bot.successEmbed(bot, interaction, `**The Ticket Category has been set to**${Channel.toString()}`);
       }
 
+      if (option === 'name') {
+        const name = interaction.options.getString('name') || "{username}";
+
+        if (guild.ticket_name === name) {
+          return await bot.errorEmbed(bot, interaction, `**Ticket Channel Name is already set as ${name} !**`);
+        }
+        await guilds.findOneAndUpdate({ guildId: interaction.guild.id }, {
+          ticket: true,
+          ticket_name: name,
+        });
+
+        return await bot.successEmbed(bot, interaction, `**The Ticket Channel Name has been set to **${name}`);
+      }
+
       if (option === 'role') {
         const role = interaction.options.getRole('role')
           || bot.guilds.cache.get(interaction.guild.id).roles.cache.get(args[0])
@@ -110,15 +137,14 @@ module.exports = {
       if (option === 'display') {
         const desc = interaction.options.getString('subject') || 'Create a new Ticket By Clicking Below';
 
-        simplydjs.ticketSystem(interaction, {
+        simplydjs.ticketSetup(interaction, {
           channelId: interaction.channel.id,
           embed: {
             description: desc,
             color: bot.color,
-            credit: false,
             footer: { text: `${interaction.guild.name.toLocaleUpperCase()}'s Ticket System` },
           },
-          button: { style: 'SECONDARY', emoji: '855791964975530004' },
+          button: { style: ButtonStyle.Secondary, emoji: '855791964975530004' },
         });
       }
 

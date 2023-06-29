@@ -534,19 +534,7 @@ module.exports = {
         welcome,
       ];
 
-      //await pagination(interaction, pages);
-      
-      simplydjs.embedPages(interaction, pages, {
-        buttons: {
-          firstBtn: { style: "SECONDARY", emoji: "884420649580363796" },
-          nextBtn: { style: "SECONDARY", emoji: "884421235965059113" },
-          backBtn: { style: "SECONDARY", emoji: "884421503205134356" },
-          lastBtn: { style: "SECONDARY", emoji: "884420650549272586" },
-          deleteBtn: { style: "SECONDARY", emoji: "891534962917007410" }
-        },
-        skips: true,
-        count: true
-      })
+    await bot.btnPage(interaction, pages);
       
     } catch (e) {
       await bot.senderror(interaction, e);

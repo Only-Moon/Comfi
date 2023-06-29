@@ -228,7 +228,7 @@ module.exports = {
       }
 
       if (sub === 'help') {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle('Leveling System variables', bot.user.displayAvatarURL())
           .setDescription('Need Help setting Leveling system?')
           .addFields(

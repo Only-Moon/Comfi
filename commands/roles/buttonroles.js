@@ -26,7 +26,7 @@ module.exports = {
           channelTypes: [ChannelType.GuildText],
         },
         {
-          name: 'message',
+          name: 'messageId',
           type: ApplicationCommandOptionType.String,
           description: 'the message id',
           required: true,
@@ -88,7 +88,7 @@ module.exports = {
           channelTypes: [ChannelType.GuildText],
         },
         {
-          name: 'message',
+          name: 'messageId',
           type: ApplicationCommandOptionType.String,
           description: 'the message id',
           required: true,
@@ -109,13 +109,16 @@ module.exports = {
 
     try {
       if (options === 'add') {
-        simplydjs.betterBtnRole(bot, interaction, {
+        simplydjs.betterBtnRole(interaction, {
           type: 'add',
+          channel,
+          buttons,
+
         });
       }
 
       if (options === 'remove') {
-        simplydjs.betterBtnRole(bot, interaction, {
+        simplydjs.betterBtnRole(interaction, {
           type: 'remove',
         });
       }

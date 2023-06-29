@@ -65,6 +65,12 @@ module.exports = {
       required: false,
       channelTypes: [ChannelType.GuildText],
     },
+    {
+      name: 'prole',
+      type: ApplicationCommandOptionType.Role,
+      description: 'Role to ping for announcing this giveaway',
+      required: false,
+    },
   ],
   userperm: ['ManageGuild'],
   botperm: ['ManageGuild'],
@@ -81,22 +87,23 @@ module.exports = {
       const time = interaction.options.getString('time');
       const prize = interaction.options.getString('prize');
       const winner = interaction.options.getNumber('winners');
-
-      simplydjs.giveawaySystem(bot, interaction, {
-        time,
+      const prole = interaction.options.getRole("prole").id;
+// TODO: Add custom emojis
+      simplydjs.giveaway(bot, interaction, {
+        time: time,
         winners: winner,
-        prize,
-        channel,
+        prize: prize,
+        channel: channel,
         embed: {
           title: 'Giveaway',
           color: bot.color,
-          credit: false,
           footer: { text: 'Comfi™ Giveaway System' },
         },
-        req: {
+        requirements: {
           type,
           id,
         },
+        pingRole: prole
       });
     } catch {
       await bot.senderror(interaction, e);

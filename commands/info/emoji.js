@@ -14,7 +14,7 @@ const {
   ApplicationCommandOptionType,
   parseEmoji,
 } = require('discord.js');
-const simplydjs = require('simply-djs');
+
 
 module.exports = {
   name: 'emoji',

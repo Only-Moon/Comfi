@@ -474,7 +474,7 @@ function tips(interaction, client) {
   if (ran <= 11) {
     interaction.channel.send({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle('Tips')
           .setColor(client.color)
           .setDescription(`**💡 Did you know**\n${rTip}`)

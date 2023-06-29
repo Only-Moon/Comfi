@@ -5,8 +5,11 @@
 * For more information, see README.md and LICENSE
 */
 
-const { CommandInteraction, ApplicationCommandOptionType, Util } = require('discord.js');
-const simplydjs = require('simply-djs');
+const { CommandInteraction, 
+  ApplicationCommandOptionType, 
+  Util, 
+  ButtonStyle 
+} = require('discord.js');
 
 module.exports = {
   name: 'emotee',
@@ -232,15 +235,7 @@ module.exports = {
 
         const pages = [Embed1, Embed2];
 
-        simplydjs.embedPages(bot, interaction, pages, {
-          slash: true,
-          backEmoji: '884420649580363796',
-          delEmoji: '891534962917007410',
-          forwardEmoji: '884420650549272586',
-          btncolor: 'SECONDARY',
-          delcolor: 'SECONDARY',
-          skipBtn: false,
-        });
+        await bot.btnPage(interaction, pages);
       }
     } catch (e) {
       await bot.senderror(interaction, e);

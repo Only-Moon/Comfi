@@ -29,7 +29,6 @@ module.exports = async (message, bot) => {
       setTimeout(async () => {
         const max = 30;
         const min = 15;
-
         const amount = Math.floor(Math.random() * (max - min) + min);
 
         await users.findOneAndUpdate(
@@ -61,7 +60,9 @@ module.exports = async (message, bot) => {
             }
           });
         }, bot.ms('40s'));
+
       }
+
       if (user3.xp >= user.requiredXp) {
         await users.findOneAndUpdate(
           { userId: message.author.id, guildId: message.guild.id },
@@ -102,51 +103,63 @@ module.exports = async (message, bot) => {
 
         if (guild.leveling_embedtgl) {
           const emb = guild.leveling_embed.map(async (em) => {
-                        const embed = new EmbedBuilder()      
+          if (em.embed) em = em.embed
+          
+          const embed = new EmbedBuilder()      
               .setAuthor({
                 name:
-              em.embed ? em.embed?.author?.name : em.author?.name,
-                avatarURL: em.embed ? em.author.icon_url : em.author?.icon_url,
+              em.author?.name,
+                avatarURL: em.author?.icon_url,
               })
-              .setTitle(format(em.embed ? em.embed?.title : em.title))
-              .setDescription(format(em.embed ? em.embed : em.description))
-              .setColor(em.embed ? em.embed?.color : (em.color ? em.color : bot.color))
-              .setImage(em.embed ? em.embed?.image : (em.image ? em.image : 'https://i.imgur.com/8MggL9S.png'))
-              .setTimestamp(em.embed ? em.embed?.timestamp : (em.timestamp ? new Date() : null))
-              .setThumbnail(em.embed ? em.embed?.thumbnail : em.thumbnail)
-              .setFooter({ text: format(em.embed ? em.embed?.footer.text : (em.footer ? em.footer.text : null) ), avatarURL:  em.embed ? em.embed?.footer.icon_url : (em.footer ? em.footer.icon_url : null) });
-            const cont = format(em.embed ? em.embed?.content : null);
+              .setTitle(format(em.title))
+              .setDescription(format(em.description))
+              .setColor(em.color ? em.color : bot.color)
+              .setImage(em.image ? em.image : 'https://i.imgur.com/8MggL9S.png')
+              .setTimestamp(em.timestamp ? new Date() : null)
+              .setThumbnail(em.thumbnail)
+              .setFooter({ text: format(em.footer ? em.footer.text : null ), avatarURL: em.footer ? em.footer.icon_url : null });
+
+            const cont = format(em.content ? em.content : null);
+
             if (!channel) {
               return message
                 .reply({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
                 .catch(() => null);
+
             } if (guild.leveling_channel === 'message') {
               return message
                 .reply({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
                 .catch(() => null);
+
             }
             return channel
               .send({ content: `${cont}`, embeds: [embed], allowedMentions: { repliedUser: true } })
               .catch(() => null);
           });
+
         } else {
           const image = new AttachmentBuilder(guild.leveling_image);
+
           if (!channel) {
             return message
               .reply({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
               .catch(() => null);
+
           } if (guild.leveling_channel === 'message') {
             return message
               .reply({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
               .catch(() => null);
+
           }
           return channel
             .send({ content: `${format(guild.leveling_message)}`, files: [image], allowedMentions: { repliedUser: true } })
             .catch(() => null);
+
         }
       } else return;
     } else return;
   } catch (e) {
     await bot.senderror(interaction, e);
+
   }
 };

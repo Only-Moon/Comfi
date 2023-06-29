@@ -1,5 +1,5 @@
 const guilds = require('../../models/guild');
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { CommandInteraction, EmbedBuilder } = require("discord.js");
 const simplydjs = require("simply-djs")
 
 module.exports = {

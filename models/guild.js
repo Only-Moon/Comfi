@@ -41,6 +41,7 @@ const schema = new Schema({
   ticket: { type: Boolean, default: false },
   ticket_category: { type: String, default: 'NONE' },
   ticket_role: { type: String, default: 'NONE' },
+  ticket_name: { type: String, default: "{username}" },
 
   // Leveling
   leveling: { type: Boolean, default: false },

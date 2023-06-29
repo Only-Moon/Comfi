@@ -5,7 +5,7 @@
 * For more information, see README.md and LICENSE
 */
 
-const { CommandInteraction, MessageEmbed } = require('discord.js');
+const { CommandInteraction, EmbedBuilder } = require('discord.js');
 
 const users = require('../../models/users');
 const guilds = require('../../models/guild');

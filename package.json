@@ -30,7 +30,7 @@
     "relevant-urban": "^2.0.0",
     "request": "^2.88.2",
     "simple-node-logger": "^21.8.12",
-    "simply-djs": "^3.0.2",
+    "simply-djs": "4",
     "sourcebin_js": "0.0.3-ignore",
     "statcord.js": "^3.4.3",
     "twitter-api.js": "0.0.12",
