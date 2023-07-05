@@ -19,7 +19,7 @@
     "google-play-scraper": "^9.1.1",
     "imdb-api": "^4.4.1",
     "link-checker-malicious": "^1.5.0",
-    "mal-scraper": "^2.12.1",
+    "mal-scraper": "^2.13.0",
     "memer-api": "^4.0.2",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
