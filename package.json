@@ -1,72 +1,41 @@
-{
-  "name": "comfi",
-  "version": "2.6.5",
-  "description": "Multipurpose Bot",
-  "main": "index.js",
-  "dependencies": {
-    "@discordjs/rest": "^1.5.0",
-    "@napi-rs/canvas": "^0.1.34",
-    "anilist-node": "^1.13.1",
-    "axios": "^0.21.4",
-    "chalk": "^4.1.2",
-    "clarifai": "^2.9.1",
-    "discord-gamecord": "^4.1.0",
-    "discord-purger": "^1.0.3",
-    "discord.js": "^14.7.1",
-    "dotenv": "^16.1.4",
-    "git": "^0.1.5",
-    "glob": "^10.2.7",
-    "google-play-scraper": "^9.1.1",
-    "imdb-api": "^4.4.1",
-    "link-checker-malicious": "^1.5.0",
-    "mal-scraper": "^2.13.0",
-    "memer-api": "^4.0.2",
-    "moment": "^2.29.4",
-    "moment-duration-format": "^2.3.2",
-    "mongoose": "^6.10.5",
-    "ms": "^2.1.3",
-    "node-fetch": "^3.3.1",
-    "nodemon": "^2.0.20",
-    "relevant-urban": "^2.0.0",
-    "request": "^2.88.2",
-    "simple-node-logger": "^21.8.12",
-    "simply-djs": "4",
-    "sourcebin_js": "0.0.3-ignore",
-    "statcord.js": "^3.4.3",
-    "twitter-api.js": "0.0.12",
-    "uuid": "^8.3.2",
-    "weather-js": "^2.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.32.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "husky": "^8.0.3",
-    "komit": "^1.0.5",
-    "node": "^17.9.1",
-    "npm": "^9.3.0",
-    "prettier": "^2.8.3",
-    "pretty-quick": "^3.1.3"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --delay 10 index.js",
-    "start": "node --trace-deprecation --trace-warnings index.js",
-    "stop": "kill 1",
-    "prepare": "husky install",
-    "lint": "eslint --fix .",
-    "postinstall": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "komit $HUSKY_GIT_PARAMS"
-    }
-  },
-  "author": "Xx-Mohit-xX",
-  "license": "ISC",
-  "funding": {
-    "type": "paypal",
-    "url": "https://paypal.me/mohitk81?country.x=IN&locale.x=en_GB"
-  },
-  "repository": "https://github.com/Xx-Mohit-xX/Comfi.git"
+const fs = require('fs');
+const axios = require('axios');
+const { execSync } = require('child_process');
+
+/**
+ * Get the latest version of a package from the npm repository.
+ * @param {string} packageName - The name of the package.
+ * @returns {string} The latest version of the package.
+ */
+async function getLatestVersion(packageName) {
+  const { data } = await axios.get(`https://registry.npmjs.org/${packageName}`);
+  return data['dist-tags'].latest;
 }
+
+/**
+ * Update the npm packages in the package.json file.
+ */
+async function updatePackages() {
+  const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+  const { dependencies, devDependencies } = packageJson;
+
+  for (const [packageName, currentVersion] of Object.entries(dependencies)) {
+    const latestVersion = await getLatestVersion(packageName);
+    if (latestVersion !== currentVersion) {
+      dependencies[packageName] = latestVersion;
+    }
+  }
+
+  for (const [packageName, currentVersion] of Object.entries(devDependencies)) {
+    const latestVersion = await getLatestVersion(packageName);
+    if (latestVersion !== currentVersion) {
+      devDependencies[packageName] = latestVersion;
+    }
+  }
+
+  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2), 'utf8');
+  execSync('yarn upgrade', { stdio: 'inherit' });
+}
+
+updatePackages();
+
