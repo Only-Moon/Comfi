@@ -55,7 +55,8 @@
     "stop": "kill 1",
     "prepare": "husky install",
     "lint": "eslint --fix .",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "update-packages": "node utils/packageUpdater.js"
   },
   "husky": {
     "hooks": {
@@ -70,3 +71,4 @@
   },
   "repository": "https://github.com/Xx-Mohit-xX/Comfi.git"
 }
+
