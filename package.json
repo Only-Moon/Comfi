@@ -54,8 +54,7 @@
     "start": "node --trace-deprecation --trace-warnings index.js",
     "stop": "kill 1",
     "prepare": "husky install",
-    "lint": "eslint --fix .",
-    "update-packages": "node utils/packageUpdater.js"
+    "lint": "eslint --fix ."
   },
   "husky": {
     "hooks": {
@@ -70,4 +69,3 @@
   },
   "repository": "https://github.com/Xx-Mohit-xX/Comfi.git"
 }
-
