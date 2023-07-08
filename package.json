@@ -54,8 +54,7 @@
     "start": "node --trace-deprecation --trace-warnings index.js",
     "stop": "kill 1",
     "prepare": "husky install",
-    "lint": "eslint --fix .",
-    "postinstall": "husky install"
+    "lint": "eslint --fix ."
   },
   "husky": {
     "hooks": {
