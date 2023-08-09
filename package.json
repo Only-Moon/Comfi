@@ -16,7 +16,7 @@
     "dotenv": "^16.1.4",
     "git": "^0.1.5",
     "glob": "^10.2.7",
-    "google-play-scraper": "^9.1.1",
+    "google-play-scraper": "^10.0.0",
     "imdb-api": "^4.4.1",
     "link-checker-malicious": "^1.5.0",
     "mal-scraper": "^2.13.0",
