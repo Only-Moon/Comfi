@@ -2,7 +2,7 @@
 <a href="https://comfibot.ml/invite">
 <img src="https://i.imgur.com/At2XO1M.png" width="100"> 
 <h1>Comfi</h1> 
-<img src="https://img.shields.io/badge/discord.js-v13-7354F6?logo=discord&logoColor=white&style=flat-square"> 
+<img src="https://img.shields.io/badge/discord.js-v14-7354F6?logo=discord&logoColor=white&style=flat-square"> 
 <img src="https://img.shields.io/github/stars/Xx-Mohit-xX/Comfi.svg?logo=github&style=flat-square"> 
 <img src="https://img.shields.io/github/workflow/status/Xx-Mohit-xX/Comfi/CodeQL?label=test&logo=circleci&style=flat-square"> 
 <img src="https://img.shields.io/uptimerobot/ratio/7/m789124615-03e67c33f3ffeade6f2b8d05?logo=google-cloud&logoColor=white&style=flat-square"> 
