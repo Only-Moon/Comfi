@@ -26,7 +26,7 @@ module.exports = {
           channelTypes: [ChannelType.GuildText],
         },
         {
-          name: 'messageId',
+          name: 'messageid',
           type: ApplicationCommandOptionType.String,
           description: 'the message id',
           required: true,
@@ -88,7 +88,7 @@ module.exports = {
           channelTypes: [ChannelType.GuildText],
         },
         {
-          name: 'messageId',
+          name: 'messageid',
           type: ApplicationCommandOptionType.String,
           description: 'the message id',
           required: true,

@@ -13,7 +13,6 @@ const guilds = require('../../models/guild');
 /**
  * @param {Interaction} interaction
  */
-
 bot.on('interactionCreate', async (interaction) => {
   if (interaction.isStringSelectMenu()) {
     const guild = await guilds.findOne({ guildId: interaction.guild.id });

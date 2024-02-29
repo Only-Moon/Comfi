@@ -10,40 +10,64 @@ const {
 const guilds = require('../models/guild');
 
 /**
-  @param {Discord.CommandInteraction} interaction
-  */
+ * Determines the color to use for an interaction.
+ *
+ * If a hex color string is passed, returns it directly.
+ *
+ * If a CommandInteraction or Message is passed,
+ * looks up the configured color for that guild and returns it.
+ *
+ * Falls back to a default color if none of the above apply.
+ */
 function color(interaction) {
-  let color;
-  if (!(interaction instanceof CommandInteraction) && /^#[0-9A-F]{6}$/i.test(interaction)) {
-    color = interaction;
-    return color;
-  } if (interaction instanceof CommandInteraction || interaction instanceof Message) {
-    let dbcolor;
-    const guild = guilds.findOne({ guildId: interaction.guild.id }).then({}, (guild, err) => {
-      color = guild.color;
-      return dbcolor;
-    });
-    color = dbcolor;
-    return color;
-  }
-  color = '#F4B3CA';
-  return color;
+	let color
+	if (
+		!(interaction instanceof CommandInteraction) &&
+		/^#[0-9A-F]{6}$/i.test(interaction)
+	) {
+		color = interaction
+		return color
+	}
+	if (
+		interaction instanceof CommandInteraction ||
+		interaction instanceof Message
+	) {
+		let dbcolor
+		const guild = guilds
+			.findOne({ guildId: interaction.guild.id })
+			.then({}, (guild, err) => {
+				color = guild.color
+				return dbcolor
+			})
+		color = dbcolor
+		return color
+	}
+	color = '#F4B3CA'
+	return color
 
-  return color;
+	return color
 }
 
 /**
 * @param {img || color} regex
 * @param {Discord.Message} message
 */
+/**
+ * Checks if a message matches a given regex.
+ *
+ * @param {RegExp} regex - The regex to test against.
+ * @param {Discord.Message} message - The message to test.
+ * @returns {boolean} Whether the message matches the regex.
+ */
 function match_regex(regex, message) {
-  regex = regex === 'img'
-    ? new RegExp('\.jpg|jpeg|png|webp|avif|gif|svg')
-    : false || regex === 'color'
-      ? new RegExp('^#[0-9A-F||a-z]{6}$', 'i')
-      : false;
+	regex =
+		regex === 'img'
+			? new RegExp('.jpg|jpeg|png|webp|avif|gif|svg')
+			: false || regex === 'color'
+			? new RegExp('^#[0-9A-F||a-z]{6}$', 'i')
+			: false
 
-  return regex.test(message);
+	return regex.test(message)
 }
 
 /**
@@ -57,46 +81,57 @@ function rndint(max, min) {
 /**
  * @param {string} timestamp - the timestamp
 */
+/**
+ * Converts a timestamp to a human readable string with days, hours, minutes, and seconds.
+ * @param {number} timestamp - The timestamp in milliseconds to convert.
+ * @returns {string} The human readable time string.
+ */
 function timer(timestamp) {
-  const timeLeft = timestamp;
-  const days = Math.floor(timeLeft / 86400000);
-  const hours = Math.floor(timeLeft / 3600000) - days * 24;
-  const minutes = Math.floor(timeLeft / 60000) - days * 1440 - hours * 60;
-  const seconds = Math.floor(timeLeft / 1000) - days * 86400 - hours * 3600 - minutes * 60;
-  const mseconds = timeLeft / 1000 - days * 86400 - hours * 3600 - minutes * 60;
-  let string = '';
-  if (days) string += `${days} ${days == 1 ? 'day ' : 'days '}`;
-  if (hours) string += `${hours} ${hours == 1 ? 'hour ' : 'hours '}`;
-  if (minutes) {
-    string += `${minutes} ${minutes == 1 ? 'minute ' : 'minutes '}`;
-  }
-  if (seconds) {
-    string += `${seconds} ${seconds == 1 ? 'second ' : 'seconds '}`;
-  }
-  if (!string.length) string = `${mseconds.toFixed(1)} second`;
-  return string;
+	const timeLeft = timestamp
+	const days = Math.floor(timeLeft / 86400000)
+	const hours = Math.floor(timeLeft / 3600000) - days * 24
+	const minutes = Math.floor(timeLeft / 60000) - days * 1440 - hours * 60
+	const seconds =
+		Math.floor(timeLeft / 1000) - days * 86400 - hours * 3600 - minutes * 60
+	const mseconds = timeLeft / 1000 - days * 86400 - hours * 3600 - minutes * 60
+	let string = ''
+	if (days) string += `${days} ${days == 1 ? 'day ' : 'days '}`
+	if (hours) string += `${hours} ${hours == 1 ? 'hour ' : 'hours '}`
+	if (minutes) {
+		string += `${minutes} ${minutes == 1 ? 'minute ' : 'minutes '}`
+	}
+	if (seconds) {
+		string += `${seconds} ${seconds == 1 ? 'second ' : 'seconds '}`
+	}
+	if (!string.length) string = `${mseconds.toFixed(1)} second`
+	return string
 }
 
 /**
  * @param {string} ms - time in ms
 */
 function sleep(ms) {
-  new Promise((resolve) => setTimeout(resolve, ms));
+    /**
+	 * Pauses execution for the given number of milliseconds.
+	 *
+	 * @param {number} ms - The number of milliseconds to pause for.
+	 */
+	new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 /**
  * @param {string} str - time in ms
-*/
+ */
 function toHHMMSS(str) {
-  const sec_num = parseInt(str, 10);
-  let hours = Math.floor(sec_num / 3600);
-  let minutes = Math.floor((sec_num - hours * 3600) / 60);
-  let seconds = sec_num - hours * 3600 - minutes * 60;
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
+	const sec_num = parseInt(str, 10)
+	let hours = Math.floor(sec_num / 3600)
+	let minutes = Math.floor((sec_num - hours * 3600) / 60)
+	let seconds = sec_num - hours * 3600 - minutes * 60
+	if (hours < 10) {
+		hours = `0${hours}`
+	}
+	if (minutes < 10) {
+		minutes = `0${minutes}`
   }
   if (seconds < 10) {
     seconds = `0${seconds}`;
@@ -107,53 +142,60 @@ function toHHMMSS(str) {
 /**
  * @param {string[]} arr - array of permissions in v13 forms
 */
+/**
+ * Converts an array of permission strings in v13 format to v14 format by replacing permission names with permission values.
+ *
+ * @param {string[]} arr - Array of permission strings in v13 format
+ * @returns {string[]} Array of permission strings in v14 format
+ */
 function fixPermissions(arr = Array) {
-  let perm = arr[0];
+	let perm = arr[0]
 
-  const permissions = [
-    { name: 'ADMINISTRATOR', value: 'Administrator' },
-    { name: 'VIEW_AUDIT_LOG', value: 'ViewAuditLog' },
-    { name: 'VIEW_GUILD_INSIGHTS', value: 'ViewGuildInsights' },
-    { name: 'MANAGE_GUILD', value: 'ManageGuild' },
-    { name: 'MANAGE_ROLES', value: 'ManageRoles' },
-    { name: 'MANAGE_CHANNELS', value: 'ManageChannels' },
-    { name: 'KICK_MEMBERS', value: 'KickMembers' },
-    { name: 'BAN_MEMBERS', value: 'BanMembers' },
-    { name: 'CREATE_INSTANT_INVITE', value: 'CreateInstantInvite' },
-    { name: 'CHANGE_NICKNAME', value: 'ChangeNickname' },
-    { name: 'MANAGE_NICKNAMES', value: 'ManageNicknames' },
-    { name: 'MANAGE_EMOJIS_AND_STICKERS', value: 'ManageEmojisandStickers' },
-    { name: 'MANAGE_WEBHOOKS', value: 'ManageWebhooks' },
-    { name: 'VIEW_CHANNEL', value: 'ViewChannels' },
-    { name: 'SEND_MESSAGES', value: 'SendMessages' },
-    { name: 'SEND_TTS_MESSAGES', value: 'SendTTSMessages' },
-    { name: 'MANAGE_MESSAGES', value: 'ManageMessages' },
-    { name: 'EMBED_LINKS', value: 'EmbedLinks' },
-    { name: 'ATTACH_FILES', value: 'AttachFiles' },
-    { name: 'READ_MESSAGE_HISTORY', value: 'ReadMessageHistory' },
-    { name: 'MENTION_EVERYONE', value: 'MentionEveryone' },
-    { name: 'USE_EXTERNAL_EMOJIS', value: 'UseExternalEmojis' },
-    { name: 'ADD_REACTIONS', value: 'AddReactions' },
-    { name: 'CONNECT', value: 'Connect' },
-    { name: 'SPEAK', value: 'Speak' },
-    { name: 'STREAM', value: 'Stream' },
-    { name: 'MUTE_MEMBERS', value: 'MuteMembers' },
-    { name: 'DEAFEN_MEMBERS', value: 'DeafenMembers' },
-    { name: 'MOVE_MEMBERS', value: 'MoveMembers' },
-    { name: 'USE_VAD', value: 'UseVAD' },
-    { name: 'PRIORITY_SPEAKER', value: 'PrioritySpeaker' },
-    { name: 'REQUEST_TO_SPEAK', value: 'RequestToSpeak' },
-    { name: 'MANAGE_THREADS', value: 'ManageThreads' },
-    { name: 'USE_PUBLIC_THREADS', value: 'UsePublicThreads' },
-    { name: 'USE_PRIVATE_THREADS', value: 'UsePrivateThreads' },
-    { name: 'USE_EXTERNAL_STICKERS', value: 'UseExternalStickers' },
-    { name: 'USE_APPLICATION_COMMANDS', value: 'UseApplicationCommands' },
-    { name: 'MODERATE_MEMBERS', value: 'ModerateMembers' },
-  ];
+	const permissions = [
+		{ name: 'ADMINISTRATOR', value: 'Administrator' },
+		{ name: 'VIEW_AUDIT_LOG', value: 'ViewAuditLog' },
+		{ name: 'VIEW_GUILD_INSIGHTS', value: 'ViewGuildInsights' },
+		{ name: 'MANAGE_GUILD', value: 'ManageGuild' },
+		{ name: 'MANAGE_ROLES', value: 'ManageRoles' },
+		{ name: 'MANAGE_CHANNELS', value: 'ManageChannels' },
+		{ name: 'KICK_MEMBERS', value: 'KickMembers' },
+		{ name: 'BAN_MEMBERS', value: 'BanMembers' },
+		{ name: 'CREATE_INSTANT_INVITE', value: 'CreateInstantInvite' },
+		{ name: 'CHANGE_NICKNAME', value: 'ChangeNickname' },
+		{ name: 'MANAGE_NICKNAMES', value: 'ManageNicknames' },
+		{ name: 'MANAGE_EMOJIS_AND_STICKERS', value: 'ManageEmojisandStickers' },
+		{ name: 'MANAGE_WEBHOOKS', value: 'ManageWebhooks' },
+		{ name: 'VIEW_CHANNEL', value: 'ViewChannels' },
+		{ name: 'SEND_MESSAGES', value: 'SendMessages' },
+		{ name: 'SEND_TTS_MESSAGES', value: 'SendTTSMessages' },
+		{ name: 'MANAGE_MESSAGES', value: 'ManageMessages' },
+		{ name: 'EMBED_LINKS', value: 'EmbedLinks' },
+		{ name: 'ATTACH_FILES', value: 'AttachFiles' },
+		{ name: 'READ_MESSAGE_HISTORY', value: 'ReadMessageHistory' },
+		{ name: 'MENTION_EVERYONE', value: 'MentionEveryone' },
+		{ name: 'USE_EXTERNAL_EMOJIS', value: 'UseExternalEmojis' },
+		{ name: 'ADD_REACTIONS', value: 'AddReactions' },
+		{ name: 'CONNECT', value: 'Connect' },
+		{ name: 'SPEAK', value: 'Speak' },
+		{ name: 'STREAM', value: 'Stream' },
+		{ name: 'MUTE_MEMBERS', value: 'MuteMembers' },
+		{ name: 'DEAFEN_MEMBERS', value: 'DeafenMembers' },
+		{ name: 'MOVE_MEMBERS', value: 'MoveMembers' },
+		{ name: 'USE_VAD', value: 'UseVAD' },
+		{ name: 'PRIORITY_SPEAKER', value: 'PrioritySpeaker' },
+		{ name: 'REQUEST_TO_SPEAK', value: 'RequestToSpeak' },
+		{ name: 'MANAGE_THREADS', value: 'ManageThreads' },
+		{ name: 'USE_PUBLIC_THREADS', value: 'UsePublicThreads' },
+		{ name: 'USE_PRIVATE_THREADS', value: 'UsePrivateThreads' },
+		{ name: 'USE_EXTERNAL_STICKERS', value: 'UseExternalStickers' },
+		{ name: 'USE_APPLICATION_COMMANDS', value: 'UseApplicationCommands' },
+		{ name: 'MODERATE_MEMBERS', value: 'ModerateMembers' }
+	]
 
-  for (const { name, value } of permissions) perm = perm.replace(new RegExp(name, 'igm'), value);
+	for (const { name, value } of permissions)
+		perm = perm.replace(new RegExp(name, 'igm'), value)
 
-  return [perm];
+	return [perm]
 }
 
 /**
@@ -171,13 +213,20 @@ function formatPerms(perm) {
 /**
  * @param {string[]} arr - array
 */
+/**
+ * Trims an array to the first 10 elements and appends
+ * a string with the number of additional elements if truncated.
+ *
+ * @param {Array} arr - The array to trim
+ * @returns {string} The array elements joined by ' **|** '
+ */
 function trimArray(arr = []) {
-  if (arr.length > 10) {
-    const length = arr.length - 10;
-    arr = arr.slice(0, 10);
-    arr.push(`\n${length} more...`);
-  }
-  return arr.join(' **|** ');
+	if (arr.length > 10) {
+		const length = arr.length - 10
+		arr = arr.slice(0, 10)
+		arr.push(`\n${length} more...`)
+	}
+	return arr.join(' **|** ')
 }
 
 /**
@@ -200,35 +249,41 @@ function format(str) {
 /**
  * @param {String[]} arr - array of server features
 */
+/**
+ * Formats an array of server features into a string of enabled features.
+ *
+ * @param {String[]} arr - Array of server feature keys
+ * @returns {String} String of enabled features
+ */
 function fixFeatures(arr = []) {
-  const all = {
-    ANIMATED_ICON: 'Animated Icon',
-    BANNER: 'Banner',
-    COMMERCE: 'Commerce',
-    COMMUNITY: 'Community',
-    DISCOVERABLE: 'Discoverable',
-    FEATURABLE: 'Featurable',
-    INVITE_SPLASH: 'Invite Splash',
-    MEMBER_VERIFICATION_GATE_ENABLED: 'Member Verification Gate Enabled',
-    NEWS: 'News',
-    PARTNERED: 'Partnered',
-    PREVIEW_ENABLED: 'Preview Enabled',
-    VANITY_URL: 'Vanity URL',
-    VERIFIED: 'Verified',
-    VIP_REGIONS: 'VIP Region',
-    WELCOME_SCREEN_ENABLED: 'Welcome Screen Enabled',
-    TICKETED_EVENTS_ENABLED: 'Ticketed Events Enabled',
-    MONETIZATION_ENABLED: 'Monetization Enabled',
-    MORE_STICKERS: 'More Stickers',
-    THREE_DAY_THREAD_ARCHIVE: 'Three Day Thread Archive',
-    SEVEN_DAY_THREAD_ARCHIVE: 'Seven Day Thread Archive',
-    PRIVATE_THREADS: 'Private Threads,',
-  };
-  const final = [];
-  for (const feature in all) {
-    if (arr.includes(feature)) final.push(`✅ ${all[feature]}`);
-  }
-  return `${final.join('\n')}`;
+	const all = {
+		ANIMATED_ICON: 'Animated Icon',
+		BANNER: 'Banner',
+		COMMERCE: 'Commerce',
+		COMMUNITY: 'Community',
+		DISCOVERABLE: 'Discoverable',
+		FEATURABLE: 'Featurable',
+		INVITE_SPLASH: 'Invite Splash',
+		MEMBER_VERIFICATION_GATE_ENABLED: 'Member Verification Gate Enabled',
+		NEWS: 'News',
+		PARTNERED: 'Partnered',
+		PREVIEW_ENABLED: 'Preview Enabled',
+		VANITY_URL: 'Vanity URL',
+		VERIFIED: 'Verified',
+		VIP_REGIONS: 'VIP Region',
+		WELCOME_SCREEN_ENABLED: 'Welcome Screen Enabled',
+		TICKETED_EVENTS_ENABLED: 'Ticketed Events Enabled',
+		MONETIZATION_ENABLED: 'Monetization Enabled',
+		MORE_STICKERS: 'More Stickers',
+		THREE_DAY_THREAD_ARCHIVE: 'Three Day Thread Archive',
+		SEVEN_DAY_THREAD_ARCHIVE: 'Seven Day Thread Archive',
+		PRIVATE_THREADS: 'Private Threads,'
+	}
+	const final = []
+	for (const feature in all) {
+		if (arr.includes(feature)) final.push(`✅ ${all[feature]}`)
+	}
+	return `${final.join('\n')}`
 }
 
 const s = 1000;
@@ -335,27 +390,39 @@ function parse(str) {
  * @api private
  */
 
+/**
+ * Short format for `ms`.
+ *
+ * Formats the given milliseconds `ms` into a short human readable string.
+ * If `ms` is greater than or equal to 1 month, returns value in months.
+ * Progresses similarly down to seconds if not.
+ * If less than 1 second, returns value in ms.
+ * Rounds to nearest whole number.
+ *
+ * @param {Number} ms - Milliseconds to format
+ * @return {String} - Short formatted string
+ */
 function fmtShort(ms) {
-  const msAbs = Math.abs(ms);
-  if (msAbs >= mn) {
-    return `${Math.round(ms / mn)}mon`;
-  }
-  if (msAbs >= w) {
-    return `${Math.round(ms / w)}w`;
-  }
-  if (msAbs >= d) {
-    return `${Math.round(ms / d)}d`;
-  }
-  if (msAbs >= h) {
-    return `${Math.round(ms / h)}h`;
-  }
-  if (msAbs >= m) {
-    return `${Math.round(ms / m)}m`;
-  }
-  if (msAbs >= s) {
-    return `${Math.round(ms / s)}s`;
-  }
-  return `${ms}ms`;
+	const msAbs = Math.abs(ms)
+	if (msAbs >= mn) {
+		return `${Math.round(ms / mn)}mon`
+	}
+	if (msAbs >= w) {
+		return `${Math.round(ms / w)}w`
+	}
+	if (msAbs >= d) {
+		return `${Math.round(ms / d)}d`
+	}
+	if (msAbs >= h) {
+		return `${Math.round(ms / h)}h`
+	}
+	if (msAbs >= m) {
+		return `${Math.round(ms / m)}m`
+	}
+	if (msAbs >= s) {
+		return `${Math.round(ms / s)}s`
+	}
+	return `${ms}ms`
 }
 
 /**
@@ -363,27 +430,34 @@ function fmtShort(ms) {
  * @return {String}
  */
 
+/**
+ * Formats the given number of milliseconds into a long, human-readable string.
+ *
+ * Absolutizes and pluralizes the milliseconds based on common time units.
+ * Returns strings like "1 day", "2 hours", "3 minutes", etc.
+ * Falls back to returning just the number of milliseconds if less than a second.
+ */
 function fmtLong(ms) {
-  const msAbs = Math.abs(ms);
-  if (msAbs >= mn) {
-    return plural(ms, msAbs, mn, 'month');
-  }
-  if (msAbs >= w) {
-    return plural(ms, msAbs, w, 'week');
-  }
-  if (msAbs >= d) {
-    return plural(ms, msAbs, d, 'day');
-  }
-  if (msAbs >= h) {
-    return plural(ms, msAbs, h, 'hour');
-  }
-  if (msAbs >= m) {
-    return plural(ms, msAbs, m, 'minute');
-  }
-  if (msAbs >= s) {
-    return plural(ms, msAbs, s, 'second');
-  }
-  return `${ms} ms`;
+	const msAbs = Math.abs(ms)
+	if (msAbs >= mn) {
+		return plural(ms, msAbs, mn, 'month')
+	}
+	if (msAbs >= w) {
+		return plural(ms, msAbs, w, 'week')
+	}
+	if (msAbs >= d) {
+		return plural(ms, msAbs, d, 'day')
+	}
+	if (msAbs >= h) {
+		return plural(ms, msAbs, h, 'hour')
+	}
+	if (msAbs >= m) {
+		return plural(ms, msAbs, m, 'minute')
+	}
+	if (msAbs >= s) {
+		return plural(ms, msAbs, s, 'second')
+	}
+	return `${ms} ms`
 }
 
 function plural(ms, msAbs, nz, name) {
@@ -401,54 +475,62 @@ function selectRandom(array = []) {
 /**
  * @param {Discord.Embed} embed - get string from embed
 */
+/**
+ * Extracts all text content from a Discord embed object into a single string.
+ *
+ * Loops through the embed's title, description, fields, and footer to build the string.
+ * Performs text replacements on invites and links in the content.
+ * Formats timestamp in the footer to a human readable date/time string.
+ */
 function getAllTextFromEmbed(embed) {
-  let text = '';
-  function getTime(now) {
-    const date = new Date(now);
-    const escape = (value) => `0${value}`.slice(-2);
-    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+	let text = ''
+	function getTime(now) {
+		const date = new Date(now)
+		const escape = (value) => `0${value}`.slice(-2)
+		const ampm = date.getHours() >= 12 ? 'PM' : 'AM'
 
-    return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()} at ${escape(
-      date.getHours(),
-    )}:${escape(date.getMinutes())}:${escape(date.getSeconds())}${ampm}`;
-  }
+		return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()} at ${escape(
+			date.getHours()
+		)}:${escape(date.getMinutes())}:${escape(date.getSeconds())}${ampm}`
+	}
 
-  if (embed.title) {
-    text += `**${embed.title
-      .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
-      .replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}**`;
-  }
-  if (embed.description) {
-    text += `\n${embed.description
-      .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
-      .replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}`;
-  }
-  if (embed.fields) {
-    text += '\n';
-    for (const field of embed.fields) {
-      text += `\n**${field.name
-        .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
-        .replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}**\n ${field.value
-        .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
-        .replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}`;
-    }
-  }
-  if (embed.footer) {
-    let field = `\n\n**${embed.footer.text
-      .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
-      .replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}`;
+	if (embed.title) {
+		text += `**${embed.title
+			.replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
+			.replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}**`
+	}
+	if (embed.description) {
+		text += `\n${embed.description
+			.replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
+			.replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}`
+	}
+	if (embed.fields) {
+		text += '\n'
+		for (const field of embed.fields) {
+			text += `\n**${field.name
+				.replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
+				.replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}**\n ${field.value
+				.replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
+				.replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}`
+		}
+	}
+	if (embed.footer) {
+		let field = `\n\n**${embed.footer.text
+			.replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, 'Invite')
+			.replace(/\[(.*)\]\((.*)\)/g, 'Hyper link')}`
 
-    if (embed.timestamp) {
-      const time = embed.timestamp instanceof Date
-        ? getTime(embed.timestamp.getTime())
-        : embed.timestamp;
-      field += `at ${time}`;
-    }
+		if (embed.timestamp) {
+			const time =
+				embed.timestamp instanceof Date
+					? getTime(embed.timestamp.getTime())
+					: embed.timestamp
+			field += `at ${time}`
+		}
 
-    text += `${field}**`;
-  }
+		text += `${field}**`
+	}
 
-  return text;
+	return text
 }
 
 /**
@@ -463,30 +545,44 @@ function clean(text) {
   return text;
 }
 
+/**
+ * Sends a random tip to the user from a list of tips.
+ * Checks if a random number is below a threshold,
+ * and if so sends an embed with a random tip.
+ */
 function tips(interaction, client) {
-  const all = [
-    'You can report bugs in Support server !',
-    "If a gun isn't there, please be paitent and wait for the us to get the stats",
-    'Join Our Support server!',
-  ];
-  const ran = Math.floor(Math.random() * 50) + 2;
-  const rTip = all[Math.floor(Math.random() * all.length)];
-  if (ran <= 11) {
-    interaction.channel.send({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle('Tips')
-          .setColor(client.color)
-          .setDescription(`**💡 Did you know**\n${rTip}`)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
-          .setTimestamp()
-          .setURL(client.web),
-      ],
-    });
-  }
+	const all = [
+		'You can report bugs in Support server !',
+		"If a gun isn't there, please be paitent and wait for the us to get the stats",
+		'Join Our Support server!'
+	]
+	const ran = Math.floor(Math.random() * 50) + 2
+	const rTip = all[Math.floor(Math.random() * all.length)]
+	if (ran <= 11) {
+		interaction.channel.send({
+			embeds: [
+				new EmbedBuilder()
+					.setTitle('Tips')
+					.setColor(client.color)
+					.setDescription(`**💡 Did you know**\n${rTip}`)
+					.setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+					.setTimestamp()
+					.setURL(client.web)
+			]
+		})
+	}
 }
 
-/*
+/**
+ * Generates MessageActionRows containing MessageButtons 
+ * for inviting the bot, joining support server, visiting website, 
+ * YouTube channel, and Ko-fi page.
+ * 
+ * @param {Client} client - The Discord client
+ * @returns {MessageActionRow[]} - Array containing a MessageActionRow
+ * with the MessageButtons
+ */
+/** 
 function buttons(client) {
   const invite = new MessageButton()
     .setLabel("Invite the bot!")
@@ -526,24 +622,29 @@ function buttons(client) {
 }
 */
 
+/**
+ * Returns an object with styled console log methods using ANSI escape codes.
+ * The object properties are styled log methods like red(), blue() etc.
+ * The methods accept string arguments to log to the console in that style.
+ */
 const colorize = (...args) => ({
-  black: `\x1b[30m${args.join(' ')}`,
-  red: `\x1b[31m${args.join(' ')}`,
-  green: `\x1b[32m${args.join(' ')}`,
-  yellow: `\x1b[33m${args.join(' ')}`,
-  blue: `\x1b[34m${args.join(' ')}`,
-  magenta: `\x1b[35m${args.join(' ')}`,
-  cyan: `\x1b[36m${args.join(' ')}`,
-  white: `\x1b[37m${args.join(' ')}`,
-  bgBlack: `\x1b[40m${args.join(' ')}\x1b[0m`,
-  bgRed: `\x1b[41m${args.join(' ')}\x1b[0m`,
-  bgGreen: `\x1b[42m${args.join(' ')}\x1b[0m`,
-  bgYellow: `\x1b[43m${args.join(' ')}\x1b[0m`,
-  bgBlue: `\x1b[44m${args.join(' ')}\x1b[0m`,
-  bgMagenta: `\x1b[45m${args.join(' ')}\x1b[0m`,
-  bgCyan: `\x1b[46m${args.join(' ')}\x1b[0m`,
-  bgWhite: `\x1b[47m${args.join(' ')}\x1b[0m`,
-});
+	black: `\x1b[30m${args.join(' ')}`,
+	red: `\x1b[31m${args.join(' ')}`,
+	green: `\x1b[32m${args.join(' ')}`,
+	yellow: `\x1b[33m${args.join(' ')}`,
+	blue: `\x1b[34m${args.join(' ')}`,
+	magenta: `\x1b[35m${args.join(' ')}`,
+	cyan: `\x1b[36m${args.join(' ')}`,
+	white: `\x1b[37m${args.join(' ')}`,
+	bgBlack: `\x1b[40m${args.join(' ')}\x1b[0m`,
+	bgRed: `\x1b[41m${args.join(' ')}\x1b[0m`,
+	bgGreen: `\x1b[42m${args.join(' ')}\x1b[0m`,
+	bgYellow: `\x1b[43m${args.join(' ')}\x1b[0m`,
+	bgBlue: `\x1b[44m${args.join(' ')}\x1b[0m`,
+	bgMagenta: `\x1b[45m${args.join(' ')}\x1b[0m`,
+	bgCyan: `\x1b[46m${args.join(' ')}\x1b[0m`,
+	bgWhite: `\x1b[47m${args.join(' ')}\x1b[0m`
+})
 const leven = (te, t) => {
   if (!te.length) return t.length;
   if (!t.length) return te.length;
@@ -569,16 +670,24 @@ function chunk(arr, size) {
   });
 }
 
+/**
+ * Generates a progress bar string based on a value, max value, and size.
+ *
+ * @param {number} value - The current progress value
+ * @param {number} maxValue - The maximum progress value
+ * @param {number} size - The number of characters wide to make the progress bar
+ * @returns {Object} - Object containing the progress bar string (Bar) and percentage text
+ */
 function progressBar(value, maxValue, size) {
-  const percentage = value / maxValue;
-  const progress = Math.round(size * percentage);
-  const emptyProgress = size - progress;
-  const progressText = '▇'.repeat(progress);
-  const emptyProgressText = '—'.repeat(emptyProgress);
-  const percentageText = `${Math.round(percentage * 100)}%`;
+	const percentage = value / maxValue
+	const progress = Math.round(size * percentage)
+	const emptyProgress = size - progress
+	const progressText = '▇'.repeat(progress)
+	const emptyProgressText = '—'.repeat(emptyProgress)
+	const percentageText = `${Math.round(percentage * 100)}%`
 
-  const Bar = progressText + emptyProgressText;
-  return { Bar, percentageText };
+	const Bar = progressText + emptyProgressText
+	return { Bar, percentageText }
 }
 
 function prettyMs(milliseconds, options = {}) {
@@ -750,32 +859,40 @@ const UNIT_MAP = {
  * @returns {number}
  */
 
+/**
+ * Parse a timestring into total seconds.
+ *
+ * @param {string} string - The timestring to parse
+ * @param {string} [returnUnit] - The unit to return the result in
+ * @param {Object} [opts] - Options to override defaults
+ * @returns {number} The parsed timestring in total seconds, or in the returnUnit if specified
+ */
 function parseTimestring(string, returnUnit, opts) {
-  opts = { ...default_opts, ...opts || {} };
+	opts = { ...default_opts, ...(opts || {}) }
 
-  let totalSeconds = 0;
-  const unitValues = getUnitValues(opts);
-  const groups = string
-    .toLowerCase()
-    .replace(/[^.\w+-]+/g, '')
-    .match(/[-+]?[0-9.]+[a-z]+/g);
+	let totalSeconds = 0
+	const unitValues = getUnitValues(opts)
+	const groups = string
+		.toLowerCase()
+		.replace(/[^.\w+-]+/g, '')
+		.match(/[-+]?[0-9.]+[a-z]+/g)
 
-  if (groups === null) {
-    throw new Error(`The string [${string}] could not be parsed by timestring`);
-  }
+	if (groups === null) {
+		throw new Error(`The string [${string}] could not be parsed by timestring`)
+	}
 
-  groups.forEach((group) => {
-    const value = group.match(/[0-9.]+/g)[0];
-    const unit = group.match(/[a-z]+/g)[0];
+	groups.forEach((group) => {
+		const value = group.match(/[0-9.]+/g)[0]
+		const unit = group.match(/[a-z]+/g)[0]
 
-    totalSeconds += getSeconds(value, unit, unitValues);
-  });
+		totalSeconds += getSeconds(value, unit, unitValues)
+	})
 
-  if (returnUnit) {
-    return convert(totalSeconds, returnUnit, unitValues);
-  }
+	if (returnUnit) {
+		return convert(totalSeconds, returnUnit, unitValues)
+	}
 
-  return totalSeconds;
+	return totalSeconds
 }
 
 function getUnitValues(opts) {

@@ -4,46 +4,51 @@ const __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, '__esModule', { value: true });
 const mongoose_1 = __importDefault(require('mongoose'));
 
+/**
+ * Schema for GMemberData.
+ * Defines the structure of documents in the gmembers collection.
+ * Includes fields like userID, wallet, bank, inventory etc.
+ */
 const GMemberData = new mongoose_1.default.Schema({
-  userID: {
-    type: String,
-    default: null,
-  },
-  wallet: {
-    type: Number,
-    default: 0,
-  },
-  bank: {
-    type: Number,
-    default: 0,
-  },
-  lastUsedDaily: {
-    type: Date,
-    default: null,
-  },
-  lastUsedWeekly: {
-    type: Date,
-    default: null,
-  },
-  inventory: {
-    type: Array,
-    default: [],
-  },
-  job: {
-    type: String,
-    default: null,
-  },
-  salary: {
-    type: Number,
-    default: 0,
-  },
-  lastUsedWork: {
-    type: Date,
-    default: null,
-  },
-  jobLeft: {
-    type: Date,
-    default: null,
-  },
-});
+	userID: {
+		type: String,
+		default: null
+	},
+	wallet: {
+		type: Number,
+		default: 0
+	},
+	bank: {
+		type: Number,
+		default: 0
+	},
+	lastUsedDaily: {
+		type: Date,
+		default: null
+	},
+	lastUsedWeekly: {
+		type: Date,
+		default: null
+	},
+	inventory: {
+		type: Array,
+		default: []
+	},
+	job: {
+		type: String,
+		default: null
+	},
+	salary: {
+		type: Number,
+		default: 0
+	},
+	lastUsedWork: {
+		type: Date,
+		default: null
+	},
+	jobLeft: {
+		type: Date,
+		default: null
+	}
+})
 exports.default = mongoose_1.default.model('GlobalMemberData', GMemberData);

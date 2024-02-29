@@ -24,81 +24,129 @@ function load (value) {
   else return require(value);
 }
 
+/**
+ * Loads all bot commands, events, and registers slash commands.
+ *
+ * Loads commands and events by globbing files in respective folders.
+ * Registers slash commands based on files in the commands folder.
+ * Handles refreshing slash commands in dev/prod environments.
+ * Saves loaded commands to the database on bot ready.
+ */
 module.exports = async (bot) => {
-  // Events
-  const eventFiles = await glob(`${process.cwd()}/events/*/*.js`);
-  eventFiles.map((value) => load(value));
+	// Events
+	const eventFiles = await glob(`${process.cwd()}/events/*/*.js`)
+	eventFiles.map((value) => load(value))
 
-  // Slash
-  const slashCommands = await glob(`${process.cwd()}/commands/*/*.js`);
-  const arrayOfSlashCommands = [];
-  const data = [];
+	// Slash
+	const slashCommands = await glob(`${process.cwd()}/commands/*/*.js`)
+	const arrayOfSlashCommands = []
+	const data = []
 
-    slashCommands.map((value) => {
+	/**
+	 * Maps over the slashCommands array to load each command file,
+	 * add the command to the bot's slashCommands map, build the
+	 * arrayOfSlashCommands array with command metadata for
+	 * registration, and build the data array with command names
+	 * and descriptions for database storage.
+	 */
+	slashCommands.map((value) => {
+		const file = load(value)
+		if (!file?.name) return
 
-    const file = load(value);
-    if (!file?.name) return;
+		bot.slashCommands.set(file.name, file)
 
-    bot.slashCommands.set(file.name, file);
+		if (
+			[ApplicationCommandType.User, ApplicationCommandType.Message].includes(
+				file.type
+			)
+		)
+			delete file.description
 
-    if ([ApplicationCommandType.User, ApplicationCommandType.Message].includes(file.type)) delete file.description;
+		arrayOfSlashCommands.push({
+			name: file.name,
+			description: file.description,
+			type: file.type ? file.type : ApplicationCommandType.ChatInput,
+			options: file.options ? file.options : null,
+			default_member_permissions: null
+		})
 
-    arrayOfSlashCommands.push({
-      name: file.name,
-      description: file.description,
-      type: file.type ? file.type : ApplicationCommandType.ChatInput,
-      options: file.options ? file.options : null,
-      default_member_permissions: null,
-    });
+		data.push({
+			name: file.name,
+			description: file.description,
+			directory: file.directory
+		})
+	})
 
-    data.push({
-      name: file.name,
-      description: file.description,
-      directory: file.directory,
-    });
-  });
+	const dev = process.env.DEV_MODE || 'false'
 
-    const dev = process.env.DEV_MODE || 'false';
-    
-  (async () => {
-    try {
-      bot.logger.cmd('Started refreshing (/) commands');
-      
-      if (dev === "true") {
-        await rest.put(Routes.applicationGuildCommands(process.env.clientID, '758949191497809932'), {
-          body: arrayOfSlashCommands,
-        });
+	/**
+	 * Refreshes the bot's slash commands based on environment.
+	 *
+	 * In dev mode, reloads the commands for the dev guild.
+	 * In prod mode, reloads the global application commands.
+	 * Logs the result.
+	 */
+	;(async () => {
+		try {
+			bot.logger.cmd('Started refreshing (/) commands')
 
-        bot.logger.cmd('Successfully reloaded Guild (/) commands');
-      } else if (dev === "false") {
-          
-        await rest.put(Routes.applicationCommands(process.env.clientID), {
-          body: arrayOfSlashCommands,
-        }).then(function () {
-          bot.logger.cmd(
-            'Successfully reloaded Application (/) commands.'
-          );
-        })
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  })();
+			if (dev === 'true') {
+				await rest.put(
+					Routes.applicationGuildCommands(
+						process.env.clientID,
+						'758949191497809932'
+					),
+					{
+						body: arrayOfSlashCommands
+					}
+				)
 
-  bot.on('ready', async () => {
-    const client = await Client.findOne({ clientId: bot.user.id });
+				bot.logger.cmd('Successfully reloaded Guild (/) commands')
+			} else if (dev === 'false') {
+				await rest
+					.put(Routes.applicationCommands(process.env.clientID), {
+						body: arrayOfSlashCommands
+					})
+					.then(function () {
+						bot.logger.cmd('Successfully reloaded Application (/) commands.')
+					})
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	})()
 
-    if (!client.commands || client.commands.length === 0) {
-      client.commands.push(data);
-      await client.save();
-    }
+	/**
+	 * When the bot is ready:
+	 * - Find the client document for this bot and check if it already has commands.
+	 * - If no commands, initialize with the passed in data.
+	 * - Otherwise, check if the command name already exists.
+	 * - If not, push the new command data to the client document's commands array.
+	 */
+	bot.on('ready', async () => {
+		const client = await Client.findOne({ clientId: bot.user.id })
 
-    if (client.commands[0].find((cmd) => cmd?.name !== data.name)) {
-      await Client.findOneAndUpdate(
-        { clientId: bot.user.id },
-        { $push: [{ commands: { name: data.name, description: data.description, directory: data.directory } }] },
-      );
-      bot.logger.cmd('Successfully reloaded application (/) commands database.');
-    }
-  });
-};
+		if (!client.commands || client.commands.length === 0) {
+			client.commands.push(data)
+			await client.save()
+		}
+
+		if (client.commands[0].find((cmd) => cmd?.name !== data.name)) {
+			await Client.findOneAndUpdate(
+				{ clientId: bot.user.id },
+				{
+					$push: [
+						{
+							commands: {
+								name: data.name,
+								description: data.description,
+								directory: data.directory
+							}
+						}
+					]
+				}
+			)
+			bot.logger.cmd('Successfully reloaded application (/) commands database.')
+		}
+	})
+}

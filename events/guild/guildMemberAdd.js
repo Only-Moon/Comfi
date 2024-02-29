@@ -9,6 +9,9 @@ const guilds = require('../../models/guild');
 * For more information, see README.md and LICENSE
 */
 
+/**
+ * Handles adding new members to the guild by sending them a welcome message.
+ */
 bot.on('guildMemberAdd', async (member) => {
   try {
     const guild = await guilds.findOne({ guildId: member.guild.id });

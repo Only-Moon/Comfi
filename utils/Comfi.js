@@ -15,19 +15,25 @@ const Statcord = require('statcord.js')
  */
 
 class Comfi extends Discord.Client {
+	/**
+	 * Constructor for Comfi Discord client class.
+	 * Sets up client options like sweepers, intents, partials etc.
+	 * Initializes color, logger, owners, support server, functions,
+	 * economy manager, command categories and more.
+	 */
 	constructor() {
 		super({
-				sweepers: {
-					...Discord.Options.DefaultSweeperSettings,
-					messages: {
-						interval: 3600, // Every hour...
-						lifetime: 1800,    // Remove messages older than 30 minutes.
-					},
-					users: {
-						interval: 3600, // Every hour...
-						filter: () => user => user?.bot && user.id !== user?.client.user?.id, // Remove all bots.
-					},
+			sweepers: {
+				...Discord.Options.DefaultSweeperSettings,
+				messages: {
+					interval: 3600, // Every hour...
+					lifetime: 1800 // Remove messages older than 30 minutes.
 				},
+				users: {
+					interval: 3600, // Every hour...
+					filter: () => (user) => user?.bot && user.id !== user?.client.user?.id // Remove all bots.
+				}
+			},
 			failIfNotExists: true,
 			allowedMentions: {
 				parse: ['users', 'roles'],
@@ -47,7 +53,7 @@ class Comfi extends Discord.Client {
 			restRequestTimeout: 30000
 		})
 
-		this.color = parseInt(process.env.color_name) || 0xF4B3CA
+		this.color = parseInt(process.env.color_name) || 0xf4b3ca
 		this.logger = require('./Logger')
 		this.dash = process.env.web
 		this.ms = require('ms')
@@ -83,6 +89,12 @@ class Comfi extends Discord.Client {
 		return s
 	}
 
+	/**
+	 * Converts a duration in milliseconds to a timestamp string with the given format.
+	 * @param {number} time - Duration in milliseconds
+	 * @param {string} [form] - Timestamp format string
+	 * @returns {string} Formatted timestamp string
+	 */
 	async timestamp(time, form) {
 		const minutes = Math.floor(time / 1000) % 60
 		const hours = Math.floor(minutes / 60) % 24
@@ -111,9 +123,13 @@ class Comfi extends Discord.Client {
 		return `<t:${datum.getTime() / 1000}>`
 	}
 
-	/*
-	 * @param {String} name - emoji name
-	 * @param {String} option - id or name
+	
+	/**
+	 * Returns an emoji string for the given emoji name and option.
+	 *
+	 * @param {String} name - The name of the emoji
+	 * @param {String} option - Either 'id' or 'name' to return the emoji id or name respectively
+	 * @returns {String} The emoji string
 	 */
 	emoji(name, option) {
 		const emojis = this.emojis.cache.find((x) => x.name === name)
@@ -133,6 +149,12 @@ class Comfi extends Discord.Client {
 			.join('_')
 	}
 
+	/**
+	 * Converts a duration in milliseconds to a human readable string.
+	 *
+	 * @param {number} duration - The duration in milliseconds.
+	 * @returns {string} The human readable time string.
+	 */
 	async msToTime(duration) {
 		const ms = Math.floor((duration % 1000) / 100)
 		const seconds = Math.floor((duration / 1000) % 60)
@@ -148,6 +170,20 @@ class Comfi extends Discord.Client {
 		return `${day} Days : ${hour} Hrs : ${minute} Min : ${second} Sec.`
 	}
 
+	/**
+	 * Sends a webhook message to the provided channel.
+	 *
+	 * @param {*} msg - The message content to send.
+	 * @param {Object} options - Options for the webhook.
+	 * @param {boolean} [options.remove] - Whether to remove the webhook after sending.
+	 * @param {string} options.channel - The channel ID to send the webhook to.
+	 * @param {string} [options.id] - An ID to include in the error title.
+	 * @param {Object} [options.embed] - An embed object to send.
+	 * @param {string} [options.name] - The webhook name.
+	 * @param {string} [options.avatar] - The webhook avatar URL.
+	 * @param {Discord.Client} options.bot - The Discord client.
+	 * @returns {Promise<Discord.WebhookMessage|Discord.Webhook>} The sent webhook message, or the webhook if remove is false.
+	 */
 	async sendhook(
 		msg,
 		{
@@ -198,6 +234,13 @@ class Comfi extends Discord.Client {
 		}
 	}
 
+	/**
+	 * Sends a success embed message to the provided interaction.
+	 *
+	 * @param {Object} bot The Discord bot object
+	 * @param {Object} interaction The interaction object
+	 * @param {string} argument The success message to display
+	 */
 	async successEmbed(bot, interaction, argument) {
 		const embed = new Discord.EmbedBuilder()
 			.setDescription(`${this.emoji('tick_CS')} • ${argument}`)
@@ -223,10 +266,18 @@ class Comfi extends Discord.Client {
 		}
 	}
 
+	/**
+	 * Creates and sends an error embed message.
+	 *
+	 * @param {Object} bot The Discord bot object.
+	 * @param {Object} interaction The Discord interaction object.
+	 * @param {string} argument The error message text.
+	 * @param {string} [img] Optional image URL to include in the embed.
+	 */
 	async errorEmbed(bot, interaction, argument, img) {
 		const embed = new Discord.EmbedBuilder()
 			.setDescription(`${this.emoji('cross_CS')} • ${argument}`)
-			.setColor(0xFE6666)
+			.setColor(0xfe6666)
 		if (img && bot.functions.match_regex('img', img)) {
 			embed.setImage(img)
 		}
@@ -304,8 +355,10 @@ class Comfi extends Discord.Client {
 	}
 
 	/**
-	 * @param {Discord.CommandInteraction} interaction
-	 * @param {string} error
+	 * Sends an error embed to the user and logs the error.
+	 *
+	 * @param {Discord.Interaction} interaction - The interaction that triggered the error.
+	 * @param {Error} error - The error object.
 	 */
 	async senderror(interaction, error) {
 		const id = this.getWord()
@@ -323,6 +376,9 @@ class Comfi extends Discord.Client {
 		}
 	}
 
+	/**
+	 * Generates a random word to use as an identifier
+	 */
 	getWord() {
 		const chars =
 			'1234567890QWERTYUIOPASDFGHJKLZXCVBNMqweryuiopasdfghjklzxcvbnm'
@@ -334,13 +390,16 @@ class Comfi extends Discord.Client {
 	}
 
 	/**
-	 * @param {Discord.Member} Member - Guild Member
-   * @param {string} Action - the mod action
-   * @param {string
-} Reason - the reason
-   * @param
-   * @param {Discord.CommandInteraction} interaction - Interaction
-  */
+	 * Logs a moderation action to the server's mod log channel.
+	 *
+	 * Logs details of a moderation action taken on a member to the
+	 * configured mod log channel for the guild.
+	 *
+	 * @param {Discord.Member} Member - The member being moderated
+	 * @param {string} Action - The moderation action taken
+	 * @param {string} Reason - The reason provided for the action
+	 * @param {Discord.CommandInteraction} interaction - The interaction that triggered the mod action
+	 */
 	async modlog({ Member, Action, Reason, Mod }, interaction) {
 		const data = await guilds.findOne({ guildId: interaction.guild.id })
 		if (!data.modlog) return
@@ -399,7 +458,7 @@ class Comfi extends Discord.Client {
 						? interaction.guild.iconURL()
 						: this.user.displayAvatarURL({
 								dynamic: true
-						})
+						    })
 				}`
 			})
 			.setFooter({ text: 'Comfi™ Modlogs' })
@@ -407,10 +466,15 @@ class Comfi extends Discord.Client {
 		if (channel) channel.send({ embeds: [logsembed] })
 	}
 
+	/**
+	 * Connects to MongoDB database(s) and handles events.
+	 *
+	 * @param {string} s - MongoDB connection string
+	 */
 	dbs(s) {
 		mongoose.set('strictQuery', false)
 		mongoose.connect(s, {
-			connectTimeoutMS: 20000,
+			connectTimeoutMS: 30000,
 			useUnifiedTopology: false
 		})
 		mongoose.Promise = global.Promise
@@ -427,6 +491,13 @@ class Comfi extends Discord.Client {
 		simplydjs.connect(s, false)
 	}
 
+	/**
+	 * Initializes the client by requiring event handlers and setting emoji constants.
+	 *
+	 * Requires the event handler module to handle client events.
+	 *
+	 * On client ready, sets constant emoji references for common emoji IDs used throughout the codebase.
+	 */
 	init() {
 		require('../handler/index')(this)
 
@@ -445,6 +516,12 @@ class Comfi extends Discord.Client {
 		})
 	}
 
+	/**
+	 * Initializes Statcord client to post server statistics.
+	 * Configures Statcord client with the bot's client instance and API key.
+	 * Registers event listeners to handle Statcord lifecycle events.
+	 * Autoposts stats every 6 hours if not in DEV_MODE.
+	 */
 	Statcord() {
 		const statcord = new Statcord.Client({
 			client: this,
@@ -457,12 +534,12 @@ class Comfi extends Discord.Client {
 				statcord.autopost()
 			}
 		})
-setInterval(() => {
-		statcord.on('autopost-start', () => {
-			// Emitted when statcord autopost starts
-			// console.log("Started autopost");
-		})
-	}, this.ms("6h"))
+		setInterval(() => {
+			statcord.on('autopost-start', () => {
+				// Emitted when statcord autopost starts
+				// console.log("Started autopost");
+			})
+		}, this.ms('6h'))
 		statcord.on('post', (status) => {
 			// status = false if the post was successful
 			// status = "Error message" or status = Error if there was an error

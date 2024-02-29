@@ -15,11 +15,12 @@ const guilds = require('../models/guild');
 */
 
 /**
+ * Verifies a member in a guild by sending them a direct message and awaiting
+ * a response.
  *
- * @param {Message} message
- * @param {GuildMember} member
+ * @param {Message} message - The message that triggered the verification.
+ * @param {GuildMember} member - The member to verify.
  */
-
 module.exports = async (member, bot) => {
   function format(msg) {
     let text = msg;
@@ -134,79 +135,91 @@ function getWord() {
   return str;
 }
 
+/**
+ * Re-runs the verification process for the given member in the configured verification channel.
+ *
+ * Generates a new captcha image with a random word, sends it to the verification channel,
+ * and collects the member's response. If the response matches the word, the member is given
+ * the verified role. Handles errors and timeout.
+ *
+ * @param {GuildMember} member - The member to re-verify
+ * @param {Client} bot - The Discord client instance
+ */
 async function reRun(member, bot) {
-  function format(msg) {
-    let text = msg;
+	function format(msg) {
+		let text = msg
 
-    const terms = [
-      { name: '{{user#mention}}', value: `<@${member.id}>` },
-      { name: '{{user#tag}}', value: `${member.user.tag}` },
-      { name: '{{user#id}}', value: `${member.id}` },
-      { name: '{{server#id}}', value: `${member.guild.id}` },
-      { name: '{{server#name}}', value: `${member.guild.name}` },
-      { name: '{{server#membercount}}', value: `${member.guild.members.memberCount}` },
-    ];
+		const terms = [
+			{ name: '{{user#mention}}', value: `<@${member.id}>` },
+			{ name: '{{user#tag}}', value: `${member.user.tag}` },
+			{ name: '{{user#id}}', value: `${member.id}` },
+			{ name: '{{server#id}}', value: `${member.guild.id}` },
+			{ name: '{{server#name}}', value: `${member.guild.name}` },
+			{
+				name: '{{server#membercount}}',
+				value: `${member.guild.members.memberCount}`
+			}
+		]
 
-    for (const { name, value } of terms) text = text.replace(new RegExp(name, 'igm'), value);
+		for (const { name, value } of terms)
+			text = text.replace(new RegExp(name, 'igm'), value)
 
-    return text;
-  }
+		return text
+	}
 
-  const guild = await guilds.findOne({ guildId: member.guild.id });
-  if (guild.verification) {
-    if (!guild.verification_channel) return;
-    const channel = member.guild.channels.cache.find(
-      (c) => c.id === guild.verification_channel,
-    );
-    if (!channel) return;
-    const word = getWord();
-    const embed = new EmbedBuilder()
-      .setImage(
-        `https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`,
-      )
-      .setColor(bot.color);
-    const hoisterMsg = await channel.send({
-      content: `${format(guild.verification_message)}`,
-      embeds: [embed],
-    });
+	const guild = await guilds.findOne({ guildId: member.guild.id })
+	if (guild.verification) {
+		if (!guild.verification_channel) return
+		const channel = member.guild.channels.cache.find(
+			(c) => c.id === guild.verification_channel
+		)
+		if (!channel) return
+		const word = getWord()
+		const embed = new EmbedBuilder()
+			.setImage(
+				`https://luminabot.xyz/api/image/captcha?color=FFFFFF&text=${word}`
+			)
+			.setColor(bot.color)
+		const hoisterMsg = await channel.send({
+			content: `${format(guild.verification_message)}`,
+			embeds: [embed]
+		})
 
-    const collector = new MessageCollector(channel, { time: 60000 });
-    collector.on('collect', (m) => {
-      if (m.author.id !== member.id) return;
-      if (m.content === word) {
-        collector.stop('1');
-        m.delete().catch(() => {});
-        hoisterMsg.delete().catch(() => {});
-      } else {
-        collector.stop('0');
-        m.delete().catch(() => {});
-        hoisterMsg.delete().catch(() => {});
-      }
-    });
+		const collector = new MessageCollector(channel, { time: 60000 })
+		collector.on('collect', (m) => {
+			if (m.author.id !== member.id) return
+			if (m.content === word) {
+				collector.stop('1')
+				m.delete().catch(() => {})
+				hoisterMsg.delete().catch(() => {})
+			} else {
+				collector.stop('0')
+				m.delete().catch(() => {})
+				hoisterMsg.delete().catch(() => {})
+			}
+		})
 
-    collector.on('end', (collected, reason) => {
-      if (reason === 'time') {
-        return channel.send({
-          content: `${bot.error} • **TIMED OUT** Please redo the captcha!`,
-        });
-      }
-      if (reason === '0') {
-        return channel.send({
-          content: `${bot.error} • Invalid charaters provided!`,
-        });
-      }
-      if (reason === '1') {
-        member.roles.add(guild.verification_role).catch(() => channel.send({
-          content: `${
-            bot.error
-          } • There was an error giving you this role! Please report it to a server admin!`,
-        }));
-        return channel.send({
-          content: `<a:tick:890113862706266112> • Thank you for verifying in ${
-            channel.guild.name
-          }!`,
-        });
-      }
-    });
-  }
+		collector.on('end', (collected, reason) => {
+			if (reason === 'time') {
+				return channel.send({
+					content: `${bot.error} • **TIMED OUT** Please redo the captcha!`
+				})
+			}
+			if (reason === '0') {
+				return channel.send({
+					content: `${bot.error} • Invalid charaters provided!`
+				})
+			}
+			if (reason === '1') {
+				member.roles.add(guild.verification_role).catch(() =>
+					channel.send({
+						content: `${bot.error} • There was an error giving you this role! Please report it to a server admin!`
+					})
+				)
+				return channel.send({
+					content: `<a:tick:890113862706266112> • Thank you for verifying in ${channel.guild.name}!`
+				})
+			}
+		})
+	}
 }

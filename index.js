@@ -9,15 +9,22 @@
 
 // -----[ DEFINING DEPENDENCIES ]-----\\
 
+/**
+ * Initializes and exports the Comfi bot instance.
+ *
+ * Loads the Comfi bot utils and creates a new Comfi instance.
+ * Connects to Discord and sets the max listeners to 0.
+ * Exports the Comfi instance for use in other files.
+ */
 // Uncomment this if you need
 require('dotenv').config()
 
-const Comfi = require('./utils/Comfi');
-const bot = new Comfi();
+const Comfi = require('./utils/Comfi')
+const bot = new Comfi()
 
-bot.connect();
+bot.connect()
 bot.setMaxListeners(0)
 
-module.exports = bot;
+module.exports = bot
 
 // ---------[ PROCESS ENDED ]---------\\

@@ -7,29 +7,40 @@ const { model, Schema } = require('mongoose');
 * For more information, see README.md and LICENSE
 */
 
+/**
+ * Schema definition for user documents in MongoDB.
+ *
+ * Defines the shape of documents in the 'users' collection.
+ *
+ * Includes fields for:
+ * - User ID and guild ID
+ * - Moderation warnings
+ * - Leveling system XP and level
+ * - AFK status
+ * - Command cooldown tracking
+ */
 const schema = new Schema({
-  // General
-  userId: String,
-  guildId: String,
+	// General
+	userId: String,
+	guildId: String,
 
-  // Mod
-  warns: { type: Object, default: [] },
+	// Mod
+	warns: { type: Object, default: [] },
 
-  // Leveling
-  level: { type: Number, default: 0 },
-  xp: { type: Number, default: 0 },
-  requiredXp: { type: Number, default: 500 },
+	// Leveling
+	level: { type: Number, default: 0 },
+	xp: { type: Number, default: 0 },
+	requiredXp: { type: Number, default: 500 },
 
-  // Afk
-  afk: { type: Boolean, default: false },
-  afk_reason: String,
-  afk_set: String,
+	// Afk
+	afk: { type: Boolean, default: false },
+	afk_reason: String,
+	afk_set: String,
 
-  // Cooldown
-  cmd: { type: String },
-  time: { type: Number, default: 0 },
-  cooldown: { type: Number, default: 0 },
-
-});
+	// Cooldown
+	cmd: { type: String },
+	time: { type: Number, default: 0 },
+	cooldown: { type: Number, default: 0 }
+})
 
 module.exports = model('Users', schema);

@@ -10,6 +10,12 @@ const { InteractionType } = require('discord.js');
 const bot = require('../../index');
 const guilds = require('../../models/guild');
 
+/**
+ * Fetches data from a URL using node-fetch.
+ *
+ * @param  {...any} args - Arguments to pass to node-fetch.
+ * @returns {Promise} Promise resolving to the fetch response.
+ */
 bot.on('interactionCreate', async (interaction) => {
   if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
     const userInput = interaction.options.getFocused().toString();
@@ -151,7 +157,7 @@ interaction.user.id,
       ).catch((err) => {
         
       });
-   
+    
     }     
   }
 });
