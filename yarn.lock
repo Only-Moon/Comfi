@@ -2267,11 +2267,11 @@ discord-api-types@^0.37.41:
   integrity sha512-GQI02JvBVl9+WQiMmyc/OFuJ4bBBf2VWb6NjPBnzrrdF2D/2S07mA1ZCd5+IhHRjU8wQ83c/hmjj9nn1+r/K9g==
 
 discord-gamecord@^4.1.0:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/discord-gamecord/-/discord-gamecord-4.4.1.tgz#38c0021aa4d7b25f6c2d7634da9e7996940070e4"
-  integrity sha512-0IDI2C7QttWSPJStQNUZn89xFlgqo+qrJUC+/Bu8xPfnZ0G0AsBN6Ut0lwYcJOZkHnX5cNbwHl6Wj//5ws9oTA==
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/discord-gamecord/-/discord-gamecord-4.4.2.tgz#9f1ce55f6ab7102f54ff49173a7a68f3dcce5fb2"
+  integrity sha512-SRrfAG9MLjK0Xw/2+hN9HfmIqkl+0TVPTwQXXOvwXpzMBJbpsY+KliTl6lQOur8Qb61rhOAmwMPWv/idQDYYMA==
   dependencies:
-    discord.js "^14.8.0"
+    discord.js "^14.14.1"
     html-entities "^2.3.3"
     node-fetch "^2.6.7"
 
@@ -2297,7 +2297,7 @@ discord.js@^12.5.3:
     tweetnacl "^1.0.3"
     ws "^7.4.4"
 
-discord.js@^14.7.1, discord.js@^14.8.0, discord.js@^14.9.0:
+discord.js@^14.14.1, discord.js@^14.7.1, discord.js@^14.9.0:
   version "14.14.1"
   resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-14.14.1.tgz#9a2bea23bba13819705ab87612837610abce9ee3"
   integrity sha512-/hUVzkIerxKHyRKopJy5xejp4MYKDPTszAnpYxzVVv4qJYf+Tkt+jnT2N29PIPschicaEEpXwF2ARrTYHYwQ5w==
@@ -3880,6 +3880,11 @@ lowercase-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-2.0.0.tgz#2603e78b7b4b0006cbca2fbcc8a3202558ac9479"
   integrity sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==
 
+lru-cache@^10.2.0:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.0.tgz#0bd445ca57363465900f4d1f9bd8db343a4d95c3"
+  integrity sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==
+
 lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
@@ -3891,11 +3896,6 @@ lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   version "7.18.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
-
-"lru-cache@^9.1.1 || ^10.0.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.0.tgz#0bd445ca57363465900f4d1f9bd8db343a4d95c3"
-  integrity sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==
 
 lru-queue@^0.1.0:
   version "0.1.0"
@@ -4787,11 +4787,11 @@ path-parse@^1.0.7:
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-scurry@^1.10.1:
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/path-scurry/-/path-scurry-1.10.1.tgz#9ba6bf5aa8500fe9fd67df4f0d9483b2b0bfc698"
-  integrity sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/path-scurry/-/path-scurry-1.10.2.tgz#8f6357eb1239d5fa1da8b9f70e9c080675458ba7"
+  integrity sha512-7xTavNy5RQXnsjANvVvMkEjvloOinkAjv/Z6Ildz9v2RinZ4SBKTWFOVRbaF8p0vpHnyjV/UwNDdKuUv6M5qcA==
   dependencies:
-    lru-cache "^9.1.1 || ^10.0.0"
+    lru-cache "^10.2.0"
     minipass "^5.0.0 || ^6.0.2 || ^7.0.0"
 
 peek-readable@^5.0.0:
