@@ -1,27 +1,27 @@
-const { glob } = require('glob');
-const { promisify } = require('util');
-const { ApplicationCommandType, Routes } = require('discord.js');
-const { REST } = require('@discordjs/rest');
-const Client = require('../models/Client');
-const { platform } = require('os');
+const { glob } = require('glob')
+const { promisify } = require('util')
+const { ApplicationCommandType, Routes } = require('discord.js')
+const { REST } = require('@discordjs/rest')
+const Client = require('../models/Client')
+const { platform } = require('os')
 
 /*
-* Comfi Bot for Discord
-* Copyright (C) 2023 Xx-Mohit-xX
-* This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-* For more information, see README.md and LICENSE
-*/
+ * Comfi Bot for Discord
+ * Copyright (C) 2023 Xx-Mohit-xX
+ * This software is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+ * For more information, see README.md and LICENSE
+ */
 
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
 
 /**
  * Function to check for windows os
  * @param value the string of diffrent file locations
  * @returns the file location in win format
  */
-function load (value) {
-  if (process.platform === "win32") return require(`${process.cwd()}/${value}`);
-  else return require(value);
+function load(value) {
+	if (process.platform === 'win32') return require(`${process.cwd()}/${value}`)
+	else return require(value)
 }
 
 /**
