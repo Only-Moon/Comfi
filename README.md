@@ -66,5 +66,5 @@ If you encounter any problems from your current job You can let us know through 
 <br> 
  <h1>🏩 Contact us | Support</h1> 
  <p> 
- <a href="https://comfibot.ml/discord"><img src="http://invidget.switchblade.xyz/HNfhvCeR6d" /></a> 
+ <a href="https://discord.gg/dprDr9hy3X"><img src="http://invidget.switchblade.xyz/HNfhvCeR6d" /></a> 
  </p>
