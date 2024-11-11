@@ -40,26 +40,26 @@
     "@smithy/util-utf8" "^2.0.0"
     tslib "^2.6.2"
 
-"@aws-sdk/client-cognito-identity@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity/-/client-cognito-identity-3.686.0.tgz#0de1804954a87c6857d59c5ebf05b27c33b58b39"
-  integrity sha512-Hhz2fijAcGWQ/cCYpoozQiuNTqcepIOdFuPFvbG4yrU5PBaWPBALcoDFlbbbJHGDU8fhxDYJpD8TsQnY8VH/8g==
+"@aws-sdk/client-cognito-identity@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity/-/client-cognito-identity-3.687.0.tgz#286e7eb3908dabb075fb8c0a4b21b424f2e5e2ef"
+  integrity sha512-jcQTioloSed+Jc3snjrgpWejkOm8t3Zt+jWrApw3ejN8qBtpFCH43M7q/CSDVZ9RS1IjX+KRWoBFnrDOnbuw0Q==
   dependencies:
     "@aws-crypto/sha256-browser" "5.2.0"
     "@aws-crypto/sha256-js" "5.2.0"
-    "@aws-sdk/client-sso-oidc" "3.686.0"
-    "@aws-sdk/client-sts" "3.686.0"
+    "@aws-sdk/client-sso-oidc" "3.687.0"
+    "@aws-sdk/client-sts" "3.687.0"
     "@aws-sdk/core" "3.686.0"
-    "@aws-sdk/credential-provider-node" "3.686.0"
+    "@aws-sdk/credential-provider-node" "3.687.0"
     "@aws-sdk/middleware-host-header" "3.686.0"
     "@aws-sdk/middleware-logger" "3.686.0"
     "@aws-sdk/middleware-recursion-detection" "3.686.0"
-    "@aws-sdk/middleware-user-agent" "3.686.0"
+    "@aws-sdk/middleware-user-agent" "3.687.0"
     "@aws-sdk/region-config-resolver" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@aws-sdk/util-endpoints" "3.686.0"
     "@aws-sdk/util-user-agent-browser" "3.686.0"
-    "@aws-sdk/util-user-agent-node" "3.686.0"
+    "@aws-sdk/util-user-agent-node" "3.687.0"
     "@smithy/config-resolver" "^3.0.10"
     "@smithy/core" "^2.5.1"
     "@smithy/fetch-http-handler" "^4.0.0"
@@ -87,24 +87,24 @@
     "@smithy/util-utf8" "^3.0.0"
     tslib "^2.6.2"
 
-"@aws-sdk/client-sso-oidc@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sso-oidc/-/client-sso-oidc-3.686.0.tgz#9cba2e47d80b0e73ab201eee6e98c3a00dc164b0"
-  integrity sha512-bV8yw1tpEj9WOVEnIJTcHPmTqikGccvh9RCg9ohc5DVKLajt/pUF4b+8dDyqNrEijUqlpDDwpSnh1GFhfe298A==
+"@aws-sdk/client-sso-oidc@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sso-oidc/-/client-sso-oidc-3.687.0.tgz#a327cc65b7bb2cbda305c4467bfae452b5d27927"
+  integrity sha512-Rdd8kLeTeh+L5ZuG4WQnWgYgdv7NorytKdZsGjiag1D8Wv3PcJvPqqWdgnI0Og717BSXVoaTYaN34FyqFYSx6Q==
   dependencies:
     "@aws-crypto/sha256-browser" "5.2.0"
     "@aws-crypto/sha256-js" "5.2.0"
     "@aws-sdk/core" "3.686.0"
-    "@aws-sdk/credential-provider-node" "3.686.0"
+    "@aws-sdk/credential-provider-node" "3.687.0"
     "@aws-sdk/middleware-host-header" "3.686.0"
     "@aws-sdk/middleware-logger" "3.686.0"
     "@aws-sdk/middleware-recursion-detection" "3.686.0"
-    "@aws-sdk/middleware-user-agent" "3.686.0"
+    "@aws-sdk/middleware-user-agent" "3.687.0"
     "@aws-sdk/region-config-resolver" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@aws-sdk/util-endpoints" "3.686.0"
     "@aws-sdk/util-user-agent-browser" "3.686.0"
-    "@aws-sdk/util-user-agent-node" "3.686.0"
+    "@aws-sdk/util-user-agent-node" "3.687.0"
     "@smithy/config-resolver" "^3.0.10"
     "@smithy/core" "^2.5.1"
     "@smithy/fetch-http-handler" "^4.0.0"
@@ -132,10 +132,10 @@
     "@smithy/util-utf8" "^3.0.0"
     tslib "^2.6.2"
 
-"@aws-sdk/client-sso@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sso/-/client-sso-3.686.0.tgz#837e9c7af186d2f3f1970f639445463f2ebcfa9e"
-  integrity sha512-D8huL2BSHNP9QdQrqPcx4DCJXcG/vrPimNbymgCBgnYyS1HNs11Hu27ZPrbWCZFC8n/bvfXGXOhm8WAHOi4Vtw==
+"@aws-sdk/client-sso@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sso/-/client-sso-3.687.0.tgz#4c71b818e718f632aa3dd4047961bededa23e4a7"
+  integrity sha512-dfj0y9fQyX4kFill/ZG0BqBTLQILKlL7+O5M4F9xlsh2WNuV2St6WtcOg14Y1j5UODPJiJs//pO+mD1lihT5Kw==
   dependencies:
     "@aws-crypto/sha256-browser" "5.2.0"
     "@aws-crypto/sha256-js" "5.2.0"
@@ -143,12 +143,12 @@
     "@aws-sdk/middleware-host-header" "3.686.0"
     "@aws-sdk/middleware-logger" "3.686.0"
     "@aws-sdk/middleware-recursion-detection" "3.686.0"
-    "@aws-sdk/middleware-user-agent" "3.686.0"
+    "@aws-sdk/middleware-user-agent" "3.687.0"
     "@aws-sdk/region-config-resolver" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@aws-sdk/util-endpoints" "3.686.0"
     "@aws-sdk/util-user-agent-browser" "3.686.0"
-    "@aws-sdk/util-user-agent-node" "3.686.0"
+    "@aws-sdk/util-user-agent-node" "3.687.0"
     "@smithy/config-resolver" "^3.0.10"
     "@smithy/core" "^2.5.1"
     "@smithy/fetch-http-handler" "^4.0.0"
@@ -176,25 +176,25 @@
     "@smithy/util-utf8" "^3.0.0"
     tslib "^2.6.2"
 
-"@aws-sdk/client-sts@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sts/-/client-sts-3.686.0.tgz#9ef94c56ec3379d2bb23e717cfb9b2095de65e1a"
-  integrity sha512-WVyOYdK3w7RhK6UrA2MY8KPIbcZ88BGIoKmRhcOXdIUC8CLL1UIECgdRthFXOU+MBqDPFS+VeF+COk0CpRhE8Q==
+"@aws-sdk/client-sts@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sts/-/client-sts-3.687.0.tgz#fcb837080b225c5820f08326e98db54e48606fb1"
+  integrity sha512-SQjDH8O4XCTtouuCVYggB0cCCrIaTzUZIkgJUpOsIEJBLlTbNOb/BZqUShAQw2o9vxr2rCeOGjAQOYPysW/Pmg==
   dependencies:
     "@aws-crypto/sha256-browser" "5.2.0"
     "@aws-crypto/sha256-js" "5.2.0"
-    "@aws-sdk/client-sso-oidc" "3.686.0"
+    "@aws-sdk/client-sso-oidc" "3.687.0"
     "@aws-sdk/core" "3.686.0"
-    "@aws-sdk/credential-provider-node" "3.686.0"
+    "@aws-sdk/credential-provider-node" "3.687.0"
     "@aws-sdk/middleware-host-header" "3.686.0"
     "@aws-sdk/middleware-logger" "3.686.0"
     "@aws-sdk/middleware-recursion-detection" "3.686.0"
-    "@aws-sdk/middleware-user-agent" "3.686.0"
+    "@aws-sdk/middleware-user-agent" "3.687.0"
     "@aws-sdk/region-config-resolver" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@aws-sdk/util-endpoints" "3.686.0"
     "@aws-sdk/util-user-agent-browser" "3.686.0"
-    "@aws-sdk/util-user-agent-node" "3.686.0"
+    "@aws-sdk/util-user-agent-node" "3.687.0"
     "@smithy/config-resolver" "^3.0.10"
     "@smithy/core" "^2.5.1"
     "@smithy/fetch-http-handler" "^4.0.0"
@@ -239,12 +239,12 @@
     fast-xml-parser "4.4.1"
     tslib "^2.6.2"
 
-"@aws-sdk/credential-provider-cognito-identity@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-cognito-identity/-/credential-provider-cognito-identity-3.686.0.tgz#325adb40eb14eeaf17690fc50d5abd2edd4936c7"
-  integrity sha512-QDNX/VTThYKR26jbJ8HhsdxYYlncPjq7tMY9vL1DoByeOkUTZJnEEHweb7ViiPS7m+SBylCYbUZXC69Huc+15Q==
+"@aws-sdk/credential-provider-cognito-identity@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-cognito-identity/-/credential-provider-cognito-identity-3.687.0.tgz#84fdebedd2392a0a1c8bde884805c2c18677629c"
+  integrity sha512-hJq9ytoj2q/Jonc7mox/b0HT+j4NeMRuU184DkXRJbvIvwwB+oMt12221kThLezMhwIYfXEteZ7GEId7Hn8Y8g==
   dependencies:
-    "@aws-sdk/client-cognito-identity" "3.686.0"
+    "@aws-sdk/client-cognito-identity" "3.687.0"
     "@aws-sdk/types" "3.686.0"
     "@smithy/property-provider" "^3.1.7"
     "@smithy/types" "^3.6.0"
@@ -277,16 +277,16 @@
     "@smithy/util-stream" "^3.2.1"
     tslib "^2.6.2"
 
-"@aws-sdk/credential-provider-ini@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-ini/-/credential-provider-ini-3.686.0.tgz#41679c5845a26a003ffaeaaf4e2f557e7431ee41"
-  integrity sha512-90yr47QsduNiuVizMaJ2GctXZfp/z6s9eSk8ryMxMEJ2zJtaQHmJXIxaNnXj5Kh7V+HhCK7rYu58eyhZvz2Seg==
+"@aws-sdk/credential-provider-ini@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-ini/-/credential-provider-ini-3.687.0.tgz#adb7f3fe381767ad1a4aee352162630f7b5f54de"
+  integrity sha512-6d5ZJeZch+ZosJccksN0PuXv7OSnYEmanGCnbhUqmUSz9uaVX6knZZfHCZJRgNcfSqg9QC0zsFA/51W5HCUqSQ==
   dependencies:
     "@aws-sdk/core" "3.686.0"
     "@aws-sdk/credential-provider-env" "3.686.0"
     "@aws-sdk/credential-provider-http" "3.686.0"
     "@aws-sdk/credential-provider-process" "3.686.0"
-    "@aws-sdk/credential-provider-sso" "3.686.0"
+    "@aws-sdk/credential-provider-sso" "3.687.0"
     "@aws-sdk/credential-provider-web-identity" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@smithy/credential-provider-imds" "^3.2.4"
@@ -295,16 +295,16 @@
     "@smithy/types" "^3.6.0"
     tslib "^2.6.2"
 
-"@aws-sdk/credential-provider-node@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-node/-/credential-provider-node-3.686.0.tgz#118c10e5fde68d02fb4acaa5bfc75d3620b95ed2"
-  integrity sha512-d5etJJD5rE3ALxrZag80EuFYI+tmJrS4E4dvFNRCosVFKvIC89VVpVY0W+OaA0J+D4FD3OzBwxan31BQAW3IyA==
+"@aws-sdk/credential-provider-node@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-node/-/credential-provider-node-3.687.0.tgz#46bd8014bb68913ad285aed01e6920083a42d056"
+  integrity sha512-Pqld8Nx11NYaBUrVk3bYiGGpLCxkz8iTONlpQWoVWFhSOzlO7zloNOaYbD2XgFjjqhjlKzE91drs/f41uGeCTA==
   dependencies:
     "@aws-sdk/credential-provider-env" "3.686.0"
     "@aws-sdk/credential-provider-http" "3.686.0"
-    "@aws-sdk/credential-provider-ini" "3.686.0"
+    "@aws-sdk/credential-provider-ini" "3.687.0"
     "@aws-sdk/credential-provider-process" "3.686.0"
-    "@aws-sdk/credential-provider-sso" "3.686.0"
+    "@aws-sdk/credential-provider-sso" "3.687.0"
     "@aws-sdk/credential-provider-web-identity" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@smithy/credential-provider-imds" "^3.2.4"
@@ -325,12 +325,12 @@
     "@smithy/types" "^3.6.0"
     tslib "^2.6.2"
 
-"@aws-sdk/credential-provider-sso@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-sso/-/credential-provider-sso-3.686.0.tgz#4575296bb6dc090d0ca7c983ac7f9665486208ae"
-  integrity sha512-bGDFRcqpGUe2YBL5gmRZTLcxGwbtFd916JsdqmNgJwhhlOXPF6nqjGil5ZYruS3AMPy0BMntnG0Mvn/ZbusT/A==
+"@aws-sdk/credential-provider-sso@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-sso/-/credential-provider-sso-3.687.0.tgz#2e5704bdaa3c420c2a00a1316cdbdf57d78ae649"
+  integrity sha512-N1YCoE7DovIRF2ReyRrA4PZzF0WNi4ObPwdQQkVxhvSm7PwjbWxrfq7rpYB+6YB1Uq3QPzgVwUFONE36rdpxUQ==
   dependencies:
-    "@aws-sdk/client-sso" "3.686.0"
+    "@aws-sdk/client-sso" "3.687.0"
     "@aws-sdk/core" "3.686.0"
     "@aws-sdk/token-providers" "3.686.0"
     "@aws-sdk/types" "3.686.0"
@@ -351,21 +351,21 @@
     tslib "^2.6.2"
 
 "@aws-sdk/credential-providers@^3.186.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-providers/-/credential-providers-3.686.0.tgz#349f50607406585507fb6c1701bd36fa963fce4e"
-  integrity sha512-Bb5SfOS9x9jW9tQwwA8IzJntVdVQX6GGNUkB4ELcVYPHDRZoyZL391BtxiCM2tucvNXpwnRrO8ifLLtShFuRLQ==
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/credential-providers/-/credential-providers-3.687.0.tgz#a5d6217529c683bdbb564fd8346a0c12cf751380"
+  integrity sha512-3aKlmKaOplpanOycmoigbTrQsqtxpzhpfquCey51aHf9GYp2yYyYF1YOgkXpE3qm3w6eiEN1asjJ2gqoECUuPA==
   dependencies:
-    "@aws-sdk/client-cognito-identity" "3.686.0"
-    "@aws-sdk/client-sso" "3.686.0"
-    "@aws-sdk/client-sts" "3.686.0"
+    "@aws-sdk/client-cognito-identity" "3.687.0"
+    "@aws-sdk/client-sso" "3.687.0"
+    "@aws-sdk/client-sts" "3.687.0"
     "@aws-sdk/core" "3.686.0"
-    "@aws-sdk/credential-provider-cognito-identity" "3.686.0"
+    "@aws-sdk/credential-provider-cognito-identity" "3.687.0"
     "@aws-sdk/credential-provider-env" "3.686.0"
     "@aws-sdk/credential-provider-http" "3.686.0"
-    "@aws-sdk/credential-provider-ini" "3.686.0"
-    "@aws-sdk/credential-provider-node" "3.686.0"
+    "@aws-sdk/credential-provider-ini" "3.687.0"
+    "@aws-sdk/credential-provider-node" "3.687.0"
     "@aws-sdk/credential-provider-process" "3.686.0"
-    "@aws-sdk/credential-provider-sso" "3.686.0"
+    "@aws-sdk/credential-provider-sso" "3.687.0"
     "@aws-sdk/credential-provider-web-identity" "3.686.0"
     "@aws-sdk/types" "3.686.0"
     "@smithy/credential-provider-imds" "^3.2.4"
@@ -402,10 +402,10 @@
     "@smithy/types" "^3.6.0"
     tslib "^2.6.2"
 
-"@aws-sdk/middleware-user-agent@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-user-agent/-/middleware-user-agent-3.686.0.tgz#f634a2f767d6f347d9f8d5822a3da00923c9ffee"
-  integrity sha512-/GRU68H5J66OD2a/RtX5s2ECtXTlMq6NneLlzcx0mIWnZ2VRMS2vFW2j2jrBEPJ5Y5us1/lK/fbun6gNo3qh7Q==
+"@aws-sdk/middleware-user-agent@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-user-agent/-/middleware-user-agent-3.687.0.tgz#a5feb5466d2926cd1ef5dd6f4778b33ce160ca7f"
+  integrity sha512-nUgsKiEinyA50CaDXojAkOasAU3Apdg7Qox6IjNUC4ZjgOu7QWsCDB5N28AYMUt06cNYeYQdfMX1aEzG85a1Mg==
   dependencies:
     "@aws-sdk/core" "3.686.0"
     "@aws-sdk/types" "3.686.0"
@@ -473,12 +473,12 @@
     bowser "^2.11.0"
     tslib "^2.6.2"
 
-"@aws-sdk/util-user-agent-node@3.686.0":
-  version "3.686.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/util-user-agent-node/-/util-user-agent-node-3.686.0.tgz#73b39d428e259fedbc1442e184bbd401be398ec5"
-  integrity sha512-XXUhZPeacJt5BmWc0qNXA4/yyQGXPmFcTOFe5aqXuZbhtTCNVJ0fPQHFip37iGSHCg8eAFykiBn9W8hD4swolQ==
+"@aws-sdk/util-user-agent-node@3.687.0":
+  version "3.687.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-user-agent-node/-/util-user-agent-node-3.687.0.tgz#6bdc45c2ef776a86614b002867aef37fc6f45b41"
+  integrity sha512-idkP6ojSTZ4ek1pJ8wIN7r9U3KR5dn0IkJn3KQBXQ58LWjkRqLtft2vxzdsktWwhPKjjmIKl1S0kbvqLawf8XQ==
   dependencies:
-    "@aws-sdk/middleware-user-agent" "3.686.0"
+    "@aws-sdk/middleware-user-agent" "3.687.0"
     "@aws-sdk/types" "3.686.0"
     "@smithy/node-config-provider" "^3.1.9"
     "@smithy/types" "^3.6.0"
@@ -679,65 +679,65 @@
   dependencies:
     sparse-bitfield "^3.0.3"
 
-"@napi-rs/canvas-android-arm64@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-android-arm64/-/canvas-android-arm64-0.1.59.tgz#86e52187595ca2bec1ef25f58cd9fad619d1762a"
-  integrity sha512-p4rRL9KIDz57Z+gKLpemX36DB7fVVHmY4DtesMGrnjx4gSBUM2M7LNzbzf4o3oPZGDiHMY0vnvNHR4dKfszNeg==
+"@napi-rs/canvas-android-arm64@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-android-arm64/-/canvas-android-arm64-0.1.60.tgz#832c54049bdd50307a5c6232905307a6ff922046"
+  integrity sha512-KNOBYH3BUfUl5mo5wvrA2C+tJk0RnF4InkbsCoHdsxjhLjbriJKmu5DCFLaiG/c6WPfTcLRz73bGcP7boVeb6A==
 
-"@napi-rs/canvas-darwin-arm64@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-darwin-arm64/-/canvas-darwin-arm64-0.1.59.tgz#290bdeae3e834d124131724604f2c6ec8105c605"
-  integrity sha512-+8s06WxcM9ilv9PVOl57hvasbwKWMfrrNAYknqMPCn4jpc4XDcLbrM5LTZGhhptlv9jQ9DmHfZ978/xInsMYXw==
+"@napi-rs/canvas-darwin-arm64@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-darwin-arm64/-/canvas-darwin-arm64-0.1.60.tgz#8c4ddd8a924390ff8c1d3683358e6608a2401e42"
+  integrity sha512-j6PA7RwRcx0409Jk3zz6beq3EtvwEgvN46FyKgFnSnzoV0ey2kM+KI2XTpG3tE/v4+fTnQenR+ysUBEgtWuUuA==
 
-"@napi-rs/canvas-darwin-x64@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-darwin-x64/-/canvas-darwin-x64-0.1.59.tgz#0db73e875f69d9c6112826675ac5b3ed389178ac"
-  integrity sha512-6kziJHjXdxduYK2L2uuwjEIYoPJednKq+C81MCm3fPobXE4HBKs0JGXwq3GkWNe340U340vmagwXiFi6muEy+g==
+"@napi-rs/canvas-darwin-x64@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-darwin-x64/-/canvas-darwin-x64-0.1.60.tgz#03aa1bc3a59d0c25ec74754507b010d1d9284bf9"
+  integrity sha512-k0uBuShNK7QnOJlLhzxSsnSdJMkiU8VexqvuTEi0qABqKkHrYzD0ezUgtyvaVLOOoqxwGy1Hh5ZoEze5s9H/6g==
 
-"@napi-rs/canvas-linux-arm-gnueabihf@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm-gnueabihf/-/canvas-linux-arm-gnueabihf-0.1.59.tgz#c53d82541a6018d85bccffa1c2bb178cf5bc4d3d"
-  integrity sha512-eCkyS7jojNmaUPaVFdNjAyS0R3isrJtUfRf1vRP6K50GRuHso3vwQRbZBPKM71qHdjPDylfaQc5H6/M7epyD+w==
+"@napi-rs/canvas-linux-arm-gnueabihf@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm-gnueabihf/-/canvas-linux-arm-gnueabihf-0.1.60.tgz#28dcf3b5523ebf89420e9d620089a970c4b15560"
+  integrity sha512-X2cQ6MIDZn5dMsy9jakASM6tvo2PGd3dq25gqrUzJeQIngQhLIWZtaYWza3md3M6HoQ4b/6W81OVQhgL/8uTkA==
 
-"@napi-rs/canvas-linux-arm64-gnu@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm64-gnu/-/canvas-linux-arm64-gnu-0.1.59.tgz#4de11994fed8731991fd2b7f4188a98a76034ad0"
-  integrity sha512-1u4++lbsolP1MAPViuDoZmgmDLKlV0iJnlHN2dfwgbu3t53P0l3jIT1oCIAiWil0OlrWtDF24JbY7LUUGH5aHg==
+"@napi-rs/canvas-linux-arm64-gnu@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm64-gnu/-/canvas-linux-arm64-gnu-0.1.60.tgz#cd5726527af43d380be4140758ab01882d74f32c"
+  integrity sha512-Ch02kQsetlXA4tfHfSJ63oyq9EbYB00yy/6hZ0/VYh60pLnopvsMt682+cM+rGBbgm14G+Heh3rDzJ6zBiiocw==
 
-"@napi-rs/canvas-linux-arm64-musl@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm64-musl/-/canvas-linux-arm64-musl-0.1.59.tgz#288ff55dcad50357e48ed7ef5493d325167fb7ae"
-  integrity sha512-eqevZ2kWPxeAnvhxl7U5tf6AiMnhlO4w2Hci79WQkfeirqQG6RRM4Jnxbh9iO3jkAnnOXmM4r+S3UrOcfIx1Rg==
+"@napi-rs/canvas-linux-arm64-musl@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-arm64-musl/-/canvas-linux-arm64-musl-0.1.60.tgz#f339fc1cf4ec071a5d149050e141c04e15b1ae09"
+  integrity sha512-7TpSJM4RnhHnAMrA/bDXitNVx9TV8ZLQ/47QHsNhdZ77yCgcEyLBRgUGvjsmnUpWIHhTOWTHDlGY47zHcQDfhA==
 
-"@napi-rs/canvas-linux-x64-gnu@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-x64-gnu/-/canvas-linux-x64-gnu-0.1.59.tgz#beda24f42cba2557d79a9238f38f9468ab879e85"
-  integrity sha512-F+T63RnLt0qYUXhbOpaome3vIWLW4xoQRmhTnkKDzOtBSnKVP7sCM6E5/5tByOFCR3fTj4ksMeeHy8zJScEExA==
+"@napi-rs/canvas-linux-x64-gnu@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-x64-gnu/-/canvas-linux-x64-gnu-0.1.60.tgz#140bc03ca7a6b5eb5247f786e3e0fbb17e50c0bd"
+  integrity sha512-46yi+fIUQ5SRg0Qs3L04zh67kk0uFJa2elWt/cS/7kEydu06uhjbJwW3123J9KShu2PKLlaZEqxJPksYpowoeA==
 
-"@napi-rs/canvas-linux-x64-musl@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-x64-musl/-/canvas-linux-x64-musl-0.1.59.tgz#23af36408c96b8e50903dfcbf38b9d6d239d7a39"
-  integrity sha512-HhUgpTGQUR2VRslEC5Idf6s0hhamJiVlEh2k3AG9XXOwX6fg0xXkqm84DPiOCLzsO5bqtJEo+rh03BUSDcf53g==
+"@napi-rs/canvas-linux-x64-musl@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-linux-x64-musl/-/canvas-linux-x64-musl-0.1.60.tgz#34ccf742fb4d21169735fe16c8190109d591fd5b"
+  integrity sha512-lTKiv5VnccFyZAd27AL6t69djDXQlfUgVE03PTM5HZUUy0h7sQKnrGh2mSMq58E3/vA0k65IFDqVqxyLjCpvlw==
 
-"@napi-rs/canvas-win32-x64-msvc@0.1.59":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.59.tgz#f0d356f0f4c8417a660539657ddb5d6c0368a564"
-  integrity sha512-bYMiZJsKPkU7HEoYI5E0alOSV1EkaigY4VEgGHPK9W/qGMmNFsxdbURQqa5h3zbhZTK5QRSdYYqowcTEYVIlug==
+"@napi-rs/canvas-win32-x64-msvc@0.1.60":
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.60.tgz#6f01900d697051b7b27b71042349c3838cb9d06e"
+  integrity sha512-b7VjNQ3V/7G6VQqB8KvG9A06ENFZhxFMe4areUduipFwuJ0w35PGgOmYZHd0+iY9Nh7niECjgPRNDcrzpDlWXg==
 
 "@napi-rs/canvas@^0.1.34":
-  version "0.1.59"
-  resolved "https://registry.yarnpkg.com/@napi-rs/canvas/-/canvas-0.1.59.tgz#6b5b40741aa3a53097850257b00ef8b8ecb9ad75"
-  integrity sha512-3vUtQ8DzYcz9xy86UUe8OfDiXNuuLB9zFAUs5N/I2GpkY/MWBJ2M7w5FqH380oC44IzYOWaOMLWCPfNZBsbBww==
+  version "0.1.60"
+  resolved "https://registry.yarnpkg.com/@napi-rs/canvas/-/canvas-0.1.60.tgz#a7f2196fbb8e6dd04ecaf2946721ba0b86fe698c"
+  integrity sha512-2a/8ynCHVXu9JVTeT/RLrZy6kro3VHnxDqy7SyHIdzCUUwJoKuKNmDzXjD6bqE0W/07j1lFW7OVIAYSr1GiWuA==
   optionalDependencies:
-    "@napi-rs/canvas-android-arm64" "0.1.59"
-    "@napi-rs/canvas-darwin-arm64" "0.1.59"
-    "@napi-rs/canvas-darwin-x64" "0.1.59"
-    "@napi-rs/canvas-linux-arm-gnueabihf" "0.1.59"
-    "@napi-rs/canvas-linux-arm64-gnu" "0.1.59"
-    "@napi-rs/canvas-linux-arm64-musl" "0.1.59"
-    "@napi-rs/canvas-linux-x64-gnu" "0.1.59"
-    "@napi-rs/canvas-linux-x64-musl" "0.1.59"
-    "@napi-rs/canvas-win32-x64-msvc" "0.1.59"
+    "@napi-rs/canvas-android-arm64" "0.1.60"
+    "@napi-rs/canvas-darwin-arm64" "0.1.60"
+    "@napi-rs/canvas-darwin-x64" "0.1.60"
+    "@napi-rs/canvas-linux-arm-gnueabihf" "0.1.60"
+    "@napi-rs/canvas-linux-arm64-gnu" "0.1.60"
+    "@napi-rs/canvas-linux-arm64-musl" "0.1.60"
+    "@napi-rs/canvas-linux-x64-gnu" "0.1.60"
+    "@napi-rs/canvas-linux-x64-musl" "0.1.60"
+    "@napi-rs/canvas-win32-x64-msvc" "0.1.60"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -944,9 +944,9 @@
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
 "@sapphire/async-queue@^1.5.0", "@sapphire/async-queue@^1.5.2", "@sapphire/async-queue@^1.5.3":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.5.4.tgz#213e2a7a2df6313b9df791c04d8f5c32ebd3c413"
-  integrity sha512-id65RxAx34DCk8KAVTPWwcephJSkStiS9M15F87+zvK2gK47wf7yeRIo8WiuKeXQS6bsyo/uQ/t0QW1cLmSb+A==
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.5.5.tgz#2b18d402bb920b65b13ad4ed8dfb6c386300dd84"
+  integrity sha512-cvGzxbba6sav2zZkH8GPf2oGk9yYoD5qrNWdu9fRehifgnFZJMV+nuy2nON2roRO4yQQ+v7MK/Pktl/HgfsUXg==
 
 "@sapphire/shapeshift@^4.0.0":
   version "4.0.0"
@@ -962,9 +962,9 @@
   integrity sha512-jjmJywLAFoWeBi1W7994zZyiNWPIiqRRNAmSERxyg93xRGzNYvGjlZ0gR6x0F4gPRi2+0O6S71kOZYyr3cxaIQ==
 
 "@sapphire/snowflake@^3.4.2", "@sapphire/snowflake@^3.5.3":
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/@sapphire/snowflake/-/snowflake-3.5.4.tgz#b7fa8c8889cdb298f66a263b476016c4b668ce12"
-  integrity sha512-YeQY5xNMj3zbwEIZYzyM/7heSjjDbje7B2jfbnoyUsBPMNL4+TO+Zd1pp8v0OzCLNpPaYIZdwcvEScKXthhsPA==
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/@sapphire/snowflake/-/snowflake-3.5.5.tgz#33a60ab4231e3cab29e8a0077f342125f2c8d1bd"
+  integrity sha512-xzvBr1Q1c4lCe7i6sRnrofxeO1QTP/LKQ6A6qy0iB4x5yfiSfARMEQEghojzTNALDTcv8En04qYNIco9/K9eZQ==
 
 "@sigstore/bundle@^1.1.0":
   version "1.1.0"
@@ -2100,9 +2100,9 @@ core-util-is@1.0.2:
   integrity sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==
 
 cross-spawn@^7.0.0, cross-spawn@^7.0.2:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
-  integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.5.tgz#910aac880ff5243da96b728bc6521a5f6c2f2f82"
+  integrity sha512-ZVJrKKYunU38/76t0RMOulHOnUcbU9GbpWKAOZ0mhjr7CX6FVrH+4FrAapSOekrgFQ3f/8gwMEuIft0aKq6Hug==
   dependencies:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
@@ -2268,9 +2268,9 @@ discord-api-types@0.37.97:
   integrity sha512-No1BXPcVkyVD4ZVmbNgDKaBoqgeQ+FJpzZ8wqHkfmBnTZig1FcH3iPPersiK1TUIAzgClh2IvOuVUYfcWLQAOA==
 
 discord-api-types@^0.37.41:
-  version "0.37.103"
-  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.103.tgz#215423355c6bd9780f367453b9f01d7731cbfb95"
-  integrity sha512-r+qitxXKe2l6KFw5odPdZSSqdEou+7eNC7BfbZ7mny5Me/K06wCTeKUMVeH/YsI9+4QQudskeQ307kr/7ppQ1A==
+  version "0.37.104"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.104.tgz#d6a0f0477f27c98a42b19208bfc0da30e72facd5"
+  integrity sha512-kIX9RXGekag1Yd/R/douqBTRyt5GY5mCoxntKLuyqfYpKQ1fl8XpHNFIMtnoDSD343TJWsah49XylrsNFfTu0Q==
 
 discord-gamecord@^4.1.0:
   version "4.4.2"
@@ -4581,9 +4581,9 @@ oauth-sign@~0.9.0:
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
 object-inspect@^1.13.1:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.13.2.tgz#dea0088467fb991e67af4058147a24824a3043ff"
-  integrity sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.13.3.tgz#f14c183de51130243d6d18ae149375ff50ea488a"
+  integrity sha512-kDCGIbxkDSXE3euJZZXzc6to7fCrKHNI/hSRQnRuQ+BWjFNzZwiFF8fj/6o2t2G9/jTj8PSIYTfCLelLZEeRpA==
 
 object-keys@^1.1.1:
   version "1.1.1"
@@ -4917,9 +4917,11 @@ proxy-from-env@^1.1.0:
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
 psl@^1.1.28:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/psl/-/psl-1.9.0.tgz#d0df2a137f00794565fcaf3b2c00cd09f8d5a5a7"
-  integrity sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/psl/-/psl-1.10.0.tgz#1450f7e16f922c3beeb7bd9db3f312635018fa15"
+  integrity sha512-KSKHEbjAnpUuAUserOq0FxGXCUrzC3WniuSJhvdbs102rL55266ZcHBqLWOsG30spQMlPdpy7icATiAQehg/iA==
+  dependencies:
+    punycode "^2.3.1"
 
 pstree.remy@^1.1.8:
   version "1.1.8"
@@ -4934,7 +4936,7 @@ pump@^3.0.0:
     end-of-stream "^1.1.0"
     once "^1.3.1"
 
-punycode@^2.1.0, punycode@^2.1.1:
+punycode@^2.1.0, punycode@^2.1.1, punycode@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
