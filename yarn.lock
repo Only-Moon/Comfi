@@ -5681,9 +5681,9 @@ supports-preserve-symlinks-flag@^1.0.0:
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
 systeminformation@^5.7.12:
-  version "5.23.24"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.23.24.tgz#11e9465e6808d3b8f5a51469f7a2aaeef0cd9ff8"
-  integrity sha512-dPEaqxCaOQMp+5/zCSjuGWbYW2NNBHUZZgI8SNs8xZbLSML2gXvf8OUiqr7Ea1zLkEuH3Tu58DLiNe4kwftPxw==
+  version "5.24.1"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.24.1.tgz#8a2d636fc8b1e6437f18971e37ebe3beb13a328c"
+  integrity sha512-zQ5BfdVT7qwhj4bobmAv1EhXBVlXr6nOoS0OlcIigw9WkC+PmEqxLarZIyznDe4uIYmUIc87ahXRa7HGR6EGDQ==
 
 tar@^6.1.11, tar@^6.1.13, tar@^6.1.2, tar@^6.2.1:
   version "6.2.1"
