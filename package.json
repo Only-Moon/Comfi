@@ -13,7 +13,7 @@
     "discord-gamecord": "^4.1.0",
     "discord-purger": "^1.0.3",
     "discord.js": "^14.7.1",
-    "dotenv": "^16.1.4",
+    "dotenv": "^16.6.1",
     "git": "^0.1.5",
     "glob": "^10.2.7",
     "google-play-scraper": "^9.1.1",
